@@ -1,0 +1,30 @@
+{
+switch (item.getItemId()) {
+case 0:
+    trackcell();
+  return true;
+case 1:
+tracksignal();
+return true;
+case 2:
+tracklocation();
+return true;
+case 4:
+showmap();
+return true;
+case 5:
+about();
+return true;
+case 6:
+this.quit();
+return true;
+case 7:
+dumpinfokml();
+return true;
+case 8:
+dumpinfocsv();
+return true;
+default :
+return super.onOptionsItemSelected(item);
+}
+}

@@ -1,0 +1,35 @@
+{
+  Log.i("rawphone"," ==> Exec: insertrow (" + lac + ","+ cellid+ ","+ nettype+ ","+ dlat+ ","+ dlng+ ","+ signalinfo+ ","+ cellinfo+ ")");
+  try {
+    if ((dlng != 0.0) || (dlat != 0.0)) {
+      if (myDB != null) {
+        Cursor mCursor=myDB.query(true,TABLE_NAME,new String[]{"_id","Signal"},"CellID =" + cellid,null,null,null,"Signal",null);
+        if (mCursor.moveToFirst()) {
+          do {
+            int iSignal=mCursor.getInt(1);
+            if (iSignal <= signalinfo) {
+              Log.i("rawphone"," ==> Removing " + mCursor.getInt(0) + " adding cell "+ cellid+ " with signal "+ signalinfo);
+              myDB.delete(TABLE_NAME,"_id =" + mCursor.getInt(0),null);
+              myDB.execSQL("INSERT INTO " + TABLE_NAME + " (Lac , CellID, Net, Lat, Lng, Signal, Connection)"+ " VALUES("+ lac+ ","+ cellid+ ","+ nettype+ ","+ dlat+ ","+ dlng+ ","+ signalinfo+ ",\""+ cellinfo+ "\");");
+            }
+ else {
+              Log.i("rawphone"," ==> Keep entry " + mCursor.getInt(0) + " with signal "+ mCursor.getInt(1));
+            }
+          }
+ while (mCursor.moveToNext());
+        }
+ else {
+          Log.i("rawphone"," ==> Adding VALUES(" + lac + ","+ cellid+ ","+ nettype+ ","+ dlat+ ","+ dlng+ ","+ signalinfo+ ",\""+ cellinfo+ "\");");
+          myDB.execSQL("INSERT INTO " + TABLE_NAME + " (Lac , CellID, Net, Lat, Lng, Signal, Connection)"+ " VALUES("+ lac+ ","+ cellid+ ","+ nettype+ ","+ dlat+ ","+ dlng+ ","+ signalinfo+ ",\""+ cellinfo+ "\");");
+        }
+        mCursor.close();
+      }
+ else {
+        Log.e("rawphone"," ==>  Database not initialized!");
+      }
+    }
+  }
+ catch (  Exception e) {
+    System.out.println("Strange Error caught: " + e.getMessage());
+  }
+}

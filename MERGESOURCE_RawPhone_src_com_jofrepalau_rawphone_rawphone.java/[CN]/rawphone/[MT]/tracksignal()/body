@@ -1,0 +1,11 @@
+{
+  if (isTrackingSignal) {
+    tm.listen(signalListenerstrength,PhoneStateListener.LISTEN_NONE);
+    isTrackingSignal=false;
+    signalinfo=0;
+  }
+ else {
+    tm.listen(signalListenerstrength,PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+    isTrackingSignal=true;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  if (isAbout) {
+    Log.i("Rawphone","Call bring outputview (LOG) to front");
+    webview.bringChildToFront(outputView);
+    outputView.bringToFront();
+    isAbout=false;
+  }
+ else {
+    if (webview != null) {
+      webview.bringToFront();
+    }
+ else {
+      webview=new WebView(this);
+      webview.loadUrl("http://rawphone.dyndns.biz/rawphone.php");
+      setContentView(webview);
+    }
+    isAbout=true;
+  }
+}
