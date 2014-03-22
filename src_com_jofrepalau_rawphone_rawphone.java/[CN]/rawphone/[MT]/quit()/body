@@ -1,0 +1,10 @@
+{
+  notificationManager.cancelAll();
+  if (lm != null) {
+    lm.removeUpdates(locationListener);
+  }
+  if (myDB != null) {
+    myDB.close();
+  }
+  this.finish();
+}

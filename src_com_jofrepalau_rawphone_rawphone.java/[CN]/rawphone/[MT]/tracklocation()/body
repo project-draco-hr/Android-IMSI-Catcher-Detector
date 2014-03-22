@@ -1,0 +1,36 @@
+{
+  if (isTrackingLocation) {
+    lm.removeUpdates(locationListener);
+    isTrackingLocation=false;
+    slng=0.0;
+    slat=0.0;
+  }
+ else {
+    if (lm != null) {
+      Log.i("rawphone","LocationManager already existed");
+      lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+      isTrackingLocation=true;
+    }
+ else {
+      Log.i("rawphone","LocationManager did not existed");
+      lm=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
+      if (lm != null) {
+        if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+          Log.i("rawphone","LocationManager created");
+          locationListener=new MyLocationListener();
+          lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+          isTrackingLocation=true;
+        }
+ else {
+          Log.i("rawphone","GPS not allowed");
+          AlertDialog.Builder msg=new AlertDialog.Builder(this);
+          msg.setMessage("GPS is not enabled!. You won?t be able to use GPS data until you enable it");
+          AlertDialog alert=msg.create();
+          alert.setTitle("Error:");
+          alert.show();
+          lm=null;
+        }
+      }
+    }
+  }
+}

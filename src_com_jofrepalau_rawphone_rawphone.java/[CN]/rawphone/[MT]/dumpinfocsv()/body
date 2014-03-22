@@ -1,0 +1,51 @@
+{
+  try {
+    String state=Environment.getExternalStorageState();
+    if (Environment.MEDIA_MOUNTED.equals(state)) {
+    }
+ else     if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+      AlertDialog.Builder msg=new AlertDialog.Builder(this);
+      msg.setMessage("Sorry, your SD card is mounted as ready only. We can?t copy the log if we can? write there");
+      AlertDialog alert=msg.create();
+      alert.setTitle("Error:");
+      alert.show();
+      return;
+    }
+ else {
+      AlertDialog.Builder msg=new AlertDialog.Builder(this);
+      msg.setMessage("Sorry, I could not find an SD card where to copy the log");
+      AlertDialog alert=msg.create();
+      alert.setTitle("Error:");
+      alert.show();
+      return;
+    }
+    File rootcasirectory=new File(Environment.getExternalStorageDirectory() + "/rawphone/");
+    rootcasirectory.mkdirs();
+    String buff=csv;
+    SimpleDateFormat dateFormat=new SimpleDateFormat("yyyyMMdd-HHmmss");
+    java.util.Date date=new java.util.Date();
+    String datetime=dateFormat.format(date);
+    File file=new File(rootcasirectory,"rawphone-" + datetime + ".csv");
+    try {
+      OutputStream os=new FileOutputStream(file);
+      os.write(buff.getBytes());
+    }
+ catch (    IOException e) {
+      System.out.println("ExternalStorage: Error writing " + file + e.getMessage());
+    }
+    AlertDialog.Builder msg=new AlertDialog.Builder(this);
+    msg.setMessage("CSV log copied in " + file);
+    AlertDialog alert=msg.create();
+    alert.setTitle("Log:");
+    alert.show();
+  }
+ catch (  Exception e) {
+    AlertDialog.Builder msg=new AlertDialog.Builder(this);
+    msg.setMessage("Something unexpected happened: " + e.getMessage());
+    AlertDialog alert=msg.create();
+    alert.setTitle("Error!");
+    alert.setIcon(R.drawable.icon);
+    alert.show();
+    e.printStackTrace();
+  }
+}

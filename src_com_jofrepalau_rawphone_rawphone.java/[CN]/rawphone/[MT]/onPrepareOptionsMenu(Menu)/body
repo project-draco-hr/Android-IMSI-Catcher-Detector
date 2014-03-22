@@ -1,0 +1,31 @@
+{
+  menu.clear();
+  if (isTrackingCell) {
+    menu.add(1,0,0,"Untrack Cell");
+  }
+ else {
+    menu.add(1,0,0,"Track Cell");
+  }
+  if (isTrackingSignal) {
+    menu.add(1,1,0,"Untrack Signal");
+  }
+ else {
+    menu.add(1,1,0,"Track Signal");
+  }
+  if (isTrackingLocation) {
+    menu.add(1,2,0,"Remove Loc.");
+  }
+ else {
+    menu.add(1,2,0,"Add Location");
+  }
+  menu.add(0,4,4,"Show Map");
+  if (isAbout) {
+  }
+ else {
+  }
+  menu.add(0,6,6,"Quit");
+  menu.add(0,7,7,"Dump Session KML");
+  menu.add(0,8,8,"Dump Session CSV");
+  menu.setGroupCheckable(1,true,false);
+  return super.onCreateOptionsMenu(menu);
+}

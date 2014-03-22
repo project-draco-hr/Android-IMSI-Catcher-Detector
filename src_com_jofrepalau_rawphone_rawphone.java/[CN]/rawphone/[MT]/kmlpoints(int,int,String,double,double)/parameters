@@ -1,0 +1,5 @@
+int lac
+int cellid
+String info
+double lng
+double lat

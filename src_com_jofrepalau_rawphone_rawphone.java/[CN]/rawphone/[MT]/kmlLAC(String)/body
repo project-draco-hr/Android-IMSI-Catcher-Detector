@@ -1,0 +1,3 @@
+{
+  return poligon(lac,alPosition,content);
+}

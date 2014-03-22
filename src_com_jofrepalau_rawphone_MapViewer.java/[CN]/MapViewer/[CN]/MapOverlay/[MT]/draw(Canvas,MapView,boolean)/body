@@ -1,0 +1,12 @@
+{
+  int pradius=(int)mapv.getProjection().metersToEquatorPixels(radius);
+  Log.i("MapViewer"," ==> Draw pos: " + gp1.toString() + " color: "+ color+ " radius: "+ radius+ " pradius: "+ pradius);
+  Projection projection=mapView.getProjection();
+  Paint paint=new Paint();
+  Point point=new Point();
+  projection.toPixels(gp1,point);
+  paint.setColor(color);
+  paint.setStrokeWidth(0);
+  paint.setAlpha(20);
+  canvas.drawCircle(point.x,point.y,pradius,paint);
+}
