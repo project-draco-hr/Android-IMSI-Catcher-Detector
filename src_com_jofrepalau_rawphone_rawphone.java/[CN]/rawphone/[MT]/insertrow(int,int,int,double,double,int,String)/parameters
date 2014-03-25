@@ -1,7 +1,0 @@
-int lac
-int cellid
-int nettype
-double dlat
-double dlng
-int signalinfo
-String cellinfo

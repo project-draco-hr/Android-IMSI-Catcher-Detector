@@ -1,0 +1,8 @@
+{
+  String timestamp="unknown";
+  Date now=new Date();
+  java.text.DateFormat dateFormat=android.text.format.DateFormat.getDateFormat(context);
+  java.text.DateFormat timeFormat=android.text.format.DateFormat.getTimeFormat(context);
+  timestamp=dateFormat.format(now) + ' ' + timeFormat.format(now);
+  return timestamp;
+}

@@ -1,0 +1,19 @@
+{
+  if (isAbout) {
+    Log.i(TAG,"Call bring outputview (LOG) to front");
+    webview.bringChildToFront(outputView);
+    outputView.bringToFront();
+    isAbout=false;
+  }
+ else {
+    if (webview != null) {
+      webview.bringToFront();
+    }
+ else {
+      webview=new WebView(this);
+      webview.loadUrl("http://github.com/SecUpwN/Android-IMSI-Catcher-Detector");
+      setContentView(webview);
+    }
+    isAbout=true;
+  }
+}

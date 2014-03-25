@@ -1,6 +1,0 @@
-{
-  kml="<kml xmlns=\"http://earth.google.com/kml/2.0\">\n";
-  kml+="<Folder>\n";
-  kml+="<name>RawPhone</name>\n";
-  kml+="<description><![CDATA[RawPhone LAC and CellID logs]]></description>\n";
-}

@@ -1,0 +1,4 @@
+{
+  if (isOn)   runSuCommand("setprop " + prop + " true");
+ else   runSuCommand("setprop " + prop + " false");
+}

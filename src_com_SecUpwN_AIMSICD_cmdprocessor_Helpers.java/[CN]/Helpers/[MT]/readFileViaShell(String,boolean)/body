@@ -1,0 +1,4 @@
+{
+  String command="cat " + filePath;
+  return useSu ? runSuCommand(command).getStdout() : runShellCommand(command).getStdout();
+}

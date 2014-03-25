@@ -1,0 +1,10 @@
+{
+  String value="";
+  for (  String prop : props) {
+    value=Helpers.getSystemProp(context,prop,def);
+    if (!value.equals("")) {
+      return value;
+    }
+  }
+  return "";
+}

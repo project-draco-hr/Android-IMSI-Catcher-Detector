@@ -1,0 +1,51 @@
+{
+  try {
+    String state=Environment.getExternalStorageState();
+    if (Environment.MEDIA_MOUNTED.equals(state)) {
+      File rootcasirectory=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/");
+      rootcasirectory.mkdirs();
+      String buff=sKML;
+      buff=kmlLAC(buff);
+      buff+="</Folder>\n</kml>\n";
+      SimpleDateFormat dateFormat=new SimpleDateFormat("yyyyMMdd-HHmmss");
+      java.util.Date date=new java.util.Date();
+      String datetime=dateFormat.format(date);
+      File file=new File(rootcasirectory,"aimsicd-" + datetime + ".kml");
+      try {
+        OutputStream os=new FileOutputStream(file);
+        os.write(buff.getBytes());
+      }
+ catch (      IOException e) {
+        Log.e(TAG,"ExternalStorage: Error writing " + file + e.getMessage());
+      }
+      AlertDialog.Builder msg=new AlertDialog.Builder(context);
+      msg.setMessage("KML log copied in " + file);
+      AlertDialog alert=msg.create();
+      alert.setTitle("Log:");
+      alert.show();
+    }
+ else     if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+      AlertDialog.Builder msg=new AlertDialog.Builder(context);
+      msg.setMessage("Sorry, your SD card is mounted in read only mode. Write access is required to your SD card.");
+      AlertDialog alert=msg.create();
+      alert.setTitle("Error:");
+      alert.show();
+    }
+ else {
+      AlertDialog.Builder msg=new AlertDialog.Builder(context);
+      msg.setMessage("Sorry, I could not find an SD card to copy the log.");
+      AlertDialog alert=msg.create();
+      alert.setTitle("Error:");
+      alert.show();
+    }
+  }
+ catch (  Exception e) {
+    AlertDialog.Builder msg=new AlertDialog.Builder(context);
+    msg.setMessage("Something unexpected happened: " + e.getMessage());
+    AlertDialog alert=msg.create();
+    alert.setTitle("Error!");
+    alert.setIcon(R.drawable.icon);
+    alert.show();
+    e.printStackTrace();
+  }
+}

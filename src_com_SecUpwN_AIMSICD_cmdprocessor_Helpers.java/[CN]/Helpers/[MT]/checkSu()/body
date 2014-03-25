@@ -1,0 +1,20 @@
+{
+  if (!new File("/system/bin/su").exists() && !new File("/system/xbin/su").exists()) {
+    Log.e(TAG,"su binary does not exist!!!");
+    return false;
+  }
+  try {
+    if (runSuCommand("ls /data/app-private").success()) {
+      Log.i(TAG," SU exists and we have permission");
+      return true;
+    }
+ else {
+      Log.i(TAG," SU exists but we don't have permission");
+      return false;
+    }
+  }
+ catch (  NullPointerException e) {
+    Log.e(TAG,"NullPointer throw while looking for su binary",e);
+    return false;
+  }
+}

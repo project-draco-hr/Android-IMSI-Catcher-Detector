@@ -1,0 +1,4 @@
+{
+  if (sSimSubs.isEmpty() || force)   sSimSubs=tm.getSubscriberId();
+  return sSimSubs;
+}

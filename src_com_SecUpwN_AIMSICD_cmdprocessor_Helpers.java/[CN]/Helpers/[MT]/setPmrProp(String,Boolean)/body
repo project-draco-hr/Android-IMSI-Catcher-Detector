@@ -1,0 +1,4 @@
+{
+  if (isOn)   runSuCommand(Shell.ECHO + "\"" + prop+ "=true"+ "\" >> "+ Shell.BUILD_PROP);
+ else   runSuCommand(Shell.ECHO + "\"" + prop+ "=false"+ "\" >> "+ Shell.BUILD_PROP);
+}

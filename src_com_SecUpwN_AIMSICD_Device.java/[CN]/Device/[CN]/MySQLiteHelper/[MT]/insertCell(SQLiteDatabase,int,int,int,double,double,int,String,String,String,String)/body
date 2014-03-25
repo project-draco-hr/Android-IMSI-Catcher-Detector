@@ -1,0 +1,3 @@
+{
+  db.execSQL("INSERT INTO " + CELL_TABLE + " (Lac , CellID, Net, Lat, Lng, Signal, Connection,"+ "Country, Operator, OperatorName)"+ " VALUES("+ lac+ ","+ cellID+ ","+ netType+ ","+ latitude+ ","+ longitude+ ","+ signalInfo+ ",\""+ cellInfo+ "\", \""+ simCountry+ "\","+ simOperator+ ",\""+ simOperatorName+ "\");");
+}

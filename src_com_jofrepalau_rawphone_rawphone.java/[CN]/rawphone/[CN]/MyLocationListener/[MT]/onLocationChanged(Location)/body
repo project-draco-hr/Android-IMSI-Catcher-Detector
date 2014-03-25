@@ -1,6 +1,0 @@
-{
-  if (loc != null) {
-    slng=loc.getLongitude();
-    slat=loc.getLatitude();
-  }
-}
