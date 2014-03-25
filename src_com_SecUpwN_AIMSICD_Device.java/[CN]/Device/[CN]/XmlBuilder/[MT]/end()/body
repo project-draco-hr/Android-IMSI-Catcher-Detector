@@ -1,0 +1,4 @@
+{
+  this.sb.append(DB_CLOSE);
+  return this.sb.toString();
+}

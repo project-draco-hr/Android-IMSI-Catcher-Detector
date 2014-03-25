@@ -1,0 +1,7 @@
+{
+  String[] cmdarray=new String[3];
+  cmdarray[0]="su";
+  cmdarray[1]="-c";
+  cmdarray[2]=cmd;
+  return startSysCmd(cmdarray,null);
+}

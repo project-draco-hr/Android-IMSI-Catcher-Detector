@@ -1,0 +1,3 @@
+{
+  return "CommandResult{" + ", mStartTime=" + mStartTime + ", mExitValue="+ mExitValue+ ", stdout='"+ mStdout+ "'"+ ", stderr='"+ mStderr+ "'"+ ", mEndTime="+ mEndTime+ '}';
+}

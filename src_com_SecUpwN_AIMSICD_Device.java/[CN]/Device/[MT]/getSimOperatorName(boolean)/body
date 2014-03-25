@@ -1,0 +1,4 @@
+{
+  if (sSimOperatorName.isEmpty() || force)   sSimOperatorName=tm.getSimOperatorName();
+  return sSimOperatorName;
+}

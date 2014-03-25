@@ -1,0 +1,3 @@
+{
+  return new StringBuilder().append(Integer.valueOf(mhzString) / 1000).append(" MHz").toString();
+}

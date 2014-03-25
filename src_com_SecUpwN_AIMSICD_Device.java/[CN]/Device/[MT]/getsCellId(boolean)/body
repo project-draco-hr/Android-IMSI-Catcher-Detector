@@ -1,0 +1,9 @@
+{
+  if (sCellType.isEmpty() || force) {
+    GsmCellLocation gsmCellLocation=(GsmCellLocation)tm.getCellLocation();
+    if (gsmCellLocation != null) {
+      sCellType="" + gsmCellLocation.getCid();
+    }
+  }
+  return sCellType;
+}

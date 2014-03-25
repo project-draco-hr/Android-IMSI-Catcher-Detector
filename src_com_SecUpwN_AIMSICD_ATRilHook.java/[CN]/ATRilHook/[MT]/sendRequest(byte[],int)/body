@@ -1,0 +1,4 @@
+{
+  Message msg=mHandler.obtainMessage(id);
+  mPhone.invokeOemRilRequestRaw(data,msg);
+}

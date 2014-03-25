@@ -1,0 +1,34 @@
+{
+switch (item.getItemId()) {
+case 0:
+    Device.trackcell();
+  return true;
+case 1:
+Device.tracksignal();
+return true;
+case 2:
+Device.tracklocation(mContext);
+return true;
+case 4:
+showmap();
+return true;
+case 5:
+about();
+return true;
+case 6:
+finish();
+return true;
+case 7:
+Device.dumpinfokml(mContext);
+return true;
+case 8:
+Device.exportDB();
+return true;
+case 9:
+Intent intent=new Intent(this,ATRilHook.class);
+startActivity(intent);
+return true;
+default :
+return super.onOptionsItemSelected(item);
+}
+}

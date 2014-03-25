@@ -1,0 +1,4 @@
+{
+  Cursor cursor=sDB.rawQuery("SELECT * FROM " + CELL_TABLE + " WHERE CellID = "+ cellID,null);
+  return cursor.getCount() > 0;
+}

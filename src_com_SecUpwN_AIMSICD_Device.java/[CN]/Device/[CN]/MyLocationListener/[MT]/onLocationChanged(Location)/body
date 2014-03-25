@@ -1,0 +1,6 @@
+{
+  if (loc != null) {
+    sLongitude=loc.getLongitude();
+    sLatitude=loc.getLatitude();
+  }
+}

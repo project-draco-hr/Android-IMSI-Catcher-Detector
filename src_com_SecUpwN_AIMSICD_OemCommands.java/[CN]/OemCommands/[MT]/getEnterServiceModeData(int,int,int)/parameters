@@ -1,0 +1,3 @@
+int modeType
+int subType
+int query

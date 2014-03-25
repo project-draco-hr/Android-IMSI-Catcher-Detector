@@ -1,0 +1,18 @@
+{
+  int off=0;
+  byte[] buf=mBuffer.getBytes();
+  try {
+    while (off < buf.length) {
+      int len=Math.min(PIPE_SIZE,buf.length - off);
+      mStream.write(buf,off,len);
+      off+=len;
+    }
+  }
+ catch (  IOException e) {
+  }
+  try {
+    mStream.close();
+  }
+ catch (  IOException e) {
+  }
+}

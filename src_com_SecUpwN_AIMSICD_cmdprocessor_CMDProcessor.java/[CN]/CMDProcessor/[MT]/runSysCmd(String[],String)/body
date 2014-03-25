@@ -1,0 +1,5 @@
+{
+  ChildProcess proc=startSysCmd(cmdarray,childStdin);
+  proc.waitFinished();
+  return proc.getResult();
+}

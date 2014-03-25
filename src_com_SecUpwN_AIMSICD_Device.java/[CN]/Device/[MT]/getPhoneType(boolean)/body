@@ -1,0 +1,8 @@
+{
+  if (sPhoneType.isEmpty() || force) {
+    if (getPhoneID() == TelephonyManager.PHONE_TYPE_GSM)     sPhoneType="GSM";
+ else     if (getPhoneID() == TelephonyManager.PHONE_TYPE_CDMA)     sPhoneType="CDMA";
+ else     sPhoneType="Unknown";
+  }
+  return sPhoneType;
+}

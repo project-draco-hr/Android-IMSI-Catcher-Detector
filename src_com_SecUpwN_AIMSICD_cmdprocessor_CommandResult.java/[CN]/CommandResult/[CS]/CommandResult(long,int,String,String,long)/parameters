@@ -1,0 +1,5 @@
+long startTime
+int exitValue
+String stdout
+String stderr
+long endTime

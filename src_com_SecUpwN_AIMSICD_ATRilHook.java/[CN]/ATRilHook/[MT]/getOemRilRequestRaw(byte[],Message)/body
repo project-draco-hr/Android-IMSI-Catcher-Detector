@@ -1,0 +1,21 @@
+{
+  try {
+    ClassLoader cl=sContext.getClassLoader();
+    @SuppressWarnings("rawtypes") Class PhoneFactory=cl.loadClass("com.android.internal.telephony.PhoneFactory");
+    @SuppressWarnings("rawtypes") Class[] paramTypes=new Class[1];
+    paramTypes[0]=byte[].class;
+    paramTypes[1]=Message.class;
+    Method get=PhoneFactory.getMethod("invokeOemRilRequestRaw",paramTypes);
+    Object[] params=new Object[1];
+    params[0]=oemhook;
+    params[1]=msg;
+    get.invoke(PhoneFactory,params);
+    Toast toast=Toast.makeText(sContext,"invoke OemRilRequestRaw Completed!",Toast.LENGTH_SHORT);
+    toast.show();
+  }
+ catch (  IllegalArgumentException iAE) {
+    throw iAE;
+  }
+catch (  Exception e) {
+  }
+}
