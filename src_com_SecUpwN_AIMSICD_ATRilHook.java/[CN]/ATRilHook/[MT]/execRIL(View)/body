@@ -2,15 +2,20 @@
   int idButtonChecked=mRadioGroupAPI.getCheckedRadioButtonId();
   mRespText=(EditText)findViewById(R.id.edit_response);
   byte[] oemhook=null;
+  Message msg;
 switch (idButtonChecked) {
 case R.id.radio_api1:
     oemhook=new byte[1];
   oemhook[0]=(byte)0xAA;
+sendRequest(oemhook,EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE);
+mRespText.setText("");
 break;
 case R.id.radio_api2:
 oemhook=new byte[2];
 oemhook[0]=(byte)0xBB;
 oemhook[1]=(byte)0x55;
+sendRequest(oemhook,EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE);
+mRespText.setText("");
 break;
 case R.id.radio_api3:
 oemhook=new byte[7];
@@ -21,10 +26,19 @@ oemhook[3]=(byte)0x56;
 oemhook[4]=(byte)0x78;
 oemhook[5]=(byte)0x9A;
 oemhook[6]=(byte)0xBC;
+sendRequest(oemhook,EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE);
+mRespText.setText("");
 break;
 case R.id.radio_api4:
+String[] oemhookstring={"UNIAT",((EditText)findViewById(R.id.edit_cmdstr)).getText().toString() + "\r"};
+msg=mHandler.obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
+mPhone.invokeOemRilRequestStrings(oemhookstring,msg);
+mRespText=(EditText)findViewById(R.id.edit_response);
+mRespText.setText("---Wait response---");
 break;
 case R.id.radio_api5:
+break;
+case R.id.radio_api6:
 mCurrentSvcMode=OemCommands.OEM_SM_ENTER_MODE_MESSAGE;
 mCurrentModeType=OemCommands.OEM_SM_TYPE_SUB_CIPHERING_PROTECTION_ENTER;
 byte[] data=mOemCommands.getEnterServiceModeData(mCurrentSvcMode,mCurrentModeType,OemCommands.OEM_SM_ACTION);
@@ -33,21 +47,5 @@ break;
 default :
 log("unknown button selected");
 break;
-}
-if (idButtonChecked == R.id.radio_api5) {
-byte[] data=mOemCommands.getEnterServiceModeData(mCurrentSvcMode,mCurrentModeType,OemCommands.OEM_SM_ACTION);
-sendRequest(data,ID_SERVICE_MODE_REQUEST);
-}
- else if (idButtonChecked != R.id.radio_api4) {
-Message msg=mHandler.obtainMessage(EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE);
-mPhone.invokeOemRilRequestRaw(oemhook,msg);
-mRespText.setText("");
-}
- else {
-String[] oemhookstring={((EditText)findViewById(R.id.edit_cmdstr)).getText().toString() + '\r'};
-Message msg=mHandler.obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
-mPhone.invokeOemRilRequestStrings(oemhookstring,msg);
-mRespText=(EditText)findViewById(R.id.edit_response);
-mRespText.setText("---Wait response---");
 }
 }

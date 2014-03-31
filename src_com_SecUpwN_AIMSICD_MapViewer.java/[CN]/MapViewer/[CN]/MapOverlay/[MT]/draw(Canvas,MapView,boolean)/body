@@ -1,5 +1,5 @@
 {
-  int pradius=(int)mapv.getProjection().metersToEquatorPixels(radius);
+  int pradius=(int)mapView.getProjection().metersToEquatorPixels(radius);
   Log.i(TAG," ==> Draw pos: " + gp1.toString() + " color: "+ color+ " radius: "+ radius+ " pradius: "+ pradius);
   Projection projection=mapView.getProjection();
   Paint paint=new Paint();

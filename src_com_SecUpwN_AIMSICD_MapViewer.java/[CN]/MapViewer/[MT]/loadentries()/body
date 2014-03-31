@@ -1,40 +1,37 @@
 {
   double dlat=0.0;
   double dlng=0.0;
-  String datainfo="undef";
   int net=0;
   int signal=0;
-  int lac=0;
-  int cellid=0;
   int radius=0;
   GeoPoint p=null;
-  mapc=mapv.getController();
+  mapc=mapView.getController();
   int color=0x000000;
-  Cursor c=myDB.query(true,TABLE_NAME,new String[]{"Net","Lat","Lng","Signal","Connection"},null,null,null,null,"Timestamp",null);
-  if (c.moveToFirst()) {
-    List<Overlay> listOfOverlays=mapv.getOverlays();
-    do {
-      net=c.getInt(0);
-      dlat=Double.parseDouble(c.getString(1));
-      dlng=Double.parseDouble(c.getString(2));
-      signal=c.getInt(3);
-      datainfo=c.getString(4);
-      if (signal == 0) {
-        signal=20;
-      }
-      if ((dlat != 0.0) || (dlng != 0.0)) {
-        p=new GeoPoint((int)(dlat * 1E6),(int)(dlng * 1E6));
-        radius=signal * SIGNAL_SIZE_RATIO;
+  Cursor c=Device.sDB.rawQuery("SELECT Net, Lat, Lng, Signal FROM " + Device.LOCATION_TABLE,null);
+  if (c.getCount() > 0) {
+    if (c.moveToFirst()) {
+      List<Overlay> listOfOverlays=mapView.getOverlays();
+      do {
+        net=c.getInt(0);
+        dlat=Double.parseDouble(c.getString(1));
+        dlng=Double.parseDouble(c.getString(2));
+        signal=c.getInt(3);
+        if (signal == 0) {
+          signal=20;
+        }
+        if ((dlat != 0.0) || (dlng != 0.0)) {
+          p=new GeoPoint((int)(dlat * 1E6),(int)(dlng * 1E6));
+          radius=signal * SIGNAL_SIZE_RATIO;
 switch (net) {
 case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-          color=0xF0F8FF;
-        break;
+            color=0xF0F8FF;
+          break;
 case TelephonyManager.NETWORK_TYPE_GPRS:
-      color=0xA9A9A9;
-    break;
+        color=0xA9A9A9;
+      break;
 case TelephonyManager.NETWORK_TYPE_EDGE:
-  color=0x87CEFA;
-break;
+    color=0x87CEFA;
+  break;
 case TelephonyManager.NETWORK_TYPE_UMTS:
 color=0x7CFC00;
 break;
@@ -71,7 +68,11 @@ listOfOverlays.add(new MapOverlay(p,radius,color));
 c.close();
 mapc.setCenter(p);
 }
+}
+ else {
+Helpers.msgShort(this,"No tracked locations found to overlay on map.");
+}
 mapc.setZoom(14);
-mapv.setSatellite(false);
-mapv.invalidate();
+mapView.setSatellite(false);
+mapView.invalidate();
 }

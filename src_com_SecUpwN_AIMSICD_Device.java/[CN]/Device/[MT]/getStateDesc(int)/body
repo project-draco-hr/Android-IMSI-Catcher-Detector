@@ -1,13 +1,11 @@
 {
-  if (sDataState.isEmpty() || force) {
-    sDataActivity=tm.getDataState();
-    sDataState="undef";
-switch (sDataActivity) {
+  sDataState="undef";
+switch (dataID) {
 case TelephonyManager.DATA_DISCONNECTED:
-      sDataActivityType="Disconnected";
-    break;
+    sDataActivityType="Disconnected";
+  break;
 case TelephonyManager.DATA_CONNECTING:
-  sDataActivityType="Connecting";
+sDataActivityType="Connecting";
 break;
 case TelephonyManager.DATA_CONNECTED:
 sDataActivityType="Connected";
@@ -15,7 +13,6 @@ break;
 case TelephonyManager.DATA_SUSPENDED:
 sDataActivityType="Suspended";
 break;
-}
 }
 return sDataState;
 }

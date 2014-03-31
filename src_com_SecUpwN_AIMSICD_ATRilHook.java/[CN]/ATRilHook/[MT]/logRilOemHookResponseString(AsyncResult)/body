@@ -1,19 +1,13 @@
 {
   log("received oem hook string response");
-  String str=new String("");
-  mRespText=(EditText)findViewById(R.id.edit_response);
   if (ar.exception != null) {
-    log("Exception:" + ar.exception);
-    str+="Exception:" + ar.exception + "\n\n";
+    Log.e(LOG_TAG,"",ar.exception);
+    return;
   }
-  if (ar.result != null) {
-    String[] oemStrResponse=(String[])ar.result;
-    int sizeStr=oemStrResponse.length;
-    log("oemResponseString[0] [" + oemStrResponse[0] + "]");
-    mRespText.setText("" + oemStrResponse[0]);
+  if (ar.result == null) {
+    Log.v(LOG_TAG,"No need to refresh.");
+    return;
   }
- else {
-    log("received NULL oem hook response");
-    mRespText.setText("No response or error received");
-  }
+  String[] aos=(String[])ar.result;
+  mListView.setAdapter(new ArrayAdapter<String>(ATRilHook.this,R.layout.list_item,aos));
 }
