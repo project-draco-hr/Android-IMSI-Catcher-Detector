@@ -19,12 +19,9 @@ case 6:
 finish();
 return true;
 case 7:
-Device.dumpinfokml(mContext);
-return true;
-case 8:
 Device.exportDB();
 return true;
-case 9:
+case 8:
 Intent intent=new Intent(this,ATRilHook.class);
 startActivity(intent);
 return true;

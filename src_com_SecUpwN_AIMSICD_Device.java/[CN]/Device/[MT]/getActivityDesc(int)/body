@@ -1,13 +1,11 @@
 {
-  if (sDataActivityType.isEmpty() || force) {
-    sDataActivity=tm.getDataActivity();
-    sDataActivityType="undef";
-switch (sDataActivity) {
+  sDataActivityType="undef";
+switch (dataID) {
 case TelephonyManager.DATA_ACTIVITY_NONE:
-      sDataActivityType="None";
-    break;
+    sDataActivityType="None";
+  break;
 case TelephonyManager.DATA_ACTIVITY_IN:
-  sDataActivityType="In";
+sDataActivityType="In";
 break;
 case TelephonyManager.DATA_ACTIVITY_OUT:
 sDataActivityType="Out";
@@ -18,7 +16,6 @@ break;
 case TelephonyManager.DATA_ACTIVITY_DORMANT:
 sDataActivityType="Dormant";
 break;
-}
 }
 return sDataActivityType;
 }

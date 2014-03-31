@@ -5,8 +5,7 @@
     @SuppressWarnings("rawtypes") Class PhoneFactory=cl.loadClass("com.android.internal.telephony.PhoneFactory");
     Method get=PhoneFactory.getMethod("getDefaultPhone",(Class[])null);
     ret=get.invoke(null,(Object[])null);
-    Toast toast=Toast.makeText(sContext,"getDefaultPhone Completed!",Toast.LENGTH_SHORT);
-    toast.show();
+    Helpers.msgShort(sContext,"getDefaultPhone Completed!");
   }
  catch (  IllegalArgumentException iAE) {
     throw iAE;

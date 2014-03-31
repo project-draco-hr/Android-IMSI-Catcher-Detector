@@ -8,8 +8,7 @@
     Object[] params=new Object[1];
     params[0]=sContext;
     get.invoke(null,params);
-    Toast toast=Toast.makeText(sContext,"makeDefaultPhones Completed!",Toast.LENGTH_SHORT);
-    toast.show();
+    Helpers.msgShort(sContext,"makeDefaultPhones Completed!");
   }
  catch (  IllegalArgumentException iAE) {
     throw iAE;

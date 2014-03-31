@@ -11,7 +11,7 @@
     }
  else {
       webview=new WebView(this);
-      webview.loadUrl("http://github.com/SecUpwN/Android-IMSI-Catcher-Detector");
+      webview.loadUrl("http://secupwn.github.io/Android-IMSI-Catcher-Detector/");
       setContentView(webview);
     }
     isAbout=true;

@@ -24,123 +24,18 @@ case TelephonyManager.PHONE_TYPE_CDMA:
 sPhoneType="CDMA";
 break;
 }
-sNetID=tm.getNetworkType();
-switch (sNetID) {
-case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-sNetType="Unknown";
-break;
-case TelephonyManager.NETWORK_TYPE_GPRS:
-sNetType="GPRS";
-break;
-case TelephonyManager.NETWORK_TYPE_EDGE:
-sNetType="EDGE";
-break;
-case TelephonyManager.NETWORK_TYPE_UMTS:
-sNetType="UMTS";
-break;
-case TelephonyManager.NETWORK_TYPE_HSDPA:
-sNetType="HSPA";
-break;
-case TelephonyManager.NETWORK_TYPE_HSUPA:
-sNetType="HDSPA";
-break;
-case TelephonyManager.NETWORK_TYPE_HSPA:
-sNetType="HUSPA";
-break;
-case TelephonyManager.NETWORK_TYPE_CDMA:
-sNetType="CDMA";
-break;
-case TelephonyManager.NETWORK_TYPE_EVDO_0:
-sNetType="EVDO_0";
-break;
-case TelephonyManager.NETWORK_TYPE_EVDO_A:
-sNetType="EVDO_A";
-break;
-case TelephonyManager.NETWORK_TYPE_1xRTT:
-sNetType="1xRTT";
-break;
-default :
-sNetType="Unknown";
-break;
-}
-sDataActivity=tm.getDataActivity();
-sDataActivityType="undef";
-switch (sDataActivity) {
-case TelephonyManager.DATA_ACTIVITY_NONE:
-sDataActivityType="None";
-break;
-case TelephonyManager.DATA_ACTIVITY_IN:
-sDataActivityType="In";
-break;
-case TelephonyManager.DATA_ACTIVITY_OUT:
-sDataActivityType="Out";
-break;
-case TelephonyManager.DATA_ACTIVITY_INOUT:
-sDataActivityType="In-Out";
-break;
-case TelephonyManager.DATA_ACTIVITY_DORMANT:
-sDataActivityType="Dormant";
-break;
-}
+sNetID=getNetID(true);
+sNetType=tm.getNetworkTypeName();
+int sDataActivity=tm.getDataActivity();
+sDataActivityType=getActivityDesc(sDataActivity);
 sDataActivity=tm.getDataState();
-sDataState="undef";
-switch (sDataActivity) {
-case TelephonyManager.DATA_DISCONNECTED:
-sDataActivityType="Disconnected";
-break;
-case TelephonyManager.DATA_CONNECTING:
-sDataActivityType="Connecting";
-break;
-case TelephonyManager.DATA_CONNECTED:
-sDataActivityType="Connected";
-break;
-case TelephonyManager.DATA_SUSPENDED:
-sDataActivityType="Suspended";
-break;
-}
-dbHelper=new MySQLiteHelper(mContext);
+sDataState=getStateDesc(sDataActivity);
+dbHelper=new SQLiteHelper(mContext);
 sDB=dbHelper.getWritableDatabase();
 sSignalListenerLocation=new PhoneStateListener(){
 public void onCellLocationChanged(CellLocation location){
-sNetID=tm.getNetworkType();
-switch (sNetID) {
-case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-sNetType="Unknown";
-break;
-case TelephonyManager.NETWORK_TYPE_GPRS:
-sNetType="GPRS";
-break;
-case TelephonyManager.NETWORK_TYPE_EDGE:
-sNetType="EDGE";
-break;
-case TelephonyManager.NETWORK_TYPE_UMTS:
-sNetType="UMTS";
-break;
-case TelephonyManager.NETWORK_TYPE_HSDPA:
-sNetType="HDSPA";
-break;
-case TelephonyManager.NETWORK_TYPE_HSUPA:
-sNetType="HSUPA";
-break;
-case TelephonyManager.NETWORK_TYPE_HSPA:
-sNetType="HSPA";
-break;
-case TelephonyManager.NETWORK_TYPE_CDMA:
-sNetType="CDMA";
-break;
-case TelephonyManager.NETWORK_TYPE_EVDO_0:
-sNetType="EVDO_0";
-break;
-case TelephonyManager.NETWORK_TYPE_EVDO_A:
-sNetType="EVDO_A";
-break;
-case TelephonyManager.NETWORK_TYPE_1xRTT:
-sNetType="1xRTT";
-break;
-default :
-sNetType="Unknown";
-break;
-}
+sNetID=getNetID(true);
+sNetType=tm.getNetworkTypeName();
 int dataActivityType=tm.getDataActivity();
 String dataActivity="un";
 switch (dataActivityType) {
@@ -189,7 +84,6 @@ sSimOperator=getSimOperator(true);
 sSimOperatorName=getSimOperatorName(true);
 dbHelper.insertCell(sDB,sLacID,sCellID,sNetID,sLatitude,sLongitude,sSignalInfo,sCellInfo,sSimCountry,sSimOperator,sSimOperatorName);
 }
-kmlpoints(sLacID,sCellID,sCellInfo,sLongitude,sLatitude);
 }
 break;
 case TelephonyManager.PHONE_TYPE_CDMA:
@@ -203,11 +97,7 @@ sSimCountry=getSimCountry(true);
 sSimOperator=getSimOperator(true);
 sSimOperatorName=getNetworkName(true);
 }
-kmlpoints(sLacID,sCellID,sCellInfo,sLongitude,sLatitude);
 }
-}
-if (TrackingLocation) {
-dbHelper.insertLocation(sDB,sLacID,sCellID,sNetID,sLatitude,sLongitude,sSignalInfo,sCellInfo);
 }
 if (TrackingCell && !dbHelper.cellExists(sCellID)) {
 dbHelper.insertCell(sDB,sLacID,sCellID,sNetID,sLatitude,sLongitude,sSignalInfo,sCellInfo,sSimCountry,sSimOperator,sSimOperatorName);
@@ -227,7 +117,6 @@ break;
 default :
 sSignalInfo=0;
 }
-kmlpoints(sLacID,sCellID,sCellInfo,sLongitude,sLatitude);
 if (TrackingSignal) {
 dbHelper.insertSignal(sDB,sLacID,sCellID,sNetID,sLatitude,sLongitude,sSignalInfo,sCellInfo);
 }

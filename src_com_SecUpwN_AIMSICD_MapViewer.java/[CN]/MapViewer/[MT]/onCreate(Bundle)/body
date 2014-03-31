@@ -3,16 +3,8 @@
   super.onCreate(savedInstanceState);
   setContentView(R.layout.map);
   ImageView imagev=new ImageView(this);
-  mapv=(MapView)findViewById(R.id.mapView);
-  mapv.setBuiltInZoomControls(true);
-  mapv.displayZoomControls(true);
-  myDB=null;
-  try {
-    myDB=this.openOrCreateDatabase(DB_NAME,MODE_PRIVATE,null);
-    loadentries();
-  }
- catch (  SQLiteException se) {
-    Log.e(getClass().getSimpleName(),"Could not Open the database:" + se);
-    myDB=null;
-  }
+  mapView=(MapView)findViewById(R.id.mapView);
+  mapView.setBuiltInZoomControls(true);
+  mapView.displayZoomControls(true);
+  loadentries();
 }

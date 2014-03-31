@@ -10,8 +10,7 @@
     params[0]=oemhook;
     params[1]=msg;
     get.invoke(PhoneFactory,params);
-    Toast toast=Toast.makeText(sContext,"invoke OemRilRequestRaw Completed!",Toast.LENGTH_SHORT);
-    toast.show();
+    Helpers.msgShort(sContext,"invoke OemRilRequestRaw Completed!");
   }
  catch (  IllegalArgumentException iAE) {
     throw iAE;

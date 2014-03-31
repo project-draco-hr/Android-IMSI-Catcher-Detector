@@ -1,6 +1,0 @@
-{
-  sKML="<kml xmlns=\"http://earth.google.com/kml/2.0\">\n";
-  sKML+="<Folder>\n";
-  sKML+="<name>AIMSICD</name>\n";
-  sKML+="<description><![CDATA[AIMSICD LAC and CellID logs]]></description>\n";
-}

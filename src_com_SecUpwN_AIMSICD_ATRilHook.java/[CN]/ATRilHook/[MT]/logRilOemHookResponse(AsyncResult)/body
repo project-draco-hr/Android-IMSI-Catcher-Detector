@@ -1,6 +1,7 @@
 {
   log("received oem hook response");
-  String str=new String("");
+  String str="";
+  mRespText=(EditText)findViewById(R.id.edit_response);
   if (ar.exception != null) {
     log("Exception:" + ar.exception);
     str+="Exception:" + ar.exception + "\n\n";
@@ -23,6 +24,7 @@
     log("received NULL oem hook response");
     str+="received NULL oem hook response";
   }
+  mRespText.setText(str);
   AlertDialog.Builder builder=new AlertDialog.Builder(this);
   builder.setMessage(str);
   builder.setPositiveButton("OK",null);
