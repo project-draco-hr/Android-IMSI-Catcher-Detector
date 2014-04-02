@@ -1,0 +1,3 @@
+{
+  this.sb.append(TABLE_OPEN).append(tableName).append(CLOSE_WITH_TICK);
+}

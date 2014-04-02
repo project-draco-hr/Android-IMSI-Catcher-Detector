@@ -1,0 +1,17 @@
+{
+  Object ret=null;
+  try {
+    ClassLoader cl=sContext.getClassLoader();
+    @SuppressWarnings("rawtypes") Class PhoneFactory=cl.loadClass("com.android.internal.telephony.PhoneFactory");
+    Method get=PhoneFactory.getMethod("getDefaultPhone",(Class[])null);
+    ret=get.invoke(null,(Object[])null);
+    Helpers.msgShort(sContext,"getDefaultPhone Completed!");
+  }
+ catch (  IllegalArgumentException iAE) {
+    throw iAE;
+  }
+catch (  Exception e) {
+    Log.e(LOG_TAG,"getDefaultPhone",e);
+  }
+  return ret;
+}

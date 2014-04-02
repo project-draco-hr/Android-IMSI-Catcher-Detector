@@ -1,0 +1,6 @@
+{
+  WebView webview=new WebView(this);
+  webview.loadUrl("http://secupwn.github.io/Android-IMSI-Catcher-Detector/");
+  webview.canGoBack();
+  setContentView(webview);
+}

@@ -1,0 +1,3 @@
+{
+  db.execSQL("INSERT INTO " + SIGNAL_TABLE + " (Lac , CellID, Net, Lat, Lng, Signal, Connection)"+ " VALUES("+ lac+ ","+ cellID+ ","+ netType+ ","+ latitude+ ","+ longitude+ ","+ signalInfo+ ",\""+ cellInfo+ "\");");
+}

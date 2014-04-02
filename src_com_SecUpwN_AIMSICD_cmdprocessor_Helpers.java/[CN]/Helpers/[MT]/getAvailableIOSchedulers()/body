@@ -1,0 +1,11 @@
+{
+  String[] schedulers=null;
+  String[] aux=readStringArray("/sys/block/mmcblk0/queue/scheduler");
+  if (aux != null) {
+    schedulers=new String[aux.length];
+    for (int i=0; i < aux.length; i++) {
+      schedulers[i]=aux[i].charAt(0) == '[' ? aux[i].substring(1,aux[i].length() - 1) : aux[i];
+    }
+  }
+  return schedulers;
+}

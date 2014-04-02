@@ -1,0 +1,10 @@
+{
+  Log.i(TAG,"Starting MapViewer ============");
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.map);
+  ImageView imagev=new ImageView(this);
+  mapView=(MapView)findViewById(R.id.mapView);
+  mapView.setBuiltInZoomControls(true);
+  mapView.displayZoomControls(true);
+  loadentries();
+}

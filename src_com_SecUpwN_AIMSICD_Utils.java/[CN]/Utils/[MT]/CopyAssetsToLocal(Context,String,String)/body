@@ -1,0 +1,25 @@
+{
+  String mBasePath=GetBasePath(ctx);
+  if (mBasePath.equals(""))   return false;
+  mDstName=mBasePath + "/" + mDstName;
+  InputStream mAssetInput;
+  OutputStream mAssetOutput;
+  String outFileName=mDstName;
+  try {
+    File mFileOutput=new File(mDstName);
+    if (mFileOutput.exists())     mFileOutput.delete();
+    mAssetOutput=new FileOutputStream(mFileOutput);
+    mAssetInput=ctx.getAssets().open(mSourceName);
+    byte[] tBuffer=new byte[4096];
+    int nLength;
+    while ((nLength=mAssetInput.read(tBuffer)) > 0)     mAssetOutput.write(tBuffer,0,nLength);
+    mAssetOutput.flush();
+    mAssetInput.close();
+    mAssetOutput.close();
+  }
+ catch (  Exception e) {
+    Log.e(TAG,"CopyAssetsToLocal() failed, msg = " + e.getMessage());
+    return false;
+  }
+  return true;
+}

@@ -1,0 +1,11 @@
+{
+  if (TrackingCell) {
+    tm.listen(sSignalListenerLocation,PhoneStateListener.LISTEN_NONE);
+    TrackingCell=false;
+    sCellInfo="[0,0]|nn|nn|";
+  }
+ else {
+    tm.listen(sSignalListenerLocation,PhoneStateListener.LISTEN_CELL_LOCATION);
+    TrackingCell=true;
+  }
+}

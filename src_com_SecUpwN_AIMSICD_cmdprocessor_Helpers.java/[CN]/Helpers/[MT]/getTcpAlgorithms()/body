@@ -1,0 +1,8 @@
+{
+  String result=String.valueOf(runShellCommand("cat /proc/sys/net/ipv4/tcp_available_congestion_control").getStdout());
+  Log.e("TCP",result);
+  String[] algorithms=result.split("\\s");
+  ArrayList<String> holder=new ArrayList<String>();
+  Collections.addAll(holder,algorithms);
+  return holder;
+}

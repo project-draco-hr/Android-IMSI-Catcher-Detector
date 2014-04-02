@@ -1,0 +1,29 @@
+{
+  super.onCreate(icicle);
+  sContext=this;
+  setContentView(R.layout.riloemhook_layout);
+  mListView=(ListView)findViewById(R.id.displayList);
+  mRadioButtonAPI1=(RadioButton)findViewById(R.id.radio_api1);
+  mRadioGroupAPI=(RadioGroup)findViewById(R.id.radio_group_api);
+  mRadioButtonAPI1.toggle();
+  mPhone=PhoneFactory.getDefaultPhone();
+  mOemCommands=OemCommands.getInstance(sContext);
+  mRespText=(EditText)findViewById(R.id.edit_cmdstr);
+  mRespText.setOnKeyListener(new OnKeyListener(){
+    public boolean onKey(    View v,    int keyCode,    KeyEvent event){
+      if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+        Toast.makeText(sContext,mRespText.getText(),Toast.LENGTH_SHORT).show();
+        return true;
+      }
+      return false;
+    }
+  }
+);
+  Button btn=(Button)findViewById(R.id.run);
+  btn.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View v){
+      execRIL(v);
+    }
+  }
+);
+}

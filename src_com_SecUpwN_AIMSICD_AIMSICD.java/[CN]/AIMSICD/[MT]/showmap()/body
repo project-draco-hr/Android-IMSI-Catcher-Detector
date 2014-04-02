@@ -1,0 +1,4 @@
+{
+  Intent myIntent=new Intent(this,MapViewer.class);
+  startActivity(myIntent);
+}

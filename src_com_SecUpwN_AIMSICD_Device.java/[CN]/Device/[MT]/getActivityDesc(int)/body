@@ -1,0 +1,21 @@
+{
+  sDataActivityType="undef";
+switch (dataID) {
+case TelephonyManager.DATA_ACTIVITY_NONE:
+    sDataActivityType="None";
+  break;
+case TelephonyManager.DATA_ACTIVITY_IN:
+sDataActivityType="In";
+break;
+case TelephonyManager.DATA_ACTIVITY_OUT:
+sDataActivityType="Out";
+break;
+case TelephonyManager.DATA_ACTIVITY_INOUT:
+sDataActivityType="In-Out";
+break;
+case TelephonyManager.DATA_ACTIVITY_DORMANT:
+sDataActivityType="Dormant";
+break;
+}
+return sDataActivityType;
+}

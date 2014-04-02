@@ -1,0 +1,78 @@
+{
+  double dlat=0.0;
+  double dlng=0.0;
+  int net=0;
+  int signal=0;
+  int radius=0;
+  GeoPoint p=null;
+  mapc=mapView.getController();
+  int color=0x000000;
+  Cursor c=Device.sDB.rawQuery("SELECT Net, Lat, Lng, Signal FROM " + Device.LOCATION_TABLE,null);
+  if (c.getCount() > 0) {
+    if (c.moveToFirst()) {
+      List<Overlay> listOfOverlays=mapView.getOverlays();
+      do {
+        net=c.getInt(0);
+        dlat=Double.parseDouble(c.getString(1));
+        dlng=Double.parseDouble(c.getString(2));
+        signal=c.getInt(3);
+        if (signal == 0) {
+          signal=20;
+        }
+        if ((dlat != 0.0) || (dlng != 0.0)) {
+          p=new GeoPoint((int)(dlat * 1E6),(int)(dlng * 1E6));
+          radius=signal * SIGNAL_SIZE_RATIO;
+switch (net) {
+case TelephonyManager.NETWORK_TYPE_UNKNOWN:
+            color=0xF0F8FF;
+          break;
+case TelephonyManager.NETWORK_TYPE_GPRS:
+        color=0xA9A9A9;
+      break;
+case TelephonyManager.NETWORK_TYPE_EDGE:
+    color=0x87CEFA;
+  break;
+case TelephonyManager.NETWORK_TYPE_UMTS:
+color=0x7CFC00;
+break;
+case TelephonyManager.NETWORK_TYPE_HSDPA:
+color=0xFF6347;
+break;
+case TelephonyManager.NETWORK_TYPE_HSUPA:
+color=0xFF00FF;
+break;
+case TelephonyManager.NETWORK_TYPE_HSPA:
+color=0x238E6B;
+break;
+case TelephonyManager.NETWORK_TYPE_CDMA:
+color=0x8A2BE2;
+break;
+case TelephonyManager.NETWORK_TYPE_EVDO_0:
+color=0xFF69B4;
+break;
+case TelephonyManager.NETWORK_TYPE_EVDO_A:
+color=0xFFFF00;
+break;
+case TelephonyManager.NETWORK_TYPE_1xRTT:
+color=0x7CFC00;
+break;
+default :
+color=0xF0F8FF;
+break;
+}
+Log.i(TAG," ==> Poin:" + p.toString() + " radius: "+ radius+ " color: "+ color+ " signal:"+ signal);
+listOfOverlays.add(new MapOverlay(p,radius,color));
+}
+}
+ while (c.moveToNext());
+c.close();
+mapc.setCenter(p);
+}
+}
+ else {
+Helpers.msgShort(this,"No tracked locations found to overlay on map.");
+}
+mapc.setZoom(14);
+mapView.setSatellite(false);
+mapView.invalidate();
+}
