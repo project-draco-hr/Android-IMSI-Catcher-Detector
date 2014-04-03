@@ -2,7 +2,6 @@
   super.onCreate(savedInstanceState);
   setContentView(R.layout.main);
   Device.InitDevice(mContext);
-  Utils.CheckUtils(mContext);
   outputView=(TextView)findViewById(R.id.view);
   outputView.setHorizontalFadingEdgeEnabled(false);
   outputView.setText("Information:\n\n");

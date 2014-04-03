@@ -8,11 +8,12 @@
   mRadioButtonAPI1.toggle();
   mPhone=PhoneFactory.getDefaultPhone();
   mOemCommands=OemCommands.getInstance(sContext);
+  mInput=(EditText)findViewById(R.id.edit_cmdstr);
   mRespText=(EditText)findViewById(R.id.edit_cmdstr);
   mRespText.setOnKeyListener(new OnKeyListener(){
     public boolean onKey(    View v,    int keyCode,    KeyEvent event){
       if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-        Toast.makeText(sContext,mRespText.getText(),Toast.LENGTH_SHORT).show();
+        Helpers.msgShort(sContext,mRespText.getText().toString());
         return true;
       }
       return false;
