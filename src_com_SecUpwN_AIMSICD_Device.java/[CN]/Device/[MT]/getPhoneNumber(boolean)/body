@@ -1,4 +1,4 @@
 {
-  if (sPhoneNum.isEmpty() || force)   sPhoneNum=tm.getLine1Number();
-  return sPhoneNum;
+  if (mPhoneNum.isEmpty() || force)   mPhoneNum=tm.getLine1Number();
+  return mPhoneNum;
 }

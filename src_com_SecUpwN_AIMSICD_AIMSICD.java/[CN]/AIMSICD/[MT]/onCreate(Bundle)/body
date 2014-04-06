@@ -1,8 +1,8 @@
 {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.main);
-  mDevice=new Device(mContext);
-  outputView=(TextView)findViewById(R.id.view);
+  mDevice=new Device(mContext,this);
+  TextView outputView=(TextView)findViewById(R.id.view);
   outputView.setHorizontalFadingEdgeEnabled(false);
   outputView.setText("Information:\n\n");
   if (mDevice.getPhoneID() == TelephonyManager.PHONE_TYPE_GSM) {
@@ -20,20 +20,21 @@
   outputView.append("Network name:   " + mDevice.getNetworkName(false) + "\n");
   outputView.append("Network code:   " + mDevice.getSmmcMcc(false) + "\n");
   outputView.append("Network type:   " + mDevice.getNetworkTypeName() + "\n");
-  outputView.append("Network LAC:    " + mDevice.getsLAC(false) + "\n");
-  outputView.append("Network CellID: " + mDevice.getsCellId(false) + "\n\n");
+  outputView.append("Network LAC:    " + mDevice.getLAC(false) + "\n");
+  outputView.append("Network CellID: " + mDevice.getCellId(false) + "\n\n");
   outputView.append("Data activity:  " + mDevice.getActivityDesc(netID) + "\n");
   outputView.append("Data status:    " + mDevice.getStateDesc(netID) + "\n");
   outputView.append("--------------------------------\n");
   outputView.append("[LAC,CID]|DAct|DStat|Net|Sig|Lat|Lng\n");
   Log.i(TAG,"**** AIMSICD ****");
   Log.i(TAG,"Device type   : " + mDevice.getPhoneType(false));
-  Log.i(TAG,"Device imei   : " + mDevice.getIMEI(false));
+  Log.i(TAG,"Device IMEI   : " + mDevice.getIMEI(false));
   Log.i(TAG,"Device version: " + mDevice.getIMEIv(false));
   Log.i(TAG,"Device num    : " + mDevice.getPhoneNumber(false));
   Log.i(TAG,"Network type  : " + mDevice.getNetworkTypeName());
-  Log.i(TAG,"Network CellID: " + mDevice.getsCellId(false));
-  Log.i(TAG,"Network LAC   : " + mDevice.getsLAC(false));
+  Log.i(TAG,"Network CellID: " + mDevice.getCellId(false));
+  Log.i(TAG,"Network LAC   : " + mDevice.getLAC(false));
   Log.i(TAG,"Network code  : " + mDevice.getSmmcMcc(false));
   Log.i(TAG,"Network name  : " + mDevice.getNetworkName(false));
+  setNotification();
 }

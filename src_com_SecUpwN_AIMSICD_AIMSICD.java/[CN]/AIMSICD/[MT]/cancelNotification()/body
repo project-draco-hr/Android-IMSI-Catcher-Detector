@@ -1,0 +1,6 @@
+{
+  NotificationManager notificationManager=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+  if (notificationManager != null) {
+    notificationManager.cancel(mID);
+  }
+}

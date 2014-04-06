@@ -1,4 +1,4 @@
 {
-  if (sSimOperatorName.isEmpty() || force)   sSimOperatorName=tm.getSimOperatorName();
-  return sSimOperatorName;
+  if (mSimOperatorName.isEmpty() || force)   mSimOperatorName=tm.getSimOperatorName();
+  return mSimOperatorName;
 }

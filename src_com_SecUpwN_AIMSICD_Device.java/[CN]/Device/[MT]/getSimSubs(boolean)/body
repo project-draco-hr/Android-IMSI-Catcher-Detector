@@ -1,4 +1,4 @@
 {
-  if (sSimSubs.isEmpty() || force)   sSimSubs=tm.getSubscriberId();
-  return sSimSubs;
+  if (mSimSubs.isEmpty() || force)   mSimSubs=tm.getSubscriberId();
+  return mSimSubs;
 }

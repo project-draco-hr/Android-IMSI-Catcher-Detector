@@ -1,4 +1,4 @@
 {
-  if (sNetName.isEmpty() || force)   sNetName=tm.getNetworkOperatorName();
-  return sNetName;
+  if (mNetName.isEmpty() || force)   mNetName=tm.getNetworkOperatorName();
+  return mNetName;
 }

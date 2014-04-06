@@ -7,7 +7,8 @@
   GeoPoint p=null;
   mapc=mapView.getController();
   int color=0x000000;
-  Cursor c=mDevice.sDB.rawQuery("SELECT Net, Lat, Lng, Signal FROM " + mDevice.LOCATION_TABLE,null);
+  mDbHelper.open();
+  Cursor c=mDbHelper.getSignalData();
   if (c.getCount() > 0) {
     if (c.moveToFirst()) {
       List<Overlay> listOfOverlays=mapView.getOverlays();
@@ -60,7 +61,7 @@ default :
 color=0xF0F8FF;
 break;
 }
-Log.i(TAG," ==> Poin:" + p.toString() + " radius: "+ radius+ " color: "+ color+ " signal:"+ signal);
+Log.i(TAG," ==> Point:" + p.toString() + " radius: "+ radius+ " color: "+ color+ " signal:"+ signal);
 listOfOverlays.add(new MapOverlay(p,radius,color));
 }
 }
