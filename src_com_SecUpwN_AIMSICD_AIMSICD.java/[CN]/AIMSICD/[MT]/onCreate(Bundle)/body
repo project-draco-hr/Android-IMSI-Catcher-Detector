@@ -1,39 +1,39 @@
 {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.main);
-  Device.InitDevice(mContext);
+  mDevice=new Device(mContext);
   outputView=(TextView)findViewById(R.id.view);
   outputView.setHorizontalFadingEdgeEnabled(false);
   outputView.setText("Information:\n\n");
-  if (Device.getPhoneID() == TelephonyManager.PHONE_TYPE_GSM) {
-    outputView.append("SIM country:    " + Device.getSimCountry(false) + "\n");
-    outputView.append("SIM Op ID:      " + Device.getSimOperator(false) + "\n");
-    outputView.append("SIM Op Name:    " + Device.getSimOperatorName(false) + "\n");
-    outputView.append("SIM IMSI:       " + Device.getSimSubs(false) + "\n");
-    outputView.append("SIM serial:     " + Device.getSimSerial(false) + "\n\n");
+  if (mDevice.getPhoneID() == TelephonyManager.PHONE_TYPE_GSM) {
+    outputView.append("SIM country:    " + mDevice.getSimCountry(false) + "\n");
+    outputView.append("SIM Op ID:      " + mDevice.getSimOperator(false) + "\n");
+    outputView.append("SIM Op Name:    " + mDevice.getSimOperatorName(false) + "\n");
+    outputView.append("SIM IMSI:       " + mDevice.getSimSubs(false) + "\n");
+    outputView.append("SIM serial:     " + mDevice.getSimSerial(false) + "\n\n");
   }
-  int netID=Device.getNetID(true);
-  outputView.append("Device type:    " + Device.getPhoneType(false) + "\n");
-  outputView.append("Device IMEI:    " + Device.getIMEI(false) + "\n");
-  outputView.append("Device version: " + Device.getIMEIv(false) + "\n");
-  outputView.append("Device num:     " + Device.getPhoneNumber(false) + "\n\n");
-  outputView.append("Network name:   " + Device.getNetworkName(false) + "\n");
-  outputView.append("Network code:   " + Device.getSmmcMcc(false) + "\n");
-  outputView.append("Network type:   " + Device.getNetworkTypeName() + "\n");
-  outputView.append("Network LAC:    " + Device.getsLAC(false) + "\n");
-  outputView.append("Network CellID: " + Device.getsCellId(false) + "\n\n");
-  outputView.append("Data activity:  " + Device.getActivityDesc(netID) + "\n");
-  outputView.append("Data status:    " + Device.getStateDesc(netID) + "\n");
+  int netID=mDevice.getNetID(true);
+  outputView.append("Device type:    " + mDevice.getPhoneType(false) + "\n");
+  outputView.append("Device IMEI:    " + mDevice.getIMEI(false) + "\n");
+  outputView.append("Device version: " + mDevice.getIMEIv(false) + "\n");
+  outputView.append("Device num:     " + mDevice.getPhoneNumber(false) + "\n\n");
+  outputView.append("Network name:   " + mDevice.getNetworkName(false) + "\n");
+  outputView.append("Network code:   " + mDevice.getSmmcMcc(false) + "\n");
+  outputView.append("Network type:   " + mDevice.getNetworkTypeName() + "\n");
+  outputView.append("Network LAC:    " + mDevice.getsLAC(false) + "\n");
+  outputView.append("Network CellID: " + mDevice.getsCellId(false) + "\n\n");
+  outputView.append("Data activity:  " + mDevice.getActivityDesc(netID) + "\n");
+  outputView.append("Data status:    " + mDevice.getStateDesc(netID) + "\n");
   outputView.append("--------------------------------\n");
   outputView.append("[LAC,CID]|DAct|DStat|Net|Sig|Lat|Lng\n");
   Log.i(TAG,"**** AIMSICD ****");
-  Log.i(TAG,"Device type   : " + Device.getPhoneType(false));
-  Log.i(TAG,"Device imei   : " + Device.getIMEI(false));
-  Log.i(TAG,"Device version: " + Device.getIMEIv(false));
-  Log.i(TAG,"Device num    : " + Device.getPhoneNumber(false));
-  Log.i(TAG,"Network type  : " + Device.getNetworkTypeName());
-  Log.i(TAG,"Network CellID: " + Device.getsCellId(false));
-  Log.i(TAG,"Network LAC   : " + Device.getsLAC(false));
-  Log.i(TAG,"Network code  : " + Device.getSmmcMcc(false));
-  Log.i(TAG,"Network name  : " + Device.getNetworkName(false));
+  Log.i(TAG,"Device type   : " + mDevice.getPhoneType(false));
+  Log.i(TAG,"Device imei   : " + mDevice.getIMEI(false));
+  Log.i(TAG,"Device version: " + mDevice.getIMEIv(false));
+  Log.i(TAG,"Device num    : " + mDevice.getPhoneNumber(false));
+  Log.i(TAG,"Network type  : " + mDevice.getNetworkTypeName());
+  Log.i(TAG,"Network CellID: " + mDevice.getsCellId(false));
+  Log.i(TAG,"Network LAC   : " + mDevice.getsLAC(false));
+  Log.i(TAG,"Network code  : " + mDevice.getSmmcMcc(false));
+  Log.i(TAG,"Network name  : " + mDevice.getNetworkName(false));
 }

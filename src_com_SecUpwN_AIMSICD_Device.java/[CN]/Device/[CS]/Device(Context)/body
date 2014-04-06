@@ -1,5 +1,5 @@
 {
-  tm=(TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
+  tm=(TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
   sIMEI=tm.getDeviceId();
   sIMEIV=tm.getDeviceSoftwareVersion();
   sPhoneNum=tm.getLine1Number();
@@ -30,7 +30,7 @@ int sDataActivity=tm.getDataActivity();
 sDataActivityType=getActivityDesc(sDataActivity);
 sDataActivity=tm.getDataState();
 sDataState=getStateDesc(sDataActivity);
-dbHelper=new SQLiteHelper(mContext);
+dbHelper=new SQLiteHelper(context);
 sDB=dbHelper.getWritableDatabase();
 sSignalListenerLocation=new PhoneStateListener(){
 public void onCellLocationChanged(CellLocation location){

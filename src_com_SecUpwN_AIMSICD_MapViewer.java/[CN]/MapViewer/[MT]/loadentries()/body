@@ -7,7 +7,7 @@
   GeoPoint p=null;
   mapc=mapView.getController();
   int color=0x000000;
-  Cursor c=Device.sDB.rawQuery("SELECT Net, Lat, Lng, Signal FROM " + Device.LOCATION_TABLE,null);
+  Cursor c=mDevice.sDB.rawQuery("SELECT Net, Lat, Lng, Signal FROM " + mDevice.LOCATION_TABLE,null);
   if (c.getCount() > 0) {
     if (c.moveToFirst()) {
       List<Overlay> listOfOverlays=mapView.getOverlays();

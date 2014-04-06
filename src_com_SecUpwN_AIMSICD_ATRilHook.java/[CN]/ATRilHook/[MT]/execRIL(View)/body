@@ -5,7 +5,7 @@
   Message msg;
 switch (idButtonChecked) {
 case R.id.radio_api1:
-    mPhone.invokeOemRilRequestStrings(new String[]{"AT+CRSM=176,28589,0,0,3\0"},mHandler.obtainMessage(EVENT_OEM_RIL_MESSAGE));
+    mPhone.invokeOemRilRequestStrings(new String[]{"AT+CRSM=176,28589,0,0,3\r\0"},mHandler.obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE));
   mRespText.setText("---Wait response---");
 break;
 case R.id.radio_api2:
@@ -28,7 +28,7 @@ sendRequest(oemhook,EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE);
 mRespText.setText("");
 break;
 case R.id.radio_api4:
-mPhone.invokeOemRilRequestStrings(new String[]{mInput.getText().toString() + '\0'},mHandler.obtainMessage(EVENT_OEM_RIL_MESSAGE));
+mPhone.invokeOemRilRequestStrings(new String[]{mInput.getText().toString() + '\r' + '\0'},mHandler.obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE));
 mRespText.setText("---Wait response---");
 break;
 case R.id.radio_api5:
