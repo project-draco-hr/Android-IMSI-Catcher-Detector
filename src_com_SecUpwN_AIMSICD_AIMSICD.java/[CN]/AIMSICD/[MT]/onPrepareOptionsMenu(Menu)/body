@@ -1,27 +1,30 @@
 {
-  menu.clear();
-  if (Device.isTrackingCell()) {
-    menu.add(1,0,0,"Untrack Cell");
+  MenuItem mTrackCell=menu.findItem(R.id.track_cell);
+  MenuItem mTrackSignal=menu.findItem(R.id.track_signal);
+  MenuItem mTrackLocation=menu.findItem(R.id.track_location);
+  if (mDevice.isTrackingCell()) {
+    mTrackCell.setTitle(R.string.track_cell);
+    mTrackCell.setIcon(R.drawable.track_cell);
   }
  else {
-    menu.add(1,0,0,"Track Cell");
+    mTrackCell.setTitle(R.string.untrack_cell);
+    mTrackCell.setIcon(R.drawable.untrack_cell);
   }
-  if (Device.isTrackingSignal()) {
-    menu.add(1,1,0,"Untrack Signal");
-  }
- else {
-    menu.add(1,1,0,"Track Signal");
-  }
-  if (Device.isTrackingLocation()) {
-    menu.add(1,2,0,"Untrack Location");
+  if (mDevice.isTrackingSignal()) {
+    mTrackSignal.setTitle(R.string.track_signal);
+    mTrackSignal.setIcon(R.drawable.ic_action_network_cell);
   }
  else {
-    menu.add(1,2,0,"Track Location");
+    mTrackSignal.setTitle(R.string.untrack_signal);
+    mTrackSignal.setIcon(R.drawable.ic_action_network_cell_not_tracked);
   }
-  menu.add(0,4,4,"Show Map");
-  menu.add(0,6,6,"Quit");
-  menu.add(0,7,7,"Export Database Tables");
-  menu.add(0,8,8,"AT OEM RIL Hook Test");
-  menu.setGroupCheckable(1,true,false);
-  return super.onCreateOptionsMenu(menu);
+  if (mDevice.isTrackingLocation()) {
+    mTrackLocation.setTitle(R.string.track_location);
+    mTrackLocation.setIcon(R.drawable.ic_action_location_found);
+  }
+ else {
+    mTrackLocation.setTitle(R.string.untrack_location);
+    mTrackLocation.setIcon(R.drawable.ic_action_location_off);
+  }
+  return super.onPrepareOptionsMenu(menu);
 }

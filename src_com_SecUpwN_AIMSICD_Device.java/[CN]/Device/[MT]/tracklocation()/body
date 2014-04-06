@@ -1,0 +1,47 @@
+{
+  if (TrackingLocation) {
+    lm.removeUpdates(mLocationListener);
+    Helpers.msgShort(mContext,"Stopped tracking location");
+    TrackingLocation=false;
+    mLongitude=0.0;
+    mLatitude=0.0;
+  }
+ else {
+    if (lm != null) {
+      Log.i(TAG,"LocationManager already existed");
+      lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,mLocationListener);
+      Helpers.msgShort(mContext,"Tracking location");
+      TrackingLocation=true;
+    }
+ else {
+      Log.i(TAG,"LocationManager did not existed");
+      lm=(LocationManager)mContext.getSystemService(Context.LOCATION_SERVICE);
+      if (lm != null) {
+        if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+          Log.i(TAG,"LocationManager created");
+          mLocationListener=new MyLocationListener();
+          lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,mLocationListener);
+          Helpers.msgShort(mContext,"Tracking location");
+          TrackingLocation=true;
+        }
+ else {
+          final AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
+          builder.setMessage(R.string.location_error_message).setTitle(R.string.location_error_title);
+          builder.setPositiveButton(R.string.text_ok,new DialogInterface.OnClickListener(){
+            public void onClick(            DialogInterface dialog,            int id){
+              Intent intent=new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+              mActivity.startActivityForResult(intent,START_LOCATION_SERVICES);
+            }
+          }
+);
+          builder.setNegativeButton(R.string.text_cancel,new DialogInterface.OnClickListener(){
+            public void onClick(            DialogInterface dialog,            int id){
+            }
+          }
+);
+          builder.create().show();
+        }
+      }
+    }
+  }
+}

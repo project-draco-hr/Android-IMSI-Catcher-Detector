@@ -10,4 +10,5 @@
   }
   String[] aos=(String[])ar.result;
   mListView.setAdapter(new ArrayAdapter<String>(ATRilHook.this,R.layout.list_item,aos));
+  mRespText.setText(aos[0]);
 }

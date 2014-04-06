@@ -1,11 +1,13 @@
 {
   if (TrackingSignal) {
-    tm.listen(sSignalListenerStrength,PhoneStateListener.LISTEN_NONE);
+    tm.listen(mSignalListenerStrength,PhoneStateListener.LISTEN_NONE);
+    Helpers.msgShort(mContext,"Stopped tracking signal strength");
     TrackingSignal=false;
-    sSignalInfo=0;
+    mSignalInfo=0;
   }
  else {
-    tm.listen(sSignalListenerStrength,PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+    tm.listen(mSignalListenerStrength,PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+    Helpers.msgShort(mContext,"Tracking signal strength");
     TrackingSignal=true;
   }
 }

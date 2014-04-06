@@ -1,0 +1,5 @@
+{
+  mDbHelper=new DbHelper(mContext);
+  mDb=mDbHelper.getWritableDatabase();
+  return this;
+}

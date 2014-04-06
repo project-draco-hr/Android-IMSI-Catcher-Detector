@@ -1,0 +1,4 @@
+{
+  cancelNotification();
+  super.onDestroy();
+}

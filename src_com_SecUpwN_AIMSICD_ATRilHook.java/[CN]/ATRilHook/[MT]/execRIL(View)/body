@@ -5,10 +5,8 @@
   Message msg;
 switch (idButtonChecked) {
 case R.id.radio_api1:
-    oemhook=new byte[1];
-  oemhook[0]=(byte)0xAA;
-sendRequest(oemhook,EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE);
-mRespText.setText("");
+    mPhone.invokeOemRilRequestStrings(new String[]{"AT+CRSM=176,28589,0,0,3\r\0"},mHandler.obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE));
+  mRespText.setText("---Wait response---");
 break;
 case R.id.radio_api2:
 oemhook=new byte[2];
@@ -30,10 +28,7 @@ sendRequest(oemhook,EVENT_RIL_OEM_HOOK_CMDRAW_COMPLETE);
 mRespText.setText("");
 break;
 case R.id.radio_api4:
-String[] oemhookstring={"UNIAT",((EditText)findViewById(R.id.edit_cmdstr)).getText().toString() + "\r"};
-msg=mHandler.obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE);
-mPhone.invokeOemRilRequestStrings(oemhookstring,msg);
-mRespText=(EditText)findViewById(R.id.edit_response);
+mPhone.invokeOemRilRequestStrings(new String[]{mInput.getText().toString() + '\r' + '\0'},mHandler.obtainMessage(EVENT_RIL_OEM_HOOK_CMDSTR_COMPLETE));
 mRespText.setText("---Wait response---");
 break;
 case R.id.radio_api5:

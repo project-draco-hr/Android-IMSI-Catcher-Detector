@@ -1,21 +1,21 @@
 {
-  sDataActivityType="undef";
+  mDataActivityType="undef";
 switch (dataID) {
 case TelephonyManager.DATA_ACTIVITY_NONE:
-    sDataActivityType="None";
+    mDataActivityType="None";
   break;
 case TelephonyManager.DATA_ACTIVITY_IN:
-sDataActivityType="In";
+mDataActivityType="In";
 break;
 case TelephonyManager.DATA_ACTIVITY_OUT:
-sDataActivityType="Out";
+mDataActivityType="Out";
 break;
 case TelephonyManager.DATA_ACTIVITY_INOUT:
-sDataActivityType="In-Out";
+mDataActivityType="In-Out";
 break;
 case TelephonyManager.DATA_ACTIVITY_DORMANT:
-sDataActivityType="Dormant";
+mDataActivityType="Dormant";
 break;
 }
-return sDataActivityType;
+return mDataActivityType;
 }
