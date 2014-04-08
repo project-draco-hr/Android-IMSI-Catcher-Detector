@@ -1,9 +1,0 @@
-{
-  if (loc != null) {
-    mLongitude=loc.getLongitude();
-    mLatitude=loc.getLatitude();
-  }
-  if (TrackingLocation) {
-    dbHelper.insertLocation(mLacID,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo);
-  }
-}

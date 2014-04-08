@@ -1,0 +1,5 @@
+{
+  super.onResume();
+  tm=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+  if (!mDisplayCurrent)   updateUI();
+}

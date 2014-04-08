@@ -1,0 +1,4 @@
+{
+  Log.i("AIMSICD","System booted starting service.");
+  context.startService(new Intent(context,AimsicdService.class));
+}

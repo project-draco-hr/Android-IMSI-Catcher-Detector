@@ -1,19 +1,19 @@
 {
 switch (item.getItemId()) {
 case R.id.track_cell:
-    mDevice.trackcell();
+    trackcell();
   if (Build.VERSION.SDK_INT > 11) {
     onPrepareOptionsMenu(mMenu);
   }
 return true;
 case R.id.track_signal:
-mDevice.tracksignal();
+tracksignal();
 if (Build.VERSION.SDK_INT > 11) {
 onPrepareOptionsMenu(mMenu);
 }
 return true;
 case R.id.track_location:
-mDevice.tracklocation();
+tracklocation();
 if (Build.VERSION.SDK_INT > 11) {
 onPrepareOptionsMenu(mMenu);
 }
@@ -22,7 +22,7 @@ case R.id.show_map:
 showmap();
 return true;
 case R.id.export_database:
-mDevice.getDbHelper().exportDB();
+dbHelper.exportDB();
 return true;
 case R.id.at_injector:
 Intent intent=new Intent(this,ATRilHook.class);

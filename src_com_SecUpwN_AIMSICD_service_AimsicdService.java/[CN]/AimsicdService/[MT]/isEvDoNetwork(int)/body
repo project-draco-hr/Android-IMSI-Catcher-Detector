@@ -1,0 +1,13 @@
+{
+  if (Build.VERSION.SDK_INT > 11) {
+    if ((networkType == TelephonyManager.NETWORK_TYPE_EVDO_0) || (networkType == TelephonyManager.NETWORK_TYPE_EVDO_A) || (networkType == TelephonyManager.NETWORK_TYPE_EVDO_B)|| (networkType == TelephonyManager.NETWORK_TYPE_EHRPD)) {
+      return true;
+    }
+  }
+ else {
+    if ((networkType == TelephonyManager.NETWORK_TYPE_EVDO_0) || (networkType == TelephonyManager.NETWORK_TYPE_EVDO_A) || (networkType == TelephonyManager.NETWORK_TYPE_EVDO_B)) {
+      return true;
+    }
+  }
+  return false;
+}

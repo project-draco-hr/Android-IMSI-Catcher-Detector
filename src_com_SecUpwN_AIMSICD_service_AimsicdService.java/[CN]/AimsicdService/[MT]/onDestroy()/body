@@ -1,0 +1,5 @@
+{
+  super.onDestroy();
+  cancelNotification();
+  Log.i(TAG,"Service destroyed");
+}
