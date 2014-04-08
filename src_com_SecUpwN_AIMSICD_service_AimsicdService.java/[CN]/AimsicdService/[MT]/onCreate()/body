@@ -1,0 +1,35 @@
+{
+  tm=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+  mIMEI=tm.getDeviceId();
+  mIMEIV=tm.getDeviceSoftwareVersion();
+  mPhoneNum=tm.getLine1Number();
+  mPhoneID=tm.getPhoneType();
+switch (mPhoneID) {
+case TelephonyManager.PHONE_TYPE_GSM:
+    mPhoneType="GSM";
+  mMmcmcc=tm.getNetworkOperator();
+mNetName=tm.getNetworkOperatorName();
+GsmCellLocation gsmCellLocation=(GsmCellLocation)tm.getCellLocation();
+if (gsmCellLocation != null) {
+mCellType="" + gsmCellLocation.getCid();
+mLac="" + gsmCellLocation.getLac();
+}
+mSimCountry=tm.getSimCountryIso();
+mSimOperator=tm.getSimOperator();
+mSimOperatorName=tm.getSimOperatorName();
+mSimSerial=tm.getSimSerialNumber();
+mSimSubs=tm.getSubscriberId();
+break;
+case TelephonyManager.PHONE_TYPE_CDMA:
+mPhoneType="CDMA";
+break;
+}
+mNetID=getNetID(true);
+mNetType=tm.getNetworkTypeName();
+int mDataActivity=tm.getDataActivity();
+mDataActivityType=getActivityDesc(mDataActivity);
+mDataActivity=tm.getDataState();
+mDataState=getStateDesc(mDataActivity);
+setNotification();
+Log.i(TAG,"Service launched successfully");
+}

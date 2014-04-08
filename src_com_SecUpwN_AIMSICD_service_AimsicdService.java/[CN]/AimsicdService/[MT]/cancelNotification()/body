@@ -1,0 +1,6 @@
+{
+  NotificationManager notificationManager=(NotificationManager)this.getSystemService(NOTIFICATION_SERVICE);
+  if (notificationManager != null) {
+    notificationManager.cancel(0x1212);
+  }
+}

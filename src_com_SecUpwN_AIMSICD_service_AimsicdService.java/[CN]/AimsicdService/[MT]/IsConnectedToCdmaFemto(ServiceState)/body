@@ -1,0 +1,41 @@
+{
+  if (s == null) {
+    return false;
+  }
+  int networkType=getNetID(true);
+  boolean evDoNetwork=isEvDoNetwork(networkType);
+  if (!evDoNetwork) {
+    if (tm != null) {
+      CdmaCellLocation c=(CdmaCellLocation)tm.getCellLocation();
+      if (c != null) {
+        int networkID=c.getNetworkId();
+        return !((networkID < FEMTO_NID_MIN) || (networkID >= FEMTO_NID_MAX));
+      }
+ else {
+        Log.v(TAG,"Cell location info is null.");
+        return false;
+      }
+    }
+ else {
+      Log.v(TAG,"Telephony Manager is null.");
+      return false;
+    }
+  }
+ else {
+    if (tm != null) {
+      CdmaCellLocation c=(CdmaCellLocation)tm.getCellLocation();
+      if (c != null) {
+        int networkID=c.getNetworkId();
+        return !((networkID < FEMTO_NID_MIN) || (networkID >= FEMTO_NID_MAX));
+      }
+ else {
+        Log.v(TAG,"Cell location info is null.");
+        return false;
+      }
+    }
+ else {
+      Log.v(TAG,"Telephony Manager is null.");
+      return false;
+    }
+  }
+}

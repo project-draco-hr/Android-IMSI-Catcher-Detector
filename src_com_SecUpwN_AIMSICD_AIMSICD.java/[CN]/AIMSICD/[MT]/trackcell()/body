@@ -1,0 +1,13 @@
+{
+  if (TrackingCell) {
+    tm.listen(mSignalListenerLocation,PhoneStateListener.LISTEN_NONE);
+    Helpers.msgShort(mContext,"Stopped tracking cell information");
+    TrackingCell=false;
+    mAimsicdService.mCellInfo="[0,0]|nn|nn|";
+  }
+ else {
+    tm.listen(mSignalListenerLocation,PhoneStateListener.LISTEN_CELL_LOCATION);
+    Helpers.msgShort(mContext,"Tracking cell information");
+    TrackingCell=true;
+  }
+}

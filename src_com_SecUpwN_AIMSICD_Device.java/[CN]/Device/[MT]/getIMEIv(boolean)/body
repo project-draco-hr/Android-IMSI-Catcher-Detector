@@ -1,4 +1,0 @@
-{
-  if (mIMEIV.isEmpty() || force)   mIMEIV=tm.getDeviceSoftwareVersion();
-  return mIMEIV;
-}

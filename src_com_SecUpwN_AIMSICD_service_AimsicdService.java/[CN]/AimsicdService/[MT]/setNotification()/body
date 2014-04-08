@@ -1,0 +1,7 @@
+{
+  Intent notificationIntent=new Intent(this,AIMSICD.class);
+  PendingIntent contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
+  Notification mBuilder=new NotificationCompat.Builder(this).setSmallIcon(R.drawable.iconbn).setContentTitle(this.getResources().getString(R.string.app_name)).setContentText("Phone Type " + getPhoneType(false)).setOngoing(true).setAutoCancel(false).setContentIntent(contentIntent).build();
+  NotificationManager mNotificationManager=(NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
+  mNotificationManager.notify(0x1212,mBuilder);
+}

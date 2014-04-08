@@ -1,0 +1,14 @@
+{
+  if (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) {
+    return;
+  }
+  mPhoneStateListener=new PhoneStateListener(){
+    public void onServiceStateChanged(    ServiceState s){
+      Log.d(TAG,"Service State changed!");
+      getServiceStateInfo(s);
+    }
+  }
+;
+  tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_CELL_LOCATION);
+  tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_SERVICE_STATE);
+}

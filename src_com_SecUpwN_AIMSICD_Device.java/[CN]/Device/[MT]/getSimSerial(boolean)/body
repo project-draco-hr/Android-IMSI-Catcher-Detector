@@ -1,4 +1,0 @@
-{
-  if (mSimSerial.isEmpty() || force)   mSimSerial=tm.getSimSerialNumber();
-  return mSimSerial;
-}

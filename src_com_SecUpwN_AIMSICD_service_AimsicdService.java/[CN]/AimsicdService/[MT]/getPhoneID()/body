@@ -1,0 +1,6 @@
+{
+  if (mPhoneID <= 0 || mPhoneID > 6) {
+    mPhoneID=tm.getPhoneType();
+  }
+  return mPhoneID;
+}

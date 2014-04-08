@@ -1,7 +1,0 @@
-{
-  if (requestCode == mDevice.START_LOCATION_SERVICES) {
-    if (resultCode == Activity.RESULT_OK) {
-      mDevice.tracklocation();
-    }
-  }
-}
