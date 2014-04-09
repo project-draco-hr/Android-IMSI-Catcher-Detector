@@ -1,4 +1,8 @@
 {
-  Log.i("AIMSICD","System booted starting service.");
-  context.startService(new Intent(context,AimsicdService.class));
+  SharedPreferences prefSettings=context.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME + "_settings",0);
+  boolean mAutoStart=prefSettings.getBoolean("pref_autostart",true);
+  if (mAutoStart) {
+    Log.i("AIMSICD","System booted starting service.");
+    context.startService(new Intent(context,AimsicdService.class));
+  }
 }
