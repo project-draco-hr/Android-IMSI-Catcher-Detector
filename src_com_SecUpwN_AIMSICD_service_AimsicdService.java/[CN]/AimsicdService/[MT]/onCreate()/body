@@ -25,7 +25,7 @@ mPhoneType="CDMA";
 break;
 }
 mNetID=getNetID(true);
-mNetType=tm.getNetworkTypeName();
+mNetType=getNetworkTypeName(mNetID,true);
 int mDataActivity=tm.getDataActivity();
 mDataActivityType=getActivityDesc(mDataActivity);
 mDataActivity=tm.getDataState();

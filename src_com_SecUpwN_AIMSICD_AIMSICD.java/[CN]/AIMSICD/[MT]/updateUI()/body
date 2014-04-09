@@ -37,7 +37,7 @@
     content=(TextView)findViewById(R.id.network_code);
     content.setText(mAimsicdService.getSmmcMcc(false));
     content=(TextView)findViewById(R.id.network_type);
-    content.setText(mAimsicdService.getNetworkTypeName());
+    content.setText(mAimsicdService.getNetworkTypeName(netID,false));
     content=(TextView)findViewById(R.id.network_lac);
     content.setText(mAimsicdService.getLAC(false));
     content=(TextView)findViewById(R.id.network_cellid);
@@ -51,7 +51,7 @@
     Log.i(TAG,"Device IMEI   : " + mAimsicdService.getIMEI(false));
     Log.i(TAG,"Device version: " + mAimsicdService.getIMEIv(false));
     Log.i(TAG,"Device num    : " + mAimsicdService.getPhoneNumber(false));
-    Log.i(TAG,"Network type  : " + mAimsicdService.getNetworkTypeName());
+    Log.i(TAG,"Network type  : " + mAimsicdService.getNetworkTypeName(netID,false));
     Log.i(TAG,"Network CellID: " + mAimsicdService.getCellId(false));
     Log.i(TAG,"Network LAC   : " + mAimsicdService.getLAC(false));
     Log.i(TAG,"Network code  : " + mAimsicdService.getSmmcMcc(false));
