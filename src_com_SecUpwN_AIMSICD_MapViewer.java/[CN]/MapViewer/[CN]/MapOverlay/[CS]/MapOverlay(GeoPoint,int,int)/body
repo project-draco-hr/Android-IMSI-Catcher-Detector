@@ -1,5 +1,0 @@
-{
-  this.gp1=gp1;
-  this.color=color;
-  this.radius=radius;
-}

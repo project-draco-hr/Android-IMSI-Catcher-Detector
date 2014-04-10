@@ -1,3 +1,0 @@
-{
-  mDb.delete(LOCATION_TABLE,null,null);
-}

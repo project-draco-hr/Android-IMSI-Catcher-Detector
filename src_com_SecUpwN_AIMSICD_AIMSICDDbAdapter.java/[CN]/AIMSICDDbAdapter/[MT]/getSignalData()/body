@@ -1,3 +1,0 @@
-{
-  return mDb.rawQuery("SELECT Net, Lat, Lng, Signal FROM " + SIGNAL_TABLE,null);
-}

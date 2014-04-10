@@ -1,0 +1,29 @@
+{
+  Log.i(TAG,"exporting database - " + DB_NAME);
+  File dir=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/");
+  if (!dir.exists()) {
+    dir.mkdirs();
+  }
+  File file=new File(dir,"aimsicd-" + tableName + ".csv");
+  try {
+    file.createNewFile();
+    CSVWriter csvWrite=new CSVWriter(new FileWriter(file));
+    Log.d(TAG,"table name " + tableName);
+    open();
+    Cursor c=mDb.rawQuery("SELECT * FROM " + tableName,new String[0]);
+    csvWrite.writeNext(c.getColumnNames());
+    String[] rowData=new String[c.getColumnCount()];
+    while (c.moveToNext()) {
+      for (int i=0; i < c.getColumnCount(); i++) {
+        rowData[i]=c.getString(i);
+      }
+      csvWrite.writeNext(rowData);
+    }
+    csvWrite.close();
+    c.close();
+  }
+ catch (  Exception sqlEx) {
+    Log.e(TAG,"Error exporting table " + tableName + " "+ sqlEx.getMessage());
+  }
+  Log.i(TAG,"exporting database complete");
+}

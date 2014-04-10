@@ -1,0 +1,8 @@
+{
+  if (mAimsicdService.TrackingLocation) {
+    mAimsicdService.setLocationTracking(false);
+  }
+ else {
+    mAimsicdService.setLocationTracking(true);
+  }
+}

@@ -1,0 +1,68 @@
+{
+  int SIGNAL_SIZE_RATIO=15;
+  double dlat;
+  double dlng;
+  int net;
+  int signal;
+  int color;
+  mDbHelper.open();
+  Cursor c=mDbHelper.getSignalData();
+  if (c.moveToFirst()) {
+    do {
+      net=c.getInt(0);
+      dlat=Double.parseDouble(c.getString(1));
+      dlng=Double.parseDouble(c.getString(2));
+      signal=c.getInt(3);
+      if (signal == 0) {
+        signal=20;
+      }
+      if ((dlat != 0.0) || (dlng != 0.0)) {
+switch (net) {
+case TelephonyManager.NETWORK_TYPE_UNKNOWN:
+          color=R.color.map_unknown;
+        break;
+case TelephonyManager.NETWORK_TYPE_GPRS:
+      color=R.color.map_gprs;
+    break;
+case TelephonyManager.NETWORK_TYPE_EDGE:
+  color=R.color.map_edge;
+break;
+case TelephonyManager.NETWORK_TYPE_UMTS:
+color=R.color.map_umts;
+break;
+case TelephonyManager.NETWORK_TYPE_HSDPA:
+color=R.color.map_hsdpa;
+break;
+case TelephonyManager.NETWORK_TYPE_HSUPA:
+color=R.color.map_hsupa;
+break;
+case TelephonyManager.NETWORK_TYPE_HSPA:
+color=R.color.map_hspa;
+break;
+case TelephonyManager.NETWORK_TYPE_CDMA:
+color=R.color.map_cdma;
+break;
+case TelephonyManager.NETWORK_TYPE_EVDO_0:
+color=R.color.map_evdo0;
+break;
+case TelephonyManager.NETWORK_TYPE_EVDO_A:
+color=R.color.map_evdoA;
+break;
+case TelephonyManager.NETWORK_TYPE_1xRTT:
+color=R.color.map_1xrtt;
+break;
+default :
+color=R.color.map_default;
+break;
+}
+CircleOptions circleOptions=new CircleOptions().center(new LatLng((int)(dlat * 1E6),(int)(dlng * 1E6))).radius(signal * SIGNAL_SIZE_RATIO).fillColor(color);
+mMap.addCircle(circleOptions);
+}
+}
+ while (c.moveToNext());
+c.close();
+}
+ else {
+Helpers.msgShort(this,"No tracked locations found to overlay on map.");
+}
+}

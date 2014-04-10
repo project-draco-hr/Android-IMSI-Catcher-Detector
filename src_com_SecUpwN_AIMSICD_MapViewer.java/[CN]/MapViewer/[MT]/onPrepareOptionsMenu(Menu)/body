@@ -1,8 +1,0 @@
-{
-  menu.clear();
-  menu.add(0,1,1,"Erase DB");
-  menu.add(0,3,3,"About");
-  menu.add(0,4,4,"Go to Log");
-  menu.setGroupCheckable(1,true,false);
-  return super.onCreateOptionsMenu(menu);
-}
