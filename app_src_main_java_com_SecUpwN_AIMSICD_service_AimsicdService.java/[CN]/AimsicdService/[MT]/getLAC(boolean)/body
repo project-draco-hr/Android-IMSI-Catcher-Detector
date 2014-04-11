@@ -1,0 +1,10 @@
+{
+  if (mLac.isEmpty() || force) {
+    GsmCellLocation gsmCellLocation=(GsmCellLocation)tm.getCellLocation();
+    if (gsmCellLocation != null) {
+      mLac="" + gsmCellLocation.getLac();
+      mLacID=gsmCellLocation.getLac();
+    }
+  }
+  return mLac;
+}

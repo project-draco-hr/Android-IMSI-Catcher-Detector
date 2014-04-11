@@ -1,0 +1,6 @@
+{
+  super.onResume();
+  prefs=getSharedPreferences(SHARED_PREFERENCES_BASENAME + "_preferences",0);
+  prefs.registerOnSharedPreferenceChangeListener(this);
+  if (!mDisplayCurrent)   updateUI();
+}

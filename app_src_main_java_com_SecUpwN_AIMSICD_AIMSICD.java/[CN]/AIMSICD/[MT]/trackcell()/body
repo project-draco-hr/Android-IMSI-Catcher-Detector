@@ -1,0 +1,8 @@
+{
+  if (mAimsicdService.TrackingCell) {
+    mAimsicdService.setCellTracking(false);
+  }
+ else {
+    mAimsicdService.setCellTracking(true);
+  }
+}

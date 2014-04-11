@@ -1,0 +1,11 @@
+{
+  if (mMap == null) {
+    FragmentManager fmanager=getSupportFragmentManager();
+    Fragment fragment=fmanager.findFragmentById(R.id.map);
+    SupportMapFragment supportmapfragment=(SupportMapFragment)fragment;
+    mMap=supportmapfragment.getMap();
+    if (mMap == null) {
+      Helpers.sendMsg(this,"Unable to create map!");
+    }
+  }
+}

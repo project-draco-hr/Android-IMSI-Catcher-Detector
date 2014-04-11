@@ -1,0 +1,61 @@
+{
+  TextView content=(TextView)findViewById(R.id.sim_country);
+  if (mBound) {
+    if (mAimsicdService.getPhoneID() == TelephonyManager.PHONE_TYPE_GSM) {
+      content.setText(mAimsicdService.getSimCountry(false));
+      content=(TextView)findViewById(R.id.sim_operator_id);
+      content.setText(mAimsicdService.getSimOperator(false));
+      content=(TextView)findViewById(R.id.sim_operator_name);
+      content.setText(mAimsicdService.getSimOperatorName(false));
+      content=(TextView)findViewById(R.id.sim_imsi);
+      content.setText(mAimsicdService.getSimSubs(false));
+      content=(TextView)findViewById(R.id.sim_serial);
+      content.setText(mAimsicdService.getSimSerial(false));
+    }
+ else {
+      content.setText(R.string.gsm_only);
+      content=(TextView)findViewById(R.id.sim_operator_id);
+      content.setText(R.string.gsm_only);
+      content=(TextView)findViewById(R.id.sim_operator_name);
+      content.setText(R.string.gsm_only);
+      content=(TextView)findViewById(R.id.sim_imsi);
+      content.setText(R.string.gsm_only);
+      content=(TextView)findViewById(R.id.sim_serial);
+      content.setText(R.string.gsm_only);
+    }
+    int netID=mAimsicdService.getNetID(true);
+    content=(TextView)findViewById(R.id.device_type);
+    content.setText(mAimsicdService.getPhoneType(false));
+    content=(TextView)findViewById(R.id.device_imei);
+    content.setText(mAimsicdService.getIMEI(false));
+    content=(TextView)findViewById(R.id.device_version);
+    content.setText(mAimsicdService.getIMEIv(false));
+    content=(TextView)findViewById(R.id.device_number);
+    content.setText(mAimsicdService.getPhoneNumber(false));
+    content=(TextView)findViewById(R.id.network_name);
+    content.setText(mAimsicdService.getNetworkName(false));
+    content=(TextView)findViewById(R.id.network_code);
+    content.setText(mAimsicdService.getSmmcMcc(false));
+    content=(TextView)findViewById(R.id.network_type);
+    content.setText(mAimsicdService.getNetworkTypeName(netID,false));
+    content=(TextView)findViewById(R.id.network_lac);
+    content.setText(mAimsicdService.getLAC(true));
+    content=(TextView)findViewById(R.id.network_cellid);
+    content.setText(mAimsicdService.getCellId(true));
+    content=(TextView)findViewById(R.id.data_activity);
+    content.setText(mAimsicdService.getActivityDesc(netID));
+    content=(TextView)findViewById(R.id.data_status);
+    content.setText(mAimsicdService.getStateDesc(netID));
+    Log.i(TAG,"**** AIMSICD ****");
+    Log.i(TAG,"Device type   : " + mAimsicdService.getPhoneType(false));
+    Log.i(TAG,"Device IMEI   : " + mAimsicdService.getIMEI(false));
+    Log.i(TAG,"Device version: " + mAimsicdService.getIMEIv(false));
+    Log.i(TAG,"Device num    : " + mAimsicdService.getPhoneNumber(false));
+    Log.i(TAG,"Network type  : " + mAimsicdService.getNetworkTypeName(netID,false));
+    Log.i(TAG,"Network CellID: " + mAimsicdService.getCellId(false));
+    Log.i(TAG,"Network LAC   : " + mAimsicdService.getLAC(false));
+    Log.i(TAG,"Network code  : " + mAimsicdService.getSmmcMcc(false));
+    Log.i(TAG,"Network name  : " + mAimsicdService.getNetworkName(false));
+    mDisplayCurrent=true;
+  }
+}

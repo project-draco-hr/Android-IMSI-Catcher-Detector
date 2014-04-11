@@ -1,4 +1,0 @@
-{
-  mContext=context;
-  mDbHelper=new DbHelper(mContext);
-}

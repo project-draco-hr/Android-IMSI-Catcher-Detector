@@ -1,3 +1,0 @@
-{
-  mDbHelper.eraseLocationData();
-}
