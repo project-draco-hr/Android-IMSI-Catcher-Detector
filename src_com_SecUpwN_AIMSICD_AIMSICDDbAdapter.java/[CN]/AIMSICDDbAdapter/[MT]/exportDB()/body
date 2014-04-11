@@ -1,0 +1,10 @@
+{
+  try {
+    export(LOCATION_TABLE);
+    export(CELL_TABLE);
+    export(SIGNAL_TABLE);
+  }
+ catch (  IOException ioe) {
+    Log.e(TAG,"exportDB() " + ioe.getMessage());
+  }
+}

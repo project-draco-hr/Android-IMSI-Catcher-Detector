@@ -1,0 +1,4 @@
+{
+  mDb=mDbHelper.getWritableDatabase();
+  return this;
+}

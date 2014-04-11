@@ -1,0 +1,7 @@
+{
+  super.onDestroy();
+  if (mBound) {
+    unbindService(mConnection);
+    mBound=false;
+  }
+}

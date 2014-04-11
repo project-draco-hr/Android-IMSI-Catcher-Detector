@@ -1,0 +1,13 @@
+{
+  Toast onBackPressedToast=Toast.makeText(this,R.string.press_once_again_to_exit,Toast.LENGTH_SHORT);
+  long currentTime=System.currentTimeMillis();
+  if (currentTime - mLastPress > 5000) {
+    onBackPressedToast.show();
+    mLastPress=currentTime;
+  }
+ else {
+    onBackPressedToast.cancel();
+    super.onBackPressed();
+    finish();
+  }
+}

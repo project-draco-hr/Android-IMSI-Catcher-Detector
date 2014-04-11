@@ -1,0 +1,58 @@
+{
+  Intent notificationIntent=new Intent(this,AIMSICD.class);
+  PendingIntent contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
+  String tickerText;
+  String contentText="Phone Type " + getPhoneType(false);
+  SharedPreferences prefSettings=getSharedPreferences(SHARED_PREFERENCES_BASENAME + "_preferences",0);
+  int iconType=Integer.parseInt(prefSettings.getString("pref_ui_icons","1"));
+  iconType+=mSystemStatus;
+  int icon;
+switch (iconType) {
+case 11:
+    icon=R.drawable.flat_idle;
+  tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
+break;
+case 12:
+icon=R.drawable.sense_idle;
+tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
+break;
+case 13:
+icon=R.drawable.white_idle;
+tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
+break;
+case 21:
+icon=R.drawable.flat_good;
+tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good No Threats Detected";
+break;
+case 22:
+icon=R.drawable.sense_good;
+tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good No Threats Detected";
+break;
+case 23:
+icon=R.drawable.white_good;
+tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good No Threats Detected";
+break;
+case 31:
+icon=R.drawable.flat_alarm;
+tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
+contentText="ALERT!! Threat Detected";
+break;
+case 32:
+icon=R.drawable.sense_alarm;
+tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
+contentText="ALERT!! Threat Detected";
+break;
+case 33:
+icon=R.drawable.white_alarm;
+tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
+contentText="ALERT!! Threat Detected";
+break;
+default :
+icon=R.drawable.sense_idle;
+tickerText=getResources().getString(R.string.app_name);
+break;
+}
+Notification mBuilder=new NotificationCompat.Builder(this).setSmallIcon(icon).setTicker(tickerText).setContentTitle(this.getResources().getString(R.string.app_name)).setContentText(contentText).setOngoing(true).setAutoCancel(false).setContentIntent(contentIntent).build();
+NotificationManager mNotificationManager=(NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
+mNotificationManager.notify(0x1212,mBuilder);
+}

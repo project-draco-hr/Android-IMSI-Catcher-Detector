@@ -1,0 +1,7 @@
+{
+  String line=readOneLine(fname);
+  if (line != null) {
+    return line.split(" ");
+  }
+  return null;
+}

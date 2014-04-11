@@ -1,0 +1,3 @@
+{
+  CMDProcessor.runSuCommand(command);
+}

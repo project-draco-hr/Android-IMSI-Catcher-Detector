@@ -1,0 +1,18 @@
+{
+  mDataState="undef";
+switch (dataID) {
+case TelephonyManager.DATA_DISCONNECTED:
+    mDataActivityType="Disconnected";
+  break;
+case TelephonyManager.DATA_CONNECTING:
+mDataActivityType="Connecting";
+break;
+case TelephonyManager.DATA_CONNECTED:
+mDataActivityType="Connected";
+break;
+case TelephonyManager.DATA_SUSPENDED:
+mDataActivityType="Suspended";
+break;
+}
+return mDataState;
+}

@@ -1,0 +1,8 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.main);
+  dbHelper=new AIMSICDDbAdapter(mContext);
+  Intent intent=new Intent(this,AimsicdService.class);
+  startService(intent);
+  bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+}

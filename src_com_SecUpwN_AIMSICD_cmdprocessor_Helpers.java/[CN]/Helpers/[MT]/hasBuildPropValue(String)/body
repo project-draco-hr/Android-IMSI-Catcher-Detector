@@ -1,0 +1,7 @@
+{
+  Boolean has=false;
+  String buildprop="";
+  buildprop=getStringFromFile(BUILD_PROP);
+  if (buildprop.matches(buildProp + "=.+$"))   has=true;
+  return has;
+}

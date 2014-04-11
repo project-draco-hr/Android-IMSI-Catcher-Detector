@@ -1,0 +1,4 @@
+{
+  mStream=os;
+  mBuffer=buf;
+}

@@ -1,0 +1,37 @@
+{
+switch (item.getItemId()) {
+case R.id.track_cell:
+    trackcell();
+  if (Build.VERSION.SDK_INT > 11) {
+    onPrepareOptionsMenu(mMenu);
+  }
+return true;
+case R.id.track_signal:
+tracksignal();
+if (Build.VERSION.SDK_INT > 11) {
+onPrepareOptionsMenu(mMenu);
+}
+return true;
+case R.id.track_location:
+tracklocation();
+if (Build.VERSION.SDK_INT > 11) {
+onPrepareOptionsMenu(mMenu);
+}
+return true;
+case R.id.show_map:
+showmap();
+return true;
+case R.id.preferences:
+Intent intent=new Intent(this,SettingsActivity.class);
+startActivity(intent);
+return true;
+case R.id.export_database:
+dbHelper.exportDB();
+return true;
+case R.id.app_exit:
+finish();
+return true;
+default :
+return super.onOptionsItemSelected(item);
+}
+}
