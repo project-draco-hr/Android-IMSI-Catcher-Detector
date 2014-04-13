@@ -1,12 +1,14 @@
 {
-  Log.i(TAG,"Starting MapViewer ============");
+  Log.i(TAG,"Starting MapViewer");
   super.onCreate(savedInstanceState);
+  if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != ConnectionResult.SUCCESS) {
+    final AlertDialog.Builder builder=new AlertDialog.Builder(this);
+    builder.setMessage(R.string.error_google_play_services_message).setTitle(R.string.error_google_play_services_title);
+    builder.create().show();
+    finish();
+  }
   setContentView(R.layout.map);
   setUpMapIfNeeded();
-  mMapOptions.mapType(GoogleMap.MAP_TYPE_HYBRID).compassEnabled(true).rotateGesturesEnabled(false).tiltGesturesEnabled(false);
-  mMap.getUiSettings().setMyLocationButtonEnabled(true);
-  mMap.getUiSettings().setZoomControlsEnabled(false);
-  mMap.setMyLocationEnabled(true);
   mDbHelper=new AIMSICDDbAdapter(this);
   loadEntries();
 }

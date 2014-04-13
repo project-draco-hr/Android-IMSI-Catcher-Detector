@@ -10,4 +10,5 @@
     TrackingSignal=false;
     mSignalInfo=0;
   }
+  setNotification();
 }

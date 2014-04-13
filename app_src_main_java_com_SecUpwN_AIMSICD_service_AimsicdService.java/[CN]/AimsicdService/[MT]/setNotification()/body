@@ -3,47 +3,56 @@
   PendingIntent contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
   String tickerText;
   String contentText="Phone Type " + getPhoneType(false);
-  SharedPreferences prefSettings=getSharedPreferences(SHARED_PREFERENCES_BASENAME + "_preferences",0);
-  int iconType=Integer.parseInt(prefSettings.getString("pref_ui_icons","1"));
-  iconType+=mSystemStatus;
-  int icon;
-switch (iconType) {
-case 11:
-    icon=R.drawable.flat_idle;
+  SharedPreferences prefs=getSharedPreferences(SHARED_PREFERENCES_BASENAME,0);
+  String iconType=prefs.getString("pref_ui_icons","flat");
+  int status;
+  if (mFemtoDetected) {
+    status=3;
+  }
+ else   if (TrackingFemtocell || TrackingCell || TrackingLocation|| TrackingSignal) {
+    status=2;
+    if (TrackingFemtocell)     contentText="FemtoCell Detection Active";
+ else     contentText="Cell, Signal or Location Tracking Active";
+  }
+ else {
+    status=1;
+  }
+  int icon=R.drawable.sense_idle;
+switch (status) {
+case 1:
+    if (iconType.equals("flat")) {
+      icon=R.drawable.flat_idle;
+    }
+ else     if (iconType.equals("sense")) {
+      icon=R.drawable.sense_idle;
+    }
+ else     if (iconType.equals("white")) {
+      icon=R.drawable.white_idle;
+    }
   tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
 break;
-case 12:
-icon=R.drawable.sense_idle;
-tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
-break;
-case 13:
-icon=R.drawable.white_idle;
-tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
-break;
-case 21:
+case 2:
+if (iconType.equals("flat")) {
 icon=R.drawable.flat_good;
-tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good No Threats Detected";
-break;
-case 22:
+}
+ else if (iconType.equals("sense")) {
 icon=R.drawable.sense_good;
-tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good No Threats Detected";
-break;
-case 23:
+}
+ else if (iconType.equals("white")) {
 icon=R.drawable.white_good;
+}
 tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good No Threats Detected";
 break;
-case 31:
+case 3:
+if (iconType.equals("flat")) {
 icon=R.drawable.flat_alarm;
-tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
-contentText="ALERT!! Threat Detected";
-break;
-case 32:
+}
+ else if (iconType.equals("sense")) {
 icon=R.drawable.sense_alarm;
-tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
-contentText="ALERT!! Threat Detected";
-break;
-case 33:
+}
+ else if (iconType.equals("white")) {
 icon=R.drawable.white_alarm;
+}
 tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
 contentText="ALERT!! Threat Detected";
 break;

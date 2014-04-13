@@ -1,3 +1,32 @@
 {
-  return super.onOptionsItemSelected(item);
+switch (item.getItemId()) {
+case R.id.map_type:
+    final AlertDialog.Builder menuAlert=new AlertDialog.Builder(this);
+  final String[] menuList={"Normal","Hybrid","Satellite","Terrain"};
+menuAlert.setTitle("Map Type");
+menuAlert.setItems(menuList,new DialogInterface.OnClickListener(){
+public void onClick(DialogInterface dialog,int item){
+switch (item) {
+case 0:
+    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+  break;
+case 1:
+mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+break;
+case 2:
+mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+break;
+case 3:
+mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+break;
+}
+}
+}
+);
+AlertDialog menuMapType=menuAlert.create();
+menuMapType.show();
+return true;
+default :
+return super.onOptionsItemSelected(item);
+}
 }

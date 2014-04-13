@@ -31,6 +31,8 @@ int mDataActivity=tm.getDataActivity();
 mDataActivityType=getActivityDesc(mDataActivity);
 mDataActivity=tm.getDataState();
 mDataState=getStateDesc(mDataActivity);
+prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+prefs.registerOnSharedPreferenceChangeListener(this);
 setNotification();
 Log.i(TAG,"Service launched successfully");
 }

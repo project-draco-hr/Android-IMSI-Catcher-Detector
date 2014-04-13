@@ -1,0 +1,9 @@
+{
+  if (isNetAvailable(this)) {
+    double earthRadius=6371.01;
+    GeoLocation currentLoc=GeoLocation.fromDegrees(lat,lng);
+    GeoLocation[] boundingCoords=currentLoc.boundingCoordinates(50,earthRadius);
+    String openCellID="http://www.opencellid.org/cell/getInArea?key=24c66165-9748-4384-ab7c-172e3f533056" + "&BBOX=" + boundingCoords[0].getLatitudeInDegrees() + ","+ boundingCoords[0].getLongitudeInDegrees()+ ","+ boundingCoords[1].getLatitudeInDegrees()+ ","+ boundingCoords[1].getLongitudeInDegrees()+ "format=kml";
+    new RequestTask().execute(openCellID);
+  }
+}

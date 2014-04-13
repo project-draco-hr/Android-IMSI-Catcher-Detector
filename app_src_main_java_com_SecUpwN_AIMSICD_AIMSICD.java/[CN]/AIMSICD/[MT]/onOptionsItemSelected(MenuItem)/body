@@ -18,6 +18,12 @@ if (Build.VERSION.SDK_INT > 11) {
 onPrepareOptionsMenu(mMenu);
 }
 return true;
+case R.id.track_femtocell:
+trackFemtocell();
+if (Build.VERSION.SDK_INT > 11) {
+onPrepareOptionsMenu(mMenu);
+}
+return true;
 case R.id.show_map:
 showmap();
 return true;
