@@ -3,8 +3,7 @@
   PendingIntent contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
   String tickerText;
   String contentText="Phone Type " + getPhoneType(false);
-  SharedPreferences prefs=getSharedPreferences(SHARED_PREFERENCES_BASENAME,0);
-  String iconType=prefs.getString("pref_ui_icons","flat");
+  String iconType=prefs.getString(this.getString(R.string.pref_ui_icons_key),"flat");
   int status;
   if (mFemtoDetected) {
     status=3;

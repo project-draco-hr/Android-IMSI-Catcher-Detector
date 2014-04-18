@@ -5,4 +5,5 @@
   startService(intent);
   bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
   dbHelper=new AIMSICDDbAdapter(mContext);
+  prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
 }

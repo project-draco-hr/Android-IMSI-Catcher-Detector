@@ -1,10 +1,25 @@
 {
   if (mLac.isEmpty() || force) {
-    GsmCellLocation gsmCellLocation=(GsmCellLocation)tm.getCellLocation();
-    if (gsmCellLocation != null) {
-      mLac="" + gsmCellLocation.getLac();
-      mLacID=gsmCellLocation.getLac();
+switch (getPhoneID()) {
+case TelephonyManager.PHONE_TYPE_GSM:
+{
+        GsmCellLocation gsmCellLocation=(GsmCellLocation)tm.getCellLocation();
+        if (gsmCellLocation != null) {
+          mLac="" + gsmCellLocation.getLac();
+          mLacID=gsmCellLocation.getLac();
+        }
+        break;
+      }
+case TelephonyManager.PHONE_TYPE_CDMA:
+{
+      CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)tm.getCellLocation();
+      if (cdmaCellLocation != null) {
+        mLac="" + cdmaCellLocation.getNetworkId();
+        mLacID=cdmaCellLocation.getNetworkId();
+        break;
+      }
     }
-  }
-  return mLac;
+}
+}
+return mLac;
 }

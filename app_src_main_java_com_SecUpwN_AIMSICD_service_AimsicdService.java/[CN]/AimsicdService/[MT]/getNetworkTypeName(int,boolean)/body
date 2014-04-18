@@ -31,6 +31,9 @@ break;
 case TelephonyManager.NETWORK_TYPE_EVDO_A:
 mNetType="EVDO_A";
 break;
+case TelephonyManager.NETWORK_TYPE_EVDO_B:
+mNetType="EVDO_B";
+break;
 case TelephonyManager.NETWORK_TYPE_1xRTT:
 mNetType="1xRTT";
 break;
