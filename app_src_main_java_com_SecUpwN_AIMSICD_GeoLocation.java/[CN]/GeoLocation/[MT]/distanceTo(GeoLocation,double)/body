@@ -1,0 +1,3 @@
+{
+  return Math.acos(Math.sin(radLat) * Math.sin(location.radLat) + Math.cos(radLat) * Math.cos(location.radLat) * Math.cos(radLon - location.radLon)) * radius;
+}

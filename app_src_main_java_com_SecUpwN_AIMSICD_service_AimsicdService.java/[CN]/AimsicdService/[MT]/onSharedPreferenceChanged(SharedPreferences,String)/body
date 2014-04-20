@@ -1,0 +1,6 @@
+{
+  final String KEY_UI_ICONS=getBaseContext().getString(R.string.pref_ui_icons_key);
+  if (key.equals(KEY_UI_ICONS)) {
+    setNotification();
+  }
+}

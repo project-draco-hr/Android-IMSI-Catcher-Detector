@@ -1,5 +1,6 @@
 {
   super.onDestroy();
+  prefs.unregisterOnSharedPreferenceChangeListener(this);
   cancelNotification();
   Log.i(TAG,"Service destroyed");
 }

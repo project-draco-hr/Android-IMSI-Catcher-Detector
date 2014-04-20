@@ -12,4 +12,5 @@
     TrackingCell=false;
     mCellInfo="[0,0]|nn|nn|";
   }
+  setNotification();
 }

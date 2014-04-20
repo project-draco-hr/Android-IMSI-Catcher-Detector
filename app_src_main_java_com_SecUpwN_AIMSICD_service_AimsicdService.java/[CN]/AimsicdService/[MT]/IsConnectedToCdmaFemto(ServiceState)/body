@@ -9,6 +9,8 @@
       CdmaCellLocation c=(CdmaCellLocation)tm.getCellLocation();
       if (c != null) {
         int networkID=c.getNetworkId();
+        int FEMTO_NID_MAX=0xff;
+        int FEMTO_NID_MIN=0xfa;
         return !((networkID < FEMTO_NID_MIN) || (networkID >= FEMTO_NID_MAX));
       }
  else {
@@ -26,6 +28,8 @@
       CdmaCellLocation c=(CdmaCellLocation)tm.getCellLocation();
       if (c != null) {
         int networkID=c.getNetworkId();
+        int FEMTO_NID_MAX=0xff;
+        int FEMTO_NID_MIN=0xfa;
         return !((networkID < FEMTO_NID_MIN) || (networkID >= FEMTO_NID_MAX));
       }
  else {

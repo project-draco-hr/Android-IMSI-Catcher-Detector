@@ -1,14 +1,22 @@
 {
   if (mPhoneType.isEmpty() || force) {
-    if (getPhoneID() == TelephonyManager.PHONE_TYPE_GSM) {
-      mPhoneType="GSM";
-    }
- else     if (getPhoneID() == TelephonyManager.PHONE_TYPE_CDMA) {
+switch (getPhoneID()) {
+case TelephonyManager.PHONE_TYPE_GSM:
+{
+        mPhoneType="GSM";
+        break;
+      }
+case TelephonyManager.PHONE_TYPE_CDMA:
+{
       mPhoneType="CDMA";
+      break;
     }
- else {
-      mPhoneType="Unknown";
-    }
+default :
+{
+    mPhoneType="Unknown";
+    break;
   }
-  return mPhoneType;
+}
+}
+return mPhoneType;
 }

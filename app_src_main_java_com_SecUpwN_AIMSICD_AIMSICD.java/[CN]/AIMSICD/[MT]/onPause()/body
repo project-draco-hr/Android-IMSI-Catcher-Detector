@@ -1,5 +1,4 @@
 {
   super.onPause();
   mDisplayCurrent=false;
-  prefs.unregisterOnSharedPreferenceChangeListener(this);
 }

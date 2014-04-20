@@ -1,6 +1,0 @@
-{
-  if (mPhoneStateListener != null) {
-    tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_NONE);
-    Log.v(TAG,"stopped tracking");
-  }
-}

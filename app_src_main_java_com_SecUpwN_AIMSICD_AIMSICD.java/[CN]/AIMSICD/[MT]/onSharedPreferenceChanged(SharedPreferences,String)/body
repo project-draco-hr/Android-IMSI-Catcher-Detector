@@ -1,5 +1,0 @@
-{
-  if (key.equals(KEY_UI_ICONS)) {
-    mAimsicdService.setNotification();
-  }
-}

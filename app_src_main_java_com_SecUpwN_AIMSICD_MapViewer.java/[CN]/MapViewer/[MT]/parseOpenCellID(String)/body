@@ -1,0 +1,14 @@
+{
+  File file=new File(fileName);
+  try {
+    CSVReader csvReader=new CSVReader(new FileReader(file));
+    List<String[]> csvCellID=csvReader.readAll();
+    for (int i=1; i < csvCellID.size(); i++) {
+      new LatLng(Double.parseDouble(csvCellID.get(i)[0]),Double.parseDouble(csvCellID.get(i)[1]));
+      mMap.addMarker(new MarkerOptions().position(loc).draggable(false).title("CellID - " + csvCellID.get(i)[5]));
+    }
+  }
+ catch (  Exception e) {
+    Log.e(TAG,"Error parsing OpenCellID data - " + e.getMessage());
+  }
+}

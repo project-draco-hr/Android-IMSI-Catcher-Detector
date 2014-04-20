@@ -1,0 +1,44 @@
+{
+  mIMEI=tm.getDeviceId();
+  mIMEIV=tm.getDeviceSoftwareVersion();
+  mPhoneNum=tm.getLine1Number();
+  mPhoneID=tm.getPhoneType();
+  mRoaming=tm.isNetworkRoaming();
+switch (mPhoneID) {
+case TelephonyManager.PHONE_TYPE_GSM:
+    mPhoneType="GSM";
+  mMmcmcc=tm.getNetworkOperator();
+mNetName=tm.getNetworkOperatorName();
+GsmCellLocation gsmCellLocation=(GsmCellLocation)tm.getCellLocation();
+if (gsmCellLocation != null) {
+mCellType="" + gsmCellLocation.getCid();
+mCellID=gsmCellLocation.getCid();
+mLac="" + gsmCellLocation.getLac();
+mLacID=gsmCellLocation.getLac();
+}
+break;
+case TelephonyManager.PHONE_TYPE_CDMA:
+mPhoneType="CDMA";
+CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)tm.getCellLocation();
+if (cdmaCellLocation != null) {
+mCellType="" + cdmaCellLocation.getBaseStationId();
+mCellID=cdmaCellLocation.getBaseStationId();
+mLac="" + cdmaCellLocation.getNetworkId();
+mLacID=cdmaCellLocation.getNetworkId();
+mSID=getSID();
+updateCdmaLocation();
+}
+break;
+}
+mSimCountry=tm.getSimCountryIso();
+mSimOperator=tm.getSimOperator();
+mSimOperatorName=tm.getSimOperatorName();
+mSimSerial=tm.getSimSerialNumber();
+mSimSubs=tm.getSubscriberId();
+mNetID=getNetID(true);
+mNetType=getNetworkTypeName(mNetID,true);
+int mDataActivity=tm.getDataActivity();
+mDataActivityType=getActivityDesc(mDataActivity);
+mDataActivity=tm.getDataState();
+mDataState=getStateDesc(mDataActivity);
+}

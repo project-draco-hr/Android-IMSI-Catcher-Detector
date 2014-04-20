@@ -5,64 +5,75 @@
   int net;
   int signal;
   int color;
+  int cellID;
   mDbHelper.open();
   Cursor c=mDbHelper.getSignalData();
   if (c.moveToFirst()) {
+    CircleOptions circleOptions;
     do {
       net=c.getInt(0);
       dlat=Double.parseDouble(c.getString(1));
       dlng=Double.parseDouble(c.getString(2));
       signal=c.getInt(3);
-      if (signal == 0) {
+      if (signal > 0) {
         signal=20;
       }
+      cellID=c.getInt(4);
       if ((dlat != 0.0) || (dlng != 0.0)) {
+        loc=new LatLng(dlat,dlng);
+        Log.i(TAG,"LatLng: " + loc.toString());
 switch (net) {
 case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-          color=R.color.map_unknown;
+          color=0xF0F8FF;
         break;
 case TelephonyManager.NETWORK_TYPE_GPRS:
-      color=R.color.map_gprs;
+      color=0xA9A9A9;
     break;
 case TelephonyManager.NETWORK_TYPE_EDGE:
-  color=R.color.map_edge;
+  color=0x87CEFA;
 break;
 case TelephonyManager.NETWORK_TYPE_UMTS:
-color=R.color.map_umts;
+color=0x7CFC00;
 break;
 case TelephonyManager.NETWORK_TYPE_HSDPA:
-color=R.color.map_hsdpa;
+color=0xFF6347;
 break;
 case TelephonyManager.NETWORK_TYPE_HSUPA:
-color=R.color.map_hsupa;
+color=0xFF00FF;
 break;
 case TelephonyManager.NETWORK_TYPE_HSPA:
-color=R.color.map_hspa;
+color=0x238E6B;
 break;
 case TelephonyManager.NETWORK_TYPE_CDMA:
-color=R.color.map_cdma;
+color=0x8A2BE2;
 break;
 case TelephonyManager.NETWORK_TYPE_EVDO_0:
-color=R.color.map_evdo0;
+color=0xFF69B4;
 break;
 case TelephonyManager.NETWORK_TYPE_EVDO_A:
-color=R.color.map_evdoA;
+color=0xFFFF00;
 break;
 case TelephonyManager.NETWORK_TYPE_1xRTT:
-color=R.color.map_1xrtt;
+color=0x7CFC00;
 break;
 default :
-color=R.color.map_default;
+color=0xF0F8FF;
 break;
 }
-CircleOptions circleOptions=new CircleOptions().center(new LatLng((int)(dlat * 1E6),(int)(dlng * 1E6))).radius(signal * SIGNAL_SIZE_RATIO).fillColor(color);
+circleOptions=new CircleOptions().center(loc).radius(signal * SIGNAL_SIZE_RATIO).fillColor(color).strokeColor(color).visible(true);
 mMap.addCircle(circleOptions);
+mMap.addMarker(new MarkerOptions().position(loc).draggable(false).title("CellID - " + cellID));
 }
 }
  while (c.moveToNext());
 c.close();
+if (loc != null) {
+final CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(13).bearing(320).tilt(30).build();
+mMap.moveCamera(CameraUpdateFactory.newCameraPosition(POSITION));
+}
 }
  else {
 Helpers.msgShort(this,"No tracked locations found to overlay on map.");
+GetCurrentLocation();
 }
 }

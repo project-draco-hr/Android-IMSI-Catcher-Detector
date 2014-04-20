@@ -32,4 +32,5 @@
     mLongitude=0.0;
     mLatitude=0.0;
   }
+  setNotification();
 }

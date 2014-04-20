@@ -1,0 +1,24 @@
+{
+switch (getPhoneID()) {
+case TelephonyManager.PHONE_TYPE_GSM:
+{
+      GsmCellLocation gsmCellLocation=(GsmCellLocation)tm.getCellLocation();
+      if (gsmCellLocation != null) {
+        mCellType="" + gsmCellLocation.getCid();
+        mCellID=gsmCellLocation.getCid();
+      }
+      break;
+    }
+case TelephonyManager.PHONE_TYPE_CDMA:
+{
+    CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)tm.getCellLocation();
+    if (cdmaCellLocation != null) {
+      mCellType="" + cdmaCellLocation.getBaseStationId();
+      mCellID=cdmaCellLocation.getBaseStationId();
+      break;
+    }
+    break;
+  }
+}
+return mCellType;
+}
