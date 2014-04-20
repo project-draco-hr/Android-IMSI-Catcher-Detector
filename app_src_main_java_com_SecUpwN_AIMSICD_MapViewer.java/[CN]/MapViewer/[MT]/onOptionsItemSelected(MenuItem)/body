@@ -26,6 +26,28 @@ break;
 AlertDialog menuMapType=menuAlert.create();
 menuMapType.show();
 return true;
+case R.id.get_opencellid:
+{
+Location mLocation=mMap.getMyLocation();
+if (mLocation != null) {
+getOpenCellData(mLocation.getLatitude(),mLocation.getLongitude());
+Log.i(TAG,"Lat: " + mLocation.getLatitude() + " Long: "+ mLocation.getLongitude());
+}
+ else if (loc != null) {
+getOpenCellData(loc.latitude,loc.longitude);
+}
+ else {
+double[] lastKnown=getlocation();
+if (lastKnown != null) {
+getOpenCellData(lastKnown[0],lastKnown[1]);
+Log.i(TAG,"Lat: " + lastKnown[0] + " Long: "+ lastKnown[1]);
+}
+ else {
+Helpers.sendMsg(this,"Error finding your location!");
+}
+}
+return true;
+}
 default :
 return super.onOptionsItemSelected(item);
 }

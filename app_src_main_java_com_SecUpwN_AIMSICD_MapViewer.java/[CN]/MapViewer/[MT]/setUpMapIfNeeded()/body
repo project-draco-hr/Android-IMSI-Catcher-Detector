@@ -13,6 +13,7 @@
       mUiSettings.setZoomGesturesEnabled(true);
       mUiSettings.setTiltGesturesEnabled(true);
       mUiSettings.setRotateGesturesEnabled(true);
+      mMap.setMyLocationEnabled(true);
     }
  else {
       Helpers.sendMsg(this,"Unable to create map!");

@@ -1,5 +1,7 @@
 {
-  if (mByteArray == null)   return null;
+  if (mByteArray == null) {
+    return null;
+  }
   try {
     String mResult=new String(mByteArray,"ASCII");
     mResult=String.copyValueOf(mResult.toCharArray(),0,mByteArray.length);

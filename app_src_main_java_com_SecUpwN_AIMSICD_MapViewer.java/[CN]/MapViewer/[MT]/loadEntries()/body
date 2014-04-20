@@ -9,15 +9,13 @@
   mDbHelper.open();
   Cursor c=mDbHelper.getSignalData();
   if (c.moveToFirst()) {
-    LatLng loc=null;
     CircleOptions circleOptions;
     do {
       net=c.getInt(0);
       dlat=Double.parseDouble(c.getString(1));
       dlng=Double.parseDouble(c.getString(2));
-      Log.i(TAG,"Lat: " + dlat + " Long: "+ dlng);
       signal=c.getInt(3);
-      if (signal == -1) {
+      if (signal > 0) {
         signal=20;
       }
       cellID=c.getInt(4);

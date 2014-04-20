@@ -11,4 +11,5 @@
   setUpMapIfNeeded();
   mDbHelper=new AIMSICDDbAdapter(this);
   loadEntries();
+  mContext=this;
 }

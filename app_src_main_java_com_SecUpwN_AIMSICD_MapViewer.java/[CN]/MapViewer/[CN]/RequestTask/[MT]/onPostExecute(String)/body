@@ -1,5 +1,27 @@
 {
   super.onPostExecute(result);
   if (result != null) {
+    if (Utils.isSdWritable()) {
+      try {
+        File dir=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/");
+        if (!dir.exists()) {
+          dir.mkdirs();
+        }
+        Time today=new Time(Time.getCurrentTimezone());
+        today.setToNow();
+        String fileName=Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/" + "cellid-"+ today.format2445()+ ".csv";
+        File file=new File(dir,"cellid-" + today.format2445() + ".csv");
+        FileOutputStream fOut=new FileOutputStream(file);
+        OutputStreamWriter myOutWriter=new OutputStreamWriter(fOut);
+        myOutWriter.append(result);
+        myOutWriter.close();
+        fOut.close();
+        Helpers.sendMsg(mContext,"OpenCellID data successfully received");
+        parseOpenCellID(fileName);
+      }
+ catch (      Exception e) {
+        Log.e(TAG,"Write OpenCellID response - " + e.getMessage());
+      }
+    }
   }
 }
