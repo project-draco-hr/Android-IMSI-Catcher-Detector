@@ -1,7 +1,0 @@
-{
-  File fl=new File(filePath);
-  FileInputStream fin=new FileInputStream(fl);
-  String ret=convertStreamToString(fin);
-  fin.close();
-  return ret;
-}

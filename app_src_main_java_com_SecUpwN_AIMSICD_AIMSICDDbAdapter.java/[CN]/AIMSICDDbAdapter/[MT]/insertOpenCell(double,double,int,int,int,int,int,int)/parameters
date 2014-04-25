@@ -1,0 +1,8 @@
+double latitude
+double longitude
+int mcc
+int mnc
+int lac
+int cellID
+int avgSigStr
+int samples

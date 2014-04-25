@@ -5,5 +5,9 @@
   prefs.registerOnSharedPreferenceChangeListener(this);
   refreshDeviceInfo();
   setNotification();
+  boolean trackFemtoPref=prefs.getBoolean(this.getString(R.string.pref_femto_detection_key),false);
+  if (trackFemtoPref) {
+    startTrackingFemto();
+  }
   Log.i(TAG,"Service launched successfully");
 }

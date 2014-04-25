@@ -5,6 +5,12 @@
   }
   if (TrackingLocation) {
     dbHelper.open();
-    dbHelper.insertLocation(mLacID,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo);
+    mDbResult=dbHelper.insertLocation(mLacID,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo);
+    if (mDbResult == -1)     Log.e(TAG,"Error writing to database");
+  }
+  if (TrackingCell) {
+    dbHelper.open();
+    mDbResult=dbHelper.insertCell(mLacID,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo,mSimCountry,mSimOperator,mSimOperatorName);
+    if (mDbResult == -1)     Log.e(TAG,"Error writing to database");
   }
 }

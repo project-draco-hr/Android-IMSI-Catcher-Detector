@@ -1,3 +1,16 @@
 {
-  mDb.execSQL("INSERT INTO " + LOCATION_TABLE + " (Lac , CellID, Net, Lat, Lng, Signal, Connection)"+ " VALUES("+ lac+ ","+ cellID+ ","+ netType+ ","+ latitude+ ","+ longitude+ ","+ signalInfo+ ",\""+ cellInfo+ "\");");
+  ContentValues locationValues=new ContentValues();
+  locationValues.put("Lac",lac);
+  locationValues.put("CellID",cellID);
+  locationValues.put("Net",netType);
+  locationValues.put("Lat",latitude);
+  locationValues.put("Lng",longitude);
+  locationValues.put("Signal",signalInfo);
+  locationValues.put("Connection",cellInfo);
+  if (locationExists(cellID)) {
+    return mDb.update(LOCATION_TABLE,locationValues,"CellID=?",new String[]{Integer.toString(cellID)});
+  }
+ else {
+    return mDb.insert(LOCATION_TABLE,null,locationValues);
+  }
 }

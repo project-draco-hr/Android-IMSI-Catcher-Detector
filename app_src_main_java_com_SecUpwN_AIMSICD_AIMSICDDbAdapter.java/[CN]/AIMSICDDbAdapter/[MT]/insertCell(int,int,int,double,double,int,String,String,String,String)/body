@@ -1,3 +1,19 @@
 {
-  mDb.execSQL("INSERT INTO " + CELL_TABLE + " (Lac , CellID, Net, Lat, Lng, Signal, Connection,"+ "Country, Operator, OperatorName)"+ " VALUES("+ lac+ ","+ cellID+ ","+ netType+ ","+ latitude+ ","+ longitude+ ","+ signalInfo+ ",\""+ cellInfo+ "\", \""+ simCountry+ "\","+ simOperator+ ",\""+ simOperatorName+ "\");");
+  ContentValues cellValues=new ContentValues();
+  cellValues.put("Lac",lac);
+  cellValues.put("CellID",cellID);
+  cellValues.put("Net",netType);
+  cellValues.put("Lat",latitude);
+  cellValues.put("Lng",longitude);
+  cellValues.put("Signal",signalInfo);
+  cellValues.put("Connection",cellInfo);
+  cellValues.put("Country",simCountry);
+  cellValues.put("Operator",simOperator);
+  cellValues.put("OperatorName",simOperatorName);
+  if (cellExists(cellID)) {
+    return mDb.update(CELL_TABLE,cellValues,"CellID=?",new String[]{Integer.toString(cellID)});
+  }
+ else {
+    return mDb.insert(CELL_TABLE,null,cellValues);
+  }
 }

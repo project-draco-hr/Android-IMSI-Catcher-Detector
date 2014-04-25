@@ -1,5 +1,0 @@
-{
-  ChildProcess proc=startShellCommand(cmd);
-  proc.waitFinished();
-  return proc.getResult();
-}

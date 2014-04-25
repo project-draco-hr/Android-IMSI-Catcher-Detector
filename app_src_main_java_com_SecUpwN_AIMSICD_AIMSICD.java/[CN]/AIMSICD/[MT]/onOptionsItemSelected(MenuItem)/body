@@ -26,6 +26,10 @@ return true;
 case R.id.export_database:
 dbHelper.exportDB();
 return true;
+case R.id.update_opencelldata:
+double[] loc=mAimsicdService.getLastLocation();
+getOpenCellData(loc[0],loc[1]);
+return true;
 case R.id.app_exit:
 finish();
 return true;

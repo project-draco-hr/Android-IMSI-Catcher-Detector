@@ -41,4 +41,18 @@ int mDataActivity=tm.getDataActivity();
 mDataActivityType=getActivityDesc(mDataActivity);
 mDataActivity=tm.getDataState();
 mDataState=getStateDesc(mDataActivity);
+if (mLongitude == 0.0 || mLatitude == 0.0) {
+Location lastKnownLocation=lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+if (lastKnownLocation != null) {
+mLongitude=lastKnownLocation.getLongitude();
+mLatitude=lastKnownLocation.getLatitude();
+}
+ else {
+lastKnownLocation=lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+if (lastKnownLocation != null) {
+mLongitude=lastKnownLocation.getLongitude();
+mLatitude=lastKnownLocation.getLatitude();
+}
+}
+}
 }

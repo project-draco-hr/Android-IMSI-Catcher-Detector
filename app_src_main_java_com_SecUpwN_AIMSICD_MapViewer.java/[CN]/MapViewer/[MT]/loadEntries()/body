@@ -21,7 +21,6 @@
       cellID=c.getInt(4);
       if ((dlat != 0.0) || (dlng != 0.0)) {
         loc=new LatLng(dlat,dlng);
-        Log.i(TAG,"LatLng: " + loc.toString());
 switch (net) {
 case TelephonyManager.NETWORK_TYPE_UNKNOWN:
           color=0xF0F8FF;
@@ -74,6 +73,14 @@ mMap.moveCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
  else {
 Helpers.msgShort(this,"No tracked locations found to overlay on map.");
+String locationProvider=LocationManager.NETWORK_PROVIDER;
+LocationManager lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+Location lastKnownLocation=lm.getLastKnownLocation(locationProvider);
+if (lastKnownLocation != null) {
+mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude()),5));
+}
+ else {
 GetCurrentLocation();
+}
 }
 }

@@ -28,10 +28,10 @@ menuMapType.show();
 return true;
 case R.id.get_opencellid:
 {
+Helpers.sendMsg(this,"Contacting OpenCellID.org for data...");
 Location mLocation=mMap.getMyLocation();
 if (mLocation != null) {
 getOpenCellData(mLocation.getLatitude(),mLocation.getLongitude());
-Log.i(TAG,"Lat: " + mLocation.getLatitude() + " Long: "+ mLocation.getLongitude());
 }
  else if (loc != null) {
 getOpenCellData(loc.latitude,loc.longitude);

@@ -1,6 +1,0 @@
-{
-  if (!isFinished()) {
-    throw new IllegalThreadStateException("Child process running");
-  }
-  return new CommandResult(mStartTime,mExitValue,mChildStdout.toString(),mChildStderr.toString(),mEndTime);
-}
