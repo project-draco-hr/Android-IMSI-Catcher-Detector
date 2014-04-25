@@ -1,0 +1,3 @@
+{
+  return m_viewInflater != null ? m_viewInflater.inflate(this,pos,convertView,parent) : null;
+}

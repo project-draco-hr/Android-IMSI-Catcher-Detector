@@ -1,0 +1,4 @@
+{
+  m_items.add(item);
+  if (notifyChange)   notifyDataSetChanged();
+}

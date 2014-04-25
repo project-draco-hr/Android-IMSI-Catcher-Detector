@@ -1,0 +1,6 @@
+String cellID
+String lac
+String net
+String lat
+String lng
+String signal

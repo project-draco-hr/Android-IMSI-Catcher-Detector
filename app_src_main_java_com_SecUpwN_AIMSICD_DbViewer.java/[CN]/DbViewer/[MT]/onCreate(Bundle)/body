@@ -1,0 +1,27 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.db_view);
+  lv=(ListView)findViewById(R.id.list_view);
+  lv.addHeaderView(new View(this));
+  lv.addFooterView(new View(this));
+  tblSpinner=(Spinner)findViewById(R.id.table_spinner);
+  tblSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
+    @Override public void onItemSelected(    AdapterView<?> parentView,    View selectedItemView,    int position,    long id){
+      mTableSelected=String.valueOf(tblSpinner.getSelectedItem());
+      mMadeSelection=true;
+    }
+    @Override public void onNothingSelected(    AdapterView<?> parentView){
+      mMadeSelection=false;
+    }
+  }
+);
+  Button loadTable=(Button)findViewById(R.id.load_table_data);
+  loadTable.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View v){
+      if (mMadeSelection) {
+        new MyAsync().execute();
+      }
+    }
+  }
+);
+}

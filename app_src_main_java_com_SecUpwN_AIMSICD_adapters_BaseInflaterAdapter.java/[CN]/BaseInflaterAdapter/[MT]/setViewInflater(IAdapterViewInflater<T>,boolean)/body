@@ -1,0 +1,4 @@
+{
+  m_viewInflater=viewInflater;
+  if (notifyChange)   notifyDataSetChanged();
+}
