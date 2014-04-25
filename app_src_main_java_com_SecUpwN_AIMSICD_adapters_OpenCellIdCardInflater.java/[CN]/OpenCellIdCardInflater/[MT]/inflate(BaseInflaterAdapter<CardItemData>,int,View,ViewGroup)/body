@@ -1,0 +1,14 @@
+{
+  ViewHolder holder;
+  if (convertView == null) {
+    LayoutInflater inflater=LayoutInflater.from(parent.getContext());
+    convertView=inflater.inflate(R.layout.opencelid_items,parent,false);
+    holder=new ViewHolder(convertView);
+  }
+ else {
+    holder=(ViewHolder)convertView.getTag();
+  }
+  final CardItemData item=adapter.getTItem(pos);
+  holder.updateDisplay(item);
+  return convertView;
+}

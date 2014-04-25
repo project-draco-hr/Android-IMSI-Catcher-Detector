@@ -1,0 +1,10 @@
+{
+  mRootView=rootView;
+  mCellID=(TextView)mRootView.findViewById(R.id.cellID);
+  mLac=(TextView)mRootView.findViewById(R.id.lac);
+  mNet=(TextView)mRootView.findViewById(R.id.net);
+  mLat=(TextView)mRootView.findViewById(R.id.lat);
+  mLng=(TextView)mRootView.findViewById(R.id.lng);
+  mSignal=(TextView)mRootView.findViewById(R.id.signal);
+  rootView.setTag(this);
+}

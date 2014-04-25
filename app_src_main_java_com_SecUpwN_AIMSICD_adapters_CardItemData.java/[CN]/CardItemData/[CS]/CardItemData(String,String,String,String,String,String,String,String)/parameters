@@ -1,0 +1,8 @@
+String cellID
+String lac
+String mcc
+String mnc
+String lat
+String lng
+String avgSigStr
+String samples
