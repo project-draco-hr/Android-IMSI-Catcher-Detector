@@ -1,4 +1,4 @@
 {
   super.onResume();
-  if (!mDisplayCurrent)   updateUI();
+  updateUI();
 }

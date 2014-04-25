@@ -37,6 +37,9 @@ break;
 case TelephonyManager.NETWORK_TYPE_1xRTT:
 mNetType="1xRTT";
 break;
+case TelephonyManager.NETWORK_TYPE_LTE:
+mNetType="LTE";
+break;
 default :
 mNetType="Unknown";
 break;

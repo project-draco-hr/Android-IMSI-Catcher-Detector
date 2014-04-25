@@ -21,6 +21,7 @@
           final AlertDialog.Builder builder=new AlertDialog.Builder(this);
           builder.setMessage(R.string.location_error_message).setTitle(R.string.location_error_title);
           builder.create().show();
+          TrackingLocation=false;
         }
       }
     }

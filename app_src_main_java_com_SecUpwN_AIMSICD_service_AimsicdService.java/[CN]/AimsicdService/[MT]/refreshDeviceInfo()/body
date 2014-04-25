@@ -4,6 +4,8 @@
   mPhoneNum=tm.getLine1Number();
   mPhoneID=tm.getPhoneType();
   mRoaming=tm.isNetworkRoaming();
+  mNetID=getNetID(true);
+  mNetType=getNetworkTypeName(mNetID,true);
 switch (mPhoneID) {
 case TelephonyManager.PHONE_TYPE_GSM:
     mPhoneType="GSM";
@@ -35,8 +37,6 @@ mSimOperator=tm.getSimOperator();
 mSimOperatorName=tm.getSimOperatorName();
 mSimSerial=tm.getSimSerialNumber();
 mSimSubs=tm.getSubscriberId();
-mNetID=getNetID(true);
-mNetType=getNetworkTypeName(mNetID,true);
 int mDataActivity=tm.getDataActivity();
 mDataActivityType=getActivityDesc(mDataActivity);
 mDataActivity=tm.getDataState();

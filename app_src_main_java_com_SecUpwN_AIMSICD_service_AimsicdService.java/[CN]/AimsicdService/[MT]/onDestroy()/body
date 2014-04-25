@@ -2,5 +2,6 @@
   super.onDestroy();
   prefs.unregisterOnSharedPreferenceChangeListener(this);
   cancelNotification();
+  dbHelper.close();
   Log.i(TAG,"Service destroyed");
 }

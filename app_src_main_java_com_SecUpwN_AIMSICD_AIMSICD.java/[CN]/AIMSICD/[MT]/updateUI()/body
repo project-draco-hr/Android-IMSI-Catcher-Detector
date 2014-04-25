@@ -3,6 +3,7 @@
   TableLayout tableLayout;
   TableRow tr;
   if (mBound) {
+    int netID=mAimsicdService.getNetID(true);
 switch (mAimsicdService.getPhoneID()) {
 case TelephonyManager.PHONE_TYPE_GSM:
 {
@@ -31,6 +32,16 @@ case TelephonyManager.PHONE_TYPE_CDMA:
       break;
     }
 }
+if (mAimsicdService.getNetID(true) == TelephonyManager.NETWORK_TYPE_LTE) {
+  content=(TextView)findViewById(R.id.network_lte_timing_advance);
+  content.setText(mAimsicdService.getLteTimingAdvance());
+  tr=(TableRow)findViewById(R.id.lte_timing_advance);
+  tr.setVisibility(View.VISIBLE);
+}
+ else {
+  tr=(TableRow)findViewById(R.id.lte_timing_advance);
+  tr.setVisibility(View.GONE);
+}
 content=(TextView)findViewById(R.id.sim_country);
 content.setText(mAimsicdService.getSimCountry(false));
 content=(TextView)findViewById(R.id.sim_operator_id);
@@ -41,7 +52,6 @@ content=(TextView)findViewById(R.id.sim_imsi);
 content.setText(mAimsicdService.getSimSubs(false));
 content=(TextView)findViewById(R.id.sim_serial);
 content.setText(mAimsicdService.getSimSerial(false));
-int netID=mAimsicdService.getNetID(true);
 content=(TextView)findViewById(R.id.device_type);
 content.setText(mAimsicdService.getPhoneType(false));
 content=(TextView)findViewById(R.id.device_imei);
@@ -73,6 +83,5 @@ Log.i(TAG,"Network LAC   : " + mAimsicdService.getLAC(false));
 Log.i(TAG,"Network code  : " + mAimsicdService.getSmmcMcc(false));
 Log.i(TAG,"Network name  : " + mAimsicdService.getNetworkName(false));
 Log.i(TAG,"Roaming       : " + mAimsicdService.isRoaming());
-mDisplayCurrent=true;
 }
 }

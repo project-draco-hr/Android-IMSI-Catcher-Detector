@@ -1,4 +1,0 @@
-{
-  mDb=mDbHelper.getReadableDatabase();
-  return this;
-}
