@@ -1,9 +1,6 @@
 {
   if (mMap == null) {
-    FragmentManager fmanager=getSupportFragmentManager();
-    Fragment fragment=fmanager.findFragmentById(R.id.map);
-    SupportMapFragment supportmapfragment=(SupportMapFragment)fragment;
-    mMap=supportmapfragment.getMap();
+    mMap=((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
     if (mMap != null) {
       mUiSettings=mMap.getUiSettings();
       mUiSettings.setZoomControlsEnabled(true);

@@ -1,6 +1,6 @@
 {
   Log.i(TAG,"exporting database - " + DB_NAME);
-  File dir=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/");
+  File dir=new File(FOLDER);
   if (!dir.exists()) {
     dir.mkdirs();
   }
@@ -22,8 +22,8 @@
     csvWrite.close();
     c.close();
   }
- catch (  Exception sqlEx) {
-    Log.e(TAG,"Error exporting table " + tableName + " "+ sqlEx.getMessage());
+ catch (  Exception e) {
+    Log.e(TAG,"Error exporting table " + tableName + " "+ e);
   }
   Log.i(TAG,"exporting database complete");
 }

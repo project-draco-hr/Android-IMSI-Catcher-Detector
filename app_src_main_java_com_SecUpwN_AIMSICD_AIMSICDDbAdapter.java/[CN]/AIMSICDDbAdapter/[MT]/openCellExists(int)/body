@@ -1,0 +1,4 @@
+{
+  Cursor cursor=mDb.rawQuery("SELECT * FROM " + OPENCELLID_TABLE + " WHERE CellID = "+ cellID,null);
+  return cursor.getCount() > 0;
+}

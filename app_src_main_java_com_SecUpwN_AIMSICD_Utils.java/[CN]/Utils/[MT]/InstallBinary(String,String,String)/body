@@ -1,9 +1,0 @@
-{
-  boolean mOperationSucceeded;
-  mOperationSucceeded=CMDProcessor.runSuCommand("mount -o rw,remount /system").success();
-  mOperationSucceeded&=CMDProcessor.runSuCommand("cp " + mBinaryPath + mBinaryName+ " /system/xbin/"+ mBinaryName).success();
-  mOperationSucceeded&=CMDProcessor.runSuCommand(mChmod + " 755 /system/xbin/" + mBinaryName).success();
-  mOperationSucceeded&=CMDProcessor.runSuCommand("sync").success();
-  mOperationSucceeded&=CMDProcessor.runSuCommand("mount -o ro,remount /system").success();
-  return mOperationSucceeded;
-}
