@@ -1,4 +1,5 @@
 {
   super.onResume();
   updateUI();
+  invalidateOptionsMenu();
 }
