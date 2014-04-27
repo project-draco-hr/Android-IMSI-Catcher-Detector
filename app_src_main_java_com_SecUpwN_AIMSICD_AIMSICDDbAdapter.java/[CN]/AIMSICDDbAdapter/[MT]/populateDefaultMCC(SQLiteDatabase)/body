@@ -1,0 +1,31 @@
+{
+  AssetManager mngr=mContext.getAssets();
+  InputStream csvDefaultMcc;
+  FileOutputStream fout;
+  try {
+    csvDefaultMcc=mngr.open("default_mcc_locations.csv");
+    File tempfile=File.createTempFile("tempFile",".tmp");
+    tempfile.deleteOnExit();
+    fout=new FileOutputStream(tempfile);
+    byte[] buf=new byte[1024];
+    int len;
+    while ((len=csvDefaultMcc.read(buf)) != -1) {
+      fout.write(buf,0,len);
+    }
+    fout.close();
+    csvDefaultMcc.close();
+    CSVReader csvReader=new CSVReader(new FileReader(tempfile));
+    List<String[]> csvMcc=csvReader.readAll();
+    ContentValues defaultMccValues=new ContentValues();
+    for (int i=1; i < csvMcc.size(); i++) {
+      defaultMccValues.put("Country",csvMcc.get(i)[0]);
+      defaultMccValues.put("Mcc",csvMcc.get(i)[1]);
+      defaultMccValues.put("Lng",csvMcc.get(i)[2]);
+      defaultMccValues.put("Lat",csvMcc.get(i)[3]);
+      db.insert(DEFAULT_MCC_TABLE,null,defaultMccValues);
+    }
+  }
+ catch (  Exception e) {
+    Log.e(TAG,"Error parsing OpenCellID data - " + e);
+  }
+}

@@ -3,4 +3,6 @@
   database.execSQL(CELL_DATABASE_CREATE);
   database.execSQL(SIG_DATABASE_CREATE);
   database.execSQL(OPENCELLID_DATABASE_CREATE);
+  database.execSQL(DEFAULT_MCC_DATABASE_CREATE);
+  populateDefaultMCC(database);
 }

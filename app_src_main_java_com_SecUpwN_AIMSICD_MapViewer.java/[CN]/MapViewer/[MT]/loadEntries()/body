@@ -66,21 +66,26 @@ mMap.addMarker(new MarkerOptions().position(loc).draggable(false).title("CellID 
 }
  while (c.moveToNext());
 c.close();
-if (loc != null) {
-final CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(18.0f).bearing(320).tilt(30).build();
+if (loc != null && (loc.latitude != 0.0 && loc.longitude != 0.0)) {
+final CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16.0f).bearing(320).tilt(30).build();
 mMap.moveCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
 }
  else {
 Helpers.msgShort(this,"No tracked locations found to overlay on map.");
-String locationProvider=LocationManager.NETWORK_PROVIDER;
-LocationManager lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
-Location lastKnownLocation=lm.getLastKnownLocation(locationProvider);
-if (lastKnownLocation != null) {
-mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude()),18.0f));
+double[] d=getLastLocation();
+if (d[0] != 0.0 && d[1] != 0.0) {
+loc=new LatLng(d[0],d[1]);
+final CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16.0f).bearing(320).tilt(30).build();
+mMap.moveCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
  else {
-GetCurrentLocation();
+final TelephonyManager tm=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+final int mcc=Integer.parseInt(tm.getNetworkOperator().substring(0,3));
+d=mDbHelper.getDefaultLocation(mcc);
+loc=new LatLng(d[0],d[1]);
+final CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(13.0f).bearing(320).tilt(30).build();
+mMap.moveCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
 }
 }

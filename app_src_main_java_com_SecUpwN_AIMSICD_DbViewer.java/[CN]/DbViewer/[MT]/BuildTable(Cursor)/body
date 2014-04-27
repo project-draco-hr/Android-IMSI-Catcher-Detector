@@ -8,6 +8,14 @@
       }
       lv.setAdapter(adapter);
     }
+ else     if (mTableSelected.equals("Default MCC Locations")) {
+      BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<CardItemData>(new DefaultLocationCardInflater());
+      while (tableData.moveToNext()) {
+        CardItemData data=new CardItemData("Country: " + tableData.getString(0),"MCC: " + tableData.getString(1),"Latitude: " + tableData.getString(2),"Longitude: " + tableData.getString(3));
+        adapter.addItem(data,false);
+      }
+      lv.setAdapter(adapter);
+    }
  else {
       BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<CardItemData>(new CellCardInflater());
       while (tableData.moveToNext()) {

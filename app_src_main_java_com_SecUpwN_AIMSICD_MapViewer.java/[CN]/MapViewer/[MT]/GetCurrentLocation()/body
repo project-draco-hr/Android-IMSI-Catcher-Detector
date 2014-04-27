@@ -1,4 +1,0 @@
-{
-  double[] d=getlocation();
-  mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(d[0],d[1]),18.0f));
-}
