@@ -1,0 +1,6 @@
+{
+  mCountry=country;
+  mMcc=mcc;
+  mLat=lat;
+  mLng=lng;
+}

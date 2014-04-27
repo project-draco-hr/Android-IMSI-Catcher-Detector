@@ -37,7 +37,7 @@ getOpenCellData(mLocation.getLatitude(),mLocation.getLongitude());
 getOpenCellData(loc.latitude,loc.longitude);
 }
  else {
-double[] lastKnown=getlocation();
+double[] lastKnown=getLastLocation();
 if (lastKnown != null) {
 getOpenCellData(lastKnown[0],lastKnown[1]);
 Log.i(TAG,"Lat: " + lastKnown[0] + " Long: "+ lastKnown[1]);
