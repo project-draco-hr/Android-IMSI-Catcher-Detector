@@ -1,3 +1,4 @@
 {
+  setNotification();
   return mBinder;
 }

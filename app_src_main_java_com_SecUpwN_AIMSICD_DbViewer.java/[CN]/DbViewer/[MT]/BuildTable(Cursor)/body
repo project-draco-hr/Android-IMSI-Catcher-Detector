@@ -1,5 +1,5 @@
 {
-  if (tableData != null && tableData.moveToFirst()) {
+  if (tableData != null && tableData.getCount() > 0) {
     if (mTableSelected.equals("OpenCellID Data")) {
       BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<CardItemData>(new OpenCellIdCardInflater());
       while (tableData.moveToNext()) {
@@ -24,8 +24,10 @@
       }
       lv.setAdapter(adapter);
     }
+    lv.setVisibility(View.VISIBLE);
   }
  else {
+    lv.setVisibility(View.GONE);
     Helpers.sendMsg(this,"Table contains no data to display");
   }
 }

@@ -3,9 +3,6 @@
   if (mTableSelected.equals("Cell Data")) {
     return mDb.getCellData();
   }
- else   if (mTableSelected.equals("Signal Strength Data")) {
-    return mDb.getSignalData();
-  }
  else   if (mTableSelected.equals("Location Data")) {
     return mDb.getLocationData();
   }

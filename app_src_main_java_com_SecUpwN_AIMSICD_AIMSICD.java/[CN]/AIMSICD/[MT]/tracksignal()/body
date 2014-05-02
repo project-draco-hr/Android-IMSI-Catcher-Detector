@@ -1,8 +1,0 @@
-{
-  if (mAimsicdService.TrackingSignal) {
-    mAimsicdService.setSignalTracking(false);
-  }
- else {
-    mAimsicdService.setSignalTracking(true);
-  }
-}

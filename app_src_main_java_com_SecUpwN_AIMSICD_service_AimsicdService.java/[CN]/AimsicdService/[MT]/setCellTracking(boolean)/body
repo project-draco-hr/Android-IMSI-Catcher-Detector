@@ -1,13 +1,11 @@
 {
   if (track) {
-    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_CELL_LOCATION);
-    tm.listen(mSignalListenerStrength,PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_DATA_ACTIVITY| PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
     Helpers.msgShort(this,"Tracking cell information");
     TrackingCell=true;
   }
  else {
     tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
-    tm.listen(mSignalListenerStrength,PhoneStateListener.LISTEN_NONE);
     Helpers.msgShort(this,"Stopped tracking cell information");
     TrackingCell=false;
     mCellInfo="[0,0]|nn|nn|";

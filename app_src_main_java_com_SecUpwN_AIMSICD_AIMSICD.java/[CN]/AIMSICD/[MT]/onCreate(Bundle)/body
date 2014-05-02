@@ -4,6 +4,31 @@
   Intent intent=new Intent(this,AimsicdService.class);
   startService(intent);
   bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
-  dbHelper=new AIMSICDDbAdapter(mContext);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  mDisclaimerAccepted=getResources().getString(R.string.disclaimer_accepted);
+  if (!prefs.getBoolean(mDisclaimerAccepted,false)) {
+    final AlertDialog.Builder disclaimer=new AlertDialog.Builder(this).setTitle(R.string.disclaimer_title).setMessage(R.string.disclaimer).setPositiveButton(R.string.text_ok,new DialogInterface.OnClickListener(){
+      public void onClick(      DialogInterface dialog,      int which){
+        prefsEditor=prefs.edit();
+        prefsEditor.putBoolean(mDisclaimerAccepted,true);
+        prefsEditor.commit();
+      }
+    }
+).setNegativeButton(R.string.text_cancel,new DialogInterface.OnClickListener(){
+      public void onClick(      DialogInterface dialog,      int which){
+        prefsEditor=prefs.edit();
+        prefsEditor.putBoolean(mDisclaimerAccepted,false);
+        prefsEditor.commit();
+        Uri packageUri=Uri.parse("package:com.SecUpwN.AIMSICD");
+        Intent uninstallIntent=new Intent(Intent.ACTION_DELETE,packageUri);
+        startActivity(uninstallIntent);
+        finish();
+        mAimsicdService.onDestroy();
+      }
+    }
+);
+    AlertDialog disclaimerAlert=disclaimer.create();
+    disclaimerAlert.show();
+  }
+  dbHelper=new AIMSICDDbAdapter(mContext);
 }
