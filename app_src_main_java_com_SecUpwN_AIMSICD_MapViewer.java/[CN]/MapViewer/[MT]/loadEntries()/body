@@ -6,19 +6,20 @@
   int signal;
   int color;
   int cellID;
+  CircleOptions circleOptions;
   mDbHelper.open();
-  Cursor c=mDbHelper.getSignalData();
+  Cursor c=mDbHelper.getCellData();
   if (c.moveToFirst()) {
-    CircleOptions circleOptions;
     do {
-      net=c.getInt(0);
-      dlat=Double.parseDouble(c.getString(1));
-      dlng=Double.parseDouble(c.getString(2));
-      signal=c.getInt(3);
-      if (signal > 0) {
+      cellID=c.getInt(0);
+      net=c.getInt(2);
+      dlat=Double.parseDouble(c.getString(3));
+      dlng=Double.parseDouble(c.getString(4));
+      if (dlat == 0.0 && dlng == 0.0)       continue;
+      signal=c.getInt(5);
+      if (signal <= 0) {
         signal=20;
       }
-      cellID=c.getInt(4);
       if ((dlat != 0.0) || (dlng != 0.0)) {
         loc=new LatLng(dlat,dlng);
 switch (net) {
@@ -66,26 +67,43 @@ mMap.addMarker(new MarkerOptions().position(loc).draggable(false).title("CellID 
 }
  while (c.moveToNext());
 c.close();
-if (loc != null && (loc.latitude != 0.0 && loc.longitude != 0.0)) {
-final CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16.0f).bearing(320).tilt(30).build();
-mMap.moveCamera(CameraUpdateFactory.newCameraPosition(POSITION));
-}
 }
  else {
 Helpers.msgShort(this,"No tracked locations found to overlay on map.");
+}
+if (loc != null && (loc.latitude != 0.0 && loc.longitude != 0.0)) {
+CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16).build();
+mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
+}
+ else {
 double[] d=getLastLocation();
 if (d[0] != 0.0 && d[1] != 0.0) {
 loc=new LatLng(d[0],d[1]);
-final CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16.0f).bearing(320).tilt(30).build();
-mMap.moveCamera(CameraUpdateFactory.newCameraPosition(POSITION));
+CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16).build();
+mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
  else {
-final TelephonyManager tm=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
-final int mcc=Integer.parseInt(tm.getNetworkOperator().substring(0,3));
+TelephonyManager tm=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+int mcc=Integer.parseInt(tm.getNetworkOperator().substring(0,3));
 d=mDbHelper.getDefaultLocation(mcc);
 loc=new LatLng(d[0],d[1]);
-final CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(13.0f).bearing(320).tilt(30).build();
-mMap.moveCamera(CameraUpdateFactory.newCameraPosition(POSITION));
+CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(13).build();
+mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
+}
+c=mDbHelper.getOpenCellIDData();
+if (c.moveToFirst()) {
+do {
+cellID=c.getInt(0);
+dlat=Double.parseDouble(c.getString(4));
+dlng=Double.parseDouble(c.getString(5));
+loc=new LatLng(dlat,dlng);
+int lac=c.getInt(1);
+int mcc=c.getInt(2);
+int mnc=c.getInt(3);
+int samples=c.getInt(7);
+mMap.addMarker(new MarkerOptions().position(loc).draggable(false).title("CellID - " + cellID)).setSnippet("LAC: " + lac + "\nMCC: "+ mcc+ "\nMNC: "+ mnc+ "\nSamples: "+ samples);
+}
+ while (c.moveToNext());
 }
 }

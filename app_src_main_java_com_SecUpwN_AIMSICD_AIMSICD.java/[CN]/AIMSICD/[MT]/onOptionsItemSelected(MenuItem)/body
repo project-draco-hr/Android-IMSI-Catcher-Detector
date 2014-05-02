@@ -5,10 +5,6 @@ case R.id.track_cell:
     trackcell();
   invalidateOptionsMenu();
 return true;
-case R.id.track_signal:
-tracksignal();
-invalidateOptionsMenu();
-return true;
 case R.id.track_location:
 tracklocation();
 invalidateOptionsMenu();

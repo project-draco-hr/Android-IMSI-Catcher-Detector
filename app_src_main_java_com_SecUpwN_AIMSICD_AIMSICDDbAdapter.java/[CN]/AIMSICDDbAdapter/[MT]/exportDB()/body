@@ -2,7 +2,6 @@
   try {
     export(LOCATION_TABLE);
     export(CELL_TABLE);
-    export(SIGNAL_TABLE);
     export(OPENCELLID_TABLE);
     final AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
     builder.setTitle(R.string.database_export_successful).setMessage("Database tables exported succesfully to:\n" + FOLDER);

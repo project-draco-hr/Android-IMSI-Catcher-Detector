@@ -1,3 +1,0 @@
-{
-  return mDb.query(true,SIGNAL_TABLE,new String[]{"Net","Lat","Lng","Signal","CellID"},"Lat <> 0.0 AND lng <> 0.0",null,null,null,null,null);
-}

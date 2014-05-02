@@ -1,6 +1,5 @@
 {
   MenuItem mTrackCell=menu.findItem(R.id.track_cell);
-  MenuItem mTrackSignal=menu.findItem(R.id.track_signal);
   MenuItem mTrackLocation=menu.findItem(R.id.track_location);
   MenuItem mTrackFemtocell=menu.findItem(R.id.track_femtocell);
   if (mAimsicdService.TrackingCell) {
@@ -11,14 +10,6 @@
     mTrackCell.setTitle(R.string.track_cell);
     mTrackCell.setIcon(R.drawable.untrack_cell);
   }
-  if (mAimsicdService.TrackingSignal) {
-    mTrackSignal.setTitle(R.string.untrack_signal);
-    mTrackSignal.setIcon(R.drawable.ic_action_network_cell);
-  }
- else {
-    mTrackSignal.setTitle(R.string.track_signal);
-    mTrackSignal.setIcon(R.drawable.ic_action_network_cell_not_tracked);
-  }
   if (mAimsicdService.TrackingLocation) {
     mTrackLocation.setTitle(R.string.untrack_location);
     mTrackLocation.setIcon(R.drawable.ic_action_location_found);
@@ -27,13 +18,18 @@
     mTrackLocation.setTitle(R.string.track_location);
     mTrackLocation.setIcon(R.drawable.ic_action_location_off);
   }
-  if (mAimsicdService.TrackingFemtocell) {
-    mTrackFemtocell.setTitle(R.string.untrack_femtocell);
-    mTrackFemtocell.setIcon(R.drawable.ic_action_network_cell);
+  if (mAimsicdService.getPhoneID() == TelephonyManager.PHONE_TYPE_CDMA) {
+    if (mAimsicdService.TrackingFemtocell) {
+      mTrackFemtocell.setTitle(R.string.untrack_femtocell);
+      mTrackFemtocell.setIcon(R.drawable.ic_action_network_cell);
+    }
+ else {
+      mTrackFemtocell.setTitle(R.string.track_femtocell);
+      mTrackFemtocell.setIcon(R.drawable.ic_action_network_cell_not_tracked);
+    }
   }
  else {
-    mTrackFemtocell.setTitle(R.string.track_femtocell);
-    mTrackFemtocell.setIcon(R.drawable.ic_action_network_cell_not_tracked);
+    mTrackFemtocell.setVisible(false);
   }
   return super.onPrepareOptionsMenu(menu);
 }

@@ -37,10 +37,8 @@ mSimOperator=tm.getSimOperator();
 mSimOperatorName=tm.getSimOperatorName();
 mSimSerial=tm.getSimSerialNumber();
 mSimSubs=tm.getSubscriberId();
-int mDataActivity=tm.getDataActivity();
-mDataActivityType=getActivityDesc(mDataActivity);
-mDataActivity=tm.getDataState();
-mDataState=getStateDesc(mDataActivity);
+mDataActivityType=getActivityDesc();
+mDataState=getStateDesc();
 if (mLongitude == 0.0 || mLatitude == 0.0) {
 Location lastKnownLocation=lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 if (lastKnownLocation != null) {

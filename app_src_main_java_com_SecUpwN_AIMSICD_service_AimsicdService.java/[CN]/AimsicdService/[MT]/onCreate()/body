@@ -3,11 +3,8 @@
   lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
   prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   prefs.registerOnSharedPreferenceChangeListener(this);
+  loadPreferences();
   refreshDeviceInfo();
   setNotification();
-  boolean trackFemtoPref=prefs.getBoolean(this.getString(R.string.pref_femto_detection_key),false);
-  if (trackFemtoPref) {
-    startTrackingFemto();
-  }
   Log.i(TAG,"Service launched successfully");
 }

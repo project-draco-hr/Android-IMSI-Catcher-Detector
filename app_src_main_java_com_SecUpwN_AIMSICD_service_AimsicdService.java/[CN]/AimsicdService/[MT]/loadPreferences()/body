@@ -1,0 +1,10 @@
+{
+  boolean trackFemtoPref=prefs.getBoolean(this.getString(R.string.pref_femto_detection_key),false);
+  boolean trackCellPref=prefs.getBoolean(this.getString(R.string.pref_enable_cell_key),false);
+  if (trackFemtoPref) {
+    startTrackingFemto();
+  }
+  if (trackCellPref) {
+    setCellTracking(true);
+  }
+}

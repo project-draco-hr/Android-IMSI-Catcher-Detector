@@ -6,20 +6,26 @@ case R.id.map_type:
 menuAlert.setTitle("Map Type");
 menuAlert.setItems(menuList,new DialogInterface.OnClickListener(){
 public void onClick(DialogInterface dialog,int item){
+  Editor editor=prefs.edit();
 switch (item) {
 case 0:
     mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-  break;
+  editor.putInt(mapTypePref,0);
+break;
 case 1:
 mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+editor.putInt(mapTypePref,1);
 break;
 case 2:
 mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+editor.putInt(mapTypePref,2);
 break;
 case 3:
 mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+editor.putInt(mapTypePref,3);
 break;
 }
+editor.commit();
 }
 }
 );
@@ -40,7 +46,6 @@ getOpenCellData(loc.latitude,loc.longitude);
 double[] lastKnown=getLastLocation();
 if (lastKnown != null) {
 getOpenCellData(lastKnown[0],lastKnown[1]);
-Log.i(TAG,"Lat: " + lastKnown[0] + " Long: "+ lastKnown[1]);
 }
  else {
 Helpers.sendMsg(this,"Error finding your location!");

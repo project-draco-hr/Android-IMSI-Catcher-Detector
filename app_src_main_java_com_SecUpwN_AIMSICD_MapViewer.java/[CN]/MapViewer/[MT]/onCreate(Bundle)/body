@@ -12,4 +12,23 @@
   mDbHelper=new AIMSICDDbAdapter(this);
   loadEntries();
   mContext=this;
+  mapTypePref=getResources().getString(R.string.map_pref_type);
+  prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  if (prefs.contains(mapTypePref)) {
+    int mapType=prefs.getInt(mapTypePref,0);
+switch (mapType) {
+case 0:
+      mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+    break;
+case 1:
+  mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+break;
+case 2:
+mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+break;
+case 3:
+mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+break;
+}
+}
 }
