@@ -1,0 +1,9 @@
+{
+  super(fm);
+  this.fragments=new ArrayList<Fragment>();
+  titles=new ArrayList<String>();
+  fragments.add(new DeviceFragment(mContext));
+  titles.add(getString(R.string.device_info));
+  fragments.add(new DbViewerFragment(mContext));
+  titles.add(getString(R.string.db_viewer));
+}

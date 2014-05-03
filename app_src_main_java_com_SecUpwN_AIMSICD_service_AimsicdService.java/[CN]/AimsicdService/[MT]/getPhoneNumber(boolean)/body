@@ -1,6 +1,11 @@
 {
   if (mPhoneNum.isEmpty() || force) {
-    mPhoneNum=tm.getLine1Number();
+    try {
+      mPhoneNum=tm.getLine1Number();
+    }
+ catch (    NullPointerException npe) {
+    }
   }
+  if (mPhoneNum.isEmpty())   mPhoneNum=tm.getSubscriberId();
   return mPhoneNum;
 }
