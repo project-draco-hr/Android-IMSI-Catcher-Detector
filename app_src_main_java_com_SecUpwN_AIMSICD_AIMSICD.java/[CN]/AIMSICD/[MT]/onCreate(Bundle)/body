@@ -1,9 +1,12 @@
 {
   super.onCreate(savedInstanceState);
-  setContentView(R.layout.main);
+  setContentView(R.layout.top);
   Intent intent=new Intent(this,AimsicdService.class);
   startService(intent);
   bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+  mMyFragmentPagerAdapter=new MyFragmentPagerAdapter(getSupportFragmentManager());
+  mViewPager=(ViewPager)findViewById(R.id.viewPager);
+  mViewPager.setAdapter(mMyFragmentPagerAdapter);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   mDisclaimerAccepted=getResources().getString(R.string.disclaimer_accepted);
   if (!prefs.getBoolean(mDisclaimerAccepted,false)) {
