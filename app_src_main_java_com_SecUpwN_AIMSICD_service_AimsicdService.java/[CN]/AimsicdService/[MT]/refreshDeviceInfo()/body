@@ -1,7 +1,7 @@
 {
   mIMEI=tm.getDeviceId();
   mIMEIV=tm.getDeviceSoftwareVersion();
-  mPhoneNum=tm.getLine1Number();
+  mPhoneNum=getPhoneNumber(true);
   mPhoneID=tm.getPhoneType();
   mRoaming=tm.isNetworkRoaming();
   mNetID=getNetID(true);
