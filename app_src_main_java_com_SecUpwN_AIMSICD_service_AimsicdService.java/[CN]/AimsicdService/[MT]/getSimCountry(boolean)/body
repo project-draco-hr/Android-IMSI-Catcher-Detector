@@ -1,6 +1,10 @@
 {
   if (mSimCountry.isEmpty() || force) {
-    mSimCountry=tm.getSimCountryIso();
+    try {
+      mSimCountry=tm.getSimCountryIso();
+    }
+ catch (    Exception e) {
+    }
   }
   return mSimCountry;
 }

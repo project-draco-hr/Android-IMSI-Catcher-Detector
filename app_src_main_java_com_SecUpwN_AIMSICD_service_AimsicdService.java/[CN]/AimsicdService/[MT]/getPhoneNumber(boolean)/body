@@ -6,6 +6,10 @@
  catch (    NullPointerException npe) {
     }
   }
-  if (mPhoneNum.isEmpty())   mPhoneNum=tm.getSubscriberId();
+  if (mPhoneNum.isEmpty())   try {
+    mPhoneNum=tm.getSubscriberId();
+  }
+ catch (  NullPointerException npe) {
+  }
   return mPhoneNum;
 }
