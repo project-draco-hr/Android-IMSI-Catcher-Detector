@@ -1,6 +1,10 @@
 {
   if (mSimOperator.isEmpty() || force) {
-    mSimOperator=tm.getSimOperator();
+    try {
+      mSimOperator=tm.getSimOperator();
+    }
+ catch (    Exception e) {
+    }
   }
   return mSimOperator;
 }

@@ -32,11 +32,11 @@ updateCdmaLocation();
 }
 break;
 }
-mSimCountry=tm.getSimCountryIso();
-mSimOperator=tm.getSimOperator();
-mSimOperatorName=tm.getSimOperatorName();
-mSimSerial=tm.getSimSerialNumber();
-mSimSubs=tm.getSubscriberId();
+mSimCountry=getSimCountry(true);
+mSimOperator=getSimOperator(true);
+mSimOperatorName=getSimOperatorName(true);
+mSimSerial=getSimSerial(true);
+mSimSubs=getSimSubs(true);
 mDataActivityType=getActivityDesc();
 mDataState=getStateDesc();
 if (mLongitude == 0.0 || mLatitude == 0.0) {

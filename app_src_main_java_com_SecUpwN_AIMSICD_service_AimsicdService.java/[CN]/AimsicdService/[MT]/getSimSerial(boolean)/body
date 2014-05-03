@@ -1,6 +1,10 @@
 {
   if (mSimSerial.isEmpty() || force) {
-    mSimSerial=tm.getSimSerialNumber();
+    try {
+      mSimSerial=tm.getSimSerialNumber();
+    }
+ catch (    Exception e) {
+    }
   }
   return mSimSerial;
 }

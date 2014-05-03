@@ -1,6 +1,10 @@
 {
   if (mSimSubs.isEmpty() || force) {
-    mSimSubs=tm.getSubscriberId();
+    try {
+      mSimSubs=tm.getSubscriberId();
+    }
+ catch (    Exception e) {
+    }
   }
   return mSimSubs;
 }
