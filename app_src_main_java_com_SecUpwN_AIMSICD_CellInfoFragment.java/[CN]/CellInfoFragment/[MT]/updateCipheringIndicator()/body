@@ -1,0 +1,13 @@
+{
+  final List<String> list=mAimsicdService.getCipheringInfo();
+  getActivity().runOnUiThread(new Runnable(){
+    @Override public void run(){
+      if (list != null) {
+        mCipheringIndicatorLabel.setVisibility(View.VISIBLE);
+        mCipheringIndicator.setVisibility(View.VISIBLE);
+        mCipheringIndicator.setText(TextUtils.join("\n",list));
+      }
+    }
+  }
+);
+}

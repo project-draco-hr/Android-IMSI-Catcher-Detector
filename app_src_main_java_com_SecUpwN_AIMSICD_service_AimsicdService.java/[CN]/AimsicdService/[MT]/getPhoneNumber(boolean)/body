@@ -1,15 +1,17 @@
 {
   if (mPhoneNum.isEmpty() || force) {
     try {
-      mPhoneNum=tm.getLine1Number();
+      mPhoneNum=(tm.getLine1Number() != null) ? tm.getLine1Number() : "";
     }
- catch (    NullPointerException npe) {
+ catch (    Exception e) {
+      Log.e(TAG,"getPhoneNumber (1) " + e);
     }
   }
   if (mPhoneNum.isEmpty())   try {
-    mPhoneNum=tm.getSubscriberId();
+    mPhoneNum=(tm.getSubscriberId() != null) ? tm.getSubscriberId() : "";
   }
- catch (  NullPointerException npe) {
+ catch (  Exception e) {
+    Log.e(TAG,"getPhoneNumber (2) " + e);
   }
   return mPhoneNum;
 }

@@ -1,0 +1,10 @@
+{
+  char[] buf=new char[length * 2];
+  int bufIndex=0;
+  for (int i=offset; i < offset + length; i++) {
+    byte b=array[i];
+    buf[bufIndex++]=HEX_DIGITS[(b >>> 4) & 0x0F];
+    buf[bufIndex++]=HEX_DIGITS[b & 0x0F];
+  }
+  return new String(buf);
+}

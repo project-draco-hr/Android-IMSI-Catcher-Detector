@@ -1,0 +1,4 @@
+{
+  this.available=available;
+  this.error=error;
+}

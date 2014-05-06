@@ -1,0 +1,4 @@
+{
+  this.keychar=keychar;
+  this.captureResponse=captureResponse;
+}

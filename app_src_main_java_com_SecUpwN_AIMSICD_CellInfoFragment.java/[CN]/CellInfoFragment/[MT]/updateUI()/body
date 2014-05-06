@@ -1,0 +1,31 @@
+{
+  if (mBound) {
+    mAimsicdService.updateNeighbouringCells();
+    mNeighborMapUMTS=mAimsicdService.getUMTSNeighbouringCells();
+    mNeighborMapGSM=mAimsicdService.getGSMNeighbouringCells();
+    mNeighbouringTotal.setText(String.valueOf(mAimsicdService.getNeighbouringCellSize()) + "/" + String.valueOf(mNeighborMapUMTS.size() + mNeighborMapGSM.size()));
+    StringBuilder sb=new StringBuilder();
+    int i=1;
+    if (!mNeighborMapUMTS.isEmpty())     for (    Object key : mNeighborMapUMTS.keySet()) {
+      sb.append(i).append(") PSC: ").append(key).append(" RSCP: ").append(mNeighborMapUMTS.get(key)).append(" dBm");
+      if (i < mNeighborMapUMTS.size() + mNeighborMapGSM.size())       sb.append("\n");
+      i++;
+    }
+    if (!mNeighborMapGSM.isEmpty())     for (    Object key : mNeighborMapGSM.keySet()) {
+      sb.append(i).append(") LAC-CID: ").append(key).append(" RSSI: ").append(mNeighborMapGSM.get(key)).append(" dBm");
+      if (i < mNeighborMapUMTS.size() + mNeighborMapGSM.size())       sb.append("\n");
+      i++;
+    }
+    mNeighbouringCells.setText(sb);
+    if (mNeighborMapGSM.isEmpty() && mNeighborMapUMTS.isEmpty()) {
+      DetectResult rilStatus=mAimsicdService.getRilExecutorStatus();
+      if (rilStatus.available) {
+        new RequestOemInfoTask().execute();
+      }
+    }
+ else {
+      mNeighbouringTotal.setVisibility(View.VISIBLE);
+      mNeighbouringTotalLabel.setVisibility(View.VISIBLE);
+    }
+  }
+}

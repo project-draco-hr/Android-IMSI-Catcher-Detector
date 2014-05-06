@@ -6,5 +6,18 @@
   loadPreferences();
   refreshDeviceInfo();
   setNotification();
+  mHandlerThread=new HandlerThread("ServiceModeSeqHandler");
+  mHandlerThread.start();
+  Looper l=mHandlerThread.getLooper();
+  mHandler=new Handler(l,new MyHandler());
+  mRequestExecutor=new SamsungMulticlientRilExecutor();
+  mRilExecutorDetectResult=mRequestExecutor.detect();
+  if (!mRilExecutorDetectResult.available) {
+    Log.e(TAG,"Samsung multiclient ril not available: " + mRilExecutorDetectResult.error);
+    mRequestExecutor=null;
+  }
+ else {
+    mRequestExecutor.start();
+  }
   Log.i(TAG,"Service launched successfully");
 }
