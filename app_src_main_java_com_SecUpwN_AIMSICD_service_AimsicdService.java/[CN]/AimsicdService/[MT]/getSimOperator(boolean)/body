@@ -1,9 +1,10 @@
 {
   if (mSimOperator.isEmpty() || force) {
     try {
-      mSimOperator=tm.getSimOperator();
+      mSimOperator=(tm.getSimOperator() != null) ? tm.getSimOperator() : "";
     }
  catch (    Exception e) {
+      Log.e(TAG,"getSimOperator " + e);
     }
   }
   return mSimOperator;

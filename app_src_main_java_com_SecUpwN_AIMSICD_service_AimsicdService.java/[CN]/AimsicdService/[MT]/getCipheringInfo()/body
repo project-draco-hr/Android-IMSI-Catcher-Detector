@@ -1,0 +1,3 @@
+{
+  return executeServiceModeCommand(OemCommands.OEM_SM_TYPE_TEST_MANUAL,OemCommands.OEM_SM_TYPE_SUB_CIPHERING_PROTECTION_ENTER,null);
+}

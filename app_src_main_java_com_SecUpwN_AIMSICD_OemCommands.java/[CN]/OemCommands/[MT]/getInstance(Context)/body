@@ -1,4 +1,0 @@
-{
-  int apiVersion=context.getResources().getInteger(R.integer.config_api_version);
-  return new OemCommands(apiVersion);
-}

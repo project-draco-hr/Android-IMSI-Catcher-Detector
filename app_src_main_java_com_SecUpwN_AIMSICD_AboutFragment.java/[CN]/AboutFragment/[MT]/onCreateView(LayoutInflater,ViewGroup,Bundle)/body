@@ -1,0 +1,15 @@
+{
+  View v=inflater.inflate(R.layout.about_fragment,container,false);
+  String version;
+  PackageManager manager=mContext.getPackageManager();
+  try {
+    PackageInfo info=manager.getPackageInfo(mContext.getPackageName(),0);
+    version=info.versionName;
+  }
+ catch (  PackageManager.NameNotFoundException nnfe) {
+    version="";
+  }
+  TextView versionNumber=(TextView)v.findViewById(R.id.aimsicd_version);
+  versionNumber.setText(version);
+  return v;
+}

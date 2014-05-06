@@ -1,9 +1,10 @@
 {
   if (mSimSerial.isEmpty() || force) {
     try {
-      mSimSerial=tm.getSimSerialNumber();
+      mSimSerial=(tm.getSimSerialNumber() != null) ? tm.getSimSerialNumber() : "";
     }
  catch (    Exception e) {
+      Log.e(TAG,"getSimSerial " + e);
     }
   }
   return mSimSerial;

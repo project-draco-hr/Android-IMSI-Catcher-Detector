@@ -1,0 +1,9 @@
+{
+  Parcel p=Parcel.obtain();
+  p.writeInt(RIL_REQUEST_OEM_RAW);
+  p.writeInt(token);
+  p.writeByteArray(data);
+  byte[] res=p.marshall();
+  p.recycle();
+  return res;
+}

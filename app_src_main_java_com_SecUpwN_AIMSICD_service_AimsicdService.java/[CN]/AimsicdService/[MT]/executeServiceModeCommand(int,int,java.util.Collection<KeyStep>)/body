@@ -1,0 +1,3 @@
+{
+  return executeServiceModeCommand(type,subtype,keySeqence,REQUEST_TIMEOUT);
+}

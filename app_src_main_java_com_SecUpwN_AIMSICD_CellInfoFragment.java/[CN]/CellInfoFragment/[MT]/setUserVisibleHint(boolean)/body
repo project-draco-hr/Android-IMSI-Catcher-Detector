@@ -1,0 +1,6 @@
+{
+  super.setUserVisibleHint(isVisibleToUser);
+  if (isVisibleToUser) {
+    updateUI();
+  }
+}

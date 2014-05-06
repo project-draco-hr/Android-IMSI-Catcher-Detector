@@ -1,0 +1,4 @@
+{
+  int len=data.length;
+  return new byte[]{(byte)((len >> 24) & 0xff),(byte)((len >> 16) & 0xff),(byte)((len >> 8) & 0xff),(byte)(len & 0xff)};
+}

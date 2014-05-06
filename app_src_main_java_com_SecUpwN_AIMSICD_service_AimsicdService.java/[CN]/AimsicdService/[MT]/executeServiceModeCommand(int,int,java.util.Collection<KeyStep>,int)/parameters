@@ -1,0 +1,4 @@
+int type
+int subtype
+java.util.Collection<KeyStep> keySeqence
+int timeout

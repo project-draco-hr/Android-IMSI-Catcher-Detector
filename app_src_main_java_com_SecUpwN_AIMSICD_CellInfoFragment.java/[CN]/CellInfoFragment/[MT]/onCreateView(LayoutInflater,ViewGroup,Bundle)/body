@@ -1,0 +1,11 @@
+{
+  mView=inflater.inflate(R.layout.cell_fragment,container,false);
+  mNeighbouringCells=(TextView)mView.findViewById(R.id.neighbouring_cells);
+  mNeighbouringTotal=(TextView)mView.findViewById(R.id.neighbouring_number);
+  mNeighbouringTotalLabel=(TextView)mView.findViewById(R.id.neighbouring_number_label);
+  mCipheringIndicatorLabel=(TextView)mView.findViewById(R.id.ciphering_indicator_title);
+  mCipheringIndicator=(TextView)mView.findViewById(R.id.ciphering_indicator);
+  Button refresh=(Button)mView.findViewById(R.id.button_refresh);
+  refresh.setOnClickListener(new btnClick());
+  return mView;
+}

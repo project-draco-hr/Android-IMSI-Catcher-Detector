@@ -3,5 +3,12 @@
   prefs.unregisterOnSharedPreferenceChangeListener(this);
   cancelNotification();
   dbHelper.close();
+  if (mRequestExecutor != null) {
+    mRequestExecutor.stop();
+    mRequestExecutor=null;
+  }
+  mHandler=null;
+  mHandlerThread.quit();
+  mHandlerThread=null;
   Log.i(TAG,"Service destroyed");
 }

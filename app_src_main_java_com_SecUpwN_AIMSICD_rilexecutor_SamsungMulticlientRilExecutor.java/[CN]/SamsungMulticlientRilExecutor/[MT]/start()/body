@@ -1,0 +1,8 @@
+{
+  if (mThread != null) {
+    Log.e(TAG,"OEM raw request executor thread is running");
+    return;
+  }
+  mThread=new LocalSocketThread(MULTICLIENT_SOCKET);
+  mThread.start();
+}
