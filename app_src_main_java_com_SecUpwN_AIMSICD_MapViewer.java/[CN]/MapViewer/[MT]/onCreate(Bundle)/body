@@ -12,10 +12,10 @@
   mDbHelper=new AIMSICDDbAdapter(this);
   loadEntries();
   mContext=this;
-  mapTypePref=getResources().getString(R.string.map_pref_type);
+  mapTypePref=getResources().getString(R.string.pref_map_type_key);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   if (prefs.contains(mapTypePref)) {
-    int mapType=prefs.getInt(mapTypePref,0);
+    int mapType=Integer.parseInt(prefs.getString(mapTypePref,"0"));
 switch (mapType) {
 case 0:
       mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);

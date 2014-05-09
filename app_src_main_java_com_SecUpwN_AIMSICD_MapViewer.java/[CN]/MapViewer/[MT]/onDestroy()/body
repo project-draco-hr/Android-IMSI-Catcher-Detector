@@ -1,0 +1,4 @@
+{
+  super.onDestroy();
+  prefs.unregisterOnSharedPreferenceChangeListener(this);
+}

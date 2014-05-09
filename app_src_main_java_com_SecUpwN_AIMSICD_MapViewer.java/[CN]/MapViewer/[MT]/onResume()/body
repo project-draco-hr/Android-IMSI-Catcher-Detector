@@ -1,4 +1,6 @@
 {
   super.onResume();
   setUpMapIfNeeded();
+  prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  prefs.registerOnSharedPreferenceChangeListener(this);
 }

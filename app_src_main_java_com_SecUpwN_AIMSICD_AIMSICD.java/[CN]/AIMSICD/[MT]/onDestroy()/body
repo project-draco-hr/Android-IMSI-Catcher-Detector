@@ -4,9 +4,9 @@
     unbindService(mConnection);
     mBound=false;
   }
-  final String KEY_KILL_SERVICE=mContext.getString(R.string.pref_killservice_key);
-  boolean killService=prefs.getBoolean(KEY_KILL_SERVICE,false);
-  if (killService) {
+  final String KEY_KILL_SERVICE=mContext.getString(R.string.pref_persistservice_key);
+  boolean persistService=prefs.getBoolean(KEY_KILL_SERVICE,true);
+  if (!persistService) {
     Intent intent=new Intent(this,AimsicdService.class);
     stopService(intent);
   }

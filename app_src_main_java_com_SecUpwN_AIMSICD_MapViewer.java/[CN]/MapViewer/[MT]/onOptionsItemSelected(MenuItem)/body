@@ -1,55 +1,27 @@
 {
 switch (item.getItemId()) {
-case R.id.map_type:
-    final AlertDialog.Builder menuAlert=new AlertDialog.Builder(this);
-  final String[] menuList={"Normal","Hybrid","Satellite","Terrain"};
-menuAlert.setTitle("Map Type");
-menuAlert.setItems(menuList,new DialogInterface.OnClickListener(){
-public void onClick(DialogInterface dialog,int item){
-  Editor editor=prefs.edit();
-switch (item) {
-case 0:
-    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-  editor.putInt(mapTypePref,0);
-break;
-case 1:
-mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-editor.putInt(mapTypePref,1);
-break;
-case 2:
-mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-editor.putInt(mapTypePref,2);
-break;
-case 3:
-mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-editor.putInt(mapTypePref,3);
-break;
-}
-editor.commit();
-}
-}
-);
-AlertDialog menuMapType=menuAlert.create();
-menuMapType.show();
+case R.id.map_preferences:
+    Intent intent=new Intent(this,MapPrefActivity.class);
+  startActivity(intent);
 return true;
 case R.id.get_opencellid:
 {
 Helpers.sendMsg(this,"Contacting OpenCellID.org for data...");
 Location mLocation=mMap.getMyLocation();
 if (mLocation != null) {
-getOpenCellData(mLocation.getLatitude(),mLocation.getLongitude());
+  getOpenCellData(mLocation.getLatitude(),mLocation.getLongitude());
 }
  else if (loc != null) {
-getOpenCellData(loc.latitude,loc.longitude);
+  getOpenCellData(loc.latitude,loc.longitude);
 }
  else {
-double[] lastKnown=getLastLocation();
-if (lastKnown != null) {
-getOpenCellData(lastKnown[0],lastKnown[1]);
-}
+  double[] lastKnown=getLastLocation();
+  if (lastKnown != null) {
+    getOpenCellData(lastKnown[0],lastKnown[1]);
+  }
  else {
-Helpers.sendMsg(this,"Error finding your location!");
-}
+    Helpers.sendMsg(this,"Error finding your location!");
+  }
 }
 return true;
 }
