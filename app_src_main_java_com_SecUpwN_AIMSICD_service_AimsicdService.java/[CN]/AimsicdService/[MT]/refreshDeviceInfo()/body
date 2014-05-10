@@ -5,7 +5,7 @@
   mPhoneID=tm.getPhoneType();
   mRoaming=tm.isNetworkRoaming();
   mNetID=getNetID(true);
-  mNetType=getNetworkTypeName(mNetID,true);
+  mNetType=getNetworkTypeName();
 switch (mPhoneID) {
 case TelephonyManager.PHONE_TYPE_GSM:
     mPhoneType="GSM";

@@ -1,0 +1,27 @@
+{
+  int direction=tm.getDataActivity();
+  mDataActivityTypeShort="un";
+  mDataActivityType="undef";
+switch (direction) {
+case TelephonyManager.DATA_ACTIVITY_NONE:
+    mDataActivityTypeShort="No";
+  mDataActivityType="None";
+break;
+case TelephonyManager.DATA_ACTIVITY_IN:
+mDataActivityTypeShort="In";
+mDataActivityType="In";
+break;
+case TelephonyManager.DATA_ACTIVITY_OUT:
+mDataActivityTypeShort="Ou";
+mDataActivityType="Out";
+break;
+case TelephonyManager.DATA_ACTIVITY_INOUT:
+mDataActivityTypeShort="IO";
+mDataActivityType="In-Out";
+break;
+case TelephonyManager.DATA_ACTIVITY_DORMANT:
+mDataActivityTypeShort="Do";
+mDataActivityType="Dormant";
+break;
+}
+}

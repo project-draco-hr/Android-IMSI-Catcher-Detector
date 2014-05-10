@@ -13,11 +13,13 @@
   mRequestExecutor=new SamsungMulticlientRilExecutor();
   mRilExecutorDetectResult=mRequestExecutor.detect();
   if (!mRilExecutorDetectResult.available) {
+    mMultiRilCompatible=false;
     Log.e(TAG,"Samsung multiclient ril not available: " + mRilExecutorDetectResult.error);
     mRequestExecutor=null;
   }
  else {
     mRequestExecutor.start();
+    mMultiRilCompatible=true;
   }
   Log.i(TAG,"Service launched successfully");
 }

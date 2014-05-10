@@ -2,12 +2,12 @@
   super(fm);
   this.fragments=new ArrayList<Fragment>();
   titles=new ArrayList<String>();
-  fragments.add(new DeviceFragment(mContext));
+  fragments.add(new DeviceFragment());
   titles.add(getString(R.string.device_info));
-  fragments.add(new CellInfoFragment(mContext));
+  fragments.add(new CellInfoFragment());
   titles.add(getString(R.string.cell_info_title));
-  fragments.add(new DbViewerFragment(mContext));
+  fragments.add(new DbViewerFragment());
   titles.add(getString(R.string.db_viewer));
-  fragments.add(new AboutFragment(mContext));
+  fragments.add(new AboutFragment());
   titles.add(getString(R.string.about_aimsicd));
 }
