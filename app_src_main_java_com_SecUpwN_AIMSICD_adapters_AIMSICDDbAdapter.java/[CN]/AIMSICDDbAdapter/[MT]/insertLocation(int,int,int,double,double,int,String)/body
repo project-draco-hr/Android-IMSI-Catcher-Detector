@@ -1,16 +1,19 @@
 {
-  ContentValues locationValues=new ContentValues();
-  locationValues.put("Lac",HexDump.toHexString(lac));
-  locationValues.put("CellID",HexDump.toHexString(cellID));
-  locationValues.put("Net",netType);
-  locationValues.put("Lat",latitude);
-  locationValues.put("Lng",longitude);
-  locationValues.put("Signal",signalInfo);
-  locationValues.put("Connection",cellInfo);
-  if (locationExists(cellID)) {
-    return mDb.update(LOCATION_TABLE,locationValues,"CellID=?",new String[]{Integer.toString(cellID)});
-  }
+  if (latitude != 0.0 && longitude != 0.0) {
+    ContentValues locationValues=new ContentValues();
+    locationValues.put("Lac",HexDump.toHexString(lac));
+    locationValues.put("CellID",HexDump.toHexString(cellID));
+    locationValues.put("Net",netType);
+    locationValues.put("Lat",latitude);
+    locationValues.put("Lng",longitude);
+    locationValues.put("Signal",signalInfo);
+    locationValues.put("Connection",cellInfo);
+    if (locationExists(cellID)) {
+      return mDb.update(LOCATION_TABLE,locationValues,"CellID=?",new String[]{Integer.toString(cellID)});
+    }
  else {
-    return mDb.insert(LOCATION_TABLE,null,locationValues);
+      return mDb.insert(LOCATION_TABLE,null,locationValues);
+    }
   }
+  return 0;
 }
