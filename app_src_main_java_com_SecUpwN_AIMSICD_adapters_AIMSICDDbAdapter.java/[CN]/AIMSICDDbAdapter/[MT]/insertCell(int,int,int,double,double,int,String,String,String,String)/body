@@ -1,7 +1,7 @@
 {
   ContentValues cellValues=new ContentValues();
-  cellValues.put("Lac",lac);
-  cellValues.put("CellID",cellID);
+  cellValues.put("Lac",HexDump.toHexString(lac));
+  cellValues.put("CellID",HexDump.toHexString(cellID));
   cellValues.put("Net",netType);
   cellValues.put("Lat",latitude);
   cellValues.put("Lng",longitude);
