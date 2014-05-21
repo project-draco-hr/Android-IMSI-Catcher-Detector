@@ -2,5 +2,5 @@
   mSocketPath=new LocalSocketAddress(socketPath);
   mInputStream=null;
   mOutputStream=null;
-  mMessages=new HashMap<Integer,Message>();
+  mMessages=new HashMap<>();
 }

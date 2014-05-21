@@ -4,9 +4,9 @@
   Intent intent=new Intent(this,AimsicdService.class);
   startService(intent);
   bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
-  mMyFragmentPagerAdapter=new MyFragmentPagerAdapter(getSupportFragmentManager());
-  mViewPager=(ViewPager)findViewById(R.id.viewPager);
-  mViewPager.setAdapter(mMyFragmentPagerAdapter);
+  MyFragmentPagerAdapter myFragmentPagerAdapter=new MyFragmentPagerAdapter(getSupportFragmentManager());
+  ViewPager viewPager=(ViewPager)findViewById(R.id.viewPager);
+  viewPager.setAdapter(myFragmentPagerAdapter);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   mDisclaimerAccepted=getResources().getString(R.string.disclaimer_accepted);
   if (!prefs.getBoolean(mDisclaimerAccepted,false)) {

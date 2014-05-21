@@ -19,38 +19,44 @@
   int icon=R.drawable.sense_idle;
 switch (status) {
 case 1:
-    if (iconType.equals("flat")) {
+switch (iconType) {
+case "flat":
       icon=R.drawable.flat_idle;
-    }
- else     if (iconType.equals("sense")) {
-      icon=R.drawable.sense_idle;
-    }
- else     if (iconType.equals("white")) {
-      icon=R.drawable.white_idle;
-    }
-  tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
+    break;
+case "sense":
+  icon=R.drawable.sense_idle;
+break;
+case "white":
+icon=R.drawable.white_idle;
+break;
+}
+tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
 break;
 case 2:
-if (iconType.equals("flat")) {
+switch (iconType) {
+case "flat":
 icon=R.drawable.flat_good;
-}
- else if (iconType.equals("sense")) {
+break;
+case "sense":
 icon=R.drawable.sense_good;
-}
- else if (iconType.equals("white")) {
+break;
+case "white":
 icon=R.drawable.white_good;
+break;
 }
 tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good No Threats Detected";
 break;
 case 3:
-if (iconType.equals("flat")) {
+switch (iconType) {
+case "flat":
 icon=R.drawable.flat_alarm;
-}
- else if (iconType.equals("sense")) {
+break;
+case "sense":
 icon=R.drawable.sense_alarm;
-}
- else if (iconType.equals("white")) {
+break;
+case "white":
 icon=R.drawable.white_alarm;
+break;
 }
 tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
 contentText="ALERT!! Threat Detected";

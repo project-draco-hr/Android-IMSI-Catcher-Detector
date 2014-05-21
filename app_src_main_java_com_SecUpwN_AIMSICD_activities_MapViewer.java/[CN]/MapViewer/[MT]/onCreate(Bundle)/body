@@ -12,7 +12,7 @@
   mDbHelper=new AIMSICDDbAdapter(this);
   loadEntries();
   mContext=this;
-  mapTypePref=getResources().getString(R.string.pref_map_type_key);
+  String mapTypePref=getResources().getString(R.string.pref_map_type_key);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   if (prefs.contains(mapTypePref)) {
     int mapType=Integer.parseInt(prefs.getString(mapTypePref,"0"));

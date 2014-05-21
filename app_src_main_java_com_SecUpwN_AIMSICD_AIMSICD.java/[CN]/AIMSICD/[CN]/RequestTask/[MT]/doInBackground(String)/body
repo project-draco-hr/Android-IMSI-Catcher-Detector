@@ -16,9 +16,7 @@
       throw new IOException(statusLine.getReasonPhrase());
     }
   }
- catch (  ClientProtocolException e) {
-  }
-catch (  IOException e) {
+ catch (  IOException e) {
   }
   return responseString;
 }

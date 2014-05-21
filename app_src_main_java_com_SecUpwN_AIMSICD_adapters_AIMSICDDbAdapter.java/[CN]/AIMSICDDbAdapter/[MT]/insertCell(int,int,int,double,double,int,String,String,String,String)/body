@@ -1,8 +1,8 @@
 {
   if (cellID != -1) {
     ContentValues cellValues=new ContentValues();
-    cellValues.put("Lac",HexDump.toHexString(lac));
-    cellValues.put("CellID",HexDump.toHexString(cellID));
+    cellValues.put("Lac",lac);
+    cellValues.put("CellID",cellID);
     cellValues.put("Net",netType);
     cellValues.put("Lat",latitude);
     cellValues.put("Lng",longitude);

@@ -1,16 +1,14 @@
 {
   mDb.open();
-  if (mTableSelected.equals("Cell Data")) {
+switch (mTableSelected) {
+case "Cell Data":
     return mDb.getCellData();
-  }
- else   if (mTableSelected.equals("Location Data")) {
-    return mDb.getLocationData();
-  }
- else   if (mTableSelected.equals("OpenCellID Data")) {
-    return mDb.getOpenCellIDData();
-  }
- else   if (mTableSelected.equals("Default MCC Locations")) {
-    return mDb.getDefaultMccLocationData();
-  }
-  return null;
+case "Location Data":
+  return mDb.getLocationData();
+case "OpenCellID Data":
+return mDb.getOpenCellIDData();
+case "Default MCC Locations":
+return mDb.getDefaultMccLocationData();
+}
+return null;
 }

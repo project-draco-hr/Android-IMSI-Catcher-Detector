@@ -3,33 +3,47 @@
   MenuItem mTrackLocation=menu.findItem(R.id.track_location);
   MenuItem mTrackFemtocell=menu.findItem(R.id.track_femtocell);
   if (mBound && mAimsicdService.isTrackingCell()) {
-    mTrackCell.setTitle(R.string.untrack_cell);
-    mTrackCell.setIcon(R.drawable.track_cell);
+    if (mTrackCell != null) {
+      mTrackCell.setTitle(R.string.untrack_cell);
+      mTrackCell.setIcon(R.drawable.track_cell);
+    }
   }
  else {
-    mTrackCell.setTitle(R.string.track_cell);
-    mTrackCell.setIcon(R.drawable.untrack_cell);
+    if (mTrackCell != null) {
+      mTrackCell.setTitle(R.string.track_cell);
+      mTrackCell.setIcon(R.drawable.untrack_cell);
+    }
   }
   if (mBound && mAimsicdService.isTrackingLocation()) {
-    mTrackLocation.setTitle(R.string.untrack_location);
-    mTrackLocation.setIcon(R.drawable.ic_action_location_found);
+    if (mTrackLocation != null) {
+      mTrackLocation.setTitle(R.string.untrack_location);
+      mTrackLocation.setIcon(R.drawable.ic_action_location_found);
+    }
   }
  else {
-    mTrackLocation.setTitle(R.string.track_location);
-    mTrackLocation.setIcon(R.drawable.ic_action_location_off);
+    if (mTrackLocation != null) {
+      mTrackLocation.setTitle(R.string.track_location);
+      mTrackLocation.setIcon(R.drawable.ic_action_location_off);
+    }
   }
   if (mBound && mAimsicdService.getPhoneID() == TelephonyManager.PHONE_TYPE_CDMA) {
     if (mBound && mAimsicdService.isTrackingFemtocell()) {
-      mTrackFemtocell.setTitle(R.string.untrack_femtocell);
-      mTrackFemtocell.setIcon(R.drawable.ic_action_network_cell);
+      if (mTrackFemtocell != null) {
+        mTrackFemtocell.setTitle(R.string.untrack_femtocell);
+        mTrackFemtocell.setIcon(R.drawable.ic_action_network_cell);
+      }
     }
  else {
-      mTrackFemtocell.setTitle(R.string.track_femtocell);
-      mTrackFemtocell.setIcon(R.drawable.ic_action_network_cell_not_tracked);
+      if (mTrackFemtocell != null) {
+        mTrackFemtocell.setTitle(R.string.track_femtocell);
+        mTrackFemtocell.setIcon(R.drawable.ic_action_network_cell_not_tracked);
+      }
     }
   }
  else {
-    mTrackFemtocell.setVisible(false);
+    if (mTrackFemtocell != null) {
+      mTrackFemtocell.setVisible(false);
+    }
   }
   return super.onPrepareOptionsMenu(menu);
 }

@@ -1,7 +1,11 @@
 {
+  String LOC_DATABASE_CREATE="create table " + LOCATION_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Lac INTEGER, CellID INTEGER, "+ "Net VARCHAR, Lat VARCHAR, Lng VARCHAR, Signal INTEGER, Connection VARCHAR, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
   database.execSQL(LOC_DATABASE_CREATE);
+  String CELL_DATABASE_CREATE="create table " + CELL_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Lac INTEGER, CellID INTEGER, "+ "Net VARCHAR, Lat VARCHAR, Lng VARCHAR, Signal INTEGER, Connection VARCHAR, "+ "Country VARCHAR, Operator VARCHAR, OperatorName VARCHAR, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
   database.execSQL(CELL_DATABASE_CREATE);
+  String OPENCELLID_DATABASE_CREATE="create table " + OPENCELLID_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Lat VARCHAR, Lng VARCHAR, Mcc INTEGER, "+ "Mnc INTEGER, Lac INTEGER, CellID INTEGER, AvgSigStr INTEGER, Samples INTEGER, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
   database.execSQL(OPENCELLID_DATABASE_CREATE);
+  String DEFAULT_MCC_DATABASE_CREATE="create table " + DEFAULT_MCC_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Country VARCHAR, Mcc INTEGER, "+ "Lat VARCHAR, Lng VARCHAR);";
   database.execSQL(DEFAULT_MCC_DATABASE_CREATE);
   populateDefaultMCC(database);
 }

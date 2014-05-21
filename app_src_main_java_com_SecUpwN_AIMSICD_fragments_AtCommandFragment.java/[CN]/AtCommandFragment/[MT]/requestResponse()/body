@@ -1,0 +1,17 @@
+{
+  try {
+    String[] atCommand=new String[]{mAtCommand.getText().toString()};
+    final List<String> list=mAimsicdService.executeAtCommand(atCommand);
+    getActivity().runOnUiThread(new Runnable(){
+      @Override public void run(){
+        if (list != null) {
+          mAtResponse.setText(TextUtils.join("\n",list));
+        }
+      }
+    }
+);
+  }
+ catch (  Exception e) {
+    Log.e("AIMSICD","requestResponse " + e);
+  }
+}

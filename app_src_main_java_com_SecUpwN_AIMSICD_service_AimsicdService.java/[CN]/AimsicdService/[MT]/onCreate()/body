@@ -6,10 +6,6 @@
   loadPreferences();
   refreshDeviceInfo();
   setNotification();
-  mHandlerThread=new HandlerThread("ServiceModeSeqHandler");
-  mHandlerThread.start();
-  Looper l=mHandlerThread.getLooper();
-  mHandler=new Handler(l,new MyHandler());
   mRequestExecutor=new SamsungMulticlientRilExecutor();
   mRilExecutorDetectResult=mRequestExecutor.detect();
   if (!mRilExecutorDetectResult.available) {
@@ -20,6 +16,12 @@
  else {
     mRequestExecutor.start();
     mMultiRilCompatible=true;
+    mHandlerThread=new HandlerThread("ServiceModeSeqHandler");
+    mHandlerThread.start();
+    Looper l=mHandlerThread.getLooper();
+    if (l != null) {
+      mHandler=new Handler(l,new MyHandler());
+    }
   }
   Log.i(TAG,"Service launched successfully");
 }

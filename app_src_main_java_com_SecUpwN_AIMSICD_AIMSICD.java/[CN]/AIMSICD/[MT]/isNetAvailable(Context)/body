@@ -3,12 +3,12 @@
     ConnectivityManager connectivityManager=(ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
     NetworkInfo wifiInfo=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
     NetworkInfo mobileInfo=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-    if (wifiInfo.isConnected() || mobileInfo.isConnected()) {
-      return true;
+    if (wifiInfo != null && mobileInfo != null) {
+      return wifiInfo.isConnected() || mobileInfo.isConnected();
     }
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    Log.e(TAG,"isNetAvailable " + e);
   }
   return false;
 }

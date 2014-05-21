@@ -1,9 +1,11 @@
 {
   mView=inflater.inflate(R.layout.db_view,container,false);
-  lv=(ListView)mView.findViewById(R.id.list_view);
-  tblSpinner=(Spinner)mView.findViewById(R.id.table_spinner);
-  tblSpinner.setOnItemSelectedListener(new spinnerListener());
-  Button loadTable=(Button)mView.findViewById(R.id.load_table_data);
-  loadTable.setOnClickListener(new btnClick());
+  if (mView != null) {
+    lv=(ListView)mView.findViewById(R.id.list_view);
+    tblSpinner=(Spinner)mView.findViewById(R.id.table_spinner);
+    tblSpinner.setOnItemSelectedListener(new spinnerListener());
+    Button loadTable=(Button)mView.findViewById(R.id.load_table_data);
+    loadTable.setOnClickListener(new btnClick());
+  }
   return mView;
 }

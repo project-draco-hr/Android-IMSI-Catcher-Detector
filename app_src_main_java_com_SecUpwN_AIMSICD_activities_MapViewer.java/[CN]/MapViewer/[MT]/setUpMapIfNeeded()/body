@@ -2,14 +2,14 @@
   if (mMap == null) {
     mMap=((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
     if (mMap != null) {
-      mUiSettings=mMap.getUiSettings();
-      mUiSettings.setZoomControlsEnabled(true);
-      mUiSettings.setCompassEnabled(true);
-      mUiSettings.setMyLocationButtonEnabled(true);
-      mUiSettings.setScrollGesturesEnabled(true);
-      mUiSettings.setZoomGesturesEnabled(true);
-      mUiSettings.setTiltGesturesEnabled(true);
-      mUiSettings.setRotateGesturesEnabled(true);
+      UiSettings uiSettings=mMap.getUiSettings();
+      uiSettings.setZoomControlsEnabled(true);
+      uiSettings.setCompassEnabled(true);
+      uiSettings.setMyLocationButtonEnabled(true);
+      uiSettings.setScrollGesturesEnabled(true);
+      uiSettings.setZoomGesturesEnabled(true);
+      uiSettings.setTiltGesturesEnabled(true);
+      uiSettings.setRotateGesturesEnabled(true);
       mMap.setMyLocationEnabled(true);
     }
  else {

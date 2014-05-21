@@ -20,7 +20,7 @@
       mByteArray[i]=0x2E;
     }
   }
-  List<String> mListString=new ArrayList<String>();
+  List<String> mListString=new ArrayList<>();
   for (int i=0; i < mDataLength; i++) {
     if (mByteArray[i] == 0) {
       continue;
