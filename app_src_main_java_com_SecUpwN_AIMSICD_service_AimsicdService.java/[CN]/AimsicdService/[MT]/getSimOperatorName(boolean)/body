@@ -1,7 +1,7 @@
 {
   if (mSimOperatorName.isEmpty() || force) {
     try {
-      mSimOperatorName=(tm.getSimOperatorName() != null) ? tm.getSimOperatorName() : "";
+      mSimOperatorName=(tm.getSimOperatorName() != null) ? tm.getSimOperatorName() : "N/A";
     }
  catch (    Exception e) {
     }

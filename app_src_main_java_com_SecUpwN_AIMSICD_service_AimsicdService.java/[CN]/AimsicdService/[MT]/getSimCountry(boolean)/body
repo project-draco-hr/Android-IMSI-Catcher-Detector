@@ -1,7 +1,7 @@
 {
   if (mSimCountry.isEmpty() || force) {
     try {
-      mSimCountry=(tm.getSimCountryIso() != null) ? tm.getSimCountryIso() : "";
+      mSimCountry=(tm.getSimCountryIso() != null) ? tm.getSimCountryIso() : "N/A";
     }
  catch (    Exception e) {
       Log.e(TAG,"getSimCountry " + e);

@@ -1,7 +1,7 @@
 {
   if (mSimSubs.isEmpty() || force) {
     try {
-      mSimSubs=(tm.getSubscriberId() != null) ? tm.getSubscriberId() : "";
+      mSimSubs=(tm.getSubscriberId() != null) ? tm.getSubscriberId() : "N/A";
     }
  catch (    Exception e) {
       Log.e(TAG,"getSimSubs " + e);
