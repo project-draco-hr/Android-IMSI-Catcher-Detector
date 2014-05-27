@@ -6,5 +6,6 @@
  catch (    Exception e) {
     }
   }
+  if (mSimOperatorName.isEmpty())   mSimOperatorName="N/A";
   return mSimOperatorName;
 }

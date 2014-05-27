@@ -1,17 +1,18 @@
 {
   if (mPhoneNum.isEmpty() || force) {
     try {
-      mPhoneNum=(tm.getLine1Number() != null) ? tm.getLine1Number() : "";
+      mPhoneNum=(tm.getLine1Number() != null) ? tm.getLine1Number() : "N/A";
     }
  catch (    Exception e) {
       Log.e(TAG,"getPhoneNumber (1) " + e);
     }
   }
   if (mPhoneNum.isEmpty())   try {
-    mPhoneNum=(tm.getSubscriberId() != null) ? tm.getSubscriberId() : "";
+    mPhoneNum=(tm.getSubscriberId() != null) ? tm.getSubscriberId() : "N/A";
   }
  catch (  Exception e) {
     Log.e(TAG,"getPhoneNumber (2) " + e);
   }
+  if (mPhoneNum.isEmpty())   mPhoneNum="N/A";
   return mPhoneNum;
 }

@@ -1,6 +1,5 @@
 {
   MenuItem mTrackCell=menu.findItem(R.id.track_cell);
-  MenuItem mTrackLocation=menu.findItem(R.id.track_location);
   MenuItem mTrackFemtocell=menu.findItem(R.id.track_femtocell);
   if (mBound && mAimsicdService.isTrackingCell()) {
     if (mTrackCell != null) {
@@ -12,18 +11,6 @@
     if (mTrackCell != null) {
       mTrackCell.setTitle(R.string.track_cell);
       mTrackCell.setIcon(R.drawable.untrack_cell);
-    }
-  }
-  if (mBound && mAimsicdService.isTrackingLocation()) {
-    if (mTrackLocation != null) {
-      mTrackLocation.setTitle(R.string.untrack_location);
-      mTrackLocation.setIcon(R.drawable.ic_action_location_found);
-    }
-  }
- else {
-    if (mTrackLocation != null) {
-      mTrackLocation.setTitle(R.string.track_location);
-      mTrackLocation.setIcon(R.drawable.ic_action_location_off);
     }
   }
   if (mBound && mAimsicdService.getPhoneID() == TelephonyManager.PHONE_TYPE_CDMA) {

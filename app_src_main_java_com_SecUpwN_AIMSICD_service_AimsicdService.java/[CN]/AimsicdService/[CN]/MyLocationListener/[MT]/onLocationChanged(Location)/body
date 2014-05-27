@@ -1,16 +1,51 @@
 {
-  if (loc != null) {
-    mLongitude=loc.getLongitude();
-    mLatitude=loc.getLatitude();
-  }
-  if (TrackingLocation) {
-    dbHelper.open();
-    mDbResult=dbHelper.insertLocation(mLacID,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo);
-    if (mDbResult == -1)     Log.e(TAG,"Error writing to database");
-  }
-  if (TrackingCell) {
-    dbHelper.open();
-    mDbResult=dbHelper.insertCell(mLacID,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo,mSimCountry,mSimOperator,mSimOperatorName);
-    if (mDbResult == -1)     Log.e(TAG,"Error writing to database");
-  }
+  if (Build.VERSION.SDK_INT > 16) {
+    List<CellInfo> cellinfolist=tm.getAllCellInfo();
+    if (cellinfolist != null) {
+      for (      final CellInfo cellinfo : cellinfolist) {
+        if (cellinfo instanceof CellInfoGsm) {
+          CellInfoGsm GSMinfo=(CellInfoGsm)cellinfo;
+          CellIdentityGsm gsmCellIdentity=GSMinfo.getCellIdentity();
+          if (gsmCellIdentity != null) {
+            mCellID=gsmCellIdentity.getCid();
+            mLacID=gsmCellIdentity.getLac();
+          }
+        }
+ else         if (cellinfo instanceof CellInfoCdma) {
+          CellInfoCdma CDMAinfo=(CellInfoCdma)cellinfo;
+          CellIdentityCdma cdmaCellIdentity=CDMAinfo.getCellIdentity();
+          if (cdmaCellIdentity != null) {
+            mCellID=cdmaCellIdentity.getBasestationId();
+            mLacID=cdmaCellIdentity.getNetworkId();
+          }
+        }
+      }
+    }
+ else {
+      CellLocation cellLocation=tm.getCellLocation();
+      if (cellLocation != null) {
+switch (mPhoneID) {
+case TelephonyManager.PHONE_TYPE_GSM:
+          GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
+        mCellID=gsmCellLocation.getCid();
+      mLacID=gsmCellLocation.getLac();
+    break;
+case TelephonyManager.PHONE_TYPE_CDMA:
+  CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
+mCellID=cdmaCellLocation.getBaseStationId();
+mLacID=cdmaCellLocation.getNetworkId();
+}
+}
+}
+}
+if (loc != null) {
+mLongitude=loc.getLongitude();
+mLatitude=loc.getLatitude();
+if (TrackingCell) {
+dbHelper.open();
+mDbResult=dbHelper.insertCell(mLacID,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo,mSimCountry,mSimOperator,mSimOperatorName);
+mDbResult=dbHelper.insertLocation(mLacID,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo);
+if (mDbResult == -1) Log.e(TAG,"Error writing to database");
+}
+}
 }

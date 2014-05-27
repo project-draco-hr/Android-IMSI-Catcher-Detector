@@ -7,5 +7,6 @@
       Log.e(TAG,"getSimSerial " + e);
     }
   }
+  if (mSimSerial.isEmpty())   mSimSerial="N/A";
   return mSimSerial;
 }

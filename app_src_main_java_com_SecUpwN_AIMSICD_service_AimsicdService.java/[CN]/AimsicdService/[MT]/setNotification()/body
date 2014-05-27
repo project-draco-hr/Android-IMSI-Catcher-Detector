@@ -8,10 +8,10 @@
   if (mFemtoDetected) {
     status=3;
   }
- else   if (TrackingFemtocell || TrackingCell || TrackingLocation) {
+ else   if (TrackingFemtocell || TrackingCell) {
     status=2;
     if (TrackingFemtocell)     contentText="FemtoCell Detection Active";
- else     contentText="Cell, Signal or Location Tracking Active";
+ else     contentText="Cell Tracking Active";
   }
  else {
     status=1;

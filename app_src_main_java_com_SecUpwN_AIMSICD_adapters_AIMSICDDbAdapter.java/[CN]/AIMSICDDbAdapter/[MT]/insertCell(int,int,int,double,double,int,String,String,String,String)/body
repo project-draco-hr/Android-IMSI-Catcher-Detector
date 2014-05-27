@@ -11,10 +11,7 @@
     cellValues.put("Country",simCountry);
     cellValues.put("Operator",simOperator);
     cellValues.put("OperatorName",simOperatorName);
-    if (cellExists(cellID)) {
-      return mDb.update(CELL_TABLE,cellValues,"CellID=?",new String[]{Integer.toString(cellID)});
-    }
- else {
+    if (!cellExists(cellID,latitude,longitude,signalInfo)) {
       return mDb.insert(CELL_TABLE,null,cellValues);
     }
   }

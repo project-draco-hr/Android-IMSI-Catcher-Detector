@@ -1,4 +1,0 @@
-{
-  Cursor cursor=mDb.rawQuery("SELECT * FROM " + LOCATION_TABLE + " WHERE CellID = "+ cellID,null);
-  return cursor.getCount() > 0;
-}

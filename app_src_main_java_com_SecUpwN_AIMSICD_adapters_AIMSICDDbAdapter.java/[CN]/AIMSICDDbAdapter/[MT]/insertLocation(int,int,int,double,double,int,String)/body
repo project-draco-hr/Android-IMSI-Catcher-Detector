@@ -8,7 +8,7 @@
     locationValues.put("Lng",longitude);
     locationValues.put("Signal",signalInfo);
     locationValues.put("Connection",cellInfo);
-    if (locationExists(cellID)) {
+    if (locationExists(cellID,latitude,longitude,signalInfo)) {
       return mDb.update(LOCATION_TABLE,locationValues,"CellID=?",new String[]{Integer.toString(cellID)});
     }
  else {

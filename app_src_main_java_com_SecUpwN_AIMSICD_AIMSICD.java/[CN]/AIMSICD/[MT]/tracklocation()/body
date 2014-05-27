@@ -1,8 +1,0 @@
-{
-  if (mAimsicdService.isTrackingLocation()) {
-    mAimsicdService.setLocationTracking(false);
-  }
- else {
-    mAimsicdService.setLocationTracking(true);
-  }
-}
