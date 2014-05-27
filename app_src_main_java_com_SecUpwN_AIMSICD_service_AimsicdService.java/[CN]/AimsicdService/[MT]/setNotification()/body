@@ -1,6 +1,4 @@
 {
-  Intent notificationIntent=new Intent(this,AIMSICD.class);
-  PendingIntent contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
   String tickerText;
   String contentText="Phone Type " + getPhoneType(false);
   String iconType=prefs.getString(this.getString(R.string.pref_ui_icons_key),"flat");
@@ -66,7 +64,11 @@ icon=R.drawable.sense_idle;
 tickerText=getResources().getString(R.string.app_name);
 break;
 }
+Context context=getApplicationContext();
+Intent notificationIntent=new Intent(context,AIMSICD.class);
+notificationIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_FROM_BACKGROUND);
+PendingIntent contentIntent=PendingIntent.getActivity(context,NOTIFICATION_ID,notificationIntent,PendingIntent.FLAG_CANCEL_CURRENT);
 Notification mBuilder=new NotificationCompat.Builder(this).setSmallIcon(icon).setTicker(tickerText).setContentTitle(this.getResources().getString(R.string.app_name)).setContentText(contentText).setOngoing(true).setAutoCancel(false).setContentIntent(contentIntent).build();
 NotificationManager mNotificationManager=(NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
-mNotificationManager.notify(0x1212,mBuilder);
+mNotificationManager.notify(NOTIFICATION_ID,mBuilder);
 }

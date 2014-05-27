@@ -1,39 +1,40 @@
 {
-  if (Build.VERSION.SDK_INT > 16) {
-    List<CellInfo> cellinfolist=tm.getAllCellInfo();
-    if (cellinfolist != null) {
-      for (      final CellInfo cellinfo : cellinfolist) {
-        if (cellinfo instanceof CellInfoGsm) {
-          CellInfoGsm GSMinfo=(CellInfoGsm)cellinfo;
-          CellIdentityGsm gsmCellIdentity=GSMinfo.getCellIdentity();
-          if (gsmCellIdentity != null) {
-            mCellID=gsmCellIdentity.getCid();
-            mLacID=gsmCellIdentity.getLac();
+  if (isBetterLocation(loc,mLastLocation)) {
+    if (Build.VERSION.SDK_INT > 16) {
+      List<CellInfo> cellinfolist=tm.getAllCellInfo();
+      if (cellinfolist != null) {
+        for (        final CellInfo cellinfo : cellinfolist) {
+          if (cellinfo instanceof CellInfoGsm) {
+            CellInfoGsm GSMinfo=(CellInfoGsm)cellinfo;
+            CellIdentityGsm gsmCellIdentity=GSMinfo.getCellIdentity();
+            if (gsmCellIdentity != null) {
+              mCellID=gsmCellIdentity.getCid();
+              mLac=gsmCellIdentity.getLac();
+            }
           }
-        }
- else         if (cellinfo instanceof CellInfoCdma) {
-          CellInfoCdma CDMAinfo=(CellInfoCdma)cellinfo;
-          CellIdentityCdma cdmaCellIdentity=CDMAinfo.getCellIdentity();
-          if (cdmaCellIdentity != null) {
-            mCellID=cdmaCellIdentity.getBasestationId();
-            mLacID=cdmaCellIdentity.getNetworkId();
+ else           if (cellinfo instanceof CellInfoCdma) {
+            CellInfoCdma CDMAinfo=(CellInfoCdma)cellinfo;
+            CellIdentityCdma cdmaCellIdentity=CDMAinfo.getCellIdentity();
+            if (cdmaCellIdentity != null) {
+              mCellID=cdmaCellIdentity.getBasestationId();
+              mLac=cdmaCellIdentity.getNetworkId();
+            }
           }
         }
       }
-    }
  else {
-      CellLocation cellLocation=tm.getCellLocation();
-      if (cellLocation != null) {
+        CellLocation cellLocation=tm.getCellLocation();
+        if (cellLocation != null) {
 switch (mPhoneID) {
 case TelephonyManager.PHONE_TYPE_GSM:
-          GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
-        mCellID=gsmCellLocation.getCid();
-      mLacID=gsmCellLocation.getLac();
-    break;
+            GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
+          mCellID=gsmCellLocation.getCid();
+        mLac=gsmCellLocation.getLac();
+      break;
 case TelephonyManager.PHONE_TYPE_CDMA:
-  CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
-mCellID=cdmaCellLocation.getBaseStationId();
-mLacID=cdmaCellLocation.getNetworkId();
+    CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
+  mCellID=cdmaCellLocation.getBaseStationId();
+mLac=cdmaCellLocation.getNetworkId();
 }
 }
 }
@@ -41,10 +42,11 @@ mLacID=cdmaCellLocation.getNetworkId();
 if (loc != null) {
 mLongitude=loc.getLongitude();
 mLatitude=loc.getLatitude();
+mLastLocation=loc;
+}
 if (TrackingCell) {
 dbHelper.open();
-mDbResult=dbHelper.insertCell(mLacID,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo,mSimCountry,mSimOperator,mSimOperatorName);
-mDbResult=dbHelper.insertLocation(mLacID,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo);
+mDbResult=dbHelper.insertLocation(mLac,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo);
 if (mDbResult == -1) Log.e(TAG,"Error writing to database");
 }
 }
