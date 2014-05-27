@@ -1,0 +1,26 @@
+{
+  String responseString=null;
+switch (mType) {
+case OPEN_CELL_ID_REQUEST:
+    HttpClient httpclient=new DefaultHttpClient();
+  HttpResponse response;
+try {
+  response=httpclient.execute(new HttpGet(uri[0]));
+  StatusLine statusLine=response.getStatusLine();
+  if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+    ByteArrayOutputStream out=new ByteArrayOutputStream();
+    response.getEntity().writeTo(out);
+    out.close();
+    responseString=out.toString();
+  }
+ else {
+    response.getEntity().getContent().close();
+    throw new IOException(statusLine.getReasonPhrase());
+  }
+}
+ catch (IOException e) {
+}
+break;
+}
+return responseString;
+}

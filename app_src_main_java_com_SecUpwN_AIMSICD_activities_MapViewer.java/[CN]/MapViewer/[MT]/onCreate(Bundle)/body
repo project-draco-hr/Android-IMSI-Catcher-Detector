@@ -9,9 +9,11 @@
   }
   setContentView(R.layout.map);
   setUpMapIfNeeded();
-  mDbHelper=new AIMSICDDbAdapter(this);
-  loadEntries();
   mContext=this;
+  mDbHelper=new AIMSICDDbAdapter(mContext);
+  Intent intent=new Intent(mContext,AimsicdService.class);
+  mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+  loadEntries();
   String mapTypePref=getResources().getString(R.string.pref_map_type_key);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   if (prefs.contains(mapTypePref)) {

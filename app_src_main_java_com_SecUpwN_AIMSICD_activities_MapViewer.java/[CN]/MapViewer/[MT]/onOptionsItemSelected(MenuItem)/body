@@ -9,18 +9,18 @@ case R.id.get_opencellid:
 Helpers.sendMsg(this,"Contacting OpenCellID.org for data...");
 Location mLocation=mMap.getMyLocation();
 if (mLocation != null) {
-  getOpenCellData(mLocation.getLatitude(),mLocation.getLongitude());
+  Helpers.getOpenCellData(mContext,mLocation.getLatitude(),mLocation.getLongitude());
 }
  else if (loc != null) {
-  getOpenCellData(loc.latitude,loc.longitude);
+  Helpers.getOpenCellData(mContext,loc.latitude,loc.longitude);
 }
  else {
-  double[] lastKnown=getLastLocation();
+  Location lastKnown=mAimsicdService.lastKnownLocation();
   if (lastKnown != null) {
-    getOpenCellData(lastKnown[0],lastKnown[1]);
+    Helpers.getOpenCellData(mContext,lastKnown.getLatitude(),lastKnown.getLongitude());
   }
  else {
-    Helpers.sendMsg(this,"Error finding your location!");
+    Helpers.sendMsg(this,"Unable to determine your location!");
   }
 }
 return true;

@@ -20,12 +20,12 @@ case R.id.export_database:
 dbHelper.exportDB();
 return true;
 case R.id.update_opencelldata:
-double[] loc=mAimsicdService.getLastLocation();
-if (loc[0] != 0.0 && loc[1] != 0.0) {
-getOpenCellData(loc[0],loc[1]);
+Location loc=mAimsicdService.lastKnownLocation();
+if (loc != null) {
+Helpers.getOpenCellData(mContext,loc.getLatitude(),loc.getLongitude());
 }
  else {
-Helpers.sendMsg(mContext,"Unable to determine your last location, enable Location Services (GPS) and try again.");
+Helpers.sendMsg(mContext,"Unable to determine your last location, enable Location Services and try again.");
 }
 return true;
 case R.id.app_exit:

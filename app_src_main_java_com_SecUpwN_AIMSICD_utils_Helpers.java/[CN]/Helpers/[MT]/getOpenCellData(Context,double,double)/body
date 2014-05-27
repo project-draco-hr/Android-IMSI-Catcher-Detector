@@ -1,0 +1,16 @@
+{
+  if (Helpers.isNetAvailable(context)) {
+    double earthRadius=6371.01;
+    GeoLocation currentLoc=GeoLocation.fromDegrees(lat,lng);
+    GeoLocation[] boundingCoords=currentLoc.boundingCoordinates(100,earthRadius);
+    String boundParameter;
+    boundParameter=String.valueOf(boundingCoords[0].getLatitudeInDegrees()) + "," + String.valueOf(boundingCoords[0].getLongitudeInDegrees())+ ","+ String.valueOf(boundingCoords[1].getLatitudeInDegrees())+ ","+ String.valueOf(boundingCoords[1].getLongitudeInDegrees());
+    String urlString="http://www.opencellid.org/cell/getInArea?key=24c66165-9748-4384-ab7c-172e3f533056" + "&BBOX=" + boundParameter + "&format=csv";
+    new RequestTask(context,RequestTask.OPEN_CELL_ID_REQUEST).execute(urlString);
+  }
+ else {
+    final AlertDialog.Builder builder=new AlertDialog.Builder(context);
+    builder.setTitle(R.string.no_network_connection_title).setMessage(R.string.no_network_connection_message);
+    builder.create().show();
+  }
+}

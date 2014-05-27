@@ -1,0 +1,30 @@
+{
+  super.onPostExecute(result);
+switch (mType) {
+case OPEN_CELL_ID_REQUEST:
+    if (result != null) {
+      if (Helpers.isSdWritable()) {
+        try {
+          File dir=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/");
+          if (!dir.exists()) {
+            dir.mkdirs();
+          }
+          String fileName=Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/opencellid.csv";
+          File file=new File(dir,"opencellid.csv");
+          FileOutputStream fOut=new FileOutputStream(file);
+          OutputStreamWriter myOutWriter=new OutputStreamWriter(fOut);
+          myOutWriter.append(result);
+          myOutWriter.close();
+          fOut.close();
+          mDbAdapter=new AIMSICDDbAdapter(mContext);
+          mDbAdapter.open();
+          mDbAdapter.updateOpenCellID();
+        }
+ catch (        Exception e) {
+          Log.e("AIMSICD","RequestTask() write OpenCellID response - " + e.getMessage());
+        }
+      }
+    }
+  break;
+}
+}
