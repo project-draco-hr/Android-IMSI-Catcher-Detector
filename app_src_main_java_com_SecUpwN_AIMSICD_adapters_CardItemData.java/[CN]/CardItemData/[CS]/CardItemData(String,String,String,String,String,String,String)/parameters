@@ -4,3 +4,4 @@ String net
 String lat
 String lng
 String signal
+String recordId

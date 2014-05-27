@@ -5,4 +5,5 @@
   mLat=lat;
   mLng=lng;
   mSignal=signal;
+  mRecordId=recordId;
 }

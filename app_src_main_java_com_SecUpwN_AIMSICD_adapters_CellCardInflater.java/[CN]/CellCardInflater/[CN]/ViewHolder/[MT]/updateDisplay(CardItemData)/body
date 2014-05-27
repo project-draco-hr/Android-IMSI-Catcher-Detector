@@ -5,4 +5,5 @@
   mLat.setText(item.getLat());
   mLng.setText(item.getLng());
   mSignal.setText(item.getSignal());
+  mRecordId.setText(item.getRecordId());
 }

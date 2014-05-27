@@ -6,3 +6,4 @@ String lat
 String lng
 String avgSigStr
 String samples
+String recordId

@@ -3,4 +3,5 @@
   mMcc=mcc;
   mLat=lat;
   mLng=lng;
+  mRecordId=recordId;
 }

@@ -7,4 +7,5 @@
   mLng.setText(item.getLng());
   mAvgSigStr.setText(item.getAvgSigStr());
   mSamples.setText(item.getSamples());
+  mRecordId.setText(item.getRecordId());
 }

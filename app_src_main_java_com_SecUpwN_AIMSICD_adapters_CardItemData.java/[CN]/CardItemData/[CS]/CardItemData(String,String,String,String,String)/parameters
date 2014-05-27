@@ -2,3 +2,4 @@ String country
 String mcc
 String lat
 String lng
+String recordId

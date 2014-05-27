@@ -6,5 +6,6 @@
   mLat=(TextView)mRootView.findViewById(R.id.lat);
   mLng=(TextView)mRootView.findViewById(R.id.lng);
   mSignal=(TextView)mRootView.findViewById(R.id.signal);
+  mRecordId=(TextView)mRootView.findViewById(R.id.record_id);
   rootView.setTag(this);
 }

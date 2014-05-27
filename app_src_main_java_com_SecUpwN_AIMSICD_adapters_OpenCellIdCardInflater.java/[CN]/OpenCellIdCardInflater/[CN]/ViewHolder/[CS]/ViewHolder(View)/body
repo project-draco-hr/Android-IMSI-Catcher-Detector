@@ -8,5 +8,6 @@
   mLng=(TextView)mRootView.findViewById(R.id.lng);
   mAvgSigStr=(TextView)mRootView.findViewById(R.id.avgSigStr);
   mSamples=(TextView)mRootView.findViewById(R.id.samples);
+  mRecordId=(TextView)mRootView.findViewById(R.id.record_id);
   rootView.setTag(this);
 }
