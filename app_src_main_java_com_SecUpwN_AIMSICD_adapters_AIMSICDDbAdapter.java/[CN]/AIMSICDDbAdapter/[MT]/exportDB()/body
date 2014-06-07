@@ -1,13 +1,14 @@
 {
   try {
-    export(LOCATION_TABLE);
-    export(CELL_TABLE);
-    export(OPENCELLID_TABLE);
+    for (    String table : mTables) {
+      export(table);
+    }
     final AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
     builder.setTitle(R.string.database_export_successful).setMessage("Database tables exported succesfully to:\n" + FOLDER);
     builder.create().show();
   }
  catch (  Exception ioe) {
-    Log.e(TAG,"exportDB() " + ioe.getMessage());
+    Helpers.sendMsg(mContext,"Error exporting database tables");
+    Log.e(TAG,"exportDB() " + ioe);
   }
 }

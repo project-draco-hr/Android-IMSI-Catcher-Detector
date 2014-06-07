@@ -23,17 +23,28 @@ case "Default MCC Locations":
       lv.setAdapter(adapter);
       break;
     }
-default :
+case "Silent Sms":
 {
-    BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new CellCardInflater());
+    BaseInflaterAdapter<SilentSmsCardData> adapter=new BaseInflaterAdapter<>(new SilentSmsCardInflater());
     int count=tableData.getCount();
     while (tableData.moveToNext()) {
-      CardItemData data=new CardItemData("CellID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"Network Type: " + tableData.getString(2),"Latitude: " + tableData.getString(3),"Longitude: " + tableData.getString(4),"Signal Strength: " + tableData.getString(5),"" + (tableData.getPosition() + 1) + " / "+ count);
+      SilentSmsCardData data=new SilentSmsCardData("Address: " + tableData.getString(0),"Display Address: " + tableData.getString(1),"Message Class: " + tableData.getString(2),"Service Centre: " + tableData.getString(3),"Message: " + tableData.getString(4),tableData.getInt(5));
       adapter.addItem(data,false);
     }
     lv.setAdapter(adapter);
     break;
   }
+default :
+{
+  BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new CellCardInflater());
+  int count=tableData.getCount();
+  while (tableData.moveToNext()) {
+    CardItemData data=new CardItemData("CellID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"Network Type: " + tableData.getString(2),"Latitude: " + tableData.getString(3),"Longitude: " + tableData.getString(4),"Signal Strength: " + tableData.getString(5),"" + (tableData.getPosition() + 1) + " / "+ count);
+    adapter.addItem(data,false);
+  }
+  lv.setAdapter(adapter);
+  break;
+}
 }
 lv.setVisibility(View.VISIBLE);
 }

@@ -16,8 +16,11 @@ case R.id.preferences:
 intent=new Intent(this,PrefActivity.class);
 startActivity(intent);
 return true;
-case R.id.export_database:
+case R.id.backup_database:
 dbHelper.exportDB();
+return true;
+case R.id.restore_database:
+new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
 return true;
 case R.id.update_opencelldata:
 Location loc=mAimsicdService.lastKnownLocation();

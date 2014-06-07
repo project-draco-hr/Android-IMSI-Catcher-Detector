@@ -13,9 +13,13 @@
     Cursor c=mDb.rawQuery("SELECT * FROM " + tableName,new String[0]);
     csvWrite.writeNext(c.getColumnNames());
     String[] rowData=new String[c.getColumnCount()];
+    int size=c.getColumnCount();
+    AIMSICD.mProgressBar.setProgress(0);
+    AIMSICD.mProgressBar.setMax(size);
     while (c.moveToNext()) {
-      for (int i=0; i < c.getColumnCount(); i++) {
+      for (int i=0; i < size; i++) {
         rowData[i]=c.getString(i);
+        AIMSICD.mProgressBar.setProgress(i);
       }
       csvWrite.writeNext(rowData);
     }
@@ -24,6 +28,9 @@
   }
  catch (  Exception e) {
     Log.e(TAG,"Error exporting table " + tableName + " "+ e);
+  }
+ finally {
+    AIMSICD.mProgressBar.setProgress(0);
   }
   Log.i(TAG,"exporting database complete");
 }

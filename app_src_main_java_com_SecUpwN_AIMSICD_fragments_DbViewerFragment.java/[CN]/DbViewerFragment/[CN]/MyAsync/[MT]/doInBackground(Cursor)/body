@@ -9,6 +9,8 @@ case "OpenCellID Data":
 return mDb.getOpenCellIDData();
 case "Default MCC Locations":
 return mDb.getDefaultMccLocationData();
+case "Silent Sms":
+return mDb.getSilentSmsData();
 }
 return null;
 }

@@ -1,0 +1,3 @@
+{
+  return mDb.query(SILENT_SMS_TABLE,new String[]{"Address","Display","ServiceCtr","Message","Timestamp"},null,null,"Timestamp DESC",null,null);
+}

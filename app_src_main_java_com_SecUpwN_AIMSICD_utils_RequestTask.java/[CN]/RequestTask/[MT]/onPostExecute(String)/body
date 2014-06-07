@@ -9,16 +9,15 @@ case OPEN_CELL_ID_REQUEST:
           if (!dir.exists()) {
             dir.mkdirs();
           }
-          String fileName=Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/opencellid.csv";
           File file=new File(dir,"opencellid.csv");
           FileOutputStream fOut=new FileOutputStream(file);
           OutputStreamWriter myOutWriter=new OutputStreamWriter(fOut);
           myOutWriter.append(result);
           myOutWriter.close();
           fOut.close();
-          mDbAdapter=new AIMSICDDbAdapter(mContext);
           mDbAdapter.open();
           mDbAdapter.updateOpenCellID();
+          mDbAdapter.close();
         }
  catch (        Exception e) {
           Log.e("AIMSICD","RequestTask() write OpenCellID response - " + e.getMessage());
@@ -26,5 +25,15 @@ case OPEN_CELL_ID_REQUEST:
       }
     }
   break;
+case RESTORE_DATABASE:
+if (result != null) {
+  if (result.equals("Successful")) {
+    Helpers.sendMsg(mContext,"Restore database completed successfully");
+  }
+ else {
+    Helpers.sendMsg(mContext,"Error restoring database");
+  }
+}
+break;
 }
 }

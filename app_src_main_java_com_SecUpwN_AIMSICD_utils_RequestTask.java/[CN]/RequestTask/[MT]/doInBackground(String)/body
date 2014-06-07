@@ -1,5 +1,5 @@
 {
-  String responseString=null;
+  String responseString="";
 switch (mType) {
 case OPEN_CELL_ID_REQUEST:
     HttpClient httpclient=new DefaultHttpClient();
@@ -20,6 +20,11 @@ try {
 }
  catch (IOException e) {
 }
+break;
+case RESTORE_DATABASE:
+mDbAdapter.open();
+if (mDbAdapter.importDB()) responseString="Successful";
+mDbAdapter.close();
 break;
 }
 return responseString;

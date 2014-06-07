@@ -4,7 +4,11 @@
   try {
     CSVReader csvReader=new CSVReader(new FileReader(file));
     List<String[]> csvCellID=csvReader.readAll();
-    for (int i=1; i < csvCellID.size(); i++) {
+    int size=csvCellID.size();
+    AIMSICD.mProgressBar.setProgress(0);
+    AIMSICD.mProgressBar.setMax(size);
+    for (int i=1; i < size; i++) {
+      AIMSICD.mProgressBar.setProgress(i);
       long result=insertOpenCell(Double.parseDouble(csvCellID.get(i)[0]),Double.parseDouble(csvCellID.get(i)[1]),Integer.parseInt(csvCellID.get(i)[2]),Integer.parseInt(csvCellID.get(i)[3]),Integer.parseInt(csvCellID.get(i)[4]),Integer.parseInt(csvCellID.get(i)[5]),Integer.parseInt(csvCellID.get(i)[6]),Integer.parseInt(csvCellID.get(i)[7]));
       if (result == -1) {
         Log.e(TAG,"Error inserting OpenCellID database value");
@@ -13,5 +17,8 @@
   }
  catch (  Exception e) {
     Log.e(TAG,"Error parsing OpenCellID data - " + e.getMessage());
+  }
+ finally {
+    AIMSICD.mProgressBar.setProgress(0);
   }
 }

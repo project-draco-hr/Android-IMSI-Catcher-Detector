@@ -1,0 +1,17 @@
+{
+  View view=inflater.inflate(R.layout.sms_fragment,container,false);
+  if (view != null) {
+    ListView lv=(ListView)view.findViewById(R.id.list_view);
+    mDbHelper.open();
+    Cursor smsData=mDbHelper.getSilentSmsData();
+    BaseInflaterAdapter<SilentSmsCardData> adapter=new BaseInflaterAdapter<>(new SilentSmsCardInflater());
+    while (smsData.moveToNext()) {
+      SilentSmsCardData data=new SilentSmsCardData(smsData.getString(0),smsData.getString(1),smsData.getString(2),smsData.getString(3),smsData.getString(4),smsData.getInt(5));
+      adapter.addItem(data,false);
+    }
+    mDbHelper.close();
+    lv.setAdapter(adapter);
+    lv.setVisibility(View.VISIBLE);
+  }
+  return view;
+}

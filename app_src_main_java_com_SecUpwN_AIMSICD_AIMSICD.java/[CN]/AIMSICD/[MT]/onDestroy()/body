@@ -4,10 +4,11 @@
     unbindService(mConnection);
     mBound=false;
   }
-  final String KEY_KILL_SERVICE=mContext.getString(R.string.pref_persistservice_key);
-  boolean persistService=prefs.getBoolean(KEY_KILL_SERVICE,true);
+  final String PERSIST_SERVICE=mContext.getString(R.string.pref_persistservice_key);
+  boolean persistService=prefs.getBoolean(PERSIST_SERVICE,false);
   if (!persistService) {
-    Intent intent=new Intent(this,AimsicdService.class);
+    Intent intent=new Intent(mContext,AimsicdService.class);
     stopService(intent);
   }
+  mContext.unregisterReceiver(mMessageReceiver);
 }

@@ -4,9 +4,11 @@
   Intent intent=new Intent(this,AimsicdService.class);
   startService(intent);
   bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
-  MyFragmentPagerAdapter myFragmentPagerAdapter=new MyFragmentPagerAdapter(getSupportFragmentManager());
+  fm=getSupportFragmentManager();
+  adapterViewPager=new MyPagerAdapter(fm);
   ViewPager viewPager=(ViewPager)findViewById(R.id.viewPager);
-  viewPager.setAdapter(myFragmentPagerAdapter);
+  viewPager.setAdapter(adapterViewPager);
+  mProgressBar=(ProgressBar)findViewById(R.id.progressBar);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   mDisclaimerAccepted=getResources().getString(R.string.disclaimer_accepted);
   if (!prefs.getBoolean(mDisclaimerAccepted,false)) {
@@ -34,4 +36,5 @@
     disclaimerAlert.show();
   }
   dbHelper=new AIMSICDDbAdapter(mContext);
+  mContext.registerReceiver(mMessageReceiver,new IntentFilter(AimsicdService.SILENT_SMS));
 }
