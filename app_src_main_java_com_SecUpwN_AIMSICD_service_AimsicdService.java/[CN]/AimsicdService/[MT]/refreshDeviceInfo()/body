@@ -27,7 +27,6 @@ if (cdmaCellLocation != null) {
 mCellID=cdmaCellLocation.getBaseStationId();
 mLac=cdmaCellLocation.getNetworkId();
 mSID=getSID();
-updateCdmaLocation();
 }
 break;
 }

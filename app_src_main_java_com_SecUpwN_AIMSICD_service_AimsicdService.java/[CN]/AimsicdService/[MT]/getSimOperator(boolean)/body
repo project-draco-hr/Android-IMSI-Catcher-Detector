@@ -13,5 +13,6 @@
       Log.e(TAG,"getSimOperator " + e);
     }
   }
+  if (mSimOperator.isEmpty())   mSimOperator="N/A";
   return mSimOperator;
 }

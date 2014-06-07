@@ -13,5 +13,6 @@
       Log.e(TAG,"getSimCountry " + e);
     }
   }
+  if (mSimCountry.isEmpty())   mSimCountry="N/A";
   return mSimCountry;
 }

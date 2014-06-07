@@ -69,7 +69,6 @@ mMarkerMap.put(marker,new MarkerData("" + cellID,"" + loc.latitude,"" + loc.long
 }
 }
  while (c.moveToNext());
-c.close();
 }
  else {
 Helpers.msgShort(this,"No tracked locations found to overlay on map.");
@@ -110,4 +109,5 @@ mMarkerMap.put(marker,new MarkerData("" + cellID,"" + loc.latitude,"" + loc.long
 }
  while (c.moveToNext());
 }
+mDbHelper.close();
 }

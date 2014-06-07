@@ -57,7 +57,12 @@ icon=R.drawable.white_alarm;
 break;
 }
 tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
-contentText="ALERT!! Threat Detected";
+if (mFemtoDetected) {
+contentText="ALERT!! FemtoCell Connection Threat Detected";
+}
+ else if (mClassZeroSmsDetected) {
+contentText="ALERT!! Class Zero Hidden SMS Intercepted";
+}
 break;
 default :
 icon=R.drawable.sense_idle;
