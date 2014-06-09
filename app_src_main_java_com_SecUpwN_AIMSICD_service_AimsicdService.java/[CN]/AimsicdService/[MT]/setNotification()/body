@@ -3,7 +3,7 @@
   String contentText="Phone Type " + getPhoneType(false);
   String iconType=prefs.getString(this.getString(R.string.pref_ui_icons_key),"flat");
   int status;
-  if (mFemtoDetected) {
+  if (mFemtoDetected || mClassZeroSmsDetected) {
     status=3;
   }
  else   if (TrackingFemtocell || TrackingCell) {
@@ -61,7 +61,7 @@ if (mFemtoDetected) {
 contentText="ALERT!! FemtoCell Connection Threat Detected";
 }
  else if (mClassZeroSmsDetected) {
-contentText="ALERT!! Class Zero Hidden SMS Intercepted";
+contentText="ALERT!! Class Zero Silent SMS Intercepted";
 }
 break;
 default :
