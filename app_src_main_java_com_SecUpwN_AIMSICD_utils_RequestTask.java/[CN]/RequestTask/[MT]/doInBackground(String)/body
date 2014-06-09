@@ -1,31 +1,43 @@
 {
-  String responseString="";
 switch (mType) {
 case OPEN_CELL_ID_REQUEST:
-    HttpClient httpclient=new DefaultHttpClient();
-  HttpResponse response;
-try {
-  response=httpclient.execute(new HttpGet(uri[0]));
-  StatusLine statusLine=response.getStatusLine();
-  if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-    ByteArrayOutputStream out=new ByteArrayOutputStream();
-    response.getEntity().writeTo(out);
-    out.close();
-    responseString=out.toString();
-  }
- else {
-    response.getEntity().getContent().close();
-    throw new IOException(statusLine.getReasonPhrase());
-  }
-}
- catch (IOException e) {
-}
-break;
+    try {
+      URL url=new URL(uri[0]);
+      HttpURLConnection urlConnection=(HttpURLConnection)url.openConnection();
+      urlConnection.setRequestMethod("GET");
+      urlConnection.setDoOutput(true);
+      urlConnection.connect();
+      File dir=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/");
+      if (!dir.exists()) {
+        dir.mkdirs();
+      }
+      File file=new File(dir,"opencellid.csv");
+      FileOutputStream fileOutput=new FileOutputStream(file);
+      InputStream inputStream=urlConnection.getInputStream();
+      int totalSize=urlConnection.getContentLength();
+      AIMSICD.mProgressBar.setMax(totalSize);
+      int downloadedSize=0;
+      byte[] buffer=new byte[1024];
+      int bufferLength=0;
+      while ((bufferLength=inputStream.read(buffer)) > 0) {
+        fileOutput.write(buffer,0,bufferLength);
+        downloadedSize+=bufferLength;
+        AIMSICD.mProgressBar.setProgress(downloadedSize);
+      }
+      fileOutput.close();
+    }
+ catch (    MalformedURLException e) {
+      return null;
+    }
+catch (    IOException e) {
+      return null;
+    }
+  break;
 case RESTORE_DATABASE:
 mDbAdapter.open();
-if (mDbAdapter.importDB()) responseString="Successful";
+if (mDbAdapter.importDB()) return "Successful";
 mDbAdapter.close();
 break;
 }
-return responseString;
+return null;
 }
