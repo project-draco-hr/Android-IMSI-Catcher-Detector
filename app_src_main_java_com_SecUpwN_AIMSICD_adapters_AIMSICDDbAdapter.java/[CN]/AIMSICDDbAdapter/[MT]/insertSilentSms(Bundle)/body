@@ -2,8 +2,8 @@
   ContentValues smsValues=new ContentValues();
   smsValues.put("Address",bundle.getString("address"));
   smsValues.put("Display",bundle.getString("display_address"));
+  smsValues.put("Class",bundle.getString("class"));
   smsValues.put("ServiceCtr",bundle.getString("service_centre"));
   smsValues.put("Message",bundle.getString("message"));
-  smsValues.put("Timestamp",bundle.getInt("timestamp"));
   return mDb.insert(SILENT_SMS_TABLE,null,smsValues);
 }

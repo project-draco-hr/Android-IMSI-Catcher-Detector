@@ -1,5 +1,5 @@
 {
-  String SMS_DATABASE_CREATE="create table " + SILENT_SMS_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Address VARCHAR, Display VARCHAR, "+ "ServiceCtr VARCHAR, Message VARCHAR, Timestamp INTEGER);";
+  String SMS_DATABASE_CREATE="create table " + SILENT_SMS_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Address VARCHAR, Display VARCHAR, Class VARCHAR, "+ "ServiceCtr VARCHAR, Message VARCHAR, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
   database.execSQL(SMS_DATABASE_CREATE);
   String LOC_DATABASE_CREATE="create table " + LOCATION_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Lac INTEGER, CellID INTEGER, "+ "Net VARCHAR, Lat VARCHAR, Lng VARCHAR, Signal INTEGER, Connection VARCHAR, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
   database.execSQL(LOC_DATABASE_CREATE);

@@ -32,7 +32,6 @@ bundle.putString("display_address",String.valueOf(records.get(i)[2]));
 bundle.putString("message_class",String.valueOf(records.get(i)[3]));
 bundle.putString("service_centre",String.valueOf(records.get(i)[4]));
 bundle.putString("message",String.valueOf(records.get(i)[5]));
-bundle.putInt("timestamp",Integer.parseInt(records.get(i)[6]));
 insertSilentSms(bundle);
 break;
 }

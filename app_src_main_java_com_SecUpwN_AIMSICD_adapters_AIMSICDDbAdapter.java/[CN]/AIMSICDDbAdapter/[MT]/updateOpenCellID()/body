@@ -22,9 +22,11 @@
         }
       }
     }
+    return true;
   }
  catch (  Exception e) {
     Log.e(TAG,"Error parsing OpenCellID data - " + e.getMessage());
+    return false;
   }
  finally {
     AIMSICD.mProgressBar.setProgress(0);
