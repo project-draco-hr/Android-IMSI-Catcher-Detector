@@ -3,6 +3,7 @@
   prefs.unregisterOnSharedPreferenceChangeListener(this);
   cancelNotification();
   dbHelper.close();
+  mContext.unregisterReceiver(mMessageReceiver);
   if (mRequestExecutor != null) {
     mRequestExecutor.stop();
     mRequestExecutor=null;

@@ -1,6 +1,7 @@
 {
   tm=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
   lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+  mContext=getApplicationContext();
   prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   prefs.registerOnSharedPreferenceChangeListener(this);
   loadPreferences();
@@ -23,5 +24,6 @@
       mHandler=new Handler(l,new MyHandler());
     }
   }
+  mContext.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
   Log.i(TAG,"Service launched successfully");
 }
