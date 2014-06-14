@@ -3,4 +3,4 @@ String displayAddress
 String messageClass
 String serviceCentre
 String messageBody
-int timestamp
+long timestamp

@@ -35,6 +35,4 @@
     AlertDialog disclaimerAlert=disclaimer.create();
     disclaimerAlert.show();
   }
-  dbHelper=new AIMSICDDbAdapter(mContext);
-  mContext.registerReceiver(mMessageReceiver,new IntentFilter(AimsicdService.SILENT_SMS));
 }

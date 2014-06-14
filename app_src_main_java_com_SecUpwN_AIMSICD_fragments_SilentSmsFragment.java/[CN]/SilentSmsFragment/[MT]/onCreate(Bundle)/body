@@ -1,4 +1,0 @@
-{
-  super.onCreate(savedInstance);
-  mDbHelper=new AIMSICDDbAdapter(getActivity().getBaseContext());
-}

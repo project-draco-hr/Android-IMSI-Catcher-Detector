@@ -10,5 +10,4 @@
     Intent intent=new Intent(mContext,AimsicdService.class);
     stopService(intent);
   }
-  mContext.unregisterReceiver(mMessageReceiver);
 }
