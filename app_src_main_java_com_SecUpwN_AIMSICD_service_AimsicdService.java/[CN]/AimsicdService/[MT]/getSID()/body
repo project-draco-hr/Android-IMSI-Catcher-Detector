@@ -1,0 +1,10 @@
+{
+  CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)tm.getCellLocation();
+  if (cdmaCellLocation != null) {
+    mSID=cdmaCellLocation.getSystemId();
+  }
+ else {
+    mSID=-1;
+  }
+  return mSID;
+}

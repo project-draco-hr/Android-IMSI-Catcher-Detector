@@ -1,0 +1,9 @@
+{
+  mCellID=cellID;
+  mLac=lac;
+  mNet=net;
+  mLat=lat;
+  mLng=lng;
+  mSignal=signal;
+  mRecordId=recordId;
+}

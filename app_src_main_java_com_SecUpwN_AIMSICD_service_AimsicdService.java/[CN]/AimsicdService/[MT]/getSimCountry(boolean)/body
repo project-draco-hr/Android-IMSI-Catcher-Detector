@@ -1,0 +1,18 @@
+{
+  if (mSimCountry.isEmpty() || force) {
+    try {
+      if (tm.getSimState() == TelephonyManager.SIM_STATE_READY) {
+        mSimCountry=(tm.getSimCountryIso() != null) ? tm.getSimCountryIso() : "N/A";
+      }
+ else {
+        mSimCountry="N/A";
+      }
+    }
+ catch (    Exception e) {
+      mSimCountry="N/A";
+      Log.e(TAG,"getSimCountry " + e);
+    }
+  }
+  if (mSimCountry.isEmpty())   mSimCountry="N/A";
+  return mSimCountry;
+}

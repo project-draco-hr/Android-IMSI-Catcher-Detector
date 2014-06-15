@@ -1,0 +1,79 @@
+{
+  String tickerText;
+  String contentText="Phone Type " + getPhoneType(false);
+  String iconType=prefs.getString(this.getString(R.string.pref_ui_icons_key),"flat");
+  int status;
+  if (mFemtoDetected || mClassZeroSmsDetected) {
+    status=3;
+  }
+ else   if (TrackingFemtocell || TrackingCell) {
+    status=2;
+    if (TrackingFemtocell)     contentText="FemtoCell Detection Active";
+ else     contentText="Cell Tracking Active";
+  }
+ else {
+    status=1;
+  }
+  int icon=R.drawable.sense_idle;
+switch (status) {
+case 1:
+switch (iconType) {
+case "flat":
+      icon=R.drawable.flat_idle;
+    break;
+case "sense":
+  icon=R.drawable.sense_idle;
+break;
+case "white":
+icon=R.drawable.white_idle;
+break;
+}
+tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
+break;
+case 2:
+switch (iconType) {
+case "flat":
+icon=R.drawable.flat_good;
+break;
+case "sense":
+icon=R.drawable.sense_good;
+break;
+case "white":
+icon=R.drawable.white_good;
+break;
+}
+tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good No Threats Detected";
+break;
+case 3:
+switch (iconType) {
+case "flat":
+icon=R.drawable.flat_alarm;
+break;
+case "sense":
+icon=R.drawable.sense_alarm;
+break;
+case "white":
+icon=R.drawable.white_alarm;
+break;
+}
+tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
+if (mFemtoDetected) {
+contentText="ALERT!! FemtoCell Connection Threat Detected";
+}
+ else if (mClassZeroSmsDetected) {
+contentText="ALERT!! Class Zero Silent SMS Intercepted";
+}
+break;
+default :
+icon=R.drawable.sense_idle;
+tickerText=getResources().getString(R.string.app_name);
+break;
+}
+Intent notificationIntent=new Intent(mContext,AIMSICD.class);
+notificationIntent.putExtra("silent_sms",mClassZeroSmsDetected);
+notificationIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_FROM_BACKGROUND);
+PendingIntent contentIntent=PendingIntent.getActivity(mContext,NOTIFICATION_ID,notificationIntent,PendingIntent.FLAG_CANCEL_CURRENT);
+Notification mBuilder=new NotificationCompat.Builder(this).setSmallIcon(icon).setTicker(tickerText).setContentTitle(this.getResources().getString(R.string.app_name)).setContentText(contentText).setOngoing(true).setAutoCancel(false).setContentIntent(contentIntent).build();
+NotificationManager mNotificationManager=(NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
+mNotificationManager.notify(NOTIFICATION_ID,mBuilder);
+}

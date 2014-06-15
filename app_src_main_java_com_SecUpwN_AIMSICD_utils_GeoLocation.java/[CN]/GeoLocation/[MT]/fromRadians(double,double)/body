@@ -1,0 +1,9 @@
+{
+  GeoLocation result=new GeoLocation();
+  result.radLat=latitude;
+  result.radLon=longitude;
+  result.degLat=Math.toDegrees(latitude);
+  result.degLon=Math.toDegrees(longitude);
+  result.checkBounds();
+  return result;
+}

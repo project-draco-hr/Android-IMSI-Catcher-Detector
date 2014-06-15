@@ -1,0 +1,19 @@
+{
+  if (cellID != -1) {
+    ContentValues cellValues=new ContentValues();
+    cellValues.put("Lac",lac);
+    cellValues.put("CellID",cellID);
+    cellValues.put("Net",netType);
+    cellValues.put("Lat",latitude);
+    cellValues.put("Lng",longitude);
+    cellValues.put("Signal",signalInfo);
+    cellValues.put("Connection",cellInfo);
+    cellValues.put("Country",simCountry);
+    cellValues.put("Operator",simOperator);
+    cellValues.put("OperatorName",simOperatorName);
+    if (!cellExists(cellID,latitude,longitude,signalInfo)) {
+      return mDb.insert(CELL_TABLE,null,cellValues);
+    }
+  }
+  return 0;
+}

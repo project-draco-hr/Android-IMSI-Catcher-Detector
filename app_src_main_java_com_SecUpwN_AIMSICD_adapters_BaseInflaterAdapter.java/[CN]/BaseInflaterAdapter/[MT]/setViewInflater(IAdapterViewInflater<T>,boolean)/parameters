@@ -1,0 +1,2 @@
+IAdapterViewInflater<T> viewInflater
+boolean notifyChange

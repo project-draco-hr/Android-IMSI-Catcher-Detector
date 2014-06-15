@@ -1,0 +1,13 @@
+{
+  if (s != null) {
+    if (IsConnectedToCdmaFemto(s)) {
+      Helpers.sendMsg(this,"ALERT!! Femtocell Connection Detected!!");
+      mFemtoDetected=true;
+      setNotification();
+    }
+ else {
+      mFemtoDetected=false;
+      setNotification();
+    }
+  }
+}

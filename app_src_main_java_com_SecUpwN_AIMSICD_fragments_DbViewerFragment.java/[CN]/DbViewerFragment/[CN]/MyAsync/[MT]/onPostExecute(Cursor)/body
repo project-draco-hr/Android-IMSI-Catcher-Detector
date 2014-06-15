@@ -1,0 +1,5 @@
+{
+  super.onPostExecute(result);
+  BuildTable(result);
+  mDb.close();
+}

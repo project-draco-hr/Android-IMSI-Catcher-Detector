@@ -1,0 +1,11 @@
+{
+  mCellID.setText(item.getCellID());
+  mLac.setText(item.getLac());
+  mMcc.setText(item.getMcc());
+  mMnc.setText(item.getMnc());
+  mLat.setText(item.getLat());
+  mLng.setText(item.getLng());
+  mAvgSigStr.setText(item.getAvgSigStr());
+  mSamples.setText(item.getSamples());
+  mRecordId.setText(item.getRecordId());
+}

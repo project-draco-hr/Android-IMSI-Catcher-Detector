@@ -1,0 +1,3 @@
+{
+  return dumpHexString(array,0,array.length);
+}

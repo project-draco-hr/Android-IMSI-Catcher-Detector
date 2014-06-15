@@ -1,0 +1,4 @@
+int cellID
+double lat
+double lng
+int signal

@@ -1,0 +1,24 @@
+{
+  Location location=lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+  if (location == null || (location.getLatitude() == 0.0 && location.getLongitude() == 0.0)) {
+    location=lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+  }
+  if (location != null)   location=(isBetterLocation(location,mLastLocation) ? location : mLastLocation);
+ else {
+    CellLocation cellLocation=tm.getCellLocation();
+    if (cellLocation != null) {
+switch (mPhoneID) {
+case TelephonyManager.PHONE_TYPE_GSM:
+        GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
+      mCellID=gsmCellLocation.getCid();
+    mLac=gsmCellLocation.getLac();
+  break;
+case TelephonyManager.PHONE_TYPE_CDMA:
+CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
+mCellID=cdmaCellLocation.getBaseStationId();
+mLac=cdmaCellLocation.getNetworkId();
+}
+}
+}
+return location;
+}

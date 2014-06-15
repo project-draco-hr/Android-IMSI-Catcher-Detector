@@ -1,0 +1,3 @@
+{
+  return (networkType == TelephonyManager.NETWORK_TYPE_EVDO_0) || (networkType == TelephonyManager.NETWORK_TYPE_EVDO_A) || (networkType == TelephonyManager.NETWORK_TYPE_EVDO_B)|| (networkType == TelephonyManager.NETWORK_TYPE_EHRPD);
+}

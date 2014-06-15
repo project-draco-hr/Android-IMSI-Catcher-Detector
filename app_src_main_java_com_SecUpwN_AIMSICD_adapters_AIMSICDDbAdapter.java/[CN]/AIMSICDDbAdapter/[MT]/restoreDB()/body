@@ -1,0 +1,51 @@
+{
+  try {
+    for (    String table : mTables) {
+      File file=new File(FOLDER + "aimsicd-" + table+ ".csv");
+      if (file.exists()) {
+        List<String[]> records=new ArrayList<>();
+        String next[];
+        CSVReader csvReader=new CSVReader(new FileReader(file));
+        while ((next=csvReader.readNext()) != null) {
+          records.add(next);
+        }
+        if (!records.isEmpty()) {
+          int lines=records.size();
+          AIMSICD.mProgressBar.setMax(lines);
+          AIMSICD.mProgressBar.setProgress(0);
+          for (int i=1; i < lines; i++) {
+            AIMSICD.mProgressBar.setProgress(i);
+switch (table) {
+case CELL_TABLE:
+              insertCell(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]),Double.parseDouble(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),String.valueOf(records.get(i)[7]),String.valueOf(records.get(i)[8]),String.valueOf(records.get(i)[9]),String.valueOf(records.get(i)[10]));
+            break;
+case LOCATION_TABLE:
+          insertLocation(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]),Double.parseDouble(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),String.valueOf(records.get(i)[7]));
+        break;
+case OPENCELLID_TABLE:
+      insertOpenCell(Double.parseDouble(records.get(i)[1]),Double.parseDouble(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]));
+    break;
+case SILENT_SMS_TABLE:
+  Bundle bundle=new Bundle();
+bundle.putString("address",String.valueOf(records.get(i)[1]));
+bundle.putString("display_address",String.valueOf(records.get(i)[2]));
+bundle.putString("message_class",String.valueOf(records.get(i)[3]));
+bundle.putString("service_centre",String.valueOf(records.get(i)[4]));
+bundle.putString("message",String.valueOf(records.get(i)[5]));
+insertSilentSms(bundle);
+break;
+}
+}
+}
+}
+}
+return true;
+}
+ catch (Exception e) {
+Log.e(TAG,"importDB() " + e);
+return false;
+}
+ finally {
+AIMSICD.mProgressBar.setProgress(0);
+}
+}

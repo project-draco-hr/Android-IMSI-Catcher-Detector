@@ -1,0 +1,16 @@
+{
+  final String KEY_UI_ICONS=getBaseContext().getString(R.string.pref_ui_icons_key);
+  final String FEMTO_DECTECTION=getBaseContext().getString(R.string.pref_femto_detection_key);
+  if (key.equals(KEY_UI_ICONS)) {
+    setNotification();
+  }
+ else   if (key.equals(FEMTO_DECTECTION)) {
+    boolean trackFemtoPref=sharedPreferences.getBoolean(this.getString(R.string.pref_femto_detection_key),false);
+    if (trackFemtoPref) {
+      startTrackingFemto();
+    }
+ else {
+      stopTrackingFemto();
+    }
+  }
+}

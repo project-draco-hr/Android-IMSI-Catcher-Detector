@@ -1,0 +1,113 @@
+{
+  int SIGNAL_SIZE_RATIO=15;
+  double dlat;
+  double dlng;
+  int net;
+  int signal;
+  int color;
+  int cellID;
+  int lac;
+  CircleOptions circleOptions;
+  mDbHelper.open();
+  Cursor c=mDbHelper.getCellData();
+  if (c.moveToFirst()) {
+    do {
+      cellID=c.getInt(0);
+      lac=c.getInt(1);
+      net=c.getInt(2);
+      dlat=Double.parseDouble(c.getString(3));
+      dlng=Double.parseDouble(c.getString(4));
+      if (dlat == 0.0 && dlng == 0.0)       continue;
+      signal=c.getInt(5);
+      if (signal <= 0) {
+        signal=20;
+      }
+      if ((dlat != 0.0) || (dlng != 0.0)) {
+        loc=new LatLng(dlat,dlng);
+switch (net) {
+case TelephonyManager.NETWORK_TYPE_UNKNOWN:
+          color=0xF0F8FF;
+        break;
+case TelephonyManager.NETWORK_TYPE_GPRS:
+      color=0xA9A9A9;
+    break;
+case TelephonyManager.NETWORK_TYPE_EDGE:
+  color=0x87CEFA;
+break;
+case TelephonyManager.NETWORK_TYPE_UMTS:
+color=0x7CFC00;
+break;
+case TelephonyManager.NETWORK_TYPE_HSDPA:
+color=0xFF6347;
+break;
+case TelephonyManager.NETWORK_TYPE_HSUPA:
+color=0xFF00FF;
+break;
+case TelephonyManager.NETWORK_TYPE_HSPA:
+color=0x238E6B;
+break;
+case TelephonyManager.NETWORK_TYPE_CDMA:
+color=0x8A2BE2;
+break;
+case TelephonyManager.NETWORK_TYPE_EVDO_0:
+color=0xFF69B4;
+break;
+case TelephonyManager.NETWORK_TYPE_EVDO_A:
+color=0xFFFF00;
+break;
+case TelephonyManager.NETWORK_TYPE_1xRTT:
+color=0x7CFC00;
+break;
+default :
+color=0xF0F8FF;
+break;
+}
+circleOptions=new CircleOptions().center(loc).radius(signal * SIGNAL_SIZE_RATIO).fillColor(color).strokeColor(color).visible(true);
+mMap.addCircle(circleOptions);
+Marker marker=mMap.addMarker(new MarkerOptions().position(loc).draggable(false).title("CellID - " + cellID));
+mMarkerMap.put(marker,new MarkerData("" + cellID,"" + loc.latitude,"" + loc.longitude,"" + lac,"","","",false));
+}
+}
+ while (c.moveToNext());
+}
+ else {
+Helpers.msgShort(this,"No tracked locations found to overlay on map.");
+}
+if (loc != null && (loc.latitude != 0.0 && loc.longitude != 0.0)) {
+CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16).build();
+mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
+}
+ else {
+Location lastLoc=mAimsicdService.lastKnownLocation();
+if (lastLoc.getLatitude() != 0.0 && lastLoc.getLongitude() != 0.0) {
+loc=new LatLng(lastLoc.getLatitude(),lastLoc.getLongitude());
+CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16).build();
+mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
+}
+ else {
+TelephonyManager tm=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+int mcc=Integer.parseInt(tm.getNetworkOperator().substring(0,3));
+double[] d=mDbHelper.getDefaultLocation(mcc);
+loc=new LatLng(d[0],d[1]);
+CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(13).build();
+mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
+}
+}
+c=mDbHelper.getOpenCellIDData();
+if (c.moveToFirst()) {
+do {
+cellID=c.getInt(0);
+dlat=Double.parseDouble(c.getString(4));
+dlng=Double.parseDouble(c.getString(5));
+loc=new LatLng(dlat,dlng);
+lac=c.getInt(1);
+int mcc=c.getInt(2);
+int mnc=c.getInt(3);
+int samples=c.getInt(7);
+Marker marker=mMap.addMarker(new MarkerOptions().position(loc).draggable(false).title("CellID - " + cellID));
+mMarkerMap.put(marker,new MarkerData("" + cellID,"" + loc.latitude,"" + loc.longitude,"" + lac,"" + mcc,"" + mnc,"" + samples,true));
+}
+ while (c.moveToNext());
+}
+mDbHelper.close();
+}

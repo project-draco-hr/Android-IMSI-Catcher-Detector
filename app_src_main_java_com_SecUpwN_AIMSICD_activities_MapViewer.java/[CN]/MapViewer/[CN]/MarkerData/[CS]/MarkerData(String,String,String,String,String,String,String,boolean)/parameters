@@ -1,0 +1,8 @@
+String cell_id
+String latitude
+String longitude
+String local_area_code
+String mobile_country_code
+String mobile_network_code
+String samples_taken
+boolean openCellID_Data

@@ -1,3 +1,0 @@
-{
-  Log.d(LOG_TAG,"[RIL_HOOK_OEM_TESTAPP] " + msg);
-}

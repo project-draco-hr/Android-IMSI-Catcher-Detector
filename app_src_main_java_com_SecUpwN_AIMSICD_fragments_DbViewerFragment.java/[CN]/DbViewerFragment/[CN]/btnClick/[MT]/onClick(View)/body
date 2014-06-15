@@ -1,0 +1,5 @@
+{
+  if (mMadeSelection) {
+    new MyAsync().execute();
+  }
+}

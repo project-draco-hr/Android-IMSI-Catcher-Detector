@@ -1,0 +1,44 @@
+{
+  Integer token=null;
+  byte responseData[]=null;
+  String stringsResponseData[]=null;
+  Exception errorEx=null;
+  try {
+    token=p.readInt();
+    int err=p.readInt();
+    if (DBG)     Log.v(TAG,String.format("processSolicited() token: 0x%X err: %d",token,err));
+    if (err != RIL_CLIENT_ERR_SUCCESS) {
+      throw new RemoteException("remote error " + err);
+    }
+    responseData=p.createByteArray();
+    stringsResponseData=p.createStringArray();
+  }
+ catch (  Exception ex) {
+    errorEx=ex;
+  }
+  if (token == null) {
+    Log.e(TAG,"token is null",errorEx);
+  }
+ else {
+synchronized (this) {
+      Message m=mMessages.remove(token);
+      if (m != null) {
+switch (m.what) {
+case ID_REQUEST_AT_COMMAND:
+case ID_RESPONSE_AT_COMMAND:
+case RIL_REQUEST_OEM_STRINGS:
+          m.obj=new StringsResult(stringsResponseData,errorEx);
+        m.sendToTarget();
+      break;
+default :
+    m.obj=new RawResult(responseData,errorEx);
+  m.sendToTarget();
+}
+}
+ else {
+Log.i(TAG,"Message with token " + token + " not found");
+}
+}
+}
+return RIL_CLIENT_ERR_SUCCESS;
+}

@@ -1,0 +1,25 @@
+{
+  if (mBound) {
+    mAimsicdService.updateNeighbouringCells();
+    Map neighborMap=mAimsicdService.getNeighbouringCells();
+    mNeighbouringTotal.setText(String.valueOf(mAimsicdService.getNeighbouringCellSize()));
+    StringBuilder sb=new StringBuilder();
+    int i=1;
+    if (!neighborMap.isEmpty())     for (    Object key : neighborMap.keySet()) {
+      sb.append(i).append(") LAC-CID: ").append(key).append(" RSSI: ").append(neighborMap.get(key));
+      if (i < neighborMap.size())       sb.append("\n");
+      i++;
+    }
+    mNeighbouringCells.setText(sb);
+    if (neighborMap.isEmpty()) {
+      DetectResult rilStatus=mAimsicdService.getRilExecutorStatus();
+      if (rilStatus.available) {
+        new RequestOemInfoTask().execute();
+      }
+    }
+ else {
+      mNeighbouringTotal.setVisibility(View.VISIBLE);
+      mNeighbouringTotalLabel.setVisibility(View.VISIBLE);
+    }
+  }
+}

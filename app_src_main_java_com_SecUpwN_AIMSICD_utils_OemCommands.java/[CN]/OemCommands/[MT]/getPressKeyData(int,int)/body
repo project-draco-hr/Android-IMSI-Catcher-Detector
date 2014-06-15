@@ -1,0 +1,16 @@
+{
+  try {
+    ByteArrayOutputStream baos=new ByteArrayOutputStream();
+    DataOutputStream dos=new DataOutputStream(baos);
+    dos.writeByte(OEM_SERVM_FUNCTAG);
+    dos.writeByte(OEM_SM_PROCESS_KEY_MESSAGE);
+    dos.writeShort(6);
+    dos.writeByte(keycode);
+    dos.writeByte(query);
+    return baos.toByteArray();
+  }
+ catch (  IOException e) {
+    Log.e(TAG,"",e);
+  }
+  return null;
+}

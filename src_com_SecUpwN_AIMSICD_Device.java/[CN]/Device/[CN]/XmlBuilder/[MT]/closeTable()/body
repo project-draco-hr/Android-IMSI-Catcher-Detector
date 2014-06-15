@@ -1,3 +1,0 @@
-{
-  this.sb.append(TABLE_CLOSE);
-}

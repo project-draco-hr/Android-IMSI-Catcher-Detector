@@ -1,0 +1,31 @@
+{
+switch (item.getItemId()) {
+case R.id.map_preferences:
+    Intent intent=new Intent(this,MapPrefActivity.class);
+  startActivity(intent);
+return true;
+case R.id.get_opencellid:
+{
+Helpers.sendMsg(this,"Contacting OpenCellID.org for data...");
+Location mLocation=mMap.getMyLocation();
+if (mLocation != null && mLocation.hasAccuracy()) {
+  Helpers.getOpenCellData(mContext,mLocation.getLatitude(),mLocation.getLongitude());
+}
+ else if (loc != null) {
+  Helpers.getOpenCellData(mContext,loc.latitude,loc.longitude);
+}
+ else {
+  Location lastKnown=mAimsicdService.lastKnownLocation();
+  if (lastKnown != null) {
+    Helpers.getOpenCellData(mContext,lastKnown.getLatitude(),lastKnown.getLongitude());
+  }
+ else {
+    Helpers.sendMsg(this,"Unable to determine your location!");
+  }
+}
+return true;
+}
+default :
+return super.onOptionsItemSelected(item);
+}
+}

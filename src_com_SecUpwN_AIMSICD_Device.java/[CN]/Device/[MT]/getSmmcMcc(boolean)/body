@@ -1,4 +1,0 @@
-{
-  if (sMmcmcc.isEmpty() || force)   sMmcmcc=tm.getNetworkOperator();
-  return sMmcmcc;
-}

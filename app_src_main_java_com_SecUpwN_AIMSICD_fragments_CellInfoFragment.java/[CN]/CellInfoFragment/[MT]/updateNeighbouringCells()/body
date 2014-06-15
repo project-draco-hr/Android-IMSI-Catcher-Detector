@@ -1,0 +1,13 @@
+{
+  final List<String> list=mAimsicdService.getNeighbours();
+  getActivity().runOnUiThread(new Runnable(){
+    @Override public void run(){
+      if (list != null) {
+        mNeighbouringCells.setText(TextUtils.join("\n",list));
+        mNeighbouringTotal.setVisibility(View.GONE);
+        mNeighbouringTotalLabel.setVisibility(View.GONE);
+      }
+    }
+  }
+);
+}

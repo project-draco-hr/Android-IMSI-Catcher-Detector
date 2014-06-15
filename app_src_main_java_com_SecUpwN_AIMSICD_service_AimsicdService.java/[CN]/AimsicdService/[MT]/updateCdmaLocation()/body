@@ -1,0 +1,19 @@
+{
+  CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)tm.getCellLocation();
+  int Long=cdmaCellLocation.getBaseStationLongitude();
+  int Lat=cdmaCellLocation.getBaseStationLatitude();
+  if (!(Double.isNaN(Long) || Long < -2592000 || Long > 2592000)) {
+    mLongitude=((double)Long) / (3600 * 4);
+  }
+ else {
+    mLongitude=0.0f;
+  }
+  if (!(Double.isNaN(Lat) || Lat < -2592000 || Lat > 2592000)) {
+    mLatitude=((double)Lat) / (3600 * 4);
+  }
+ else {
+    mLatitude=0.0f;
+  }
+  mLastLocation.setLongitude(mLongitude);
+  mLastLocation.setLatitude(mLatitude);
+}

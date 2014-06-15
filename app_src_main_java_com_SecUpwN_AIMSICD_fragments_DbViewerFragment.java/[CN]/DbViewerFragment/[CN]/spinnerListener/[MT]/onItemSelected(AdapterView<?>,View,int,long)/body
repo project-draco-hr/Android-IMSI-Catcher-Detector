@@ -1,0 +1,4 @@
+{
+  mTableSelected=String.valueOf(tblSpinner.getSelectedItem());
+  mMadeSelection=true;
+}

@@ -1,0 +1,8 @@
+{
+  mAddress.setText(item.getAddress());
+  mDisplayAddress.setText(item.getDisplayAddress());
+  mMessageClass.setText(item.getMessageClass());
+  mServiceCentre.setText(item.getServiceCentre());
+  mMessageBody.setText(item.getMessage());
+  mTimestamp.setText(item.getTimestamp());
+}

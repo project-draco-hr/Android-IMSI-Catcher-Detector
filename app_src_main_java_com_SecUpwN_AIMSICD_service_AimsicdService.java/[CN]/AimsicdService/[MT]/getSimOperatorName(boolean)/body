@@ -1,0 +1,17 @@
+{
+  if (mSimOperatorName.isEmpty() || force) {
+    try {
+      if (tm.getSimState() == TelephonyManager.SIM_STATE_READY) {
+        mSimOperatorName=(tm.getSimOperatorName() != null) ? tm.getSimOperatorName() : "N/A";
+      }
+ else {
+        mSimOperatorName="N/A";
+      }
+    }
+ catch (    Exception e) {
+      mSimOperatorName="N/A";
+    }
+  }
+  if (mSimOperatorName.isEmpty())   mSimOperatorName="N/A";
+  return mSimOperatorName;
+}

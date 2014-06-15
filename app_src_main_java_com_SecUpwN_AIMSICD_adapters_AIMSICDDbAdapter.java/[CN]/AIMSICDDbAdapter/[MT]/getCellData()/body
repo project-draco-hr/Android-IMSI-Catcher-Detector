@@ -1,0 +1,3 @@
+{
+  return mDb.query(CELL_TABLE,new String[]{"CellID","Lac","Net","Lat","Lng","Signal"},null,null,null,null,null);
+}

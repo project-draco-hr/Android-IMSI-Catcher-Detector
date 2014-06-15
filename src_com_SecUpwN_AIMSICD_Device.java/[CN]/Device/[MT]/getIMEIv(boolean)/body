@@ -1,4 +1,0 @@
-{
-  if (sIMEIV.isEmpty() || force)   sIMEIV=tm.getDeviceSoftwareVersion();
-  return sIMEIV;
-}

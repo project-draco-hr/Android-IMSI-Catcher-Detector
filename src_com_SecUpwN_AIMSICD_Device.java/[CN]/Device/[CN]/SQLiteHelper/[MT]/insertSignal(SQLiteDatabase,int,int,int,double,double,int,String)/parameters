@@ -1,8 +1,0 @@
-SQLiteDatabase db
-int lac
-int cellID
-int netType
-double latitude
-double longitude
-int signalInfo
-String cellInfo

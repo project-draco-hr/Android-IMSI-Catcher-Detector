@@ -1,0 +1,11 @@
+{
+  mCellID=cellID;
+  mLac=lac;
+  mMcc=mcc;
+  mMnc=mnc;
+  mLat=lat;
+  mLng=lng;
+  mAvgSigStr=avgSigStr;
+  mSamples=samples;
+  mRecordId=recordId;
+}

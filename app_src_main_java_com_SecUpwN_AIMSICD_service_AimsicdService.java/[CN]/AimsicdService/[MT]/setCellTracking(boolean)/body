@@ -1,0 +1,34 @@
+{
+  if (track) {
+    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_DATA_ACTIVITY| PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
+    if (lm != null) {
+      mLocationListener=new MyLocationListener();
+      Log.i(TAG,"LocationManager already existed");
+      lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
+      mLastLocation=lastKnownLocation();
+    }
+ else {
+      Log.i(TAG,"LocationManager did not exist");
+      lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+      if (lm != null) {
+        if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+          Log.i(TAG,"LocationManager created");
+          lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
+          mLastLocation=lastKnownLocation();
+        }
+      }
+    }
+    Helpers.msgShort(this,"Tracking cell information");
+    TrackingCell=true;
+  }
+ else {
+    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
+    lm.removeUpdates(mLocationListener);
+    mLongitude=0.0;
+    mLatitude=0.0;
+    TrackingCell=false;
+    mCellInfo="[0,0]|nn|nn|";
+    Helpers.msgShort(this,"Stopped tracking cell information");
+  }
+  setNotification();
+}

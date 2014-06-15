@@ -1,0 +1,38 @@
+{
+  MenuItem mTrackCell=menu.findItem(R.id.track_cell);
+  MenuItem mTrackFemtocell=menu.findItem(R.id.track_femtocell);
+  if (mBound) {
+    if (mAimsicdService.isTrackingCell()) {
+      if (mTrackCell != null) {
+        mTrackCell.setTitle(R.string.untrack_cell);
+        mTrackCell.setIcon(R.drawable.track_cell);
+      }
+    }
+ else {
+      if (mTrackCell != null) {
+        mTrackCell.setTitle(R.string.track_cell);
+        mTrackCell.setIcon(R.drawable.untrack_cell);
+      }
+    }
+    if (mAimsicdService.getPhoneID() == TelephonyManager.PHONE_TYPE_CDMA) {
+      if (mAimsicdService.isTrackingFemtocell()) {
+        if (mTrackFemtocell != null) {
+          mTrackFemtocell.setTitle(R.string.untrack_femtocell);
+          mTrackFemtocell.setIcon(R.drawable.ic_action_network_cell);
+        }
+      }
+ else {
+        if (mTrackFemtocell != null) {
+          mTrackFemtocell.setTitle(R.string.track_femtocell);
+          mTrackFemtocell.setIcon(R.drawable.ic_action_network_cell_not_tracked);
+        }
+      }
+    }
+ else {
+      if (mTrackFemtocell != null) {
+        mTrackFemtocell.setVisible(false);
+      }
+    }
+  }
+  return super.onPrepareOptionsMenu(menu);
+}

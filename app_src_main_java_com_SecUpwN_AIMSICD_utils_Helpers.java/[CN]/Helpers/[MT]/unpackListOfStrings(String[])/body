@@ -1,0 +1,7 @@
+{
+  if (strings.length == 0) {
+    Log.v(TAG,"Length = 0");
+    return Collections.emptyList();
+  }
+  return Arrays.asList(Arrays.copyOf(strings,strings.length));
+}

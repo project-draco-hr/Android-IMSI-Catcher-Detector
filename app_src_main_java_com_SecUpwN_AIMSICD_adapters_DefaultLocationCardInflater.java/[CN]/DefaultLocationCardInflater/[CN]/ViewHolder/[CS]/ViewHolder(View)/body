@@ -1,0 +1,8 @@
+{
+  mRootView=rootView;
+  mCountry=(TextView)mRootView.findViewById(R.id.country);
+  mMcc=(TextView)mRootView.findViewById(R.id.mcc);
+  mLat=(TextView)mRootView.findViewById(R.id.lat);
+  mLng=(TextView)mRootView.findViewById(R.id.lng);
+  rootView.setTag(this);
+}

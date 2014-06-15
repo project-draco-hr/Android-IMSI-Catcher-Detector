@@ -1,3 +1,0 @@
-{
-  Device.sDB.delete(Device.LOCATION_TABLE,null,null);
-}

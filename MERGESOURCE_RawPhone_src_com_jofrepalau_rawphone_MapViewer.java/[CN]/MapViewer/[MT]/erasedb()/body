@@ -1,3 +1,0 @@
-{
-  myDB.delete(TABLE_NAME,null,null);
-}

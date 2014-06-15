@@ -1,0 +1,10 @@
+{
+  mView=inflater.inflate(R.layout.at_command_fragment,container,false);
+  if (mView != null) {
+    mAtCommandExecute=(Button)mView.findViewById(R.id.execute);
+  }
+  mAtCommandExecute.setOnClickListener(new btnClick());
+  mAtResponse=(TextView)mView.findViewById(R.id.response);
+  mAtCommand=(EditText)mView.findViewById(R.id.at_command);
+  return mView;
+}

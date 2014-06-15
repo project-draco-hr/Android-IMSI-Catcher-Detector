@@ -1,0 +1,23 @@
+{
+  int state=tm.getDataState();
+  mDataState="undef";
+  mDataStateShort="un";
+switch (state) {
+case TelephonyManager.DATA_DISCONNECTED:
+    mDataState="Disconnected";
+  mDataStateShort="Di";
+break;
+case TelephonyManager.DATA_CONNECTING:
+mDataState="Connecting";
+mDataStateShort="Ct";
+break;
+case TelephonyManager.DATA_CONNECTED:
+mDataState="Connected";
+mDataStateShort="Cd";
+break;
+case TelephonyManager.DATA_SUSPENDED:
+mDataState="Suspended";
+mDataStateShort="Su";
+break;
+}
+}

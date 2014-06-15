@@ -1,0 +1,5 @@
+{
+  mType=type;
+  mContext=context;
+  mDbAdapter=new AIMSICDDbAdapter(mContext);
+}

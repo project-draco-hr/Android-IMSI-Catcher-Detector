@@ -1,9 +1,0 @@
-{
-  mStartTime=startTime;
-  mExitValue=exitValue;
-  mStdout=stdout;
-  mStderr=stderr;
-  mEndTime=endTime;
-  Log.d(TAG,"Time to execute: " + (mEndTime - mStartTime) + " ns (nanoseconds)");
-  checkForErrors();
-}

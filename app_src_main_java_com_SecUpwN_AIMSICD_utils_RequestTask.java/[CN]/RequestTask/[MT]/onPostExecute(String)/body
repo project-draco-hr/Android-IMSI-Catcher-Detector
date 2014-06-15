@@ -1,0 +1,19 @@
+{
+  super.onPostExecute(result);
+  AIMSICD.mProgressBar.setProgress(0);
+switch (mType) {
+case OPEN_CELL_ID_REQUEST:
+    mDbAdapter.open();
+  if (mDbAdapter.updateOpenCellID())   Helpers.sendMsg(mContext,"OpenCellID data successfully received");
+mDbAdapter.close();
+break;
+case RESTORE_DATABASE:
+if (result != null && result.equals("Successful")) {
+Helpers.sendMsg(mContext,"Restore database completed successfully");
+}
+ else {
+Helpers.sendMsg(mContext,"Error restoring database");
+}
+break;
+}
+}

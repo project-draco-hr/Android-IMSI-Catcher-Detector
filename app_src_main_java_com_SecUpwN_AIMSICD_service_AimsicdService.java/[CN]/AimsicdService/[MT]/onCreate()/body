@@ -1,0 +1,29 @@
+{
+  tm=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+  lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+  mContext=getApplicationContext();
+  prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  prefs.registerOnSharedPreferenceChangeListener(this);
+  loadPreferences();
+  refreshDeviceInfo();
+  setNotification();
+  mRequestExecutor=new SamsungMulticlientRilExecutor();
+  mRilExecutorDetectResult=mRequestExecutor.detect();
+  if (!mRilExecutorDetectResult.available) {
+    mMultiRilCompatible=false;
+    Log.e(TAG,"Samsung multiclient ril not available: " + mRilExecutorDetectResult.error);
+    mRequestExecutor=null;
+  }
+ else {
+    mRequestExecutor.start();
+    mMultiRilCompatible=true;
+    mHandlerThread=new HandlerThread("ServiceModeSeqHandler");
+    mHandlerThread.start();
+    Looper l=mHandlerThread.getLooper();
+    if (l != null) {
+      mHandler=new Handler(l,new MyHandler());
+    }
+  }
+  mContext.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
+  Log.i(TAG,"Service launched successfully");
+}

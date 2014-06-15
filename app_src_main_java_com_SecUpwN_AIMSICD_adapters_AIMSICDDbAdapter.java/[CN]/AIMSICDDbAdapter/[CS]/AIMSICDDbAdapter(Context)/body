@@ -1,0 +1,5 @@
+{
+  mContext=context;
+  mDbHelper=new DbHelper(context);
+  mTables=new String[]{LOCATION_TABLE,CELL_TABLE,OPENCELLID_TABLE,SILENT_SMS_TABLE};
+}

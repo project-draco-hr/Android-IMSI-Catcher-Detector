@@ -1,4 +1,0 @@
-{
-  this.sb.append(OPEN_XML_STANZA);
-  this.sb.append(DB_OPEN).append(dbName).append(CLOSE_WITH_TICK);
-}

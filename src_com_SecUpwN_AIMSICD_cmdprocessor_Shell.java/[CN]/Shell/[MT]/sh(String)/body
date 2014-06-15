@@ -1,3 +1,0 @@
-{
-  CMDProcessor.runShellCommand(command);
-}

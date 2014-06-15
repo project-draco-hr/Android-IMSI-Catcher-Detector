@@ -1,0 +1,8 @@
+{
+  byte[] array=new byte[4];
+  array[3]=(byte)(i & 0xFF);
+  array[2]=(byte)((i >> 8) & 0xFF);
+  array[1]=(byte)((i >> 16) & 0xFF);
+  array[0]=(byte)((i >> 24) & 0xFF);
+  return array;
+}

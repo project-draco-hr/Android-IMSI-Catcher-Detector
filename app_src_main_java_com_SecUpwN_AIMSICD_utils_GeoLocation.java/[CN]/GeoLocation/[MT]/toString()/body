@@ -1,0 +1,3 @@
+{
+  return "(" + degLat + "\u00B0, "+ degLon+ "\u00B0) = ("+ radLat+ " rad, "+ radLon+ " rad)";
+}

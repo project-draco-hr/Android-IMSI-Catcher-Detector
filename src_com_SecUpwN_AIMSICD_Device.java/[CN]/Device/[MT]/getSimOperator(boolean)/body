@@ -1,4 +1,0 @@
-{
-  if (sSimOperator.isEmpty() || force)   sSimOperator=tm.getSimOperator();
-  return sSimOperator;
-}

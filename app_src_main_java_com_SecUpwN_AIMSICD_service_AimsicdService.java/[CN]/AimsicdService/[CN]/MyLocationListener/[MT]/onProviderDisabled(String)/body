@@ -1,0 +1,6 @@
+{
+  if (!mLocationPrompted) {
+    mLocationPrompted=true;
+    enableLocationServices();
+  }
+}

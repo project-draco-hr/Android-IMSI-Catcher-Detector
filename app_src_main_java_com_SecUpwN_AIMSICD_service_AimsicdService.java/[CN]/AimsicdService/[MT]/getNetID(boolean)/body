@@ -1,0 +1,6 @@
+{
+  if (mNetID == -1 || force) {
+    mNetID=tm.getNetworkType();
+  }
+  return mNetID;
+}

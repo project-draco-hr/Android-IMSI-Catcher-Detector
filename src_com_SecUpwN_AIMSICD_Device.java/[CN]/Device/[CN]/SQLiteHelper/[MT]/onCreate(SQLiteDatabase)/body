@@ -1,5 +1,0 @@
-{
-  database.execSQL(LOC_DATABASE_CREATE);
-  database.execSQL(CELL_DATABASE_CREATE);
-  database.execSQL(SIG_DATABASE_CREATE);
-}

@@ -1,4 +1,0 @@
-{
-  if (sSimCountry.isEmpty() || force)   sSimCountry=tm.getSimCountryIso();
-  return sSimCountry;
-}

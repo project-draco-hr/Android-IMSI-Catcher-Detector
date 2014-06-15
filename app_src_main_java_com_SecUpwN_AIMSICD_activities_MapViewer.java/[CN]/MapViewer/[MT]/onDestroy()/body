@@ -1,0 +1,8 @@
+{
+  super.onDestroy();
+  prefs.unregisterOnSharedPreferenceChangeListener(this);
+  if (mBound) {
+    mContext.unbindService(mConnection);
+    mBound=false;
+  }
+}

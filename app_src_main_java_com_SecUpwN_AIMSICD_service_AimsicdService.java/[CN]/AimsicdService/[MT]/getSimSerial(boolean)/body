@@ -1,0 +1,18 @@
+{
+  if (mSimSerial.isEmpty() || force) {
+    try {
+      if (tm.getSimState() == TelephonyManager.SIM_STATE_READY) {
+        mSimSerial=(tm.getSimSerialNumber() != null) ? tm.getSimSerialNumber() : "N/A";
+      }
+ else {
+        mSimSerial="N/A";
+      }
+    }
+ catch (    Exception e) {
+      mSimSerial="N/A";
+      Log.e(TAG,"getSimSerial " + e);
+    }
+  }
+  if (mSimSerial.isEmpty())   mSimSerial="N/A";
+  return mSimSerial;
+}
