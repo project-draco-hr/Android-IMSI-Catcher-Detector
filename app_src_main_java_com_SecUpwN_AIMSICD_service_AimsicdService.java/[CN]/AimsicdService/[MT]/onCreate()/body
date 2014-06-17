@@ -24,6 +24,6 @@
       mHandler=new Handler(l,new MyHandler());
     }
   }
-  mContext.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
+  mContext.registerReceiver(mMessageReceiver,new IntentFilter(FLASH_SMS));
   Log.i(TAG,"Service launched successfully");
 }
