@@ -2,13 +2,13 @@
   ViewHolder holder;
   if (convertView == null) {
     LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-    convertView=inflater.inflate(R.layout.silent_sms_items,parent,false);
+    convertView=inflater.inflate(R.layout.flash_sms_items,parent,false);
     holder=new ViewHolder(convertView);
   }
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  final SilentSmsCardData item=adapter.getTItem(pos);
+  final FlashSmsCardData item=adapter.getTItem(pos);
   holder.updateDisplay(item);
   return convertView;
 }
