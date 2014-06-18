@@ -1,4 +1,8 @@
 {
   super.onResume();
   invalidateOptionsMenu();
+  if (!mBound) {
+    Intent intent=new Intent(this,AimsicdService.class);
+    bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+  }
 }

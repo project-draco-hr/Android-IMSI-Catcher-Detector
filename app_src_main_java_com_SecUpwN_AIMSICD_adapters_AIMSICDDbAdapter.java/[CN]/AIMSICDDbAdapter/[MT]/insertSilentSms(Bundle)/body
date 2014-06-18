@@ -5,5 +5,5 @@
   smsValues.put("Class",bundle.getString("class"));
   smsValues.put("ServiceCtr",bundle.getString("service_centre"));
   smsValues.put("Message",bundle.getString("message"));
-  return mDb.insert(FLASH_SMS_TABLE,null,smsValues);
+  return mDb.insert(SILENT_SMS_TABLE,null,smsValues);
 }
