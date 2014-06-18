@@ -1,4 +1,0 @@
-BaseInflaterAdapter<FlashSmsCardData> adapter
-int pos
-View convertView
-ViewGroup parent
