@@ -25,14 +25,14 @@ case LOCATION_TABLE:
 case OPENCELLID_TABLE:
       insertOpenCell(Double.parseDouble(records.get(i)[1]),Double.parseDouble(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]));
     break;
-case FLASH_SMS_TABLE:
+case SILENT_SMS_TABLE:
   Bundle bundle=new Bundle();
 bundle.putString("address",String.valueOf(records.get(i)[1]));
 bundle.putString("display_address",String.valueOf(records.get(i)[2]));
 bundle.putString("message_class",String.valueOf(records.get(i)[3]));
 bundle.putString("service_centre",String.valueOf(records.get(i)[4]));
 bundle.putString("message",String.valueOf(records.get(i)[5]));
-insertFlashSms(bundle);
+insertSilentSms(bundle);
 break;
 }
 }
