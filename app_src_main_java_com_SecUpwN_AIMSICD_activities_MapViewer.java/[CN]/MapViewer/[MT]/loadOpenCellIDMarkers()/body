@@ -1,0 +1,20 @@
+{
+  mDbHelper.open();
+  Cursor c=mDbHelper.getOpenCellIDData();
+  if (c.moveToFirst()) {
+    do {
+      final double dlat=Double.parseDouble(c.getString(4));
+      final double dlng=Double.parseDouble(c.getString(5));
+      final int cellID=c.getInt(0);
+      final int lac=c.getInt(1);
+      final LatLng location=new LatLng(dlat,dlng);
+      final int mcc=c.getInt(2);
+      final int mnc=c.getInt(3);
+      final int samples=c.getInt(7);
+      Marker marker=mMap.addMarker(new MarkerOptions().position(location).draggable(false).title("CellID - " + cellID));
+      mMarkerMap.put(marker,new MarkerData("" + cellID,"" + loc.latitude,"" + loc.longitude,"" + lac,"" + mcc,"" + mnc,"" + samples,true));
+    }
+ while (c.moveToNext());
+  }
+  mDbHelper.close();
+}

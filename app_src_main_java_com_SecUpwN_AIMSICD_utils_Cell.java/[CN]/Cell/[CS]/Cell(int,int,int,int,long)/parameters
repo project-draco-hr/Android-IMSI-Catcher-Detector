@@ -1,0 +1,5 @@
+int lac
+int mcc
+int mnc
+int dbm
+long timestamp

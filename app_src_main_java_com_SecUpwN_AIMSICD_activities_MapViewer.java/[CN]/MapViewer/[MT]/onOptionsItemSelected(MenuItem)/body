@@ -6,22 +6,17 @@ case R.id.map_preferences:
 return true;
 case R.id.get_opencellid:
 {
-Helpers.sendMsg(this,"Contacting OpenCellID.org for data...");
-Location mLocation=mMap.getMyLocation();
-if (mLocation != null && mLocation.hasAccuracy()) {
-  Helpers.getOpenCellData(mContext,mLocation.getLatitude(),mLocation.getLongitude());
+Location lastKnown=mAimsicdService.lastKnownLocation();
+if (lastKnown != null) {
+  Helpers.sendMsg(this,"Contacting OpenCellID.org for data...");
+  Helpers.getOpenCellData(mContext,lastKnown.getLatitude(),lastKnown.getLongitude(),RequestTask.OPEN_CELL_ID_REQUEST_FROM_MAP);
 }
  else if (loc != null) {
-  Helpers.getOpenCellData(mContext,loc.latitude,loc.longitude);
+  Helpers.sendMsg(this,"Contacting OpenCellID.org for data...");
+  Helpers.getOpenCellData(mContext,loc.latitude,loc.longitude,RequestTask.OPEN_CELL_ID_REQUEST_FROM_MAP);
 }
  else {
-  Location lastKnown=mAimsicdService.lastKnownLocation();
-  if (lastKnown != null) {
-    Helpers.getOpenCellData(mContext,lastKnown.getLatitude(),lastKnown.getLongitude());
-  }
- else {
-    Helpers.sendMsg(this,"Unable to determine your location!");
-  }
+  Helpers.sendMsg(mContext,"Unable to determine your last location. \nEnable Location Services and try again.");
 }
 return true;
 }

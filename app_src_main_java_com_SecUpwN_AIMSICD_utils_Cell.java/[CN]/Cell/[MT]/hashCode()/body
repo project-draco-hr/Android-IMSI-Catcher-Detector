@@ -1,0 +1,9 @@
+{
+  final int prime=31;
+  int result=1;
+  result=prime * result + cid;
+  result=prime * result + lac;
+  result=prime * result + mcc;
+  result=prime * result + mnc;
+  return result;
+}

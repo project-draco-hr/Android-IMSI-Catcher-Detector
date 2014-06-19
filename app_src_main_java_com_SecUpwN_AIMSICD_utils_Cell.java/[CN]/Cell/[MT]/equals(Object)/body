@@ -1,0 +1,7 @@
+{
+  if (this == obj)   return true;
+  if (obj == null)   return false;
+  if (getClass() != obj.getClass())   return false;
+  Cell other=(Cell)obj;
+  return this.cid == other.getCID() && this.lac == other.getLAC() && this.mcc == other.getMCC() && this.mnc == other.getMNC();
+}

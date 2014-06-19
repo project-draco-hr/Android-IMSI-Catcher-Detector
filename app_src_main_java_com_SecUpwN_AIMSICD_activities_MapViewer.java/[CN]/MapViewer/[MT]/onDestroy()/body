@@ -5,4 +5,5 @@
     mContext.unbindService(mConnection);
     mBound=false;
   }
+  LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
 }

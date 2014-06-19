@@ -7,7 +7,7 @@
       String boundParameter;
       boundParameter=String.valueOf(boundingCoords[0].getLatitudeInDegrees()) + "," + String.valueOf(boundingCoords[0].getLongitudeInDegrees())+ ","+ String.valueOf(boundingCoords[1].getLatitudeInDegrees())+ ","+ String.valueOf(boundingCoords[1].getLongitudeInDegrees());
       String urlString="http://www.opencellid.org/cell/getInArea?key=24c66165-9748-4384-ab7c-172e3f533056" + "&BBOX=" + boundParameter + "&format=csv";
-      new RequestTask(context,RequestTask.OPEN_CELL_ID_REQUEST).execute(urlString);
+      new RequestTask(context,type).execute(urlString);
     }
   }
  else {

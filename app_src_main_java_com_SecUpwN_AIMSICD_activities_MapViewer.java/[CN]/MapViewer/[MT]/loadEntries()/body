@@ -1,22 +1,17 @@
 {
-  int SIGNAL_SIZE_RATIO=15;
-  double dlat;
-  double dlng;
-  int net;
+  final int SIGNAL_SIZE_RATIO=15;
   int signal;
   int color;
-  int cellID;
-  int lac;
   CircleOptions circleOptions;
   mDbHelper.open();
   Cursor c=mDbHelper.getCellData();
   if (c.moveToFirst()) {
     do {
-      cellID=c.getInt(0);
-      lac=c.getInt(1);
-      net=c.getInt(2);
-      dlat=Double.parseDouble(c.getString(3));
-      dlng=Double.parseDouble(c.getString(4));
+      final int cellID=c.getInt(0);
+      final int lac=c.getInt(1);
+      final int net=c.getInt(2);
+      final double dlat=Double.parseDouble(c.getString(3));
+      final double dlng=Double.parseDouble(c.getString(4));
       if (dlat == 0.0 && dlng == 0.0)       continue;
       signal=c.getInt(5);
       if (signal <= 0) {
@@ -93,21 +88,6 @@ CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(13).build(
 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
 }
-c=mDbHelper.getOpenCellIDData();
-if (c.moveToFirst()) {
-do {
-cellID=c.getInt(0);
-dlat=Double.parseDouble(c.getString(4));
-dlng=Double.parseDouble(c.getString(5));
-loc=new LatLng(dlat,dlng);
-lac=c.getInt(1);
-int mcc=c.getInt(2);
-int mnc=c.getInt(3);
-int samples=c.getInt(7);
-Marker marker=mMap.addMarker(new MarkerOptions().position(loc).draggable(false).title("CellID - " + cellID));
-mMarkerMap.put(marker,new MarkerData("" + cellID,"" + loc.latitude,"" + loc.longitude,"" + lac,"" + mcc,"" + mnc,"" + samples,true));
-}
- while (c.moveToNext());
-}
+loadOpenCellIDMarkers();
 mDbHelper.close();
 }

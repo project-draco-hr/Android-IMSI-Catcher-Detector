@@ -1,0 +1,7 @@
+{
+  this.lac=lac;
+  this.mcc=mcc;
+  this.mnc=mnc;
+  this.dbm=dbm;
+  this.timestamp=timestamp;
+}

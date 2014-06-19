@@ -1,6 +1,7 @@
 {
 switch (mType) {
 case OPEN_CELL_ID_REQUEST:
+case OPEN_CELL_ID_REQUEST_FROM_MAP:
     int count;
   try {
     File dir=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/");
@@ -9,9 +10,9 @@ case OPEN_CELL_ID_REQUEST:
     }
     File file=new File(dir,"opencellid.csv");
     URL url=new URL(urlString[0]);
-    URLConnection conection=url.openConnection();
-    conection.connect();
-    int lengthOfFile=conection.getContentLength();
+    URLConnection connection=url.openConnection();
+    connection.connect();
+    int lengthOfFile=connection.getContentLength();
     AIMSICD.mProgressBar.setMax(lengthOfFile);
     InputStream input=new BufferedInputStream(url.openStream(),8192);
     OutputStream output=new FileOutputStream(file);
@@ -25,6 +26,7 @@ case OPEN_CELL_ID_REQUEST:
     output.flush();
     output.close();
     input.close();
+    return "Successful";
   }
  catch (  MalformedURLException e) {
     return null;
@@ -32,17 +34,22 @@ case OPEN_CELL_ID_REQUEST:
 catch (  IOException e) {
     return null;
   }
-break;
 case BACKUP_DATABASE:
 mDbAdapter.open();
-if (mDbAdapter.backupDB()) return "Successful";
+if (mDbAdapter.backupDB()) {
 mDbAdapter.close();
-break;
+return "Successful";
+}
+mDbAdapter.close();
+return null;
 case RESTORE_DATABASE:
 mDbAdapter.open();
-if (mDbAdapter.restoreDB()) return "Successful";
+if (mDbAdapter.restoreDB()) {
 mDbAdapter.close();
-break;
+return "Successful";
+}
+mDbAdapter.close();
+return null;
 }
 return null;
 }

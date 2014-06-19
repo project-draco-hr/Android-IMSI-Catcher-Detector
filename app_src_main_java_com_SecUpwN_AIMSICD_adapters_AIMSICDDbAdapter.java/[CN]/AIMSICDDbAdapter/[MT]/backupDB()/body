@@ -3,13 +3,9 @@
     for (    String table : mTables) {
       backup(table);
     }
-    final AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
-    builder.setTitle(R.string.database_export_successful).setMessage("Database Backup successfully saved to:\n" + FOLDER);
-    builder.create().show();
     return true;
   }
  catch (  Exception ioe) {
-    Helpers.sendMsg(mContext,"Database Backup Error");
     Log.e(TAG,"exportDB() " + ioe);
     return false;
   }

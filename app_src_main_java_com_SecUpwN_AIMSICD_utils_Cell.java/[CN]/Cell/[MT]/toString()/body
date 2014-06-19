@@ -1,0 +1,9 @@
+{
+  StringBuilder result=new StringBuilder();
+  result.append("Cell ID (CID): ").append(cid).append("\n");
+  result.append("Location Code (LAC): ").append(lac).append("\n");
+  result.append("Country Code (MCC): ").append(mcc).append("\n");
+  result.append("Network Code (MNC): ").append(mnc).append("\n");
+  result.append("Signal Strength (DBM): ").append(dbm).append("\n");
+  return result.toString();
+}
