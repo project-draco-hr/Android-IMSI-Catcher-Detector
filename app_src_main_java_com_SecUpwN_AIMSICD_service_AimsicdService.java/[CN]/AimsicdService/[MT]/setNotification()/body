@@ -3,7 +3,7 @@
   String contentText="Phone Type " + getPhoneType(false);
   String iconType=prefs.getString(this.getString(R.string.pref_ui_icons_key),"flat");
   int status;
-  if (mFemtoDetected || mClassZeroSmsDetected) {
+  if (mFemtoDetected || mTypeZeroSmsDetected) {
     status=3;
   }
  else   if (TrackingFemtocell || TrackingCell) {
@@ -60,8 +60,8 @@ tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threa
 if (mFemtoDetected) {
 contentText="ALERT!! FemtoCell Connection Threat Detected";
 }
- else if (mClassZeroSmsDetected) {
-contentText="ALERT!! Class Zero Silent SMS Intercepted";
+ else if (mTypeZeroSmsDetected) {
+contentText="ALERT!! Type Zero Silent SMS Intercepted";
 }
 break;
 default :
@@ -70,7 +70,7 @@ tickerText=getResources().getString(R.string.app_name);
 break;
 }
 Intent notificationIntent=new Intent(mContext,AIMSICD.class);
-notificationIntent.putExtra("silent_sms",mClassZeroSmsDetected);
+notificationIntent.putExtra("silent_sms",mTypeZeroSmsDetected);
 notificationIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_FROM_BACKGROUND);
 PendingIntent contentIntent=PendingIntent.getActivity(mContext,NOTIFICATION_ID,notificationIntent,PendingIntent.FLAG_CANCEL_CURRENT);
 Notification mBuilder=new NotificationCompat.Builder(this).setSmallIcon(icon).setTicker(tickerText).setContentTitle(this.getResources().getString(R.string.app_name)).setContentText(contentText).setOngoing(true).setAutoCancel(false).setContentIntent(contentIntent).build();

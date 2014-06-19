@@ -1,6 +1,7 @@
 {
   boolean trackFemtoPref=prefs.getBoolean(this.getString(R.string.pref_femto_detection_key),false);
   boolean trackCellPref=prefs.getBoolean(this.getString(R.string.pref_enable_cell_key),false);
+  REFRESH_RATE=Integer.parseInt(prefs.getString(this.getString(R.string.pref_refresh_key),"1"));
   if (trackFemtoPref) {
     startTrackingFemto();
   }

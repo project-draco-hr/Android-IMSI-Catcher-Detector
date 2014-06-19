@@ -72,4 +72,5 @@ mLongitude=lastKnownLocation.getLongitude();
 mLatitude=lastKnownLocation.getLatitude();
 }
 }
+updateNeighbouringCells();
 }
