@@ -7,7 +7,7 @@
   long t;
 switch (rate) {
 case 1:
-    t=30L;
+    t=15L;
   break;
 default :
 t=(rate * 1L);
