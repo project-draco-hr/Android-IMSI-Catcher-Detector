@@ -1,0 +1,5 @@
+{
+  super.onAttach(activity);
+  mContext=activity.getBaseContext();
+  mDb=new AIMSICDDbAdapter(mContext);
+}

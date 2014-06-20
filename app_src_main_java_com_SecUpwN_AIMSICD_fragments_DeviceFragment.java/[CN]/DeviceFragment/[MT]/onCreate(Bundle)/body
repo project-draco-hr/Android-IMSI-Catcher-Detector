@@ -1,6 +1,3 @@
 {
   super.onCreate(savedInstance);
-  mContext=getActivity().getBaseContext();
-  Intent intent=new Intent(mContext,AimsicdService.class);
-  mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
 }

@@ -1,3 +1,0 @@
-{
-  return titles.get(position);
-}

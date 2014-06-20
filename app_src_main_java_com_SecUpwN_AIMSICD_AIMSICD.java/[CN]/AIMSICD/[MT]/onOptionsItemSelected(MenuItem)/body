@@ -1,4 +1,7 @@
 {
+  if (mDrawerToggle.onOptionsItemSelected(item)) {
+    return true;
+  }
   Intent intent;
 switch (item.getItemId()) {
 case R.id.track_cell:

@@ -1,5 +1,5 @@
 {
-  mView=inflater.inflate(R.layout.main,container,false);
+  mView=inflater.inflate(R.layout.device,container,false);
   updateUI();
   return mView;
 }
