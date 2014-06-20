@@ -1,0 +1,3 @@
+{
+  this(inParcel.readLong(),inParcel.readInt(),inParcel.readString(),inParcel.readString(),inParcel.readLong());
+}

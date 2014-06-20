@@ -1,0 +1,9 @@
+{
+  int result=0;
+  result=31 * result + (int)(mStartTime ^ (mStartTime >>> 32));
+  result=31 * result + mExitValue;
+  result=31 * result + (mStdout != null ? mStdout.hashCode() : 0);
+  result=31 * result + (mStderr != null ? mStderr.hashCode() : 0);
+  result=31 * result + (int)(mEndTime ^ (mEndTime >>> 32));
+  return result;
+}

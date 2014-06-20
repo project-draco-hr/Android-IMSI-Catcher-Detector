@@ -1,0 +1,17 @@
+{
+  if (!new File("/system/bin/busybox").exists() && !new File("/system/xbin/busybox").exists()) {
+    Log.e(TAG,"Busybox not in xbin or bin!");
+    return false;
+  }
+  try {
+    if (!CMDProcessor.runSuCommand("busybox mount").success()) {
+      Log.e(TAG,"Busybox is there but it is borked! ");
+      return false;
+    }
+  }
+ catch (  NullPointerException e) {
+    Log.e(TAG,"NullpointerException thrown while testing busybox",e);
+    return false;
+  }
+  return true;
+}
