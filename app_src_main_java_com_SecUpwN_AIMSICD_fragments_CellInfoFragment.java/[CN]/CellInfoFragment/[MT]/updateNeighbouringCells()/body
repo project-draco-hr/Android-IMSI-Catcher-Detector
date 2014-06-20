@@ -1,6 +1,6 @@
 {
   final List<String> list=mAimsicdService.getNeighbours();
-  getActivity().runOnUiThread(new Runnable(){
+  mActivity.runOnUiThread(new Runnable(){
     @Override public void run(){
       if (list != null) {
         mNeighbouringCells.setText(TextUtils.join("\n",list));

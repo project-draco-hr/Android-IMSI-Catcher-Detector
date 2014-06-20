@@ -1,6 +1,11 @@
 {
   super.onAttach(activity);
   mContext=activity.getBaseContext();
+  mActivity=activity;
   Intent intent=new Intent(mContext,AimsicdService.class);
   mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+  if (AimsicdService.REFRESH_RATE != 0) {
+    timerHandler.postDelayed(timerRunnable,0);
+    Helpers.sendMsg(mContext,"Refreshing every " + TimeUnit.MILLISECONDS.toSeconds(AimsicdService.REFRESH_RATE) + " seconds");
+  }
 }

@@ -1,6 +1,6 @@
 {
   final List<String> list=mAimsicdService.getCipheringInfo();
-  getActivity().runOnUiThread(new Runnable(){
+  mActivity.runOnUiThread(new Runnable(){
     @Override public void run(){
       if (list != null) {
         mCipheringIndicatorLabel.setVisibility(View.VISIBLE);

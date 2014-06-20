@@ -4,4 +4,5 @@
     mContext.unbindService(mConnection);
     mBound=false;
   }
+  timerHandler.removeCallbacks(timerRunnable);
 }
