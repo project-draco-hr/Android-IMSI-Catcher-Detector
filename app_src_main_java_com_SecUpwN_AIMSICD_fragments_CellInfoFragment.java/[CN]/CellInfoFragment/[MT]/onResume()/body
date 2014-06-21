@@ -8,5 +8,4 @@
     timerHandler.postDelayed(timerRunnable,0);
     Helpers.sendMsg(mContext,"Refreshing every " + TimeUnit.MILLISECONDS.toSeconds(AimsicdService.REFRESH_RATE) + " seconds");
   }
-  updateUI();
 }
