@@ -1,0 +1,6 @@
+String cellID
+String lac
+String mcc
+String mnc
+String signal
+String recordId

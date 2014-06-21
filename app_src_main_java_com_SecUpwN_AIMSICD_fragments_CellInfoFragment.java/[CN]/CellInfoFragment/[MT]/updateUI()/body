@@ -4,14 +4,16 @@
     List<Cell> neighboringCells=mAimsicdService.getNeighbouringCells();
     if (neighboringCells != null && neighboringCells.size() != 0) {
       mNeighbouringTotal.setText(String.valueOf(neighboringCells.size()));
-      StringBuilder sb=new StringBuilder();
+      BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new NeighbouringCellCardInflater());
       int i=1;
+      int total=neighboringCells.size();
       for (      Cell cell : neighboringCells) {
-        sb.append("Neighbouring Cell ").append(i++).append("\n").append("----------------------------").append(cell.toString()).append("----------------------------");
+        CardItemData data=new CardItemData("Cell ID (CID): " + cell.getCID(),"Location Code (LAC): " + cell.getLAC(),"Country Code (MCC): " + cell.getMCC(),"Network Code (MNC): " + cell.getMNC(),"Signal Strength (dBM): " + cell.getDBM(),"" + i + " / "+ total);
+        adapter.addItem(data,false);
       }
-      mNeighbouringCells.setText(sb);
-      mNeighbouringTotal.setVisibility(View.VISIBLE);
-      mNeighbouringTotalLabel.setVisibility(View.VISIBLE);
+      lv.setAdapter(adapter);
+      mNeighbouringCells.setVisibility(View.GONE);
+      mNeighbouringTotalView.setVisibility(View.VISIBLE);
     }
  else {
       DetectResult rilStatus=mAimsicdService.getRilExecutorStatus();

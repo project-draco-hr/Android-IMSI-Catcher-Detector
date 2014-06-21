@@ -1,3 +1,4 @@
 {
+  Helpers.sendMsg(mContext,"Refreshing now...");
   updateUI();
 }

@@ -1,0 +1,8 @@
+{
+  mCellID.setText(item.getCellID());
+  mLac.setText(item.getLac());
+  mMcc.setText(item.getNet());
+  mMnc.setText(item.getLat());
+  mSignal.setText(item.getSignal());
+  mRecordId.setText(item.getRecordId());
+}

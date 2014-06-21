@@ -1,4 +1,5 @@
 {
+  this.cid=cid;
   this.lac=lac;
   this.mcc=mcc;
   this.mnc=mnc;

@@ -7,9 +7,9 @@
   if (mRequestExecutor != null) {
     mRequestExecutor.stop();
     mRequestExecutor=null;
+    mHandler=null;
+    mHandlerThread.quit();
+    mHandlerThread=null;
   }
-  mHandler=null;
-  mHandlerThread.quit();
-  mHandlerThread=null;
   Log.i(TAG,"Service destroyed");
 }

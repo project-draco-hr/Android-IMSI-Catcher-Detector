@@ -1,4 +1,5 @@
 {
+  mNeighboringCells=new ArrayList<>();
   if (Build.VERSION.SDK_INT > 16) {
     List<CellInfo> allCellInfo=tm.getAllCellInfo();
     if (allCellInfo != null) {
@@ -8,7 +9,7 @@
           CellIdentityGsm cellIdentity=gsmCellInfo.getCellIdentity();
           CellSignalStrengthGsm cellSignalStrengthGsm=gsmCellInfo.getCellSignalStrength();
           int dbmLevel=cellSignalStrengthGsm.getDbm();
-          Cell cell=new Cell(cellIdentity.getLac(),cellIdentity.getMcc(),cellIdentity.getMnc(),dbmLevel,SystemClock.currentThreadTimeMillis());
+          Cell cell=new Cell(cellIdentity.getCid(),cellIdentity.getLac(),cellIdentity.getMcc(),cellIdentity.getMnc(),dbmLevel,SystemClock.currentThreadTimeMillis());
           mNeighboringCells.add(cell);
         }
       }
@@ -19,12 +20,13 @@
     neighboringCellInfo=tm.getNeighboringCellInfo();
     if (neighboringCellInfo != null) {
       for (      NeighboringCellInfo neighbourCell : neighboringCellInfo) {
+        if (neighbourCell.getCid() == NeighboringCellInfo.UNKNOWN_CID)         continue;
         int rssi=neighbourCell.getRssi();
         int dbmLevel=0;
         if (rssi != NeighboringCellInfo.UNKNOWN_RSSI) {
           dbmLevel=-113 + 2 * rssi;
         }
-        Cell cell=new Cell(neighbourCell.getLac(),mMcc,mMnc,dbmLevel,SystemClock.currentThreadTimeMillis());
+        Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),mMcc,mMnc,dbmLevel,SystemClock.currentThreadTimeMillis());
         mNeighboringCells.add(cell);
       }
     }
