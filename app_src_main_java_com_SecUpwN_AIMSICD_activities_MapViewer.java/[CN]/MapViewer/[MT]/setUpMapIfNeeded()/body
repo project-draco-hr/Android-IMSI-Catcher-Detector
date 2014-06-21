@@ -28,9 +28,9 @@
               tv=(TextView)v.findViewById(R.id.cell_id);
               tv.setText(data.cellID);
               tv=(TextView)v.findViewById(R.id.lat);
-              tv.setText("" + data.lat);
+              tv.setText(String.valueOf(data.lat));
               tv=(TextView)v.findViewById(R.id.lng);
-              tv.setText("" + data.lng);
+              tv.setText(String.valueOf(data.lng));
               tv=(TextView)v.findViewById(R.id.mcc);
               tv.setText(data.mcc);
               tv=(TextView)v.findViewById(R.id.mnc);
