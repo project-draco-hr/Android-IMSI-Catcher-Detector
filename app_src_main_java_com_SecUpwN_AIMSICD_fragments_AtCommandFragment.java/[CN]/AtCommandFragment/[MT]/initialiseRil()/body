@@ -1,0 +1,15 @@
+{
+  boolean root=Helpers.checkSu();
+  if (!root) {
+    return ROOT_UNAVAILABLE;
+  }
+  boolean busybox=Helpers.checkBusybox();
+  if (!busybox) {
+    return BUSYBOX_UNAVAILABLE;
+  }
+  String rilDevice=Helpers.getSystemProp(mContext,"rild.libargs","UNKNOWN");
+  mRilDevice=(rilDevice.equals("UNKNOWN") ? rilDevice : rilDevice.substring(3));
+  mRilDeviceDisplay.setText(mRilDevice);
+  if (mRilDevice.equals("UNKNOWN"))   return RIL_INIT_ERROR;
+  return RIL_INIT_OK;
+}

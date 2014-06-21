@@ -4,7 +4,7 @@
     String lineEnding=System.getProperty("line.separator");
     FileWriter errorWriter=null;
     try {
-      File errorLogFile=new File(Environment.getExternalStorageDirectory() + "/aokp/error.txt");
+      File errorLogFile=new File(AIMSICDDbAdapter.FOLDER + "error.txt");
       if (!errorLogFile.exists()) {
         errorLogFile.createNewFile();
       }

@@ -1,5 +1,0 @@
-{
-  if (!mBound)   return null;
-  requestResponse();
-  return null;
-}

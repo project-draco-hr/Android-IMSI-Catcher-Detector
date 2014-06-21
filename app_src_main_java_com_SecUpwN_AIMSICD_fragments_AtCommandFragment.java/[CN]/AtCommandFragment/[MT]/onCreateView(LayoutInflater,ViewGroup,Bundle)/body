@@ -1,10 +1,13 @@
 {
   mView=inflater.inflate(R.layout.at_command_fragment,container,false);
   if (mView != null) {
+    mAtCommandLayout=(RelativeLayout)mView.findViewById(R.id.atcommandView);
+    mAtCommandError=(TextView)mView.findViewById(R.id.at_command_error);
     mAtCommandExecute=(Button)mView.findViewById(R.id.execute);
+    mRilDeviceDisplay=(TextView)mView.findViewById(R.id.ril_device);
+    mAtResponse=(TextView)mView.findViewById(R.id.response);
+    mAtCommand=(EditText)mView.findViewById(R.id.at_command);
+    mAtCommandExecute.setOnClickListener(new btnClick());
   }
-  mAtCommandExecute.setOnClickListener(new btnClick());
-  mAtResponse=(TextView)mView.findViewById(R.id.response);
-  mAtCommand=(EditText)mView.findViewById(R.id.at_command);
   return mView;
 }

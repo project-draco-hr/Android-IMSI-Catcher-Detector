@@ -1,3 +1,9 @@
 {
-  Helpers.sendMsg(mContext,"Coming soon...");
+  if (mAtCommand.getText() != null) {
+    mAtResponse.setText("");
+    String cmdSetup="cat " + mRilDevice + " &";
+    new ExecuteAtCommand().execute(cmdSetup);
+    String atCommand=mAtCommand.getText().toString();
+    new ExecuteAtCommand().execute("echo -e " + atCommand + "\r > "+ mRilDevice);
+  }
 }

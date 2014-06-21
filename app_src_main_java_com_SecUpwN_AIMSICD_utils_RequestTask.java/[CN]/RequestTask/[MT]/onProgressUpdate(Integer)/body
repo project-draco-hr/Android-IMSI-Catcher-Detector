@@ -1,0 +1,3 @@
+{
+  AIMSICD.mProgressBar.setProgress(values[0]);
+}

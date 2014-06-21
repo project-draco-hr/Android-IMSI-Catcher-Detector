@@ -9,7 +9,7 @@ case OPEN_CELL_ID_REQUEST_FROM_MAP:
       dir.mkdirs();
     }
     File file=new File(dir,"opencellid.csv");
-    URL url=new URL(urlString[0]);
+    URL url=new URL(commandString[0]);
     URLConnection connection=url.openConnection();
     connection.connect();
     int lengthOfFile=connection.getContentLength();
@@ -20,7 +20,7 @@ case OPEN_CELL_ID_REQUEST_FROM_MAP:
     long total=0;
     while ((count=input.read(data)) != -1) {
       total+=count;
-      AIMSICD.mProgressBar.setProgress((int)((total * 100) / lengthOfFile));
+      publishProgress((int)((total * 100) / lengthOfFile));
       output.write(data,0,count);
     }
     output.flush();

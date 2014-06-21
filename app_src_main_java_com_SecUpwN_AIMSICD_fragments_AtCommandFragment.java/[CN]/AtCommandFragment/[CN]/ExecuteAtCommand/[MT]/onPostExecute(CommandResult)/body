@@ -1,0 +1,8 @@
+{
+  if (result != null) {
+    Log.i("AIMSICD_ATCommand","Stdout: " + result.getStdout() + " StdErr: "+ result.getStderr()+ " Exit Value: "+ result.getExitValue());
+    if (!result.getStdout().isEmpty())     mAtResponse.append(result.getStdout());
+ else     if (!result.getStderr().isEmpty())     mAtResponse.append(result.getStderr());
+ else     mAtResponse.append("No response or error detected...");
+  }
+}
