@@ -47,7 +47,9 @@ mLastLocation=loc;
 if (TrackingCell) {
 dbHelper.open();
 mDbResult=dbHelper.insertLocation(mLac,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo);
-if (mDbResult == -1) Log.e(TAG,"Error writing to database");
+if (mDbResult == -1) {
+Log.e(TAG,"Error writing to database");
+}
 }
 }
 }

@@ -2,7 +2,9 @@
   boolean trackFemtoPref=prefs.getBoolean(this.getString(R.string.pref_femto_detection_key),false);
   boolean trackCellPref=prefs.getBoolean(this.getString(R.string.pref_enable_cell_key),false);
   String refreshRate=prefs.getString(getString(R.string.pref_refresh_key),"1");
-  if (refreshRate.isEmpty())   refreshRate="1";
+  if (refreshRate.isEmpty()) {
+    refreshRate="1";
+  }
   int rate=Integer.parseInt(refreshRate);
   long t;
 switch (rate) {

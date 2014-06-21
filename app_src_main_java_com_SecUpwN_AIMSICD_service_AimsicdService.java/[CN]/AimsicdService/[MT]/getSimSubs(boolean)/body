@@ -13,6 +13,8 @@
       Log.e(TAG,"getSimSubs " + e);
     }
   }
-  if (mSimSubs.isEmpty())   mSimSubs="N/A";
+  if (mSimSubs.isEmpty()) {
+    mSimSubs="N/A";
+  }
   return mSimSubs;
 }

@@ -8,8 +8,12 @@
   }
  else   if (TrackingFemtocell || TrackingCell) {
     status=2;
-    if (TrackingFemtocell)     contentText="FemtoCell Detection Active";
- else     contentText="Cell Tracking Active";
+    if (TrackingFemtocell) {
+      contentText="FemtoCell Detection Active";
+    }
+ else {
+      contentText="Cell Tracking Active";
+    }
   }
  else {
     status=1;

@@ -1,6 +1,10 @@
 {
-  if (DBG)   Log.v(TAG,"Local disconnect()");
-  if (mSocket == null)   return;
+  if (DBG) {
+    Log.v(TAG,"Local disconnect()");
+  }
+  if (mSocket == null) {
+    return;
+  }
   try {
     mSocket.shutdownInput();
   }

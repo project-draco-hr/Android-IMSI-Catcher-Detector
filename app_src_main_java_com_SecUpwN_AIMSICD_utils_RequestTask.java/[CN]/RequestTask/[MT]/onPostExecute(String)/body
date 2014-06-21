@@ -5,7 +5,9 @@ switch (mType) {
 case OPEN_CELL_ID_REQUEST:
     if (result != null && result.equals("Successful")) {
       mDbAdapter.open();
-      if (mDbAdapter.updateOpenCellID())       Helpers.sendMsg(mContext,"OpenCellID data successfully received");
+      if (mDbAdapter.updateOpenCellID()) {
+        Helpers.sendMsg(mContext,"OpenCellID data successfully received");
+      }
       mDbAdapter.close();
     }
  else {

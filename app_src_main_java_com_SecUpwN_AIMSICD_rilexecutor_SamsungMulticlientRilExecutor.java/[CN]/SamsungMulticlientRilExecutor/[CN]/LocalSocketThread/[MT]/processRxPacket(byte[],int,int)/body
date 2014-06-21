@@ -1,7 +1,9 @@
 {
   int responseType;
   Parcel p;
-  if (DBG)   Log.v(TAG,"received " + length + " bytes: "+ HexDump.toHexString(data,pos,length));
+  if (DBG) {
+    Log.v(TAG,"received " + length + " bytes: "+ HexDump.toHexString(data,pos,length));
+  }
   p=Parcel.obtain();
   try {
     p.unmarshall(data,pos,length);

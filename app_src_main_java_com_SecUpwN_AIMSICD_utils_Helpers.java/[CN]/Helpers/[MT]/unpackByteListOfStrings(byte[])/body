@@ -23,6 +23,8 @@
     display[i]=new String(aob,offset,byteCount).trim();
   }
   int newLength=display.length;
-  while (newLength > 0 && TextUtils.isEmpty(display[newLength - 1]))   newLength-=1;
+  while (newLength > 0 && TextUtils.isEmpty(display[newLength - 1])) {
+    newLength-=1;
+  }
   return Arrays.asList(Arrays.copyOf(display,newLength));
 }

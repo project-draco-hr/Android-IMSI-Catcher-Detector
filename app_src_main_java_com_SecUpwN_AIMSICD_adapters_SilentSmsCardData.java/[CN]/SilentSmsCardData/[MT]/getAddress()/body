@@ -1,6 +1,10 @@
 {
   String address="Address: ";
-  if (mAddress.isEmpty())   address+="Unavailable";
- else   address+=mAddress;
+  if (mAddress.isEmpty()) {
+    address+="Unavailable";
+  }
+ else {
+    address+=mAddress;
+  }
   return address;
 }

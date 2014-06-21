@@ -1,5 +1,7 @@
 {
-  if (DBG)   Log.v(TAG,"cancel()");
+  if (DBG) {
+    Log.v(TAG,"cancel()");
+  }
 synchronized (this) {
     mCancelRequested.set(true);
     disconnect();

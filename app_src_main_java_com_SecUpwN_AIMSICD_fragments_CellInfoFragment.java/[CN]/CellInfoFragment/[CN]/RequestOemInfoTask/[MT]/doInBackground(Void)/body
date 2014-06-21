@@ -1,5 +1,7 @@
 {
-  if (!mBound)   return null;
+  if (!mBound) {
+    return null;
+  }
   updateNeighbouringCells();
   updateCipheringIndicator();
   return null;

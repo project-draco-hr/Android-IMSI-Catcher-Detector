@@ -6,7 +6,9 @@
   try {
     token=p.readInt();
     int err=p.readInt();
-    if (DBG)     Log.v(TAG,String.format("processSolicited() token: 0x%X err: %d",token,err));
+    if (DBG) {
+      Log.v(TAG,String.format("processSolicited() token: 0x%X err: %d",token,err));
+    }
     if (err != RIL_CLIENT_ERR_SUCCESS) {
       throw new RemoteException("remote error " + err);
     }

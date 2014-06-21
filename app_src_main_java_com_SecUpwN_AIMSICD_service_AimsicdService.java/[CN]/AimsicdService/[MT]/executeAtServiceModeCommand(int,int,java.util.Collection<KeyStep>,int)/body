@@ -1,5 +1,7 @@
 {
-  if (mRequestExecutor == null)   return Collections.emptyList();
+  if (mRequestExecutor == null) {
+    return Collections.emptyList();
+  }
   mRequestCondvar.close();
   mHandler.obtainMessage(ID_REQUEST_AT_COMMAND,type,subtype,keySeqence).sendToTarget();
   if (!mRequestCondvar.block(timeout)) {

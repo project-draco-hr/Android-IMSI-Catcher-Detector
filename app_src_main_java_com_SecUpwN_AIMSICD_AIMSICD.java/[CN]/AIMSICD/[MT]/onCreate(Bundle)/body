@@ -9,16 +9,16 @@
   int[] mIcons=new int[]{R.drawable.ic_action_phone,R.drawable.cell_tower,R.drawable.ic_action_computer,R.drawable.ic_action_storage,R.drawable.ic_action_map,R.drawable.ic_action_about};
   mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
   mDrawerList=(ListView)findViewById(R.id.left_drawer);
-  mNavigationItems=new ArrayList<>();
+  List<HashMap<String,String>> navigationItems=new ArrayList<>();
   for (int i=0; i < 6; i++) {
     HashMap<String,String> hm=new HashMap<>();
     hm.put("title",mNavigationTitles[i]);
     hm.put("icon",Integer.toString(mIcons[i]));
-    mNavigationItems.add(hm);
+    navigationItems.add(hm);
   }
   String[] from={"title","icon"};
   int[] to={R.id.navigation_item,R.id.icon};
-  mDrawerList.setAdapter(new SimpleAdapter(mContext,mNavigationItems,R.layout.drawer_layout,from,to));
+  mDrawerList.setAdapter(new SimpleAdapter(mContext,navigationItems,R.layout.drawer_layout,from,to));
   mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open,R.string.drawer_close){
     /** 
  * Called when a drawer has settled in a completely closed state. 
