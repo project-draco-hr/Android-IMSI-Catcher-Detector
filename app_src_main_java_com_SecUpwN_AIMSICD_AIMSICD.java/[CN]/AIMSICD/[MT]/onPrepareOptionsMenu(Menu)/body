@@ -14,7 +14,7 @@
         mTrackCell.setIcon(R.drawable.untrack_cell);
       }
     }
-    if (mAimsicdService.getPhoneID() == TelephonyManager.PHONE_TYPE_CDMA) {
+    if (mAimsicdService.mDevice.getPhoneID() == TelephonyManager.PHONE_TYPE_CDMA) {
       if (mAimsicdService.isTrackingFemtocell()) {
         if (mTrackFemtocell != null) {
           mTrackFemtocell.setTitle(R.string.untrack_femtocell);

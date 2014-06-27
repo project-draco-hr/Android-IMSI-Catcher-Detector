@@ -1,4 +1,0 @@
-{
-  mPhoneID=tm.getPhoneType();
-  return mPhoneID;
-}

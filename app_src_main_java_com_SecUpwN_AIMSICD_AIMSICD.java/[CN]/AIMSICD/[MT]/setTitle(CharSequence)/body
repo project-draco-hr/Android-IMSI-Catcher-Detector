@@ -1,4 +1,4 @@
 {
   mTitle=title;
-  getActionBar().setTitle(mTitle);
+  mActionBar.setTitle(mTitle);
 }

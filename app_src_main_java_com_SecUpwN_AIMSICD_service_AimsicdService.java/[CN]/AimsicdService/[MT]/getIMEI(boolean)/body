@@ -1,6 +1,0 @@
-{
-  if (mIMEI.isEmpty() || force) {
-    mIMEI=tm.getDeviceId();
-  }
-  return mIMEI;
-}

@@ -4,11 +4,12 @@
   Intent intent=new Intent(this,AimsicdService.class);
   startService(intent);
   bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+  mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
+  mDrawerList=(ListView)findViewById(R.id.left_drawer);
+  mActionBar=getActionBar();
   mNavigationTitles=getResources().getStringArray(R.array.navigation_array);
   mTitle=mDrawerTitle=getTitle();
   int[] mIcons=new int[]{R.drawable.ic_action_phone,R.drawable.cell_tower,R.drawable.ic_action_computer,R.drawable.ic_action_storage,R.drawable.ic_action_map,R.drawable.ic_action_about};
-  mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
-  mDrawerList=(ListView)findViewById(R.id.left_drawer);
   List<HashMap<String,String>> navigationItems=new ArrayList<>();
   for (int i=0; i < 6; i++) {
     HashMap<String,String> hm=new HashMap<>();
@@ -25,21 +26,21 @@
  */
     public void onDrawerClosed(    View view){
       super.onDrawerClosed(view);
-      getActionBar().setTitle(mTitle);
+      mActionBar.setTitle(mTitle);
     }
     /** 
  * Called when a drawer has settled in a completely open state. 
  */
     public void onDrawerOpened(    View drawerView){
       super.onDrawerOpened(drawerView);
-      getActionBar().setTitle(mDrawerTitle);
+      mActionBar.setTitle(mDrawerTitle);
     }
   }
 ;
   mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
   mDrawerLayout.setDrawerListener(mDrawerToggle);
-  getActionBar().setDisplayHomeAsUpEnabled(true);
-  getActionBar().setHomeButtonEnabled(true);
+  mActionBar.setDisplayHomeAsUpEnabled(true);
+  mActionBar.setHomeButtonEnabled(true);
   FragmentManager fragmentManager=getFragmentManager();
   fragmentManager.beginTransaction().replace(R.id.content_frame,new DeviceFragment()).commit();
   mProgressBar=(ProgressBar)findViewById(R.id.progressBar);

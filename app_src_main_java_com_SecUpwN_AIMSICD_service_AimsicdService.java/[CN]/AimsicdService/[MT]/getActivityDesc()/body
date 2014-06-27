@@ -1,4 +1,0 @@
-{
-  getDataActivity();
-  return mDataActivityType;
-}

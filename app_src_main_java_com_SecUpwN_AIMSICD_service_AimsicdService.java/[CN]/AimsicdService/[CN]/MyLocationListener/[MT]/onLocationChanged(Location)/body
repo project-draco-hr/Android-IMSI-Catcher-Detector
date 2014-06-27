@@ -1,5 +1,5 @@
 {
-  if (isBetterLocation(loc,mLastLocation)) {
+  if (mDevice.isBetterLocation(loc,mDevice.getLastLocation())) {
     if (Build.VERSION.SDK_INT > 16) {
       List<CellInfo> cellinfolist=tm.getAllCellInfo();
       if (cellinfolist != null) {
@@ -8,16 +8,16 @@
             CellInfoGsm GSMinfo=(CellInfoGsm)cellinfo;
             CellIdentityGsm gsmCellIdentity=GSMinfo.getCellIdentity();
             if (gsmCellIdentity != null) {
-              mCellID=gsmCellIdentity.getCid();
-              mLac=gsmCellIdentity.getLac();
+              mDevice.setCellID(gsmCellIdentity.getCid());
+              mDevice.setLAC(gsmCellIdentity.getLac());
             }
           }
  else           if (cellinfo instanceof CellInfoCdma) {
             CellInfoCdma CDMAinfo=(CellInfoCdma)cellinfo;
             CellIdentityCdma cdmaCellIdentity=CDMAinfo.getCellIdentity();
             if (cdmaCellIdentity != null) {
-              mCellID=cdmaCellIdentity.getBasestationId();
-              mLac=cdmaCellIdentity.getNetworkId();
+              mDevice.setCellID(cdmaCellIdentity.getBasestationId());
+              mDevice.setLAC(cdmaCellIdentity.getNetworkId());
             }
           }
         }
@@ -25,28 +25,28 @@
  else {
         CellLocation cellLocation=tm.getCellLocation();
         if (cellLocation != null) {
-switch (mPhoneID) {
+switch (mDevice.getPhoneID()) {
 case TelephonyManager.PHONE_TYPE_GSM:
             GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
-          mCellID=gsmCellLocation.getCid();
-        mLac=gsmCellLocation.getLac();
+          mDevice.setCellID(gsmCellLocation.getCid());
+        mDevice.setLAC(gsmCellLocation.getLac());
       break;
 case TelephonyManager.PHONE_TYPE_CDMA:
     CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
-  mCellID=cdmaCellLocation.getBaseStationId();
-mLac=cdmaCellLocation.getNetworkId();
+  mDevice.setCellID(cdmaCellLocation.getBaseStationId());
+mDevice.setLAC(cdmaCellLocation.getNetworkId());
 }
 }
 }
 }
 if (loc != null) {
-mLongitude=loc.getLongitude();
-mLatitude=loc.getLatitude();
-mLastLocation=loc;
+mDevice.setLongitude(loc.getLongitude());
+mDevice.setLatitude(loc.getLatitude());
+mDevice.setLastLocation(loc);
 }
 if (TrackingCell) {
 dbHelper.open();
-mDbResult=dbHelper.insertLocation(mLac,mCellID,mNetID,mLatitude,mLongitude,mSignalInfo,mCellInfo);
+mDbResult=dbHelper.insertLocation(mDevice.getLac(),mDevice.getCellId(),mDevice.getNetID(),mDevice.getLatitude(),mDevice.getLongitude(),mDevice.getSignalInfo(),mDevice.getCellInfo());
 if (mDbResult == -1) {
 Log.e(TAG,"Error writing to database");
 }

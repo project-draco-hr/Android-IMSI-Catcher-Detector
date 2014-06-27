@@ -1,0 +1,18 @@
+{
+  try {
+    if (tm.getSimState() == TelephonyManager.SIM_STATE_READY) {
+      mSimSubs=(tm.getSubscriberId() != null) ? tm.getSubscriberId() : "N/A";
+    }
+ else {
+      mSimSubs="N/A";
+    }
+  }
+ catch (  Exception e) {
+    mSimSubs="N/A";
+    Log.e(TAG,"getSimSubs " + e);
+  }
+  if (mSimSubs.isEmpty()) {
+    mSimSubs="N/A";
+  }
+  return mSimSubs;
+}

@@ -1,4 +1,0 @@
-{
-  mRoaming=tm.isNetworkRoaming();
-  return String.valueOf(mRoaming);
-}

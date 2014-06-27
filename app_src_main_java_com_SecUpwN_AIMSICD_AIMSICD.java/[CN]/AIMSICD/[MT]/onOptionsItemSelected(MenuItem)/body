@@ -12,9 +12,6 @@ case R.id.track_femtocell:
 trackFemtocell();
 invalidateOptionsMenu();
 return true;
-case R.id.show_map:
-showmap();
-return true;
 case R.id.preferences:
 intent=new Intent(this,PrefActivity.class);
 startActivity(intent);
@@ -26,7 +23,7 @@ case R.id.restore_database:
 new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
 return true;
 case R.id.update_opencelldata:
-Location loc=mAimsicdService.lastKnownLocation();
+Location loc=mAimsicdService.mDevice.getLastLocation();
 if (loc != null) {
 Helpers.sendMsg(mContext,"Contacting OpenCellID.org for data...");
 Helpers.getOpenCellData(mContext,loc.getLatitude(),loc.getLongitude(),RequestTask.OPEN_CELL_ID_REQUEST);

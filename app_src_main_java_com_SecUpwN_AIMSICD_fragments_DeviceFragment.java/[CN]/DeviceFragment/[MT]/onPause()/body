@@ -1,4 +1,0 @@
-{
-  super.onPause();
-  timerHandler.removeCallbacks(timerRunnable);
-}

@@ -5,7 +5,7 @@
   prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   prefs.registerOnSharedPreferenceChangeListener(this);
   loadPreferences();
-  refreshDeviceInfo();
+  mDevice.refreshDeviceInfo(tm,lm);
   setNotification();
   mRequestExecutor=new SamsungMulticlientRilExecutor();
   mRilExecutorDetectResult=mRequestExecutor.detect();

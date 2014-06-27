@@ -1,8 +1,0 @@
-{
-  if (mLastLocation != null) {
-    return new double[]{mLastLocation.getLatitude(),mLastLocation.getLongitude()};
-  }
- else {
-    return new double[]{0.0f,0.0f};
-  }
-}

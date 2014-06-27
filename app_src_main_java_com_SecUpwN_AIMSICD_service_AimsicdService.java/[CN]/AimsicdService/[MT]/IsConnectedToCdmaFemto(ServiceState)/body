@@ -2,7 +2,7 @@
   if (s == null) {
     return false;
   }
-  int networkType=getNetID(true);
+  int networkType=mDevice.getNetID();
   boolean evDoNetwork=isEvDoNetwork(networkType);
   if (!evDoNetwork) {
     if (tm != null) {

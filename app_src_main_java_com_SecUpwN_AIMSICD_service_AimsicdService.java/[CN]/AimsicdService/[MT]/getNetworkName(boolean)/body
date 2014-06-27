@@ -1,6 +1,0 @@
-{
-  if (mNetName.isEmpty() || force) {
-    mNetName=tm.getNetworkOperatorName();
-  }
-  return mNetName;
-}

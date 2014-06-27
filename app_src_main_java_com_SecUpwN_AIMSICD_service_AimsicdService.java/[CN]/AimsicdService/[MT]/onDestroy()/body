@@ -4,6 +4,10 @@
   cancelNotification();
   dbHelper.close();
   mContext.unregisterReceiver(mMessageReceiver);
+  if (TrackingCell) {
+    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
+    lm.removeUpdates(mLocationListener);
+  }
   if (mRequestExecutor != null) {
     mRequestExecutor.stop();
     mRequestExecutor=null;

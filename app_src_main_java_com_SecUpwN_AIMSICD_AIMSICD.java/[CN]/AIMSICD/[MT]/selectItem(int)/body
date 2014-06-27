@@ -13,15 +13,14 @@ break;
 case 3:
 fragment=new DbViewerFragment();
 break;
-case 4:
-fragment=new DeviceFragment();
-showmap();
-break;
 case 5:
 fragment=new AboutFragment();
 break;
 default :
 fragment=new DeviceFragment();
+}
+if (position == 4) {
+showmap();
 }
 FragmentManager fragmentManager=getFragmentManager();
 fragmentManager.beginTransaction().replace(R.id.content_frame,fragment).commit();

@@ -1,6 +1,0 @@
-{
-  if (mMcc == -1) {
-    mMcc=Integer.parseInt(tm.getNetworkOperator().substring(0,3));
-  }
-  return mMcc;
-}

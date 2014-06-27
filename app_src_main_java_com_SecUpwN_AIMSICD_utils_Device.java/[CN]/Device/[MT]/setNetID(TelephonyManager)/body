@@ -1,0 +1,3 @@
+{
+  mNetID=tm.getNetworkType();
+}

@@ -1,5 +1,5 @@
 {
-  mNeighboringCells=new ArrayList<>();
+  List<Cell> neighboringCells=new ArrayList<>();
   if (Build.VERSION.SDK_INT > 16) {
     List<CellInfo> allCellInfo=tm.getAllCellInfo();
     if (allCellInfo != null) {
@@ -10,7 +10,7 @@
           CellSignalStrengthGsm cellSignalStrengthGsm=gsmCellInfo.getCellSignalStrength();
           int dbmLevel=cellSignalStrengthGsm.getDbm();
           Cell cell=new Cell(cellIdentity.getCid(),cellIdentity.getLac(),cellIdentity.getMcc(),cellIdentity.getMnc(),dbmLevel,SystemClock.currentThreadTimeMillis());
-          mNeighboringCells.add(cell);
+          neighboringCells.add(cell);
         }
       }
     }
@@ -28,9 +28,10 @@
         if (rssi != NeighboringCellInfo.UNKNOWN_RSSI) {
           dbmLevel=-113 + 2 * rssi;
         }
-        Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),mMcc,mMnc,dbmLevel,SystemClock.currentThreadTimeMillis());
-        mNeighboringCells.add(cell);
+        Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),mDevice.getMCC(),mDevice.getMnc(),dbmLevel,SystemClock.currentThreadTimeMillis());
+        neighboringCells.add(cell);
       }
     }
   }
+  return neighboringCells;
 }

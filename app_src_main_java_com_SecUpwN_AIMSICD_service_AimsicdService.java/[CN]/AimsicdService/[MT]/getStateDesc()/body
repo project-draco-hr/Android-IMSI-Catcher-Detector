@@ -1,4 +1,0 @@
-{
-  getDataState();
-  return mDataState;
-}

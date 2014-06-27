@@ -1,4 +1,0 @@
-{
-  mAtCommand=commands;
-  return executeAtServiceModeCommand(ID_REQUEST_AT_COMMAND,ID_REQUEST_AT_COMMAND,null,REQUEST_TIMEOUT);
-}
