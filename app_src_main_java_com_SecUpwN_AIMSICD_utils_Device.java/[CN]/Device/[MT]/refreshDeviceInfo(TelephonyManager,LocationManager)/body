@@ -64,11 +64,4 @@ mSimSerial=getSimSerial(tm);
 mSimSubs=getSimSubs(tm);
 mDataActivityType=getDataActivity(tm);
 mDataState=getDataState(tm);
-if (mLongitude == 0.0 || mLatitude == 0.0) {
-Location lastKnownLocation=lastKnownLocation(tm,lm);
-if (lastKnownLocation != null) {
-mLongitude=lastKnownLocation.getLongitude();
-mLatitude=lastKnownLocation.getLatitude();
-}
-}
 }

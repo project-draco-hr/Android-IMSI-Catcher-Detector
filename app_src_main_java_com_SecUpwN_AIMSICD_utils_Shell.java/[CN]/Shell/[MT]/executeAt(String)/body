@@ -1,0 +1,3 @@
+{
+  return sendCommandPreserveOut("echo -e " + command + "\r > "+ mSerialDevice,5.0f);
+}

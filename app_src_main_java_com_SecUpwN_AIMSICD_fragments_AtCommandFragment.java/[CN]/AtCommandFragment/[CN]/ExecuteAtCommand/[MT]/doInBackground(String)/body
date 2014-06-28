@@ -1,3 +1,0 @@
-{
-  return CMDProcessor.runSuCommand(atCommand[0]);
-}

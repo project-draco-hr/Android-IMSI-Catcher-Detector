@@ -1,0 +1,13 @@
+{
+  boolean result=false;
+  if (mAtCommand.getText() != null) {
+    result=mShell.sendCommandPreserveOut(mAtCommand.getText().toString(),5.0f);
+    if (result) {
+      mOutput=new ArrayList<>();
+      mOutput=mShell.GetStdOut();
+      mError=new ArrayList<>();
+      mError=mShell.GetStdErr();
+    }
+  }
+  return result;
+}

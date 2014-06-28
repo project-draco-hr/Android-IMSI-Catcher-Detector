@@ -1,0 +1,42 @@
+{
+  if (mShellStdOut == null) {
+    return null;
+  }
+  try {
+    if (mShellStdOut.available() <= 0) {
+      return null;
+    }
+  }
+ catch (  IOException ioe) {
+    return null;
+  }
+  byte[] dataOut=null;
+  int dataLength=0;
+  try {
+    while (mShellStdOut.available() > 0) {
+      byte[] data=new byte[1024];
+      int readCount=mShellStdOut.read(data);
+      if (readCount == -1) {
+        break;
+      }
+{
+        int currentSize=0;
+        if (dataOut != null) {
+          currentSize=dataOut.length;
+        }
+        byte[] baNewDataOut=new byte[currentSize + readCount];
+        if (dataOut != null) {
+          System.arraycopy(dataOut,0,baNewDataOut,0,currentSize);
+        }
+        System.arraycopy(data,0,baNewDataOut,currentSize,readCount);
+        dataOut=baNewDataOut;
+        dataLength+=readCount;
+      }
+    }
+  }
+ catch (  IOException ioe) {
+    Log.i(TAG,"IOException, msg = " + ioe.getMessage());
+  }
+  Log.i(TAG,"Standard output read " + dataLength + " bytes");
+  return Helpers.ByteArrayToStringList(dataOut,dataLength);
+}

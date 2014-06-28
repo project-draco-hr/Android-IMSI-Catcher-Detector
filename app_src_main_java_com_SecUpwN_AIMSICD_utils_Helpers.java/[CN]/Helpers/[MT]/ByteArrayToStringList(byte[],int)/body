@@ -1,0 +1,47 @@
+{
+  if (byteArray == null) {
+    return null;
+  }
+  if (dataLength <= 0) {
+    return null;
+  }
+  if (dataLength > byteArray.length) {
+    return null;
+  }
+  for (int i=0; i < dataLength; i++) {
+    if ((byteArray[i] == 0x0D) || (byteArray[i] == 0x0A)) {
+      byteArray[i]=0;
+      continue;
+    }
+    if (byteArray[i] < 0x20) {
+      byteArray[i]=0x2E;
+    }
+    if (byteArray[i] > 0x7E) {
+      byteArray[i]=0x2E;
+    }
+  }
+  List<String> result=new ArrayList<>();
+  for (int i=0; i < dataLength; i++) {
+    if (byteArray[i] == 0) {
+      continue;
+    }
+    int blockLength=-1;
+    for (int j=i + 1; j < dataLength; j++) {
+      if (byteArray[j] == 0) {
+        blockLength=j - i;
+        break;
+      }
+    }
+    if (blockLength == -1) {
+      blockLength=dataLength - i;
+    }
+    byte[] mBlockData=new byte[blockLength];
+    System.arraycopy(byteArray,i,mBlockData,0,blockLength);
+    result.add(ByteToString(mBlockData));
+    i+=blockLength;
+  }
+  if (result.size() <= 0) {
+    return null;
+  }
+  return result;
+}

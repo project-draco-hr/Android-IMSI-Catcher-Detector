@@ -1,11 +1,11 @@
 {
-  if (mByteArray == null) {
+  if (byteArray == null) {
     return null;
   }
   try {
-    String mResult=new String(mByteArray,"ASCII");
-    mResult=String.copyValueOf(mResult.toCharArray(),0,mByteArray.length);
-    return mResult;
+    String result=new String(byteArray,"ASCII");
+    result=String.copyValueOf(result.toCharArray(),0,byteArray.length);
+    return result;
   }
  catch (  UnsupportedEncodingException e) {
     return null;

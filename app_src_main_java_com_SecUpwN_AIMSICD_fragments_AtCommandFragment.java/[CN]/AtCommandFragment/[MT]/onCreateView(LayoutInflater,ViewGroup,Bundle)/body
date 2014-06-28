@@ -4,10 +4,13 @@
     mAtCommandLayout=(RelativeLayout)mView.findViewById(R.id.atcommandView);
     mAtCommandError=(TextView)mView.findViewById(R.id.at_command_error);
     mAtCommandExecute=(Button)mView.findViewById(R.id.execute);
-    mRilDeviceDisplay=(TextView)mView.findViewById(R.id.ril_device);
+    mSerialDeviceDisplay=(TextView)mView.findViewById(R.id.serial_device);
     mAtResponse=(TextView)mView.findViewById(R.id.response);
     mAtCommand=(EditText)mView.findViewById(R.id.at_command);
     mAtCommandExecute.setOnClickListener(new btnClick());
+    mSerialDeviceSpinner=(Spinner)mView.findViewById(R.id.serial_device_spinner);
+    mSerialDeviceSpinner.setOnItemSelectedListener(new spinnerListener());
+    mSerialDeviceSpinnerLabel=(TextView)mView.findViewById(R.id.serial_device_spinner_title);
   }
   return mView;
 }

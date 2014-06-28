@@ -1,0 +1,28 @@
+{
+  if (mShellStdOut != null) {
+    Log.i(TAG,"Flushing standard output ...");
+    try {
+      while (mShellStdOut.available() > 0) {
+        if (mShellStdOut.read() == -1) {
+          break;
+        }
+      }
+    }
+ catch (    IOException e) {
+      Log.e(TAG,"Error flushing StdOut - " + e);
+    }
+  }
+  if (mShellStdErr != null) {
+    Log.i(TAG,"Flushing standard error ...");
+    try {
+      while (mShellStdErr.available() > 0) {
+        if (mShellStdErr.read() == -1) {
+          break;
+        }
+      }
+    }
+ catch (    IOException e) {
+      Log.e(TAG,"Error flushing StdErr - " + e);
+    }
+  }
+}

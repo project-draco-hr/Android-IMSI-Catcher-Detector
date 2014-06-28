@@ -1,0 +1,4 @@
+{
+  mSerialDevice=serialDevice;
+  sendCommandPreserveOut("cat " + mSerialDevice + " \u0026\r",5.0f);
+}

@@ -1,3 +1,7 @@
 {
   super.onDestroy();
+  if (mShell != null) {
+    mShell.close();
+    mShell=null;
+  }
 }

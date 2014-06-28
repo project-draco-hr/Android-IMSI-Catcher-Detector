@@ -1,9 +1,13 @@
 {
+  boolean result=false;
   if (mAtCommand.getText() != null) {
-    mAtResponse.setText("");
-    String cmdSetup="cat " + mRilDevice + " &";
-    new ExecuteAtCommand().execute(cmdSetup);
-    String atCommand=mAtCommand.getText().toString();
-    new ExecuteAtCommand().execute("echo -e " + atCommand + "\r > "+ mRilDevice);
+    result=mShell.executeAt(mAtCommand.getText().toString());
+    if (result) {
+      mOutput=new ArrayList<>();
+      mOutput=mShell.GetStdOut();
+      mError=new ArrayList<>();
+      mError=mShell.GetStdErr();
+    }
   }
+  return result;
 }
