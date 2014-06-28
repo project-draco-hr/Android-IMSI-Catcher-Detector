@@ -8,15 +8,15 @@ case R.id.get_opencellid:
 {
 Location lastKnown=mAimsicdService.mDevice.getLastLocation();
 if (lastKnown != null) {
-  Helpers.sendMsg(this,"Contacting OpenCellID.org for data...");
+  Helpers.msgShort(this,"Contacting OpenCellID.org for data...");
   Helpers.getOpenCellData(mContext,lastKnown.getLatitude(),lastKnown.getLongitude(),RequestTask.OPEN_CELL_ID_REQUEST_FROM_MAP);
 }
  else if (loc != null) {
-  Helpers.sendMsg(this,"Contacting OpenCellID.org for data...");
+  Helpers.msgShort(this,"Contacting OpenCellID.org for data...");
   Helpers.getOpenCellData(mContext,loc.latitude,loc.longitude,RequestTask.OPEN_CELL_ID_REQUEST_FROM_MAP);
 }
  else {
-  Helpers.sendMsg(mContext,"Unable to determine your last location. \nEnable Location Services and try again.");
+  Helpers.msgShort(mContext,"Unable to determine your last location. \nEnable Location Services and try again.");
 }
 return true;
 }

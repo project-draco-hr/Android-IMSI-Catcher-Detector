@@ -76,8 +76,8 @@ CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16).build(
 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
  else {
-Location lastLoc=mAimsicdService.mDevice.getLastLocation();
-if (lastLoc != null && (lastLoc.getLatitude() != 0.0 && lastLoc.getLongitude() != 0.0)) {
+Location lastLoc=mAimsicdService.lastKnownLocation();
+if (lastLoc != null && lastLoc.hasAccuracy()) {
 loc=new LatLng(lastLoc.getLatitude(),lastLoc.getLongitude());
 CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16).build();
 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));

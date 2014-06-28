@@ -45,7 +45,7 @@
 );
     }
  else {
-      Helpers.sendMsg(this,"Unable to create map!");
+      Helpers.msgShort(this,"Unable to create map!");
     }
   }
 }

@@ -1,4 +1,4 @@
 {
-  Helpers.sendMsg(mContext,"Refreshing now...");
+  Helpers.msgShort(mContext,"Refreshing now...");
   updateUI();
 }
