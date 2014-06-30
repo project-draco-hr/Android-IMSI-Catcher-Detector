@@ -1,25 +1,16 @@
 {
   super.onCreate(savedInstanceState);
-  setContentView(R.layout.main);
+  mNavConf=getNavDrawerConfiguration();
+  setContentView(mNavConf.getMainLayout());
   Intent intent=new Intent(this,AimsicdService.class);
   startService(intent);
   bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
-  mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
-  mDrawerList=(ListView)findViewById(R.id.left_drawer);
+  mDrawerLayout=(DrawerLayout)findViewById(mNavConf.getDrawerLayoutId());
+  mDrawerList=(ListView)findViewById(mNavConf.getLeftDrawerId());
   mActionBar=getActionBar();
   mNavigationTitles=getResources().getStringArray(R.array.navigation_array);
   mTitle=mDrawerTitle=getTitle();
-  int[] mIcons=new int[]{R.drawable.ic_action_phone,R.drawable.cell_tower,R.drawable.ic_action_computer,R.drawable.ic_action_storage,R.drawable.ic_action_map,R.drawable.ic_action_about};
-  List<HashMap<String,String>> navigationItems=new ArrayList<>();
-  for (int i=0; i < 6; i++) {
-    HashMap<String,String> hm=new HashMap<>();
-    hm.put("title",mNavigationTitles[i]);
-    hm.put("icon",Integer.toString(mIcons[i]));
-    navigationItems.add(hm);
-  }
-  String[] from={"title","icon"};
-  int[] to={R.id.navigation_item,R.id.icon};
-  mDrawerList.setAdapter(new SimpleAdapter(mContext,navigationItems,R.layout.drawer_layout,from,to));
+  mDrawerList.setAdapter(mNavConf.getBaseAdapter());
   mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open,R.string.drawer_close){
     /** 
  * Called when a drawer has settled in a completely closed state. 
@@ -27,6 +18,7 @@
     public void onDrawerClosed(    View view){
       super.onDrawerClosed(view);
       mActionBar.setTitle(mTitle);
+      invalidateOptionsMenu();
     }
     /** 
  * Called when a drawer has settled in a completely open state. 
@@ -34,6 +26,7 @@
     public void onDrawerOpened(    View drawerView){
       super.onDrawerOpened(drawerView);
       mActionBar.setTitle(mDrawerTitle);
+      invalidateOptionsMenu();
     }
   }
 ;

@@ -1,0 +1,3 @@
+{
+  return SECTION_TYPE;
+}

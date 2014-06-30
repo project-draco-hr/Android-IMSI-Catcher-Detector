@@ -2,40 +2,5 @@
   if (mDrawerToggle.onOptionsItemSelected(item)) {
     return true;
   }
-  Intent intent;
-switch (item.getItemId()) {
-case R.id.track_cell:
-    trackcell();
-  invalidateOptionsMenu();
-return true;
-case R.id.track_femtocell:
-trackFemtocell();
-invalidateOptionsMenu();
-return true;
-case R.id.preferences:
-intent=new Intent(this,PrefActivity.class);
-startActivity(intent);
-return true;
-case R.id.backup_database:
-new RequestTask(mContext,RequestTask.BACKUP_DATABASE).execute();
-return true;
-case R.id.restore_database:
-new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
-return true;
-case R.id.update_opencelldata:
-Location loc=mAimsicdService.lastKnownLocation();
-if (loc != null && loc.hasAccuracy()) {
-Helpers.msgShort(mContext,"Contacting OpenCellID.org for data...");
-Helpers.getOpenCellData(mContext,loc.getLatitude(),loc.getLongitude(),RequestTask.OPEN_CELL_ID_REQUEST);
-}
- else {
-Helpers.msgShort(mContext,"Unable to determine your last location. \nEnable Location Services and try again.");
-}
-return true;
-case R.id.app_exit:
-finish();
-return true;
-default :
-return super.onOptionsItemSelected(item);
-}
+  return super.onOptionsItemSelected(item);
 }

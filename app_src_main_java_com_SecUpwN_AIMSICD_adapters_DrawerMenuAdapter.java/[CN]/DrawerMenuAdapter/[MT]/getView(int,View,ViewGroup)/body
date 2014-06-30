@@ -1,0 +1,11 @@
+{
+  View view=null;
+  NavDrawerItem menuItem=this.getItem(position);
+  if (menuItem.getType() == DrawerMenuItem.ITEM_TYPE) {
+    view=getItemView(convertView,parent,menuItem);
+  }
+ else {
+    view=getSectionView(convertView,parent,menuItem);
+  }
+  return view;
+}
