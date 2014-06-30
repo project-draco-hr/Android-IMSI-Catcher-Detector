@@ -76,6 +76,7 @@ CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16).build(
 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
  else {
+if (mBound) {
 Location lastLoc=mAimsicdService.lastKnownLocation();
 if (lastLoc != null && lastLoc.hasAccuracy()) {
 loc=new LatLng(lastLoc.getLatitude(),lastLoc.getLongitude());
@@ -88,6 +89,7 @@ double[] d=mDbHelper.getDefaultLocation(mcc);
 loc=new LatLng(d[0],d[1]);
 CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(13).build();
 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
+}
 }
 }
 loadOpenCellIDMarkers();
