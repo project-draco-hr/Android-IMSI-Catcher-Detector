@@ -8,7 +8,6 @@
   mDrawerLayout=(DrawerLayout)findViewById(mNavConf.getDrawerLayoutId());
   mDrawerList=(ListView)findViewById(mNavConf.getLeftDrawerId());
   mActionBar=getActionBar();
-  mNavigationTitles=getResources().getStringArray(R.array.navigation_array);
   mTitle=mDrawerTitle=getTitle();
   mDrawerList.setAdapter(mNavConf.getBaseAdapter());
   mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open,R.string.drawer_close){

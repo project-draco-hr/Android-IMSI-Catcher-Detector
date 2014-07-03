@@ -5,5 +5,35 @@
       menu.findItem(iItem).setVisible(!drawerOpen);
     }
   }
+  NavDrawerItem femtoTrackingItem=null;
+  List<NavDrawerItem> menuItems=mNavConf.getNavItems();
+  NavDrawerItem cellTrackingItem=menuItems.get(1);
+  if (AimsicdService.PHONE_TYPE == TelephonyManager.PHONE_TYPE_CDMA) {
+    femtoTrackingItem=menuItems.get(2);
+  }
+  if (mBound) {
+    if (cellTrackingItem != null) {
+      if (mAimsicdService.isTrackingCell()) {
+        cellTrackingItem.setLabel(getString(R.string.untrack_cell));
+        cellTrackingItem.setIcon(R.drawable.track_cell);
+      }
+ else {
+        cellTrackingItem.setLabel(getString(R.string.track_cell));
+        cellTrackingItem.setIcon(R.drawable.untrack_cell);
+      }
+      mNavConf.getBaseAdapter().notifyDataSetChanged();
+    }
+    if (femtoTrackingItem != null) {
+      if (mAimsicdService.isTrackingFemtocell()) {
+        femtoTrackingItem.setLabel(getString(R.string.untrack_femtocell));
+        femtoTrackingItem.setIcon(R.drawable.ic_action_network_cell);
+      }
+ else {
+        femtoTrackingItem.setLabel(getString(R.string.track_femtocell));
+        femtoTrackingItem.setIcon(R.drawable.ic_action_network_cell_not_tracked);
+      }
+      mNavConf.getBaseAdapter().notifyDataSetChanged();
+    }
+  }
   return super.onPrepareOptionsMenu(menu);
 }

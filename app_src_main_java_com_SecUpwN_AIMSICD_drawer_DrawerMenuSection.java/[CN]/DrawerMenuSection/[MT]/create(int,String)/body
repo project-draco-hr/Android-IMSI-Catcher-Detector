@@ -1,0 +1,6 @@
+{
+  DrawerMenuSection section=new DrawerMenuSection();
+  section.setId(id);
+  section.setLabel(label);
+  return section;
+}

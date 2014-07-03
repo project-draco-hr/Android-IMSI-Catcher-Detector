@@ -1,5 +1,5 @@
 {
-  NavDrawerItem selectedItem=mNavConf.getNavItems()[position];
+  NavDrawerItem selectedItem=mNavConf.getNavItems().get(position);
 switch (selectedItem.getId()) {
 case 101:
     getFragmentManager().beginTransaction().replace(R.id.content_frame,new DeviceFragment()).commit();
@@ -19,6 +19,9 @@ break;
 }
 if (selectedItem.getId() == 901) {
 trackcell();
+}
+ else if (selectedItem.getId() == 902) {
+trackFemtocell();
 }
  else if (selectedItem.getId() == 105) {
 showmap();

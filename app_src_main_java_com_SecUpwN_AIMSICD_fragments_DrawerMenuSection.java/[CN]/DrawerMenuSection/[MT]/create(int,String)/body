@@ -1,5 +1,0 @@
-{
-  DrawerMenuSection section=new DrawerMenuSection();
-  section.setLabel(label);
-  return section;
-}

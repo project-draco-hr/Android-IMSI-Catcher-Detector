@@ -1,4 +1,0 @@
-{
-  super(context,textViewResourceId,objects);
-  this.inflater=LayoutInflater.from(context);
-}

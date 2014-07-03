@@ -1,5 +1,24 @@
 {
-  NavDrawerItem[] menu=new NavDrawerItem[]{DrawerMenuSection.create(900,"Tracking"),DrawerMenuItem.create(901,getString(R.string.track_cell),"untrack_cell",false,this),DrawerMenuSection.create(100,"Main"),DrawerMenuItem.create(101,getString(R.string.device_info),"ic_action_phone",true,this),DrawerMenuItem.create(102,getString(R.string.cell_info_title),"cell_tower",true,this),DrawerMenuItem.create(103,getString(R.string.at_command_title),"ic_action_computer",true,this),DrawerMenuItem.create(104,getString(R.string.db_viewer),"ic_action_storage",true,this),DrawerMenuItem.create(105,getString(R.string.map_view),"ic_action_map",true,this),DrawerMenuSection.create(200,"Settings"),DrawerMenuItem.create(202,getString(R.string.preferences),"ic_action_settings",false,this),DrawerMenuItem.create(203,getString(R.string.backup_database),"ic_action_import_export",false,this),DrawerMenuItem.create(204,getString(R.string.restore_database),"ic_action_import_export",false,this),DrawerMenuSection.create(300,"Application"),DrawerMenuItem.create(301,getString(R.string.get_opencellid),"stat_sys_download_anim0",false,this),DrawerMenuItem.create(302,getString(R.string.about_aimsicd),"ic_action_about",true,this),DrawerMenuItem.create(303,getString(R.string.quit),"ic_action_remove",false,this)};
+  List<NavDrawerItem> menu=new ArrayList<>();
+  menu.add(DrawerMenuSection.create(900,"Tracking"));
+  menu.add(DrawerMenuItem.create(901,getString(R.string.track_cell),"untrack_cell",false,this));
+  if (AimsicdService.PHONE_TYPE == TelephonyManager.PHONE_TYPE_CDMA) {
+    menu.add(DrawerMenuItem.create(902,getString(R.string.track_femtocell),"ic_action_network_cell",false,this));
+  }
+  menu.add(DrawerMenuSection.create(100,"Main"));
+  menu.add(DrawerMenuItem.create(101,getString(R.string.device_info),"ic_action_phone",true,this));
+  menu.add(DrawerMenuItem.create(102,getString(R.string.cell_info_title),"cell_tower",true,this));
+  menu.add(DrawerMenuItem.create(103,getString(R.string.at_command_title),"ic_action_computer",true,this));
+  menu.add(DrawerMenuItem.create(104,getString(R.string.db_viewer),"ic_action_storage",true,this));
+  menu.add(DrawerMenuItem.create(105,getString(R.string.map_view),"ic_action_map",true,this));
+  menu.add(DrawerMenuSection.create(200,"Settings"));
+  menu.add(DrawerMenuItem.create(202,getString(R.string.preferences),"ic_action_settings",false,this));
+  menu.add(DrawerMenuItem.create(203,getString(R.string.backup_database),"ic_action_import_export",false,this));
+  menu.add(DrawerMenuItem.create(204,getString(R.string.restore_database),"ic_action_import_export",false,this));
+  menu.add(DrawerMenuSection.create(300,"Application"));
+  menu.add(DrawerMenuItem.create(301,getString(R.string.get_opencellid),"stat_sys_download_anim0",false,this));
+  menu.add(DrawerMenuItem.create(302,getString(R.string.about_aimsicd),"ic_action_about",true,this));
+  menu.add(DrawerMenuItem.create(303,getString(R.string.quit),"ic_action_remove",false,this));
   DrawerMenuActivityConfiguration navDrawerActivityConfiguration=new DrawerMenuActivityConfiguration();
   navDrawerActivityConfiguration.setMainLayout(R.layout.main);
   navDrawerActivityConfiguration.setDrawerLayoutId(R.id.drawer_layout);
