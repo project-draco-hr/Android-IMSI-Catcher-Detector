@@ -1,0 +1,21 @@
+{
+switch (position) {
+case 0:
+    mTimeout=2.0f;
+  break;
+case 1:
+mTimeout=5.0f;
+break;
+case 2:
+mTimeout=8.0f;
+break;
+case 3:
+mTimeout=10.0f;
+break;
+case 4:
+mTimeout=15.0f;
+break;
+default :
+mTimeout=5.0f;
+}
+}

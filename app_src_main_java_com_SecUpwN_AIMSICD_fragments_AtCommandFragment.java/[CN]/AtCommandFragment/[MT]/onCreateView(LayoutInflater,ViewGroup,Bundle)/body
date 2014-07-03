@@ -11,6 +11,10 @@
     mSerialDeviceSpinner=(Spinner)mView.findViewById(R.id.serial_device_spinner);
     mSerialDeviceSpinner.setOnItemSelectedListener(new spinnerListener());
     mSerialDeviceSpinnerLabel=(TextView)mView.findViewById(R.id.serial_device_spinner_title);
+    mTimoutSpinner=(Spinner)mView.findViewById(R.id.timeout_spinner);
+    mTimoutSpinner.setOnItemSelectedListener(new timoutSpinnerListener());
+    mTimoutSpinner.setSelection(1);
+    mTimeout=5.0f;
   }
   return mView;
 }

@@ -15,7 +15,7 @@
   if (!mSerialDevice.equals("UNKNOWN")) {
     mSerialDevices.add(mSerialDevice);
   }
-  boolean result=mShell.sendCommandPreserveOut("ls /dev/radio | grep atci*",5.0f);
+  boolean result=mShell.sendCommandPreserveOut("ls /dev/radio | grep atci*",mTimeout);
   if (result) {
     mOutput=new ArrayList<>();
     mOutput=mShell.GetStdOut();
@@ -34,7 +34,7 @@
   }
   File xgold=new File("/system/etc/ril_xgold_radio.cfg");
   if (xgold.exists() && xgold.isFile()) {
-    result=mShell.sendCommandPreserveOut("cat /system/etc/ril_xgold_radio.cfg | " + "grep -E \"atport*|dataport*\"",5.0f);
+    result=mShell.sendCommandPreserveOut("cat /system/etc/ril_xgold_radio.cfg | " + "grep -E \"atport*|dataport*\"",mTimeout);
     if (result) {
       mOutput=new ArrayList<>();
       mOutput=mShell.GetStdOut();

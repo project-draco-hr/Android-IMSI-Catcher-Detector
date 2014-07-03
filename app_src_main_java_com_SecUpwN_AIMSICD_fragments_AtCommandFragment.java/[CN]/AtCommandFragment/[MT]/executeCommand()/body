@@ -1,7 +1,7 @@
 {
   boolean result=false;
   if (mAtCommand.getText() != null) {
-    result=mShell.sendCommandPreserveOut(mAtCommand.getText().toString(),5.0f);
+    result=mShell.sendCommandPreserveOut(mAtCommand.getText().toString(),mTimeout);
     if (result) {
       mOutput=new ArrayList<>();
       mOutput=mShell.GetStdOut();
