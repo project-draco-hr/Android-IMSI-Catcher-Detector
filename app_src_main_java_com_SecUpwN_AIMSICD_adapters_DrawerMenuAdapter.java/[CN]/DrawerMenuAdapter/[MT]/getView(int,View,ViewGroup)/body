@@ -1,5 +1,5 @@
 {
-  View view=null;
+  View view;
   NavDrawerItem menuItem=this.getItem(position);
   if (menuItem.getType() == DrawerMenuItem.ITEM_TYPE) {
     view=getItemView(convertView,parent,menuItem);

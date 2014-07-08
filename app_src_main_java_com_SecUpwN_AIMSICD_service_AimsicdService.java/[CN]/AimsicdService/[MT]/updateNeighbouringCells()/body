@@ -15,7 +15,7 @@
       }
     }
   }
- else {
+  if (Build.VERSION.SDK_INT < 16 || neighboringCells.isEmpty()) {
     List<NeighboringCellInfo> neighboringCellInfo;
     neighboringCellInfo=tm.getNeighboringCellInfo();
     if (neighboringCellInfo != null) {

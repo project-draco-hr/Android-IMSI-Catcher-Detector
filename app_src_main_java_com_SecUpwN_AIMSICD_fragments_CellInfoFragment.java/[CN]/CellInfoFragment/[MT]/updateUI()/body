@@ -7,7 +7,7 @@
       int i=1;
       int total=neighboringCells.size();
       for (      Cell cell : neighboringCells) {
-        CardItemData data=new CardItemData("Cell ID (CID): " + cell.getCID(),"Location Code (LAC): " + cell.getLAC(),"Country Code (MCC): " + cell.getMCC(),"Network Code (MNC): " + cell.getMNC(),"Signal Strength (dBM): " + cell.getDBM(),"" + i + " / "+ total);
+        CardItemData data=new CardItemData("Cell ID (CID): " + cell.getCID(),"Location Code (LAC): " + cell.getLAC(),"Country Code (MCC): " + cell.getMCC(),"Network Code (MNC): " + cell.getMNC(),"Signal Strength (dBM): " + cell.getDBM(),"" + i++ + " / "+ total);
         adapter.addItem(data,false);
       }
       lv.setAdapter(adapter);

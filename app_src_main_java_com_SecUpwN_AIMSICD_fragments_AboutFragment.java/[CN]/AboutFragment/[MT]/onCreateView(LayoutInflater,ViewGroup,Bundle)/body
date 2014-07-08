@@ -9,7 +9,7 @@
  catch (  PackageManager.NameNotFoundException nnfe) {
     version="";
   }
-  TextView versionNumber=null;
+  TextView versionNumber;
   if (v != null) {
     versionNumber=(TextView)v.findViewById(R.id.aimsicd_version);
     versionNumber.setText(version);

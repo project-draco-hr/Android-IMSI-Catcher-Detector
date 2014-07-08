@@ -15,7 +15,6 @@
   clearStdOutAndErr();
   try {
     int oldCount;
-    boolean returned=false;
     try {
       oldCount=mShellStdOut.available() + mShellStdErr.available();
     }
@@ -35,7 +34,6 @@
       Log.i(TAG,"Waiting for command return, idx = " + waitCount + ", old = "+ oldCount+ ", curr = "+ currCount);
       if (currCount != oldCount) {
         Log.i(TAG,"Command returned");
-        returned=true;
         break;
       }
       SystemClock.sleep(100);
