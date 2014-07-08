@@ -37,13 +37,17 @@ new RequestTask(mContext,RequestTask.BACKUP_DATABASE).execute();
 new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
 }
  else if (selectedItem.getId() == 301) {
+boolean foundLocation=false;
 Location loc=mAimsicdService.lastKnownLocation();
 if (loc != null && loc.hasAccuracy()) {
 Helpers.msgShort(mContext,"Contacting OpenCellID.org for data...");
 Helpers.getOpenCellData(mContext,loc.getLatitude(),loc.getLongitude(),RequestTask.OPEN_CELL_ID_REQUEST);
+foundLocation=true;
 }
  else {
-Helpers.msgShort(mContext,"Unable to determine your last location. \nEnable Location Services and try again.");
+mLocationAsync=new LocationServices.LocationAsync();
+mLocationAsync.delegate=this;
+mLocationAsync.execute(mAimsicdService.mDevice.getCellId(),mAimsicdService.mDevice.getLac(),mAimsicdService.mDevice.getMnc(),mAimsicdService.mDevice.getMCC());
 }
 }
 mDrawerList.setItemChecked(position,true);

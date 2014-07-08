@@ -1,0 +1,10 @@
+{
+  Log.i(TAG,"processFinish - location[0]=" + location[0] + " location[1]="+ location[1]);
+  if (location[0] != 0.0f && location[1] != 0.0f) {
+    Helpers.msgShort(mContext,"Contacting OpenCellID.org for data...");
+    Helpers.getOpenCellData(mContext,location[0],location[1],RequestTask.OPEN_CELL_ID_REQUEST);
+  }
+ else {
+    Helpers.msgShort(mContext,"Unable to determine your last location. \nEnable Location Services and try again.");
+  }
+}

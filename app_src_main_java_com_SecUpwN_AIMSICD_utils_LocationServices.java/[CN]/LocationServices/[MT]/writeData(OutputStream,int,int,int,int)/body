@@ -1,0 +1,21 @@
+{
+  DataOutputStream dataOutputStream=new DataOutputStream(out);
+  dataOutputStream.writeShort(0x0E);
+  dataOutputStream.writeInt(0);
+  dataOutputStream.writeInt(0);
+  dataOutputStream.writeShort(0);
+  dataOutputStream.writeShort(0);
+  dataOutputStream.writeShort(0);
+  dataOutputStream.writeByte(0x1B);
+  dataOutputStream.writeInt(0);
+  dataOutputStream.writeInt(0);
+  dataOutputStream.writeInt(3);
+  dataOutputStream.writeShort(0);
+  dataOutputStream.writeInt(cid);
+  dataOutputStream.writeInt(lac);
+  dataOutputStream.writeInt(mnc);
+  dataOutputStream.writeInt(mcc);
+  dataOutputStream.writeInt(-1);
+  dataOutputStream.writeInt(0);
+  dataOutputStream.flush();
+}

@@ -43,14 +43,14 @@
       public void onClick(      DialogInterface dialog,      int which){
         prefsEditor=prefs.edit();
         prefsEditor.putBoolean(mDisclaimerAccepted,true);
-        prefsEditor.commit();
+        prefsEditor.apply();
       }
     }
 ).setNegativeButton(R.string.text_cancel,new DialogInterface.OnClickListener(){
       public void onClick(      DialogInterface dialog,      int which){
         prefsEditor=prefs.edit();
         prefsEditor.putBoolean(mDisclaimerAccepted,false);
-        prefsEditor.commit();
+        prefsEditor.apply();
         Uri packageUri=Uri.parse("package:com.SecUpwN.AIMSICD");
         Intent uninstallIntent=new Intent(Intent.ACTION_DELETE,packageUri);
         startActivity(uninstallIntent);
