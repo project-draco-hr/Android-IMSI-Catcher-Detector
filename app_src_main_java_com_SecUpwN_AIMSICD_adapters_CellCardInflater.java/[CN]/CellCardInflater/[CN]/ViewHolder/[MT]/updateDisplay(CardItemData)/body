@@ -1,9 +1,35 @@
 {
-  mCellID.setText(item.getCellID());
-  mLac.setText(item.getLac());
-  mNet.setText(item.getNet());
-  mLat.setText(item.getLat());
-  mLng.setText(item.getLng());
-  mSignal.setText(item.getSignal());
+  if (!item.getCellID().contains("N/A")) {
+    mCellID.setVisibility(View.VISIBLE);
+    mCellID.setText(item.getCellID());
+  }
+  if (!item.getLac().contains("N/A")) {
+    mLac.setVisibility(View.VISIBLE);
+    mLac.setText(item.getLac());
+  }
+  if (!item.getNet().contains("N/A")) {
+    mNet.setVisibility(View.VISIBLE);
+    mNet.setText(item.getNet());
+  }
+  if (!item.getLat().contains("N/A")) {
+    mLat.setVisibility(View.VISIBLE);
+    mLat.setText(item.getLat());
+  }
+  if (!item.getLng().contains("N/A")) {
+    mLng.setVisibility(View.VISIBLE);
+    mLng.setText(item.getLng());
+  }
+  if (!item.getMcc().contains("N/A")) {
+    mMcc.setVisibility(View.VISIBLE);
+    mMcc.setText(item.getMcc());
+  }
+  if (!item.getMnc().contains("N/A")) {
+    mMnc.setVisibility(View.VISIBLE);
+    mMnc.setText(item.getMnc());
+  }
+  if (!item.getSignal().contains("N/A")) {
+    mSignal.setVisibility(View.VISIBLE);
+    mSignal.setText(item.getSignal());
+  }
   mRecordId.setText(item.getRecordId());
 }

@@ -9,5 +9,10 @@
     return false;
   }
   Cell other=(Cell)obj;
-  return this.cid == other.getCID() && this.lac == other.getLAC() && this.mcc == other.getMCC() && this.mnc == other.getMNC();
+  if (this.psc != -1) {
+    return this.cid == other.getCID() && this.lac == other.getLAC() && this.mcc == other.getMCC() && this.mnc == other.getMNC() && this.psc == other.getPSC();
+  }
+ else {
+    return this.cid == other.getCID() && this.lac == other.getLAC() && this.mcc == other.getMCC() && this.mnc == other.getMNC();
+  }
 }

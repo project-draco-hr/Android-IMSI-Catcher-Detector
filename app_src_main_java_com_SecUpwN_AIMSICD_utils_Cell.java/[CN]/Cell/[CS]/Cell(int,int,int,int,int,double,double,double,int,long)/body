@@ -4,6 +4,9 @@
   this.mcc=mcc;
   this.mnc=mnc;
   this.dbm=dbm;
-  this.psc=-1;
+  this.accuracy=accuracy;
+  this.speed=speed;
+  this.bearing=bearing;
+  this.netType=netType;
   this.timestamp=timestamp;
 }

@@ -4,6 +4,6 @@
   this.mcc=mcc;
   this.mnc=mnc;
   this.dbm=dbm;
-  this.psc=-1;
+  this.psc=psc;
   this.timestamp=timestamp;
 }

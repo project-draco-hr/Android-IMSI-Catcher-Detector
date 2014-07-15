@@ -3,9 +3,14 @@
   mLac=lac;
   mMcc=mcc;
   mMnc=mnc;
+  mNet="Network Type: N/A";
   mLat=lat;
   mLng=lng;
+  mSignal="Signal: N/A";
   mAvgSigStr=avgSigStr;
   mSamples=samples;
+  mPsc="Primary Scrambling Code: N/A";
+  mCountry="Country: N/A";
+  mTimestamp="Timestamp: N/A";
   mRecordId=recordId;
 }

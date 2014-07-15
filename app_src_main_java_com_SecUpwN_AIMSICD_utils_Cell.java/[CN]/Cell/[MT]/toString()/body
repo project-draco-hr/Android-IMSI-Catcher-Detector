@@ -5,5 +5,8 @@
   result.append("Country Code (MCC): ").append(mcc).append("\n");
   result.append("Network Code (MNC): ").append(mnc).append("\n");
   result.append("Signal Strength (DBM): ").append(dbm).append("\n");
+  if (psc != -1) {
+    result.append("Primary Scrambling Code (PSC): ").append(psc).append("\n");
+  }
   return result.toString();
 }

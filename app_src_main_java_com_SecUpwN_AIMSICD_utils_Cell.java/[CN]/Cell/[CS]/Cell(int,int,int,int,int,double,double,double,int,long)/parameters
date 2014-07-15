@@ -1,0 +1,10 @@
+int cid
+int lac
+int mcc
+int mnc
+int dbm
+double accuracy
+double speed
+double bearing
+int netType
+long timestamp

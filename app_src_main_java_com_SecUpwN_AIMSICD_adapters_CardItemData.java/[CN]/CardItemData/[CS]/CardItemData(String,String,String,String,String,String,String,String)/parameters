@@ -1,0 +1,8 @@
+String cellID
+String lac
+String mcc
+String mnc
+String signal
+String psc
+String timestamp
+String recordId

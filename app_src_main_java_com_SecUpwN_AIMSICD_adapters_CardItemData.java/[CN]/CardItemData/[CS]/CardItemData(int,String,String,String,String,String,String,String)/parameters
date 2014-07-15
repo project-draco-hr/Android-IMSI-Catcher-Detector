@@ -1,0 +1,8 @@
+int type
+String cellID
+String lac
+String mcc
+String mnc
+String signal
+String timestamp
+String recordId

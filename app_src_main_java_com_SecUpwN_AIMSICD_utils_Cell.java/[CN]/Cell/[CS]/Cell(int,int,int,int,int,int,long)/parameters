@@ -1,0 +1,7 @@
+int cid
+int lac
+int mcc
+int mnc
+int dbm
+int psc
+long timestamp
