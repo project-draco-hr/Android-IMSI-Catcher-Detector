@@ -7,10 +7,12 @@
     cellValues.put("Lat",latitude);
     cellValues.put("Lng",longitude);
     cellValues.put("Signal",signalInfo);
-    cellValues.put("Connection",cellInfo);
-    cellValues.put("Country",simCountry);
-    cellValues.put("Operator",simOperator);
-    cellValues.put("OperatorName",simOperatorName);
+    cellValues.put("Mcc",mcc);
+    cellValues.put("Mnc",mnc);
+    cellValues.put("Accuracy",accuracy);
+    cellValues.put("Speed",speed);
+    cellValues.put("Direction",direction);
+    cellValues.put("NetworkType",networkType);
     if (!cellExists(cellID,latitude,longitude,signalInfo)) {
       return mDb.insert(CELL_TABLE,null,cellValues);
     }

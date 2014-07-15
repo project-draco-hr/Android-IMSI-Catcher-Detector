@@ -34,7 +34,12 @@ startActivity(intent);
 new RequestTask(mContext,RequestTask.BACKUP_DATABASE).execute();
 }
  else if (selectedItem.getId() == 204) {
+if (AimsicdService.LAST_DB_BACKUP_VERSION < AIMSICDDbAdapter.DATABASE_VERSION) {
+Helpers.msgShort(mContext,"Unable to restore backup from previous database version" + " due to structural changes");
+}
+ else {
 new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
+}
 }
  else if (selectedItem.getId() == 301) {
 Location loc=mAimsicdService.lastKnownLocation();
