@@ -5,20 +5,58 @@
       if (cellinfolist != null) {
         for (        final CellInfo cellinfo : cellinfolist) {
           if (cellinfo instanceof CellInfoGsm) {
-            CellInfoGsm GSMinfo=(CellInfoGsm)cellinfo;
-            CellIdentityGsm gsmCellIdentity=GSMinfo.getCellIdentity();
-            if (gsmCellIdentity != null) {
-              mDevice.setCellID(gsmCellIdentity.getCid());
-              mDevice.setLAC(gsmCellIdentity.getLac());
+            final CellSignalStrengthGsm signalStrengthGsm=((CellInfoGsm)cellinfo).getCellSignalStrength();
+            final CellIdentityGsm identityGsm=((CellInfoGsm)cellinfo).getCellIdentity();
+            if (identityGsm != null) {
+              mDevice.setCellID(identityGsm.getCid());
+              mDevice.setLAC(identityGsm.getLac());
+              mDevice.setMcc(identityGsm.getMcc());
+              mDevice.setMnc(identityGsm.getMnc());
             }
+            if (signalStrengthGsm != null) {
+              mDevice.setSignalInfo(signalStrengthGsm.getDbm());
+            }
+            break;
           }
  else           if (cellinfo instanceof CellInfoCdma) {
-            CellInfoCdma CDMAinfo=(CellInfoCdma)cellinfo;
-            CellIdentityCdma cdmaCellIdentity=CDMAinfo.getCellIdentity();
-            if (cdmaCellIdentity != null) {
-              mDevice.setCellID(cdmaCellIdentity.getBasestationId());
-              mDevice.setLAC(cdmaCellIdentity.getNetworkId());
+            final CellSignalStrengthCdma signalStrengthCdma=((CellInfoCdma)cellinfo).getCellSignalStrength();
+            final CellIdentityCdma identityCdma=((CellInfoCdma)cellinfo).getCellIdentity();
+            if (identityCdma != null) {
+              mDevice.setCellID(identityCdma.getBasestationId());
+              mDevice.setLAC(identityCdma.getNetworkId());
             }
+            if (signalStrengthCdma != null) {
+              mDevice.setSignalInfo(signalStrengthCdma.getDbm());
+            }
+            break;
+          }
+ else           if (cellinfo instanceof CellInfoLte) {
+            final CellSignalStrengthLte signalStrengthLte=((CellInfoLte)cellinfo).getCellSignalStrength();
+            final CellIdentityLte identityLte=((CellInfoLte)cellinfo).getCellIdentity();
+            if (identityLte != null) {
+              mDevice.setCellID(identityLte.getPci());
+              mDevice.setLAC(identityLte.getTac());
+              mDevice.setMcc(identityLte.getMcc());
+              mDevice.setMnc(identityLte.getMnc());
+            }
+            if (signalStrengthLte != null) {
+              mDevice.setSignalInfo(signalStrengthLte.getDbm());
+            }
+            break;
+          }
+ else           if (cellinfo instanceof CellInfoWcdma) {
+            final CellSignalStrengthWcdma signalStrengthWcdma=((CellInfoWcdma)cellinfo).getCellSignalStrength();
+            final CellIdentityWcdma identityWcdma=((CellInfoWcdma)cellinfo).getCellIdentity();
+            if (identityWcdma != null) {
+              mDevice.setCellID(identityWcdma.getCid());
+              mDevice.setLAC(identityWcdma.getLac());
+              mDevice.setMcc(identityWcdma.getMcc());
+              mDevice.setMnc(identityWcdma.getMnc());
+            }
+            if (signalStrengthWcdma != null) {
+              mDevice.setSignalInfo(signalStrengthWcdma.getDbm());
+            }
+            break;
           }
         }
       }
@@ -43,10 +81,14 @@ if (loc != null) {
 mDevice.setLongitude(loc.getLongitude());
 mDevice.setLatitude(loc.getLatitude());
 mDevice.setLastLocation(loc);
+mDevice.setSpeed(loc.getSpeed());
+mDevice.setAccuracy(loc.getAccuracy());
+mDevice.setBearing(loc.getBearing());
 }
 if (TrackingCell) {
 dbHelper.open();
 mDbResult=dbHelper.insertLocation(mDevice.getLac(),mDevice.getCellId(),mDevice.getNetID(),mDevice.getLatitude(),mDevice.getLongitude(),mDevice.getSignalInfo(),mDevice.getCellInfo());
+mDbResult=dbHelper.insertCell(mDevice.getLac(),mDevice.getCellId(),mDevice.getNetID(),mDevice.getLatitude(),mDevice.getLongitude(),mDevice.getSignalInfo(),mDevice.getMCC(),mDevice.getMnc(),mDevice.getAccuracy(),mDevice.getSpeed(),mDevice.getBearing(),mDevice.getNetworkTypeName());
 if (mDbResult == -1) {
 Log.e(TAG,"Error writing to database");
 }

@@ -9,7 +9,7 @@ switch (mPhoneID) {
 case TelephonyManager.PHONE_TYPE_GSM:
     mPhoneType="GSM";
   mMncmcc=tm.getNetworkOperator();
-if (mMncmcc != null) {
+if (mMncmcc != null && mMncmcc.length() > 0) {
   mMcc=Integer.parseInt(tm.getNetworkOperator().substring(0,3));
   mMnc=Integer.parseInt(tm.getNetworkOperator().substring(3));
 }
@@ -44,6 +44,7 @@ mCellID=identityGsm.getCid();
 mMcc=identityGsm.getMcc();
 mMnc=identityGsm.getMnc();
 mLac=identityGsm.getLac();
+break;
 }
  else if (info instanceof CellInfoCdma) {
 final CellSignalStrengthCdma cdma=((CellInfoCdma)info).getCellSignalStrength();
@@ -52,6 +53,7 @@ mSignalInfo=cdma.getDbm();
 mCellID=identityCdma.getBasestationId();
 mLac=identityCdma.getNetworkId();
 mSID=identityCdma.getSystemId();
+break;
 }
  else if (info instanceof CellInfoLte) {
 final CellSignalStrengthLte lte=((CellInfoLte)info).getCellSignalStrength();
@@ -61,6 +63,7 @@ mTimingAdvance=lte.getTimingAdvance();
 mMcc=identityLte.getMcc();
 mMnc=identityLte.getMnc();
 mCellID=identityLte.getCi();
+break;
 }
  else if (info instanceof CellInfoWcdma) {
 final CellSignalStrengthWcdma wcdma=((CellInfoWcdma)info).getCellSignalStrength();
@@ -71,6 +74,7 @@ mMcc=identityWcdma.getMcc();
 mMnc=identityWcdma.getMnc();
 mCellID=identityWcdma.getCid();
 mPSC=identityWcdma.getPsc();
+break;
 }
  else {
 Log.i(TAG,"Unknown type of cell signal!" + "ClassName: " + info.getClass().getSimpleName() + " ToString: "+ info.toString());

@@ -1,7 +1,8 @@
 {
-  final String KEY_UI_ICONS=getBaseContext().getString(R.string.pref_ui_icons_key);
-  final String FEMTO_DECTECTION=getBaseContext().getString(R.string.pref_femto_detection_key);
-  final String REFRESH=getBaseContext().getString(R.string.pref_refresh_key);
+  final String KEY_UI_ICONS=this.getString(R.string.pref_ui_icons_key);
+  final String FEMTO_DECTECTION=this.getString(R.string.pref_femto_detection_key);
+  final String REFRESH=this.getString(R.string.pref_refresh_key);
+  final String DB_VERSION=this.getString(R.string.pref_last_database_backup_version);
   if (key.equals(KEY_UI_ICONS)) {
     setNotification();
   }
@@ -15,7 +16,7 @@
     }
   }
  else   if (key.equals(REFRESH)) {
-    String refreshRate=prefs.getString(getString(R.string.pref_refresh_key),"1");
+    String refreshRate=sharedPreferences.getString(getString(R.string.pref_refresh_key),"1");
     if (refreshRate.isEmpty()) {
       refreshRate="1";
     }
@@ -30,5 +31,8 @@ default :
 break;
 }
 REFRESH_RATE=TimeUnit.SECONDS.toMillis(t);
+}
+ else if (key.equals(DB_VERSION)) {
+LAST_DB_BACKUP_VERSION=sharedPreferences.getInt(this.getString(R.string.pref_last_database_backup_version),1);
 }
 }
