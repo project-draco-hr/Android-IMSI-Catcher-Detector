@@ -4,34 +4,73 @@ case OPEN_CELL_ID_REQUEST:
 case OPEN_CELL_ID_REQUEST_FROM_MAP:
     int count;
   try {
-    File dir=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/");
-    if (!dir.exists()) {
-      dir.mkdirs();
+    if (AimsicdService.OCID_UPLOAD_PREF) {
+      boolean prepared=mDbAdapter.prepareOpenCellUploadData();
+      Log.i("AIMSICD","OCID prepared - " + String.valueOf(prepared));
+      if (prepared) {
+        File file=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/aimsicd-ocid-data.csv");
+        MultipartEntity mpEntity=new MultipartEntity();
+        FileInputStream fin=new FileInputStream(file);
+        String csv=Helpers.convertStreamToString(fin);
+        mpEntity.addPart("key",new StringBody(AimsicdService.OCID_API_KEY));
+        mpEntity.addPart("datafile",new InputStreamBody(new ByteArrayInputStream(csv.getBytes()),"text/csv","aimsicd-ocid-data.csv"));
+        ByteArrayOutputStream mBAOS=new ByteArrayOutputStream();
+        mpEntity.writeTo(mBAOS);
+        mBAOS.flush();
+        ByteArrayEntity bArrEntity=new ByteArrayEntity(mBAOS.toByteArray());
+        mBAOS.close();
+        bArrEntity.setChunked(false);
+        bArrEntity.setContentEncoding(mpEntity.getContentEncoding());
+        bArrEntity.setContentType(mpEntity.getContentType());
+        HttpClient httpclient;
+        HttpPost httppost;
+        HttpResponse response=null;
+        httpclient=new DefaultHttpClient();
+        httppost=new HttpPost("http://www.opencellid.org/measure/uploadCsv");
+        httppost.setEntity(bArrEntity);
+        response=httpclient.execute(httppost);
+        if (response != null) {
+          Log.i("AIMSICD","OCID Upload Response: " + response.getStatusLine().getStatusCode() + " - "+ response.getStatusLine());
+          HttpEntity resEntity=response.getEntity();
+          Log.i("AIMSICD","OCID Response Content: " + EntityUtils.toString(resEntity));
+          resEntity.consumeContent();
+          mDbAdapter.ocidProcessed();
+        }
+      }
     }
-    File file=new File(dir,"opencellid.csv");
-    URL url=new URL(commandString[0]);
-    URLConnection connection=url.openConnection();
-    connection.connect();
-    InputStream input=new BufferedInputStream(url.openStream(),8192);
-    OutputStream output=new FileOutputStream(file);
-    byte data[]=new byte[1024];
-    long total=0;
-    while ((count=input.read(data)) != -1) {
-      total+=count;
-      publishProgress((int)(total / 1024) * 2);
-      output.write(data,0,count);
-    }
-    output.flush();
-    output.close();
-    input.close();
-    return "Successful";
   }
- catch (  MalformedURLException e) {
-    return null;
+ catch (  Exception e) {
+    Log.i("AIMSICD","Upload OpenCellID data - " + e.getMessage());
   }
-catch (  IOException e) {
-    return null;
+try {
+  File dir=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/");
+  if (!dir.exists()) {
+    dir.mkdirs();
   }
+  File file=new File(dir,"opencellid.csv");
+  URL url=new URL(commandString[0]);
+  URLConnection connection=url.openConnection();
+  connection.connect();
+  InputStream input=new BufferedInputStream(url.openStream(),8192);
+  OutputStream output=new FileOutputStream(file);
+  byte data[]=new byte[1024];
+  long total=0;
+  while ((count=input.read(data)) != -1) {
+    total+=count;
+    publishProgress((int)(total / 1024) * 2);
+    output.write(data,0,count);
+  }
+  output.flush();
+  output.close();
+  input.close();
+  return "Successful";
+}
+ catch (MalformedURLException e) {
+  return null;
+}
+catch (IOException e) {
+  return null;
+}
 case BACKUP_DATABASE:
 mDbAdapter.open();
 if (mDbAdapter.backupDB()) {

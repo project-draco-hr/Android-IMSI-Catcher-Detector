@@ -1,0 +1,5 @@
+{
+  ContentValues ocidValues=new ContentValues();
+  ocidValues.put("OCID_SUBMITTED",1);
+  mDb.update(CELL_TABLE,ocidValues,"OCID_SUBMITTED<>?",new String[]{"1"});
+}

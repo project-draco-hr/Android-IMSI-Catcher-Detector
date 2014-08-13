@@ -93,5 +93,6 @@ mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
 }
 loadOpenCellIDMarkers();
+c.close();
 mDbHelper.close();
 }

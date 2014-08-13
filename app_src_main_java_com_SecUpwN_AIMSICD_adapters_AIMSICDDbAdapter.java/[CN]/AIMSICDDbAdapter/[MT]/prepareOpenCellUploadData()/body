@@ -1,0 +1,37 @@
+{
+  boolean dataExtracted=false;
+  File dir=new File(FOLDER + "OpenCellID/");
+  if (!dir.exists()) {
+    dir.mkdirs();
+  }
+  File file=new File(dir,"aimsicd-ocid-data.csv");
+  try {
+    file.createNewFile();
+    CSVWriter csvWrite=new CSVWriter(new FileWriter(file));
+    open();
+    Cursor c=getOPCIDSubmitData();
+    csvWrite.writeNext(new String[]{"mcc,mnc,lac,cellid,lon,lat,signal,measured_at,rating,speed,direction,act"});
+    String[] rowData=new String[c.getColumnCount()];
+    int size=c.getColumnCount();
+    AIMSICD.mProgressBar.setProgress(0);
+    AIMSICD.mProgressBar.setMax(size);
+    while (c.moveToNext()) {
+      for (int i=0; i < size; i++) {
+        rowData[i]=c.getString(i);
+        AIMSICD.mProgressBar.setProgress(i);
+      }
+      csvWrite.writeNext(rowData);
+      dataExtracted=true;
+    }
+    csvWrite.close();
+    c.close();
+    return dataExtracted;
+  }
+ catch (  Exception e) {
+    Log.e(TAG,"Error creating OpenCellID Upload Data " + e);
+    return dataExtracted;
+  }
+ finally {
+    AIMSICD.mProgressBar.setProgress(0);
+  }
+}

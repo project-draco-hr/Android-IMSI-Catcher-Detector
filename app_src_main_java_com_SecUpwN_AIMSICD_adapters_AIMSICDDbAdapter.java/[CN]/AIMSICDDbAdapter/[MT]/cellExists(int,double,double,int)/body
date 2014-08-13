@@ -1,4 +1,6 @@
 {
   Cursor cursor=mDb.rawQuery("SELECT 1 FROM " + CELL_TABLE + " WHERE CellID = "+ cellID+ " AND Lat = "+ lat+ " AND Lng = "+ lng+ " AND Signal = "+ signal,null);
-  return cursor.getCount() > 0;
+  boolean exists=cursor.getCount() > 0;
+  cursor.close();
+  return exists;
 }

@@ -1,0 +1,3 @@
+{
+  return mDb.query(CELL_TABLE,new String[]{"Mcc","Mnc","Lac","CellID","Lng","Lat","Signal","Timestamp","Accuracy","Speed","Direction","NetworkType"},"OCID_SUBMITTED <> 1",null,null,null,null);
+}

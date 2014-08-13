@@ -26,6 +26,6 @@
     }
   }
  catch (  Exception e) {
-    Log.e(TAG,"Error parsing OpenCellID data - " + e);
+    Log.e(TAG,"Error populating Default Mcc Data - " + e);
   }
 }

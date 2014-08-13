@@ -10,3 +10,4 @@ double accuracy
 double speed
 double direction
 String networkType
+long measurementTaken
