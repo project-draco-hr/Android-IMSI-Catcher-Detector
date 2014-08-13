@@ -77,20 +77,20 @@ mDevice.setLAC(cdmaCellLocation.getNetworkId());
 }
 }
 }
-if (loc != null) {
+if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
 mDevice.setLongitude(loc.getLongitude());
 mDevice.setLatitude(loc.getLatitude());
 mDevice.setLastLocation(loc);
 mDevice.setSpeed(loc.getSpeed());
 mDevice.setAccuracy(loc.getAccuracy());
 mDevice.setBearing(loc.getBearing());
-}
 if (TrackingCell) {
 dbHelper.open();
 mDbResult=dbHelper.insertLocation(mDevice.getLac(),mDevice.getCellId(),mDevice.getNetID(),mDevice.getLatitude(),mDevice.getLongitude(),mDevice.getSignalInfo(),mDevice.getCellInfo());
-mDbResult=dbHelper.insertCell(mDevice.getLac(),mDevice.getCellId(),mDevice.getNetID(),mDevice.getLatitude(),mDevice.getLongitude(),mDevice.getSignalInfo(),mDevice.getMCC(),mDevice.getMnc(),mDevice.getAccuracy(),mDevice.getSpeed(),mDevice.getBearing(),mDevice.getNetworkTypeName());
+mDbResult=dbHelper.insertCell(mDevice.getLac(),mDevice.getCellId(),mDevice.getNetID(),mDevice.getLatitude(),mDevice.getLongitude(),mDevice.getSignalInfo(),mDevice.getMCC(),mDevice.getMnc(),mDevice.getAccuracy(),mDevice.getSpeed(),mDevice.getBearing(),mDevice.getNetworkTypeName(),SystemClock.currentThreadTimeMillis());
 if (mDbResult == -1) {
 Log.e(TAG,"Error writing to database");
+}
 }
 }
 }

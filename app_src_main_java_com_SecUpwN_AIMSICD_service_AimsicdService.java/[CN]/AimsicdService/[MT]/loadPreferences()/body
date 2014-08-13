@@ -2,6 +2,7 @@
   boolean trackFemtoPref=prefs.getBoolean(this.getString(R.string.pref_femto_detection_key),false);
   boolean trackCellPref=prefs.getBoolean(this.getString(R.string.pref_enable_cell_key),false);
   LAST_DB_BACKUP_VERSION=prefs.getInt(this.getString(R.string.pref_last_database_backup_version),1);
+  OCID_UPLOAD_PREF=prefs.getBoolean(this.getString(R.string.pref_ocid_upload),false);
   String refreshRate=prefs.getString(getString(R.string.pref_refresh_key),"1");
   if (refreshRate.isEmpty()) {
     refreshRate="1";

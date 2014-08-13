@@ -1,9 +1,0 @@
-{
-  this.cid=cid;
-  this.lac=lac;
-  this.mcc=mcc;
-  this.mnc=mnc;
-  this.dbm=dbm;
-  this.psc=psc;
-  this.timestamp=timestamp;
-}
