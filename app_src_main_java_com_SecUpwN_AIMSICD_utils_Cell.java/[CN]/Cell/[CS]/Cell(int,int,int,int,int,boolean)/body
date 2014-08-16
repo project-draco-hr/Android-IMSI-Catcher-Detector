@@ -9,4 +9,5 @@
   }
   this.psc=psc;
   this.netType=netType;
+  this.timestamp=SystemClock.currentThreadTimeMillis();
 }

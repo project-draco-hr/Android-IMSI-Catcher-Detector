@@ -22,8 +22,8 @@
  else {
     tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
     lm.removeUpdates(mLocationListener);
-    mDevice.setLongitude(0.0);
-    mDevice.setLatitude(0.0);
+    mDevice.mCell.setLon(0.0);
+    mDevice.mCell.setLat(0.0);
     TrackingCell=false;
     mDevice.setCellInfo("[0,0]|nn|nn|");
     Helpers.msgShort(this,"Stopped tracking cell information");

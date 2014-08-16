@@ -8,13 +8,13 @@
             final CellSignalStrengthGsm signalStrengthGsm=((CellInfoGsm)cellinfo).getCellSignalStrength();
             final CellIdentityGsm identityGsm=((CellInfoGsm)cellinfo).getCellIdentity();
             if (identityGsm != null) {
-              mDevice.setCellID(identityGsm.getCid());
-              mDevice.setLAC(identityGsm.getLac());
-              mDevice.setMcc(identityGsm.getMcc());
-              mDevice.setMnc(identityGsm.getMnc());
+              mDevice.mCell.setCID(identityGsm.getCid());
+              mDevice.mCell.setLAC(identityGsm.getLac());
+              mDevice.mCell.setMCC(identityGsm.getMcc());
+              mDevice.mCell.setMNC(identityGsm.getMnc());
             }
             if (signalStrengthGsm != null) {
-              mDevice.setSignalInfo(signalStrengthGsm.getDbm());
+              mDevice.mCell.setDBM(signalStrengthGsm.getDbm());
             }
             break;
           }
@@ -22,11 +22,11 @@
             final CellSignalStrengthCdma signalStrengthCdma=((CellInfoCdma)cellinfo).getCellSignalStrength();
             final CellIdentityCdma identityCdma=((CellInfoCdma)cellinfo).getCellIdentity();
             if (identityCdma != null) {
-              mDevice.setCellID(identityCdma.getBasestationId());
-              mDevice.setLAC(identityCdma.getNetworkId());
+              mDevice.mCell.setCID(identityCdma.getBasestationId());
+              mDevice.mCell.setLAC(identityCdma.getNetworkId());
             }
             if (signalStrengthCdma != null) {
-              mDevice.setSignalInfo(signalStrengthCdma.getDbm());
+              mDevice.setSignalDbm(signalStrengthCdma.getDbm());
             }
             break;
           }
@@ -34,13 +34,13 @@
             final CellSignalStrengthLte signalStrengthLte=((CellInfoLte)cellinfo).getCellSignalStrength();
             final CellIdentityLte identityLte=((CellInfoLte)cellinfo).getCellIdentity();
             if (identityLte != null) {
-              mDevice.setCellID(identityLte.getPci());
-              mDevice.setLAC(identityLte.getTac());
-              mDevice.setMcc(identityLte.getMcc());
-              mDevice.setMnc(identityLte.getMnc());
+              mDevice.mCell.setCID(identityLte.getPci());
+              mDevice.mCell.setLAC(identityLte.getTac());
+              mDevice.mCell.setMCC(identityLte.getMcc());
+              mDevice.mCell.setMNC(identityLte.getMnc());
             }
             if (signalStrengthLte != null) {
-              mDevice.setSignalInfo(signalStrengthLte.getDbm());
+              mDevice.setSignalDbm(signalStrengthLte.getDbm());
             }
             break;
           }
@@ -48,13 +48,13 @@
             final CellSignalStrengthWcdma signalStrengthWcdma=((CellInfoWcdma)cellinfo).getCellSignalStrength();
             final CellIdentityWcdma identityWcdma=((CellInfoWcdma)cellinfo).getCellIdentity();
             if (identityWcdma != null) {
-              mDevice.setCellID(identityWcdma.getCid());
-              mDevice.setLAC(identityWcdma.getLac());
-              mDevice.setMcc(identityWcdma.getMcc());
-              mDevice.setMnc(identityWcdma.getMnc());
+              mDevice.mCell.setCID(identityWcdma.getCid());
+              mDevice.mCell.setLAC(identityWcdma.getLac());
+              mDevice.mCell.setMCC(identityWcdma.getMcc());
+              mDevice.mCell.setMNC(identityWcdma.getMnc());
             }
             if (signalStrengthWcdma != null) {
-              mDevice.setSignalInfo(signalStrengthWcdma.getDbm());
+              mDevice.setSignalDbm(signalStrengthWcdma.getDbm());
             }
             break;
           }
@@ -66,28 +66,28 @@
 switch (mDevice.getPhoneID()) {
 case TelephonyManager.PHONE_TYPE_GSM:
             GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
-          mDevice.setCellID(gsmCellLocation.getCid());
-        mDevice.setLAC(gsmCellLocation.getLac());
+          mDevice.mCell.setCID(gsmCellLocation.getCid());
+        mDevice.mCell.setLAC(gsmCellLocation.getLac());
       break;
 case TelephonyManager.PHONE_TYPE_CDMA:
     CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
-  mDevice.setCellID(cdmaCellLocation.getBaseStationId());
-mDevice.setLAC(cdmaCellLocation.getNetworkId());
+  mDevice.mCell.setCID(cdmaCellLocation.getBaseStationId());
+mDevice.mCell.setLAC(cdmaCellLocation.getNetworkId());
 }
 }
 }
 }
 if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
-mDevice.setLongitude(loc.getLongitude());
-mDevice.setLatitude(loc.getLatitude());
+mDevice.mCell.setLon(loc.getLongitude());
+mDevice.mCell.setLat(loc.getLatitude());
 mDevice.setLastLocation(loc);
-mDevice.setSpeed(loc.getSpeed());
-mDevice.setAccuracy(loc.getAccuracy());
-mDevice.setBearing(loc.getBearing());
+mDevice.mCell.setSpeed(loc.getSpeed());
+mDevice.mCell.setAccuracy(loc.getAccuracy());
+mDevice.mCell.setBearing(loc.getBearing());
 if (TrackingCell) {
 dbHelper.open();
-mDbResult=dbHelper.insertLocation(mDevice.getLac(),mDevice.getCellId(),mDevice.getNetID(),mDevice.getLatitude(),mDevice.getLongitude(),mDevice.getSignalInfo(),mDevice.getCellInfo());
-mDbResult=dbHelper.insertCell(mDevice.getLac(),mDevice.getCellId(),mDevice.getNetID(),mDevice.getLatitude(),mDevice.getLongitude(),mDevice.getSignalInfo(),mDevice.getMCC(),mDevice.getMnc(),mDevice.getAccuracy(),mDevice.getSpeed(),mDevice.getBearing(),mDevice.getNetworkTypeName(),SystemClock.currentThreadTimeMillis());
+mDbResult=dbHelper.insertLocation(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.getCellInfo());
+mDbResult=dbHelper.insertCell(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.mCell.getMCC(),mDevice.mCell.getMNC(),mDevice.mCell.getAccuracy(),mDevice.mCell.getSpeed(),mDevice.mCell.getBearing(),mDevice.getNetworkTypeName(),SystemClock.currentThreadTimeMillis());
 if (mDbResult == -1) {
 Log.e(TAG,"Error writing to database");
 }

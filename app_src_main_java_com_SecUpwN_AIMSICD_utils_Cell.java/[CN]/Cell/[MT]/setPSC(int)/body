@@ -1,3 +1,8 @@
 {
-  this.psc=psc;
+  if (psc == -1) {
+    this.psc=Integer.MAX_VALUE;
+  }
+ else {
+    this.psc=psc;
+  }
 }

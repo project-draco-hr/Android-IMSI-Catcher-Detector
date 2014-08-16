@@ -50,7 +50,7 @@ Helpers.getOpenCellData(mContext,loc.getLatitude(),loc.getLongitude(),RequestTas
  else {
 LocationServices.LocationAsync locationAsync=new LocationServices.LocationAsync();
 locationAsync.delegate=this;
-locationAsync.execute(mAimsicdService.mDevice.getCellId(),mAimsicdService.mDevice.getLac(),mAimsicdService.mDevice.getMnc(),mAimsicdService.mDevice.getMCC());
+locationAsync.execute(mAimsicdService.mDevice.mCell.getCID(),mAimsicdService.mDevice.mCell.getLAC(),mAimsicdService.mDevice.mCell.getMNC(),mAimsicdService.mDevice.mCell.getMCC());
 }
 }
 mDrawerList.setItemChecked(position,true);

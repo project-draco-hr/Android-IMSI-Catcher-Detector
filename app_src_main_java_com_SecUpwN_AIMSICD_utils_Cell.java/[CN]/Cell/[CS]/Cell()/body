@@ -1,0 +1,17 @@
+{
+  cid=Integer.MAX_VALUE;
+  lac=Integer.MAX_VALUE;
+  mcc=Integer.MAX_VALUE;
+  mnc=Integer.MAX_VALUE;
+  dbm=Integer.MAX_VALUE;
+  psc=Integer.MAX_VALUE;
+  rssi=Integer.MAX_VALUE;
+  timingAdvance=Integer.MAX_VALUE;
+  sid=Integer.MAX_VALUE;
+  netType=Integer.MAX_VALUE;
+  lon=0.0;
+  lat=0.0;
+  speed=0.0;
+  accuracy=0.0;
+  bearing=0.0;
+}
