@@ -1,4 +1,0 @@
-{
-  openRootShell(true);
-  setSerialDevice(serialDevice);
-}
