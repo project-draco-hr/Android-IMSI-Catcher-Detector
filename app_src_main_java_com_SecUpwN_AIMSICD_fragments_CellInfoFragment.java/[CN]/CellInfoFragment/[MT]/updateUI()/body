@@ -1,24 +1,4 @@
 {
-  if (mBound) {
-    List<Cell> neighboringCells=mAimsicdService.updateNeighbouringCells();
-    mNeighbouringTotal.setText(String.valueOf(neighboringCells.size()));
-    if (neighboringCells.size() != 0) {
-      BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new CellCardInflater());
-      int i=1;
-      int total=neighboringCells.size();
-      for (      Cell cell : neighboringCells) {
-        CardItemData data=new CardItemData(cell,i++ + " / " + total);
-        adapter.addItem(data,false);
-      }
-      lv.setAdapter(adapter);
-      mNeighbouringCells.setVisibility(View.GONE);
-      mNeighbouringTotalView.setVisibility(View.VISIBLE);
-    }
- else {
-      DetectResult rilStatus=mAimsicdService.getRilExecutorStatus();
-      if (rilStatus.available) {
-        new RequestOemInfoTask().execute();
-      }
-    }
-  }
+  mAsyncType=STOCK_REQUEST;
+  new CellAsyncTask().execute();
 }

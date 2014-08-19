@@ -1,0 +1,16 @@
+{
+  super.onPostExecute(result);
+switch (mAsyncType) {
+case STOCK_REQUEST:
+    if (result) {
+      updateStockNeighbouringCells();
+    }
+ else {
+      if (mAimsicdService.mMultiRilCompatible) {
+        mAsyncType=SAMSUNG_MULTIRIL_REQUEST;
+        new CellAsyncTask().execute();
+      }
+    }
+  break;
+}
+}

@@ -1,0 +1,7 @@
+{
+  if (mBound) {
+    neighboringCells=mAimsicdService.updateNeighbouringCells();
+    return neighboringCells.size() > 0;
+  }
+  return false;
+}
