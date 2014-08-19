@@ -1,0 +1,34 @@
+{
+  Cell cell=new Cell();
+  parser.require(XmlPullParser.START_TAG,ns,"cell");
+  while (parser.next() != XmlPullParser.END_TAG) {
+    if (parser.getEventType() != XmlPullParser.START_TAG) {
+      continue;
+    }
+    String name=parser.getName();
+switch (name) {
+case "lat":
+      cell.setLat(readDouble(parser));
+    break;
+case "lon":
+  cell.setLon(readDouble(parser));
+break;
+case "mcc":
+cell.setMCC(readInt(parser));
+break;
+case "mnc":
+cell.setMNC(readInt(parser));
+break;
+case "cellid":
+cell.setCID(readInt(parser));
+break;
+case "lac":
+cell.setLAC(readInt(parser));
+break;
+default :
+skip(parser);
+break;
+}
+}
+return cell;
+}

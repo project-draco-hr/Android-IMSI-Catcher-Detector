@@ -1,3 +1,4 @@
 {
+  AIMSICD.mProgressBar.setMax(values[1]);
   AIMSICD.mProgressBar.setProgress(values[0]);
 }

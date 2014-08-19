@@ -74,7 +74,7 @@ content.setText(mAimsicdService.mDevice.getIMEIv());
 content=(TextView)mView.findViewById(R.id.network_name);
 content.setText(mAimsicdService.mDevice.getNetworkName());
 content=(TextView)mView.findViewById(R.id.network_code);
-content.setText(mAimsicdService.mDevice.getSmmcMcc());
+content.setText(mAimsicdService.mDevice.getMncMcc());
 content=(TextView)mView.findViewById(R.id.network_type);
 content.setText(mAimsicdService.mDevice.getNetworkTypeName());
 content=(TextView)mView.findViewById(R.id.data_activity);
