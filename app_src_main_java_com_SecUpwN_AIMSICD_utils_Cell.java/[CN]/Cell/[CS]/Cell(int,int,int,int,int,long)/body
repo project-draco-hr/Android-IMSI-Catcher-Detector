@@ -1,9 +1,19 @@
 {
+  super();
   this.cid=cid;
   this.lac=lac;
   this.mcc=mcc;
   this.mnc=mnc;
   this.dbm=dbm;
+  rssi=Integer.MAX_VALUE;
   this.psc=Integer.MAX_VALUE;
   this.timestamp=timestamp;
+  timingAdvance=Integer.MAX_VALUE;
+  sid=Integer.MAX_VALUE;
+  netType=Integer.MAX_VALUE;
+  lon=0.0;
+  lat=0.0;
+  speed=0.0;
+  accuracy=0.0;
+  bearing=0.0;
 }

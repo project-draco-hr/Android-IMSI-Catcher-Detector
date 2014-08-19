@@ -1,0 +1,23 @@
+{
+  try {
+    InputStream stream=null;
+    StackOverflowXmlParser stackOverflowXmlParser=new StackOverflowXmlParser();
+    List<Cell> cells=null;
+    URL url=new URL(urls[0]);
+    HttpURLConnection conn=(HttpURLConnection)url.openConnection();
+    conn.setReadTimeout(10000);
+    conn.setConnectTimeout(15000);
+    conn.setRequestMethod("GET");
+    conn.setDoInput(true);
+    conn.connect();
+    stream=conn.getInputStream();
+    cells=stackOverflowXmlParser.parse(stream);
+    conn.disconnect();
+    stream.close();
+    return cells;
+  }
+ catch (  Exception e) {
+    Log.i("AIMSICD","Cell Lookup - " + e.getMessage());
+    return null;
+  }
+}

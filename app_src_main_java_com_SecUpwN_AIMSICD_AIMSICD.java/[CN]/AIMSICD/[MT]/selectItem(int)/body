@@ -13,7 +13,7 @@ break;
 case 104:
 getFragmentManager().beginTransaction().replace(R.id.content_frame,new DbViewerFragment()).commit();
 break;
-case 302:
+case 303:
 getFragmentManager().beginTransaction().replace(R.id.content_frame,new AboutFragment()).commit();
 break;
 }
@@ -43,15 +43,38 @@ new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
 }
  else if (selectedItem.getId() == 301) {
 Location loc=mAimsicdService.lastKnownLocation();
-if (loc != null && loc.hasAccuracy()) {
+if (loc != null) {
 Helpers.msgShort(mContext,"Contacting OpenCellID.org for data...");
-Helpers.getOpenCellData(mContext,loc.getLatitude(),loc.getLongitude(),RequestTask.OPEN_CELL_ID_REQUEST);
+Cell cell=new Cell();
+cell.setLon(loc.getLongitude());
+cell.setLat(loc.getLatitude());
+Helpers.getOpenCellData(mContext,cell,RequestTask.OPEN_CELL_ID_REQUEST);
 }
  else {
 LocationServices.LocationAsync locationAsync=new LocationServices.LocationAsync();
 locationAsync.delegate=this;
 locationAsync.execute(mAimsicdService.mDevice.mCell.getCID(),mAimsicdService.mDevice.mCell.getLAC(),mAimsicdService.mDevice.mCell.getMNC(),mAimsicdService.mDevice.mCell.getMCC());
 }
+}
+ else if (selectedItem.getId() == 302) {
+Cell.CellLookUpAsync cellLookUpAsync=new Cell.CellLookUpAsync();
+cellLookUpAsync.delegate=this;
+StringBuilder sb=new StringBuilder();
+sb.append("http://www.opencellid.org/cell/get?key=").append(AimsicdService.OCID_API_KEY);
+if (mAimsicdService.mDevice.mCell.getMCC() != Integer.MAX_VALUE) {
+sb.append("&mcc=").append(mAimsicdService.mDevice.mCell.getMCC());
+}
+if (mAimsicdService.mDevice.mCell.getMNC() != Integer.MAX_VALUE) {
+sb.append("&mnc=").append(mAimsicdService.mDevice.mCell.getMNC());
+}
+if (mAimsicdService.mDevice.mCell.getLAC() != Integer.MAX_VALUE) {
+sb.append("&lac=").append(mAimsicdService.mDevice.mCell.getLAC());
+}
+if (mAimsicdService.mDevice.mCell.getCID() != Integer.MAX_VALUE) {
+sb.append("&cellid=").append(mAimsicdService.mDevice.mCell.getCID());
+}
+sb.append("&format=xml");
+cellLookUpAsync.execute(sb.toString());
 }
 mDrawerList.setItemChecked(position,true);
 if (selectedItem.updateActionBarTitle()) {

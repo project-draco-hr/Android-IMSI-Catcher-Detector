@@ -1,0 +1,29 @@
+{
+  if (Helpers.isNetAvailable(context)) {
+    double earthRadius=6371.01;
+    if (cell.getLat() != 0.0 && cell.getLon() != 0.0) {
+      GeoLocation currentLoc=GeoLocation.fromDegrees(cell.getLat(),cell.getLon());
+      GeoLocation[] boundingCoords=currentLoc.boundingCoordinates(100,earthRadius);
+      String boundParameter;
+      boundParameter=String.valueOf(boundingCoords[0].getLatitudeInDegrees()) + "," + String.valueOf(boundingCoords[0].getLongitudeInDegrees())+ ","+ String.valueOf(boundingCoords[1].getLatitudeInDegrees())+ ","+ String.valueOf(boundingCoords[1].getLongitudeInDegrees());
+      StringBuilder sb=new StringBuilder();
+      sb.append("http://www.opencellid.org/cell/getInArea?key=").append(AimsicdService.OCID_API_KEY).append("&BBOX=").append(boundParameter);
+      if (cell.getMCC() != Integer.MAX_VALUE) {
+        sb.append("&mcc=").append(cell.getMCC());
+      }
+      if (cell.getMNC() != Integer.MAX_VALUE) {
+        sb.append("&mnc=").append(cell.getMNC());
+      }
+      if (cell.getLAC() != Integer.MAX_VALUE) {
+        sb.append("&lac=").append(cell.getLAC());
+      }
+      sb.append("&format=csv");
+      new RequestTask(context,type).execute(sb.toString());
+    }
+  }
+ else {
+    final AlertDialog.Builder builder=new AlertDialog.Builder(context);
+    builder.setTitle(R.string.no_network_connection_title).setMessage(R.string.no_network_connection_message);
+    builder.create().show();
+  }
+}

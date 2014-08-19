@@ -14,7 +14,7 @@
     cellValues.put("Direction",direction);
     cellValues.put("NetworkType",networkType);
     cellValues.put("MeasurementTaken",measurementTaken);
-    if (!cellExists(cellID,latitude,longitude,signalInfo)) {
+    if (!cellExists(cellID)) {
       return mDb.insert(CELL_TABLE,null,cellValues);
     }
   }

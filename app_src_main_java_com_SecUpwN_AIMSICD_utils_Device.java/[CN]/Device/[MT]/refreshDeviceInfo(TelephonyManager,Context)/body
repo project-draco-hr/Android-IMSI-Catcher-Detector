@@ -1,16 +1,16 @@
 {
-  mCell=new Cell();
   mIMEI=tm.getDeviceId();
   mIMEIV=tm.getDeviceSoftwareVersion();
   mPhoneID=tm.getPhoneType();
   mRoaming=tm.isNetworkRoaming();
-  mCell.setNetType(tm.getNetworkType());
-  mNetType=getNetworkTypeName();
   if (Build.VERSION.SDK_INT > 16) {
     try {
       List<CellInfo> cellInfoList=tm.getAllCellInfo();
       if (cellInfoList != null) {
         for (        final CellInfo info : cellInfoList) {
+          mCell=new Cell();
+          mCell.setNetType(tm.getNetworkType());
+          mNetType=getNetworkTypeName();
           if (info instanceof CellInfoGsm) {
             final CellSignalStrengthGsm gsm=((CellInfoGsm)info).getCellSignalStrength();
             final CellIdentityGsm identityGsm=((CellInfoGsm)info).getCellIdentity();
@@ -25,6 +25,7 @@
             final CellIdentityCdma identityCdma=((CellInfoCdma)info).getCellIdentity();
             mCell.setDBM(cdma.getDbm());
             mCell.setCID(identityCdma.getBasestationId());
+            mCell.setMNC(identityCdma.getSystemId());
             mCell.setLAC(identityCdma.getNetworkId());
             mCell.setSID(identityCdma.getSystemId());
           }
@@ -58,17 +59,27 @@
       Log.e(TAG,"Unable to obtain cell signal information",npe);
     }
   }
+  if (mCell == null)   mCell=new Cell();
 switch (mPhoneID) {
 case TelephonyManager.PHONE_TYPE_GSM:
     mPhoneType="GSM";
   mMncmcc=tm.getNetworkOperator();
+if (mMncmcc != null && mMncmcc.length() >= 5) {
+  try {
+    if (mCell.getMCC() == Integer.MAX_VALUE)     mCell.setMCC(Integer.parseInt(tm.getNetworkOperator().substring(0,3)));
+    if (mCell.getMNC() == Integer.MAX_VALUE)     mCell.setMNC(Integer.parseInt(tm.getNetworkOperator().substring(3,5)));
+  }
+ catch (  Exception e) {
+    Log.i(TAG,"MncMcc parse exception - " + e.getMessage());
+  }
+}
 mNetName=tm.getNetworkOperatorName();
 if (!mCell.isValid()) {
 GsmCellLocation gsmCellLocation=(GsmCellLocation)tm.getCellLocation();
 if (gsmCellLocation != null) {
-  mCell.setCID(gsmCellLocation.getCid());
-  mCell.setLAC(gsmCellLocation.getLac());
-  mCell.setPSC(gsmCellLocation.getPsc());
+mCell.setCID(gsmCellLocation.getCid());
+mCell.setLAC(gsmCellLocation.getLac());
+mCell.setPSC(gsmCellLocation.getPsc());
 }
 }
 break;
@@ -80,15 +91,37 @@ if (cdmaCellLocation != null) {
 mCell.setCID(cdmaCellLocation.getBaseStationId());
 mCell.setLAC(cdmaCellLocation.getNetworkId());
 mCell.setSID(cdmaCellLocation.getSystemId());
+mCell.setMNC(cdmaCellLocation.getSystemId());
+String homeOperator=Helpers.getSystemProp(context,"ro.cdma.home.operator.numeric","UNKNOWN");
+if (!homeOperator.contains("UNKNOWN")) {
+if (mCell.getMCC() == Integer.MAX_VALUE) mCell.setMCC(Integer.valueOf(homeOperator.substring(0,3)));
+if (mCell.getMNC() == Integer.MAX_VALUE) mCell.setMNC(Integer.valueOf(homeOperator.substring(3,5)));
+}
 }
 }
 break;
 }
+mSimState=tm.getSimState();
+switch (mSimState) {
+case (TelephonyManager.SIM_STATE_ABSENT):
+break;
+case (TelephonyManager.SIM_STATE_NETWORK_LOCKED):
+break;
+case (TelephonyManager.SIM_STATE_PIN_REQUIRED):
+break;
+case (TelephonyManager.SIM_STATE_PUK_REQUIRED):
+break;
+case (TelephonyManager.SIM_STATE_UNKNOWN):
+break;
+case (TelephonyManager.SIM_STATE_READY):
+{
 mSimCountry=getSimCountry(tm);
 mSimOperator=getSimOperator(tm);
 mSimOperatorName=getSimOperatorName(tm);
 mSimSerial=getSimSerial(tm);
 mSimSubs=getSimSubs(tm);
+}
+}
 mDataActivityType=getDataActivity(tm);
 mDataState=getDataState(tm);
 }

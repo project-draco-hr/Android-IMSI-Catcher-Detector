@@ -24,6 +24,8 @@
             if (identityCdma != null) {
               mDevice.mCell.setCID(identityCdma.getBasestationId());
               mDevice.mCell.setLAC(identityCdma.getNetworkId());
+              mDevice.mCell.setMNC(identityCdma.getSystemId());
+              mDevice.mCell.setSID(identityCdma.getSystemId());
             }
             if (signalStrengthCdma != null) {
               mDevice.setSignalDbm(signalStrengthCdma.getDbm());
@@ -60,30 +62,33 @@
           }
         }
       }
- else {
-        CellLocation cellLocation=tm.getCellLocation();
-        if (cellLocation != null) {
+    }
+    if (!mDevice.mCell.isValid()) {
+      CellLocation cellLocation=tm.getCellLocation();
+      if (cellLocation != null) {
 switch (mDevice.getPhoneID()) {
 case TelephonyManager.PHONE_TYPE_GSM:
-            GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
-          mDevice.mCell.setCID(gsmCellLocation.getCid());
-        mDevice.mCell.setLAC(gsmCellLocation.getLac());
-      break;
+          GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
+        mDevice.mCell.setCID(gsmCellLocation.getCid());
+      mDevice.mCell.setLAC(gsmCellLocation.getLac());
+    mDevice.mCell.setPSC(gsmCellLocation.getPsc());
+  break;
 case TelephonyManager.PHONE_TYPE_CDMA:
-    CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
-  mDevice.mCell.setCID(cdmaCellLocation.getBaseStationId());
+CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
+mDevice.mCell.setCID(cdmaCellLocation.getBaseStationId());
 mDevice.mCell.setLAC(cdmaCellLocation.getNetworkId());
-}
+mDevice.mCell.setSID(cdmaCellLocation.getSystemId());
+mDevice.mCell.setMNC(cdmaCellLocation.getSystemId());
 }
 }
 }
 if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
 mDevice.mCell.setLon(loc.getLongitude());
 mDevice.mCell.setLat(loc.getLatitude());
-mDevice.setLastLocation(loc);
 mDevice.mCell.setSpeed(loc.getSpeed());
 mDevice.mCell.setAccuracy(loc.getAccuracy());
 mDevice.mCell.setBearing(loc.getBearing());
+mDevice.setLastLocation(loc);
 if (TrackingCell) {
 dbHelper.open();
 mDbResult=dbHelper.insertLocation(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.getCellInfo());
