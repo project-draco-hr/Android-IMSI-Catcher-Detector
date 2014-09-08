@@ -13,7 +13,10 @@
     cellValues.put("Speed",cell.getSpeed());
     cellValues.put("Direction",cell.getBearing());
     cellValues.put("MeasurementTaken",cell.getTimestamp());
-    if (!cellExists(cell.getCID())) {
+    if (cellExists(cell.getCID())) {
+      return mDb.update(CELL_TABLE,cellValues,"CellID=?",new String[]{Integer.toString(cell.getCID())});
+    }
+ else {
       return mDb.insert(CELL_TABLE,null,cellValues);
     }
   }

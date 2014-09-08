@@ -4,7 +4,7 @@
   cancelNotification();
   dbHelper.close();
   mContext.unregisterReceiver(mMessageReceiver);
-  if (TrackingCell) {
+  if (mTrackingCell) {
     tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
     lm.removeUpdates(mLocationListener);
   }

@@ -6,6 +6,15 @@
   prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   prefs.registerOnSharedPreferenceChangeListener(this);
   loadPreferences();
+  if (!CELL_TABLE_CLEANSED) {
+    dbHelper.open();
+    dbHelper.cleanseCellTable();
+    dbHelper.close();
+    Editor prefsEditor;
+    prefsEditor=prefs.edit();
+    prefsEditor.putBoolean(this.getString(R.string.pref_cell_table_cleansed),true);
+    prefsEditor.apply();
+  }
   mDevice.refreshDeviceInfo(tm,this);
   setNotification();
   mRequestExecutor=new SamsungMulticlientRilExecutor();
@@ -26,5 +35,6 @@
     }
   }
   mContext.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
+  mMonitorCell=new Cell();
   Log.i(TAG,"Service launched successfully");
 }

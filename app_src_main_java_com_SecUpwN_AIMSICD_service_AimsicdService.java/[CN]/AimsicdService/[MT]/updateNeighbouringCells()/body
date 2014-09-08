@@ -18,9 +18,6 @@
       @Override public void onServiceStateChanged(      ServiceState serviceState){
         handle();
       }
-      @Override public void onSignalStrengthChanged(      int asu){
-        handle();
-      }
       @Override public void onDataConnectionStateChanged(      int state){
         handle();
       }
@@ -37,10 +34,10 @@
 ;
     Log.i(TAG,"neighbouringCellInfo empty - start polling");
     if (Build.VERSION.SDK_INT > 16) {
-      tm.listen(listener,PhoneStateListener.LISTEN_CELL_INFO | PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE| PhoneStateListener.LISTEN_SERVICE_STATE| PhoneStateListener.LISTEN_SIGNAL_STRENGTHS| PhoneStateListener.LISTEN_SIGNAL_STRENGTH);
+      tm.listen(listener,PhoneStateListener.LISTEN_CELL_INFO | PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE| PhoneStateListener.LISTEN_SERVICE_STATE| PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
     }
  else {
-      tm.listen(listener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE | PhoneStateListener.LISTEN_SERVICE_STATE| PhoneStateListener.LISTEN_SIGNAL_STRENGTHS| PhoneStateListener.LISTEN_SIGNAL_STRENGTH);
+      tm.listen(listener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE | PhoneStateListener.LISTEN_SERVICE_STATE| PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
     }
     for (int i=0; i < 10 && neighboringCellInfo.size() == 0; i++) {
       try {

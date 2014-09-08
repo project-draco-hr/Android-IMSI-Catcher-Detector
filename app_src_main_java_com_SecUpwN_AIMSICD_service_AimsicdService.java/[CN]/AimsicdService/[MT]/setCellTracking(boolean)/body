@@ -17,14 +17,14 @@
       }
     }
     Helpers.msgShort(this,"Tracking cell information");
-    TrackingCell=true;
+    mTrackingCell=true;
   }
  else {
     tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
     lm.removeUpdates(mLocationListener);
     mDevice.mCell.setLon(0.0);
     mDevice.mCell.setLat(0.0);
-    TrackingCell=false;
+    mTrackingCell=false;
     mDevice.setCellInfo("[0,0]|nn|nn|");
     Helpers.msgShort(this,"Stopped tracking cell information");
   }
