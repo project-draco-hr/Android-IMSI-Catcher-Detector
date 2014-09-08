@@ -35,5 +35,6 @@
     }
   }
   mContext.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
+  mMonitorCell=new Cell();
   Log.i(TAG,"Service launched successfully");
 }

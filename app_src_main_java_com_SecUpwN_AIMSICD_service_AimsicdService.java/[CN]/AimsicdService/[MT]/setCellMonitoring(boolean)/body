@@ -1,0 +1,12 @@
+{
+  if (monitor) {
+    timerHandler.postDelayed(timerRunnable,0);
+    mMonitoringCell=true;
+    Helpers.msgShort(this,"Monitoring cell information");
+  }
+ else {
+    timerHandler.removeCallbacks(timerRunnable);
+    mMonitoringCell=false;
+    Helpers.msgShort(this,"Stopped monitoring cell information");
+  }
+}

@@ -18,9 +18,12 @@ getFragmentManager().beginTransaction().replace(R.id.content_frame,new AboutFrag
 break;
 }
 if (selectedItem.getId() == 901) {
-trackcell();
+monitercell();
 }
  else if (selectedItem.getId() == 902) {
+trackcell();
+}
+ else if (selectedItem.getId() == 903) {
 trackFemtocell();
 }
  else if (selectedItem.getId() == 105) {
