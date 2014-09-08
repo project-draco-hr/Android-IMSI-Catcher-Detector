@@ -14,7 +14,10 @@
     cellValues.put("Direction",direction);
     cellValues.put("NetworkType",networkType);
     cellValues.put("MeasurementTaken",measurementTaken);
-    if (!cellExists(cellID)) {
+    if (cellExists(cellID)) {
+      return mDb.update(CELL_TABLE,cellValues,"CellID=?",new String[]{Integer.toString(cellID)});
+    }
+ else {
       return mDb.insert(CELL_TABLE,null,cellValues);
     }
   }
