@@ -3,7 +3,7 @@
   mIMEIV=tm.getDeviceSoftwareVersion();
   mPhoneID=tm.getPhoneType();
   mRoaming=tm.isNetworkRoaming();
-  if (Build.VERSION.SDK_INT > 16) {
+  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
     try {
       List<CellInfo> cellInfoList=tm.getAllCellInfo();
       if (cellInfoList != null) {

@@ -1,5 +1,5 @@
 {
-switch (mAsyncType) {
+switch (type[0]) {
 case STOCK_REQUEST:
     return getStockNeighbouringCells();
 case SAMSUNG_MULTIRIL_REQUEST:
