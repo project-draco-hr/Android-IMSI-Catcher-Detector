@@ -39,6 +39,7 @@ case "white":
 icon=R.drawable.white_idle;
 break;
 }
+contentText="Phone Type " + mDevice.getPhoneType();
 tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
 break;
 case 2:
@@ -68,6 +69,9 @@ icon=R.drawable.white_medium;
 break;
 }
 tickerText=getResources().getString(R.string.app_name_short) + " - Hostile Service Area: Changing LAC Detected";
+if (mChangedLAC) {
+contentText="Hostile Service Area: Changing LAC Detected";
+}
 break;
 case 4:
 switch (iconType) {
