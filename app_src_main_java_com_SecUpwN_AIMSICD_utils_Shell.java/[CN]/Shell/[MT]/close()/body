@@ -1,5 +1,0 @@
-{
-  mShellProcess.destroy();
-  mShellProcess=null;
-  Log.i(TAG,"Root shell destroyed");
-}

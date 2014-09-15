@@ -10,13 +10,16 @@
     status=3;
     contentText="Hostile Service Area: Changing LAC Detected";
   }
- else   if (mTrackingFemtocell || mTrackingCell || mLoaded) {
+ else   if (mTrackingFemtocell || mTrackingCell || mMonitoringCell) {
     status=2;
     if (mTrackingFemtocell) {
       contentText="FemtoCell Detection Active";
     }
  else     if (mTrackingCell) {
       contentText="Cell Tracking Active";
+    }
+ else {
+      contentText="Cell Monitoring Active";
     }
   }
  else {
@@ -36,6 +39,7 @@ case "white":
 icon=R.drawable.white_idle;
 break;
 }
+contentText="Phone Type " + mDevice.getPhoneType();
 tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
 break;
 case 2:
@@ -65,6 +69,9 @@ icon=R.drawable.white_medium;
 break;
 }
 tickerText=getResources().getString(R.string.app_name_short) + " - Hostile Service Area: Changing LAC Detected";
+if (mChangedLAC) {
+contentText="Hostile Service Area: Changing LAC Detected";
+}
 break;
 case 4:
 switch (iconType) {

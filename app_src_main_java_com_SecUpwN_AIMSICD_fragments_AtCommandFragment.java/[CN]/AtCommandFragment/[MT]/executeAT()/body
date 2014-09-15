@@ -1,13 +1,21 @@
 {
-  boolean result=false;
   if (mAtCommand.getText() != null) {
-    result=mShell.executeAt(mAtCommand.getText().toString());
-    if (result) {
-      mOutput=new ArrayList<>();
-      mOutput=mShell.GetStdOut();
-      mError=new ArrayList<>();
-      mError=mShell.GetStdErr();
+    try {
+      CommandCapture cmd=new CommandCapture(EXECUTE_AT,"echo -e " + mAtCommand.getText().toString().toUpperCase() + "\r > "+ mSerialDevice+ "\n"){
+        @Override public void commandOutput(        int id,        String line){
+          if (id == EXECUTE_AT) {
+            if (!line.trim().equals("")) {
+              mAtResponse.append(line + "\n");
+            }
+          }
+        }
+      }
+;
+      shell.add(cmd);
+      commandWait(shell,cmd);
+    }
+ catch (    Exception e) {
+      Log.e("AIMSICD","executeAT - " + e);
     }
   }
-  return result;
 }

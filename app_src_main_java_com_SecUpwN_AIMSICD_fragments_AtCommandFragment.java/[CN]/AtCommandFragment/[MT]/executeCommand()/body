@@ -1,13 +1,21 @@
 {
-  boolean result=false;
   if (mAtCommand.getText() != null) {
-    result=mShell.sendCommandPreserveOut(mAtCommand.getText().toString(),mTimeout);
-    if (result) {
-      mOutput=new ArrayList<>();
-      mOutput=mShell.GetStdOut();
-      mError=new ArrayList<>();
-      mError=mShell.GetStdErr();
+    try {
+      CommandCapture cmd=new CommandCapture(EXECUTE_COMMAND,mAtCommand.getText().toString() + "\n"){
+        @Override public void commandOutput(        int id,        String line){
+          if (id == EXECUTE_COMMAND) {
+            if (!line.trim().equals("")) {
+              mAtResponse.append(line + "\n");
+            }
+          }
+        }
+      }
+;
+      shell.add(cmd);
+      commandWait(shell,cmd);
+    }
+ catch (    Exception e) {
+      Log.e("AIMSICD","executeCommand - " + e);
     }
   }
-  return result;
 }

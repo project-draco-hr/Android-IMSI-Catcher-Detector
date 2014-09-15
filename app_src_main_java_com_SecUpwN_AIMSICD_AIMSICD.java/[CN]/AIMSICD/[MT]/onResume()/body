@@ -5,4 +5,9 @@
     Intent intent=new Intent(this,AimsicdService.class);
     bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
   }
+ else {
+    if (mAimsicdService.isTrackingCell()) {
+      mAimsicdService.checkLocationServices();
+    }
+  }
 }

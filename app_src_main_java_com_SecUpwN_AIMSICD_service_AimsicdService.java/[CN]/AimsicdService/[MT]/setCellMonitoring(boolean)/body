@@ -9,4 +9,5 @@
     mMonitoringCell=false;
     Helpers.msgShort(this,"Stopped monitoring cell information");
   }
+  setNotification();
 }
