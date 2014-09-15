@@ -1,9 +1,0 @@
-{
-switch (params[0]) {
-case EXECUTE_AT:
-    return executeAT();
-case EXECUTE_COMMAND:
-  return executeCommand();
-}
-return null;
-}
