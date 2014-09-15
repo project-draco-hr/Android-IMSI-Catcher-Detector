@@ -1,5 +1,5 @@
 {
-  if (!mLocationPrompted) {
+  if (mTrackingCell && provider.equals(LocationManager.GPS_PROVIDER)) {
     mLocationPrompted=true;
     enableLocationServices();
   }
