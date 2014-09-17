@@ -45,6 +45,7 @@ new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
 }
 }
  else if (selectedItem.getId() == 301) {
+if (!AimsicdService.OCID_API_KEY.equals("NA")) {
 Location loc=mAimsicdService.lastKnownLocation();
 if (loc != null) {
 Helpers.msgShort(mContext,"Contacting OpenCellID.org for data...");
@@ -59,7 +60,12 @@ locationAsync.delegate=this;
 locationAsync.execute(mAimsicdService.mDevice.mCell.getCID(),mAimsicdService.mDevice.mCell.getLAC(),mAimsicdService.mDevice.mCell.getMNC(),mAimsicdService.mDevice.mCell.getMCC());
 }
 }
+ else {
+Helpers.msgShort(mContext,"No OpenCellID API Key detected! \nPlease enter your key in settings first");
+}
+}
  else if (selectedItem.getId() == 302) {
+if (!AimsicdService.OCID_API_KEY.equals("NA")) {
 Cell.CellLookUpAsync cellLookUpAsync=new Cell.CellLookUpAsync();
 cellLookUpAsync.delegate=this;
 StringBuilder sb=new StringBuilder();
@@ -78,6 +84,10 @@ sb.append("&cellid=").append(mAimsicdService.mDevice.mCell.getCID());
 }
 sb.append("&format=xml");
 cellLookUpAsync.execute(sb.toString());
+}
+ else {
+Helpers.msgShort(mContext,"No OpenCellID API Key detected! \nPlease enter your key in settings first");
+}
 }
 mDrawerList.setItemChecked(position,true);
 if (selectedItem.updateActionBarTitle()) {
