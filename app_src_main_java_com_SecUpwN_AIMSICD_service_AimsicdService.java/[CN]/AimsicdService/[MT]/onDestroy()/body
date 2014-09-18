@@ -15,5 +15,5 @@
     mHandlerThread.quit();
     mHandlerThread=null;
   }
-  Log.i(TAG,"Service destroyed");
+  Log.i(TAG,"Service destroyed.");
 }

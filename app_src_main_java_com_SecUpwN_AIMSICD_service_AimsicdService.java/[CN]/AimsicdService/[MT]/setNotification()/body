@@ -8,18 +8,18 @@
   }
  else   if (mChangedLAC) {
     status=3;
-    contentText="Hostile Service Area: Changing LAC Detected";
+    contentText="Hostile Service Area: Changing LAC Detected!";
   }
  else   if (mTrackingFemtocell || mTrackingCell || mMonitoringCell) {
     status=2;
     if (mTrackingFemtocell) {
-      contentText="FemtoCell Detection Active";
+      contentText="FemtoCell Detection Active.";
     }
  else     if (mTrackingCell) {
-      contentText="Cell Tracking Active";
+      contentText="Cell Tracking Active.";
     }
  else {
-      contentText="Cell Monitoring Active";
+      contentText="Cell Monitoring Active.";
     }
   }
  else {
@@ -54,7 +54,7 @@ case "white":
 icon=R.drawable.white_ok;
 break;
 }
-tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good No Threats Detected";
+tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good. No Threats Detected.";
 break;
 case 3:
 switch (iconType) {
@@ -68,9 +68,9 @@ case "white":
 icon=R.drawable.white_medium;
 break;
 }
-tickerText=getResources().getString(R.string.app_name_short) + " - Hostile Service Area: Changing LAC Detected";
+tickerText=getResources().getString(R.string.app_name_short) + " - Hostile Service Area: Changing LAC Detected!";
 if (mChangedLAC) {
-contentText="Hostile Service Area: Changing LAC Detected";
+contentText="Hostile Service Area: Changing LAC Detected!";
 }
 break;
 case 4:
@@ -85,12 +85,12 @@ case "white":
 icon=R.drawable.white_danger;
 break;
 }
-tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
+tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected!";
 if (mFemtoDetected) {
-contentText="ALERT!! FemtoCell Connection Threat Detected";
+contentText="ALERT!! FemtoCell Connection Threat Detected!";
 }
  else if (mTypeZeroSmsDetected) {
-contentText="ALERT!! Type Zero Silent SMS Intercepted";
+contentText="ALERT!! Type Zero Silent SMS Intercepted!";
 }
 break;
 default :

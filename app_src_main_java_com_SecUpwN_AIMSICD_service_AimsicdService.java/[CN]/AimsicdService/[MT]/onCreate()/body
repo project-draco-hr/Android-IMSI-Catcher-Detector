@@ -21,7 +21,7 @@
   mRilExecutorDetectResult=mRequestExecutor.detect();
   if (!mRilExecutorDetectResult.available) {
     mMultiRilCompatible=false;
-    Log.e(TAG,"Samsung multiclient ril not available: " + mRilExecutorDetectResult.error);
+    Log.e(TAG,"Samsung Multiclient RIL not available: " + mRilExecutorDetectResult.error);
     mRequestExecutor=null;
   }
  else {
@@ -36,5 +36,5 @@
   }
   mContext.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
   mMonitorCell=new Cell();
-  Log.i(TAG,"Service launched successfully");
+  Log.i(TAG,"Service launched successfully.");
 }
