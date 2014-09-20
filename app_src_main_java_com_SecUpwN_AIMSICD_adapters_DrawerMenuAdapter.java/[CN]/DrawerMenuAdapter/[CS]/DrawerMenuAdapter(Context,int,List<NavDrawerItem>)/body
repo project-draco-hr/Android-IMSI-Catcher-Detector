@@ -1,6 +1,5 @@
 {
   super(context,textViewResourceId,objects);
-  mContext=context;
   drawerItemList=objects;
-  inflater=LayoutInflater.from(mContext);
+  inflater=LayoutInflater.from(context);
 }
