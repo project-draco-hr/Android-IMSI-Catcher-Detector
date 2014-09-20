@@ -89,6 +89,9 @@ cellLookUpAsync.execute(sb.toString());
 Helpers.sendMsg(mContext,"No OpenCellID API Key detected! \nPlease enter your key in settings first");
 }
 }
+ else if (selectedItem.getId() == 304) {
+finish();
+}
 mDrawerList.setItemChecked(position,true);
 if (selectedItem.updateActionBarTitle()) {
 setTitle(selectedItem.getLabel());
