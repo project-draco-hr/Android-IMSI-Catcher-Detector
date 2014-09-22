@@ -13,7 +13,10 @@
   if (v != null) {
     versionNumber=(TextView)v.findViewById(R.id.aimsicd_version);
     versionNumber.setText(version);
-    TextView tv=(TextView)v.findViewById(R.id.aimsicd_poc_link);
+    TextView tv=(TextView)v.findViewById(R.id.aimsicd_wiki_link);
+    tv.setMovementMethod(LinkMovementMethod.getInstance());
+    tv.setText(Html.fromHtml(getResources().getString(R.string.wiki_link)));
+    tv=(TextView)v.findViewById(R.id.aimsicd_poc_link);
     tv.setMovementMethod(LinkMovementMethod.getInstance());
     tv.setText(Html.fromHtml(getResources().getString(R.string.poc_link)));
     tv=(TextView)v.findViewById(R.id.aimsicd_disclaimer_link);

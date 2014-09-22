@@ -16,5 +16,6 @@
     }
  while (c.moveToNext());
   }
+  c.close();
   mDbHelper.close();
 }

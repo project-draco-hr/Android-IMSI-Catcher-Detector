@@ -4,7 +4,7 @@
   cancelNotification();
   dbHelper.close();
   mContext.unregisterReceiver(mMessageReceiver);
-  if (TrackingCell) {
+  if (mTrackingCell) {
     tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
     lm.removeUpdates(mLocationListener);
   }
@@ -15,5 +15,5 @@
     mHandlerThread.quit();
     mHandlerThread=null;
   }
-  Log.i(TAG,"Service destroyed");
+  Log.i(TAG,"Service destroyed.");
 }

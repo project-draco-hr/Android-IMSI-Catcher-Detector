@@ -3,7 +3,7 @@
     Helpers.msgShort(this,"AIMSICD can only detect Femtocell connections on CDMA devices.");
     return;
   }
-  TrackingFemtocell=true;
+  mTrackingFemtocell=true;
   mPhoneStateListener=new PhoneStateListener(){
     public void onServiceStateChanged(    ServiceState s){
       Log.d(TAG,"Service State changed!");

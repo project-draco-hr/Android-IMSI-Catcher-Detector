@@ -3,30 +3,30 @@
     tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_DATA_ACTIVITY| PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
     if (lm != null) {
       mLocationListener=new MyLocationListener();
-      Log.i(TAG,"LocationManager already existed");
+      Log.i(TAG,"LocationManager already existed.");
       lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
     }
  else {
-      Log.i(TAG,"LocationManager did not exist");
+      Log.i(TAG,"LocationManager did not exist.");
       lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
       if (lm != null) {
         if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-          Log.i(TAG,"LocationManager created");
+          Log.i(TAG,"LocationManager created.");
           lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
         }
       }
     }
-    Helpers.msgShort(this,"Tracking cell information");
-    TrackingCell=true;
+    Helpers.msgShort(this,"Tracking Cell Information.");
+    mTrackingCell=true;
   }
  else {
     tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
     lm.removeUpdates(mLocationListener);
-    mDevice.setLongitude(0.0);
-    mDevice.setLatitude(0.0);
-    TrackingCell=false;
+    mDevice.mCell.setLon(0.0);
+    mDevice.mCell.setLat(0.0);
+    mTrackingCell=false;
     mDevice.setCellInfo("[0,0]|nn|nn|");
-    Helpers.msgShort(this,"Stopped tracking cell information");
+    Helpers.msgShort(this,"Stopped tracking Cell Information.");
   }
   setNotification();
 }

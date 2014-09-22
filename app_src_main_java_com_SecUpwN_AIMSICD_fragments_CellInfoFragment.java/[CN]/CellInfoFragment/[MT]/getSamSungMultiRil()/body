@@ -1,0 +1,5 @@
+{
+  if (mBound && mAimsicdService.mMultiRilCompatible) {
+    new CellAsyncTask().execute(SAMSUNG_MULTIRIL_REQUEST);
+  }
+}

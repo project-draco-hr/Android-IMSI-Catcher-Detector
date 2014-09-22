@@ -1,7 +1,11 @@
 {
   super.onDestroy();
-  if (mShell != null) {
-    mShell.close();
-    mShell=null;
+  if (shell != null) {
+    try {
+      shell.close();
+    }
+ catch (    Exception e) {
+      Log.e("AIMSICD","Closing shell - " + e);
+    }
   }
 }

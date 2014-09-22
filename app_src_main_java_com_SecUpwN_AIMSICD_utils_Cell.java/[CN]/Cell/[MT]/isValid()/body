@@ -1,0 +1,3 @@
+{
+  return this.getCID() != Integer.MAX_VALUE && this.getLAC() != Integer.MAX_VALUE;
+}

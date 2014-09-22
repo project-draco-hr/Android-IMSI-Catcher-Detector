@@ -1,61 +1,74 @@
 {
   List<Cell> neighboringCells=new ArrayList<>();
-  if (Build.VERSION.SDK_INT > 16) {
-    List<CellInfo> allCellInfo=tm.getAllCellInfo();
-    if (allCellInfo != null) {
-      for (      CellInfo cellInfo : allCellInfo) {
-        if (cellInfo instanceof CellInfoGsm) {
-          CellIdentityGsm cellIdentity=((CellInfoGsm)cellInfo).getCellIdentity();
-          CellSignalStrengthGsm cellSignalStrengthGsm=((CellInfoGsm)cellInfo).getCellSignalStrength();
-          if (cellIdentity.getCid() == Integer.MAX_VALUE) {
+  List<NeighboringCellInfo> neighboringCellInfo;
+  neighboringCellInfo=tm.getNeighboringCellInfo();
+  if (neighboringCellInfo.size() == 0) {
+    final LinkedBlockingQueue<NeighboringCellInfo> neighboringCellBlockingQueue=new LinkedBlockingQueue<>(100);
+    final PhoneStateListener listener=new PhoneStateListener(){
+      private void handle(){
+        List<NeighboringCellInfo> neighboringCellInfo;
+        neighboringCellInfo=tm.getNeighboringCellInfo();
+        if (neighboringCellInfo.size() == 0) {
+          return;
+        }
+        Log.i(TAG,"neighbouringCellInfo empty - event based polling succeeded!");
+        tm.listen(this,PhoneStateListener.LISTEN_NONE);
+        neighboringCellBlockingQueue.addAll(neighboringCellInfo);
+      }
+      @Override public void onServiceStateChanged(      ServiceState serviceState){
+        handle();
+      }
+      @Override public void onDataConnectionStateChanged(      int state){
+        handle();
+      }
+      @Override public void onDataConnectionStateChanged(      int state,      int networkType){
+        handle();
+      }
+      @Override public void onSignalStrengthsChanged(      SignalStrength signalStrength){
+        handle();
+      }
+      @Override public void onCellInfoChanged(      List<CellInfo> cellInfo){
+        handle();
+      }
+    }
+;
+    Log.i(TAG,"neighbouringCellInfo empty - start polling");
+    if (Build.VERSION.SDK_INT > 16) {
+      tm.listen(listener,PhoneStateListener.LISTEN_CELL_INFO | PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE| PhoneStateListener.LISTEN_SERVICE_STATE| PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+    }
+ else {
+      tm.listen(listener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE | PhoneStateListener.LISTEN_SERVICE_STATE| PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+    }
+    for (int i=0; i < 10 && neighboringCellInfo.size() == 0; i++) {
+      try {
+        Log.i(TAG,"neighbouringCellInfo empty - try " + i);
+        NeighboringCellInfo info=neighboringCellBlockingQueue.poll(1,TimeUnit.SECONDS);
+        if (info == null) {
+          neighboringCellInfo=tm.getNeighboringCellInfo();
+          if (neighboringCellInfo.size() > 0) {
+            Log.i(TAG,"neighbouringCellInfo empty - try " + i + " succeeded time based");
+            break;
+          }
+ else {
             continue;
           }
-          int dbmLevel=cellSignalStrengthGsm.getDbm();
-          final Cell cell=new Cell(cellIdentity.getCid(),cellIdentity.getLac(),cellIdentity.getMcc(),cellIdentity.getMnc(),dbmLevel,SystemClock.currentThreadTimeMillis());
-          neighboringCells.add(cell);
         }
- else         if (cellInfo instanceof CellInfoCdma) {
-          final CellSignalStrengthCdma cellSignalStrengthCdma=((CellInfoCdma)cellInfo).getCellSignalStrength();
-          final CellIdentityCdma cellIdentity=((CellInfoCdma)cellInfo).getCellIdentity();
-          if (cellIdentity.getBasestationId() == Integer.MAX_VALUE) {
-            continue;
-          }
-          final Cell cell=new Cell(cellIdentity.getBasestationId(),cellIdentity.getNetworkId(),mDevice.getMCC(),mDevice.getMnc(),cellSignalStrengthCdma.getDbm(),SystemClock.currentThreadTimeMillis());
-          neighboringCells.add(cell);
+        ArrayList<NeighboringCellInfo> cellInfoList=new ArrayList<>(neighboringCellBlockingQueue.size() + 1);
+        while (info != null) {
+          cellInfoList.add(info);
+          info=neighboringCellBlockingQueue.poll(1,TimeUnit.SECONDS);
         }
- else         if (cellInfo instanceof CellInfoLte) {
-          final CellSignalStrengthLte cellSignalStrengthLte=((CellInfoLte)cellInfo).getCellSignalStrength();
-          final CellIdentityLte cellIdentity=((CellInfoLte)cellInfo).getCellIdentity();
-          if (cellIdentity.getPci() == Integer.MAX_VALUE) {
-            continue;
-          }
-          final Cell cell=new Cell(cellIdentity.getPci(),cellIdentity.getTac(),cellIdentity.getMcc(),cellIdentity.getMnc(),cellSignalStrengthLte.getDbm(),SystemClock.currentThreadTimeMillis());
-          neighboringCells.add(cell);
-        }
- else         if (cellInfo instanceof CellInfoWcdma) {
-          final CellSignalStrengthWcdma cellSignalStrengthWcdma=((CellInfoWcdma)cellInfo).getCellSignalStrength();
-          final CellIdentityWcdma cellIdentity=((CellInfoWcdma)cellInfo).getCellIdentity();
-          if (cellIdentity.getCid() == Integer.MAX_VALUE) {
-            continue;
-          }
-          final Cell cell=new Cell(cellIdentity.getCid(),cellIdentity.getLac(),cellIdentity.getMcc(),cellIdentity.getMnc(),cellSignalStrengthWcdma.getDbm(),SystemClock.currentThreadTimeMillis());
-          neighboringCells.add(cell);
-        }
+        neighboringCellInfo=cellInfoList;
+      }
+ catch (      InterruptedException e) {
       }
     }
   }
-  if (neighboringCells.size() == 0) {
-    List<NeighboringCellInfo> neighboringCellInfo;
-    neighboringCellInfo=tm.getNeighboringCellInfo();
-    for (    NeighboringCellInfo neighbourCell : neighboringCellInfo) {
-      Log.i(TAG,"neighbouringCellInfo - CID:" + neighbourCell.getCid() + " LAC:"+ neighbourCell.getLac()+ " RSSI:"+ neighbourCell.getRssi()+ " PSC:"+ neighbourCell.getPsc());
-      int rssi=0;
-      if (neighbourCell.getRssi() != NeighboringCellInfo.UNKNOWN_RSSI) {
-        rssi=(2 * neighbourCell.getRssi()) - 113;
-      }
-      final Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),mDevice.getMCC(),mDevice.getMnc(),rssi,neighbourCell.getPsc(),SystemClock.currentThreadTimeMillis());
-      neighboringCells.add(cell);
-    }
+  Log.i(TAG,"neighbouringCellInfo Size - " + neighboringCellInfo.size());
+  for (  NeighboringCellInfo neighbourCell : neighboringCellInfo) {
+    Log.i(TAG,"neighbouringCellInfo - CID:" + neighbourCell.getCid() + " LAC:"+ neighbourCell.getLac()+ " RSSI:"+ neighbourCell.getRssi()+ " PSC:"+ neighbourCell.getPsc());
+    final Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),neighbourCell.getRssi(),neighbourCell.getPsc(),neighbourCell.getNetworkType(),false);
+    neighboringCells.add(cell);
   }
   return neighboringCells;
 }

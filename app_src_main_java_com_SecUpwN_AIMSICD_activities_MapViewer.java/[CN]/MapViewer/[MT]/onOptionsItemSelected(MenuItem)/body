@@ -6,14 +6,24 @@ case R.id.map_preferences:
 return true;
 case R.id.get_opencellid:
 {
-Location lastKnown=mAimsicdService.mDevice.getLastLocation();
-if (lastKnown != null) {
-  Helpers.msgShort(this,"Contacting OpenCellID.org for data...");
-  Helpers.getOpenCellData(mContext,lastKnown.getLatitude(),lastKnown.getLongitude(),RequestTask.OPEN_CELL_ID_REQUEST_FROM_MAP);
+if (mBound) {
+  Location lastKnown=mAimsicdService.mDevice.getLastLocation();
+  if (lastKnown != null) {
+    Helpers.msgShort(this,"Contacting OpenCellID.org for data...");
+    Cell cell;
+    cell=mAimsicdService.mDevice.mCell;
+    cell.setLon(lastKnown.getLongitude());
+    cell.setLat(lastKnown.getLatitude());
+    Helpers.getOpenCellData(mContext,cell,RequestTask.OPEN_CELL_ID_REQUEST_FROM_MAP);
+    return true;
+  }
 }
- else if (loc != null) {
+if (loc != null) {
   Helpers.msgShort(this,"Contacting OpenCellID.org for data...");
-  Helpers.getOpenCellData(mContext,loc.latitude,loc.longitude,RequestTask.OPEN_CELL_ID_REQUEST_FROM_MAP);
+  Cell cell=new Cell();
+  cell.setLat(loc.latitude);
+  cell.setLon(loc.longitude);
+  Helpers.getOpenCellData(mContext,cell,RequestTask.OPEN_CELL_ID_REQUEST_FROM_MAP);
 }
  else {
   Helpers.msgShort(mContext,"Unable to determine your last location. \nEnable Location Services and try again.");

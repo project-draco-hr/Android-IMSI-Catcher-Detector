@@ -1,5 +1,5 @@
 {
-switch (getNetID()) {
+switch (mCell.getNetType()) {
 case TelephonyManager.NETWORK_TYPE_1xRTT:
     mNetType="1xRTT";
   break;

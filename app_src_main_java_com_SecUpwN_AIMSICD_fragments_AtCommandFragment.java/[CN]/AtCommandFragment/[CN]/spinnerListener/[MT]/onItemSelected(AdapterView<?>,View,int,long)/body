@@ -1,5 +1,5 @@
 {
   mSerialDevice=String.valueOf(mSerialDeviceSpinner.getSelectedItem());
   mSerialDeviceDisplay.setText(mSerialDevice);
-  mShell.setSerialDevice(mSerialDevice);
+  setSerialDevice();
 }

@@ -1,0 +1,6 @@
+int cid
+int lac
+int signal
+int psc
+int netType
+boolean dbm

@@ -1,0 +1,25 @@
+{
+  if (cellID != -1 && (latitude != 0.0 && longitude != 0.0)) {
+    ContentValues cellValues=new ContentValues();
+    cellValues.put("Lac",lac);
+    cellValues.put("CellID",cellID);
+    cellValues.put("Net",netType);
+    cellValues.put("Lat",latitude);
+    cellValues.put("Lng",longitude);
+    cellValues.put("Signal",signalInfo);
+    cellValues.put("Mcc",mcc);
+    cellValues.put("Mnc",mnc);
+    cellValues.put("Accuracy",accuracy);
+    cellValues.put("Speed",speed);
+    cellValues.put("Direction",direction);
+    cellValues.put("NetworkType",networkType);
+    cellValues.put("MeasurementTaken",measurementTaken);
+    if (cellExists(cellID)) {
+      return mDb.update(CELL_TABLE,cellValues,"CellID=?",new String[]{Integer.toString(cellID)});
+    }
+ else {
+      return mDb.insert(CELL_TABLE,null,cellValues);
+    }
+  }
+  return 0;
+}

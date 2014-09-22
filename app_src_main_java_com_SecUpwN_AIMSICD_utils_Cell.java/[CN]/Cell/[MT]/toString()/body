@@ -1,12 +1,15 @@
 {
   StringBuilder result=new StringBuilder();
-  result.append("Cell ID (CID): ").append(cid).append("\n");
-  result.append("Location Code (LAC): ").append(lac).append("\n");
-  result.append("Country Code (MCC): ").append(mcc).append("\n");
-  result.append("Network Code (MNC): ").append(mnc).append("\n");
-  result.append("Signal Strength (DBM): ").append(dbm).append("\n");
-  if (psc != -1) {
-    result.append("Primary Scrambling Code (PSC): ").append(psc).append("\n");
+  result.append("CID - ").append(cid).append("\n");
+  result.append("LAC - ").append(lac).append("\n");
+  result.append("MCC - ").append(mcc).append("\n");
+  result.append("MNC - ").append(mnc).append("\n");
+  result.append("DBm - ").append(dbm).append("\n");
+  if (psc != Integer.MAX_VALUE) {
+    result.append("PSC - ").append(psc).append("\n");
   }
+  result.append("Type - ").append(netType).append("\n");
+  result.append("Lon - ").append(lon).append("\n");
+  result.append("Lat - ").append(lat).append("\n");
   return result.toString();
 }

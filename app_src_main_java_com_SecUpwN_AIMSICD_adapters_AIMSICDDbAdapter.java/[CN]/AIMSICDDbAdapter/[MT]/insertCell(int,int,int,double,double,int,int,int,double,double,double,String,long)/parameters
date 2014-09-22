@@ -1,0 +1,13 @@
+int lac
+int cellID
+int netType
+double latitude
+double longitude
+int signalInfo
+int mcc
+int mnc
+double accuracy
+double speed
+double direction
+String networkType
+long measurementTaken

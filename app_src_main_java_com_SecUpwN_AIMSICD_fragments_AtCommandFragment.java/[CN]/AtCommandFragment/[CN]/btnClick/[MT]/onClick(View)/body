@@ -1,13 +1,13 @@
 {
   if (mAtCommand.getText() != null) {
     String command=mAtCommand.getText().toString();
-    if (command.indexOf("AT") == 0 || command.indexOf("at") == 0) {
-      mShell=new Shell(mSerialDevice);
-      new MyAsync().execute(EXECUTE_AT);
+    if (command.toUpperCase().indexOf("AT") == 0) {
+      Log.i("AIMSICD","AT Command Detected");
+      executeAT();
     }
  else {
-      mShell=new Shell();
-      new MyAsync().execute(EXECUTE_COMMAND);
+      Log.i("AIMSICD","Terminal Command Detected");
+      executeCommand();
     }
   }
 }

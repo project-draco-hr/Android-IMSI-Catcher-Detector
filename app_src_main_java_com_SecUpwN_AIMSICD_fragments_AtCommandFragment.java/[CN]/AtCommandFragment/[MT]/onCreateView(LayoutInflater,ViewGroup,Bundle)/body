@@ -1,20 +1,20 @@
 {
-  mView=inflater.inflate(R.layout.at_command_fragment,container,false);
-  if (mView != null) {
-    mAtCommandLayout=(RelativeLayout)mView.findViewById(R.id.atcommandView);
-    mAtCommandError=(TextView)mView.findViewById(R.id.at_command_error);
-    mAtCommandExecute=(Button)mView.findViewById(R.id.execute);
-    mSerialDeviceDisplay=(TextView)mView.findViewById(R.id.serial_device);
-    mAtResponse=(TextView)mView.findViewById(R.id.response);
-    mAtCommand=(EditText)mView.findViewById(R.id.at_command);
-    mAtCommandExecute.setOnClickListener(new btnClick());
-    mSerialDeviceSpinner=(Spinner)mView.findViewById(R.id.serial_device_spinner);
+  View view=inflater.inflate(R.layout.at_command_fragment,container,false);
+  if (view != null) {
+    mAtCommandLayout=(RelativeLayout)view.findViewById(R.id.atcommandView);
+    mAtCommandError=(TextView)view.findViewById(R.id.at_command_error);
+    Button atCommandExecute=(Button)view.findViewById(R.id.execute);
+    mSerialDeviceDisplay=(TextView)view.findViewById(R.id.serial_device);
+    mAtResponse=(TextView)view.findViewById(R.id.response);
+    mAtCommand=(EditText)view.findViewById(R.id.at_command);
+    atCommandExecute.setOnClickListener(new btnClick());
+    mSerialDeviceSpinner=(Spinner)view.findViewById(R.id.serial_device_spinner);
     mSerialDeviceSpinner.setOnItemSelectedListener(new spinnerListener());
-    mSerialDeviceSpinnerLabel=(TextView)mView.findViewById(R.id.serial_device_spinner_title);
-    mTimoutSpinner=(Spinner)mView.findViewById(R.id.timeout_spinner);
-    mTimoutSpinner.setOnItemSelectedListener(new timoutSpinnerListener());
-    mTimoutSpinner.setSelection(1);
-    mTimeout=5.0f;
+    mSerialDeviceSpinnerLabel=(TextView)view.findViewById(R.id.serial_device_spinner_title);
+    Spinner timoutSpinner=(Spinner)view.findViewById(R.id.timeout_spinner);
+    timoutSpinner.setOnItemSelectedListener(new timoutSpinnerListener());
+    timoutSpinner.setSelection(1);
+    mTimeout=5000;
   }
-  return mView;
+  return view;
 }

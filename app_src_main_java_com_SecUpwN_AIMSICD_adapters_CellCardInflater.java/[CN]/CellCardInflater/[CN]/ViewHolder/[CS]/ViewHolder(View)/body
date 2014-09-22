@@ -2,6 +2,8 @@
   mRootView=rootView;
   mCellID=(TextView)mRootView.findViewById(R.id.cellID);
   mCellID.setVisibility(View.GONE);
+  mPsc=(TextView)mRootView.findViewById(R.id.psc);
+  mPsc.setVisibility(View.GONE);
   mLac=(TextView)mRootView.findViewById(R.id.lac);
   mLac.setVisibility(View.GONE);
   mMcc=(TextView)mRootView.findViewById(R.id.mcc);

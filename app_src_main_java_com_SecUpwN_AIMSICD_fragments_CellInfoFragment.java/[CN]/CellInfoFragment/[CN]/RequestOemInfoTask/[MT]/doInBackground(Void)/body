@@ -1,8 +1,0 @@
-{
-  if (!mBound) {
-    return null;
-  }
-  updateNeighbouringCells();
-  updateCipheringIndicator();
-  return null;
-}

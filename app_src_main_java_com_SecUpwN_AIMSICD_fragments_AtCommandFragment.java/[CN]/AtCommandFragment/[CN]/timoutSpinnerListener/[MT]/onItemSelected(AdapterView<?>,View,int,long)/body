@@ -1,21 +1,21 @@
 {
 switch (position) {
 case 0:
-    mTimeout=2.0f;
+    mTimeout=2000;
   break;
 case 1:
-mTimeout=5.0f;
+mTimeout=5000;
 break;
 case 2:
-mTimeout=8.0f;
+mTimeout=8000;
 break;
 case 3:
-mTimeout=10.0f;
+mTimeout=10000;
 break;
 case 4:
-mTimeout=15.0f;
+mTimeout=15000;
 break;
 default :
-mTimeout=5.0f;
+mTimeout=5000;
 }
 }

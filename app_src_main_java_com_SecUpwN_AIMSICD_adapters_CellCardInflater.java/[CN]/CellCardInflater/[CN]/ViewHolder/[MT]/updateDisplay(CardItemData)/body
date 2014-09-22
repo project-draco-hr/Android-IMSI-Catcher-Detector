@@ -3,6 +3,10 @@
     mCellID.setVisibility(View.VISIBLE);
     mCellID.setText(item.getCellID());
   }
+  if (!item.getPsc().contains("N/A")) {
+    mPsc.setVisibility(View.VISIBLE);
+    mPsc.setText(item.getPsc());
+  }
   if (!item.getLac().contains("N/A")) {
     mLac.setVisibility(View.VISIBLE);
     mLac.setText(item.getLac());

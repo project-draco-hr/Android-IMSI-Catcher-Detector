@@ -6,13 +6,22 @@
   prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   prefs.registerOnSharedPreferenceChangeListener(this);
   loadPreferences();
-  mDevice.refreshDeviceInfo(tm);
+  if (!CELL_TABLE_CLEANSED) {
+    dbHelper.open();
+    dbHelper.cleanseCellTable();
+    dbHelper.close();
+    Editor prefsEditor;
+    prefsEditor=prefs.edit();
+    prefsEditor.putBoolean(this.getString(R.string.pref_cell_table_cleansed),true);
+    prefsEditor.apply();
+  }
+  mDevice.refreshDeviceInfo(tm,this);
   setNotification();
   mRequestExecutor=new SamsungMulticlientRilExecutor();
   mRilExecutorDetectResult=mRequestExecutor.detect();
   if (!mRilExecutorDetectResult.available) {
     mMultiRilCompatible=false;
-    Log.e(TAG,"Samsung multiclient ril not available: " + mRilExecutorDetectResult.error);
+    Log.e(TAG,"Samsung Multiclient RIL not available: " + mRilExecutorDetectResult.error);
     mRequestExecutor=null;
   }
  else {
@@ -26,5 +35,6 @@
     }
   }
   mContext.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
-  Log.i(TAG,"Service launched successfully");
+  mMonitorCell=new Cell();
+  Log.i(TAG,"Service launched successfully.");
 }

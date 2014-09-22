@@ -1,0 +1,5 @@
+{
+  if (mTrackingCell && !lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+    enableLocationServices();
+  }
+}

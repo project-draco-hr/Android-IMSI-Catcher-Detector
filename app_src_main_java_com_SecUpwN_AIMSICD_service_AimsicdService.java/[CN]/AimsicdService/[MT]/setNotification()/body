@@ -1,18 +1,25 @@
 {
   String tickerText;
   String contentText="Phone Type " + mDevice.getPhoneType();
-  String iconType=prefs.getString(this.getString(R.string.pref_ui_icons_key),"flat");
+  String iconType=prefs.getString(this.getString(R.string.pref_ui_icons_key),"sense");
   int status;
   if (mFemtoDetected || mTypeZeroSmsDetected) {
-    status=3;
+    status=4;
   }
- else   if (TrackingFemtocell || TrackingCell) {
+ else   if (mChangedLAC) {
+    status=3;
+    contentText="Hostile Service Area: Changing LAC Detected!";
+  }
+ else   if (mTrackingFemtocell || mTrackingCell || mMonitoringCell) {
     status=2;
-    if (TrackingFemtocell) {
-      contentText="FemtoCell Detection Active";
+    if (mTrackingFemtocell) {
+      contentText="FemtoCell Detection Active.";
+    }
+ else     if (mTrackingCell) {
+      contentText="Cell Tracking Active.";
     }
  else {
-      contentText="Cell Tracking Active";
+      contentText="Cell Monitoring Active.";
     }
   }
  else {
@@ -32,6 +39,7 @@ case "white":
 icon=R.drawable.white_idle;
 break;
 }
+contentText="Phone Type " + mDevice.getPhoneType();
 tickerText=getResources().getString(R.string.app_name_short) + " - Status: Idle";
 break;
 case 2:
@@ -46,9 +54,26 @@ case "white":
 icon=R.drawable.white_ok;
 break;
 }
-tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good No Threats Detected";
+tickerText=getResources().getString(R.string.app_name_short) + " - Status: Good. No Threats Detected.";
 break;
 case 3:
+switch (iconType) {
+case "flat":
+icon=R.drawable.flat_medium;
+break;
+case "sense":
+icon=R.drawable.sense_medium;
+break;
+case "white":
+icon=R.drawable.white_medium;
+break;
+}
+tickerText=getResources().getString(R.string.app_name_short) + " - Hostile Service Area: Changing LAC Detected!";
+if (mChangedLAC) {
+contentText="Hostile Service Area: Changing LAC Detected!";
+}
+break;
+case 4:
 switch (iconType) {
 case "flat":
 icon=R.drawable.flat_danger;
@@ -60,12 +85,12 @@ case "white":
 icon=R.drawable.white_danger;
 break;
 }
-tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected";
+tickerText=getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected!";
 if (mFemtoDetected) {
-contentText="ALERT!! FemtoCell Connection Threat Detected";
+contentText="ALERT!! FemtoCell Connection Threat Detected!";
 }
  else if (mTypeZeroSmsDetected) {
-contentText="ALERT!! Type Zero Silent SMS Intercepted";
+contentText="ALERT!! Type Zero Silent SMS Intercepted!";
 }
 break;
 default :

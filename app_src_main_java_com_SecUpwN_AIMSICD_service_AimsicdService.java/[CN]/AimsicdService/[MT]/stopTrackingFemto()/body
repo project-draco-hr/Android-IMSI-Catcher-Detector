@@ -1,8 +1,8 @@
 {
   if (mPhoneStateListener != null) {
     tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_NONE);
-    TrackingFemtocell=false;
+    mTrackingFemtocell=false;
     setNotification();
-    Log.v(TAG,"Stopped tracking Femtocell connections");
+    Log.v(TAG,"Stopped tracking Femtocell connections.");
   }
 }

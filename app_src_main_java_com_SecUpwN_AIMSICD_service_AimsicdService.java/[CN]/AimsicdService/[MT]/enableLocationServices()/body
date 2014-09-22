@@ -1,6 +1,6 @@
 {
   final AlertDialog.Builder builder=new AlertDialog.Builder(this);
-  builder.setMessage(R.string.location_error_message).setTitle(R.string.location_error_title).setPositiveButton(R.string.text_ok,new DialogInterface.OnClickListener(){
+  builder.setMessage(R.string.location_error_message).setTitle(R.string.location_error_title).setCancelable(false).setPositiveButton(R.string.text_ok,new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int which){
       Intent gpsSettings=new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
       gpsSettings.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

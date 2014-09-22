@@ -1,30 +1,8 @@
 {
-  if (mBound) {
-    List<Cell> neighboringCells=mAimsicdService.updateNeighbouringCells();
-    if (neighboringCells != null && neighboringCells.size() != 0) {
-      mNeighbouringTotal.setText(String.valueOf(neighboringCells.size()));
-      BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new CellCardInflater());
-      int i=1;
-      int total=neighboringCells.size();
-      for (      Cell cell : neighboringCells) {
-        CardItemData data;
-        if (cell.getPSC() != -1) {
-          data=new CardItemData("Cell ID (CID): " + cell.getCID(),"Location Code (LAC): " + cell.getLAC(),"Country Code (MCC): " + cell.getMCC(),"Network Code (MNC): " + cell.getMNC(),"Signal Strength (dBM): " + cell.getDBM(),"Primary Scrambling Code (PSC): " + cell.getPSC(),"Timestamp: " + cell.getTimestamp(),"" + i++ + " / "+ total);
-        }
+  if (mBound && mAimsicdService.mMultiRilCompatible) {
+    new CellAsyncTask().execute(SAMSUNG_MULTIRIL_REQUEST);
+  }
  else {
-          data=new CardItemData(1,"Cell ID (CID): " + cell.getCID(),"Location Code (LAC): " + cell.getLAC(),"Country Code (MCC): " + cell.getMCC(),"Network Code (MNC): " + cell.getMNC(),"Signal Strength (dBM): " + cell.getDBM(),"Timestamp: " + cell.getTimestamp(),"" + i++ + " / "+ total);
-        }
-        adapter.addItem(data,false);
-      }
-      lv.setAdapter(adapter);
-      mNeighbouringCells.setVisibility(View.GONE);
-      mNeighbouringTotalView.setVisibility(View.VISIBLE);
-    }
- else {
-      DetectResult rilStatus=mAimsicdService.getRilExecutorStatus();
-      if (rilStatus.available) {
-        new RequestOemInfoTask().execute();
-      }
-    }
+    new CellAsyncTask().execute(STOCK_REQUEST);
   }
 }
