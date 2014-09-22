@@ -11,6 +11,8 @@
       final int cellID=c.getInt(0);
       final int lac=c.getInt(1);
       final int net=c.getInt(2);
+      final int mcc=c.getInt(6);
+      final int mnc=c.getInt(7);
       final double dlat=Double.parseDouble(c.getString(3));
       final double dlng=Double.parseDouble(c.getString(4));
       if (dlat == 0.0 && dlng == 0.0) {
@@ -63,7 +65,7 @@ break;
 circleOptions=new CircleOptions().center(loc).radius(signal * SIGNAL_SIZE_RATIO).fillColor(color).strokeColor(color).visible(true);
 mMap.addCircle(circleOptions);
 Marker marker=mMap.addMarker(new MarkerOptions().position(loc).draggable(false).title("CellID - " + cellID));
-mMarkerMap.put(marker,new MarkerData("" + cellID,"" + loc.latitude,"" + loc.longitude,"" + lac,"","","",false));
+mMarkerMap.put(marker,new MarkerData("" + cellID,"" + loc.latitude,"" + loc.longitude,"" + lac,"" + mcc,"" + mnc,"",false));
 }
 }
  while (c.moveToNext());
@@ -77,9 +79,9 @@ mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }
  else {
 if (mBound) {
-Location lastLoc=mAimsicdService.lastKnownLocation();
-if (lastLoc != null && lastLoc.hasAccuracy()) {
-loc=new LatLng(lastLoc.getLatitude(),lastLoc.getLongitude());
+GeoLocation lastLoc=mAimsicdService.lastKnownLocation();
+if (lastLoc != null) {
+loc=new LatLng(lastLoc.getLatitudeInDegrees(),lastLoc.getLongitudeInDegrees());
 CameraPosition POSITION=new CameraPosition.Builder().target(loc).zoom(16).build();
 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(POSITION));
 }

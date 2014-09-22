@@ -88,13 +88,14 @@ mDevice.mCell.setSpeed(loc.getSpeed());
 mDevice.mCell.setAccuracy(loc.getAccuracy());
 mDevice.mCell.setBearing(loc.getBearing());
 mDevice.setLastLocation(loc);
+Editor prefsEditor;
+prefsEditor=prefs.edit();
+prefsEditor.putString(mContext.getString(R.string.data_last_lat_lon),String.valueOf(loc.getLatitude()) + ":" + String.valueOf(loc.getLongitude()));
+prefsEditor.apply();
 if (mTrackingCell) {
 dbHelper.open();
-mDbResult=dbHelper.insertLocation(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.getCellInfo());
-mDbResult=dbHelper.insertCell(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.mCell.getMCC(),mDevice.mCell.getMNC(),mDevice.mCell.getAccuracy(),mDevice.mCell.getSpeed(),mDevice.mCell.getBearing(),mDevice.getNetworkTypeName(),SystemClock.currentThreadTimeMillis());
-if (mDbResult == -1) {
-Log.e(TAG,"Error writing to database!");
-}
+dbHelper.insertLocation(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.getCellInfo());
+dbHelper.insertCell(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.mCell.getMCC(),mDevice.mCell.getMNC(),mDevice.mCell.getAccuracy(),mDevice.mCell.getSpeed(),mDevice.mCell.getBearing(),mDevice.getNetworkTypeName(),SystemClock.currentThreadTimeMillis());
 }
 }
 }
