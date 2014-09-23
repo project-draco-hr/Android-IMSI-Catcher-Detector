@@ -21,8 +21,8 @@ if (mBound) {
 if (loc != null) {
   Helpers.msgShort(this,"Contacting OpenCellID.org for data...");
   Cell cell=new Cell();
-  cell.setLat(loc.latitude);
-  cell.setLon(loc.longitude);
+  cell.setLat(loc.getLatitude());
+  cell.setLon(loc.getLongitude());
   Helpers.getOpenCellData(mContext,cell,RequestTask.OPEN_CELL_ID_REQUEST_FROM_MAP);
 }
  else {

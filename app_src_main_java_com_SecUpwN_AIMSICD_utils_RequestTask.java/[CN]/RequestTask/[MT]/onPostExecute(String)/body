@@ -18,7 +18,7 @@ case OPEN_CELL_ID_REQUEST_FROM_MAP:
 if (result != null && result.equals("Successful")) {
   mDbAdapter.open();
   if (mDbAdapter.updateOpenCellID()) {
-    Intent intent=new Intent(MapViewer.updateOpenCellIDMarkers);
+    Intent intent=new Intent(MapViewerOsmDroid.updateOpenCellIDMarkers);
     LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
     Helpers.msgShort(mContext,"OpenCellID data successfully received and " + "Map Markers updated");
     mDbAdapter.close();

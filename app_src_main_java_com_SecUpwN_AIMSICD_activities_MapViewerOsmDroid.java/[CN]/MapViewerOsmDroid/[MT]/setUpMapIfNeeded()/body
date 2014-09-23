@@ -1,0 +1,22 @@
+{
+  if (mMap == null) {
+    mMap=(MapView)findViewById(R.id.mapview);
+    if (mMap != null) {
+      mMap.setBuiltInZoomControls(true);
+      mMap.setMultiTouchControls(true);
+      ResourceProxyImpl resProxyImp=new ResourceProxyImpl(this);
+      GpsMyLocationProvider imlp=new GpsMyLocationProvider(this.getBaseContext());
+      imlp.setLocationUpdateMinDistance(1000);
+      imlp.setLocationUpdateMinTime(60000);
+      mMyLocationOverlay=new MyLocationNewOverlay(this.getBaseContext(),imlp,mMap);
+      mMyLocationOverlay.setDrawAccuracyEnabled(true);
+      mMap.getOverlays().add(mMyLocationOverlay);
+      Drawable myMarker=getResources().getDrawable(R.drawable.cell_tower);
+      mOpenCellIdOverlay=new ItemizedIconOverlay<OverlayItem>(new LinkedList<OverlayItem>(),myMarker,null,resProxyImp);
+      mMap.getOverlays().add(mOpenCellIdOverlay);
+    }
+ else {
+      Helpers.msgShort(this,"Unable to create map!");
+    }
+  }
+}

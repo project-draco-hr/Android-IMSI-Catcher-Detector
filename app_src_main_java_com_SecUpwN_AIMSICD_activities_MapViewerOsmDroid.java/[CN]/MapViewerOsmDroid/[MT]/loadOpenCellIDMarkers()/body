@@ -7,12 +7,13 @@
       final double dlng=Double.parseDouble(c.getString(5));
       final int cellID=c.getInt(0);
       final int lac=c.getInt(1);
-      final LatLng location=new LatLng(dlat,dlng);
+      final GeoPoint location=new GeoPoint(dlat,dlng);
       final int mcc=c.getInt(2);
       final int mnc=c.getInt(3);
       final int samples=c.getInt(7);
-      Marker marker=mMap.addMarker(new MarkerOptions().position(location).draggable(false).title("CellID - " + cellID));
-      mMarkerMap.put(marker,new MarkerData("" + cellID,"" + loc.latitude,"" + loc.longitude,"" + lac,"" + mcc,"" + mnc,"" + samples,true));
+      String description="" + loc.getLatitude() + ""+ loc.getLongitude()+ ""+ lac+ ""+ mcc+ ""+ mnc+ ""+ samples;
+      OverlayItem ovm=new OverlayItem("CellID - " + cellID,description,new GeoPoint(location.getLatitude(),location.getLongitude()));
+      mOpenCellIdOverlay.addItem(ovm);
     }
  while (c.moveToNext());
   }
