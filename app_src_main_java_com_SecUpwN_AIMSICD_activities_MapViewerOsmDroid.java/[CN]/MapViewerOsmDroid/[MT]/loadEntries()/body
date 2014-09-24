@@ -13,6 +13,8 @@
           final int cellID=c.getInt(0);
           final int lac=c.getInt(1);
           final int net=c.getInt(2);
+          final int mcc=c.getInt(6);
+          final int mnc=c.getInt(7);
           final double dlat=Double.parseDouble(c.getString(3));
           final double dlng=Double.parseDouble(c.getString(4));
           if (dlat == 0.0 && dlng == 0.0) {
@@ -62,7 +64,7 @@ default :
 color=0xF0F8FF;
 break;
 }
-CellTowerOverlayItem ovm=new CellTowerOverlayItem("CellID - " + cellID,"",new GeoPoint(loc.getLatitude(),loc.getLongitude()),new MarkerData("" + cellID,"" + loc.getLatitude(),"" + loc.getLongitude(),"" + lac,"","","",false));
+CellTowerOverlayItem ovm=new CellTowerOverlayItem("CellID - " + cellID,"",new GeoPoint(loc.getLatitude(),loc.getLongitude()),new MarkerData("" + cellID,"" + loc.getLatitude(),"" + loc.getLongitude(),"" + lac,"" + mcc,"" + mnc,"",false));
 ovm.setMarker(getResources().getDrawable(R.drawable.ic_map_pin_green));
 items.add(ovm);
 }
@@ -102,9 +104,9 @@ mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()
 }
  else {
 if (mBound) {
-Location lastLoc=mAimsicdService.lastKnownLocation();
-if (lastLoc != null && lastLoc.hasAccuracy()) {
-loc=new GeoPoint(lastLoc.getLatitude(),lastLoc.getLongitude());
+GeoLocation lastLoc=mAimsicdService.lastKnownLocation();
+if (lastLoc != null) {
+loc=new GeoPoint(lastLoc.getLatitudeInDegrees(),lastLoc.getLongitudeInDegrees());
 mMap.getController().setZoom(16);
 mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
 }
