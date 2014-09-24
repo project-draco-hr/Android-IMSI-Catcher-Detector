@@ -3,7 +3,7 @@
   mIMEIV=tm.getDeviceSoftwareVersion();
   mPhoneID=tm.getPhoneType();
   mRoaming=tm.isNetworkRoaming();
-  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
     try {
       List<CellInfo> cellInfoList=tm.getAllCellInfo();
       if (cellInfoList != null) {
@@ -101,8 +101,8 @@ if (mCell.getMNC() == Integer.MAX_VALUE) mCell.setMNC(Integer.valueOf(homeOperat
 }
 break;
 }
-mSimState=tm.getSimState();
-switch (mSimState) {
+int simState=tm.getSimState();
+switch (simState) {
 case (TelephonyManager.SIM_STATE_ABSENT):
 break;
 case (TelephonyManager.SIM_STATE_NETWORK_LOCKED):

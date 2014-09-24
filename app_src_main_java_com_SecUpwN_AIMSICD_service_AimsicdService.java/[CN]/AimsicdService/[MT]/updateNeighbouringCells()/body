@@ -53,7 +53,7 @@
             continue;
           }
         }
-        ArrayList<NeighboringCellInfo> cellInfoList=new ArrayList<NeighboringCellInfo>(neighboringCellBlockingQueue.size() + 1);
+        ArrayList<NeighboringCellInfo> cellInfoList=new ArrayList<>(neighboringCellBlockingQueue.size() + 1);
         while (info != null) {
           cellInfoList.add(info);
           info=neighboringCellBlockingQueue.poll(1,TimeUnit.SECONDS);

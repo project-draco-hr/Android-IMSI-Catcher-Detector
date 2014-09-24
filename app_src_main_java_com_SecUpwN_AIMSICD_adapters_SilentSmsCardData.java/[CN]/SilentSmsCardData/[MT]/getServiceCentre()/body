@@ -1,10 +1,9 @@
 {
   String serviceCentre="Service Centre: ";
   if (mServiceCentre.isEmpty()) {
-    serviceCentre+="Unavailable";
+    return serviceCentre + "Unavailable";
   }
  else {
-    serviceCentre+=mServiceCentre;
+    return serviceCentre + mServiceCentre;
   }
-  return serviceCentre;
 }

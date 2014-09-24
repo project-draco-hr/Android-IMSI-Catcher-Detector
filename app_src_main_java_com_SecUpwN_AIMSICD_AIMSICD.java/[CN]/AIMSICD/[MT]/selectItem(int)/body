@@ -27,7 +27,13 @@ trackcell();
 trackFemtocell();
 }
  else if (selectedItem.getId() == 105) {
+int status=GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+if (status == ConnectionResult.SUCCESS) {
 showmap();
+}
+ else {
+Helpers.sendMsg(this,"Google Play Services is required for the MapViewer and was not found on your device");
+}
 }
  else if (selectedItem.getId() == 202) {
 Intent intent=new Intent(this,PrefActivity.class);
@@ -46,12 +52,12 @@ new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
 }
  else if (selectedItem.getId() == 301) {
 if (!AimsicdService.OCID_API_KEY.equals("NA")) {
-Location loc=mAimsicdService.lastKnownLocation();
+GeoLocation loc=mAimsicdService.lastKnownLocation();
 if (loc != null) {
 Helpers.msgShort(mContext,"Contacting OpenCellID.org for data...");
 Cell cell=new Cell();
-cell.setLon(loc.getLongitude());
-cell.setLat(loc.getLatitude());
+cell.setLon(loc.getLongitudeInDegrees());
+cell.setLat(loc.getLatitudeInDegrees());
 Helpers.getOpenCellData(mContext,cell,RequestTask.OPEN_CELL_ID_REQUEST);
 }
  else {
@@ -61,7 +67,7 @@ locationAsync.execute(mAimsicdService.mDevice.mCell.getCID(),mAimsicdService.mDe
 }
 }
  else {
-Helpers.msgShort(mContext,"No OpenCellID API Key detected! \nPlease enter your key in settings first");
+Helpers.sendMsg(mContext,"No OpenCellID API Key detected! \nPlease enter your key in settings first");
 }
 }
  else if (selectedItem.getId() == 302) {
@@ -86,8 +92,11 @@ sb.append("&format=xml");
 cellLookUpAsync.execute(sb.toString());
 }
  else {
-Helpers.msgShort(mContext,"No OpenCellID API Key detected! \nPlease enter your key in settings first");
+Helpers.sendMsg(mContext,"No OpenCellID API Key detected! \nPlease enter your key in settings first");
 }
+}
+ else if (selectedItem.getId() == 304) {
+finish();
 }
 mDrawerList.setItemChecked(position,true);
 if (selectedItem.updateActionBarTitle()) {

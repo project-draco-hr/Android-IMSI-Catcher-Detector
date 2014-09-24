@@ -1,4 +1,4 @@
 {
-  Intent myIntent=new Intent(this,MapViewerOsmDroid.class);
+  Intent myIntent=new Intent(this,MapViewer.class);
   startActivity(myIntent);
 }
