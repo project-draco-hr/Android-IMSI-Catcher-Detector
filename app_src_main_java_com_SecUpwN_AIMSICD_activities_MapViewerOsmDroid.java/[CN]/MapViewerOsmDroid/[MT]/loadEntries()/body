@@ -78,6 +78,7 @@ Helpers.msgShort(MapViewerOsmDroid.this,"No tracked locations found to overlay o
 );
 }
 GeoPoint ret=new GeoPoint(0,0);
+if (mBound) {
 try {
 int mcc=mAimsicdService.mDevice.mCell.getMCC();
 double[] d=mDbHelper.getDefaultLocation(mcc);
@@ -86,6 +87,7 @@ ret=new GeoPoint(d[0],d[1]);
  catch (Exception e) {
 Log.e("map","Error getting default location",e);
 }
+}
 c.close();
 mDbHelper.close();
 mMap.getOverlays().remove(mOpenCellIdOverlay);
@@ -93,7 +95,7 @@ mOpenCellIdOverlay.addItems(items);
 mMap.getOverlays().add(mOpenCellIdOverlay);
 return ret;
 }
-@Override protected void onPostExecute(GeoPoint loc){
+@Override protected void onPostExecute(GeoPoint defaultLoc){
 if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
 mMap.getController().setZoom(16);
 mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
@@ -107,6 +109,7 @@ mMap.getController().setZoom(16);
 mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
 }
  else {
+loc=defaultLoc;
 mMap.getController().setZoom(13);
 mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
 }
