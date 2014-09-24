@@ -13,6 +13,7 @@
       final int samples=c.getInt(7);
       String description="" + loc.getLatitude() + ""+ loc.getLongitude()+ ""+ lac+ ""+ mcc+ ""+ mnc+ ""+ samples;
       OverlayItem ovm=new OverlayItem("CellID - " + cellID,description,new GeoPoint(location.getLatitude(),location.getLongitude()));
+      ovm.setMarker(getResources().getDrawable(R.drawable.ic_map_pin_blue));
       mOpenCellIdOverlay.addItem(ovm);
     }
  while (c.moveToNext());

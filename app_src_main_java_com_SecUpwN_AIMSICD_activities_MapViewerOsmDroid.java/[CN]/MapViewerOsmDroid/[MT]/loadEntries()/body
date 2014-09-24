@@ -1,2 +1,97 @@
 {
+  final int SIGNAL_SIZE_RATIO=15;
+  int signal;
+  int color;
+  mMap.removeAllViews();
+  mDbHelper.open();
+  Cursor c=mDbHelper.getCellData();
+  if (c.moveToFirst()) {
+    do {
+      final int cellID=c.getInt(0);
+      final int lac=c.getInt(1);
+      final int net=c.getInt(2);
+      final double dlat=Double.parseDouble(c.getString(3));
+      final double dlng=Double.parseDouble(c.getString(4));
+      if (dlat == 0.0 && dlng == 0.0) {
+        continue;
+      }
+      signal=c.getInt(5);
+      if (signal <= 0) {
+        signal=20;
+      }
+      if ((dlat != 0.0) || (dlng != 0.0)) {
+        loc=new GeoPoint(dlat,dlng);
+switch (net) {
+case TelephonyManager.NETWORK_TYPE_UNKNOWN:
+          color=0xF0F8FF;
+        break;
+case TelephonyManager.NETWORK_TYPE_GPRS:
+      color=0xA9A9A9;
+    break;
+case TelephonyManager.NETWORK_TYPE_EDGE:
+  color=0x87CEFA;
+break;
+case TelephonyManager.NETWORK_TYPE_UMTS:
+color=0x7CFC00;
+break;
+case TelephonyManager.NETWORK_TYPE_HSDPA:
+color=0xFF6347;
+break;
+case TelephonyManager.NETWORK_TYPE_HSUPA:
+color=0xFF00FF;
+break;
+case TelephonyManager.NETWORK_TYPE_HSPA:
+color=0x238E6B;
+break;
+case TelephonyManager.NETWORK_TYPE_CDMA:
+color=0x8A2BE2;
+break;
+case TelephonyManager.NETWORK_TYPE_EVDO_0:
+color=0xFF69B4;
+break;
+case TelephonyManager.NETWORK_TYPE_EVDO_A:
+color=0xFFFF00;
+break;
+case TelephonyManager.NETWORK_TYPE_1xRTT:
+color=0x7CFC00;
+break;
+default :
+color=0xF0F8FF;
+break;
+}
+String description="" + loc.getLatitude() + ""+ loc.getLongitude()+ ""+ lac;
+OverlayItem ovm=new OverlayItem("CellID - " + cellID,description,new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+ovm.setMarker(getResources().getDrawable(R.drawable.ic_map_pin_green));
+mOpenCellIdOverlay.addItem(ovm);
+}
+}
+ while (c.moveToNext());
+}
+ else {
+Helpers.msgShort(this,"No tracked locations found to overlay on map.");
+}
+if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
+mMap.getController().setZoom(16);
+mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+}
+ else {
+if (mBound) {
+Location lastLoc=mAimsicdService.lastKnownLocation();
+if (lastLoc != null && lastLoc.hasAccuracy()) {
+loc=new GeoPoint(lastLoc.getLatitude(),lastLoc.getLongitude());
+mMap.getController().setZoom(16);
+mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+}
+ else {
+int mcc=mAimsicdService.mDevice.mCell.getMCC();
+double[] d=mDbHelper.getDefaultLocation(mcc);
+loc=new GeoPoint(d[0],d[1]);
+mMap.getController().setZoom(13);
+mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+}
+}
+}
+loadOpenCellIDMarkers();
+c.close();
+mDbHelper.close();
 }
