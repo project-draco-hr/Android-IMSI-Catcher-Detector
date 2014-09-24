@@ -1,0 +1,3 @@
+{
+  mMap.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
+}

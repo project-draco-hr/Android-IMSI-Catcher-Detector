@@ -1,0 +1,20 @@
+{
+  if (mMap == null) {
+    mMap=(MapView)findViewById(R.id.mapview);
+    if (mMap != null) {
+      mMap.setBuiltInZoomControls(true);
+      mMap.setMultiTouchControls(true);
+      ResourceProxyImpl resProxyImp=new ResourceProxyImpl(MapViewerOsmDroid.this);
+      GpsMyLocationProvider imlp=new GpsMyLocationProvider(MapViewerOsmDroid.this.getBaseContext());
+      imlp.setLocationUpdateMinDistance(1000);
+      imlp.setLocationUpdateMinTime(60000);
+      mMyLocationOverlay=new MyLocationNewOverlay(MapViewerOsmDroid.this.getBaseContext(),imlp,mMap);
+      mMyLocationOverlay.setDrawAccuracyEnabled(true);
+      mMap.getOverlays().add(mMyLocationOverlay);
+      mOpenCellIdOverlay=new CellTowerItemizedOverlay(MapViewerOsmDroid.this,new LinkedList<CellTowerOverlayItem>());
+    }
+ else {
+      Helpers.msgShort(this,"Unable to create map!");
+    }
+  }
+}
