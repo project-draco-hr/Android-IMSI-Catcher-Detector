@@ -1,0 +1,4 @@
+{
+  super(aTitle,aSnippet,aGeoPoint);
+  mMarkerData=data;
+}

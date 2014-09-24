@@ -1,0 +1,4 @@
+String aTitle
+String aSnippet
+GeoPoint aGeoPoint
+MarkerData data

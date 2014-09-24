@@ -11,7 +11,7 @@
       mMyLocationOverlay=new MyLocationNewOverlay(this.getBaseContext(),imlp,mMap);
       mMyLocationOverlay.setDrawAccuracyEnabled(true);
       mMap.getOverlays().add(mMyLocationOverlay);
-      mOpenCellIdOverlay=new TappableItemizedOverlay(this,new LinkedList<OverlayItem>());
+      mOpenCellIdOverlay=new CellTowerItemizedOverlay(this,new LinkedList<CellTowerOverlayItem>());
       mMap.getOverlays().add(mOpenCellIdOverlay);
     }
  else {

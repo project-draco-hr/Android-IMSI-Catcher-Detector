@@ -60,7 +60,7 @@ color=0xF0F8FF;
 break;
 }
 String description="" + loc.getLatitude() + ""+ loc.getLongitude()+ ""+ lac;
-OverlayItem ovm=new OverlayItem("CellID - " + cellID,description,new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+CellTowerOverlayItem ovm=new CellTowerOverlayItem("CellID - " + cellID,description,new GeoPoint(loc.getLatitude(),loc.getLongitude()),new MarkerData("" + cellID,"" + loc.getLatitude(),"" + loc.getLongitude(),"" + lac,"","","",false));
 ovm.setMarker(getResources().getDrawable(R.drawable.ic_map_pin_green));
 mOpenCellIdOverlay.addItem(ovm);
 }
