@@ -1,38 +1,41 @@
 {
-  final int SIGNAL_SIZE_RATIO=15;
-  int signal;
-  int color;
-  mMap.removeAllViews();
-  mDbHelper.open();
-  Cursor c=mDbHelper.getCellData();
-  if (c.moveToFirst()) {
-    do {
-      final int cellID=c.getInt(0);
-      final int lac=c.getInt(1);
-      final int net=c.getInt(2);
-      final double dlat=Double.parseDouble(c.getString(3));
-      final double dlng=Double.parseDouble(c.getString(4));
-      if (dlat == 0.0 && dlng == 0.0) {
-        continue;
-      }
-      signal=c.getInt(5);
-      if (signal <= 0) {
-        signal=20;
-      }
-      if ((dlat != 0.0) || (dlng != 0.0)) {
-        loc=new GeoPoint(dlat,dlng);
+  new AsyncTask<Void,Void,Void>(){
+    @Override protected Void doInBackground(    Void... voids){
+      final int SIGNAL_SIZE_RATIO=15;
+      int signal;
+      int color;
+      mOpenCellIdOverlay.removeAllItems();
+      LinkedList<CellTowerOverlayItem> items=new LinkedList<>();
+      mDbHelper.open();
+      Cursor c=mDbHelper.getCellData();
+      if (c.moveToFirst()) {
+        do {
+          final int cellID=c.getInt(0);
+          final int lac=c.getInt(1);
+          final int net=c.getInt(2);
+          final double dlat=Double.parseDouble(c.getString(3));
+          final double dlng=Double.parseDouble(c.getString(4));
+          if (dlat == 0.0 && dlng == 0.0) {
+            continue;
+          }
+          signal=c.getInt(5);
+          if (signal <= 0) {
+            signal=20;
+          }
+          if ((dlat != 0.0) || (dlng != 0.0)) {
+            loc=new GeoPoint(dlat,dlng);
 switch (net) {
 case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-          color=0xF0F8FF;
-        break;
+              color=0xF0F8FF;
+            break;
 case TelephonyManager.NETWORK_TYPE_GPRS:
-      color=0xA9A9A9;
-    break;
+          color=0xA9A9A9;
+        break;
 case TelephonyManager.NETWORK_TYPE_EDGE:
-  color=0x87CEFA;
-break;
+      color=0x87CEFA;
+    break;
 case TelephonyManager.NETWORK_TYPE_UMTS:
-color=0x7CFC00;
+  color=0x7CFC00;
 break;
 case TelephonyManager.NETWORK_TYPE_HSDPA:
 color=0xFF6347;
@@ -59,17 +62,24 @@ default :
 color=0xF0F8FF;
 break;
 }
-String description="" + loc.getLatitude() + ""+ loc.getLongitude()+ ""+ lac;
-CellTowerOverlayItem ovm=new CellTowerOverlayItem("CellID - " + cellID,description,new GeoPoint(loc.getLatitude(),loc.getLongitude()),new MarkerData("" + cellID,"" + loc.getLatitude(),"" + loc.getLongitude(),"" + lac,"","","",false));
+CellTowerOverlayItem ovm=new CellTowerOverlayItem("CellID - " + cellID,"",new GeoPoint(loc.getLatitude(),loc.getLongitude()),new MarkerData("" + cellID,"" + loc.getLatitude(),"" + loc.getLongitude(),"" + lac,"","","",false));
 ovm.setMarker(getResources().getDrawable(R.drawable.ic_map_pin_green));
-mOpenCellIdOverlay.addItem(ovm);
+items.add(ovm);
 }
 }
  while (c.moveToNext());
 }
  else {
-Helpers.msgShort(this,"No tracked locations found to overlay on map.");
+Helpers.msgShort(MapViewerOsmDroid.this,"No tracked locations found to overlay on map.");
 }
+c.close();
+mDbHelper.close();
+mMap.getOverlays().remove(mOpenCellIdOverlay);
+mOpenCellIdOverlay.addItems(items);
+mMap.getOverlays().add(mOpenCellIdOverlay);
+return null;
+}
+@Override protected void onPostExecute(Void aVoid){
 if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
 mMap.getController().setZoom(16);
 mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
@@ -91,7 +101,13 @@ mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()
 }
 }
 }
+new Thread(){
+@Override public void run(){
 loadOpenCellIDMarkers();
-c.close();
-mDbHelper.close();
+}
+}
+.start();
+}
+}
+.execute();
 }

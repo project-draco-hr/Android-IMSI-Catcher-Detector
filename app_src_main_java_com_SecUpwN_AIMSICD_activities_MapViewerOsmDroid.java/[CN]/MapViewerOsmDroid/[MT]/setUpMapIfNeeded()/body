@@ -4,15 +4,14 @@
     if (mMap != null) {
       mMap.setBuiltInZoomControls(true);
       mMap.setMultiTouchControls(true);
-      ResourceProxyImpl resProxyImp=new ResourceProxyImpl(this);
-      GpsMyLocationProvider imlp=new GpsMyLocationProvider(this.getBaseContext());
+      ResourceProxyImpl resProxyImp=new ResourceProxyImpl(MapViewerOsmDroid.this);
+      GpsMyLocationProvider imlp=new GpsMyLocationProvider(MapViewerOsmDroid.this.getBaseContext());
       imlp.setLocationUpdateMinDistance(1000);
       imlp.setLocationUpdateMinTime(60000);
-      mMyLocationOverlay=new MyLocationNewOverlay(this.getBaseContext(),imlp,mMap);
+      mMyLocationOverlay=new MyLocationNewOverlay(MapViewerOsmDroid.this.getBaseContext(),imlp,mMap);
       mMyLocationOverlay.setDrawAccuracyEnabled(true);
       mMap.getOverlays().add(mMyLocationOverlay);
-      mOpenCellIdOverlay=new CellTowerItemizedOverlay(this,new LinkedList<CellTowerOverlayItem>());
-      mMap.getOverlays().add(mOpenCellIdOverlay);
+      mOpenCellIdOverlay=new CellTowerItemizedOverlay(MapViewerOsmDroid.this,new LinkedList<CellTowerOverlayItem>());
     }
  else {
       Helpers.msgShort(this,"Unable to create map!");

@@ -1,4 +1,5 @@
 {
+  LinkedList<CellTowerOverlayItem> items=new LinkedList<>();
   mDbHelper.open();
   Cursor c=mDbHelper.getOpenCellIDData();
   if (c.moveToFirst()) {
@@ -11,13 +12,15 @@
       final int mcc=c.getInt(2);
       final int mnc=c.getInt(3);
       final int samples=c.getInt(7);
-      String description="" + loc.getLatitude() + ""+ loc.getLongitude()+ ""+ lac+ ""+ mcc+ ""+ mnc+ ""+ samples;
-      CellTowerOverlayItem ovm=new CellTowerOverlayItem("CellID - " + cellID,description,new GeoPoint(loc.getLatitude(),loc.getLongitude()),new MarkerData("" + cellID,"" + loc.getLatitude(),"" + loc.getLongitude(),"" + lac,"","","",false));
+      CellTowerOverlayItem ovm=new CellTowerOverlayItem("CellID - " + cellID,"",new GeoPoint(location.getLatitude(),location.getLongitude()),new MarkerData("" + cellID,"" + location.getLatitude(),"" + location.getLongitude(),"" + lac,"","","",false));
       ovm.setMarker(getResources().getDrawable(R.drawable.ic_map_pin_blue));
-      mOpenCellIdOverlay.addItem(ovm);
+      items.add(ovm);
     }
  while (c.moveToNext());
   }
   c.close();
   mDbHelper.close();
+  mMap.getOverlays().remove(mOpenCellIdOverlay);
+  mOpenCellIdOverlay.addItems(items);
+  mMap.getOverlays().add(mOpenCellIdOverlay);
 }
