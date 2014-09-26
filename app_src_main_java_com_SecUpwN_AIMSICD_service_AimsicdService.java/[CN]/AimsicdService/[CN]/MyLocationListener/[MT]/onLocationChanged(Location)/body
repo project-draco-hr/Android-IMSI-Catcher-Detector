@@ -1,4 +1,7 @@
 {
+  Log.d("location","Got location " + loc);
+  lastLocationTime=System.currentTimeMillis();
+  timerHandler.postDelayed(batterySavingRunnable,MOVEMENT_THRESHOLD_MS);
   if (Build.VERSION.SDK_INT > 16) {
     List<CellInfo> cellinfolist=tm.getAllCellInfo();
     if (cellinfolist != null) {

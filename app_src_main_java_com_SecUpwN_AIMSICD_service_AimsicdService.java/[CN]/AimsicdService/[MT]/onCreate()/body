@@ -2,6 +2,9 @@
   tm=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
   lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
   mContext=getApplicationContext();
+  setupAccelerometer();
+  mLocationListener=new MyLocationListener();
+  lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
   PHONE_TYPE=tm.getPhoneType();
   prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   prefs.registerOnSharedPreferenceChangeListener(this);
