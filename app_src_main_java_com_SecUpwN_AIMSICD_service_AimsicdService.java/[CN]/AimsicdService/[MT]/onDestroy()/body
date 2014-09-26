@@ -8,6 +8,7 @@
     tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
     lm.removeUpdates(mLocationListener);
   }
+  mSensorManager.unregisterListener(mSensorListener);
   if (mRequestExecutor != null) {
     mRequestExecutor.stop();
     mRequestExecutor=null;

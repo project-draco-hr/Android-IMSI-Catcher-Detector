@@ -1,0 +1,37 @@
+{
+  mSensorManager=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
+  mAccelerometer=mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+  mSensorListener=new SensorEventListener(){
+    @Override public void onSensorChanged(    SensorEvent event){
+      float x=event.values[0];
+      float y=event.values[1];
+      float z=event.values[2];
+      if (!mInitialized) {
+        mLastX=x;
+        mLastY=y;
+        mLastZ=z;
+        mInitialized=true;
+      }
+ else {
+        float deltaX=Math.abs(mLastX - x);
+        float deltaY=Math.abs(mLastY - y);
+        float deltaZ=Math.abs(mLastZ - z);
+        if (deltaX < ACCELEROMETER_NOISE)         deltaX=0.0f;
+        if (deltaY < ACCELEROMETER_NOISE)         deltaY=0.0f;
+        if (deltaZ < ACCELEROMETER_NOISE)         deltaZ=0.0f;
+        mLastX=x;
+        mLastY=y;
+        mLastZ=z;
+        if (deltaX > 0 || deltaY > 0 || deltaZ > 0) {
+          lastMovementTime=System.currentTimeMillis();
+          Log.d("sensor","Movement detected!");
+          lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
+        }
+      }
+    }
+    @Override public void onAccuracyChanged(    Sensor sensor,    int i){
+    }
+  }
+;
+  mSensorManager.registerListener(mSensorListener,mAccelerometer,SensorManager.SENSOR_DELAY_NORMAL);
+}
