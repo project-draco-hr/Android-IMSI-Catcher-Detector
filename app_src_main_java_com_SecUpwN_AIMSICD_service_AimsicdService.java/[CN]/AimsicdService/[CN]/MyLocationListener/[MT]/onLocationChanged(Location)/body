@@ -1,10 +1,7 @@
 {
   Log.d("location","Got location " + loc);
-  if (lastLocationTime <= 0 || System.currentTimeMillis() - lastMovementTime > MOVEMENT_THRESHOLD_MS) {
-    Log.d("location","GPS disabled to save power");
-    lm.removeUpdates(mLocationListener);
-  }
   lastLocationTime=System.currentTimeMillis();
+  timerHandler.postDelayed(batterySavingRunnable,MOVEMENT_THRESHOLD_MS);
   if (Build.VERSION.SDK_INT > 16) {
     List<CellInfo> cellinfolist=tm.getAllCellInfo();
     if (cellinfolist != null) {
