@@ -23,7 +23,7 @@
       }
     }
  else {
-      Helpers.sendMsg(context,"No OpenCellID API Key detected! \nPlease enter your key in settings first");
+      Helpers.sendMsg(context,"No OpenCellID API Key detected! \nPlease enter your key in settings first.");
     }
   }
  else {
