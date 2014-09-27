@@ -1,0 +1,4 @@
+{
+  setupAccelerometer(context);
+  this.onMovement=onMovement;
+}

@@ -1,0 +1,3 @@
+{
+  lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
+}

@@ -1,0 +1,19 @@
+{
+  mRequestExecutor=new SamsungMulticlientRilExecutor();
+  mRilExecutorDetectResult=mRequestExecutor.detect();
+  if (!mRilExecutorDetectResult.available) {
+    mMultiRilCompatible=false;
+    Log.e(TAG,"Samsung Multiclient RIL not available: " + mRilExecutorDetectResult.error);
+    mRequestExecutor=null;
+  }
+ else {
+    mRequestExecutor.start();
+    mMultiRilCompatible=true;
+    mHandlerThread=new HandlerThread("ServiceModeSeqHandler");
+    mHandlerThread.start();
+    Looper l=mHandlerThread.getLooper();
+    if (l != null) {
+      mHandler=new Handler(l,new MyHandler());
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  if (mRequestExecutor != null) {
+    mRequestExecutor.stop();
+    mRequestExecutor=null;
+    mHandler=null;
+    mHandlerThread.quit();
+    mHandlerThread=null;
+  }
+}

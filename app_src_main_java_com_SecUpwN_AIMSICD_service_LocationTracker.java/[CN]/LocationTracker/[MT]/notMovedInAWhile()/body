@@ -1,0 +1,5 @@
+{
+  if (lastLocationTime <= 0)   return true;
+  if (System.currentTimeMillis() - lastLocationTime > MOVEMENT_THRESHOLD_MS)   return true;
+  return false;
+}

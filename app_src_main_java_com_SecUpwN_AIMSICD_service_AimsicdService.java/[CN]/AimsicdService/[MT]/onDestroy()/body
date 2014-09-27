@@ -9,12 +9,6 @@
     mLocationTracker.stop();
   }
   mAccelerometerMonitor.stop();
-  if (mRequestExecutor != null) {
-    mRequestExecutor.stop();
-    mRequestExecutor=null;
-    mHandler=null;
-    mHandlerThread.quit();
-    mHandlerThread=null;
-  }
+  mRilExecutor.stop();
   Log.i(TAG,"Service destroyed.");
 }
