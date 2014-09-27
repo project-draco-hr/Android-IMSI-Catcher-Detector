@@ -1,0 +1,3 @@
+{
+  mCellTracker.getDevice().mCell=cell;
+}

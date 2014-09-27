@@ -1,0 +1,7 @@
+{
+  this.context=context;
+  this.extLocationListener=extLocationListener;
+  lm=(LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
+  mLocationListener=new MyLocationListener();
+  prefs=context.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+}

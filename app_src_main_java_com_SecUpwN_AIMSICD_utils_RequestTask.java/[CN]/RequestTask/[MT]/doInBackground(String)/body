@@ -4,7 +4,7 @@ case OPEN_CELL_ID_REQUEST:
 case OPEN_CELL_ID_REQUEST_FROM_MAP:
     int count;
   try {
-    if (AimsicdService.OCID_UPLOAD_PREF) {
+    if (CellTracker.OCID_UPLOAD_PREF) {
       boolean prepared=mDbAdapter.prepareOpenCellUploadData();
       Log.i("AIMSICD","OCID prepared - " + String.valueOf(prepared));
       if (prepared) {
@@ -13,7 +13,7 @@ case OPEN_CELL_ID_REQUEST_FROM_MAP:
         MultipartEntity mpEntity=new MultipartEntity();
         FileInputStream fin=new FileInputStream(file);
         String csv=Helpers.convertStreamToString(fin);
-        mpEntity.addPart("key",new StringBody(AimsicdService.OCID_API_KEY));
+        mpEntity.addPart("key",new StringBody(CellTracker.OCID_API_KEY));
         mpEntity.addPart("datafile",new InputStreamBody(new ByteArrayInputStream(csv.getBytes()),"text/csv","aimsicd-ocid-data.csv"));
         ByteArrayOutputStream bAOS=new ByteArrayOutputStream();
         publishProgress(50,100);

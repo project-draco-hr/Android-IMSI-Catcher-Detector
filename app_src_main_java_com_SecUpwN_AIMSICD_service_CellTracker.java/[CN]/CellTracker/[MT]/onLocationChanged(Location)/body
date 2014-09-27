@@ -1,0 +1,101 @@
+{
+  if (Build.VERSION.SDK_INT > 16) {
+    List<CellInfo> cellinfolist=tm.getAllCellInfo();
+    if (cellinfolist != null) {
+      for (      final CellInfo cellinfo : cellinfolist) {
+        if (cellinfo instanceof CellInfoGsm) {
+          final CellSignalStrengthGsm signalStrengthGsm=((CellInfoGsm)cellinfo).getCellSignalStrength();
+          final CellIdentityGsm identityGsm=((CellInfoGsm)cellinfo).getCellIdentity();
+          if (identityGsm != null) {
+            mDevice.mCell.setCID(identityGsm.getCid());
+            mDevice.mCell.setLAC(identityGsm.getLac());
+            mDevice.mCell.setMCC(identityGsm.getMcc());
+            mDevice.mCell.setMNC(identityGsm.getMnc());
+          }
+          if (signalStrengthGsm != null) {
+            mDevice.mCell.setDBM(signalStrengthGsm.getDbm());
+          }
+          break;
+        }
+ else         if (cellinfo instanceof CellInfoCdma) {
+          final CellSignalStrengthCdma signalStrengthCdma=((CellInfoCdma)cellinfo).getCellSignalStrength();
+          final CellIdentityCdma identityCdma=((CellInfoCdma)cellinfo).getCellIdentity();
+          if (identityCdma != null) {
+            mDevice.mCell.setCID(identityCdma.getBasestationId());
+            mDevice.mCell.setLAC(identityCdma.getNetworkId());
+            mDevice.mCell.setMNC(identityCdma.getSystemId());
+            mDevice.mCell.setSID(identityCdma.getSystemId());
+          }
+          if (signalStrengthCdma != null) {
+            mDevice.setSignalDbm(signalStrengthCdma.getDbm());
+          }
+          break;
+        }
+ else         if (cellinfo instanceof CellInfoLte) {
+          final CellSignalStrengthLte signalStrengthLte=((CellInfoLte)cellinfo).getCellSignalStrength();
+          final CellIdentityLte identityLte=((CellInfoLte)cellinfo).getCellIdentity();
+          if (identityLte != null) {
+            mDevice.mCell.setCID(identityLte.getPci());
+            mDevice.mCell.setLAC(identityLte.getTac());
+            mDevice.mCell.setMCC(identityLte.getMcc());
+            mDevice.mCell.setMNC(identityLte.getMnc());
+          }
+          if (signalStrengthLte != null) {
+            mDevice.setSignalDbm(signalStrengthLte.getDbm());
+          }
+          break;
+        }
+ else         if (cellinfo instanceof CellInfoWcdma) {
+          final CellSignalStrengthWcdma signalStrengthWcdma=((CellInfoWcdma)cellinfo).getCellSignalStrength();
+          final CellIdentityWcdma identityWcdma=((CellInfoWcdma)cellinfo).getCellIdentity();
+          if (identityWcdma != null) {
+            mDevice.mCell.setCID(identityWcdma.getCid());
+            mDevice.mCell.setLAC(identityWcdma.getLac());
+            mDevice.mCell.setMCC(identityWcdma.getMcc());
+            mDevice.mCell.setMNC(identityWcdma.getMnc());
+          }
+          if (signalStrengthWcdma != null) {
+            mDevice.setSignalDbm(signalStrengthWcdma.getDbm());
+          }
+          break;
+        }
+      }
+    }
+  }
+  if (!mDevice.mCell.isValid()) {
+    CellLocation cellLocation=tm.getCellLocation();
+    if (cellLocation != null) {
+switch (mDevice.getPhoneID()) {
+case TelephonyManager.PHONE_TYPE_GSM:
+        GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
+      mDevice.mCell.setCID(gsmCellLocation.getCid());
+    mDevice.mCell.setLAC(gsmCellLocation.getLac());
+  mDevice.mCell.setPSC(gsmCellLocation.getPsc());
+break;
+case TelephonyManager.PHONE_TYPE_CDMA:
+CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
+mDevice.mCell.setCID(cdmaCellLocation.getBaseStationId());
+mDevice.mCell.setLAC(cdmaCellLocation.getNetworkId());
+mDevice.mCell.setSID(cdmaCellLocation.getSystemId());
+mDevice.mCell.setMNC(cdmaCellLocation.getSystemId());
+}
+}
+}
+if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
+mDevice.mCell.setLon(loc.getLongitude());
+mDevice.mCell.setLat(loc.getLatitude());
+mDevice.mCell.setSpeed(loc.getSpeed());
+mDevice.mCell.setAccuracy(loc.getAccuracy());
+mDevice.mCell.setBearing(loc.getBearing());
+mDevice.setLastLocation(loc);
+SharedPreferences.Editor prefsEditor;
+prefsEditor=prefs.edit();
+prefsEditor.putString(context.getString(R.string.data_last_lat_lon),String.valueOf(loc.getLatitude()) + ":" + String.valueOf(loc.getLongitude()));
+prefsEditor.apply();
+if (mTrackingCell) {
+dbHelper.open();
+dbHelper.insertLocation(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.getCellInfo());
+dbHelper.insertCell(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.mCell.getMCC(),mDevice.mCell.getMNC(),mDevice.mCell.getAccuracy(),mDevice.mCell.getSpeed(),mDevice.mCell.getBearing(),mDevice.getNetworkTypeName(),SystemClock.currentThreadTimeMillis());
+}
+}
+}

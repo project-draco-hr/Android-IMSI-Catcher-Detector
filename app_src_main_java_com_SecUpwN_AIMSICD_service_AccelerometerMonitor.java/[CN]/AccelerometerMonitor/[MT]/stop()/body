@@ -1,0 +1,3 @@
+{
+  mSensorManager.unregisterListener(mSensorListener);
+}

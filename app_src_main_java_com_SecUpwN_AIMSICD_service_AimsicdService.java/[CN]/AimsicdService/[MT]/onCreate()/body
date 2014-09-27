@@ -1,43 +1,17 @@
 {
-  tm=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
-  lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
   mContext=getApplicationContext();
-  setupAccelerometer();
-  mLocationListener=new MyLocationListener();
-  lm=(LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
-  PHONE_TYPE=tm.getPhoneType();
-  prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
-  prefs.registerOnSharedPreferenceChangeListener(this);
-  loadPreferences();
-  if (!CELL_TABLE_CLEANSED) {
-    dbHelper.open();
-    dbHelper.cleanseCellTable();
-    dbHelper.close();
-    Editor prefsEditor;
-    prefsEditor=prefs.edit();
-    prefsEditor.putBoolean(this.getString(R.string.pref_cell_table_cleansed),true);
-    prefsEditor.apply();
-  }
-  mDevice.refreshDeviceInfo(tm,this);
-  setNotification();
-  mRequestExecutor=new SamsungMulticlientRilExecutor();
-  mRilExecutorDetectResult=mRequestExecutor.detect();
-  if (!mRilExecutorDetectResult.available) {
-    mMultiRilCompatible=false;
-    Log.e(TAG,"Samsung Multiclient RIL not available: " + mRilExecutorDetectResult.error);
-    mRequestExecutor=null;
-  }
- else {
-    mRequestExecutor.start();
-    mMultiRilCompatible=true;
-    mHandlerThread=new HandlerThread("ServiceModeSeqHandler");
-    mHandlerThread.start();
-    Looper l=mHandlerThread.getLooper();
-    if (l != null) {
-      mHandler=new Handler(l,new MyHandler());
+  mAccelerometerMonitor=new AccelerometerMonitor(this,new Runnable(){
+    @Override public void run(){
+      mLocationTracker.start();
+      timerHandler.postDelayed(batterySavingRunnable,AccelerometerMonitor.MOVEMENT_THRESHOLD_MS);
     }
   }
+);
+  mLocationTracker=new LocationTracker(this,mLocationListener);
+  mRilExecutor=new RilExecutor(this);
+  mCellTracker=new CellTracker(this);
+  prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  prefs.registerOnSharedPreferenceChangeListener(this);
   mContext.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
-  mMonitorCell=new Cell();
   Log.i(TAG,"Service launched successfully.");
 }

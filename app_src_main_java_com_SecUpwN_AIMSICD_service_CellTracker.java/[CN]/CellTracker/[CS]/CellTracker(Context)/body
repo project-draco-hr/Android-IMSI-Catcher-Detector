@@ -1,0 +1,18 @@
+{
+  this.context=context;
+  tm=(TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+  prefs=context.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  PHONE_TYPE=tm.getPhoneType();
+  dbHelper=new AIMSICDDbAdapter(context);
+  if (!CELL_TABLE_CLEANSED) {
+    dbHelper.open();
+    dbHelper.cleanseCellTable();
+    dbHelper.close();
+    SharedPreferences.Editor prefsEditor;
+    prefsEditor=prefs.edit();
+    prefsEditor.putBoolean(context.getString(R.string.pref_cell_table_cleansed),true);
+    prefsEditor.apply();
+  }
+  mDevice.refreshDeviceInfo(tm,context);
+  mMonitorCell=new Cell();
+}

@@ -1,0 +1,3 @@
+{
+  extLocationListener.onStatusChanged(provider,status,extras);
+}

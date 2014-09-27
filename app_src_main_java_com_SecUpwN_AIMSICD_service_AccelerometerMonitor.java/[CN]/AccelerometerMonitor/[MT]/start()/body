@@ -1,0 +1,3 @@
+{
+  mSensorManager.registerListener(mSensorListener,mAccelerometer,SensorManager.SENSOR_DELAY_NORMAL);
+}

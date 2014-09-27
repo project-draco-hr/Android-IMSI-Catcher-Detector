@@ -1,20 +1,14 @@
 {
   super.onDestroy();
   prefs.unregisterOnSharedPreferenceChangeListener(this);
-  cancelNotification();
+  mCellTracker.cancelNotification();
   dbHelper.close();
   mContext.unregisterReceiver(mMessageReceiver);
-  if (mTrackingCell) {
-    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
-    lm.removeUpdates(mLocationListener);
+  if (mCellTracker.isTrackingCell()) {
+    mCellTracker.stop();
+    mLocationTracker.stop();
   }
-  mSensorManager.unregisterListener(mSensorListener);
-  if (mRequestExecutor != null) {
-    mRequestExecutor.stop();
-    mRequestExecutor=null;
-    mHandler=null;
-    mHandlerThread.quit();
-    mHandlerThread=null;
-  }
+  mAccelerometerMonitor.stop();
+  mRilExecutor.stop();
   Log.i(TAG,"Service destroyed.");
 }

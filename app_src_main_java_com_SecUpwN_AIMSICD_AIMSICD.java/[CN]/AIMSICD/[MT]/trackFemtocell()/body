@@ -1,8 +1,8 @@
 {
   if (mAimsicdService.isTrackingFemtocell()) {
-    mAimsicdService.stopTrackingFemto();
+    mAimsicdService.setTrackingFemtocell(false);
   }
  else {
-    mAimsicdService.startTrackingFemto();
+    mAimsicdService.setTrackingFemtocell(true);
   }
 }

@@ -4,7 +4,7 @@
       for (      Cell cell : cells) {
         Log.i(TAG,"processFinish - Cell =" + cell.toString());
         if (cell.isValid()) {
-          mAimsicdService.mDevice.mCell=cell;
+          mAimsicdService.setCell(cell);
           Intent intent=new Intent(AimsicdService.UPDATE_DISPLAY);
           intent.putExtra("update",true);
           mContext.sendBroadcast(intent);
