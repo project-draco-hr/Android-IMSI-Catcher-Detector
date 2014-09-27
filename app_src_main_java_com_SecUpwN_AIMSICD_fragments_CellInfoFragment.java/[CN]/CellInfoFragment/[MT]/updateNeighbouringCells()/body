@@ -1,5 +1,5 @@
 {
-  final List<String> list=mAimsicdService.getNeighbours();
+  final List<String> list=rilExecutor.getNeighbours();
   mActivity.runOnUiThread(new Runnable(){
     @Override public void run(){
       if (list != null) {
