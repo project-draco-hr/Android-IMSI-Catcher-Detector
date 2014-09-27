@@ -6,9 +6,9 @@
   mContext.unregisterReceiver(mMessageReceiver);
   if (mTrackingCell) {
     tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
-    lm.removeUpdates(mLocationListener);
+    mLocationTracker.stop();
   }
-  mSensorManager.unregisterListener(mSensorListener);
+  mAccelerometerMonitor.stop();
   if (mRequestExecutor != null) {
     mRequestExecutor.stop();
     mRequestExecutor=null;
