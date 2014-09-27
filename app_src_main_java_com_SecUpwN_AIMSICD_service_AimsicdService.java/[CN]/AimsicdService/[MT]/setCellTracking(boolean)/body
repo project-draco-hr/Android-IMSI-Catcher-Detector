@@ -1,18 +1,9 @@
 {
+  mCellTracker.setCellTracking(track);
   if (track) {
-    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_DATA_ACTIVITY| PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
     mLocationTracker.start();
-    Helpers.msgShort(this,"Tracking Cell Information.");
-    mTrackingCell=true;
   }
  else {
-    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
     mLocationTracker.stop();
-    mDevice.mCell.setLon(0.0);
-    mDevice.mCell.setLat(0.0);
-    mTrackingCell=false;
-    mDevice.setCellInfo("[0,0]|nn|nn|");
-    Helpers.msgShort(this,"Stopped tracking Cell Information.");
   }
-  setNotification();
 }

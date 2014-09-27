@@ -82,7 +82,7 @@ Helpers.msgShort(MapViewerOsmDroid.this,"No tracked locations found to overlay o
 GeoPoint ret=new GeoPoint(0,0);
 if (mBound) {
 try {
-int mcc=mAimsicdService.mDevice.mCell.getMCC();
+int mcc=mAimsicdService.getCell().getMCC();
 double[] d=mDbHelper.getDefaultLocation(mcc);
 ret=new GeoPoint(d[0],d[1]);
 }

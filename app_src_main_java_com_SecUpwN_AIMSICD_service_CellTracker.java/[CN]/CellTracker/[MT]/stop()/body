@@ -1,0 +1,3 @@
+{
+  tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
+}

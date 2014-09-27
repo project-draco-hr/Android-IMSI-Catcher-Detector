@@ -4,8 +4,8 @@
     Intent intent=new Intent(mContext,AimsicdService.class);
     mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
   }
-  if (AimsicdService.REFRESH_RATE != 0) {
+  if (CellTracker.REFRESH_RATE != 0) {
     timerHandler.postDelayed(timerRunnable,0);
-    Helpers.msgShort(mContext,"Refreshing every " + TimeUnit.MILLISECONDS.toSeconds(AimsicdService.REFRESH_RATE) + " seconds");
+    Helpers.msgShort(mContext,"Refreshing every " + TimeUnit.MILLISECONDS.toSeconds(CellTracker.REFRESH_RATE) + " seconds");
   }
 }

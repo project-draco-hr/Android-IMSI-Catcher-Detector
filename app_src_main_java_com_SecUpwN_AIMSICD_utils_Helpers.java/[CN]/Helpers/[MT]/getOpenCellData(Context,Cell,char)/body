@@ -1,6 +1,6 @@
 {
   if (Helpers.isNetAvailable(context)) {
-    if (!AimsicdService.OCID_API_KEY.equals("NA")) {
+    if (!CellTracker.OCID_API_KEY.equals("NA")) {
       double earthRadius=6371.01;
       if (cell.getLat() != 0.0 && cell.getLon() != 0.0) {
         GeoLocation currentLoc=GeoLocation.fromDegrees(cell.getLat(),cell.getLon());
@@ -8,7 +8,7 @@
         String boundParameter;
         boundParameter=String.valueOf(boundingCoords[0].getLatitudeInDegrees()) + "," + String.valueOf(boundingCoords[0].getLongitudeInDegrees())+ ","+ String.valueOf(boundingCoords[1].getLatitudeInDegrees())+ ","+ String.valueOf(boundingCoords[1].getLongitudeInDegrees());
         StringBuilder sb=new StringBuilder();
-        sb.append("http://www.opencellid.org/cell/getInArea?key=").append(AimsicdService.OCID_API_KEY).append("&BBOX=").append(boundParameter);
+        sb.append("http://www.opencellid.org/cell/getInArea?key=").append(CellTracker.OCID_API_KEY).append("&BBOX=").append(boundParameter);
         if (cell.getMCC() != Integer.MAX_VALUE) {
           sb.append("&mcc=").append(cell.getMCC());
         }

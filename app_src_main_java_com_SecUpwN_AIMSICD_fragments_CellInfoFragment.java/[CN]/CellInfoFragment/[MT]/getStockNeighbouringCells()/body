@@ -1,6 +1,6 @@
 {
   if (mBound) {
-    neighboringCells=mAimsicdService.updateNeighbouringCells();
+    neighboringCells=mAimsicdService.getCellTracker().updateNeighbouringCells();
     return neighboringCells.size() > 0;
   }
   return false;

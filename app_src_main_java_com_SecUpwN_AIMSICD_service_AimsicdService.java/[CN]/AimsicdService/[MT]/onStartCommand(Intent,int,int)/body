@@ -1,4 +1,3 @@
 {
-  tm=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
   return START_STICKY;
 }

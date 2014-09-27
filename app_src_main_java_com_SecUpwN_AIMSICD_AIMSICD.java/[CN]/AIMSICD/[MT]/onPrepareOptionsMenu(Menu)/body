@@ -9,7 +9,7 @@
   List<NavDrawerItem> menuItems=mNavConf.getNavItems();
   NavDrawerItem cellMonitoringItem=menuItems.get(1);
   NavDrawerItem cellTrackingItem=menuItems.get(2);
-  if (AimsicdService.PHONE_TYPE == TelephonyManager.PHONE_TYPE_CDMA) {
+  if (CellTracker.PHONE_TYPE == TelephonyManager.PHONE_TYPE_CDMA) {
     femtoTrackingItem=menuItems.get(3);
   }
   if (mBound) {

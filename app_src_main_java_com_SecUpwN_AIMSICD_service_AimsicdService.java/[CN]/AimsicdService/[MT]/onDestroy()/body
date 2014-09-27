@@ -1,11 +1,11 @@
 {
   super.onDestroy();
   prefs.unregisterOnSharedPreferenceChangeListener(this);
-  cancelNotification();
+  mCellTracker.cancelNotification();
   dbHelper.close();
   mContext.unregisterReceiver(mMessageReceiver);
-  if (mTrackingCell) {
-    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
+  if (mCellTracker.isTrackingCell()) {
+    mCellTracker.stop();
     mLocationTracker.stop();
   }
   mAccelerometerMonitor.stop();

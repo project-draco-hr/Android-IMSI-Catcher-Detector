@@ -3,7 +3,7 @@
   menu.add(DrawerMenuSection.create(900,"Tracking"));
   menu.add(DrawerMenuItem.create(901,getString(R.string.monitor_cell),"untrack_cell",false,this));
   menu.add(DrawerMenuItem.create(902,getString(R.string.track_cell),"untrack_cell",false,this));
-  if (AimsicdService.PHONE_TYPE == TelephonyManager.PHONE_TYPE_CDMA) {
+  if (CellTracker.PHONE_TYPE == TelephonyManager.PHONE_TYPE_CDMA) {
     menu.add(DrawerMenuItem.create(903,getString(R.string.track_femtocell),"ic_action_network_cell",false,this));
   }
   menu.add(DrawerMenuSection.create(100,"Main"));
