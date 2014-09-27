@@ -1,5 +1,4 @@
 {
-  mContext=getApplicationContext();
   mAccelerometerMonitor=new AccelerometerMonitor(this,new Runnable(){
     @Override public void run(){
       mLocationTracker.start();
@@ -10,6 +9,5 @@
   mLocationTracker=new LocationTracker(this,mLocationListener);
   mRilExecutor=new RilExecutor(this);
   mCellTracker=new CellTracker(this);
-  mContext.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
   Log.i(TAG,"Service launched successfully.");
 }

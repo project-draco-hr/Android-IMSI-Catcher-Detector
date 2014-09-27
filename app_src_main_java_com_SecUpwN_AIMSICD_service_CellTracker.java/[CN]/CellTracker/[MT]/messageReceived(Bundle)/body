@@ -1,6 +1,0 @@
-{
-  dbHelper.open();
-  dbHelper.insertSilentSms(bundle);
-  dbHelper.close();
-  setSilentSmsStatus(true);
-}
