@@ -10,8 +10,6 @@
   mLocationTracker=new LocationTracker(this,mLocationListener);
   mRilExecutor=new RilExecutor(this);
   mCellTracker=new CellTracker(this);
-  prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
-  prefs.registerOnSharedPreferenceChangeListener(this);
   mContext.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
   Log.i(TAG,"Service launched successfully.");
 }

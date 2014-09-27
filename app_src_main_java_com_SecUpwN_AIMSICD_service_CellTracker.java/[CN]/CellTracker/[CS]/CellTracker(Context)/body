@@ -2,6 +2,9 @@
   this.context=context;
   tm=(TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
   prefs=context.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  prefs.registerOnSharedPreferenceChangeListener(this);
+  loadPreferences();
+  setNotification();
   PHONE_TYPE=tm.getPhoneType();
   dbHelper=new AIMSICDDbAdapter(context);
   if (!CELL_TABLE_CLEANSED) {
