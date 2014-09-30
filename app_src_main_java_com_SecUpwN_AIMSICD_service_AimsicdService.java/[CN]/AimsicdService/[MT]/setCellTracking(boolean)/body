@@ -2,8 +2,10 @@
   mCellTracker.setCellTracking(track);
   if (track) {
     mLocationTracker.start();
+    mAccelerometerMonitor.start();
   }
  else {
     mLocationTracker.stop();
+    mAccelerometerMonitor.stop();
   }
 }

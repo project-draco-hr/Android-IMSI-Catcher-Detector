@@ -16,7 +16,7 @@
       }
       if (messages.size() > 0) {
         for (        SmsMessage sms : messages) {
-          Intent smsIntent=new Intent(AimsicdService.SILENT_SMS);
+          Intent smsIntent=new Intent(CellTracker.SILENT_SMS);
           Bundle smsData=new Bundle();
           smsData.putString("address",sms.getOriginatingAddress());
           smsData.putString("display_address",sms.getDisplayOriginatingAddress());

@@ -18,4 +18,5 @@
   }
   mDevice.refreshDeviceInfo(tm,context);
   mMonitorCell=new Cell();
+  context.registerReceiver(mMessageReceiver,new IntentFilter(SILENT_SMS));
 }

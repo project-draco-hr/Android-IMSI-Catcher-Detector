@@ -1,8 +1,5 @@
 {
   super.onDestroy();
-  mCellTracker.cancelNotification();
-  dbHelper.close();
-  mContext.unregisterReceiver(mMessageReceiver);
   if (mCellTracker.isTrackingCell()) {
     mCellTracker.stop();
     mLocationTracker.stop();
