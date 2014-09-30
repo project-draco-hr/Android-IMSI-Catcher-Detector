@@ -40,7 +40,7 @@ icon=R.drawable.white_idle;
 break;
 }
 contentText="Phone Type " + mDevice.getPhoneType();
-tickerText=context.getResources().getString(R.string.app_name_short) + " - Status: Idle";
+tickerText=context.getResources().getString(R.string.app_name_short) + " - Status: Idle.";
 break;
 case 2:
 switch (iconType) {
