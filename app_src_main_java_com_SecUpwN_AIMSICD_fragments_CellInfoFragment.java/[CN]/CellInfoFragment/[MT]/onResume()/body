@@ -6,6 +6,6 @@
   }
   if (CellTracker.REFRESH_RATE != 0) {
     timerHandler.postDelayed(timerRunnable,0);
-    Helpers.msgShort(mContext,"Refreshing every " + TimeUnit.MILLISECONDS.toSeconds(CellTracker.REFRESH_RATE) + " seconds");
+    Helpers.msgShort(mContext,"Refreshing every " + TimeUnit.MILLISECONDS.toSeconds(CellTracker.REFRESH_RATE) + " seconds.");
   }
 }
