@@ -33,8 +33,8 @@
   mDrawerLayout.setDrawerListener(mDrawerToggle);
   mActionBar.setDisplayHomeAsUpEnabled(true);
   mActionBar.setHomeButtonEnabled(true);
-  FragmentManager fragmentManager=getFragmentManager();
-  fragmentManager.beginTransaction().replace(R.id.content_frame,new DeviceFragment()).commit();
+  mDetailsFrag=new DetailsContainerFragment();
+  getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetailsFrag).commit();
   mProgressBar=(ProgressBar)findViewById(R.id.progressBar);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   mDisclaimerAccepted=getResources().getString(R.string.disclaimer_accepted);
