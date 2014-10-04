@@ -1,0 +1,5 @@
+{
+  if (page >= 0 && page < adapter.getCount()) {
+    vp.setCurrentItem(page);
+  }
+}

@@ -1,0 +1,11 @@
+{
+switch (position) {
+case 0:
+    return new DeviceFragment();
+case 1:
+  return new CellInfoFragment();
+case 2:
+return new DbViewerFragment();
+}
+return new DeviceFragment();
+}

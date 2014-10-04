@@ -2,16 +2,19 @@
   NavDrawerItem selectedItem=mNavConf.getNavItems().get(position);
 switch (selectedItem.getId()) {
 case 101:
-    getFragmentManager().beginTransaction().replace(R.id.content_frame,new DeviceFragment()).commit();
-  break;
+    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetailsFrag).commit();
+  mDetailsFrag.setCurrentPage(0);
+break;
 case 102:
-getFragmentManager().beginTransaction().replace(R.id.content_frame,new CellInfoFragment()).commit();
+getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetailsFrag).commit();
+mDetailsFrag.setCurrentPage(1);
 break;
 case 103:
 getFragmentManager().beginTransaction().replace(R.id.content_frame,new AtCommandFragment()).commit();
 break;
 case 104:
-getFragmentManager().beginTransaction().replace(R.id.content_frame,new DbViewerFragment()).commit();
+getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetailsFrag).commit();
+mDetailsFrag.setCurrentPage(2);
 break;
 case 303:
 getFragmentManager().beginTransaction().replace(R.id.content_frame,new AboutFragment()).commit();
