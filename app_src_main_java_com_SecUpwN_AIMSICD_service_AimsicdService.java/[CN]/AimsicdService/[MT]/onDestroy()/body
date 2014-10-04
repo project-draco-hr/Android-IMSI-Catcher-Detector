@@ -1,9 +1,7 @@
 {
   super.onDestroy();
-  if (mCellTracker.isTrackingCell()) {
-    mCellTracker.stop();
-    mLocationTracker.stop();
-  }
+  mCellTracker.stop();
+  mLocationTracker.stop();
   mAccelerometerMonitor.stop();
   mRilExecutor.stop();
   Log.i(TAG,"Service destroyed.");
