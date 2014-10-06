@@ -10,10 +10,14 @@
     @Override public void onPageSelected(    int position){
       int navId=(int)adapter.getItemId(position);
       NavDrawerItem selectedItem=mNavConf.getNavItems().get(navId);
+      Log.d("nav","selected Item " + selectedItem.getLabel());
       getActivity().getActionBar().setTitle(selectedItem.getLabel());
     }
     @Override public void onPageScrollStateChanged(    int state){
     }
   }
 );
+  if (initialPage >= 0) {
+    vp.setCurrentItem(initialPage);
+  }
 }
