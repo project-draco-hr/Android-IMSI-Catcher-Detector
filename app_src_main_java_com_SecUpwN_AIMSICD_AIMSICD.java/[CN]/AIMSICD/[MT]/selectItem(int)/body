@@ -1,5 +1,6 @@
 {
   NavDrawerItem selectedItem=mNavConf.getNavItems().get(position);
+  DetailsContainerFragment mDetailsFrag=new DetailsContainerFragment();
 switch (selectedItem.getId()) {
 case 101:
     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetailsFrag).commit();
@@ -10,14 +11,14 @@ getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetai
 mDetailsFrag.setCurrentPage(1);
 break;
 case 103:
-getFragmentManager().beginTransaction().replace(R.id.content_frame,new AtCommandFragment()).commit();
+getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new AtCommandFragment()).commit();
 break;
 case 104:
 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetailsFrag).commit();
 mDetailsFrag.setCurrentPage(2);
 break;
 case 303:
-getFragmentManager().beginTransaction().replace(R.id.content_frame,new AboutFragment()).commit();
+getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new AboutFragment()).commit();
 break;
 }
 if (selectedItem.getId() == 901) {
