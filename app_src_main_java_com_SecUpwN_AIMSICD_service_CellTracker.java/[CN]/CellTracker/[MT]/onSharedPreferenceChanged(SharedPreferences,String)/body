@@ -41,6 +41,6 @@ LAST_DB_BACKUP_VERSION=sharedPreferences.getInt(DB_VERSION,1);
 OCID_UPLOAD_PREF=sharedPreferences.getBoolean(OCID_UPLOAD,false);
 }
  else if (key.equals(OCID_KEY)) {
-OCID_API_KEY=sharedPreferences.getString(OCID_KEY,"NA");
+getOcidKey();
 }
 }
