@@ -3,41 +3,13 @@
   List<NeighboringCellInfo> neighboringCellInfo;
   neighboringCellInfo=tm.getNeighboringCellInfo();
   if (neighboringCellInfo.size() == 0) {
-    final LinkedBlockingQueue<NeighboringCellInfo> neighboringCellBlockingQueue=new LinkedBlockingQueue<>(100);
-    final PhoneStateListener listener=new PhoneStateListener(){
-      private void handle(){
-        List<NeighboringCellInfo> neighboringCellInfo;
-        neighboringCellInfo=tm.getNeighboringCellInfo();
-        if (neighboringCellInfo.size() == 0) {
-          return;
-        }
-        Log.i(TAG,"neighbouringCellInfo empty - event based polling succeeded!");
-        tm.listen(this,PhoneStateListener.LISTEN_NONE);
-        neighboringCellBlockingQueue.addAll(neighboringCellInfo);
-      }
-      @Override public void onServiceStateChanged(      ServiceState serviceState){
-        handle();
-      }
-      @Override public void onDataConnectionStateChanged(      int state){
-        handle();
-      }
-      @Override public void onDataConnectionStateChanged(      int state,      int networkType){
-        handle();
-      }
-      @Override public void onSignalStrengthsChanged(      SignalStrength signalStrength){
-        handle();
-      }
-      @Override public void onCellInfoChanged(      List<CellInfo> cellInfo){
-        handle();
-      }
-    }
-;
+    neighboringCellBlockingQueue=new LinkedBlockingQueue<>(100);
     Log.i(TAG,"neighbouringCellInfo empty - start polling");
     if (Build.VERSION.SDK_INT > 16) {
-      tm.listen(listener,PhoneStateListener.LISTEN_CELL_INFO | PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE| PhoneStateListener.LISTEN_SERVICE_STATE| PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+      DeviceApi17.startListening(tm,phoneStatelistener);
     }
  else {
-      tm.listen(listener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE | PhoneStateListener.LISTEN_SERVICE_STATE| PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+      tm.listen(phoneStatelistener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE | PhoneStateListener.LISTEN_SERVICE_STATE| PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
     }
     for (int i=0; i < 10 && neighboringCellInfo.size() == 0; i++) {
       try {
