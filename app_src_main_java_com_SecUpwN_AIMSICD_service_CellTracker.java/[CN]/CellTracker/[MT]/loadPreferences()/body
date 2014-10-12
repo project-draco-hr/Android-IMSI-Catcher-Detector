@@ -20,7 +20,7 @@ t=(rate * 1L);
 break;
 }
 REFRESH_RATE=TimeUnit.SECONDS.toMillis(t);
-OCID_API_KEY=prefs.getString(context.getString(R.string.pref_ocid_key),"NA");
+getOcidKey();
 if (trackFemtoPref) {
 startTrackingFemto();
 }
