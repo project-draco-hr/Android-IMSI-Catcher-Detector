@@ -9,19 +9,19 @@ case "OpenCellID Data":
           CardItemData data=new CardItemData("CellID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"MCC: " + tableData.getString(2),"MNC: " + tableData.getString(3),"Latitude: " + tableData.getString(4),"Longitude: " + tableData.getString(5),"Average Signal Strength: " + tableData.getString(6),"Samples: " + tableData.getString(7),"" + (tableData.getPosition() + 1) + " / "+ count);
           adapter.addItem(data,false);
         }
-        lv.setAdapter(adapter);
-        break;
+        return adapter;
       }
 case "Default MCC Locations":
 {
       BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new DefaultLocationCardInflater());
       int count=tableData.getCount();
+      Log.d("mcc","Got records " + count);
       while (tableData.moveToNext()) {
         CardItemData data=new CardItemData("Country: " + tableData.getString(0),"MCC: " + tableData.getString(1),"Latitude: " + tableData.getString(2),"Longitude: " + tableData.getString(3),"" + (tableData.getPosition() + 1) + " / "+ count);
         adapter.addItem(data,false);
       }
-      lv.setAdapter(adapter);
-      break;
+      Log.d("mcc","Adapter has " + adapter.getCount());
+      return adapter;
     }
 case "Silent Sms":
 {
@@ -30,8 +30,7 @@ case "Silent Sms":
       SilentSmsCardData data=new SilentSmsCardData(tableData.getString(0),tableData.getString(1),tableData.getString(2),tableData.getString(3),tableData.getString(4),tableData.getLong(5));
       adapter.addItem(data,false);
     }
-    lv.setAdapter(adapter);
-    break;
+    return adapter;
   }
 default :
 {
@@ -41,14 +40,11 @@ default :
     CardItemData data=new CardItemData("CellID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"Network Type: " + tableData.getString(2),"Latitude: " + tableData.getString(3),"Longitude: " + tableData.getString(4),"Signal Strength: " + tableData.getString(5),"" + (tableData.getPosition() + 1) + " / "+ count);
     adapter.addItem(data,false);
   }
-  lv.setAdapter(adapter);
-  break;
+  return adapter;
 }
 }
-lv.setVisibility(View.VISIBLE);
 }
  else {
-lv.setVisibility(View.GONE);
-Helpers.msgShort(mContext,"Table contains no data to display.");
+return null;
 }
 }
