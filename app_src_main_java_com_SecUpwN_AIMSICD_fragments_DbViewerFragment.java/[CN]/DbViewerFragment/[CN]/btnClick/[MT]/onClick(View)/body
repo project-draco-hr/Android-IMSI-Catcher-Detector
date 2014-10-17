@@ -1,5 +1,51 @@
 {
   if (mMadeSelection) {
-    new MyAsync().execute();
-  }
+    v.setEnabled(false);
+    getActivity().setProgressBarIndeterminateVisibility(true);
+    lv.setVisibility(View.GONE);
+    new AsyncTask<Void,Void,BaseInflaterAdapter>(){
+      @Override protected BaseInflaterAdapter doInBackground(      Void... params){
+        mDb.open();
+        Cursor result=null;
+switch (mTableSelected) {
+case "Cell Data":
+          result=mDb.getCellData();
+        break;
+case "Location Data":
+      result=mDb.getLocationData();
+    break;
+case "OpenCellID Data":
+  result=mDb.getOpenCellIDData();
+break;
+case "Default MCC Locations":
+result=mDb.getDefaultMccLocationData();
+break;
+case "Silent Sms":
+result=mDb.getSilentSmsData();
+break;
+}
+BaseInflaterAdapter adapter=null;
+if (result != null) {
+adapter=BuildTable(result);
+}
+mDb.close();
+return adapter;
+}
+@Override protected void onPostExecute(BaseInflaterAdapter adapter){
+if (getActivity() == null) return;
+lv.setEmptyView(emptyView);
+if (adapter != null) {
+lv.setAdapter(adapter);
+lv.setVisibility(View.VISIBLE);
+}
+ else {
+lv.setVisibility(View.GONE);
+emptyView.setVisibility(View.VISIBLE);
+}
+v.setEnabled(true);
+getActivity().setProgressBarIndeterminateVisibility(false);
+}
+}
+.execute();
+}
 }
