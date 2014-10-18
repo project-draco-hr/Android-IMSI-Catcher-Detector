@@ -1,3 +1,0 @@
-{
-  return getShell(root,timeout,shellContext,3);
-}

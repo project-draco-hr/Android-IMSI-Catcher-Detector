@@ -1,4 +1,0 @@
-{
-  System.out.println("##ERR##" + e.getMessage() + "##");
-  e.printStackTrace();
-}

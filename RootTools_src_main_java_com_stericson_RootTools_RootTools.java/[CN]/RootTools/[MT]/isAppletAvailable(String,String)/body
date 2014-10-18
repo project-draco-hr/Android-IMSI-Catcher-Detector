@@ -1,3 +1,0 @@
-{
-  return getInternals().isAppletAvailable(applet,path);
-}

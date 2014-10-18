@@ -1,3 +1,0 @@
-int timeout
-ShellContext shellContext
-int retry

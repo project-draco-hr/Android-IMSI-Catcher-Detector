@@ -1,8 +1,0 @@
-{
-  int tmp=0;
-  if (permission.charAt(2) == 's')   tmp+=4;
-  if (permission.charAt(5) == 's')   tmp+=2;
-  if (permission.charAt(8) == 't')   tmp+=1;
-  RootTools.log("special permissions " + tmp);
-  return tmp;
-}

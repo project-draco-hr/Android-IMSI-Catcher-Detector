@@ -1,3 +1,0 @@
-{
-  return getInternals().hasUtil(util,box);
-}

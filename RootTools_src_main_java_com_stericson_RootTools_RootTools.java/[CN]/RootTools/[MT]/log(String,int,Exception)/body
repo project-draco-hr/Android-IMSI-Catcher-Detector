@@ -1,3 +1,0 @@
-{
-  log(null,msg,type,e);
-}
