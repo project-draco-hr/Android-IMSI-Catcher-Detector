@@ -1,0 +1,24 @@
+{
+  try {
+    shell.out.write("echo Started\n");
+    shell.out.flush();
+    while (true) {
+      String line=shell.in.readLine();
+      if (line == null) {
+        throw new EOFException();
+      }
+      if ("".equals(line))       continue;
+      if ("Started".equals(line)) {
+        this.exit=1;
+        setShellOom();
+        break;
+      }
+      shell.error="unkown error occured.";
+    }
+  }
+ catch (  IOException e) {
+    exit=-42;
+    if (e.getMessage() != null)     shell.error=e.getMessage();
+ else     shell.error="RootAccess denied?.";
+  }
+}

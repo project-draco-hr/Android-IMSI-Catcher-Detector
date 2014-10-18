@@ -1,0 +1,41 @@
+{
+  RootTools.log("Looking for Symlink for " + file);
+  try {
+    final List<String> results=new ArrayList<String>();
+    CommandCapture command=new CommandCapture(Constants.GSYM,false,"ls -l " + file){
+      @Override public void output(      int id,      String line){
+        if (id == Constants.GSYM) {
+          if (!line.trim().equals("")) {
+            results.add(line);
+          }
+        }
+      }
+    }
+;
+    Shell.startRootShell().add(command);
+    commandWait(Shell.startRootShell(),command);
+    String[] symlink=results.get(0).split(" ");
+    if (symlink.length > 2 && symlink[symlink.length - 2].equals("->")) {
+      RootTools.log("Symlink found.");
+      String final_symlink;
+      if (!symlink[symlink.length - 1].equals("") && !symlink[symlink.length - 1].contains("/")) {
+        findBinary(symlink[symlink.length - 1]);
+        if (RootTools.lastFoundBinaryPaths.size() > 0) {
+          final_symlink=RootTools.lastFoundBinaryPaths.get(0) + "/" + symlink[symlink.length - 1];
+        }
+ else {
+          final_symlink=symlink[symlink.length - 1];
+        }
+      }
+ else {
+        final_symlink=symlink[symlink.length - 1];
+      }
+      return final_symlink;
+    }
+  }
+ catch (  Exception e) {
+    if (RootTools.debugMode)     e.printStackTrace();
+  }
+  RootTools.log("Symlink not found");
+  return "";
+}

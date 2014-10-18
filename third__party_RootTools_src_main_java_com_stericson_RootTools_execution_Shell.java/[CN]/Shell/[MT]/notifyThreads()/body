@@ -1,0 +1,11 @@
+{
+  Thread t=new Thread(){
+    public void run(){
+synchronized (commands) {
+        commands.notifyAll();
+      }
+    }
+  }
+;
+  t.start();
+}

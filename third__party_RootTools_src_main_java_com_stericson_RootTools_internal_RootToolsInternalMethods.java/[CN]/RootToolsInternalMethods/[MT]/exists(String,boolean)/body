@@ -1,0 +1,44 @@
+{
+  final List<String> result=new ArrayList<String>();
+  String cmdToExecute="ls " + (isDir ? "-d " : " ");
+  CommandCapture command=new CommandCapture(0,false,cmdToExecute + file){
+    @Override public void output(    int arg0,    String arg1){
+      RootTools.log(arg1);
+      result.add(arg1);
+    }
+  }
+;
+  try {
+    Shell.startShell().add(command);
+    commandWait(Shell.startShell(),command);
+  }
+ catch (  Exception e) {
+    return false;
+  }
+  for (  String line : result) {
+    if (line.trim().equals(file)) {
+      return true;
+    }
+  }
+  try {
+    RootTools.closeShell(false);
+  }
+ catch (  Exception e) {
+  }
+  result.clear();
+  try {
+    Shell.startRootShell().add(command);
+    commandWait(Shell.startRootShell(),command);
+  }
+ catch (  Exception e) {
+    return false;
+  }
+  List<String> final_result=new ArrayList<String>();
+  final_result.addAll(result);
+  for (  String line : final_result) {
+    if (line.trim().equals(file)) {
+      return true;
+    }
+  }
+  return false;
+}

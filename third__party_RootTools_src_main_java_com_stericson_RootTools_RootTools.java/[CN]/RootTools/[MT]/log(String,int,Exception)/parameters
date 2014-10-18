@@ -1,0 +1,3 @@
+String msg
+int type
+Exception e

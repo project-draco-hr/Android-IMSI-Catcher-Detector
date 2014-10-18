@@ -1,0 +1,20 @@
+{
+  try {
+    CommandCapture command=new CommandCapture(Constants.GI,false,"/data/local/ls -i " + file){
+      @Override public void output(      int id,      String line){
+        if (id == Constants.GI) {
+          if (!line.trim().equals("") && Character.isDigit((char)line.trim().substring(0,1).toCharArray()[0])) {
+            InternalVariables.inode=line.trim().split(" ")[0];
+          }
+        }
+      }
+    }
+;
+    Shell.startRootShell().add(command);
+    commandWait(Shell.startRootShell(),command);
+    return InternalVariables.inode;
+  }
+ catch (  Exception ignore) {
+    return "";
+  }
+}

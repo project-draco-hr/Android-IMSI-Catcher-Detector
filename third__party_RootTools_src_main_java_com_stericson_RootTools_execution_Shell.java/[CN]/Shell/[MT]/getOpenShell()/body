@@ -1,0 +1,5 @@
+{
+  if (Shell.customShell != null)   return Shell.customShell;
+ else   if (Shell.rootShell != null)   return Shell.rootShell;
+ else   return Shell.shell;
+}

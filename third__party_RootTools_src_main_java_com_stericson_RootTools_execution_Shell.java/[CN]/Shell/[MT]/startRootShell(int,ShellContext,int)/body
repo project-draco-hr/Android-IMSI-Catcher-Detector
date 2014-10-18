@@ -1,0 +1,32 @@
+{
+  if (Shell.rootShell == null) {
+    RootTools.log("Starting Root Shell!");
+    String cmd="su";
+    int retries=0;
+    while (Shell.rootShell == null) {
+      try {
+        Shell.rootShell=new Shell(cmd,ShellType.ROOT,shellContext,timeout);
+      }
+ catch (      IOException e) {
+        if (retries++ >= retry) {
+          RootTools.log("IOException, could not start shell");
+          throw e;
+        }
+      }
+    }
+  }
+ else   if (Shell.rootShell.shellContext != shellContext) {
+    try {
+      RootTools.log("Context is different than open shell, switching context... " + Shell.rootShell.shellContext + " VS "+ shellContext);
+      Shell.rootShell.switchRootShellContext(shellContext);
+    }
+ catch (    IOException e) {
+      RootTools.log("Context could not be switched for existing root shell...");
+      throw e;
+    }
+  }
+ else {
+    RootTools.log("Using Existing Root Shell!");
+  }
+  return Shell.rootShell;
+}

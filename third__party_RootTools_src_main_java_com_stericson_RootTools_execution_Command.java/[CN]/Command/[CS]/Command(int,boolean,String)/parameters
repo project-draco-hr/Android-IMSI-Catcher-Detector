@@ -1,0 +1,3 @@
+int id
+boolean handlerEnabled
+String command

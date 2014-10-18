@@ -1,0 +1,5 @@
+{
+  RootTools.log("Launching Market for SuperUser");
+  Intent i=new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=com.noshufou.android.su"));
+  activity.startActivity(i);
+}

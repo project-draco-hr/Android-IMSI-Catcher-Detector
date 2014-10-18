@@ -1,0 +1,4 @@
+String TAG
+String msg
+int type
+Exception e

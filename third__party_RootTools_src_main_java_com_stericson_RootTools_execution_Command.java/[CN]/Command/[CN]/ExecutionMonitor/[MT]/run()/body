@@ -1,0 +1,15 @@
+{
+  while (!finished) {
+synchronized (Command.this) {
+      try {
+        Command.this.wait(timeout);
+      }
+ catch (      InterruptedException e) {
+      }
+    }
+    if (!finished) {
+      RootTools.log("Timeout Exception has occurred.");
+      terminate("Timeout Exception");
+    }
+  }
+}

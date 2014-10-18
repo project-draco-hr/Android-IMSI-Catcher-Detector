@@ -1,0 +1,8 @@
+{
+  Message msg=mHandler.obtainMessage();
+  Bundle bundle=new Bundle();
+  bundle.putInt(TestHandler.ACTION,action);
+  bundle.putString(TestHandler.TEXT,text);
+  msg.setData(bundle);
+  mHandler.sendMessage(msg);
+}

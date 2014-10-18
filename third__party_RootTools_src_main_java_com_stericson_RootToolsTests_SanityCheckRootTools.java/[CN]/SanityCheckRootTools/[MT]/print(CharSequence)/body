@@ -1,0 +1,9 @@
+{
+  mTextView.append(text);
+  mScrollView.post(new Runnable(){
+    public void run(){
+      mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+    }
+  }
+);
+}

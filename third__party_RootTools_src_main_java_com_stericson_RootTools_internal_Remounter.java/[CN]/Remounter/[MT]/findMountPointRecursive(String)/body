@@ -1,0 +1,24 @@
+{
+  try {
+    ArrayList<Mount> mounts=RootTools.getMounts();
+    for (File path=new File(file); path != null; ) {
+      for (      Mount mount : mounts) {
+        if (mount.getMountPoint().equals(path)) {
+          return mount;
+        }
+      }
+    }
+    return null;
+  }
+ catch (  IOException e) {
+    if (RootTools.debugMode) {
+      e.printStackTrace();
+    }
+  }
+catch (  Exception e) {
+    if (RootTools.debugMode) {
+      e.printStackTrace();
+    }
+  }
+  return null;
+}

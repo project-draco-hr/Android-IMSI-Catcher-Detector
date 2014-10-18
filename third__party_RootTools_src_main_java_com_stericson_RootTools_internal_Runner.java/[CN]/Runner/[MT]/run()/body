@@ -1,0 +1,21 @@
+{
+  String privateFilesPath=null;
+  try {
+    privateFilesPath=context.getFilesDir().getCanonicalPath();
+  }
+ catch (  IOException e) {
+    if (RootTools.debugMode) {
+      Log.e(LOG_TAG,"Problem occured while trying to locate private files directory!");
+    }
+    e.printStackTrace();
+  }
+  if (privateFilesPath != null) {
+    try {
+      CommandCapture command=new CommandCapture(0,false,privateFilesPath + "/" + binaryName+ " "+ parameter);
+      Shell.startRootShell().add(command);
+      commandWait(command);
+    }
+ catch (    Exception e) {
+    }
+  }
+}

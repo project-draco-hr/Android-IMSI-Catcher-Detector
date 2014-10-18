@@ -1,0 +1,38 @@
+{
+  InternalVariables.found=false;
+  if (!(box.endsWith("toolbox") || box.endsWith("busybox"))) {
+    return false;
+  }
+  try {
+    CommandCapture command=new CommandCapture(0,false,box.endsWith("toolbox") ? box + " " + util : box + " --list"){
+      @Override public void output(      int id,      String line){
+        if (box.endsWith("toolbox")) {
+          if (!line.contains("no such tool")) {
+            InternalVariables.found=true;
+          }
+        }
+ else         if (box.endsWith("busybox")) {
+          if (line.contains(util)) {
+            RootTools.log("Found util!");
+            InternalVariables.found=true;
+          }
+        }
+      }
+    }
+;
+    RootTools.getShell(true).add(command);
+    commandWait(RootTools.getShell(true),command);
+    if (InternalVariables.found) {
+      RootTools.log("Box contains " + util + " util!");
+      return true;
+    }
+ else {
+      RootTools.log("Box does not contain " + util + " util!");
+      return false;
+    }
+  }
+ catch (  Exception e) {
+    RootTools.log(e.getMessage());
+    return false;
+  }
+}

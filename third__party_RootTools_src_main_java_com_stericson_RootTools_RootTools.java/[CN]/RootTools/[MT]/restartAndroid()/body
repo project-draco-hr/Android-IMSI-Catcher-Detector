@@ -1,0 +1,4 @@
+{
+  RootTools.log("Restart Android");
+  killProcess("zygote");
+}
