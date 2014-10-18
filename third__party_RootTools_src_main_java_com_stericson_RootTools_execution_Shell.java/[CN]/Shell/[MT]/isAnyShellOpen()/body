@@ -1,0 +1,3 @@
+{
+  return Shell.shell != null || Shell.rootShell != null || Shell.customShell != null;
+}

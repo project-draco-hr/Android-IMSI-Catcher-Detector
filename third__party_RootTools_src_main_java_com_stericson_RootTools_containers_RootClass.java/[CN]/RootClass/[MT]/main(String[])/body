@@ -1,0 +1,13 @@
+{
+  try {
+    if (args.length == 0) {
+      new AnnotationsFinder();
+    }
+ else {
+      new RootClass(args);
+    }
+  }
+ catch (  Exception e) {
+    displayError(e);
+  }
+}

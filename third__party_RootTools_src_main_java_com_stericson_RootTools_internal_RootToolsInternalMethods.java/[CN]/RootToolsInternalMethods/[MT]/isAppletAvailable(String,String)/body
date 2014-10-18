@@ -1,0 +1,14 @@
+{
+  try {
+    for (    String aplet : getBusyBoxApplets(binaryPath)) {
+      if (aplet.equals(applet)) {
+        return true;
+      }
+    }
+    return false;
+  }
+ catch (  Exception e) {
+    RootTools.log(e.toString());
+    return false;
+  }
+}

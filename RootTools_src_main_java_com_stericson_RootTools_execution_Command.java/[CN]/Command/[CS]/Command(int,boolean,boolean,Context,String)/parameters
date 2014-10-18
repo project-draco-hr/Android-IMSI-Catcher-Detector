@@ -1,0 +1,5 @@
+int id
+boolean handlerEnabled
+boolean javaCommand
+Context context
+String command

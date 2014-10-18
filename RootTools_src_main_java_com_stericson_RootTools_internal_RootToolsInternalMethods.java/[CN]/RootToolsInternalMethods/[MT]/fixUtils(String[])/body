@@ -1,0 +1,22 @@
+{
+  for (  String util : utils) {
+    if (!checkUtil(util)) {
+      if (checkUtil("busybox")) {
+        if (hasUtil(util,"busybox")) {
+          fixUtil(util,RootTools.utilPath);
+        }
+      }
+ else {
+        if (checkUtil("toolbox")) {
+          if (hasUtil(util,"toolbox")) {
+            fixUtil(util,RootTools.utilPath);
+          }
+        }
+ else {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}

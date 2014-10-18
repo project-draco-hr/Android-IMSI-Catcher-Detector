@@ -1,0 +1,8 @@
+{
+  boolean installed=false;
+  File mf=new File(filesPath + File.separator + destName);
+  if (mf.exists()) {
+    installed=true;
+  }
+  return installed;
+}

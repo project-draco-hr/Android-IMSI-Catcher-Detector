@@ -1,0 +1,3 @@
+boolean root
+int timeout
+Shell.ShellContext shellContext

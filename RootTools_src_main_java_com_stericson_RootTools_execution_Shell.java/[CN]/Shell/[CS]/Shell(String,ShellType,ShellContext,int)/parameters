@@ -1,0 +1,4 @@
+String cmd
+ShellType shellType
+ShellContext shellContext
+int shellTimeout

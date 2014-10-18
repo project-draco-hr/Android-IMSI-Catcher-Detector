@@ -1,0 +1,4 @@
+{
+  Remounter remounter=new Remounter();
+  return (remounter.remount(file,mountType));
+}

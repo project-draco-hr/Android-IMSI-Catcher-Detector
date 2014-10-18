@@ -1,0 +1,3 @@
+{
+  return getInternals().exists(file,isDir);
+}

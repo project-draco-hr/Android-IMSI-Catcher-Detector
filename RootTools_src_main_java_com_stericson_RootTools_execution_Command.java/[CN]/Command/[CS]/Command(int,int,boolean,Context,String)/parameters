@@ -1,0 +1,5 @@
+int id
+int timeout
+boolean javaCommand
+Context context
+String command

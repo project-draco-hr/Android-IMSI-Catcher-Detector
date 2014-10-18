@@ -1,0 +1,18 @@
+{
+synchronized (this.commands) {
+    this.close=true;
+    this.notifyThreads();
+  }
+  int count=0;
+  while (isExecuting) {
+    RootTools.log("Waiting on shell to finish executing before closing...");
+    count++;
+    if (count > 1000) {
+      break;
+    }
+  }
+  RootTools.log("Shell Closed!");
+  if (this == Shell.rootShell)   Shell.rootShell=null;
+ else   if (this == Shell.shell)   Shell.shell=null;
+ else   if (this == Shell.customShell)   Shell.customShell=null;
+}

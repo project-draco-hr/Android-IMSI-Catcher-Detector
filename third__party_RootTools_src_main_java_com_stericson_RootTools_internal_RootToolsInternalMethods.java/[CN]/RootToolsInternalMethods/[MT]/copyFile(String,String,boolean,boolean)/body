@@ -1,0 +1,71 @@
+{
+  CommandCapture command=null;
+  boolean result=true;
+  try {
+    if (remountAsRw) {
+      RootTools.remount(destination,"RW");
+    }
+    if (checkUtil("cp")) {
+      RootTools.log("cp command is available!");
+      if (preserveFileAttributes) {
+        command=new CommandCapture(0,false,"cp -fp " + source + " "+ destination);
+        Shell.startRootShell().add(command);
+        commandWait(Shell.startRootShell(),command);
+        result=command.getExitCode() == 0;
+      }
+ else {
+        command=new CommandCapture(0,false,"cp -f " + source + " "+ destination);
+        Shell.startRootShell().add(command);
+        commandWait(Shell.startRootShell(),command);
+        result=command.getExitCode() == 0;
+      }
+    }
+ else {
+      if (checkUtil("busybox") && hasUtil("cp","busybox")) {
+        RootTools.log("busybox cp command is available!");
+        if (preserveFileAttributes) {
+          command=new CommandCapture(0,false,"busybox cp -fp " + source + " "+ destination);
+          Shell.startRootShell().add(command);
+          commandWait(Shell.startRootShell(),command);
+        }
+ else {
+          command=new CommandCapture(0,false,"busybox cp -f " + source + " "+ destination);
+          Shell.startRootShell().add(command);
+          commandWait(Shell.startRootShell(),command);
+        }
+      }
+ else {
+        if (checkUtil("cat")) {
+          RootTools.log("cp is not available, use cat!");
+          int filePermission=-1;
+          if (preserveFileAttributes) {
+            Permissions permissions=getFilePermissionsSymlinks(source);
+            filePermission=permissions.getPermissions();
+          }
+          command=new CommandCapture(0,false,"cat " + source + " > "+ destination);
+          Shell.startRootShell().add(command);
+          commandWait(Shell.startRootShell(),command);
+          if (preserveFileAttributes) {
+            command=new CommandCapture(0,false,"chmod " + filePermission + " "+ destination);
+            Shell.startRootShell().add(command);
+            commandWait(Shell.startRootShell(),command);
+          }
+        }
+ else {
+          result=false;
+        }
+      }
+    }
+    if (remountAsRw) {
+      RootTools.remount(destination,"RO");
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    result=false;
+  }
+  if (command != null) {
+    result=command.getExitCode() == 0;
+  }
+  return result;
+}

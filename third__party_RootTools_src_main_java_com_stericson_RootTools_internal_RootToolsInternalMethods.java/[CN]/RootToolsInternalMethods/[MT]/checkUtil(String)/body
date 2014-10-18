@@ -1,0 +1,19 @@
+{
+  if (RootTools.findBinary(util)) {
+    List<String> binaryPaths=new ArrayList<String>();
+    binaryPaths.addAll(RootTools.lastFoundBinaryPaths);
+    for (    String path : binaryPaths) {
+      Permissions permissions=RootTools.getFilePermissionsSymlinks(path + "/" + util);
+      if (permissions != null) {
+        String permission;
+        if (Integer.toString(permissions.getPermissions()).length() > 3)         permission=Integer.toString(permissions.getPermissions()).substring(1);
+ else         permission=Integer.toString(permissions.getPermissions());
+        if (permission.equals("755") || permission.equals("777") || permission.equals("775")) {
+          RootTools.utilPath=path + "/" + util;
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}

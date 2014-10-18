@@ -1,0 +1,4 @@
+{
+  if (Shell.customShell == null)   return;
+  Shell.customShell.close();
+}

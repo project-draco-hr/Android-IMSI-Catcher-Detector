@@ -1,0 +1,3 @@
+{
+  return installBinary(context,sourceId,binaryName,"700");
+}

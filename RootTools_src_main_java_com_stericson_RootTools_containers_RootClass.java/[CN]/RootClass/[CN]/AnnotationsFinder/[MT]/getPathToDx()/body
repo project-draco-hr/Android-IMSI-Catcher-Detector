@@ -1,0 +1,45 @@
+{
+  String androidHome=System.getenv("ANDROID_HOME");
+  if (null == androidHome) {
+    throw new IOException("Error: you need to set $ANDROID_HOME globally");
+  }
+  String dxPath=null;
+  File[] files=new File(androidHome + File.separator + "build-tools").listFiles();
+  int recentSdkVersion=0;
+  for (  File file : files) {
+    String fileName=null;
+    if (file.getName().contains("-")) {
+      String[] splitFileName=file.getName().split("-");
+      if (splitFileName[1].contains("W")) {
+        char[] fileNameChars=splitFileName[1].toCharArray();
+        fileName=String.valueOf(fileNameChars[0]);
+      }
+ else {
+        fileName=splitFileName[1];
+      }
+    }
+ else {
+      fileName=file.getName();
+    }
+    int sdkVersion;
+    String[] sdkVersionBits=fileName.split("[.]");
+    sdkVersion=Integer.parseInt(sdkVersionBits[0]) * 10000;
+    if (sdkVersionBits.length > 1) {
+      sdkVersion+=Integer.parseInt(sdkVersionBits[1]) * 100;
+      if (sdkVersionBits.length > 2) {
+        sdkVersion+=Integer.parseInt(sdkVersionBits[2]);
+      }
+    }
+    if (sdkVersion > recentSdkVersion) {
+      String tentativePath=file.getAbsolutePath() + File.separator + "dx";
+      if (new File(tentativePath).exists()) {
+        recentSdkVersion=sdkVersion;
+        dxPath=tentativePath;
+      }
+    }
+  }
+  if (dxPath == null) {
+    throw new IOException("Error: unable to find dx binary in $ANDROID_HOME");
+  }
+  return dxPath;
+}

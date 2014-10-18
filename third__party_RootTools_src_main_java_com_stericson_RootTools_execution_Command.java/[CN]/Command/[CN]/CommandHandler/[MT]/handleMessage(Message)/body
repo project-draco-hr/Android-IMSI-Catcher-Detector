@@ -1,0 +1,15 @@
+{
+  int action=msg.getData().getInt(ACTION);
+  String text=msg.getData().getString(TEXT);
+switch (action) {
+case COMMAND_OUTPUT:
+    commandOutput(id,text);
+  break;
+case COMMAND_COMPLETED:
+commandCompleted(id,exitCode);
+break;
+case COMMAND_TERMINATED:
+commandTerminated(id,text);
+break;
+}
+}

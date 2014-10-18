@@ -1,0 +1,3 @@
+{
+  return RootTools.getCustomShell(shellPath,10000);
+}

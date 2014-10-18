@@ -1,0 +1,3 @@
+{
+  log(TAG,msg,3,null);
+}

@@ -1,0 +1,4 @@
+{
+  sb.append(line).append('\n');
+  RootTools.log("Command","ID: " + id + ", "+ line);
+}

@@ -1,0 +1,4 @@
+int id
+boolean handlerEnabled
+Context context
+String command

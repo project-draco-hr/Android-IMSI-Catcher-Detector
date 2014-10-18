@@ -1,0 +1,16 @@
+{
+  int tmp;
+  if (permission.charAt(0) == 'r')   tmp=4;
+ else   tmp=0;
+  RootTools.log("permission " + tmp);
+  RootTools.log("character " + permission.charAt(0));
+  if (permission.charAt(1) == 'w')   tmp+=2;
+ else   tmp+=0;
+  RootTools.log("permission " + tmp);
+  RootTools.log("character " + permission.charAt(1));
+  if (permission.charAt(2) == 'x')   tmp+=1;
+ else   tmp+=0;
+  RootTools.log("permission " + tmp);
+  RootTools.log("character " + permission.charAt(2));
+  return tmp;
+}

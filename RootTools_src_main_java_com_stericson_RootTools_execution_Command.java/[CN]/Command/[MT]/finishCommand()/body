@@ -1,0 +1,5 @@
+{
+  executing=false;
+  finished=true;
+  this.notifyAll();
+}

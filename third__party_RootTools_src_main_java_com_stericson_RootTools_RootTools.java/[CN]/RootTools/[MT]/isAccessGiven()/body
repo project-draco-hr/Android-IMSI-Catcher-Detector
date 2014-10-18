@@ -1,0 +1,3 @@
+{
+  return getInternals().isAccessGiven();
+}

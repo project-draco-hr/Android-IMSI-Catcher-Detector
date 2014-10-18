@@ -1,0 +1,11 @@
+{
+  if (RootTools.checkUtil("busybox")) {
+    return "busybox";
+  }
+ else   if (RootTools.checkUtil("toolbox")) {
+    return "toolbox";
+  }
+ else {
+    return "";
+  }
+}

@@ -1,0 +1,6 @@
+{
+  this.command=command;
+  this.id=id;
+  this.timeout=timeout;
+  createHandler(RootTools.handlerEnabled);
+}

@@ -1,0 +1,26 @@
+{
+  if (path != null && !path.endsWith("/") && !path.equals("")) {
+    path+="/";
+  }
+ else   if (path == null) {
+    throw new Exception("Path is null, please specifiy a path");
+  }
+  final List<String> results=new ArrayList<String>();
+  CommandCapture command=new CommandCapture(Constants.BBA,false,path + "busybox --list"){
+    @Override public void output(    int id,    String line){
+      if (id == Constants.BBA) {
+        if (!line.trim().equals("") && !line.trim().contains("not found")) {
+          results.add(line);
+        }
+      }
+    }
+  }
+;
+  Shell.startShell().add(command);
+  commandWait(Shell.startShell(),command);
+  if (results.size() <= 0) {
+    Shell.startRootShell().add(command);
+    commandWait(Shell.startRootShell(),command);
+  }
+  return results;
+}

@@ -1,0 +1,4 @@
+{
+  this.context=context;
+  this.filesPath=context.getFilesDir().getCanonicalPath();
+}

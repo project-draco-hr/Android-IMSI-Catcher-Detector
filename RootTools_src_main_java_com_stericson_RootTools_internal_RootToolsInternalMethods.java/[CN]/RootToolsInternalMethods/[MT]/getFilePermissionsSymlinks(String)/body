@@ -1,0 +1,47 @@
+{
+  RootTools.log("Checking permissions for " + file);
+  if (RootTools.exists(file)) {
+    RootTools.log(file + " was found.");
+    try {
+      CommandCapture command=new CommandCapture(Constants.FPS,false,"ls -l " + file,"busybox ls -l " + file,"/system/bin/failsafe/toolbox ls -l " + file,"toolbox ls -l " + file){
+        @Override public void output(        int id,        String line){
+          if (id == Constants.FPS) {
+            String symlink_final="";
+            String[] lineArray=line.split(" ");
+            if (lineArray[0].length() != 10) {
+              return;
+            }
+            RootTools.log("Line " + line);
+            try {
+              String[] symlink=line.split(" ");
+              if (symlink[symlink.length - 2].equals("->")) {
+                RootTools.log("Symlink found.");
+                symlink_final=symlink[symlink.length - 1];
+              }
+            }
+ catch (            Exception e) {
+            }
+            try {
+              InternalVariables.permissions=getPermissions(line);
+              if (InternalVariables.permissions != null) {
+                InternalVariables.permissions.setSymlink(symlink_final);
+              }
+            }
+ catch (            Exception e) {
+              RootTools.log(e.getMessage());
+            }
+          }
+        }
+      }
+;
+      Shell.startRootShell().add(command);
+      commandWait(Shell.startRootShell(),command);
+      return InternalVariables.permissions;
+    }
+ catch (    Exception e) {
+      RootTools.log(e.getMessage());
+      return null;
+    }
+  }
+  return null;
+}

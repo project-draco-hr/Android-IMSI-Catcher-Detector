@@ -1,0 +1,20 @@
+{
+  if (msg != null && !msg.equals("")) {
+    if (debugMode) {
+      if (TAG == null) {
+        TAG=Constants.TAG;
+      }
+switch (type) {
+case 1:
+        Log.v(TAG,msg);
+      break;
+case 2:
+    Log.e(TAG,msg,e);
+  break;
+case 3:
+Log.d(TAG,msg);
+break;
+}
+}
+}
+}

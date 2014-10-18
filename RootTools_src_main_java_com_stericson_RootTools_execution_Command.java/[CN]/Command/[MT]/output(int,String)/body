@@ -1,0 +1,13 @@
+{
+  if (mHandler != null && handlerEnabled) {
+    Message msg=mHandler.obtainMessage();
+    Bundle bundle=new Bundle();
+    bundle.putInt(CommandHandler.ACTION,CommandHandler.COMMAND_OUTPUT);
+    bundle.putString(CommandHandler.TEXT,line);
+    msg.setData(bundle);
+    mHandler.sendMessage(msg);
+  }
+ else {
+    commandOutput(id,line);
+  }
+}
