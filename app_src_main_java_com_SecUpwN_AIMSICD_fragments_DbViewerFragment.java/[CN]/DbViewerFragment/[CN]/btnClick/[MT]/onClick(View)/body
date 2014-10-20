@@ -46,6 +46,6 @@ v.setEnabled(true);
 getActivity().setProgressBarIndeterminateVisibility(false);
 }
 }
-.execute();
+.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 }
 }

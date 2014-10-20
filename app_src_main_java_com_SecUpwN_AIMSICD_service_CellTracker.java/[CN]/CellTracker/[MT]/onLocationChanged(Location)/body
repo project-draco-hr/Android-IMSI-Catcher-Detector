@@ -36,6 +36,7 @@ if (mTrackingCell) {
 dbHelper.open();
 dbHelper.insertLocation(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.getCellInfo());
 dbHelper.insertCell(mDevice.mCell.getLAC(),mDevice.mCell.getCID(),mDevice.mCell.getNetType(),mDevice.mCell.getLat(),mDevice.mCell.getLon(),mDevice.mCell.getDBM(),mDevice.mCell.getMCC(),mDevice.mCell.getMNC(),mDevice.mCell.getAccuracy(),mDevice.mCell.getSpeed(),mDevice.mCell.getBearing(),mDevice.getNetworkTypeName(),SystemClock.currentThreadTimeMillis());
+dbHelper.close();
 }
 }
 }
