@@ -15,12 +15,10 @@ case "Default MCC Locations":
 {
       BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new DefaultLocationCardInflater());
       int count=tableData.getCount();
-      Log.d("mcc","Got records " + count);
       while (tableData.moveToNext()) {
         CardItemData data=new CardItemData("Country: " + tableData.getString(0),"MCC: " + tableData.getString(1),"Latitude: " + tableData.getString(2),"Longitude: " + tableData.getString(3),"" + (tableData.getPosition() + 1) + " / "+ count);
         adapter.addItem(data,false);
       }
-      Log.d("mcc","Adapter has " + adapter.getCount());
       return adapter;
     }
 case "Silent Sms":
