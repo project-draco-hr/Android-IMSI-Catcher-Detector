@@ -12,8 +12,8 @@
       final int mcc=c.getInt(2);
       final int mnc=c.getInt(3);
       final int samples=c.getInt(7);
-      CellTowerOverlayItem ovm=new CellTowerOverlayItem("CellID - " + cellID,"",location,new MarkerData("" + cellID,"" + location.getLatitude(),"" + location.getLongitude(),"" + lac,"","","",false));
-      ovm.setMarker(getResources().getDrawable(R.drawable.ic_map_pin_blue));
+      CellTowerOverlayItem ovm=new CellTowerOverlayItem("CellID - " + cellID,"",location,new MarkerData("" + cellID,"" + location.getLatitude(),"" + location.getLongitude(),"" + lac,"" + mcc,"" + mnc,"" + samples,false));
+      ovm.setMarker(getResources().getDrawable(R.drawable.ic_map_pin_green));
       items.add(ovm);
     }
  while (c.moveToNext());

@@ -1,5 +1,10 @@
 {
   if (context != null && msg != null) {
-    Toast.makeText(context,msg.trim(),Toast.LENGTH_SHORT).show();
+    new Handler(context.getMainLooper()).post(new Runnable(){
+      @Override public void run(){
+        Toast.makeText(context,msg.trim(),Toast.LENGTH_SHORT).show();
+      }
+    }
+);
   }
 }
