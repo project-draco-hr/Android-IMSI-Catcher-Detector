@@ -5,5 +5,7 @@
     mContext.unbindService(mConnection);
     mBound=false;
   }
+  TelephonyManager tm=(TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
+  tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_NONE);
   LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
 }

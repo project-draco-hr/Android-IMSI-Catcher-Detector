@@ -7,4 +7,6 @@
   mDbHelper=new AIMSICDDbAdapter(mContext);
   Intent intent=new Intent(mContext,AimsicdService.class);
   mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+  TelephonyManager tm=(TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
+  tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
 }
