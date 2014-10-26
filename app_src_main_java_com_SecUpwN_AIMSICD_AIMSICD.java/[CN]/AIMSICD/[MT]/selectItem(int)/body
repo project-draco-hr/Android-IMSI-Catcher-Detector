@@ -94,6 +94,8 @@ Helpers.sendMsg(mContext,"No OpenCellID API Key detected! \nPlease enter your ke
 }
 }
  else if (selectedItem.getId() == 305) {
+new Thread(){
+@Override public void run(){
 try {
 Process process=Runtime.getRuntime().exec("logcat -d");
 BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -112,6 +114,9 @@ startActivity(Intent.createChooser(intent,"Send error log"));
  catch (IOException e) {
 Log.e("main","Error reading logs",e);
 }
+}
+}
+.start();
 }
  else if (selectedItem.getId() == 304) {
 finish();
