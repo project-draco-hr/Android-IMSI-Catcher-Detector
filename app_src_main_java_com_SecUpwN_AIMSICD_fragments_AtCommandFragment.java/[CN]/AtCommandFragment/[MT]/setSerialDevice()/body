@@ -3,7 +3,7 @@
   try {
     shell.add(cmd);
     commandWait(shell,cmd);
-    Log.e("AIMSICD","setSerialDevice finished on " + mSerialDevice);
+    Log.i("AIMSICD","setSerialDevice finished on " + mSerialDevice);
   }
  catch (  Exception e) {
     Log.e("AIMSICD","setSerialDevice " + e);

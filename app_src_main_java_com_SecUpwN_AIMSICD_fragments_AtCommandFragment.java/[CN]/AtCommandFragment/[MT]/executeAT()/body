@@ -1,7 +1,7 @@
 {
   if (mAtCommand.getText() != null) {
     try {
-      CommandCapture cmd=new CommandCapture(EXECUTE_AT,"echo -e " + mAtCommand.getText().toString().toUpperCase() + "\r > "+ mSerialDevice+ "\n"){
+      CommandCapture cmd=new CommandCapture(EXECUTE_AT,"echo -e " + mAtCommand.getText().toString() + "\r >"+ mSerialDevice+ "\n"){
         @Override public void commandOutput(        int id,        String line){
           if (id == EXECUTE_AT) {
             if (!line.trim().equals("")) {
@@ -15,7 +15,7 @@
       commandWait(shell,cmd);
     }
  catch (    Exception e) {
-      Log.e("AIMSICD","executeAT - " + e);
+      Log.e("AIMSICD","executeAT: " + e);
     }
   }
 }

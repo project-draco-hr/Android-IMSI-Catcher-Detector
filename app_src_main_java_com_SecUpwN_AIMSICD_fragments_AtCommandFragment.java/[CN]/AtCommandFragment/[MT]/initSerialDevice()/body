@@ -16,12 +16,12 @@
     if (!mSerialDevice.equals("UNKNOWN")) {
       mSerialDevices.add(mSerialDevice);
     }
-    CommandCapture cmd=new CommandCapture(0,"ls /dev/radio | grep atci*"){
+    CommandCapture cmd=new CommandCapture(0,"\\ls /dev/radio | grep atci*"){
       @Override public void commandOutput(      int id,      String line){
         if (id == 0) {
           if (!line.trim().equals("") && !mSerialDevices.contains("/dev/radio/" + line.trim())) {
             mSerialDevices.add("/dev/radio/" + line.trim());
-            mAtResponse.append("Found: /dev/radio/" + line.trim());
+            mAtResponse.append("Found: " + line.trim());
           }
         }
       }

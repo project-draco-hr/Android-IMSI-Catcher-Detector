@@ -1,5 +1,5 @@
 {
-  Log.i(TAG,"Database Backup - " + DB_NAME);
+  Log.i(TAG,"Database Backup: " + DB_NAME);
   File dir=new File(FOLDER);
   if (!dir.exists()) {
     dir.mkdirs();

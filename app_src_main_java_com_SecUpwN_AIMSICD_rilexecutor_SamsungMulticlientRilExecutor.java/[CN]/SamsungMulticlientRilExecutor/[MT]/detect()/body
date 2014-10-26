@@ -9,15 +9,12 @@
  catch (  Exception ignore) {
     ignore.printStackTrace();
   }
-  if (!gsmVerRilImpl.matches("Samsung\\s+RIL\\(IPC\\).*")) {
-    return DetectResult.Unavailable("gsm.version.ril-impl = " + gsmVerRilImpl);
-  }
   LocalSocket s=new LocalSocket();
   try {
     s.connect(new LocalSocketAddress(MULTICLIENT_SOCKET));
   }
  catch (  IOException e) {
-    return DetectResult.Unavailable("Multiclient socket is not available");
+    return DetectResult.Unavailable("Multiclient socket is not available\n" + "gsm.version.ril-impl = " + gsmVerRilImpl);
   }
  finally {
     try {

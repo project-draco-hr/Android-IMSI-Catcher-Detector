@@ -5,7 +5,7 @@
       shell.close();
     }
  catch (    Exception e) {
-      Log.e("AIMSICD","Closing shell - " + e);
+      Log.e("AIMSICD","Closing shell: " + e);
     }
   }
 }

@@ -10,7 +10,7 @@
   mAvgSigStr="Avg Signal: N/A";
   mSamples="Samples: N/A";
   mTimestamp=timestamp;
-  mPsc="Primary Scrambling Code: N/A";
+  mPsc="PSC: N/A";
   mCountry="Country: N/A";
   mRecordId=recordId;
 }
