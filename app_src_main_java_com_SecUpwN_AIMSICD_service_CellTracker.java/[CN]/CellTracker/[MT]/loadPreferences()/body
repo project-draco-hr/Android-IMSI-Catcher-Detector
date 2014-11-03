@@ -1,6 +1,6 @@
 {
   boolean trackFemtoPref=prefs.getBoolean(context.getString(R.string.pref_femto_detection_key),false);
-  boolean trackCellPref=prefs.getBoolean(context.getString(R.string.pref_enable_cell_key),false);
+  boolean trackCellPref=prefs.getBoolean(context.getString(R.string.pref_enable_cell_key),true);
   boolean monitorCellPref=prefs.getBoolean(context.getString(R.string.pref_enable_cell_monitoring_key),true);
   LAST_DB_BACKUP_VERSION=prefs.getInt(context.getString(R.string.pref_last_database_backup_version),1);
   OCID_UPLOAD_PREF=prefs.getBoolean(context.getString(R.string.pref_ocid_upload),false);
