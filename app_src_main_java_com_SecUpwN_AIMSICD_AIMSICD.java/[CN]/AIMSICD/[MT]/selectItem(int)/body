@@ -107,9 +107,9 @@ log.append(line);
 Intent intent=new Intent(Intent.ACTION_SEND);
 intent.setType("text/html");
 intent.putExtra(Intent.EXTRA_EMAIL,"some@email.com");
-intent.putExtra(Intent.EXTRA_SUBJECT,"AIMSICD Error log");
+intent.putExtra(Intent.EXTRA_SUBJECT,"AIMSICD Error Log");
 intent.putExtra(Intent.EXTRA_TEXT,log.toString());
-startActivity(Intent.createChooser(intent,"Send error log"));
+startActivity(Intent.createChooser(intent,"Send Error Log"));
 }
  catch (IOException e) {
 Log.e("main","Error reading logs",e);
