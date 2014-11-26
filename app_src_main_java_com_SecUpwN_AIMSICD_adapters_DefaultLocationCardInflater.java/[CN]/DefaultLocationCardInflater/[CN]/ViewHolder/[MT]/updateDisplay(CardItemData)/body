@@ -3,4 +3,5 @@
   mMcc.setText(item.getMcc());
   mLat.setText(item.getLat());
   mLng.setText(item.getLng());
+  mRecordId.setText(item.getRecordId());
 }

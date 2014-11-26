@@ -1,0 +1,9 @@
+{
+  if (!prefs.getBoolean(mDisclaimerAccepted,false))   return;
+  if (!mBound) {
+    Intent intent=new Intent(AIMSICD.this,AimsicdService.class);
+    startService(intent);
+    bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new DetailsContainerFragment()).commit();
+  }
+}
