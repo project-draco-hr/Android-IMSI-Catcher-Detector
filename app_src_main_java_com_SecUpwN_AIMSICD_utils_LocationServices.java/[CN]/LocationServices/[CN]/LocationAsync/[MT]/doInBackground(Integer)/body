@@ -1,26 +1,3 @@
 {
-  try {
-    String mmapUrl="http://www.google.com/glm/mmap";
-    URL url=new URL(mmapUrl);
-    HttpURLConnection httpConn=(HttpURLConnection)url.openConnection();
-    httpConn.setRequestMethod("POST");
-    httpConn.setDoOutput(true);
-    httpConn.connect();
-    OutputStream outputStream=httpConn.getOutputStream();
-    writeData(outputStream,params[0],params[1],params[2],params[3]);
-    InputStream inputStream=httpConn.getInputStream();
-    DataInputStream dataInputStream=new DataInputStream(inputStream);
-    dataInputStream.readShort();
-    dataInputStream.readByte();
-    int code=dataInputStream.readInt();
-    if (code == 0) {
-      float latitude=dataInputStream.readInt() / 1000000f;
-      float longitude=dataInputStream.readInt() / 1000000f;
-      return new float[]{latitude,longitude};
-    }
-  }
- catch (  IOException e) {
-    e.printStackTrace();
-  }
   return new float[]{0.0f,0.0f};
 }
