@@ -49,7 +49,7 @@ new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
 }
 }
  else if (selectedItem.getId() == 301) {
-if (!CellTracker.OCID_API_KEY.equals("NA")) {
+if (CellTracker.OCID_API_KEY != null && !CellTracker.OCID_API_KEY.equals("NA")) {
 GeoLocation loc=mAimsicdService.lastKnownLocation();
 if (loc != null) {
 Helpers.msgShort(mContext,"Contacting OpenCellID.org for data...");
@@ -59,6 +59,7 @@ cell.setLat(loc.getLatitudeInDegrees());
 Helpers.getOpenCellData(mContext,cell,RequestTask.OPEN_CELL_ID_REQUEST);
 }
  else {
+Helpers.msgShort(mContext,"Waiting for location...");
 LocationServices.LocationAsync locationAsync=new LocationServices.LocationAsync();
 locationAsync.delegate=this;
 locationAsync.execute(mAimsicdService.getCell().getCID(),mAimsicdService.getCell().getLAC(),mAimsicdService.getCell().getMNC(),mAimsicdService.getCell().getMCC());
@@ -69,7 +70,7 @@ Helpers.sendMsg(mContext,"No OpenCellID API Key detected! \nPlease enter your ke
 }
 }
  else if (selectedItem.getId() == 302) {
-if (!CellTracker.OCID_API_KEY.equals("NA")) {
+if (CellTracker.OCID_API_KEY != null && !CellTracker.OCID_API_KEY.equals("NA")) {
 Cell.CellLookUpAsync cellLookUpAsync=new Cell.CellLookUpAsync();
 cellLookUpAsync.delegate=this;
 StringBuilder sb=new StringBuilder();
