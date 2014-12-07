@@ -1,0 +1,19 @@
+{
+  new Thread(){
+    @Override public void run(){
+      try {
+        String log=getLogs();
+        Intent intent=new Intent(Intent.ACTION_SEND);
+        intent.setType("text/html");
+        intent.putExtra(Intent.EXTRA_EMAIL,"a3841c3c@opayq.com");
+        intent.putExtra(Intent.EXTRA_SUBJECT,"AIMSICD Error Log");
+        intent.putExtra(Intent.EXTRA_TEXT,log);
+        startActivity(Intent.createChooser(intent,"Send Error Log"));
+      }
+ catch (      IOException e) {
+        Log.e("DebugLogs","Error reading logs",e);
+      }
+    }
+  }
+.start();
+}

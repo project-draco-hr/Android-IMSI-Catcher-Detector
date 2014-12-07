@@ -1,0 +1,40 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.activity_debug_logs);
+  getActionBar().setDisplayHomeAsUpEnabled(true);
+  logView=(TextView)findViewById(R.id.debug_log_view);
+  btnClear=(Button)findViewById(R.id.btnClear);
+  btnRadioLogs=(Button)findViewById(R.id.btnRadioLogs);
+  btnSendEmail=(Button)findViewById(R.id.btnSendEmail);
+  logUpdater.start();
+  btnClear.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      try {
+        clearLogs();
+      }
+ catch (      Exception e) {
+        Log.e("DebugLogs","Error clearing logs",e);
+      }
+    }
+  }
+);
+  btnRadioLogs.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      if (isRadioLogs) {
+        isRadioLogs=false;
+        btnRadioLogs.setText(getString(R.string.btn_radio_logs));
+      }
+ else {
+        isRadioLogs=true;
+        btnRadioLogs.setText(getString(R.string.btn_app_logs));
+      }
+    }
+  }
+);
+  btnSendEmail.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      sendEmail();
+    }
+  }
+);
+}
