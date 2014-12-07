@@ -1,0 +1,15 @@
+{
+  dbHelper.deleteCell(CELL_ID);
+  Cell cell=new Cell();
+  cell.setCID(CELL_ID);
+  cell.setLat(21.00);
+  cell.setLon(21.00);
+  cell.setLAC(123);
+  long recId=dbHelper.insertCell(cell);
+  assertTrue(recId != 0l);
+  assertTrue(dbHelper.checkLAC(cell));
+  cell=new Cell();
+  cell.setCID(CELL_ID);
+  cell.setLAC(234);
+  assertFalse(dbHelper.checkLAC(cell));
+}

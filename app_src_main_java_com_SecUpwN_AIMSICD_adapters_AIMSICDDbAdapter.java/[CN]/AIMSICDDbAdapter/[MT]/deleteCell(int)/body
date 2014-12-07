@@ -1,0 +1,3 @@
+{
+  return mDb.delete(CELL_TABLE,"CellID = ?",new String[]{String.valueOf(cellId)});
+}
