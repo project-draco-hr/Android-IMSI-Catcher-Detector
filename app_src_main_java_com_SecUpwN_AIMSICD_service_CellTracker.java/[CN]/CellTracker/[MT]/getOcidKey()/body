@@ -1,7 +1,7 @@
 {
   final String OCID_KEY=context.getString(R.string.pref_ocid_key);
   OCID_API_KEY=prefs.getString(OCID_KEY,BuildConfig.OPEN_CELLID_API_KEY);
-  if (OCID_API_KEY.trim().length() == 0) {
-    OCID_API_KEY=BuildConfig.OPEN_CELLID_API_KEY;
+  if (OCID_API_KEY == null) {
+    OCID_API_KEY="NA";
   }
 }
