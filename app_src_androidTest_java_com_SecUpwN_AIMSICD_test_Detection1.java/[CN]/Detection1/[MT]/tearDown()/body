@@ -1,0 +1,4 @@
+{
+  dbHelper.close();
+  super.tearDown();
+}
