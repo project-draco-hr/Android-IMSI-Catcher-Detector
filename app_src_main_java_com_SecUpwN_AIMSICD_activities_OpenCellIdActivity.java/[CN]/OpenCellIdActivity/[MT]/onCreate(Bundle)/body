@@ -26,7 +26,7 @@
             runOnUiThread(new Runnable(){
               @Override public void run(){
                 pd.dismiss();
-                Helpers.msgShort(OpenCellIdActivity.this,getString(R.string.ocid_api_error) + e.getClass().getName() + " - "+ e.getMessage());
+                Helpers.msgLong(OpenCellIdActivity.this,getString(R.string.ocid_api_error) + e.getClass().getName() + " - "+ e.getMessage());
               }
             }
 );

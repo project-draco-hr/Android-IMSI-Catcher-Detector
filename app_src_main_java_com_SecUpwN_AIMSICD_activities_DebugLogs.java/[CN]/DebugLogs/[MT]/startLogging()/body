@@ -1,0 +1,11 @@
+{
+  updateLogs=true;
+  try {
+    logUpdater=new LogUpdaterThread();
+    logUpdater.start();
+  }
+ catch (  Exception e) {
+    Log.e("DebugLogs","Error starting log updater thread",e);
+  }
+  btnStop.setText(getString(R.string.btn_stop_logs));
+}

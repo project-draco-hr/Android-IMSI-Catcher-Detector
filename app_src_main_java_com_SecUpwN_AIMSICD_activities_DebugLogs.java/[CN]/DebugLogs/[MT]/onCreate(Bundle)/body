@@ -1,0 +1,41 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.activity_debug_logs);
+  getActionBar().setDisplayHomeAsUpEnabled(true);
+  logView=(TextView)findViewById(R.id.debug_log_view);
+  btnClear=(Button)findViewById(R.id.btnClear);
+  btnStop=(Button)findViewById(R.id.btnStopLogs);
+  btnCopy=(Button)findViewById(R.id.btnCopy);
+  btnClear.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      try {
+        clearLogs();
+      }
+ catch (      Exception e) {
+        Log.e("DebugLogs","Error clearing logs",e);
+      }
+    }
+  }
+);
+  btnCopy.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      ClipboardManager clipboard=(ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+      ClipData cd=ClipData.newPlainText("log",logView.getText());
+      clipboard.setPrimaryClip(cd);
+      Helpers.msgShort(DebugLogs.this,getString(R.string.msg_copied_to_clipboard));
+    }
+  }
+);
+  btnStop.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      if (updateLogs) {
+        updateLogs=false;
+        btnStop.setText(getString(R.string.btn_start_logs));
+      }
+ else {
+        startLogging();
+      }
+    }
+  }
+);
+}

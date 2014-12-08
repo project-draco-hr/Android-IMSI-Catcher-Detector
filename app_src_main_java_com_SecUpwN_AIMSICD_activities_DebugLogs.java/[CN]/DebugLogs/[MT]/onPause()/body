@@ -1,0 +1,4 @@
+{
+  updateLogs=false;
+  super.onPause();
+}
