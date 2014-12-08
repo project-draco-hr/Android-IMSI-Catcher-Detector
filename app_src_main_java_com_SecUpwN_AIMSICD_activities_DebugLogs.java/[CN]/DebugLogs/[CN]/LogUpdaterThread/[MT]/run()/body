@@ -1,7 +1,6 @@
 {
   while (updateLogs) {
     try {
-      Log.d("log_thread","running");
       final String logs=getLogs();
       runOnUiThread(new Runnable(){
         @Override public void run(){
