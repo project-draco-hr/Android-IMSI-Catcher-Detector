@@ -4,9 +4,8 @@
   getActionBar().setDisplayHomeAsUpEnabled(true);
   logView=(TextView)findViewById(R.id.debug_log_view);
   btnClear=(Button)findViewById(R.id.btnClear);
-  btnRadioLogs=(Button)findViewById(R.id.btnRadioLogs);
-  btnSendEmail=(Button)findViewById(R.id.btnSendEmail);
-  logUpdater.start();
+  btnStop=(Button)findViewById(R.id.btnStopLogs);
+  btnCopy=(Button)findViewById(R.id.btnCopy);
   btnClear.setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View view){
       try {
@@ -18,22 +17,24 @@
     }
   }
 );
-  btnRadioLogs.setOnClickListener(new View.OnClickListener(){
+  btnCopy.setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View view){
-      if (isRadioLogs) {
-        isRadioLogs=false;
-        btnRadioLogs.setText(getString(R.string.btn_radio_logs));
-      }
- else {
-        isRadioLogs=true;
-        btnRadioLogs.setText(getString(R.string.btn_app_logs));
-      }
+      ClipboardManager clipboard=(ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+      ClipData cd=ClipData.newPlainText("log",logView.getText());
+      clipboard.setPrimaryClip(cd);
+      Helpers.msgShort(DebugLogs.this,getString(R.string.msg_copied_to_clipboard));
     }
   }
 );
-  btnSendEmail.setOnClickListener(new View.OnClickListener(){
+  btnStop.setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View view){
-      sendEmail();
+      if (updateLogs) {
+        updateLogs=false;
+        btnStop.setText(getString(R.string.btn_start_logs));
+      }
+ else {
+        startLogging();
+      }
     }
   }
 );
