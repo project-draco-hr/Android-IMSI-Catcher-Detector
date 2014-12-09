@@ -20,7 +20,7 @@
   menu.add(DrawerMenuItem.create(301,getString(R.string.get_opencellid),"stat_sys_download_anim0",false,this));
   menu.add(DrawerMenuItem.create(302,getString(R.string.cell_lookup),"stat_sys_download_anim0",false,this));
   menu.add(DrawerMenuItem.create(303,getString(R.string.about_aimsicd),"ic_action_about",true,this));
-  menu.add(DrawerMenuItem.create(305,getString(R.string.debugging),"ic_action_computer",false,this));
+  menu.add(DrawerMenuItem.create(305,getString(R.string.send_logs),"ic_action_computer",false,this));
   menu.add(DrawerMenuItem.create(304,getString(R.string.quit),"ic_action_remove",false,this));
   DrawerMenuActivityConfiguration navDrawerActivityConfiguration=new DrawerMenuActivityConfiguration();
   navDrawerActivityConfiguration.setMainLayout(R.layout.main);
