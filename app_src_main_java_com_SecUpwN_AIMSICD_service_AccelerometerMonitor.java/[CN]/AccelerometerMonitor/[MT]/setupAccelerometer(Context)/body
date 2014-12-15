@@ -23,7 +23,6 @@
         mLastY=y;
         mLastZ=z;
         if (deltaX > 0 || deltaY > 0 || deltaZ > 0) {
-          Log.d("sensor","Movement detected, enabling GPS");
           stop();
           lastMovementTime=System.currentTimeMillis();
           if (onMovement != null)           onMovement.run();

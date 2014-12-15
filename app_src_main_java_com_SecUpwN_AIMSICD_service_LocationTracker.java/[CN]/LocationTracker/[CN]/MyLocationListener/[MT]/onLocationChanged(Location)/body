@@ -1,5 +1,4 @@
 {
-  Log.d("location","Got location " + loc);
   if (lastLocation != null && lastLocation.getLongitude() == loc.getLongitude() && lastLocation.getLatitude() == loc.getLatitude()) {
     return;
   }
