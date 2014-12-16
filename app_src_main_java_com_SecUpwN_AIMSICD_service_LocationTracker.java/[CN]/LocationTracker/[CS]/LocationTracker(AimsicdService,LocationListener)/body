@@ -1,5 +1,5 @@
 {
-  this.context=context;
+  this.context=service;
   this.extLocationListener=extLocationListener;
   lm=(LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
   mLocationListener=new MyLocationListener();
