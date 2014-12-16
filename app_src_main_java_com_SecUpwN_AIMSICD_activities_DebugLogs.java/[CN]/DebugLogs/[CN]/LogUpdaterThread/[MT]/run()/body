@@ -2,19 +2,21 @@
   while (updateLogs) {
     try {
       final String logs=getLogs();
-      runOnUiThread(new Runnable(){
-        @Override public void run(){
-          logView.setText(logs);
-          final ScrollView scroll=((ScrollView)logView.getParent());
-          scroll.post(new Runnable(){
-            @Override public void run(){
-              scroll.fullScroll(View.FOCUS_DOWN);
+      if (!logs.equals(logView.getText().toString())) {
+        runOnUiThread(new Runnable(){
+          @Override public void run(){
+            logView.setText(logs);
+            final ScrollView scroll=((ScrollView)logView.getParent());
+            scroll.post(new Runnable(){
+              @Override public void run(){
+                scroll.fullScroll(View.FOCUS_DOWN);
+              }
             }
+);
           }
-);
         }
-      }
 );
+      }
     }
  catch (    Exception e) {
       Log.e("DebugLogs","Error updating logs",e);
