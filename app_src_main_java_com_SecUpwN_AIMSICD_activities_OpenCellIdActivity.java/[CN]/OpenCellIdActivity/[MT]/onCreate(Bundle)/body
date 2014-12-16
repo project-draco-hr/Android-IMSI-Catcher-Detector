@@ -40,6 +40,7 @@
           CellTracker.OCID_API_KEY=s;
           Helpers.msgShort(OpenCellIdActivity.this,getString(R.string.ocid_api_success));
           pd.dismiss();
+          finish();
         }
       }
 .execute();
