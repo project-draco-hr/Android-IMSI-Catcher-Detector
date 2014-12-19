@@ -8,19 +8,19 @@
         mDb.open();
         Cursor result=null;
 switch (mTableSelected) {
-case "Cell Data":
+case "Unique BTS Data":
           result=mDb.getCellData();
         break;
-case "Location Data":
+case "BTS measurements":
       result=mDb.getLocationData();
     break;
-case "OpenCellID Data":
+case "Imported OCID Data":
   result=mDb.getOpenCellIDData();
 break;
 case "Default MCC Locations":
 result=mDb.getDefaultMccLocationData();
 break;
-case "Silent Sms":
+case "Silent SMS":
 result=mDb.getSilentSmsData();
 break;
 }
