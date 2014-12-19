@@ -2,19 +2,20 @@
   final String iconType=prefs.getString(mContext.getString(R.string.pref_ui_icons_key),"SENSE").toUpperCase();
   new Thread(new Runnable(){
     @Override public void run(){
-      int lastIcon=Icon.getIcon(Icon.Type.valueOf(iconType));
       Log.d(TAG,"StatusWatcher starting polling");
+      int lastIcon=Icon.getIcon(Icon.Type.valueOf(iconType));
+      mActionBar.setIcon(lastIcon);
       while (isViewingGUI) {
         final int thisIcon=Icon.getIcon(Icon.Type.valueOf(iconType));
         if (thisIcon != lastIcon) {
           lastIcon=thisIcon;
-        }
-        runOnUiThread(new Runnable(){
-          @Override public void run(){
-            mActionBar.setIcon(thisIcon);
+          runOnUiThread(new Runnable(){
+            @Override public void run(){
+              mActionBar.setIcon(thisIcon);
+            }
           }
-        }
 );
+        }
         try {
           Thread.sleep(1000);
         }
