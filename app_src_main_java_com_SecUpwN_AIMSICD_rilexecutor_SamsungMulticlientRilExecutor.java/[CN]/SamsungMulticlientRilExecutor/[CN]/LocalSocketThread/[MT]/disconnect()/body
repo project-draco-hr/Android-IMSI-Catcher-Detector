@@ -1,6 +1,6 @@
 {
   if (DBG) {
-    Log.v(TAG,"Local disconnect()");
+    Log.i(TAG,"Local disconnect()");
   }
   if (mSocket == null) {
     return;

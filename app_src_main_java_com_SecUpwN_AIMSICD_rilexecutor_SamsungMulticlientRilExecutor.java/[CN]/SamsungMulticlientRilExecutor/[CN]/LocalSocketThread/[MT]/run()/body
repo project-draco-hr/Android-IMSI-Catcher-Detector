@@ -19,7 +19,7 @@
       rcvd=mInputStream.read(buf,endpos,buf.length - endpos);
       if (rcvd < 0) {
         if (DBG) {
-          Log.v(TAG,"EOF reached");
+          Log.e(TAG,"EOF reached");
         }
         break;
       }

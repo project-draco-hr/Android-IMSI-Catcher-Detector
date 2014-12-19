@@ -7,5 +7,6 @@
  catch (    Exception e) {
       Log.e("AIMSICD","Closing shell: " + e);
     }
+    Log.i("AIMSICD","AT Shell Closed");
   }
 }
