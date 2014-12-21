@@ -1,0 +1,7 @@
+{
+  if (t != currentStatus) {
+    Intent intent=new Intent("StatusChange");
+    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+  }
+  currentStatus=t;
+}

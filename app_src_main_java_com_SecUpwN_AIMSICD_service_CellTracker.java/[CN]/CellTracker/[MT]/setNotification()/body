@@ -2,14 +2,14 @@
   String tickerText;
   String contentText="Phone Type " + mDevice.getPhoneType();
   if (mFemtoDetected || mTypeZeroSmsDetected) {
-    Status.setCurrentStatus(Status.Type.ALARM);
+    Status.setCurrentStatus(Status.Type.ALARM,this.context);
   }
  else   if (mChangedLAC) {
-    Status.setCurrentStatus(Status.Type.MEDIUM);
+    Status.setCurrentStatus(Status.Type.MEDIUM,this.context);
     contentText="Hostile Service Area: Changing LAC Detected!";
   }
  else   if (mTrackingFemtocell || mTrackingCell || mMonitoringCell) {
-    Status.setCurrentStatus(Status.Type.NORMAL);
+    Status.setCurrentStatus(Status.Type.NORMAL,this.context);
     if (mTrackingFemtocell) {
       contentText="FemtoCell Detection Active.";
     }
@@ -21,7 +21,7 @@
     }
   }
  else {
-    Status.setCurrentStatus(Status.Type.IDLE);
+    Status.setCurrentStatus(Status.Type.IDLE,this.context);
   }
 switch (Status.getStatus()) {
 case IDLE:
