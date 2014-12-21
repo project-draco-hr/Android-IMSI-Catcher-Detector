@@ -1,0 +1,5 @@
+{
+  super.onPause();
+  Log.d(TAG,"StatusWatcher stopped watching");
+  LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+}
