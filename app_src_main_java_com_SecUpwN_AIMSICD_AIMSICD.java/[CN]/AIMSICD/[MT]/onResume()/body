@@ -1,7 +1,5 @@
 {
   super.onResume();
   invalidateOptionsMenu();
-  isViewingGUI=true;
   startService();
-  startStatusWatcher();
 }
