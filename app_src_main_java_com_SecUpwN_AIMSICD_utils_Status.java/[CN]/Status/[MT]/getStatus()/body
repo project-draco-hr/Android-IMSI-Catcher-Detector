@@ -1,0 +1,6 @@
+{
+  if (currentStatus == null) {
+    return Type.IDLE;
+  }
+  return currentStatus;
+}

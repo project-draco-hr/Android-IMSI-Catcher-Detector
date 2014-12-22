@@ -6,6 +6,12 @@
   btnClear=(Button)findViewById(R.id.btnClear);
   btnStop=(Button)findViewById(R.id.btnStopLogs);
   btnCopy=(Button)findViewById(R.id.btnCopy);
+  runOnUiThread(new Runnable(){
+    @Override public void run(){
+      logView.setFocusable(false);
+    }
+  }
+);
   btnClear.setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View view){
       try {
