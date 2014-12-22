@@ -11,11 +11,12 @@
         }
       }
 ;
+      Log.i("AIMSICD","Trying to executeCommand: " + cmd);
       shell.add(cmd);
       commandWait(shell,cmd);
     }
  catch (    Exception e) {
-      Log.e("AIMSICD","executeCommand - " + e);
+      Log.e("AIMSICD","Failed to executeCommand: " + e);
     }
   }
 }
