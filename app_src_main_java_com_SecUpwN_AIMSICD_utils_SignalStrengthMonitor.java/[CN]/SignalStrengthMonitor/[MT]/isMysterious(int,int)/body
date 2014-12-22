@@ -1,0 +1,6 @@
+{
+  if (deviceIsMoving()) {
+    Log.i(TAG,"Cannot check if the signal strength for cell ID #" + cellID + " as the device is currently moving around.");
+  }
+  return false;
+}
