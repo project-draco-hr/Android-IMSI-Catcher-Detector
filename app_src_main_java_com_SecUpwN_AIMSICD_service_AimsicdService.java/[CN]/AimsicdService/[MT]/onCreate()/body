@@ -1,13 +1,15 @@
 {
+  signalStrengthTracker=new SignalStrengthTracker();
   mAccelerometerMonitor=new AccelerometerMonitor(this,new Runnable(){
     @Override public void run(){
       mLocationTracker.start();
+      signalStrengthTracker.onSensorChanged();
       timerHandler.postDelayed(batterySavingRunnable,AccelerometerMonitor.MOVEMENT_THRESHOLD_MS);
     }
   }
 );
   mLocationTracker=new LocationTracker(this,mLocationListener);
   mRilExecutor=new RilExecutor(this);
-  mCellTracker=new CellTracker(this);
+  mCellTracker=new CellTracker(this,signalStrengthTracker);
   Log.i(TAG,"Service launched successfully.");
 }
