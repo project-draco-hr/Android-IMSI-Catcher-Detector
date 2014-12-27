@@ -1,0 +1,5 @@
+{
+  if (sensorEvent.sensor.equals(Sensor.TYPE_ACCELEROMETER)) {
+    lastMovementDetected=System.currentTimeMillis();
+  }
+}
