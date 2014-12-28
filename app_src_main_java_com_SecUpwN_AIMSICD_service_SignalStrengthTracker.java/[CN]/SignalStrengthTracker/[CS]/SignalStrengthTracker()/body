@@ -1,4 +1,0 @@
-{
-  lastMovementDetected=System.currentTimeMillis();
-  lastCalculationTime=System.currentTimeMillis();
-}

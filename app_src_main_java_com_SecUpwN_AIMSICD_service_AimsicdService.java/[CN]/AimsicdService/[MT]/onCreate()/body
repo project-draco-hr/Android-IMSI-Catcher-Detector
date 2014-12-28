@@ -1,5 +1,5 @@
 {
-  signalStrengthTracker=new SignalStrengthTracker();
+  signalStrengthTracker=new SignalStrengthTracker(getBaseContext());
   mAccelerometerMonitor=new AccelerometerMonitor(this,new Runnable(){
     @Override public void run(){
       mLocationTracker.start();

@@ -17,8 +17,10 @@
     toCalculate.get(cellID).add(signalStrength);
     lastRegistration.put(cellID,now);
   }
-  if (now - (sleepTimeBetweenCalculations * 1000) > lastCalculationTime) {
-    Log.i(TAG,"Calculating cell signal averages, last calculation was " + (now - lastCalculationTime) + "ms ago");
-    lastCalculationTime=now;
+  if (now - (sleepTimeBetweenPersistation * 1000) > lastPersistTime) {
+    Log.i(TAG,"Saving cell signal data, last save was " + (now - lastPersistTime) + "ms ago");
+    cleanupOldData();
+    persistData();
+    lastPersistTime=now;
   }
 }

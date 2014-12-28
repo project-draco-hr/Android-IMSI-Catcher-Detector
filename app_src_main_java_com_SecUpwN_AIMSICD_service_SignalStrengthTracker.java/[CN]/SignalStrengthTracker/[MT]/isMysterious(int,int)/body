@@ -1,6 +1,17 @@
 {
   if (deviceIsMoving()) {
     Log.i(TAG,"Cannot check if the signal strength for cell ID #" + cellID + " as the device is currently moving around.");
+    return false;
   }
-  return false;
+  int samplesForCell=mDbHelper.countSignalMeasurements(cellID);
+  if (samplesForCell < minimumNumberOfSamplesNeeded) {
+    return false;
+  }
+  int storedAvg=mDbHelper.getAverageSignalStrength(cellID);
+  if (storedAvg > signalStrength) {
+    return storedAvg - signalStrength > mysteriousSignalDifference;
+  }
+ else {
+    return signalStrength - storedAvg > mysteriousSignalDifference;
+  }
 }
