@@ -1,5 +1,7 @@
 {
   long maxTime=(System.currentTimeMillis() - ((maximumNumberOfDaysSaved * 86400)) * 1000);
+  mDbHelper.open();
   mDbHelper.cleanseCellStrengthTables(maxTime);
+  mDbHelper.close();
   averageSignalCache.clear();
 }
