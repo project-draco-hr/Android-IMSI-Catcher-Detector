@@ -1,0 +1,26 @@
+{
+  long now=System.currentTimeMillis();
+  if (deviceIsMoving()) {
+    Log.i(TAG,"Ignored signal strength sample for cell ID #" + cellID + " as the device is currently moving around, will not accept anything for another "+ ((minimumIdleTime * 1000) - (now - lastMovementDetected))+ "ms");
+    return;
+  }
+  if (!lastRegistration.containsKey(cellID) || now - (sleepTimeBetweenSignalRegistration * 1000) > lastRegistration.get(cellID)) {
+    long diff=-1;
+    if (lastRegistration.get(cellID) != null) {
+      diff=now - lastRegistration.get(cellID);
+    }
+    lastRegistration.put(cellID,now);
+    if (toCalculate.get(cellID) == null) {
+      toCalculate.put(cellID,new ArrayList<Integer>(1));
+    }
+    Log.i(TAG,"Scheduling signal strength calculation from cell #" + cellID + " @ "+ signalStrength+ "DB, last registration was "+ diff+ "ms ago");
+    toCalculate.get(cellID).add(signalStrength);
+    lastRegistration.put(cellID,now);
+  }
+  if (now - (sleepTimeBetweenPersistation * 1000) > lastPersistTime) {
+    Log.i(TAG,"Saving cell signal data, last save was " + (now - lastPersistTime) + "ms ago");
+    cleanupOldData();
+    persistData();
+    lastPersistTime=now;
+  }
+}

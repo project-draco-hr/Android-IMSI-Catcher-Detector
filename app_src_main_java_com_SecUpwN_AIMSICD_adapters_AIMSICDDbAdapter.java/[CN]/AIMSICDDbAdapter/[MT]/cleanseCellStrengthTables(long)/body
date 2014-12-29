@@ -1,0 +1,4 @@
+{
+  Log.d(TAG,"Cleaning " + CELL_SIGNAL_TABLE + " WHERE timestamp < "+ maxTime);
+  mDb.execSQL("DELETE FROM " + CELL_SIGNAL_TABLE + " WHERE timestamp < "+ maxTime);
+}

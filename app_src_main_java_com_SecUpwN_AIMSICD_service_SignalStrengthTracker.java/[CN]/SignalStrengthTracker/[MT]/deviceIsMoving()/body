@@ -1,0 +1,3 @@
+{
+  return System.currentTimeMillis() - lastMovementDetected < minimumIdleTime * 1000;
+}
