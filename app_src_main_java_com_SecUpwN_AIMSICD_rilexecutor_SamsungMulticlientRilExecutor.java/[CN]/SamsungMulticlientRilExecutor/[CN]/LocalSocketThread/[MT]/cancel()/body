@@ -1,6 +1,6 @@
 {
   if (DBG) {
-    Log.i(TAG,"SamsungMulticlientRil cancel()");
+    Log.v(TAG,"SamsungMulticlientRil cancel()");
   }
 synchronized (this) {
     mCancelRequested.set(true);

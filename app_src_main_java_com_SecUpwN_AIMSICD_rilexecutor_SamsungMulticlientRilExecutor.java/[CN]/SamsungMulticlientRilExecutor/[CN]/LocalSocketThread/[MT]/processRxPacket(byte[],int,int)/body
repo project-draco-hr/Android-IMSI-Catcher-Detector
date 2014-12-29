@@ -2,7 +2,7 @@
   int responseType;
   Parcel p;
   if (DBG) {
-    Log.i(TAG,"received " + length + " bytes: "+ HexDump.toHexString(data,pos,length));
+    Log.v(TAG,"received " + length + " bytes: "+ HexDump.toHexString(data,pos,length));
   }
   p=Parcel.obtain();
   try {
@@ -11,13 +11,13 @@
     responseType=p.readInt();
 switch (responseType) {
 case RESPONSE_UNSOLICITED:
-      Log.i(TAG,"Unsolicited response ");
+      Log.v(TAG,"Unsolicited response ");
     break;
 case RESPONSE_SOLICITED:
   processSolicited(p);
 break;
 default :
-Log.i(TAG,"Invalid response type: " + responseType);
+Log.v(TAG,"Invalid response type: " + responseType);
 break;
 }
 }

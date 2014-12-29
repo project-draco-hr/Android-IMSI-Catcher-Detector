@@ -1,6 +1,6 @@
 {
   if (aob.length == 0) {
-    Log.v(TAG,"Length = 0");
+    Log.v(TAG,"invokeOemRilRequestRaw: string list response Length = 0");
     return Collections.emptyList();
   }
   int lines=aob.length / CHARS_PER_LINE;
