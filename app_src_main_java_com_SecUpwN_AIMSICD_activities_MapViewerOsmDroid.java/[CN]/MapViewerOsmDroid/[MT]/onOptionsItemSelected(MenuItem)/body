@@ -9,7 +9,7 @@ case R.id.get_opencellid:
 if (mBound) {
   GeoLocation lastKnown=mAimsicdService.lastKnownLocation();
   if (lastKnown != null) {
-    Helpers.msgShort(this,"Contacting OpenCellID.org for data...");
+    Helpers.msgLong(mContext,"Contacting opencellid.org for data...\nThis may take up to a minute.");
     Cell cell;
     cell=mAimsicdService.getCell();
     cell.setLon(lastKnown.getLongitudeInDegrees());
@@ -19,14 +19,14 @@ if (mBound) {
   }
 }
 if (loc != null) {
-  Helpers.msgShort(this,"Contacting OpenCellID.org for data...");
+  Helpers.msgLong(this,"Contacting opencellid.org for data...\nThis may take up to a minute.");
   Cell cell=new Cell();
   cell.setLat(loc.getLatitude());
   cell.setLon(loc.getLongitude());
   Helpers.getOpenCellData(mContext,cell,RequestTask.OPEN_CELL_ID_REQUEST_FROM_MAP);
 }
  else {
-  Helpers.msgShort(mContext,"Unable to determine your last location. \nEnable Location Services and try again.");
+  Helpers.msgLong(mContext,"Unable to determine your last location. \nEnable Location Services and try again.");
 }
 return true;
 }

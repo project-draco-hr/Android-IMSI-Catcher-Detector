@@ -42,7 +42,7 @@ new RequestTask(mContext,RequestTask.BACKUP_DATABASE).execute();
 }
  else if (selectedItem.getId() == 204) {
 if (CellTracker.LAST_DB_BACKUP_VERSION < AIMSICDDbAdapter.DATABASE_VERSION) {
-Helpers.msgShort(mContext,"Unable to restore backup from previous database version" + " due to structural changes!");
+Helpers.msgLong(mContext,"Unable to restore backup from previous database version" + " due to structural changes!");
 }
  else {
 new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
@@ -52,7 +52,7 @@ new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
 if (CellTracker.OCID_API_KEY != null && !CellTracker.OCID_API_KEY.equals("NA")) {
 GeoLocation loc=mAimsicdService.lastKnownLocation();
 if (loc != null) {
-Helpers.msgShort(mContext,"Contacting OpenCellID.org for data...");
+Helpers.msgLong(mContext,"Contacting opencellid.org for data...\nThis may " + "take up to a minute.");
 Cell cell=new Cell();
 cell.setLon(loc.getLongitudeInDegrees());
 cell.setLat(loc.getLatitudeInDegrees());

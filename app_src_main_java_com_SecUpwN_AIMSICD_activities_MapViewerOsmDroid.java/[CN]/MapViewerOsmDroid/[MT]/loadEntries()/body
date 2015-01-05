@@ -103,7 +103,6 @@ Thread.sleep(100);
 }
  catch (Exception e) {
 }
-;
 List<Cell> nc=mAimsicdService.getCellTracker().updateNeighbouringCells();
 for (Cell cell : nc) {
 try {
