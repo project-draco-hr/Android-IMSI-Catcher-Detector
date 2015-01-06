@@ -1,0 +1,5 @@
+{
+  this.cellID=cellID;
+  this.signal=signal;
+  this.timestamp=timestamp;
+}
