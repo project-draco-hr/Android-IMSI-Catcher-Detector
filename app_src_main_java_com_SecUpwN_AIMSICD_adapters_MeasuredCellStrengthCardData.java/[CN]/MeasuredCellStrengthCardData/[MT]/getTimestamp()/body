@@ -1,0 +1,3 @@
+{
+  return "Recorded: " + formatter.format(timestamp);
+}
