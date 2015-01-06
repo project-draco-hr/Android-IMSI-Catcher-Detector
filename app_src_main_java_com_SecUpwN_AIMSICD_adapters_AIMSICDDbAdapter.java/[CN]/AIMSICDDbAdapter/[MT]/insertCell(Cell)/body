@@ -14,11 +14,9 @@
     cellValues.put("Direction",cell.getBearing());
     cellValues.put("MeasurementTaken",cell.getTimestamp());
     if (cellExists(cell.getCID())) {
-      Log.v(TAG,"Cell already in OCID DB (db update): " + cellID);
       return mDb.update(CELL_TABLE,cellValues,"CellID=?",new String[]{Integer.toString(cell.getCID())});
     }
  else {
-      Log.v(TAG,"ALERT!! Cell -NOT- in OCID DB (db insert): " + cellID);
       return mDb.insert(CELL_TABLE,null,cellValues);
     }
   }
