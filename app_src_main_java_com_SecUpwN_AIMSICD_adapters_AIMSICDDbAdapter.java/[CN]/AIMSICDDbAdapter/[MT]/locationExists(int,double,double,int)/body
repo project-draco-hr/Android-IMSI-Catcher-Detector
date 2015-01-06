@@ -1,6 +1,7 @@
 {
   Cursor cursor=mDb.rawQuery("SELECT * FROM " + LOCATION_TABLE + " WHERE CellID = "+ cellID+ " AND Lat = "+ lat+ " AND Lng = "+ lng+ " AND Signal = "+ signal,null);
   boolean exists=cursor.getCount() > 0;
+  Log.i(TAG,"Cell exists in location table?: " + exists);
   cursor.close();
   return exists;
 }
