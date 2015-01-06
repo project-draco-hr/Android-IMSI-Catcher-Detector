@@ -1,0 +1,3 @@
+{
+  return mDb.rawQuery("SELECT cellID, signal, timestamp FROM " + CELL_SIGNAL_TABLE + " ORDER BY timestamp DESC",new String[0]);
+}

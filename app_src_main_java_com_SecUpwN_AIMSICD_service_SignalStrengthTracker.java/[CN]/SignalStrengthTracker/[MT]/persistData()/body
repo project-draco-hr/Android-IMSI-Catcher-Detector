@@ -1,10 +1,8 @@
 {
   mDbHelper.open();
-  for (  int cellID : toCalculate.keySet()) {
-    for (    int signal : toCalculate.get(cellID)) {
-      mDbHelper.addSignalStrength(cellID,signal,lastRegistration.get(cellID));
-    }
+  for (  SignalResult sr : dataToPersist) {
+    mDbHelper.addSignalStrength(sr.cellID,sr.signal,sr.timestamp);
   }
   mDbHelper.close();
-  toCalculate.clear();
+  dataToPersist.clear();
 }

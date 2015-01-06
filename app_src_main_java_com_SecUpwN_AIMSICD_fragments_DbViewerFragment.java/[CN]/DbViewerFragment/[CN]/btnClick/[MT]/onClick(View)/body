@@ -23,6 +23,8 @@ break;
 case "Silent SMS":
 result=mDb.getSilentSmsData();
 break;
+case "Measured cell signal strengths":
+result=mDb.getSignalStrengthMeasurementData();
 }
 BaseInflaterAdapter adapter=null;
 if (result != null) {

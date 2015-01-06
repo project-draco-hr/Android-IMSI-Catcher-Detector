@@ -30,15 +30,24 @@ case "Silent SMS":
     }
     return adapter;
   }
-default :
+case "Measured cell signal strengths":
 {
-  BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new CellCardInflater());
-  int count=tableData.getCount();
+  BaseInflaterAdapter<MeasuredCellStrengthCardData> adapter=new BaseInflaterAdapter<>(new MeasuredCellStrengthCardInflater());
   while (tableData.moveToNext()) {
-    CardItemData data=new CardItemData("CID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"RAT: " + tableData.getString(2),"Lat: " + tableData.getString(3),"Lon: " + tableData.getString(4),"RSS: " + tableData.getString(5),"" + (tableData.getPosition() + 1) + " / "+ count);
+    MeasuredCellStrengthCardData data=new MeasuredCellStrengthCardData(tableData.getInt(0),tableData.getInt(1),tableData.getLong(2));
     adapter.addItem(data,false);
   }
   return adapter;
+}
+default :
+{
+BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new CellCardInflater());
+int count=tableData.getCount();
+while (tableData.moveToNext()) {
+  CardItemData data=new CardItemData("CID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"RAT: " + tableData.getString(2),"Lat: " + tableData.getString(3),"Lon: " + tableData.getString(4),"RSS: " + tableData.getString(5),"" + (tableData.getPosition() + 1) + " / "+ count);
+  adapter.addItem(data,false);
+}
+return adapter;
 }
 }
 }
