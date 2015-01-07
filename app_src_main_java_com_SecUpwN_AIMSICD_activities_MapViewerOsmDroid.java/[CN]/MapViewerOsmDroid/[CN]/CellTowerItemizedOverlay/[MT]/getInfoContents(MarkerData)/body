@@ -16,11 +16,13 @@
       tv=(TextView)v.findViewById(R.id.lng);
       tv.setText(String.valueOf(data.lng));
       tv=(TextView)v.findViewById(R.id.mcc);
-      tv.setText(data.mcc);
+      tv.setText(data.getMCC());
       tv=(TextView)v.findViewById(R.id.mnc);
-      tv.setText(data.mnc);
+      tv.setText(data.getMNC());
+      tv=(TextView)v.findViewById(R.id.pc);
+      tv.setText(data.getPC());
       tv=(TextView)v.findViewById(R.id.samples);
-      tv.setText(data.samples);
+      tv.setText(data.getSamples());
     }
   }
   return v;
