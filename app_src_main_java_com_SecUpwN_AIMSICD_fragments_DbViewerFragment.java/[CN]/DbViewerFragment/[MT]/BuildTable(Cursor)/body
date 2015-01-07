@@ -30,7 +30,7 @@ case "Silent SMS":
     }
     return adapter;
   }
-case "Measured cell signal strengths":
+case "Measured Signal Strengths":
 {
   BaseInflaterAdapter<MeasuredCellStrengthCardData> adapter=new BaseInflaterAdapter<>(new MeasuredCellStrengthCardInflater());
   while (tableData.moveToNext()) {
