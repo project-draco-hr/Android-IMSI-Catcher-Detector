@@ -1,6 +1,6 @@
 {
   TextView tv;
-  View v=getLayoutInflater().inflate(R.layout.marker_info_window,null);
+  View v=LayoutInflater.from(mContext).inflate(R.layout.marker_info_window,null);
   if (v != null) {
     if (data != null) {
       if (data.openCellID) {
