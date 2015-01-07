@@ -1,6 +1,5 @@
 {
   RootShell.handlerEnabled=false;
-  RootShell.debugMode=true;
   boolean root=RootShell.isAccessGiven();
   if (!root) {
     return ROOT_UNAVAILABLE;
