@@ -7,6 +7,12 @@
  catch (      Exception e) {
         Log.e("DebugLogs","Error clearing logs",e);
       }
+      runOnUiThread(new Runnable(){
+        @Override public void run(){
+          logView.setText("");
+        }
+      }
+);
     }
   }
 .start();

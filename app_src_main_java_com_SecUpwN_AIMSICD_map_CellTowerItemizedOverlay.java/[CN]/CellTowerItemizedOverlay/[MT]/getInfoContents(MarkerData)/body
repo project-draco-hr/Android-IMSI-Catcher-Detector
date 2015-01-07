@@ -1,6 +1,6 @@
 {
   TextView tv;
-  View v=getLayoutInflater().inflate(R.layout.marker_info_window,null);
+  View v=LayoutInflater.from(mContext).inflate(R.layout.marker_info_window,null);
   if (v != null) {
     if (data != null) {
       if (data.openCellID) {
@@ -16,11 +16,13 @@
       tv=(TextView)v.findViewById(R.id.lng);
       tv.setText(String.valueOf(data.lng));
       tv=(TextView)v.findViewById(R.id.mcc);
-      tv.setText(data.mcc);
+      tv.setText(data.getMCC());
       tv=(TextView)v.findViewById(R.id.mnc);
-      tv.setText(data.mnc);
+      tv.setText(data.getMNC());
+      tv=(TextView)v.findViewById(R.id.pc);
+      tv.setText(data.getPC());
       tv=(TextView)v.findViewById(R.id.samples);
-      tv.setText(data.samples);
+      tv.setText(data.getSamples());
     }
   }
   return v;
