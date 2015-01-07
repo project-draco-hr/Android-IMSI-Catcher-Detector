@@ -90,7 +90,7 @@
         super.commandOutput(id,line);
       }
       @Override public void commandTerminated(      int id,      String reason){
-synchronized (SanityCheckRootShell.this) {
+synchronized (com.stericson.RootShellTests.SanityCheckRootShell.this) {
           _catch=true;
           visualUpdate(TestHandler.ACTION_PDISPLAY,"All tests complete.");
           visualUpdate(TestHandler.ACTION_HIDE,null);
@@ -103,7 +103,7 @@ synchronized (SanityCheckRootShell.this) {
         }
       }
       @Override public void commandCompleted(      int id,      int exitCode){
-synchronized (SanityCheckRootShell.this) {
+synchronized (com.stericson.RootShellTests.SanityCheckRootShell.this) {
           _catch=true;
           visualUpdate(TestHandler.ACTION_PDISPLAY,"All tests complete.");
           visualUpdate(TestHandler.ACTION_HIDE,null);
