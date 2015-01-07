@@ -1,0 +1,8 @@
+{
+  if (root) {
+    Shell.closeRootShell();
+  }
+ else {
+    Shell.closeShell();
+  }
+}

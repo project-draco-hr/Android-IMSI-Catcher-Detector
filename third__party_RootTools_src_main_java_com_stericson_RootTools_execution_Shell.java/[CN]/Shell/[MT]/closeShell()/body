@@ -1,4 +1,0 @@
-{
-  if (Shell.shell == null)   return;
-  Shell.shell.close();
-}

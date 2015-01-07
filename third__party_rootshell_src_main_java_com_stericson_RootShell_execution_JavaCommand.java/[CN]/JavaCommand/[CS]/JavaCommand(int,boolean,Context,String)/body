@@ -1,0 +1,5 @@
+{
+  super(id,handlerEnabled,command);
+  this.context=context;
+  this.javaCommand=true;
+}

@@ -1,9 +1,0 @@
-{
-  if (rim == null) {
-    RootToolsInternalMethods.getInstance();
-    return rim;
-  }
- else {
-    return rim;
-  }
-}

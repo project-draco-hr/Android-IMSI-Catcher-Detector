@@ -1,0 +1,58 @@
+{
+  int idx=internal ? 0 : 1;
+  if (suVersion[idx] == null) {
+    String version=null;
+    Process process;
+    try {
+      process=Runtime.getRuntime().exec(internal ? "su -V" : "su -v",null);
+      process.waitFor();
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+      return null;
+    }
+catch (    InterruptedException e) {
+      e.printStackTrace();
+      return null;
+    }
+    List<String> stdout=new ArrayList<String>();
+    BufferedReader reader=new BufferedReader(new InputStreamReader(process.getInputStream()));
+    try {
+      String line=null;
+      while ((line=reader.readLine()) != null) {
+        stdout.add(line);
+      }
+    }
+ catch (    IOException e) {
+    }
+    try {
+      reader.close();
+    }
+ catch (    IOException e) {
+    }
+    process.destroy();
+    List<String> ret=stdout;
+    if (ret != null) {
+      for (      String line : ret) {
+        if (!internal) {
+          if (line.contains(".")) {
+            version=line;
+            break;
+          }
+        }
+ else {
+          try {
+            if (Integer.parseInt(line) > 0) {
+              version=line;
+              break;
+            }
+          }
+ catch (          NumberFormatException e) {
+          }
+        }
+      }
+    }
+    suVersion[idx]=version;
+  }
+  return suVersion[idx];
+}

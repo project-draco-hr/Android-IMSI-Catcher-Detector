@@ -1,0 +1,68 @@
+{
+  RootShell.log("Starting shell: " + cmd);
+  RootShell.log("Context: " + shellContext.getValue());
+  RootShell.log("Timeout: " + shellTimeout);
+  this.shellType=shellType;
+  this.shellTimeout=shellTimeout > 0 ? shellTimeout : this.shellTimeout;
+  this.shellContext=shellContext;
+  if (this.shellContext == ShellContext.NORMAL) {
+    this.proc=Runtime.getRuntime().exec(cmd);
+  }
+ else {
+    String display=getSuVersion(false);
+    String internal=getSuVersion(true);
+    if (isSELinuxEnforcing() && (display != null) && (internal != null)&& (display.endsWith("SUPERSU"))&& (Integer.valueOf(internal) >= 190)) {
+      cmd+=" --context " + this.shellContext.getValue();
+    }
+ else {
+      RootShell.log("Su binary --context switch not supported!");
+      RootShell.log("Su binary display version: " + display);
+      RootShell.log("Su binary internal version: " + internal);
+      RootShell.log("SELinuxEnforcing: " + isSELinuxEnforcing());
+    }
+    this.proc=Runtime.getRuntime().exec(cmd);
+  }
+  this.inputStream=new BufferedReader(new InputStreamReader(this.proc.getInputStream(),"UTF-8"));
+  this.errorStream=new BufferedReader(new InputStreamReader(this.proc.getErrorStream(),"UTF-8"));
+  this.outputStream=new OutputStreamWriter(this.proc.getOutputStream(),"UTF-8");
+  Worker worker=new Worker(this);
+  worker.start();
+  try {
+    worker.join(this.shellTimeout);
+    if (worker.exit == -911) {
+      try {
+        this.proc.destroy();
+      }
+ catch (      Exception e) {
+      }
+      closeQuietly(this.inputStream);
+      closeQuietly(this.errorStream);
+      closeQuietly(this.outputStream);
+      throw new TimeoutException(this.error);
+    }
+ else     if (worker.exit == -42) {
+      try {
+        this.proc.destroy();
+      }
+ catch (      Exception e) {
+      }
+      closeQuietly(this.inputStream);
+      closeQuietly(this.errorStream);
+      closeQuietly(this.outputStream);
+      throw new RootDeniedException("Root Access Denied");
+    }
+ else {
+      Thread si=new Thread(this.input,"Shell Input");
+      si.setPriority(Thread.NORM_PRIORITY);
+      si.start();
+      Thread so=new Thread(this.output,"Shell Output");
+      so.setPriority(Thread.NORM_PRIORITY);
+      so.start();
+    }
+  }
+ catch (  InterruptedException ex) {
+    worker.interrupt();
+    Thread.currentThread().interrupt();
+    throw new TimeoutException();
+  }
+}

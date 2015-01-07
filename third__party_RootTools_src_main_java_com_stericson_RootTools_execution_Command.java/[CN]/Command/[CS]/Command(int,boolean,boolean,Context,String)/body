@@ -1,5 +1,0 @@
-{
-  this(id,handlerEnabled,command);
-  this.javaCommand=javaCommand;
-  this.context=context;
-}

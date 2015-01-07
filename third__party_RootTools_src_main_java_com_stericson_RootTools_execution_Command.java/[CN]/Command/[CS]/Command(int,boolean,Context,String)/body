@@ -1,5 +1,0 @@
-{
-  this(id,command);
-  this.javaCommand=javaCommand;
-  this.context=context;
-}

@@ -1,3 +1,0 @@
-{
-  return RootTools.getShell(root,0);
-}

@@ -1,14 +1,16 @@
 {
-  boolean root=RootTools.isAccessGiven();
+  RootShell.handlerEnabled=false;
+  RootShell.debugMode=true;
+  boolean root=RootShell.isAccessGiven();
   if (!root) {
     return ROOT_UNAVAILABLE;
   }
-  boolean busybox=RootTools.isBusyboxAvailable();
+  boolean busybox=RootShell.isBusyboxAvailable();
   if (!busybox) {
     return BUSYBOX_UNAVAILABLE;
   }
   try {
-    shell=RootTools.getShell(true);
+    shell=RootShell.getShell(true);
     mAtResponse.setText("*** Setting Up... Ignore any errors. ***\n");
     mSerialDevices.clear();
     String rilDevice=Helpers.getSystemProp(mContext,"rild.libargs","UNKNOWN");
@@ -16,7 +18,7 @@
     if (!mSerialDevice.equals("UNKNOWN")) {
       mSerialDevices.add(mSerialDevice);
     }
-    CommandCapture cmd=new CommandCapture(0,"\\ls /dev/radio | grep atci*"){
+    Command cmd=new Command(0,"\\ls /dev/radio | grep atci*"){
       @Override public void commandOutput(      int id,      String line){
         if (id == 0) {
           if (!line.trim().equals("") && !mSerialDevices.contains("/dev/radio/" + line.trim())) {
@@ -24,6 +26,7 @@
             mAtResponse.append("Found: " + line.trim());
           }
         }
+        super.commandOutput(id,line);
       }
     }
 ;
@@ -31,7 +34,7 @@
     commandWait(shell,cmd);
     File xgold=new File("/system/etc/ril_xgold_radio.cfg");
     if (xgold.exists() && xgold.isFile()) {
-      cmd=new CommandCapture(1,"cat /system/etc/ril_xgold_radio.cfg | " + "grep -E \"atport*|dataport*\""){
+      cmd=new Command(1,"cat /system/etc/ril_xgold_radio.cfg | " + "grep -E \"atport*|dataport*\""){
         @Override public void commandOutput(        int id,        String line){
           if (id == 0) {
             if (!line.trim().equals("") && line.contains("/dev/")) {
@@ -40,6 +43,7 @@
               mAtResponse.append(line.substring(place,line.length() - 1));
             }
           }
+          super.commandOutput(id,line);
         }
       }
 ;

@@ -1,0 +1,30 @@
+{
+  final Set<String> ID=new HashSet<String>();
+  final int IAG=158;
+  try {
+    RootShell.log("Checking for Root access");
+    Command command=new Command(IAG,false,"id"){
+      @Override public void commandOutput(      int id,      String line){
+        if (id == IAG) {
+          ID.addAll(Arrays.asList(line.split(" ")));
+        }
+        super.commandOutput(id,line);
+      }
+    }
+;
+    Shell.startRootShell().add(command);
+    commandWait(Shell.startRootShell(),command);
+    for (    String userid : ID) {
+      RootShell.log(userid);
+      if (userid.toLowerCase().contains("uid=0")) {
+        RootShell.log("Access Given");
+        return true;
+      }
+    }
+    return false;
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    return false;
+  }
+}

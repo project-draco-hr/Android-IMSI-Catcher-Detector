@@ -1,5 +1,0 @@
-{
-  this(id,timeout,command);
-  this.javaCommand=javaCommand;
-  this.context=context;
-}
