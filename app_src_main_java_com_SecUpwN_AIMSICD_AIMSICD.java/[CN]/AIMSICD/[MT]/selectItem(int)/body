@@ -99,7 +99,20 @@ Intent i=new Intent(this,DebugLogs.class);
 startActivity(i);
 }
  else if (selectedItem.getId() == 304) {
-finish();
+if (mBound) {
+unbindService(mConnection);
+mBound=false;
+}
+final String PERSIST_SERVICE=mContext.getString(R.string.pref_persistservice_key);
+boolean persistService=prefs.getBoolean(PERSIST_SERVICE,true);
+if (!persistService) {
+Intent intent=new Intent(mContext,AimsicdService.class);
+stopService(intent);
+}
+Intent intent=new Intent(getApplicationContext(),AIMSICD.class);
+intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+intent.putExtra("EXIT",true);
+startActivity(intent);
 }
 mDrawerList.setItemChecked(position,true);
 if (selectedItem.updateActionBarTitle()) {
