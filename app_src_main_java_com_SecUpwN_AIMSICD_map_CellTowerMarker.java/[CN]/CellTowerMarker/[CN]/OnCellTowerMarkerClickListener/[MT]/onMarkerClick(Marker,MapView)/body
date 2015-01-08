@@ -1,7 +1,8 @@
 {
+  CellTowerMarker cellTowerMarker=(CellTowerMarker)marker;
   AlertDialog.Builder dialog=new AlertDialog.Builder(mContext);
-  dialog.setTitle(item.getTitle());
-  dialog.setView(getInfoContents(item.getMarkerData()));
+  dialog.setTitle(cellTowerMarker.getTitle());
+  dialog.setView(getInfoContents(cellTowerMarker.getMarkerData()));
   dialog.setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener(){
     @Override public void onClick(    DialogInterface dialogInterface,    int i){
       dialogInterface.dismiss();
