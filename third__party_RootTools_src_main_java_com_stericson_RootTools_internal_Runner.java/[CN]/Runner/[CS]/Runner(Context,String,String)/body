@@ -1,5 +1,0 @@
-{
-  this.context=context;
-  this.binaryName=binaryName;
-  this.parameter=parameter;
-}

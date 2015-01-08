@@ -1,3 +1,0 @@
-{
-  return getInternals().installBinary(context,sourceId,destName,mode);
-}

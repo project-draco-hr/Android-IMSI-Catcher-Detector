@@ -1,5 +1,5 @@
 {
-  CommandCapture cmd=new CommandCapture(SET_DEVICE,"cat " + mSerialDevice + " \u0026\n");
+  Command cmd=new Command(SET_DEVICE,"cat " + mSerialDevice + " \u0026\n");
   try {
     shell.add(cmd);
     commandWait(shell,cmd);

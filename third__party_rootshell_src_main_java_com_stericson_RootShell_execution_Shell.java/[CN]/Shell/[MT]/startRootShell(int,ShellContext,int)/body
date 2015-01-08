@@ -1,0 +1,59 @@
+{
+  int retries=0;
+  if (Shell.rootShell == null) {
+    RootShell.log("Starting Root Shell!");
+    String cmd="su";
+    while (Shell.rootShell == null) {
+      try {
+        RootShell.log("Trying to open Root Shell, attempt #" + retries);
+        Shell.rootShell=new Shell(cmd,ShellType.ROOT,shellContext,timeout);
+      }
+ catch (      IOException e) {
+        if (retries++ >= retry) {
+          RootShell.log("IOException, could not start shell");
+          throw e;
+        }
+      }
+catch (      RootDeniedException e) {
+        if (retries++ >= retry) {
+          RootShell.log("RootDeniedException, could not start shell");
+          throw e;
+        }
+      }
+catch (      TimeoutException e) {
+        if (retries++ >= retry) {
+          RootShell.log("TimeoutException, could not start shell");
+          throw e;
+        }
+      }
+    }
+  }
+ else   if (Shell.rootShell.shellContext != shellContext) {
+    try {
+      RootShell.log("Context is different than open shell, switching context... " + Shell.rootShell.shellContext + " VS "+ shellContext);
+      Shell.rootShell.switchRootShellContext(shellContext);
+    }
+ catch (    IOException e) {
+      if (retries++ >= retry) {
+        RootShell.log("IOException, could not switch context!");
+        throw e;
+      }
+    }
+catch (    RootDeniedException e) {
+      if (retries++ >= retry) {
+        RootShell.log("RootDeniedException, could not switch context!");
+        throw e;
+      }
+    }
+catch (    TimeoutException e) {
+      if (retries++ >= retry) {
+        RootShell.log("TimeoutException, could not switch context!");
+        throw e;
+      }
+    }
+  }
+ else {
+    RootShell.log("Using Existing Root Shell!");
+  }
+  return Shell.rootShell;
+}

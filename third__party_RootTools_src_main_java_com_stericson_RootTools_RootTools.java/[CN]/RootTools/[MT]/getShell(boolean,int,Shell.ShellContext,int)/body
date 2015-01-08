@@ -1,4 +1,0 @@
-{
-  if (root)   return Shell.startRootShell(timeout,shellContext,retry);
- else   return Shell.startShell(timeout);
-}

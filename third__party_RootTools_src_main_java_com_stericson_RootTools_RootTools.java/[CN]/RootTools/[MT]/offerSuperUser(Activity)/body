@@ -1,3 +1,0 @@
-{
-  getInternals().offerSuperUser(activity);
-}

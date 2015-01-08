@@ -1,0 +1,23 @@
+{
+  if (msg != null && !msg.equals("")) {
+    if (debugMode) {
+      if (TAG == null) {
+        TAG=version;
+      }
+switch (type) {
+case VERBOSE:
+        Log.v(TAG,msg);
+      break;
+case ERROR:
+    Log.e(TAG,msg,e);
+  break;
+case DEBUG:
+Log.d(TAG,msg);
+break;
+case WARN:
+Log.w(TAG,msg);
+break;
+}
+}
+}
+}
