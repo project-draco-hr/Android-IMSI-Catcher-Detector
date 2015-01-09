@@ -11,4 +11,10 @@
   }
   loadPreferences();
   loadEntries();
+  if (mCompassOverlay != null) {
+    mCompassOverlay.enableCompass();
+  }
+  if (mMyLocationOverlay != null) {
+    mMyLocationOverlay.enableMyLocation();
+  }
 }

@@ -116,9 +116,7 @@ items.add(ovm);
 Log.e("map","Error plotting neighbouring cells",e);
 }
 }
-mMap.getOverlays().remove(mCellTowerGridMarkerClusterer);
 mCellTowerGridMarkerClusterer.addAll(items);
-mMap.getOverlays().add(mCellTowerGridMarkerClusterer);
 return ret;
 }
 @Override protected void onPostExecute(GeoPoint defaultLoc){
