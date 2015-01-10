@@ -1,8 +1,0 @@
-{
-  mDbHelper.open();
-  for (  SignalResult sr : dataToPersist) {
-    mDbHelper.addSignalStrength(sr.cellID,sr.signal,sr.timestamp);
-  }
-  mDbHelper.close();
-  dataToPersist.clear();
-}
