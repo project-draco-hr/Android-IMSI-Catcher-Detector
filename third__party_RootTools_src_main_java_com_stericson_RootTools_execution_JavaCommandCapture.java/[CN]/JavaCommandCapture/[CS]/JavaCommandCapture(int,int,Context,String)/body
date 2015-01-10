@@ -1,3 +1,0 @@
-{
-  super(id,timeout,true,context,command);
-}

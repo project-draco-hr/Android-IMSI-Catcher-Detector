@@ -1,0 +1,29 @@
+{
+  if (isSELinuxEnforcing == null) {
+    Boolean enforcing=null;
+    if (android.os.Build.VERSION.SDK_INT >= 17) {
+      File f=new File("/sys/fs/selinux/enforce");
+      if (f.exists()) {
+        try {
+          InputStream is=new FileInputStream("/sys/fs/selinux/enforce");
+          try {
+            enforcing=(is.read() == '1');
+          }
+  finally {
+            is.close();
+          }
+        }
+ catch (        Exception e) {
+        }
+      }
+      if (enforcing == null) {
+        enforcing=(android.os.Build.VERSION.SDK_INT >= 19);
+      }
+    }
+    if (enforcing == null) {
+      enforcing=false;
+    }
+    isSELinuxEnforcing=enforcing;
+  }
+  return isSELinuxEnforcing;
+}

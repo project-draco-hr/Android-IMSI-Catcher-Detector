@@ -1,8 +1,0 @@
-{
-  if (Shell.customShell == null) {
-    RootTools.log("Starting Custom Shell!");
-    Shell.customShell=new Shell(shellPath,ShellType.CUSTOM,ShellContext.NORMAL,timeout);
-  }
- else   RootTools.log("Using Existing Custom Shell!");
-  return Shell.customShell;
-}

@@ -1,0 +1,12 @@
+{
+  if (this.close) {
+    throw new IllegalStateException("Unable to add commands to a closed shell");
+  }
+  while (this.isCleaning) {
+    ;
+  }
+  command.resetCommand();
+  this.commands.add(command);
+  this.notifyThreads();
+  return command;
+}

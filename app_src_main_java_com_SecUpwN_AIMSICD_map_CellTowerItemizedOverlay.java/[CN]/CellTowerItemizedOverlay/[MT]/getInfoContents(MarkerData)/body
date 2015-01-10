@@ -1,0 +1,29 @@
+{
+  TextView tv;
+  View v=LayoutInflater.from(mContext).inflate(R.layout.marker_info_window,null);
+  if (v != null) {
+    if (data != null) {
+      if (data.openCellID) {
+        TableRow tr=(TableRow)v.findViewById(R.id.open_cell_label);
+        tr.setVisibility(View.VISIBLE);
+      }
+      tv=(TextView)v.findViewById(R.id.cell_id);
+      tv.setText(data.cellID);
+      tv=(TextView)v.findViewById(R.id.lac);
+      tv.setText(data.lac);
+      tv=(TextView)v.findViewById(R.id.lat);
+      tv.setText(String.valueOf(data.lat));
+      tv=(TextView)v.findViewById(R.id.lng);
+      tv.setText(String.valueOf(data.lng));
+      tv=(TextView)v.findViewById(R.id.mcc);
+      tv.setText(data.getMCC());
+      tv=(TextView)v.findViewById(R.id.mnc);
+      tv.setText(data.getMNC());
+      tv=(TextView)v.findViewById(R.id.pc);
+      tv.setText(data.getPC());
+      tv=(TextView)v.findViewById(R.id.samples);
+      tv.setText(data.getSamples());
+    }
+  }
+  return v;
+}

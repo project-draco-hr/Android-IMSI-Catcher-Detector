@@ -5,6 +5,7 @@
       int signal;
       int color;
       mOpenCellIdOverlay.removeAllItems();
+      loadOpenCellIDMarkers();
       LinkedList<CellTowerOverlayItem> items=new LinkedList<>();
       mDbHelper.open();
       Cursor c=null;
@@ -140,13 +141,7 @@ mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()
 }
 }
 }
-new Thread(){
-@Override public void run(){
-loadOpenCellIDMarkers();
 }
 }
-.start();
-}
-}
-.execute();
+.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 }

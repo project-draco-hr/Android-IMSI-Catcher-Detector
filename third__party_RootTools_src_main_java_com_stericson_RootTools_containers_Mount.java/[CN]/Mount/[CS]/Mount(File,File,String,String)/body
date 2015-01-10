@@ -1,6 +1,0 @@
-{
-  mDevice=device;
-  mMountPoint=path;
-  mType=type;
-  mFlags=new LinkedHashSet<String>(Arrays.asList(flagsStr.split(",")));
-}

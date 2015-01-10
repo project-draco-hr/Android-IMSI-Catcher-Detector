@@ -1,19 +1,22 @@
 {
   if (mAtCommand.getText() != null) {
+    final StringBuilder response=new StringBuilder();
     try {
-      CommandCapture cmd=new CommandCapture(EXECUTE_COMMAND,mAtCommand.getText().toString() + "\n"){
+      Command cmd=new Command(EXECUTE_COMMAND,mAtCommand.getText().toString() + "\n"){
         @Override public void commandOutput(        int id,        String line){
           if (id == EXECUTE_COMMAND) {
             if (!line.trim().equals("")) {
-              mAtResponse.append(line + "\n");
+              response.append(line + "\n");
             }
           }
+          super.commandOutput(id,line);
         }
       }
 ;
       Log.i("AIMSICD","Trying to executeCommand: " + cmd);
       shell.add(cmd);
       commandWait(shell,cmd);
+      mAtResponse.append(response.toString());
     }
  catch (    Exception e) {
       Log.e("AIMSICD","Failed to executeCommand: " + e);

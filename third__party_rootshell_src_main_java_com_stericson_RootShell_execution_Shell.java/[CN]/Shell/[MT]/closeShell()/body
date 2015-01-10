@@ -1,0 +1,7 @@
+{
+  RootShell.log("Request to close normal shell!");
+  if (Shell.shell == null) {
+    return;
+  }
+  Shell.shell.close();
+}

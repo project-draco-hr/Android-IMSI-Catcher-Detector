@@ -5,13 +5,10 @@ case 0:
     mMap.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
   break;
 case 1:
-mMap.setTileSource(TileSourceFactory.MAPNIK);
-break;
-case 2:
-mMap.setTileSource(TileSourceFactory.MAPQUESTAERIAL);
-break;
-case 3:
 mMap.setTileSource(TileSourceFactory.CYCLEMAP);
+break;
+default :
+mMap.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
 break;
 }
 }
