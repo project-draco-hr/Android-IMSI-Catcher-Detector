@@ -4,6 +4,7 @@
     if (mMap != null) {
       mMap.setBuiltInZoomControls(true);
       mMap.setMultiTouchControls(true);
+      mMap.setMinZoomLevel(3);
       mCompassOverlay=new CompassOverlay(this,new InternalCompassOrientationProvider(this),mMap);
       mScaleBarOverlay=new ScaleBarOverlay(this);
       mScaleBarOverlay.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels / 2,10);
