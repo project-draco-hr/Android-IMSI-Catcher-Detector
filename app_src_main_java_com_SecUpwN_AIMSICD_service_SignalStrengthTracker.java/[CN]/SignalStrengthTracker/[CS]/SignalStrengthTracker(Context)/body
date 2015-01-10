@@ -1,5 +1,6 @@
 {
   lastMovementDetected=System.currentTimeMillis();
-  lastPersistTime=System.currentTimeMillis();
+  lastRegistrationTime=System.currentTimeMillis();
+  lastCleanupTime=System.currentTimeMillis();
   mDbHelper=new AIMSICDDbAdapter(context);
 }

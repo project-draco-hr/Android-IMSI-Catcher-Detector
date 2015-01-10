@@ -4,21 +4,16 @@
     Log.i(TAG,"Ignored signal strength sample for cell ID #" + cellID + " as the device is currently moving around, will not accept anything for another "+ ((minimumIdleTime * 1000) - (now - lastMovementDetected))+ "ms");
     return;
   }
-  if (!lastRegistration.containsKey(cellID) || now - (sleepTimeBetweenSignalRegistration * 1000) > lastRegistration.get(cellID)) {
-    long diff=-1;
-    if (lastRegistration.get(cellID) != null) {
-      diff=now - lastRegistration.get(cellID);
-    }
-    Log.i(TAG,"Scheduling signal strength calculation from cell #" + cellID + " @ "+ signalStrength+ "DB, last registration was "+ diff+ "ms ago");
-    lastRegistration.put(cellID,now);
-    SignalResult row=new SignalResult(cellID,signalStrength,now);
-    dataToPersist.add(row);
-    lastRegistration.put(cellID,now);
+  if (now - (sleepTimeBetweenSignalRegistration * 1000) > lastRegistrationTime) {
+    long diff=now - lastRegistrationTime;
+    Log.i(TAG,"Scheduling signal strength calculation from cell #" + cellID + " @ "+ signalStrength+ " dBm, last registration was "+ diff+ "ms ago");
+    lastRegistrationTime=now;
+    mDbHelper.open();
+    mDbHelper.addSignalStrength(cellID,signalStrength,now);
+    mDbHelper.close();
   }
-  if (now - (sleepTimeBetweenPersistation * 1000) > lastPersistTime) {
-    Log.i(TAG,"Saving cell signal data, last save was " + (now - lastPersistTime) + "ms ago");
+  if (now - (sleepTimeBetweenCleanup * 1000) > lastCleanupTime) {
+    Log.i(TAG,"Removing up old signal strength entries");
     cleanupOldData();
-    persistData();
-    lastPersistTime=now;
   }
 }
