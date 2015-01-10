@@ -2,4 +2,10 @@
   super.onPause();
   isViewingGUI=false;
   LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+  if (mCompassOverlay != null) {
+    mCompassOverlay.disableCompass();
+  }
+  if (mMyLocationOverlay != null) {
+    mMyLocationOverlay.disableMyLocation();
+  }
 }

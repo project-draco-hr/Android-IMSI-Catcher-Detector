@@ -1,0 +1,9 @@
+{
+  super(mapView);
+  mContext=context;
+  mTitle=aTitle;
+  mSnippet=aSnippet;
+  mPosition=aGeoPoint;
+  mMarkerData=data;
+  mOnMarkerClickListener=new OnCellTowerMarkerClickListener();
+}

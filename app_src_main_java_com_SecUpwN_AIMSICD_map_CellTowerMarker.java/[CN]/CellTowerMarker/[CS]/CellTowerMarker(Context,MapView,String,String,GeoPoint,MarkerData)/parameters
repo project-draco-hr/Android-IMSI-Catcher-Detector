@@ -1,3 +1,5 @@
+Context context
+MapView mapView
 String aTitle
 String aSnippet
 GeoPoint aGeoPoint

@@ -4,14 +4,22 @@
     if (mMap != null) {
       mMap.setBuiltInZoomControls(true);
       mMap.setMultiTouchControls(true);
-      ResourceProxyImpl resProxyImp=new ResourceProxyImpl(MapViewerOsmDroid.this);
+      mMap.setMinZoomLevel(3);
+      mCompassOverlay=new CompassOverlay(this,new InternalCompassOrientationProvider(this),mMap);
+      mScaleBarOverlay=new ScaleBarOverlay(this);
+      mScaleBarOverlay.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels / 2,10);
+      mScaleBarOverlay.setCentred(true);
+      mCellTowerGridMarkerClusterer=new CellTowerGridMarkerClusterer(MapViewerOsmDroid.this);
+      mCellTowerGridMarkerClusterer.setIcon(((BitmapDrawable)mContext.getResources().getDrawable(R.drawable.ic_map_pin_orange)).getBitmap());
       GpsMyLocationProvider imlp=new GpsMyLocationProvider(MapViewerOsmDroid.this.getBaseContext());
       imlp.setLocationUpdateMinDistance(1000);
       imlp.setLocationUpdateMinTime(60000);
       mMyLocationOverlay=new MyLocationNewOverlay(MapViewerOsmDroid.this.getBaseContext(),imlp,mMap);
       mMyLocationOverlay.setDrawAccuracyEnabled(true);
+      mMap.getOverlays().add(mCellTowerGridMarkerClusterer);
       mMap.getOverlays().add(mMyLocationOverlay);
-      mOpenCellIdOverlay=new CellTowerItemizedOverlay(MapViewerOsmDroid.this,new LinkedList<CellTowerOverlayItem>());
+      mMap.getOverlays().add(mCompassOverlay);
+      mMap.getOverlays().add(mScaleBarOverlay);
     }
  else {
       Helpers.msgShort(this,"Unable to create map!");
