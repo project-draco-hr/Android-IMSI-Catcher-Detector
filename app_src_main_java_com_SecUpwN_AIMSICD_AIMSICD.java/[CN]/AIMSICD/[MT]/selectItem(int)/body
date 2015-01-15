@@ -99,7 +99,7 @@ Intent i=new Intent(this,DebugLogs.class);
 startActivity(i);
 }
  else if (selectedItem.getId() == 304) {
-quit();
+finish();
 }
 mDrawerList.setItemChecked(position,true);
 if (selectedItem.updateActionBarTitle()) {
