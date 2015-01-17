@@ -1,5 +1,5 @@
 {
-  Process process=Runtime.getRuntime().exec("logcat -t 1000 -d -v brief" + (isRadioLogs ? " -b radio" : ""));
+  Process process=Runtime.getRuntime().exec("logcat -t 1000 -d -v time" + (isRadioLogs ? " -b radio" : "") + " *:v");
   BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(process.getInputStream()));
   StringBuilder log=new StringBuilder();
   String line;
