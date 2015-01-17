@@ -2,12 +2,12 @@
   Cursor cursor=mDb.query(CELL_TABLE,new String[]{"Lac"},"CellID=" + cell.getCID(),null,null,null,null);
   while (cursor.moveToNext()) {
     if (cell.getLAC() != cursor.getInt(0)) {
-      Log.i(TAG,"ALERT: Changing LAC on CID: " + cell.getCID() + " Current LAC: "+ cell.getLAC()+ " Database LAC: "+ cursor.getInt(0));
+      Log.i(TAG,"ALERT: Changing LAC on CID: " + cell.getCID() + " Current LAC(DBi): "+ cell.getLAC()+ " Database LAC(DBe): "+ cursor.getInt(0));
       cursor.close();
       return false;
     }
  else {
-      Log.v(TAG,"LAC checked - no changes: " + cell.getCID() + " - "+ cell.getLAC()+ " LAC (DB): "+ cursor.getInt(0));
+      Log.v(TAG,"LAC checked - no change.  CID:" + cell.getCID() + " LAC(DBi):"+ cell.getLAC()+ " LAC(DBe): "+ cursor.getInt(0));
     }
   }
   cursor.close();

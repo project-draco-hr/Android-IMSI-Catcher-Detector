@@ -9,11 +9,11 @@
   cellIDValues.put("AvgSigStr",avgSigStr);
   cellIDValues.put("Samples",samples);
   if (openCellExists(cellID)) {
-    Log.v(TAG,"Cell already in OCID DB (db update): " + cellID);
+    Log.v(TAG,"CID already in OCID DB (db update): " + cellID);
     return mDb.update(OPENCELLID_TABLE,cellIDValues,"CellID=?",new String[]{Integer.toString(cellID)});
   }
  else {
-    Log.v(TAG,"ALERT: Cell -NOT- in OCID DB (db insert): " + cellID);
+    Log.v(TAG,"ALERT: CID -NOT- in OCID DB (db insert): " + cellID);
     return mDb.insert(OPENCELLID_TABLE,null,cellIDValues);
   }
 }

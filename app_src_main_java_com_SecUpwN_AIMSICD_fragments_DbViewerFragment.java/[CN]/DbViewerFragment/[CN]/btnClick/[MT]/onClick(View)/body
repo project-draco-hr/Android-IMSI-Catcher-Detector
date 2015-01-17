@@ -11,7 +11,7 @@ switch (mTableSelected) {
 case "Unique BTS Data":
           result=mDb.getCellData();
         break;
-case "BTS measurements":
+case "BTS Measurements":
       result=mDb.getLocationData();
     break;
 case "Imported OCID Data":
