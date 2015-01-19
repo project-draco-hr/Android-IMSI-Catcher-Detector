@@ -8,6 +8,10 @@
     Status.setCurrentStatus(Status.Type.MEDIUM,this.context);
     contentText="Hostile Service Area: Changing LAC Detected!";
   }
+ else   if (mCellIdNotInOpenDb) {
+    Status.setCurrentStatus(Status.Type.MEDIUM,this.context);
+    contentText="Cell ID does not exist in OpenCellID Database!";
+  }
  else   if (mTrackingFemtocell || mTrackingCell || mMonitoringCell) {
     Status.setCurrentStatus(Status.Type.NORMAL,this.context);
     if (mTrackingFemtocell) {
@@ -32,9 +36,14 @@ case NORMAL:
 tickerText=context.getResources().getString(R.string.app_name_short) + " - Status: Good. No Threats Detected.";
 break;
 case MEDIUM:
-tickerText=context.getResources().getString(R.string.app_name_short) + " - Hostile Service Area: Changing LAC Detected!";
+tickerText=context.getResources().getString(R.string.app_name_short);
 if (mChangedLAC) {
+tickerText+=" - Hostile Service Area: Changing LAC Detected!";
 contentText="Hostile Service Area: Changing LAC Detected!";
+}
+ else if (mCellIdNotInOpenDb) {
+tickerText+=" - Cell ID does not exist in OpenCellID Database!";
+contentText="Cell ID does not exist in OpenCellID Database!";
 }
 break;
 case ALARM:
