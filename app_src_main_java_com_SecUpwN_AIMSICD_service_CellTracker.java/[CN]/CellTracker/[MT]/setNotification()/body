@@ -47,12 +47,12 @@ contentText="Cell ID does not exist in OpenCellID Database!";
 }
 break;
 case ALARM:
-tickerText=context.getResources().getString(R.string.app_name_short) + " - ALERT!! Threat Detected!";
+tickerText=context.getResources().getString(R.string.app_name_short) + " - ALERT: Some Threat Detected!";
 if (mFemtoDetected) {
-contentText="ALERT!! FemtoCell Connection Threat Detected!";
+contentText="ALERT: FemtoCell Connection Detected!";
 }
  else if (mTypeZeroSmsDetected) {
-contentText="ALERT!! Type Zero Silent SMS Intercepted!";
+contentText="ALERT: Type-0 Silent SMS Intercepted!";
 }
 break;
 default :

@@ -38,7 +38,7 @@
   }
   Log.i(TAG,"neighbouringCellInfo Size - " + neighboringCellInfo.size());
   for (  NeighboringCellInfo neighbourCell : neighboringCellInfo) {
-    Log.i(TAG,"neighbouringCellInfo - CID:" + neighbourCell.getCid() + " LAC:"+ neighbourCell.getLac()+ " RSSI:"+ neighbourCell.getRssi()+ " PSC:"+ neighbourCell.getPsc());
+    Log.i(TAG,"neighbouringCellInfo -" + " LAC:" + neighbourCell.getLac() + " CID:"+ neighbourCell.getCid()+ " PSC:"+ neighbourCell.getPsc()+ " RSSI:"+ neighbourCell.getRssi());
     final Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),neighbourCell.getRssi(),neighbourCell.getPsc(),neighbourCell.getNetworkType(),false);
     neighboringCells.add(cell);
   }
