@@ -19,6 +19,21 @@
     Log.d("OCID",responseFromServer);
     return responseFromServer;
   }
+ else   if (status.getStatusCode() == 503) {
+    if (result.getEntity() != null) {
+      InputStream is=result.getEntity().getContent();
+      ByteArrayOutputStream content=new ByteArrayOutputStream();
+      int readBytes=0;
+      byte[] sBuffer=new byte[4096];
+      while ((readBytes=is.read(sBuffer)) != -1) {
+        content.write(sBuffer,0,readBytes);
+      }
+      responseFromServer=content.toString("UTF-8");
+      result.getEntity().consumeContent();
+    }
+    Log.d("OCID Reached 24hr API key limit:",responseFromServer);
+    return responseFromServer;
+  }
  else {
     httpclient=null;
     httpGet=null;
