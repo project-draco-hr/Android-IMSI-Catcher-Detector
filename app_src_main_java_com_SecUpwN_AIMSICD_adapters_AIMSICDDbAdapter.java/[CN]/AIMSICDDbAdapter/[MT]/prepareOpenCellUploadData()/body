@@ -33,7 +33,7 @@
     return true;
   }
  catch (  Exception e) {
-    Log.e(TAG,"Error creating OpenCellID Upload Data " + e);
+    Log.e(TAG,"Error creating OpenCellID Upload Data: " + e);
     return false;
   }
  finally {
