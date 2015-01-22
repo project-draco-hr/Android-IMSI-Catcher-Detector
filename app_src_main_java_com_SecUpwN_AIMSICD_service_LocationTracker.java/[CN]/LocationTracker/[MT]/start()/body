@@ -1,6 +1,18 @@
 {
   lastKnownLocation();
-  lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
-  lm.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
-  lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
+  try {
+    lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  try {
+    lm.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  try {
+    lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,GPS_MIN_UPDATE_TIME,GPS_MIN_UPDATE_DISTANCE,mLocationListener);
+  }
+ catch (  IllegalArgumentException e) {
+  }
 }
