@@ -12,8 +12,8 @@
       mCellTowerGridMarkerClusterer=new CellTowerGridMarkerClusterer(MapViewerOsmDroid.this);
       mCellTowerGridMarkerClusterer.setIcon(((BitmapDrawable)mContext.getResources().getDrawable(R.drawable.ic_map_pin_orange)).getBitmap());
       GpsMyLocationProvider imlp=new GpsMyLocationProvider(MapViewerOsmDroid.this.getBaseContext());
-      imlp.setLocationUpdateMinDistance(1000);
-      imlp.setLocationUpdateMinTime(60000);
+      imlp.setLocationUpdateMinDistance(100);
+      imlp.setLocationUpdateMinTime(10000);
       mMyLocationOverlay=new MyLocationNewOverlay(MapViewerOsmDroid.this.getBaseContext(),imlp,mMap);
       mMyLocationOverlay.setDrawAccuracyEnabled(true);
       mMap.getOverlays().add(mCellTowerGridMarkerClusterer);

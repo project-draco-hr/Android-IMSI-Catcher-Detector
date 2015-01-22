@@ -26,7 +26,7 @@ if (loc != null) {
   Helpers.getOpenCellData(mContext,cell,RequestTask.DBE_DOWNLOAD_REQUEST_FROM_MAP);
 }
  else {
-  Helpers.msgLong(mContext,"Unable to determine your last location. \nEnable Location Services and try again.");
+  Helpers.msgLong(mContext,"Unable to determine your last location.\nEnable Location Services and try again.");
 }
 return true;
 }

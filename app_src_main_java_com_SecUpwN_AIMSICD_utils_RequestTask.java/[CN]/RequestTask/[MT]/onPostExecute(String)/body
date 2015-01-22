@@ -11,7 +11,7 @@ case DBE_DOWNLOAD_REQUEST:
       mDbAdapter.close();
     }
  else {
-      Helpers.msgShort(mContext,"Error retrieving OpenCellID data");
+      Helpers.msgShort(mContext,"Error retrieving OpenCellID data.\nCheck your network!");
     }
   break;
 case DBE_DOWNLOAD_REQUEST_FROM_MAP:
@@ -25,7 +25,7 @@ if (result != null && result.equals("Successful")) {
   }
 }
  else {
-  Helpers.msgShort(mContext,"Error retrieving OpenCellID data");
+  Helpers.msgShort(mContext,"Error retrieving OpenCellID data.\nCheck your network!");
 }
 break;
 case RESTORE_DATABASE:
