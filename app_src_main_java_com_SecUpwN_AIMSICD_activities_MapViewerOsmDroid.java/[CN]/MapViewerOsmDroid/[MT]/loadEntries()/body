@@ -81,7 +81,7 @@ items.add(ovm);
  else {
 runOnUiThread(new Runnable(){
 @Override public void run(){
-Helpers.msgShort(MapViewerOsmDroid.this,"No tracked locations found to show on map.");
+Helpers.msgLong(MapViewerOsmDroid.this,"No tracked locations found to show on map.");
 }
 }
 );

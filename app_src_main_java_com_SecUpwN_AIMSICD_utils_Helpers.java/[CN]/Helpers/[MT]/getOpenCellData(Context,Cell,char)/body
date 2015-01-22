@@ -12,12 +12,6 @@
         if (cell.getMCC() != Integer.MAX_VALUE) {
           sb.append("&mcc=").append(cell.getMCC());
         }
-        if (cell.getMNC() != Integer.MAX_VALUE) {
-          sb.append("&mnc=").append(cell.getMNC());
-        }
-        if (cell.getLAC() != Integer.MAX_VALUE) {
-          sb.append("&lac=").append(cell.getLAC());
-        }
         sb.append("&format=csv");
         new RequestTask(context,type).execute(sb.toString());
       }
