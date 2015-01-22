@@ -22,7 +22,7 @@ getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new Ab
 break;
 }
 if (selectedItem.getId() == 901) {
-monitercell();
+monitorcell();
 }
  else if (selectedItem.getId() == 902) {
 trackcell();
@@ -52,11 +52,11 @@ new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
 if (CellTracker.OCID_API_KEY != null && !CellTracker.OCID_API_KEY.equals("NA")) {
 GeoLocation loc=mAimsicdService.lastKnownLocation();
 if (loc != null) {
-Helpers.msgLong(mContext,"Contacting opencellid.org for data...\nThis may " + "take up to a minute.");
+Helpers.msgLong(mContext,"Contacting opencellid.org for data...\n" + "This may take up to a minute.");
 Cell cell=new Cell();
 cell.setLon(loc.getLongitudeInDegrees());
 cell.setLat(loc.getLatitudeInDegrees());
-Helpers.getOpenCellData(mContext,cell,RequestTask.OPEN_CELL_ID_REQUEST);
+Helpers.getOpenCellData(mContext,cell,RequestTask.DBE_DOWNLOAD_REQUEST);
 }
  else {
 Helpers.msgShort(mContext,"Waiting for location...");

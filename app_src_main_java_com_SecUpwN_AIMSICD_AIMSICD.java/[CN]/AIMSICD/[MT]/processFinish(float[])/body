@@ -1,8 +1,8 @@
 {
   Log.i(TAG,"processFinish - location[0]=" + location[0] + " location[1]="+ location[1]);
   if (location[0] != 0.0f && location[1] != 0.0f) {
-    Helpers.msgLong(mContext,"Contacting opencellid.org for data...\nThis may " + "take up to a minute.");
-    Helpers.getOpenCellData(mContext,mAimsicdService.getCell(),RequestTask.OPEN_CELL_ID_REQUEST);
+    Helpers.msgLong(mContext,"Contacting opencellid.org for data...\n" + "This may take up to a minute.");
+    Helpers.getOpenCellData(mContext,mAimsicdService.getCell(),RequestTask.DBE_DOWNLOAD_REQUEST);
   }
  else {
     Helpers.msgLong(mContext,"Unable to determine your last location.\nEnable Location Services and try again.");

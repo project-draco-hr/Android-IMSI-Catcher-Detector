@@ -2,7 +2,7 @@
   super.onPostExecute(result);
   AIMSICD.mProgressBar.setProgress(0);
 switch (mType) {
-case OPEN_CELL_ID_REQUEST:
+case DBE_DOWNLOAD_REQUEST:
     if (result != null && result.equals("Successful")) {
       mDbAdapter.open();
       if (mDbAdapter.updateOpenCellID()) {
@@ -14,7 +14,7 @@ case OPEN_CELL_ID_REQUEST:
       Helpers.msgShort(mContext,"Error retrieving OpenCellID data");
     }
   break;
-case OPEN_CELL_ID_REQUEST_FROM_MAP:
+case DBE_DOWNLOAD_REQUEST_FROM_MAP:
 if (result != null && result.equals("Successful")) {
   mDbAdapter.open();
   if (mDbAdapter.updateOpenCellID()) {

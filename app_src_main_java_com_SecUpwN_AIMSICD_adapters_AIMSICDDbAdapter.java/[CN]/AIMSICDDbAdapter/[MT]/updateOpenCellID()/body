@@ -18,7 +18,7 @@
         int lines=csvCellID.size();
         for (int i=1; i < lines; i++) {
           AIMSICD.mProgressBar.setProgress(i);
-          insertOpenCell(Double.parseDouble(csvCellID.get(i)[0]),Double.parseDouble(csvCellID.get(i)[1]),Integer.parseInt(csvCellID.get(i)[2]),Integer.parseInt(csvCellID.get(i)[3]),Integer.parseInt(csvCellID.get(i)[4]),Integer.parseInt(csvCellID.get(i)[5]),Integer.parseInt(csvCellID.get(i)[6]),Integer.parseInt(csvCellID.get(i)[7]));
+          insertOpenCell(Double.parseDouble(csvCellID.get(i)[0]),Double.parseDouble(csvCellID.get(i)[1]),Integer.parseInt(csvCellID.get(i)[2]),Integer.parseInt(csvCellID.get(i)[3]),Integer.parseInt(csvCellID.get(i)[4]),Integer.parseInt(csvCellID.get(i)[5]),Integer.parseInt(csvCellID.get(i)[6]),Integer.parseInt(csvCellID.get(i)[8]));
         }
       }
     }
