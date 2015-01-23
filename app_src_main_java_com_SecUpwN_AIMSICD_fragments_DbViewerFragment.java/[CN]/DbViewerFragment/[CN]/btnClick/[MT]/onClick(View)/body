@@ -25,6 +25,9 @@ result=mDb.getSilentSmsData();
 break;
 case "Measured Signal Strengths":
 result=mDb.getSignalStrengthMeasurementData();
+break;
+case "EventLog":
+result=mDb.getEventLogData();
 }
 BaseInflaterAdapter adapter=null;
 if (result != null) {

@@ -1,0 +1,11 @@
+{
+  mtime.setText(item.getCellID());
+  mLAC.setText(item.getLac());
+  mCID.setText(item.getMcc());
+  mPSC.setText(item.getMnc());
+  mgpsd_lat.setText(item.getLat());
+  mgpsd_lon.setText(item.getLng());
+  mgpsd_accur.setText(item.getAvgSigStr());
+  mDF_id.setText(item.getSamples());
+  mDF_description.setText(item.getRecordId());
+}
