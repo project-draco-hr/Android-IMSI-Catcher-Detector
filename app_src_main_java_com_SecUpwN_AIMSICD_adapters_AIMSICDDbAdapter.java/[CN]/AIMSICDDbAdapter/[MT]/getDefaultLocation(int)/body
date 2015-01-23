@@ -1,6 +1,6 @@
 {
   double[] loc=new double[2];
-  Cursor cursor=mDb.rawQuery("SELECT Lat, Lng FROM " + DEFAULT_MCC_TABLE + " WHERE Mcc = "+ mcc,null);
+  Cursor cursor=mDb.rawQuery("SELECT Lat, Lng FROM " + TABLE_DEFAULT_MCC + " WHERE Mcc = "+ mcc,null);
   if (cursor.moveToFirst()) {
     loc[0]=Double.parseDouble(cursor.getString(0));
     loc[1]=Double.parseDouble(cursor.getString(1));
