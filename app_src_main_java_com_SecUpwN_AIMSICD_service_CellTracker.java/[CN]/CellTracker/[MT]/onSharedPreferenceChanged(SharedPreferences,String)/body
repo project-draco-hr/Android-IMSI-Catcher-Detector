@@ -1,6 +1,6 @@
 {
   final String KEY_UI_ICONS=context.getString(R.string.pref_ui_icons_key);
-  final String FEMTO_DECTECTION=context.getString(R.string.pref_femto_detection_key);
+  final String FEMTO_DETECTION=context.getString(R.string.pref_femto_detection_key);
   final String REFRESH=context.getString(R.string.pref_refresh_key);
   final String DB_VERSION=context.getString(R.string.pref_last_database_backup_version);
   final String OCID_UPLOAD=context.getString(R.string.pref_ocid_upload);
@@ -8,8 +8,8 @@
   if (key.equals(KEY_UI_ICONS)) {
     setNotification();
   }
- else   if (key.equals(FEMTO_DECTECTION)) {
-    boolean trackFemtoPref=sharedPreferences.getBoolean(FEMTO_DECTECTION,false);
+ else   if (key.equals(FEMTO_DETECTION)) {
+    boolean trackFemtoPref=sharedPreferences.getBoolean(FEMTO_DETECTION,false);
     if (trackFemtoPref) {
       startTrackingFemto();
     }
