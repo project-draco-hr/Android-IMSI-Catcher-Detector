@@ -22,7 +22,7 @@
       defaultMccValues.put("Mcc",csvMcc.get(i)[1]);
       defaultMccValues.put("Lng",csvMcc.get(i)[2]);
       defaultMccValues.put("Lat",csvMcc.get(i)[3]);
-      db.insert(DEFAULT_MCC_TABLE,null,defaultMccValues);
+      db.insert(TABLE_DEFAULT_MCC,null,defaultMccValues);
     }
   }
  catch (  Exception e) {

@@ -11,7 +11,7 @@ case DBE_DOWNLOAD_REQUEST:
       mDbAdapter.close();
     }
  else {
-      Helpers.msgShort(mContext,"Error retrieving OpenCellID data.\nCheck your network!");
+      Helpers.msgLong(mContext,"Error retrieving OpenCellID data.\nCheck your network!");
     }
   break;
 case DBE_DOWNLOAD_REQUEST_FROM_MAP:
@@ -25,7 +25,7 @@ if (result != null && result.equals("Successful")) {
   }
 }
  else {
-  Helpers.msgShort(mContext,"Error retrieving OpenCellID data.\nCheck your network!");
+  Helpers.msgLong(mContext,"Error retrieving OpenCellID data.\nCheck your network!");
 }
 break;
 case RESTORE_DATABASE:
@@ -33,7 +33,7 @@ if (result != null && result.equals("Successful")) {
 Helpers.msgShort(mContext,"Restore database completed successfully");
 }
  else {
-Helpers.msgShort(mContext,"Error restoring database");
+Helpers.msgLong(mContext,"Error restoring database");
 }
 break;
 case BACKUP_DATABASE:
@@ -49,7 +49,7 @@ builder.setTitle(R.string.database_export_successful).setMessage("Database Backu
 builder.create().show();
 }
  else {
-Helpers.msgShort(mContext,"Error backing up database");
+Helpers.msgLong(mContext,"Error backing up database");
 }
 }
 }

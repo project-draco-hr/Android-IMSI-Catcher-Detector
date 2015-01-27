@@ -1,16 +1,18 @@
 {
-  database.execSQL("create table " + CELL_SIGNAL_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, cellID INTEGER, signal INTEGER, timestamp INTEGER);");
+  database.execSQL("create table " + CELL_SIGNAL_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, "+ "cellID INTEGER, signal INTEGER, "+ "timestamp INTEGER);");
   database.execSQL("create index cellID_index ON " + CELL_SIGNAL_TABLE + " (cellID);");
   database.execSQL("create index cellID_timestamp ON " + CELL_SIGNAL_TABLE + " (timestamp);");
-  String SMS_DATABASE_CREATE="create table " + SILENT_SMS_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Address VARCHAR, Display VARCHAR, Class VARCHAR, "+ "ServiceCtr VARCHAR, Message VARCHAR, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
+  String SMS_DATABASE_CREATE="create table " + SILENT_SMS_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, "+ "Address VARCHAR, "+ "Display VARCHAR, "+ "Class VARCHAR, "+ "ServiceCtr VARCHAR, "+ "Message VARCHAR, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
   database.execSQL(SMS_DATABASE_CREATE);
-  String LOC_DATABASE_CREATE="create table " + LOCATION_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Lac INTEGER, CellID INTEGER, "+ "Net VARCHAR, Lat VARCHAR, Lng VARCHAR, Signal INTEGER, Connection VARCHAR, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
+  String LOC_DATABASE_CREATE="create table " + LOCATION_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, "+ "Lac INTEGER, CellID INTEGER, "+ "Net VARCHAR, "+ "Lat VARCHAR, "+ "Lng VARCHAR, "+ "Signal INTEGER, "+ "Connection VARCHAR, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
   database.execSQL(LOC_DATABASE_CREATE);
-  String CELL_DATABASE_CREATE="create table " + CELL_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Lac INTEGER, CellID INTEGER, "+ "Net INTEGER, Lat VARCHAR, Lng VARCHAR, Signal INTEGER, Mcc INTEGER, Mnc INTEGER, "+ "Accuracy REAL, Speed REAL, Direction REAL, NetworkType VARCHAR, "+ "MeasurementTaken VARCHAR, OCID_SUBMITTED INTEGER DEFAULT 0, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
+  String CELL_DATABASE_CREATE="create table " + CELL_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, "+ "Lac INTEGER, "+ "CellID INTEGER, "+ "Net INTEGER, "+ "Lat VARCHAR, "+ "Lng VARCHAR, "+ "Signal INTEGER, "+ "Mcc INTEGER, "+ "Mnc INTEGER, "+ "Accuracy REAL, "+ "Speed REAL, "+ "Direction REAL, "+ "NetworkType VARCHAR, "+ "MeasurementTaken VARCHAR, "+ "OCID_SUBMITTED INTEGER DEFAULT 0, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
   database.execSQL(CELL_DATABASE_CREATE);
-  String OPENCELLID_DATABASE_CREATE="create table " + OPENCELLID_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Lat VARCHAR, Lng VARCHAR, Mcc INTEGER, "+ "Mnc INTEGER, Lac INTEGER, CellID INTEGER, AvgSigStr INTEGER, Samples INTEGER, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
+  String OPENCELLID_DATABASE_CREATE="create table " + OPENCELLID_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, "+ "Lat VARCHAR, "+ "Lng VARCHAR, "+ "Mcc INTEGER, "+ "Mnc INTEGER, "+ "Lac INTEGER, "+ "CellID INTEGER, "+ "AvgSigStr INTEGER, "+ "Samples INTEGER, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);";
   database.execSQL(OPENCELLID_DATABASE_CREATE);
-  String DEFAULT_MCC_DATABASE_CREATE="create table " + DEFAULT_MCC_TABLE + " ("+ COLUMN_ID+ " integer primary key autoincrement, Country VARCHAR, Mcc INTEGER, "+ "Lat VARCHAR, Lng VARCHAR);";
+  String DEFAULT_MCC_DATABASE_CREATE="create table " + TABLE_DEFAULT_MCC + " ("+ COLUMN_ID+ " integer primary key autoincrement, "+ "Country VARCHAR, "+ "Mcc INTEGER, "+ "Lat VARCHAR, "+ "Lng VARCHAR);";
   database.execSQL(DEFAULT_MCC_DATABASE_CREATE);
+  String TABLE_EVENTLOG_CREATE="CREATE TABLE EventLog  (" + "_id            INTEGER PRIMARY KEY AUTOINCREMENT," + "time     		TEXT NOT NULL,"+ "LAC           	INTEGER NOT NULL,"+ "CID           	INTEGER NOT NULL,"+ "PSC           	INTEGER,"+ "gpsd_lat      	TEXT,"+ "gpsd_lon      	TEXT,"+ "gpsd_accu     	INTEGER,"+ "DF_id         	INTEGER,"+ "DF_description	TEXT"+ ");";
+  database.execSQL(TABLE_EVENTLOG_CREATE);
   populateDefaultMCC(database);
 }
