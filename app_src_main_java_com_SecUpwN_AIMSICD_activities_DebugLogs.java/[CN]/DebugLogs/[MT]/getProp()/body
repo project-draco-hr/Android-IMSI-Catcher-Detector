@@ -1,3 +1,3 @@
 {
-  return runProcess(new String[]{"/system/bin/getprop"});
+  return runProcess("/system/bin/getprop");
 }

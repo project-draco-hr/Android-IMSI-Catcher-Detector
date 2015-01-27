@@ -6,5 +6,6 @@
  catch (  Exception e) {
   }
   String props=activity.getProp();
+  Log.d("getprop",props);
   assertTrue(props.trim().length() > 0);
 }
