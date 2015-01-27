@@ -1,0 +1,13 @@
+{
+  Process process=null;
+  if (command.length == 1)   process=Runtime.getRuntime().exec(command[0]);
+ else   Runtime.getRuntime().exec(command);
+  BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(process.getInputStream()));
+  StringBuilder log=new StringBuilder();
+  String line;
+  while ((line=bufferedReader.readLine()) != null) {
+    log.append(line);
+    log.append("\n");
+  }
+  return log.toString();
+}

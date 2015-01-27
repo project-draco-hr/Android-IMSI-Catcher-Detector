@@ -1,0 +1,10 @@
+{
+  DebugLogs activity=(DebugLogs)getActivity();
+  try {
+    Thread.sleep(1000);
+  }
+ catch (  Exception e) {
+  }
+  String props=activity.getProp();
+  assertTrue(props.trim().length() > 0);
+}
