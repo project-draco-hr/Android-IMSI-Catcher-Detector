@@ -5,12 +5,12 @@
   }
   try {
     if (!CMDProcessor.runSuCommand("busybox mount").success()) {
-      Log.e(TAG,"Busybox is there but it is borked! ");
+      Log.e(TAG,"Busybox is there but is broken!");
       return false;
     }
   }
  catch (  NullPointerException e) {
-    Log.e(TAG,"NullpointerException thrown while testing busybox",e);
+    Log.e(TAG,"NullpointerException thrown while testing Busybox:",e);
     return false;
   }
   return true;
