@@ -1,0 +1,3 @@
+{
+  return CMDProcessor.runSuCommand("setprop " + prop + " "+ value+ "; echo \"$?\"").getStdout();
+}

@@ -8,7 +8,9 @@ case DBE_DOWNLOAD_REQUEST:
       if (mDbAdapter.updateOpenCellID()) {
         Helpers.msgShort(mContext,"OpenCellID data successfully received");
       }
+      mDbAdapter.checkDBe();
       mDbAdapter.close();
+      Helpers.setProp("aimsicd.ocid_downloaded","true");
     }
  else {
       Helpers.msgLong(mContext,"Error retrieving OpenCellID data.\nCheck your network!");
@@ -20,8 +22,10 @@ if (result != null && result.equals("Successful")) {
   if (mDbAdapter.updateOpenCellID()) {
     Intent intent=new Intent(MapViewerOsmDroid.updateOpenCellIDMarkers);
     LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
-    Helpers.msgShort(mContext,"OpenCellID data successfully received and " + "Map Markers updated");
+    Helpers.msgShort(mContext,"OpenCellID data successfully received.\nMap Markers updated.");
+    mDbAdapter.checkDBe();
     mDbAdapter.close();
+    Helpers.setProp("aimsicd.ocid_downloaded","true");
   }
 }
  else {

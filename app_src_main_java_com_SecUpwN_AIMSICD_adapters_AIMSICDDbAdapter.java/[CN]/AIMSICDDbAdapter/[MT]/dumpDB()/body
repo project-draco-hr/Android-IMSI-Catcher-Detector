@@ -1,10 +1,11 @@
 {
-  File dir=new File(FOLDER);
-  File file=new File(dir,"aimsicd_dump.db");
-  String execString="/system/xbin/sqlite3 " + dir + "aimsicd.db '.dump' >"+ file;
+  File dumpdir=new File(FOLDER);
+  File file=new File(dumpdir,"aimsicd_dump.db");
+  String aimdir="/data/data/com.SecUpwN.AIMSICD/databases/";
+  String execString="/system/xbin/sqlite3 " + aimdir + "aimsicd.db '.backup "+ file+ "'";
   try {
     Log.i(TAG,"dumpDB() Attempting to dump DB to: " + file + "\nUsing: \""+ execString+ "\"\n");
-    Process process=Runtime.getRuntime().exec(execString);
+    CMDProcessor.runSuCommand(execString);
   }
  catch (  Exception e) {
     Log.e(TAG,"dumpDB() Failed to export DB dump file: " + e);

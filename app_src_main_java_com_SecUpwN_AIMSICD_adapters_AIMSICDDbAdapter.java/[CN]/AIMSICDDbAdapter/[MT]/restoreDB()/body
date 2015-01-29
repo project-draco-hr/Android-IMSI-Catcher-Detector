@@ -23,7 +23,7 @@ case LOCATION_TABLE:
           insertLocation(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]),Double.parseDouble(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),String.valueOf(records.get(i)[7]));
         break;
 case OPENCELLID_TABLE:
-      insertOpenCell(Double.parseDouble(records.get(i)[1]),Double.parseDouble(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]));
+      insertOpenCell(Double.parseDouble(records.get(i)[1]),Double.parseDouble(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),Integer.parseInt(records.get(i)[9]),Integer.parseInt(records.get(i)[10]),String.valueOf(records.get(i)[11]));
     break;
 case SILENT_SMS_TABLE:
   Bundle bundle=new Bundle();

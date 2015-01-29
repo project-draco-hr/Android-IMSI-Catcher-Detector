@@ -3,17 +3,15 @@
   int min_gps_precision=50;
   String sqlq;
   Log.d("checkDBe()","Attempting to delete bad import data from DBe_import table...");
-  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Lac <= 0";
+  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Samples < 1";
   mDb.rawQuery(sqlq,null);
-  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Lac > 65534 AND Net=4";
+  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Lac < 1";
   mDb.rawQuery(sqlq,null);
-  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Lac > 65533 AND Net!=4";
+  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Lac > 65534";
   mDb.rawQuery(sqlq,null);
-  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE CellID <= 0";
+  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE CellID < 1";
   mDb.rawQuery(sqlq,null);
-  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE CellID > 268435455 AND (Net=3 OR Net=13)";
+  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE CellID > 268435455";
   mDb.rawQuery(sqlq,null);
-  sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE CellID > 65534 AND (Net!=3 OR Net!=13)";
-  mDb.rawQuery(sqlq,null);
-  Log.i("checkDBe()","Deleted entries from DBe_import table with bad LAC/CID...");
+  Log.i("checkDBe()","Deleted BTS entries from DBe_import table with bad LAC/CID...");
 }
