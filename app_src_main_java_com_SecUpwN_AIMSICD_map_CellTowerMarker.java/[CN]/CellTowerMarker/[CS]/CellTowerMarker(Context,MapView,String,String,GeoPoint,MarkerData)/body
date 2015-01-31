@@ -6,4 +6,5 @@
   mPosition=aGeoPoint;
   mMarkerData=data;
   mOnMarkerClickListener=new OnCellTowerMarkerClickListener();
+  mInfoWindow=null;
 }
