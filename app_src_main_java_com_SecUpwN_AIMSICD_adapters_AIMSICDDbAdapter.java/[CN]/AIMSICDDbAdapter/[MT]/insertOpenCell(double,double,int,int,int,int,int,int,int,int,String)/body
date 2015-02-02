@@ -12,8 +12,10 @@
   cellIDValues.put("isGPSexact",isGPSexact);
   cellIDValues.put("Type",RAT);
   if (openCellExists(cellID)) {
-    Log.v(TAG,"CID already in OCID DB (db update): " + cellID);
-    return mDb.update(OPENCELLID_TABLE,cellIDValues,"CellID=?",new String[]{Integer.toString(cellID)});
+    Log.v(TAG,"CID already found in DBe_import! Skipping: " + cellID);
+    return 1;
   }
-  return 1;
+ else {
+    return mDb.insert(OPENCELLID_TABLE,null,cellIDValues);
+  }
 }
