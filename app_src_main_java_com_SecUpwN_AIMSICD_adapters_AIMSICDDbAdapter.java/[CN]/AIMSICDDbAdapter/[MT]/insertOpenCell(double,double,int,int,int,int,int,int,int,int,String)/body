@@ -15,4 +15,5 @@
     Log.v(TAG,"CID already in OCID DB (db update): " + cellID);
     return mDb.update(OPENCELLID_TABLE,cellIDValues,"CellID=?",new String[]{Integer.toString(cellID)});
   }
+  return 1;
 }
