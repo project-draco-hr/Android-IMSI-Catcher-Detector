@@ -1,14 +1,14 @@
 {
-  Cursor cursor=mDb.query(CELL_TABLE,new String[]{"CellID","Lac","Net","Lat","Lng","Signal","Mcc","Mnc","Accuracy","Speed","Direction"},"CellID=" + cell.getCID(),null,null,null,null);
+  Cursor cursor=mDb.query(CELL_TABLE,new String[]{"CellID","Lac","Net","Lat","Lng","Signal","Mcc","Mnc","Accuracy","Speed","Direction","Timestamp"},"CellID=" + cell.getCID(),null,null,null,null);
   while (cursor.moveToNext()) {
     if (cell.getLAC() != cursor.getInt(1)) {
       Log.i(TAG,"ALERT: Changing LAC on CID: " + cell.getCID() + " LAC(API): "+ cell.getLAC()+ " LAC(DBi): "+ cursor.getInt(1));
+      insertDetection(cursor.getInt(11),cell.getLAC(),cell.getCID(),cell.getPSC(),cursor.getDouble(3),cursor.getDouble(4),cursor.getInt(8),1,"Changing LAC");
       cursor.close();
       return false;
     }
  else {
       Log.v(TAG,"LAC checked - no change on CID:" + cell.getCID() + " LAC(API): "+ cell.getLAC()+ " LAC(DBi): "+ cursor.getInt(1));
-      insertDetection(1234,cell.getLAC(),cell.getCID(),cell.getPSC(),cursor.getDouble(3),cursor.getDouble(4),cursor.getInt(8),99,"write test into EventLog_Table see LacCheck routine");
     }
   }
   cursor.close();
