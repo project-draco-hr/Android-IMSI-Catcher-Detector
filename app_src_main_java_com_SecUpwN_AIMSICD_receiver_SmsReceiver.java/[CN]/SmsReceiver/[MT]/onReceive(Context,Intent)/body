@@ -4,6 +4,8 @@
     if (bundle != null) {
       Object[] pdus=(Object[])bundle.get("pdus");
       final List<SmsMessage> messages=new ArrayList<>();
+      StringBuilder sb=new StringBuilder();
+      String full_pdu_string="";
       for (      Object pdu : pdus) {
         byte smsPdu[]=(byte[])pdu;
         for (int xx=0; xx < smsPdu.length; xx++) {
