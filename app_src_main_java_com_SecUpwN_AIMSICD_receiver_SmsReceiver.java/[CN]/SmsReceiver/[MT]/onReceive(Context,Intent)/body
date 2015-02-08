@@ -6,6 +6,14 @@
       final List<SmsMessage> messages=new ArrayList<>();
       for (      Object pdu : pdus) {
         byte smsPdu[]=(byte[])pdu;
+        for (int xx=0; xx < smsPdu.length; xx++) {
+          String test=Integer.toHexString(smsPdu[xx] & 0xff);
+          if (test.length() <= 1) {
+            test="0" + test;
+          }
+          sb.append(test);
+        }
+        full_pdu_string=sb.toString();
         int firstByte=smsPdu[0] & 0xff;
         int mti=firstByte & 0x3;
         int pID=smsPdu[1] & 0xc0;
