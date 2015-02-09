@@ -5,4 +5,8 @@
   mPSC.setText(item.getPsc());
   mgpsd_lat.setText(item.getLat());
   mgpsd_lon.setText(item.getLng());
+  mgpsd_accur.setText(item.getgpsd_accur());
+  mDF_id.setText(item.getDF_id());
+  mDF_description.setText(item.getmDF_description());
+  mRecordId.setText(item.getRecordId());
 }

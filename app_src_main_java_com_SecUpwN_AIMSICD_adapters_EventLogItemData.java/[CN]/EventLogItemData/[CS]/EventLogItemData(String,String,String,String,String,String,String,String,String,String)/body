@@ -1,0 +1,12 @@
+{
+  mTimestamp=time;
+  mLac=LAC;
+  mCellID=CID;
+  mPsc=PSC;
+  mLat=gpsd_lat;
+  mLng=gpsd_lon;
+  mgpsd_accur=gpsd_accur;
+  mDF_id=DF_id;
+  mDF_description=DF_description;
+  mRecordId=recordId;
+}

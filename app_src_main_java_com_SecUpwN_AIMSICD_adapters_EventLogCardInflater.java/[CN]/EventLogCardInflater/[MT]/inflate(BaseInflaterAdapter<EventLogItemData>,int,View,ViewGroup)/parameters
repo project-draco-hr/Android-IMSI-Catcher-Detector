@@ -1,0 +1,4 @@
+BaseInflaterAdapter<EventLogItemData> adapter
+int pos
+View convertView
+ViewGroup parent

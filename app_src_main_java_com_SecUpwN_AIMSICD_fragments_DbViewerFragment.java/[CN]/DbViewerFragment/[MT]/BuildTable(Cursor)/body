@@ -39,13 +39,23 @@ case "Measured Signal Strengths":
   }
   return adapter;
 }
+case "EventLog":
+{
+BaseInflaterAdapter<EventLogItemData> adapter=new BaseInflaterAdapter<>(new EventLogCardInflater());
+int count=tableData.getCount();
+while (tableData.moveToNext()) {
+  EventLogItemData data=new EventLogItemData("Time: " + tableData.getDouble(0),"CID: " + tableData.getInt(2),"LAC: " + tableData.getInt(1),"PSC: " + tableData.getInt(3),"Lat: " + tableData.getDouble(4),"Lon: " + tableData.getDouble(5),"Accuracy: " + tableData.getDouble(6),"Detection ID: " + tableData.getInt(7),"Event: " + tableData.getString(8),"" + (tableData.getPosition() + 1) + " / "+ count);
+  adapter.addItem(data,false);
+}
+return adapter;
+}
 default :
 {
 BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new CellCardInflater());
 int count=tableData.getCount();
 while (tableData.moveToNext()) {
-  CardItemData data=new CardItemData("CID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"RAT: " + tableData.getString(2),"Lat: " + tableData.getString(3),"Lon: " + tableData.getString(4),"RSS: " + tableData.getString(5),"" + (tableData.getPosition() + 1) + " / "+ count);
-  adapter.addItem(data,false);
+CardItemData data=new CardItemData("CID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"RAT: " + tableData.getString(2),"Lat: " + tableData.getString(3),"Lon: " + tableData.getString(4),"RSS: " + tableData.getString(5),"" + (tableData.getPosition() + 1) + " / "+ count);
+adapter.addItem(data,false);
 }
 return adapter;
 }

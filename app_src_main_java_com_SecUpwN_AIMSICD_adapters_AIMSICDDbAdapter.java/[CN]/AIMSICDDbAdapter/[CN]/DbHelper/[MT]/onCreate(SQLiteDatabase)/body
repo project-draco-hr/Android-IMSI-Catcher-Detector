@@ -12,7 +12,7 @@
   database.execSQL(OPENCELLID_DATABASE_CREATE);
   String DEFAULT_MCC_DATABASE_CREATE="create table " + TABLE_DEFAULT_MCC + " ("+ COLUMN_ID+ " integer primary key autoincrement, "+ "Country VARCHAR, "+ "Mcc INTEGER, "+ "Lat VARCHAR, "+ "Lng VARCHAR);";
   database.execSQL(DEFAULT_MCC_DATABASE_CREATE);
-  String TABLE_EVENTLOG_CREATE="CREATE TABLE EventLog  (" + "_id            INTEGER PRIMARY KEY AUTOINCREMENT," + "time     		TEXT NOT NULL,"+ "LAC           	INTEGER NOT NULL,"+ "CID           	INTEGER NOT NULL,"+ "PSC           	INTEGER,"+ "gpsd_lat      	REAL,"+ "gpsd_lon      	REAL,"+ "gpsd_accu     	INTEGER,"+ "DF_id         	INTEGER,"+ "DF_desc	    TEXT"+ ");";
+  String TABLE_EVENTLOG_CREATE="create table " + TABLE_EVENTLOG + " ("+ COLUMN_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT,"+ "time     		TIMESTAMP NOT NULL DEFAULT current_timestamp,"+ "LAC           	INTEGER NOT NULL,"+ "CID           	INTEGER NOT NULL,"+ "PSC           	INTEGER,"+ "gpsd_lat      	DOUBLE,"+ "gpsd_lon      	DOUBLE,"+ "gpsd_accu     	DOUBLE,"+ "DF_id         	INTEGER,"+ "DF_description	TEXT"+ ");";
   database.execSQL(TABLE_EVENTLOG_CREATE);
   populateDefaultMCC(database);
 }
