@@ -4,8 +4,23 @@
     if (bundle != null) {
       Object[] pdus=(Object[])bundle.get("pdus");
       final List<SmsMessage> messages=new ArrayList<>();
+      StringBuilder sb=new StringBuilder();
+      String full_pdu_string="";
       for (      Object pdu : pdus) {
         byte smsPdu[]=(byte[])pdu;
+        try {
+          for (int xx=0; xx < smsPdu.length; xx++) {
+            String test=Integer.toHexString(smsPdu[xx] & 0xff);
+            if (test.length() <= 1) {
+              test="0" + test;
+            }
+            sb.append(test);
+          }
+          full_pdu_string=sb.toString();
+        }
+ catch (        Exception err) {
+          Log.e("SmsReceiver","Exception Pdu smsReceiver" + err);
+        }
         int firstByte=smsPdu[0] & 0xff;
         int mti=firstByte & 0x3;
         int pID=smsPdu[1] & 0xc0;
