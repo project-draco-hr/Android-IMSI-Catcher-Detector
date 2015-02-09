@@ -1,0 +1,10 @@
+String time
+String LAC
+String CID
+String PSC
+String gpsd_lat
+String gpsd_lon
+String gpsd_accur
+String DF_id
+String DF_description
+String recordId

@@ -8,7 +8,7 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  final CardItemData item=adapter.getTItem(pos);
+  final EventLogItemData item=adapter.getTItem(pos);
   holder.updateDisplay(item);
   return convertView;
 }

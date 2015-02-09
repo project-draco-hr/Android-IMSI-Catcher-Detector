@@ -5,4 +5,7 @@ int mnc
 int lac
 int cellID
 int avgSigStr
+int range
 int samples
+int isGPSexact
+String RAT
