@@ -8,7 +8,7 @@
     if (result.getEntity() != null) {
       InputStream is=result.getEntity().getContent();
       ByteArrayOutputStream content=new ByteArrayOutputStream();
-      int readBytes=0;
+      int readBytes;
       byte[] sBuffer=new byte[4096];
       while ((readBytes=is.read(sBuffer)) != -1) {
         content.write(sBuffer,0,readBytes);
