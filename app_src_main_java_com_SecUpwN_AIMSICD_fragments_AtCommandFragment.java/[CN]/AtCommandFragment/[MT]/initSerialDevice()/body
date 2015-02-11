@@ -10,18 +10,18 @@
   }
   try {
     shell=RootShell.getShell(true);
-    mAtResponse.setText("*** Setting Up... Ignore any errors. ***\n");
+    mAtResponse.setText("*** Looking for AT serial devices...\n");
     mSerialDevices.clear();
     String rilDevice=Helpers.getSystemProp(mContext,"rild.libargs","UNKNOWN");
     mSerialDevice=(rilDevice.equals("UNKNOWN") ? rilDevice : rilDevice.substring(3));
     if (!mSerialDevice.equals("UNKNOWN")) {
       mSerialDevices.add(mSerialDevice);
     }
-    Command cmd=new Command(0,"\\ls /dev/radio | grep atci*"){
+    Command cmd=new Command(0,"\\ls /dev/smd*"){
       @Override public void commandOutput(      int id,      String line){
         if (id == 0) {
-          if (!line.trim().equals("") && !mSerialDevices.contains("/dev/radio/" + line.trim())) {
-            mSerialDevices.add("/dev/radio/" + line.trim());
+          if (!line.trim().equals("") && !mSerialDevices.contains("/dev/" + line.trim())) {
+            mSerialDevices.add("/dev/" + line.trim());
             mAtResponse.append("Found: " + line.trim());
           }
         }

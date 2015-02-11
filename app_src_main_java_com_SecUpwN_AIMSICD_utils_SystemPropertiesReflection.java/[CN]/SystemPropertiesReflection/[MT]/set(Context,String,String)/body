@@ -15,6 +15,6 @@
  catch (  IllegalArgumentException iAE) {
     throw iAE;
   }
-catch (  Exception e) {
+catch (  Exception ignored) {
   }
 }

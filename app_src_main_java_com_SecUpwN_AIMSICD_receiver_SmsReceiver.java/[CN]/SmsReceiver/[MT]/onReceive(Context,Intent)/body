@@ -24,7 +24,7 @@
         int firstByte=smsPdu[0] & 0xff;
         int mti=firstByte & 0x3;
         int pID=smsPdu[1] & 0xc0;
-        Log.i("AIMSICD_SmsReceiver","PDU Data: firstByte = " + firstByte + " mti = "+ mti+ " TP_PID = "+ pID);
+        Log.i("AIMSICD_SmsReceiver","PDU Data: firstByte: " + firstByte + " TP-MTI: "+ mti+ " TP-PID: "+ pID);
         if (pID == 0x40 && mti == 0) {
           messages.add(SmsMessage.createFromPdu((byte[])pdu));
         }
