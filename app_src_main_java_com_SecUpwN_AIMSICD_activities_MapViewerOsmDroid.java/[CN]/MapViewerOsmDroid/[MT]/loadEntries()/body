@@ -119,6 +119,13 @@ Log.e("map","Error plotting neighbouring cells",e);
 mCellTowerGridMarkerClusterer.addAll(items);
 return ret;
 }
+/** 
+ * TODO:  We need a manual way to add our own location in case:
+ * a) GPS is jammed or not working
+ * b) WiFi location is not used
+ * c) Default MCC is too far off
+ * @param defaultLoc
+ */
 @Override protected void onPostExecute(GeoPoint defaultLoc){
 if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
 mMap.getController().setZoom(16);
@@ -134,7 +141,7 @@ mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()
 }
  else {
 loc=defaultLoc;
-mMap.getController().setZoom(13);
+mMap.getController().setZoom(12);
 mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
 }
 }

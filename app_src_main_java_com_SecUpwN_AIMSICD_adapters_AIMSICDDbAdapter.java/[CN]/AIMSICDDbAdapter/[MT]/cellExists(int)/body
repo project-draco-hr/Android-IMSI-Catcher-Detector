@@ -1,7 +1,7 @@
 {
   Cursor cursor=mDb.rawQuery("SELECT 1 FROM " + CELL_TABLE + " WHERE CellID = "+ cellID,null);
   boolean exists=cursor.getCount() > 0;
-  Log.v(TAG,"CID: " + cellID + " exists in local DB (DBi_bts) ?: "+ exists);
+  Log.v(TAG,"Does CID: " + cellID + " exist in DBi_bts? "+ exists);
   cursor.close();
   return exists;
 }

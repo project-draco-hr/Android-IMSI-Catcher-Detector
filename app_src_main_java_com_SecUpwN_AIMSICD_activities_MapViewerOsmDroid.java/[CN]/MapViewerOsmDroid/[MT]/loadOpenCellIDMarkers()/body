@@ -5,13 +5,13 @@
   Cursor c=mDbHelper.getOpenCellIDData();
   if (c.moveToFirst()) {
     do {
-      final double dlat=Double.parseDouble(c.getString(4));
-      final double dlng=Double.parseDouble(c.getString(5));
       final int cellID=c.getInt(0);
       final int lac=c.getInt(1);
-      final GeoPoint location=new GeoPoint(dlat,dlng);
       final int mcc=c.getInt(2);
       final int mnc=c.getInt(3);
+      final double dlat=Double.parseDouble(c.getString(4));
+      final double dlng=Double.parseDouble(c.getString(5));
+      final GeoPoint location=new GeoPoint(dlat,dlng);
       final int samples=c.getInt(7);
       CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,"Cell ID: " + cellID,"",location,new MarkerData("" + cellID,"" + location.getLatitude(),"" + location.getLongitude(),"" + lac,"" + mcc,"" + mnc,"" + samples,false));
       ovm.setIcon(cellTowerMarkerIcon);
