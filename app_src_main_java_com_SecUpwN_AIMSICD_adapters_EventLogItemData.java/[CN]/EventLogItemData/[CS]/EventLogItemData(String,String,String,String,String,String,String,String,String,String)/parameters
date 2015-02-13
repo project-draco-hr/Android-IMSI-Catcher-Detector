@@ -4,7 +4,7 @@ String CID
 String PSC
 String gpsd_lat
 String gpsd_lon
-String gpsd_accur
+String gpsd_accu
 String DF_id
-String DF_description
+String DF_desc
 String recordId
