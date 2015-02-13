@@ -15,11 +15,11 @@
     cellValues.put("NetworkType",networkType);
     cellValues.put("MeasurementTaken",measurementTaken);
     if (cellExists(cellID)) {
-      Log.v(TAG,"Cell info updated in local db: " + cellID);
+      Log.v(TAG,mTAG + ": Cell info updated in local db: " + cellID);
       return mDb.update(CELL_TABLE,cellValues,"CellID=?",new String[]{Integer.toString(cellID)});
     }
  else {
-      Log.v(TAG,"New Cell found, insert into local db:: " + cellID);
+      Log.v(TAG,mTAG + ": New Cell found, insert into local db:: " + cellID);
       return mDb.insert(CELL_TABLE,null,cellValues);
     }
   }

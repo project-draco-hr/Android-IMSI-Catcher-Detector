@@ -1,10 +1,6 @@
 {
   Cursor cursor=mDb.rawQuery("SELECT * FROM " + OPENCELLID_TABLE + " WHERE CellID = "+ cellID,null);
   boolean exists=cursor.getCount() > 0;
-  if (!exists) {
-    Log.v(TAG,"Does CID: " + cellID + " exist in DBe_import? "+ exists);
-    insertDetection(1234,001,cellID,111,1.1,2.2,3,2,"CellID not found in OCID Database");
-  }
   cursor.close();
   return exists;
 }

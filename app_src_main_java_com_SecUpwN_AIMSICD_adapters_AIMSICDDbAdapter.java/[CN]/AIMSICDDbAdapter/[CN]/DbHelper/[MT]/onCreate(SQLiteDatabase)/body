@@ -14,7 +14,9 @@
   database.execSQL(OPENCELLID_DATABASE_CREATE);
   String DEFAULT_MCC_DATABASE_CREATE="CREATE TABLE " + TABLE_DEFAULT_MCC + " ("+ COLUMN_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+ "Country VARCHAR, "+ "Mcc INTEGER, "+ "Lat VARCHAR, "+ "Lng VARCHAR);";
   database.execSQL(DEFAULT_MCC_DATABASE_CREATE);
-  String TABLE_EVENTLOG_CREATE="CREATE TABLE " + TABLE_EVENTLOG + " ("+ COLUMN_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT,"+ "time     		TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"+ "LAC           	INTEGER NOT NULL,"+ "CID           	INTEGER NOT NULL,"+ "PSC           	INTEGER,"+ "gpsd_lat      	REAL,"+ "gpsd_lon      	REAL,"+ "gpsd_accu     	REAL,"+ "DF_id         	INTEGER,"+ "DF_description	TEXT"+ ");";
+  String TABLE_EVENTLOG_CREATE="CREATE TABLE " + TABLE_EVENTLOG + " ("+ COLUMN_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT,"+ "time     		TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"+ "LAC           	INTEGER NOT NULL,"+ "CID           	INTEGER NOT NULL,"+ "PSC           	INTEGER,"+ "gpsd_lat      	REAL,"+ "gpsd_lon      	REAL,"+ "gpsd_accu     	INTEGER,"+ "DF_id         	INTEGER,"+ "DF_desc    	TEXT"+ ");";
   database.execSQL(TABLE_EVENTLOG_CREATE);
+  String ZeroEvent="INSERT INTO " + TABLE_EVENTLOG + " (LAC,CID,PSC, gpsd_lat,gpsd_lon,gpsd_accu, DF_id,DF_desc) "+ "VALUES (12345,543210,111, 54.6,25.2,100, 2,'CellID not found in OCID Database');";
+  database.execSQL(ZeroEvent);
   populateDefaultMCC(database);
 }

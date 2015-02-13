@@ -1,4 +1,4 @@
 {
-  Log.i(TAG,"Cell deleted: " + cellId);
+  Log.i(TAG,mTAG + ": Deleted CID: " + cellId);
   return mDb.delete(CELL_TABLE,"CellID = ?",new String[]{String.valueOf(cellId)});
 }

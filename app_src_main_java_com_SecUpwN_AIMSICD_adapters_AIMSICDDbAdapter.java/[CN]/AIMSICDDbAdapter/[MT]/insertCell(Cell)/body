@@ -14,11 +14,11 @@
     cellValues.put("Direction",cell.getBearing());
     cellValues.put("MeasurementTaken",cell.getTimestamp());
     if (cellExists(cell.getCID())) {
-      Log.v(TAG,"CID info updated in local db (DBi): " + cell.getCID());
+      Log.v(TAG,mTAG + ": CID info updated in local db (DBi): " + cell.getCID());
       return mDb.update(CELL_TABLE,cellValues,"CellID=?",new String[]{Integer.toString(cell.getCID())});
     }
  else {
-      Log.v(TAG,"New CID found, insert into local db (DBi):: " + cell.getCID());
+      Log.v(TAG,mTAG + ": New CID found, insert into local db (DBi):: " + cell.getCID());
       return mDb.insert(CELL_TABLE,null,cellValues);
     }
   }

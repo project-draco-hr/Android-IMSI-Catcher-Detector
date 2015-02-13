@@ -1,5 +1,5 @@
 {
-  Log.w(TAG,"Upgrading database from version " + oldVersion + " to "+ newVersion+ ", and destroy all old data.");
+  Log.w(TAG,mTAG + ": Upgrading database from version " + oldVersion+ " to "+ newVersion+ ", and destroy all old data.");
   db.execSQL("DROP TABLE IF EXISTS " + LOCATION_TABLE);
   db.execSQL("DROP TABLE IF EXISTS " + CELL_TABLE);
   db.execSQL("DROP TABLE IF EXISTS " + OPENCELLID_TABLE);

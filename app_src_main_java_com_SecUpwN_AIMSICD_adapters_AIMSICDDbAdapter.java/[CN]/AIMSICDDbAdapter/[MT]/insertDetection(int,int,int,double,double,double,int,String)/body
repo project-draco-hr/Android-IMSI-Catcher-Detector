@@ -1,6 +1,5 @@
 {
   ContentValues detectionValues=new ContentValues();
-  detectionValues.put("time",Time);
   detectionValues.put("LAC",LAC);
   detectionValues.put("CID",CID);
   detectionValues.put("PSC",PSC);
@@ -9,6 +8,6 @@
   detectionValues.put("gpsd_accu",accu);
   detectionValues.put("DF_id",DF_id);
   detectionValues.put("DF_description",DF_description);
-  Log.v(TAG,"Insert Detection into EventLog Table: " + CID);
+  Log.v(TAG,mTAG + ": Insert Detection into EventLog Table: " + CID);
   return mDb.insert(TABLE_EVENTLOG,null,detectionValues);
 }

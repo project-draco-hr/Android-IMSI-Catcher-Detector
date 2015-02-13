@@ -42,7 +42,7 @@ break;
 return true;
 }
  catch (Exception e) {
-Log.e(TAG,"restoreDB() " + e);
+Log.e(TAG,mTAG + ": restoreDB() " + e);
 return false;
 }
  finally {
