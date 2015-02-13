@@ -4,7 +4,7 @@
   neighboringCellInfo=tm.getNeighboringCellInfo();
   if (neighboringCellInfo.size() == 0) {
     neighboringCellBlockingQueue=new LinkedBlockingQueue<>(100);
-    Log.i(TAG,"neighbouringCellInfo empty - start polling");
+    Log.i(TAG,mTAG + ": neighbouringCellInfo empty - start polling");
     if (Build.VERSION.SDK_INT > 16) {
       DeviceApi17.startListening(tm,phoneStatelistener);
     }
@@ -13,12 +13,12 @@
     }
     for (int i=0; i < 10 && neighboringCellInfo.size() == 0; i++) {
       try {
-        Log.i(TAG,"neighbouringCellInfo empty: trying " + i);
+        Log.i(TAG,mTAG + ": neighbouringCellInfo empty: trying " + i);
         NeighboringCellInfo info=neighboringCellBlockingQueue.poll(1,TimeUnit.SECONDS);
         if (info == null) {
           neighboringCellInfo=tm.getNeighboringCellInfo();
           if (neighboringCellInfo.size() > 0) {
-            Log.i(TAG,"neighbouringCellInfo found on " + i + " try. (time based)");
+            Log.i(TAG,mTAG + ": neighbouringCellInfo found on " + i+ " try. (time based)");
             break;
           }
  else {
@@ -36,9 +36,9 @@
       }
     }
   }
-  Log.d(TAG,"neighbouringCellInfo size: " + neighboringCellInfo.size());
+  Log.d(TAG,mTAG + ": neighbouringCellInfo size: " + neighboringCellInfo.size());
   for (  NeighboringCellInfo neighbourCell : neighboringCellInfo) {
-    Log.i(TAG,"neighbouringCellInfo -" + " LAC:" + neighbourCell.getLac() + " CID:"+ neighbourCell.getCid()+ " PSC:"+ neighbourCell.getPsc()+ " RSSI:"+ neighbourCell.getRssi());
+    Log.i(TAG,mTAG + ": neighbouringCellInfo -" + " LAC:"+ neighbourCell.getLac()+ " CID:"+ neighbourCell.getCid()+ " PSC:"+ neighbourCell.getPsc()+ " RSSI:"+ neighbourCell.getRssi());
     final Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),neighbourCell.getRssi(),neighbourCell.getPsc(),neighbourCell.getNetworkType(),false);
     neighboringCells.add(cell);
   }

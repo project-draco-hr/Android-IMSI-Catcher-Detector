@@ -3,6 +3,6 @@
     tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_NONE);
     mTrackingFemtocell=false;
     setNotification();
-    Log.v(TAG,"Stopped tracking FemtoCell connections.");
+    Log.v(TAG,mTAG + ": Stopped tracking FemtoCell connections.");
   }
 }

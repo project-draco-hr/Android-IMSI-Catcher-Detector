@@ -32,6 +32,7 @@ case DBE_DOWNLOAD_REQUEST_FROM_MAP:
     }
  else {
       total=urlConnection.getContentLength();
+      Log.d("AIMSICD","RequestTask:doInBackground DBE_DOWNLOAD_REQUEST total: " + total);
       publishProgress(progress,total);
       FileOutputStream output=new FileOutputStream(file,false);
       InputStream input=new BufferedInputStream(urlConnection.getInputStream());

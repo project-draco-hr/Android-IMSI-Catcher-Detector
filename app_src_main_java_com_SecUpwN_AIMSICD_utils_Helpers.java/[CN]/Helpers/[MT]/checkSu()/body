@@ -14,7 +14,7 @@
     }
   }
  catch (  NullPointerException e) {
-    Log.e(TAG,"NullPointer throw while looking for su binary",e);
+    Log.e(TAG,"NullPointer throw while looking for su binary: ",e);
     return false;
   }
 }

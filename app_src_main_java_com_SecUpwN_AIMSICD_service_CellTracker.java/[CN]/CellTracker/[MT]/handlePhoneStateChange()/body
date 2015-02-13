@@ -4,7 +4,7 @@
   if (neighboringCellInfo.size() == 0) {
     return;
   }
-  Log.i(TAG,"neighbouringCellInfo empty - event based polling succeeded!");
+  Log.i(TAG,mTAG + ": neighbouringCellInfo empty - event based polling succeeded!");
   tm.listen(phoneStatelistener,PhoneStateListener.LISTEN_NONE);
   neighboringCellBlockingQueue.addAll(neighboringCellInfo);
 }
