@@ -17,7 +17,7 @@
     if (!mSerialDevice.equals("UNKNOWN")) {
       mSerialDevices.add(mSerialDevice);
     }
-    Command cmd=new Command(0,"\\ls /dev/smd*"){
+    Command cmd=new Command(0,"\\ls /dev/smd[0-7]"){
       @Override public void commandOutput(      int id,      String line){
         if (id == 0) {
           if (!line.trim().equals("") && !mSerialDevices.contains("/dev/" + line.trim())) {
@@ -31,9 +31,23 @@
 ;
     shell.add(cmd);
     commandWait(shell,cmd);
+    cmd=new Command(1,"\\ls /dev/radio | grep atci*"){
+      @Override public void commandOutput(      int id,      String line){
+        if (id == 0) {
+          if (!line.trim().equals("") && !mSerialDevices.contains("/dev/radio/" + line.trim())) {
+            mSerialDevices.add("/dev/radio/" + line.trim());
+            mAtResponse.append("Found: " + line.trim());
+          }
+        }
+        super.commandOutput(id,line);
+      }
+    }
+;
+    shell.add(cmd);
+    commandWait(shell,cmd);
     File xgold=new File("/system/etc/ril_xgold_radio.cfg");
     if (xgold.exists() && xgold.isFile()) {
-      cmd=new Command(1,"cat /system/etc/ril_xgold_radio.cfg | " + "grep -E \"atport*|dataport*\""){
+      cmd=new Command(2,"cat /system/etc/ril_xgold_radio.cfg | " + "grep -E \"atport*|dataport*\""){
         @Override public void commandOutput(        int id,        String line){
           if (id == 0) {
             if (!line.trim().equals("") && line.contains("/dev/")) {

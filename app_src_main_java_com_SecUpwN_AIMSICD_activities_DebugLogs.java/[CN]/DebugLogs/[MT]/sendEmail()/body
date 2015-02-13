@@ -3,7 +3,7 @@
     @Override public void run(){
       try {
         String helpUs="For best help, please describe the problem you had, before sending us these logs.\n";
-        String log=helpUs + "\n\n" + "GETPROP:"+ "\n\n"+ getProp()+ "\n\n"+ "LOGCAT:"+ "\n\n"+ getLogs()+ helpUs;
+        String log=helpUs + "\n\n" + "GETPROP:"+ "\n\n"+ getProp()+ "\n\n"+ "LOGCAT:"+ "\n\n"+ getLogs()+ "\n\n"+ helpUs;
         Intent intent=new Intent(Intent.ACTION_SEND);
         intent.setType("text/html");
         intent.putExtra(Intent.EXTRA_EMAIL,new String[]{"a3841c3c@opayq.com"});
