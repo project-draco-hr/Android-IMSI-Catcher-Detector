@@ -1,0 +1,3 @@
+{
+  this(new ProcessBuilder("su","-c","\\exec cat <" + ttyPath).start(),new ProcessBuilder("su","-c","\\exec cat >" + ttyPath).start());
+}

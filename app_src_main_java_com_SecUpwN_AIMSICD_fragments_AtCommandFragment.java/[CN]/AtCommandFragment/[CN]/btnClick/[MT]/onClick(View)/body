@@ -1,7 +1,13 @@
 {
   if (mAtCommand.getText() != null) {
     String command=mAtCommand.getText().toString();
-    Log.i("AIMSICD","AT Command Detected: " + command);
-    executeAT();
+    if (command.toUpperCase().indexOf("AT") == 0) {
+      Log.i("AIMSICD","AT Command Detected: " + command);
+      executeAT();
+    }
+ else {
+      Log.i("AIMSICD","Terminal Command Detected");
+      executeCommand();
+    }
   }
 }

@@ -9,67 +9,61 @@
     return BUSYBOX_UNAVAILABLE;
   }
   try {
-    shell=RootShell.getShell(true);
     mAtResponse.setText("*** Looking for AT serial devices...\n");
     mSerialDevices.clear();
-    String rilDevice=Helpers.getSystemProp(mContext,"rild.libargs","UNKNOWN");
-    mSerialDevice=(rilDevice.equals("UNKNOWN") ? rilDevice : rilDevice.substring(3));
-    if (!mSerialDevice.equals("UNKNOWN")) {
-      mSerialDevices.add(mSerialDevice);
-    }
-    Command cmd=new Command(0,"\\ls /dev/smd[0-7]"){
-      @Override public void commandOutput(      int id,      String line){
-        if (id == 0) {
-          if (!line.trim().equals("") && !mSerialDevices.contains("/dev/" + line.trim())) {
-            mSerialDevices.add("/dev/" + line.trim());
-            mAtResponse.append("Found: " + line.trim());
-          }
-        }
-        super.commandOutput(id,line);
+    try {
+      String rilDevice=Helpers.getSystemProp(mContext,"rild.libargs","UNKNOWN");
+      mSerialDevice=(rilDevice.equals("UNKNOWN") ? rilDevice : rilDevice.substring(3));
+      if (!mSerialDevice.equals("UNKNOWN")) {
+        mSerialDevices.add(mSerialDevice);
       }
     }
-;
-    shell.add(cmd);
-    commandWait(shell,cmd);
-    cmd=new Command(1,"\\ls /dev/radio | grep atci*"){
-      @Override public void commandOutput(      int id,      String line){
-        if (id == 0) {
-          if (!line.trim().equals("") && !mSerialDevices.contains("/dev/radio/" + line.trim())) {
-            mSerialDevices.add("/dev/radio/" + line.trim());
-            mAtResponse.append("Found: " + line.trim());
+ catch (    StringIndexOutOfBoundsException e) {
+    }
+    for (    File file : new File("/dev").listFiles()) {
+      String name=file.getName();
+      boolean add=false;
+      if (name.matches("^smd.$")) {
+        add=true;
+      }
+ else       if (name.equals("radio")) {
+        for (        File subfile : file.listFiles()) {
+          String subname=subfile.getName();
+          if (subname.contains("atci")) {
+            add=true;
+            file=subfile;
           }
         }
-        super.commandOutput(id,line);
+      }
+      if (add) {
+        mSerialDevices.add(file.getAbsolutePath());
+        mAtResponse.append("Found: " + file.getAbsolutePath() + "\n");
       }
     }
-;
-    shell.add(cmd);
-    commandWait(shell,cmd);
     File xgold=new File("/system/etc/ril_xgold_radio.cfg");
     if (xgold.exists() && xgold.isFile()) {
-      cmd=new Command(2,"cat /system/etc/ril_xgold_radio.cfg | " + "grep -E \"atport*|dataport*\""){
+      Command cmd=new Command(1,"\\cat /system/etc/ril_xgold_radio.cfg | " + "\\grep -E \"atport*|dataport*\""){
         @Override public void commandOutput(        int id,        String line){
           if (id == 0) {
             if (!line.trim().equals("") && line.contains("/dev/")) {
               int place=line.indexOf("=") + 1;
               mSerialDevices.add(line.substring(place,line.length() - 1));
-              mAtResponse.append(line.substring(place,line.length() - 1));
+              mAtResponse.append("Found: " + line.substring(place,line.length() - 1) + "\n");
             }
           }
           super.commandOutput(id,line);
         }
       }
 ;
+      Shell shell=RootShell.getShell(true);
       shell.add(cmd);
       commandWait(shell,cmd);
     }
   }
  catch (  Exception e) {
-    Log.e("AIMSICD","initSerialDevice " + e);
+    Log.e("AIMSICD","ATCoP: initSerialDevice " + e);
   }
   if (!mSerialDevices.isEmpty()) {
-    mSerialDevice=mSerialDevices.get(0);
-    setSerialDevice();
     String[] entries=new String[mSerialDevices.size()];
     entries=mSerialDevices.toArray(entries);
     ArrayAdapter<String> spinnerAdapter=new ArrayAdapter<>(mContext,android.R.layout.simple_spinner_item,entries);

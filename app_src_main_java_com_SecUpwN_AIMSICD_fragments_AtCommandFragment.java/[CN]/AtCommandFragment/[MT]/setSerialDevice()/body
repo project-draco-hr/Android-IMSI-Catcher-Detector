@@ -1,11 +1,6 @@
 {
-  Command cmd=new Command(SET_DEVICE,"cat " + mSerialDevice + " \u0026\n");
-  try {
-    shell.add(cmd);
-    commandWait(shell,cmd);
-    Log.i("AIMSICD","setSerialDevice finished on " + mSerialDevice);
-  }
- catch (  Exception e) {
-    Log.e("AIMSICD","setSerialDevice " + e);
+  if (mCommandTerminal != null) {
+    mCommandTerminal.dispose();
+    mCommandTerminal=null;
   }
 }
