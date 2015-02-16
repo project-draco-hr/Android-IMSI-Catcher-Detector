@@ -32,14 +32,14 @@
       responseFromServer=content.toString("UTF-8");
       result.getEntity().consumeContent();
     }
-    Log.d("OCID Reached 24hr API key limit:",responseFromServer);
+    Log.d("AIMSICD","CellTracker: OCID Reached 24hr API key limit: " + responseFromServer);
     return responseFromServer;
   }
  else {
     httpclient=null;
     httpGet=null;
     result=null;
-    Log.d("OCID","OCID Returned " + status.getStatusCode() + " "+ status.getReasonPhrase());
+    Log.d("AIMSICD","CellTracker: OCID Returned " + status.getStatusCode() + " "+ status.getReasonPhrase());
     throw new Exception("OCID Returned " + status.getStatusCode() + " "+ status.getReasonPhrase());
   }
 }
