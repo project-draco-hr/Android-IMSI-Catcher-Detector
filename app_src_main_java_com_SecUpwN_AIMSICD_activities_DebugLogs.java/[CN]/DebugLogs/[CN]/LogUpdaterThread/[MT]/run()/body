@@ -19,7 +19,7 @@
       }
     }
  catch (    Exception e) {
-      Log.e("DebugLogs","Error updating logs",e);
+      Log.e("AIMSICD","DebugLogs: Error updating logs",e);
     }
     try {
       Thread.sleep(1000);

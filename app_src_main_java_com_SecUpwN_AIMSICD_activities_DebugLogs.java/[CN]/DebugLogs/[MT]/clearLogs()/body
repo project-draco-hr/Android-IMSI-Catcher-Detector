@@ -5,7 +5,7 @@
         Runtime.getRuntime().exec("logcat -c -b main -b system -b radio -b events");
       }
  catch (      Exception e) {
-        Log.e("DebugLogs","Error clearing logs",e);
+        Log.e("AIMSICD","DebugLogs: Error clearing logs",e);
       }
       runOnUiThread(new Runnable(){
         @Override public void run(){
