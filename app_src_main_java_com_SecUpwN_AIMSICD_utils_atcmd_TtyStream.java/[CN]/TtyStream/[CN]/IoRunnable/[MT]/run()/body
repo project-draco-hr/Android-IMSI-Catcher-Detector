@@ -43,7 +43,6 @@
         if (line.length() != 0)         lines.add(line);
       }
  while (!(line.equals("OK") || line.equals("ERROR") || line.startsWith("+CME ERROR")));
-      Log.d(TAG,"IO< " + lines);
       if (resultMessage != null) {
         resultMessage.obj=lines;
         resultMessage.sendToTarget();

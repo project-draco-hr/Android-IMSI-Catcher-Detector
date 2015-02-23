@@ -1,6 +1,5 @@
 {
   try {
-    Log.d(TAG,"IO> " + s);
     mWriteQ.add(Pair.create(s.getBytes("ASCII"),resultMessage));
   }
  catch (  UnsupportedEncodingException e) {
