@@ -2,46 +2,43 @@
 switch (mType) {
 case DBE_UPLOAD_REQUEST:
     try {
-      if (CellTracker.OCID_UPLOAD_PREF) {
-        boolean prepared=mDbAdapter.prepareOpenCellUploadData();
-        Log.i("AIMSICD","OCID upload data prepared - " + String.valueOf(prepared));
-        if (prepared) {
-          File file=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/aimsicd-ocid-data.csv");
-          publishProgress(25,100);
-          MultipartEntity mpEntity=new MultipartEntity();
-          FileInputStream fin=new FileInputStream(file);
-          String csv=Helpers.convertStreamToString(fin);
-          mpEntity.addPart("key",new StringBody(CellTracker.OCID_API_KEY));
-          mpEntity.addPart("datafile",new InputStreamBody(new ByteArrayInputStream(csv.getBytes()),"text/csv","aimsicd-ocid-data.csv"));
-          ByteArrayOutputStream bAOS=new ByteArrayOutputStream();
-          publishProgress(50,100);
-          mpEntity.writeTo(bAOS);
-          bAOS.flush();
-          ByteArrayEntity bArrEntity=new ByteArrayEntity(bAOS.toByteArray());
-          bAOS.close();
-          bArrEntity.setChunked(false);
-          bArrEntity.setContentEncoding(mpEntity.getContentEncoding());
-          bArrEntity.setContentType(mpEntity.getContentType());
-          HttpClient httpclient;
-          HttpPost httppost;
-          HttpResponse response;
-          httpclient=new DefaultHttpClient();
-          httppost=new HttpPost("http://www.opencellid.org/measure/uploadCsv");
-          publishProgress(60,100);
-          httppost.setEntity(bArrEntity);
-          response=httpclient.execute(httppost);
-          publishProgress(80,100);
-          if (response != null) {
-            Log.i("AIMSICD","OCID Upload Response: " + response.getStatusLine().getStatusCode() + " - "+ response.getStatusLine());
-            if (response.getStatusLine().getStatusCode() == org.apache.http.HttpStatus.SC_OK) {
-              mDbAdapter.ocidProcessed();
-            }
-            publishProgress(95,100);
+      boolean prepared=mDbAdapter.prepareOpenCellUploadData();
+      Log.i("AIMSICD","OCID upload data prepared - " + String.valueOf(prepared));
+      if (prepared) {
+        File file=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/aimsicd-ocid-data.csv");
+        publishProgress(25,100);
+        MultipartEntity mpEntity=new MultipartEntity();
+        FileInputStream fin=new FileInputStream(file);
+        String csv=Helpers.convertStreamToString(fin);
+        mpEntity.addPart("key",new StringBody(CellTracker.OCID_API_KEY));
+        mpEntity.addPart("datafile",new InputStreamBody(new ByteArrayInputStream(csv.getBytes()),"text/csv","aimsicd-ocid-data.csv"));
+        ByteArrayOutputStream bAOS=new ByteArrayOutputStream();
+        publishProgress(50,100);
+        mpEntity.writeTo(bAOS);
+        bAOS.flush();
+        ByteArrayEntity bArrEntity=new ByteArrayEntity(bAOS.toByteArray());
+        bAOS.close();
+        bArrEntity.setChunked(false);
+        bArrEntity.setContentEncoding(mpEntity.getContentEncoding());
+        bArrEntity.setContentType(mpEntity.getContentType());
+        HttpClient httpclient;
+        HttpPost httppost;
+        HttpResponse response;
+        httpclient=new DefaultHttpClient();
+        httppost=new HttpPost("http://www.opencellid.org/measure/uploadCsv");
+        publishProgress(60,100);
+        httppost.setEntity(bArrEntity);
+        response=httpclient.execute(httppost);
+        publishProgress(80,100);
+        if (response != null) {
+          Log.i("AIMSICD","OCID Upload Response: " + response.getStatusLine().getStatusCode() + " - "+ response.getStatusLine());
+          if (response.getStatusLine().getStatusCode() == org.apache.http.HttpStatus.SC_OK) {
+            mDbAdapter.ocidProcessed();
           }
+          publishProgress(95,100);
         }
-        return "Successful";
       }
-      return null;
+      return "Successful";
     }
  catch (    Exception e) {
       Log.i("AIMSICD","Upload OpenCellID data - " + e.getMessage());
