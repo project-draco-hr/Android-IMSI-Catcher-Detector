@@ -20,6 +20,9 @@ break;
 case 303:
 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new AboutFragment()).commit();
 break;
+case 306:
+new RequestTask(mContext,com.SecUpwN.AIMSICD.utils.RequestTask.DBE_UPLOAD_REQUEST).execute("");
+break;
 }
 if (selectedItem.getId() == 901) {
 monitorcell();
