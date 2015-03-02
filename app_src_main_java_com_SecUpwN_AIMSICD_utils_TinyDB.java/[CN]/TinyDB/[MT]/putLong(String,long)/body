@@ -1,0 +1,5 @@
+{
+  SharedPreferences.Editor editor=preferences.edit();
+  editor.putLong(key,value);
+  editor.apply();
+}

@@ -1,0 +1,13 @@
+{
+  ArrayList<String> origList=getList(key);
+  ArrayList<Boolean> mBools=new ArrayList<Boolean>();
+  for (  String b : origList) {
+    if (b.equals("true")) {
+      mBools.add(true);
+    }
+ else {
+      mBools.add(false);
+    }
+  }
+  return mBools;
+}

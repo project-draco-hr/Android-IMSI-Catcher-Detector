@@ -1,0 +1,3 @@
+{
+  return preferences.getFloat(key,0f);
+}

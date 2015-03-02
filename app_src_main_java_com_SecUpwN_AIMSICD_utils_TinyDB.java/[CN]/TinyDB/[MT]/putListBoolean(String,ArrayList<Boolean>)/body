@@ -1,0 +1,12 @@
+{
+  ArrayList<String> origList=new ArrayList<String>();
+  for (  Boolean b : marray) {
+    if (b) {
+      origList.add("true");
+    }
+ else {
+      origList.add("false");
+    }
+  }
+  putList(key,origList);
+}

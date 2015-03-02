@@ -1,0 +1,5 @@
+{
+  File tobedeletedImage=new File(path);
+  Boolean isDeleted=tobedeletedImage.delete();
+  return isDeleted;
+}
