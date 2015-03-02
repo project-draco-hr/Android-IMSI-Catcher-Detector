@@ -37,8 +37,12 @@ case DBE_UPLOAD_REQUEST:
           }
           publishProgress(95,100);
         }
+        return "Successful";
       }
-      return "Successful";
+ else {
+        Helpers.msgLong(mContext,"No data for publishing available");
+        return null;
+      }
     }
  catch (    Exception e) {
       Log.i("AIMSICD","Upload OpenCellID data - " + e.getMessage());
