@@ -1,6 +1,7 @@
 {
   super.onPostExecute(result);
   AIMSICD.mProgressBar.setProgress(0);
+  TinyDB tinydb=new TinyDB(mContext);
 switch (mType) {
 case DBE_DOWNLOAD_REQUEST:
     if (result != null && result.equals("Successful")) {
@@ -10,7 +11,7 @@ case DBE_DOWNLOAD_REQUEST:
       }
       mDbAdapter.checkDBe();
       mDbAdapter.close();
-      Helpers.setProp("aimsicd.ocid_downloaded","true");
+      tinydb.putBoolean("ocid_downloaded",true);
     }
  else {
       Helpers.msgLong(mContext,"Error retrieving OpenCellID data.\nCheck your network!");
@@ -25,7 +26,7 @@ if (result != null && result.equals("Successful")) {
     Helpers.msgShort(mContext,"OpenCellID data successfully received.\nMap Markers updated.");
     mDbAdapter.checkDBe();
     mDbAdapter.close();
-    Helpers.setProp("aimsicd.ocid_downloaded","true");
+    tinydb.putBoolean("ocid_downloaded",true);
   }
 }
  else {
@@ -42,12 +43,7 @@ Helpers.msgLong(mContext,"Error restoring database");
 break;
 case BACKUP_DATABASE:
 if (result != null && result.equals("Successful")) {
-SharedPreferences prefs;
-prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
-SharedPreferences.Editor prefsEditor;
-prefsEditor=prefs.edit();
-prefsEditor.putInt(mContext.getString(R.string.pref_last_database_backup_version),AIMSICDDbAdapter.DATABASE_VERSION);
-prefsEditor.apply();
+tinydb.putInt("pref_last_db_backup_version",AIMSICDDbAdapter.DATABASE_VERSION);
 final AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
 builder.setTitle(R.string.database_export_successful).setMessage("Database Backup successfully saved to:\n" + AIMSICDDbAdapter.FOLDER);
 builder.create().show();
