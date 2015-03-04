@@ -45,7 +45,7 @@ case DBE_UPLOAD_REQUEST:
       }
     }
  catch (    Exception e) {
-      Log.i("AIMSICD","Upload OpenCellID data - " + e.getMessage());
+      Log.e("AIMSICD","Upload OpenCellID data Exception - " + e.getMessage());
     }
 case DBE_DOWNLOAD_REQUEST:
 case DBE_DOWNLOAD_REQUEST_FROM_MAP:
