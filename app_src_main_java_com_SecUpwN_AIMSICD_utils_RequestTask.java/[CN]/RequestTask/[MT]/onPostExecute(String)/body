@@ -33,14 +33,6 @@ if (result != null && result.equals("Successful")) {
   Helpers.msgLong(mContext,"Error retrieving OpenCellID data.\nCheck your network!");
 }
 break;
-case DBE_UPLOAD_REQUEST:
-if (result != null && result.equals("Successful")) {
-Helpers.msgShort(mContext,"Uploaded BTS data to OCID successfully");
-}
- else {
-Helpers.msgLong(mContext,"Error in uploading BTS data to OCID servers!");
-}
-break;
 case RESTORE_DATABASE:
 if (result != null && result.equals("Successful")) {
 Helpers.msgShort(mContext,"Restore database completed successfully");
