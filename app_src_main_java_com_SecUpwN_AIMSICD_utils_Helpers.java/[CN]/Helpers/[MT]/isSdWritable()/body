@@ -4,14 +4,14 @@
     String state=Environment.getExternalStorageState();
     if (Environment.MEDIA_MOUNTED.equals(state)) {
       mExternalStorageAvailable=true;
-      Log.i(TAG,"External storage card is readable.");
+      Log.i(TAG,mTAG + ": External storage card is readable.");
     }
  else {
       mExternalStorageAvailable=false;
     }
   }
  catch (  Exception ex) {
-    Log.e(TAG,"isSdWritable - " + ex.getMessage());
+    Log.e(TAG,mTAG + ":isSdWritable - " + ex.getMessage());
   }
   return mExternalStorageAvailable;
 }
