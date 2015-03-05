@@ -1,9 +1,9 @@
 {
-  final String KEY_UI_ICONS=uniqueContext.getString(R.string.pref_ui_icons_key);
-  final String FEMTO_DETECTION=uniqueContext.getString(R.string.pref_femto_detection_key);
-  final String REFRESH=uniqueContext.getString(R.string.pref_refresh_key);
-  final String DB_VERSION=uniqueContext.getString(R.string.pref_last_database_backup_version);
-  final String OCID_KEY=uniqueContext.getString(R.string.pref_ocid_key);
+  final String KEY_UI_ICONS=context.getString(R.string.pref_ui_icons_key);
+  final String FEMTO_DETECTION=context.getString(R.string.pref_femto_detection_key);
+  final String REFRESH=context.getString(R.string.pref_refresh_key);
+  final String DB_VERSION=context.getString(R.string.pref_last_database_backup_version);
+  final String OCID_KEY=context.getString(R.string.pref_ocid_key);
   if (key.equals(KEY_UI_ICONS)) {
     setNotification();
   }
