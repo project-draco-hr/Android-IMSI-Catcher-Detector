@@ -1,0 +1,26 @@
+{
+  BufferedReader reader=null;
+  StringBuilder buildassets=new StringBuilder();
+  try {
+    reader=new BufferedReader(new InputStreamReader(context.getAssets().open("CREDITS")));
+    String rline=reader.readLine().replace("'","\\'");
+    while (rline != null) {
+      buildassets.append(rline);
+      rline=reader.readLine().replace("'","\\'");
+    }
+  }
+ catch (  Exception ee) {
+    System.out.println("Out>>> " + ee);
+  }
+ finally {
+    if (reader != null) {
+      try {
+        reader.close();
+      }
+ catch (      Exception ee) {
+        System.out.println("Out>>> " + ee);
+      }
+    }
+  }
+  return buildassets.toString();
+}
