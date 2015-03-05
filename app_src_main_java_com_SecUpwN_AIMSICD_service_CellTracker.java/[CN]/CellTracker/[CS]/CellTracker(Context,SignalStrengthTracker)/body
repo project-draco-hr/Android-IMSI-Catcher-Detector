@@ -1,5 +1,5 @@
 {
-  this.context=context;
+  this.uniqueContext=context;
   this.signalStrengthTracker=sst;
   tm=(TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
   prefs=context.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);

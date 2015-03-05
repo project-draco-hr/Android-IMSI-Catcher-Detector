@@ -20,7 +20,7 @@
     return responseFromServer;
   }
  else   if (status.getStatusCode() == 503) {
-    Helpers.msgLong(context,"Only one new API key request per 24 hours!\nPlease try again later.");
+    Helpers.msgLong(uniqueContext,"Only one new API key request per 24 hours!\nPlease try again later.");
     if (result.getEntity() != null) {
       InputStream is=result.getEntity().getContent();
       ByteArrayOutputStream content=new ByteArrayOutputStream();

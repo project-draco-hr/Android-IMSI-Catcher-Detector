@@ -2,7 +2,7 @@
   mTypeZeroSmsDetected=state;
   setNotification();
   if (state) {
-    final AlertDialog.Builder builder=new AlertDialog.Builder(context);
+    final AlertDialog.Builder builder=new AlertDialog.Builder(uniqueContext);
     builder.setMessage(R.string.sms_message).setTitle(R.string.sms_title);
     AlertDialog alert=builder.create();
     alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);

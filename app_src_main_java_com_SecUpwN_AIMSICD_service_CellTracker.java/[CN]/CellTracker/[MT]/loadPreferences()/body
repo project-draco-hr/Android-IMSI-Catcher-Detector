@@ -1,10 +1,10 @@
 {
-  boolean trackFemtoPref=prefs.getBoolean(context.getString(R.string.pref_femto_detection_key),false);
-  boolean trackCellPref=prefs.getBoolean(context.getString(R.string.pref_enable_cell_key),true);
-  boolean monitorCellPref=prefs.getBoolean(context.getString(R.string.pref_enable_cell_monitoring_key),true);
-  LAST_DB_BACKUP_VERSION=prefs.getInt(context.getString(R.string.pref_last_database_backup_version),1);
-  CELL_TABLE_CLEANSED=prefs.getBoolean(context.getString(R.string.pref_cell_table_cleansed),false);
-  String refreshRate=prefs.getString(context.getString(R.string.pref_refresh_key),"1");
+  boolean trackFemtoPref=prefs.getBoolean(uniqueContext.getString(R.string.pref_femto_detection_key),false);
+  boolean trackCellPref=prefs.getBoolean(uniqueContext.getString(R.string.pref_enable_cell_key),true);
+  boolean monitorCellPref=prefs.getBoolean(uniqueContext.getString(R.string.pref_enable_cell_monitoring_key),true);
+  LAST_DB_BACKUP_VERSION=prefs.getInt(uniqueContext.getString(R.string.pref_last_database_backup_version),1);
+  CELL_TABLE_CLEANSED=prefs.getBoolean(uniqueContext.getString(R.string.pref_cell_table_cleansed),false);
+  String refreshRate=prefs.getString(uniqueContext.getString(R.string.pref_refresh_key),"1");
   if (refreshRate.isEmpty()) {
     refreshRate="1";
   }

@@ -37,6 +37,20 @@
     }
   }
   Log.d(TAG,mTAG + ": neighbouringCellInfo size: " + neighboringCellInfo.size());
+  TinyDB gettinydb=new TinyDB(uniqueContext);
+  Integer ncls=neighboringCellInfo.size();
+  Boolean nclp=gettinydb.getBoolean("nc_list_present");
+  Log.i(TAG,mTAG + ": ALERT: ncls =  " + ncls+ " nclp ="+ nclp);
+  if (ncls > 0 && !nclp) {
+    gettinydb.putBoolean("nc_list_present",true);
+    Log.d(TAG,mTAG + ": neighbouringCellInfo size: " + ncls);
+  }
+ else   if (ncls == 0 && nclp) {
+    Log.i(TAG,mTAG + ": ALERT: No neighboring cells detected for CID: " + mDevice.mCell.getCID());
+    Log.i(TAG,mTAG + ": ALERT: No neighboring cells detected for CID:  FIX_ME!! ");
+  }
+ else {
+  }
   for (  NeighboringCellInfo neighbourCell : neighboringCellInfo) {
     Log.i(TAG,mTAG + ": neighbouringCellInfo -" + " LAC:"+ neighbourCell.getLac()+ " CID:"+ neighbourCell.getCid()+ " PSC:"+ neighbourCell.getPsc()+ " RSSI:"+ neighbourCell.getRssi());
     final Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),neighbourCell.getRssi(),neighbourCell.getPsc(),neighbourCell.getNetworkType(),false);

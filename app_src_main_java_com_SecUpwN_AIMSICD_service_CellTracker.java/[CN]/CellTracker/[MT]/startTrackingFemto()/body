@@ -1,6 +1,6 @@
 {
   if (mDevice.getPhoneID() != TelephonyManager.PHONE_TYPE_CDMA) {
-    Helpers.msgShort(context,"AIMSICD can only detect FemtoCell connections on CDMA devices.");
+    Helpers.msgShort(uniqueContext,"AIMSICD can only detect FemtoCell connections on CDMA devices.");
     return;
   }
   mTrackingFemtocell=true;
