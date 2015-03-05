@@ -1,5 +1,0 @@
-{
-  if (mScrolling) {
-    stopScrollAnimation();
-  }
-}
