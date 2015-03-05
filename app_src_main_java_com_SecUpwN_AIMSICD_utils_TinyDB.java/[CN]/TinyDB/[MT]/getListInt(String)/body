@@ -1,0 +1,9 @@
+{
+  String[] mylist=TextUtils.split(preferences.getString(key,""),"?????????");
+  ArrayList<String> gottenlist=new ArrayList<String>(Arrays.asList(mylist));
+  ArrayList<Integer> gottenlist2=new ArrayList<Integer>();
+  for (int i=0; i < gottenlist.size(); i++) {
+    gottenlist2.add(Integer.parseInt(gottenlist.get(i)));
+  }
+  return gottenlist2;
+}

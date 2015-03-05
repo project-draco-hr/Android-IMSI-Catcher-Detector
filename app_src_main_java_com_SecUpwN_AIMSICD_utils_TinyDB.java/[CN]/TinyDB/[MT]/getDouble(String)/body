@@ -1,0 +1,10 @@
+{
+  String number=getString(key);
+  try {
+    double value=Double.parseDouble(number);
+    return value;
+  }
+ catch (  NumberFormatException e) {
+    return 0;
+  }
+}

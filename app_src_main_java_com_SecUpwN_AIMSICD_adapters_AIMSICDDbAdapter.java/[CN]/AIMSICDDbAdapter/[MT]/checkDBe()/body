@@ -2,7 +2,7 @@
   int tf_settings=30;
   int min_gps_precision=50;
   String sqlq;
-  Log.d("checkDBe()","Attempting to delete bad import data from DBe_import table...");
+  Log.d(TAG,mTAG + ":checkDBe() Attempting to delete bad import data from DBe_import table...");
   sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Samples < 1";
   mDb.rawQuery(sqlq,null);
   sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Lac < 1";
@@ -13,5 +13,5 @@
   mDb.rawQuery(sqlq,null);
   sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE CellID > 268435455";
   mDb.rawQuery(sqlq,null);
-  Log.i("checkDBe()","Deleted BTS entries from DBe_import table with bad LAC/CID...");
+  Log.i(TAG,mTAG + ":checkDBe() Deleted BTS entries from DBe_import table with bad LAC/CID...");
 }

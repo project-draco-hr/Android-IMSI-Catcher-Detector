@@ -1,5 +1,5 @@
 {
-  Log.i(TAG,"Database Backup: " + DB_NAME);
+  Log.i(TAG,mTAG + ": Database Backup: " + DB_NAME);
   File dir=new File(FOLDER);
   if (!dir.exists()) {
     dir.mkdirs();
@@ -8,7 +8,7 @@
   try {
     file.createNewFile();
     CSVWriter csvWrite=new CSVWriter(new FileWriter(file));
-    Log.d(TAG,"table name " + tableName);
+    Log.d(TAG,mTAG + ": table name " + tableName);
     open();
     Cursor c=mDb.rawQuery("SELECT * FROM " + tableName,new String[0]);
     csvWrite.writeNext(c.getColumnNames());
@@ -27,10 +27,10 @@
     c.close();
   }
  catch (  Exception e) {
-    Log.e(TAG,"Error exporting table: " + tableName + " "+ e);
+    Log.e(TAG,mTAG + ": Error exporting table: " + tableName+ " "+ e);
   }
  finally {
     AIMSICD.mProgressBar.setProgress(0);
   }
-  Log.i(TAG,"Database Export complete.");
+  Log.i(TAG,mTAG + ": Database Export complete.");
 }

@@ -6,7 +6,7 @@
   mTrackingFemtocell=true;
   mPhoneStateListener=new PhoneStateListener(){
     public void onServiceStateChanged(    ServiceState s){
-      Log.d(TAG,"Service State changed!");
+      Log.d(TAG,mTAG + ": Service State changed!");
       getServiceStateInfo(s);
     }
   }

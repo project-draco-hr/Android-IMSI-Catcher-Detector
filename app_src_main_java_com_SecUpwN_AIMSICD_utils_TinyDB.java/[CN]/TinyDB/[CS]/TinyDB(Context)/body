@@ -1,0 +1,4 @@
+{
+  mContext=appContext;
+  preferences=PreferenceManager.getDefaultSharedPreferences(mContext);
+}

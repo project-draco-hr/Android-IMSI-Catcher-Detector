@@ -4,11 +4,11 @@
   String aimdir="/data/data/com.SecUpwN.AIMSICD/databases/";
   String execString="/system/xbin/sqlite3 " + aimdir + "aimsicd.db '.backup "+ file+ "'";
   try {
-    Log.i(TAG,"dumpDB() Attempting to dump DB to: " + file + "\nUsing: \""+ execString+ "\"\n");
+    Log.i(TAG,mTAG + ":dumpDB() Attempting to dump DB to: " + file+ "\nUsing: \""+ execString+ "\"\n");
     CMDProcessor.runSuCommand(execString);
   }
  catch (  Exception e) {
-    Log.e(TAG,"dumpDB() Failed to export DB dump file: " + e);
+    Log.e(TAG,mTAG + ":dumpDB() Failed to export DB dump file: " + e);
   }
-  Log.i(TAG,"dumpDB() Database dumped to: " + file);
+  Log.i(TAG,mTAG + ":dumpDB() Database dumped to: " + file);
 }

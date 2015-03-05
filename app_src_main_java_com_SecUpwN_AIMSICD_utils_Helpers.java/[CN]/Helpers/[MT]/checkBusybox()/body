@@ -10,7 +10,7 @@
     }
   }
  catch (  NullPointerException e) {
-    Log.e(TAG,"NullpointerException thrown while testing Busybox:",e);
+    Log.e(TAG,"NullpointerException thrown while testing Busybox: ",e);
     return false;
   }
   return true;

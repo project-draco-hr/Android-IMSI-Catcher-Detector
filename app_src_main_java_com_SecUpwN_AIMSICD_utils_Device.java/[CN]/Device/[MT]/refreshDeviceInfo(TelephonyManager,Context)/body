@@ -9,6 +9,8 @@
   }
   if (mCell == null)   mCell=new Cell();
 switch (mPhoneID) {
+case TelephonyManager.PHONE_TYPE_NONE:
+case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
     mPhoneType="GSM";
   mMncmcc=tm.getNetworkOperator();

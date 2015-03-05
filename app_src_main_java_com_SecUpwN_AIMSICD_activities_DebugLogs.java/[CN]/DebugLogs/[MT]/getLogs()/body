@@ -1,3 +1,3 @@
 {
-  return runProcess("logcat -t 100 -d -v time" + (isRadioLogs ? " -b radio" : "") + " AbsListView:S PackageInfo:S *:D");
+  return runProcess("logcat -t 500 -v brief -b main" + (isRadioLogs ? " -b radio RILQ:S" : "") + " AbsListView:S PackageInfo:S"+ " LocSvc_eng:S LocSvc_adapter:S LocSvc_afw:S"+ " QC-QMI:S AudioPolicyManager:S"+ " *:D");
 }

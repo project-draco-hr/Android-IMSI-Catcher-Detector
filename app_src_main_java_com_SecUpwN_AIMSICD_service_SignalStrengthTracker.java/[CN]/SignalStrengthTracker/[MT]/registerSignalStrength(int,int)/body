@@ -1,19 +1,19 @@
 {
   long now=System.currentTimeMillis();
   if (deviceIsMoving()) {
-    Log.i(TAG,"Ignored signal strength sample for cell ID #" + cellID + " as the device is currently moving around, will not accept anything for another "+ ((minimumIdleTime * 1000) - (now - lastMovementDetected))+ "ms");
+    Log.i(TAG,"Ignored signal strength sample for CID: " + cellID + " as the device is currently moving around, will not accept anything for another "+ ((minimumIdleTime * 1000) - (now - lastMovementDetected))+ " ms.");
     return;
   }
   if (now - (sleepTimeBetweenSignalRegistration * 1000) > lastRegistrationTime) {
     long diff=now - lastRegistrationTime;
-    Log.i(TAG,"Scheduling signal strength calculation from cell #" + cellID + " @ "+ signalStrength+ " dBm, last registration was "+ diff+ "ms ago");
+    Log.i(TAG,"Scheduling signal strength calculation from CID: " + cellID + " @ "+ signalStrength+ " dBm. Last registration was "+ diff+ "ms ago.");
     lastRegistrationTime=now;
     mDbHelper.open();
     mDbHelper.addSignalStrength(cellID,signalStrength,now);
     mDbHelper.close();
   }
   if (now - (sleepTimeBetweenCleanup * 1000) > lastCleanupTime) {
-    Log.i(TAG,"Removing up old signal strength entries");
+    Log.i(TAG,"Removing old signal strength entries");
     cleanupOldData();
   }
 }

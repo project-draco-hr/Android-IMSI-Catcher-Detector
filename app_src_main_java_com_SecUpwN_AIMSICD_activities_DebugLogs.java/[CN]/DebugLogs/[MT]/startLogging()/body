@@ -5,7 +5,7 @@
     logUpdater.start();
   }
  catch (  Exception e) {
-    Log.e("DebugLogs","Error starting log updater thread",e);
+    Log.e("AIMSICD","DebugLogs: Error starting log updater thread",e);
   }
   btnStop.setText(getString(R.string.btn_stop_logs));
 }

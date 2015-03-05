@@ -44,7 +44,7 @@ case "EventLog":
 BaseInflaterAdapter<EventLogItemData> adapter=new BaseInflaterAdapter<>(new EventLogCardInflater());
 int count=tableData.getCount();
 while (tableData.moveToNext()) {
-  EventLogItemData data=new EventLogItemData("Time: " + tableData.getDouble(0),"CID: " + tableData.getInt(2),"LAC: " + tableData.getInt(1),"PSC: " + tableData.getInt(3),"Lat: " + tableData.getDouble(4),"Lon: " + tableData.getDouble(5),"Accuracy: " + tableData.getDouble(6),"Detection ID: " + tableData.getInt(7),"Event: " + tableData.getString(8),"" + (tableData.getPosition() + 1) + " / "+ count);
+  EventLogItemData data=new EventLogItemData("Time: " + tableData.getString(0),"LAC: " + tableData.getInt(1),"CID: " + tableData.getInt(2),"PSC: " + tableData.getInt(3),"Lat: " + tableData.getDouble(4),"Lon: " + tableData.getDouble(5),"Accuracy: " + tableData.getInt(6),"DetID: " + tableData.getInt(7),"Event: " + tableData.getString(8),"" + (tableData.getPosition() + 1) + " / "+ count);
   adapter.addItem(data,false);
 }
 return adapter;

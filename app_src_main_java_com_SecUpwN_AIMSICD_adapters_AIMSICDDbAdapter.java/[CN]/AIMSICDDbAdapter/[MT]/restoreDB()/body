@@ -17,7 +17,7 @@
             AIMSICD.mProgressBar.setProgress(i);
 switch (table) {
 case CELL_TABLE:
-              insertCell(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]),Double.parseDouble(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.valueOf(records.get(i)[7]),Integer.valueOf(records.get(i)[8]),Double.valueOf(records.get(i)[9]),Double.valueOf(records.get(i)[10]),Double.valueOf(records.get(i)[11]),String.valueOf(records.get(i)[10]),Long.valueOf(records.get(i)[11]));
+              insertCell(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]),Double.parseDouble(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.valueOf(records.get(i)[7]),Integer.valueOf(records.get(i)[8]),Double.valueOf(records.get(i)[9]),Double.valueOf(records.get(i)[10]),Double.valueOf(records.get(i)[11]),String.valueOf(records.get(i)[12]),Long.valueOf(records.get(i)[13]));
             break;
 case LOCATION_TABLE:
           insertLocation(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]),Double.parseDouble(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),String.valueOf(records.get(i)[7]));
@@ -42,7 +42,7 @@ break;
 return true;
 }
  catch (Exception e) {
-Log.e(TAG,"importDB() " + e);
+Log.e(TAG,mTAG + ": restoreDB() " + e);
 return false;
 }
  finally {

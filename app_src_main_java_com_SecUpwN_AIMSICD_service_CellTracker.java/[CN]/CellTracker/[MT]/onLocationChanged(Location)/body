@@ -6,6 +6,8 @@
     CellLocation cellLocation=tm.getCellLocation();
     if (cellLocation != null) {
 switch (mDevice.getPhoneID()) {
+case TelephonyManager.PHONE_TYPE_NONE:
+case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
         GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
       mDevice.mCell.setCID(gsmCellLocation.getCid());

@@ -5,8 +5,8 @@
   mPsc=PSC;
   mLat=gpsd_lat;
   mLng=gpsd_lon;
-  mgpsd_accur=gpsd_accur;
+  mgpsd_accu=gpsd_accu;
   mDF_id=DF_id;
-  mDF_description=DF_description;
+  mDF_desc=DF_desc;
   mRecordId=recordId;
 }

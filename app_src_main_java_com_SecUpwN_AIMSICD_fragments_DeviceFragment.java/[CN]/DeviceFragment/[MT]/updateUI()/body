@@ -5,6 +5,8 @@
     mAimsicdService.getCellTracker().refreshDevice();
     Device mDevice=mAimsicdService.getCellTracker().getDevice();
 switch (mDevice.getPhoneID()) {
+case TelephonyManager.PHONE_TYPE_NONE:
+case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
 {
         content=(TextView)mView.findViewById(R.id.network_lac);

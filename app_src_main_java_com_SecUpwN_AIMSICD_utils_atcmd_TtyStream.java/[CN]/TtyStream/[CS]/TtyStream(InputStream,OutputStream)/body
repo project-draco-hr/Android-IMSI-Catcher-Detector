@@ -1,0 +1,8 @@
+{
+  mInputStream=in;
+  mOutputStream=out;
+  mIoThread=new Thread(new IoRunnable(),"AtCommandTerminalIO");
+  mIoThread.start();
+  mWriteQ=new LinkedBlockingQueue<>();
+  this.send("ATQ0V1E0",null);
+}

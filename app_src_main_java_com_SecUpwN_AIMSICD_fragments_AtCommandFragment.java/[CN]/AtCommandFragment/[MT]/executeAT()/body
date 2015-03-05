@@ -1,25 +1,27 @@
 {
-  if (mAtCommand.getText() != null) {
-    final StringBuilder response=new StringBuilder();
-    try {
-      Command cmd=new Command(EXECUTE_AT,"echo -e " + mAtCommand.getText().toString() + "\r >"+ mSerialDevice+ "\n"){
-        @Override public void commandOutput(        int id,        String line){
-          if (id == EXECUTE_AT) {
-            if (!line.trim().equals("")) {
-              response.append(line + "\n");
+  Editable cmd=mAtCommand.getText();
+  if (cmd != null && cmd.length() != 0) {
+    openSerialDevice();
+    if (mCommandTerminal != null) {
+      mCommandTerminal.send(cmd.toString(),new Handler(Looper.getMainLooper()){
+        @Override public void handleMessage(        Message message){
+          if (message.obj instanceof List) {
+            List<String> lines=((List<String>)message.obj);
+            StringBuffer response=new StringBuffer();
+            for (            String line : lines) {
+              response.append(line);
+              response.append('\n');
+            }
+            if (response.length() != 0) {
+              mAtResponse.append(response);
             }
           }
-          super.commandOutput(id,line);
+ else           if (message.obj instanceof IOException) {
+            mAtResponse.append("IOException: " + ((IOException)message.obj).getMessage() + "\n");
+          }
         }
       }
-;
-      Log.i("AIMSICD","Trying to executeAT: " + cmd);
-      shell.add(cmd);
-      commandWait(shell,cmd);
-      mAtResponse.append(response.toString());
-    }
- catch (    Exception e) {
-      Log.e("AIMSICD","Failed to executeAT: " + e);
+.obtainMessage());
     }
   }
 }

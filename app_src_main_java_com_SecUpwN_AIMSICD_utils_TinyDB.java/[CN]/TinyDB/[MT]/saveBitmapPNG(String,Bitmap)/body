@@ -1,0 +1,48 @@
+{
+  if (strFileName == null || bitmap == null)   return false;
+  boolean bSuccess1=false;
+  boolean bSuccess2;
+  boolean bSuccess3;
+  File saveFile=new File(strFileName);
+  if (saveFile.exists()) {
+    if (!saveFile.delete())     return false;
+  }
+  try {
+    bSuccess1=saveFile.createNewFile();
+  }
+ catch (  IOException e1) {
+    e1.printStackTrace();
+  }
+  OutputStream out=null;
+  try {
+    out=new FileOutputStream(saveFile);
+    bSuccess2=bitmap.compress(CompressFormat.PNG,100,out);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    bSuccess2=false;
+  }
+  try {
+    if (out != null) {
+      out.flush();
+      out.close();
+      bSuccess3=true;
+    }
+ else     bSuccess3=false;
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+    bSuccess3=false;
+  }
+ finally {
+    if (out != null) {
+      try {
+        out.close();
+      }
+ catch (      IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+  return (bSuccess1 && bSuccess2 && bSuccess3);
+}

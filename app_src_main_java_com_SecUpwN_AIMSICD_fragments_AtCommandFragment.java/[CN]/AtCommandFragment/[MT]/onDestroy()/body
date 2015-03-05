@@ -1,12 +1,6 @@
 {
   super.onDestroy();
-  if (shell != null) {
-    try {
-      shell.close();
-    }
- catch (    Exception e) {
-      Log.e("AIMSICD","Closing shell: " + e);
-    }
-    Log.i("AIMSICD","AT Shell Closed");
+  if (mCommandTerminal != null) {
+    mCommandTerminal.dispose();
   }
 }
