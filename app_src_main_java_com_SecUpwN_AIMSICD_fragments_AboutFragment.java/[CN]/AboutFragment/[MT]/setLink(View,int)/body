@@ -1,20 +1,8 @@
 {
   b.setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View view){
-      if (link != R.string.aimsicd_credits_link) {
-        Intent intent;
-        intent=new Intent(Intent.ACTION_VIEW,Uri.parse(getResources().getString(link)));
-        startActivity(intent);
-      }
- else {
-        try {
-          getFragmentManager().beginTransaction().replace(R.id.content_frame,new CreditFragment()).commit();
-        }
- catch (        Exception e) {
-          e.toString();
-          Exception foo=e;
-        }
-      }
+      Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse(getResources().getString(link)));
+      startActivity(intent);
     }
   }
 );

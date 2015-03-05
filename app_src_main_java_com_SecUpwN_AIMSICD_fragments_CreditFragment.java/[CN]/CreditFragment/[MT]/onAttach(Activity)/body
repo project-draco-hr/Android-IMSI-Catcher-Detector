@@ -1,5 +1,0 @@
-{
-  super.onAttach(activity);
-  mActivity=activity;
-  mContext=activity.getBaseContext();
-}
