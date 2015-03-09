@@ -6,4 +6,16 @@
     }
   }
 );
+  btncredits.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      try {
+        Intent i=new Intent(mContext,CreditsRollActivity.class);
+        startActivity(i);
+      }
+ catch (      Exception e) {
+        e.printStackTrace();
+      }
+    }
+  }
+);
 }

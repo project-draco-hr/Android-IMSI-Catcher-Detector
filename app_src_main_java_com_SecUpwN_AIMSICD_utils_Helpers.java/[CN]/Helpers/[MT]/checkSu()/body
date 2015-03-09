@@ -1,20 +1,20 @@
 {
   if (!new File("/system/bin/su").exists() && !new File("/system/xbin/su").exists()) {
-    Log.e(TAG,"su binary does not exist!!!");
+    Log.e(TAG,mTAG + ": su binary does not exist!!!");
     return false;
   }
   try {
     if (CMDProcessor.runSuCommand("ls /data/app-private").success()) {
-      Log.i(TAG," SU exists and we have permission");
+      Log.i(TAG,mTAG + ": SU exists and we have permission");
       return true;
     }
  else {
-      Log.i(TAG," SU exists but we don't have permission");
+      Log.i(TAG,mTAG + ": SU exists but we don't have permission");
       return false;
     }
   }
  catch (  NullPointerException e) {
-    Log.e(TAG,"NullPointer throw while looking for su binary: ",e);
+    Log.e(TAG,mTAG + ": NPE while looking for su binary: ",e);
     return false;
   }
 }

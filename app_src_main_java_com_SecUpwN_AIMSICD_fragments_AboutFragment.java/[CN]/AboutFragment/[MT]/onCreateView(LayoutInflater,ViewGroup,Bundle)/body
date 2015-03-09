@@ -1,6 +1,7 @@
 {
   View v=inflater.inflate(R.layout.about_fragment,container,false);
   String version;
+  btncredits=(Button)v.findViewById(R.id.aimsicd_credits_link);
   PackageManager manager=mContext.getPackageManager();
   try {
     PackageInfo info=manager != null ? manager.getPackageInfo(mContext.getPackageName(),0) : null;
@@ -29,8 +30,6 @@
     setLink(tv,R.string.aimsicd_changelog_link);
     tv=v.findViewById(R.id.aimsicd_license_link);
     setLink(tv,R.string.aimsicd_license_link);
-    tv=v.findViewById(R.id.aimsicd_credits_link);
-    setLink(tv,R.string.aimsicd_credits_link);
   }
   return v;
 }
