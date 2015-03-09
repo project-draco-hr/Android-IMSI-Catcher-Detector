@@ -5,10 +5,12 @@ switch (selectedItem.getId()) {
 case 101:
     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetailsFrag).commit();
   mDetailsFrag.setCurrentPage(0);
+selectedItem.setLabel(getString(R.string.app_name_short));
 break;
 case 102:
 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetailsFrag).commit();
 mDetailsFrag.setCurrentPage(1);
+selectedItem.setLabel(getString(R.string.app_name_short));
 break;
 case 103:
 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new AtCommandFragment()).commit();
@@ -16,6 +18,7 @@ break;
 case 104:
 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetailsFrag).commit();
 mDetailsFrag.setCurrentPage(2);
+selectedItem.setLabel(getString(R.string.app_name_short));
 break;
 case 303:
 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new AboutFragment()).commit();
