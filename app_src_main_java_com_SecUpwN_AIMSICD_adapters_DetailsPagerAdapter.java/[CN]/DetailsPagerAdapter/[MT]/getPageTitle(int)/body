@@ -1,0 +1,11 @@
+{
+switch (position) {
+case 0:
+    return context.getString(R.string.device_info);
+case 1:
+  return context.getString(R.string.cell_info_title);
+case 2:
+return context.getString(R.string.db_viewer);
+}
+return "";
+}
