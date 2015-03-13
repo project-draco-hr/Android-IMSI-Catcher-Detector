@@ -1,4 +1,5 @@
 {
+  TinyDB tinydb=new TinyDB(context);
   List<Cell> neighboringCells=new ArrayList<>();
   List<NeighboringCellInfo> neighboringCellInfo;
   neighboringCellInfo=tm.getNeighboringCellInfo();
@@ -37,6 +38,21 @@
     }
   }
   Log.d(TAG,mTAG + ": neighbouringCellInfo size: " + neighboringCellInfo.size());
+  Integer ncls=neighboringCellInfo.size();
+  Boolean nclp=tinydb.getBoolean("nc_list_present");
+  if (ncls > 0) {
+    tinydb.putBoolean("nc_list_present",true);
+    Log.d(TAG,mTAG + ": neighbouringCellInfo size: " + ncls);
+    Log.d(TAG,mTAG + ": Setting nc_list_present to: true");
+  }
+ else   if (ncls == 0 && nclp) {
+    Log.i(TAG,mTAG + ": ALERT: No neighboring cells detected for CID: " + mDevice.mCell.getCID());
+  }
+ else {
+    Log.d(TAG,mTAG + ": NC list not supported by AOS on this device. Nothing to do. CID: " + mDevice.mCell.getCID());
+    Log.d(TAG,mTAG + ": Setting nc_list_present to: false");
+    tinydb.putBoolean("nc_list_present",false);
+  }
   for (  NeighboringCellInfo neighbourCell : neighboringCellInfo) {
     Log.i(TAG,mTAG + ": neighbouringCellInfo -" + " LAC:"+ neighbourCell.getLac()+ " CID:"+ neighbourCell.getCid()+ " PSC:"+ neighbourCell.getPsc()+ " RSSI:"+ neighbourCell.getRssi());
     final Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),neighbourCell.getRssi(),neighbourCell.getPsc(),neighbourCell.getNetworkType(),false);

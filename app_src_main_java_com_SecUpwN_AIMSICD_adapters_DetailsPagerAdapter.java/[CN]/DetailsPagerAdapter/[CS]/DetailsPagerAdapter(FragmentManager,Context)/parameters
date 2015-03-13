@@ -1,1 +1,2 @@
 FragmentManager fm
+Context context

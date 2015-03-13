@@ -43,13 +43,13 @@
           mCell.setPSC(identityWcdma.getPsc());
         }
  else {
-          Log.i(TAG,"Unknown type of cell signal!" + "ClassName: " + info.getClass().getSimpleName() + " ToString: "+ info.toString());
+          Log.i(TAG,"Unknown type of cell signal! " + "ClassName: " + info.getClass().getSimpleName() + " ToString: "+ info.toString());
         }
         if (mCell.isValid())         break;
       }
     }
   }
  catch (  NullPointerException npe) {
-    Log.e(TAG,"Unable to obtain cell signal information",npe);
+    Log.e(TAG,"loadCellInfo: Unable to obtain cell signal information: ",npe);
   }
 }

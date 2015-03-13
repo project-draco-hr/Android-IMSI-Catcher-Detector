@@ -1,16 +1,16 @@
 {
   if (!new File("/system/bin/busybox").exists() && !new File("/system/xbin/busybox").exists()) {
-    Log.e(TAG,"Busybox not in xbin or bin!");
+    Log.e(TAG,mTAG + ": Busybox not in xbin or bin!");
     return false;
   }
   try {
     if (!CMDProcessor.runSuCommand("busybox mount").success()) {
-      Log.e(TAG,"Busybox is there but is broken!");
+      Log.e(TAG,mTAG + ": Busybox is there but is broken!");
       return false;
     }
   }
  catch (  NullPointerException e) {
-    Log.e(TAG,"NullpointerException thrown while testing Busybox: ",e);
+    Log.e(TAG,mTAG + ": NPE while testing Busybox: ",e);
     return false;
   }
   return true;
