@@ -1,0 +1,7 @@
+{
+switch (event.getAction()) {
+case MotionEvent.ACTION_DOWN:
+    finish();
+}
+return true;
+}

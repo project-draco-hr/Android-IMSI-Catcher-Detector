@@ -1,0 +1,14 @@
+{
+  if (title != null) {
+    setTitle(title);
+  }
+  if (header != null) {
+    about_tv_status.setText(header);
+  }
+  if (data != null) {
+    about_tv_data.setText(data);
+  }
+  if (icon != null) {
+    about_icon_holder.setImageDrawable(icon);
+  }
+}
