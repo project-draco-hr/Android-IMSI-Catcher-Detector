@@ -1,6 +1,6 @@
 {
   if (title != null) {
-    setTitle(title);
+    tv_popup_title.setText(title);
   }
   if (header != null) {
     about_tv_status.setText(header);
