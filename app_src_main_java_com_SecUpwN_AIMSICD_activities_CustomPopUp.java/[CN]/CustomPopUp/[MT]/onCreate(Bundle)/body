@@ -1,9 +1,11 @@
 {
   super.onCreate(savedInstanceState);
+  requestWindowFeature(Window.FEATURE_NO_TITLE);
   setContentView(R.layout.about_pop_up);
   about_icon_holder=(ImageView)findViewById(R.id.about_icon_holder);
   about_tv_status=(TextView)findViewById(R.id.about_tv_status);
   about_tv_data=(TextView)findViewById(R.id.about_tv_data);
+  tv_popup_title=(TextView)findViewById(R.id.tv_popup_title);
   int mode=0;
   Bundle extras=getIntent().getExtras();
   if (extras != null) {
