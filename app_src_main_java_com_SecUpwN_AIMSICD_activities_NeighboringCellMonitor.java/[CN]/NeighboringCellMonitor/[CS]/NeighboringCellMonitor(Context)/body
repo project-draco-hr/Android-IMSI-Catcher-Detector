@@ -1,0 +1,5 @@
+{
+  this.mContext=context;
+  teleManager=(TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
+  teleManager.listen(this,listen_events);
+}
