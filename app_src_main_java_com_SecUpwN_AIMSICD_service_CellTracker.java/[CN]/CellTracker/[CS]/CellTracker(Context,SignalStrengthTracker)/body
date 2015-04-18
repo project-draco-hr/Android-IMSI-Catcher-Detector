@@ -1,6 +1,7 @@
 {
   this.context=context;
   this.signalStrengthTracker=sst;
+  tinydb=new TinyDB(context);
   tm=(TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
   prefs=context.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   prefs.registerOnSharedPreferenceChangeListener(this);
