@@ -1,6 +1,6 @@
 {
   if (track) {
-    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_DATA_ACTIVITY| PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
+    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_DATA_ACTIVITY| PhoneStateListener.LISTEN_DATA_CONNECTION_STATE| PhoneStateListener.LISTEN_CELL_INFO);
     mTrackingCell=true;
     Helpers.msgShort(context,"Tracking Cell Information.");
   }
