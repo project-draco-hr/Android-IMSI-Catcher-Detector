@@ -6,20 +6,29 @@
       CSVReader csvReader=new CSVReader(new FileReader(file));
       List<String[]> csvCellID=new ArrayList<>();
       String next[];
-      int count=0;
-      int csvSize=csvCellID.size();
-      Log.i(TAG,mTAG + ":updateOpenCellID: OCID CSV size (csvSize): " + csvSize);
       while ((next=csvReader.readNext()) != null) {
         csvCellID.add(next);
       }
       if (!csvCellID.isEmpty()) {
         int lines=csvCellID.size();
         Log.i(TAG,mTAG + ":updateOpenCellID: OCID CSV size (lines): " + lines);
+        String lQuery="SELECT CellID, COUNT(CellID) FROM " + OPENCELLID_TABLE + " GROUP BY CellID;";
+        Cursor lCursor=mDb.rawQuery(lQuery,null);
+        SparseArray<Boolean> lPresentCellID=new SparseArray<>();
+        if (lCursor.getCount() > 0) {
+          while (lCursor.moveToNext()) {
+            lPresentCellID.put(lCursor.getInt(0),true);
+          }
+        }
+        lCursor.close();
         AIMSICD.mProgressBar.setProgress(0);
         AIMSICD.mProgressBar.setMax(lines);
         for (int i=1; i < lines; i++) {
           AIMSICD.mProgressBar.setProgress(i);
-          insertOpenCell(Double.parseDouble(csvCellID.get(i)[0]),Double.parseDouble(csvCellID.get(i)[1]),Integer.parseInt(csvCellID.get(i)[2]),Integer.parseInt(csvCellID.get(i)[3]),Integer.parseInt(csvCellID.get(i)[4]),Integer.parseInt(csvCellID.get(i)[5]),Integer.parseInt(csvCellID.get(i)[6]),Integer.parseInt(csvCellID.get(i)[7]),Integer.parseInt(csvCellID.get(i)[8]),Integer.parseInt(csvCellID.get(i)[9]),String.valueOf(csvCellID.get(i)[10]));
+          if (lPresentCellID.get(Integer.parseInt(csvCellID.get(i)[5]),false)) {
+            continue;
+          }
+          insertOpenCell(Double.parseDouble(csvCellID.get(i)[0]),Double.parseDouble(csvCellID.get(i)[1]),Integer.parseInt(csvCellID.get(i)[2]),Integer.parseInt(csvCellID.get(i)[3]),Integer.parseInt(csvCellID.get(i)[4]),Integer.parseInt(csvCellID.get(i)[5]),Integer.parseInt(csvCellID.get(i)[6]),Integer.parseInt(csvCellID.get(i)[7]),Integer.parseInt(csvCellID.get(i)[8]),Integer.parseInt(csvCellID.get(i)[9]),String.valueOf(csvCellID.get(i)[10]),false);
         }
       }
     }
