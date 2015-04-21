@@ -1,0 +1,10 @@
+{
+  runOnUiThread(new Runnable(){
+    @Override public void run(){
+      mProgressBar.setMax(0);
+      mProgressBar.setProgress(0);
+      mProgressBar.setVisibility(View.GONE);
+    }
+  }
+);
+}

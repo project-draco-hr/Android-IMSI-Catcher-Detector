@@ -32,8 +32,6 @@
   mActionBar.setDisplayHomeAsUpEnabled(true);
   mActionBar.setHomeButtonEnabled(true);
   mProgressBar=(ProgressBar)findViewById(R.id.progressBar);
-  mProgressBar.setIndeterminate(true);
-  mProgressBar.setVisibility(View.VISIBLE);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   mDisclaimerAccepted=getResources().getString(R.string.disclaimer_accepted);
   if (!prefs.getBoolean(mDisclaimerAccepted,false)) {
