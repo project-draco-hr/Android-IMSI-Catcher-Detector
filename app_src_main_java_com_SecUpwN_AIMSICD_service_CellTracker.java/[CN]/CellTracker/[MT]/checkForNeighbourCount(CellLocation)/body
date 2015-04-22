@@ -1,6 +1,7 @@
 {
   Log.i(mTAG,"in checkForNeighbourCount");
-  Integer ncls=tm.getNeighboringCellInfo().size();
+  Integer ncls=0;
+  if (tm != null)   ncls=tm.getNeighboringCellInfo().size();
   Boolean nclp=tinydb.getBoolean("nc_list_present");
   if (ncls > 0) {
     tinydb.putBoolean("nc_list_present",true);
