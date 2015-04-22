@@ -26,6 +26,7 @@ case "Silent SMS":
     BaseInflaterAdapter<SilentSmsCardData> adapter=new BaseInflaterAdapter<>(new SilentSmsCardInflater());
     while (tableData.moveToNext()) {
       SilentSmsCardData data=new SilentSmsCardData(tableData.getString(0),tableData.getString(1),tableData.getString(2),tableData.getString(3),tableData.getString(4),tableData.getLong(5));
+      data.setIsFakeData(isExample(data));
       adapter.addItem(data,false);
     }
     return adapter;
@@ -45,6 +46,7 @@ BaseInflaterAdapter<EventLogItemData> adapter=new BaseInflaterAdapter<>(new Even
 int count=tableData.getCount();
 while (tableData.moveToNext()) {
   EventLogItemData data=new EventLogItemData("Time: " + tableData.getString(0),"LAC: " + tableData.getInt(1),"CID: " + tableData.getInt(2),"PSC: " + tableData.getInt(3),"Lat: " + tableData.getDouble(4),"Lon: " + tableData.getDouble(5),"Accuracy: " + tableData.getInt(6),"DetID: " + tableData.getInt(7),"Event: " + tableData.getString(8),"" + (tableData.getPosition() + 1) + " / "+ count);
+  data.setIsFakeData(isExample(data));
   adapter.addItem(data,false);
 }
 return adapter;
