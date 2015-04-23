@@ -1,6 +1,5 @@
 {
   super.onViewCreated(view,savedInstanceState);
-  final DrawerMenuActivityConfiguration mNavConf=((AIMSICD)getActivity()).getNavDrawerConfiguration();
   adapter=new DetailsPagerAdapter(getChildFragmentManager(),getActivity());
   PagerTabStrip tabStrip=(PagerTabStrip)view.findViewById(R.id.details_pager_tab_strip);
   tabStrip.setBackgroundColor(Color.BLACK);
