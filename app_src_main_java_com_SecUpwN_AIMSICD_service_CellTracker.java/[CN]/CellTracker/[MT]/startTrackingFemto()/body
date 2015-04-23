@@ -1,12 +1,12 @@
 {
   if (mDevice.getPhoneID() != TelephonyManager.PHONE_TYPE_CDMA) {
-    Helpers.msgShort(context,"AIMSICD can only detect FemtoCell connections on CDMA devices.");
+    Helpers.msgShort(context,context.getString(R.string.femtocell_only_on_cdma_devices));
     return;
   }
   mTrackingFemtocell=true;
   mPhoneStateListener=new PhoneStateListener(){
     public void onServiceStateChanged(    ServiceState s){
-      Log.d(TAG,mTAG + ": Service State changed!");
+      Log.d(TAG,mTAG + context.getString(R.string.service_state_changed));
       getServiceStateInfo(s);
     }
   }

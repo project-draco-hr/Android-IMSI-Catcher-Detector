@@ -1,7 +1,7 @@
 {
   if (s != null) {
     if (IsConnectedToCdmaFemto(s)) {
-      Helpers.msgShort(context,"ALERT! FemtoCell Connection Detected.");
+      Helpers.msgShort(context,context.getString(R.string.alert_femtocell_tracking_detected));
       mFemtoDetected=true;
       setNotification();
     }
