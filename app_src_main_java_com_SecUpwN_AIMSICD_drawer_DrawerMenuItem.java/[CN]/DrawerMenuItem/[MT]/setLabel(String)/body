@@ -1,3 +1,3 @@
 {
-  this.label=label;
+  mLabel=pLabel;
 }

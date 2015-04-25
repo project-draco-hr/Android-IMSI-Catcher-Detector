@@ -5,15 +5,27 @@
     convertView=inflater.inflate(R.layout.drawer_item,parentView,false);
     TextView labelView=(TextView)convertView.findViewById(R.id.drawer_menu_item_label);
     ImageView iconView=(ImageView)convertView.findViewById(R.id.drawer_menu_item_icon);
+    ImageView lInfoButton=(ImageView)convertView.findViewById(R.id.drawer_menu_item_info_button);
     navMenuItemHolder=new NavMenuItemHolder();
     navMenuItemHolder.itemName=labelView;
     navMenuItemHolder.itemIcon=iconView;
+    navMenuItemHolder.itemInfoButton=lInfoButton;
     convertView.setTag(navMenuItemHolder);
   }
   if (navMenuItemHolder == null) {
     navMenuItemHolder=(NavMenuItemHolder)convertView.getTag();
   }
   navMenuItemHolder.itemName.setText(menuItem.getLabel());
-  navMenuItemHolder.itemIcon.setImageResource(menuItem.getIcon());
+  navMenuItemHolder.itemIcon.setImageResource(menuItem.getIconId());
+  if (menuItem.isShowInfoButton()) {
+    navMenuItemHolder.itemInfoButton.setTag(menuItem.getHelpStringId());
+    navMenuItemHolder.itemInfoButton.setVisibility(View.VISIBLE);
+    navMenuItemHolder.itemInfoButton.setOnClickListener(mInfoButtonListener);
+  }
+ else {
+    navMenuItemHolder.itemInfoButton.setTag(menuItem.getHelpStringId());
+    navMenuItemHolder.itemInfoButton.setVisibility(View.INVISIBLE);
+    navMenuItemHolder.itemInfoButton.setOnClickListener(null);
+  }
   return convertView;
 }
