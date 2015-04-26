@@ -1,0 +1,4 @@
+{
+  mToast.setText(getContext().getString(pToastValueId));
+  mToast.show();
+}

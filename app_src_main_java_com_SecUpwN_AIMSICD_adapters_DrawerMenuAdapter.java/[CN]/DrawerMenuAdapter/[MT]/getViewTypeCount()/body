@@ -1,3 +1,3 @@
 {
-  return 2;
+  return DrawerMenu.COUNT_OF_MENU_TYPE;
 }
