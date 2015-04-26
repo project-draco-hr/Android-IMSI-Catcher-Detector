@@ -40,7 +40,7 @@ case DBE_UPLOAD_REQUEST:
         return "Successful";
       }
  else {
-        Helpers.msgLong(mContext,"No data for publishing available");
+        Helpers.msgLong(mContext,mContext.getString(R.string.no_data_for_publishing));
         return null;
       }
     }
@@ -68,11 +68,11 @@ try {
   if (urlConnection.getResponseCode() != 200) {
     try {
       String error=Helpers.convertStreamToString(urlConnection.getErrorStream());
-      Helpers.msgLong(mContext,"Download error: " + error);
+      Helpers.msgLong(mContext,mContext.getString(R.string.download_error) + " " + error);
       Log.e(TAG,mTAG + ": Download OCID data error: " + error);
     }
  catch (    Exception e) {
-      Helpers.msgLong(mContext,"Download error: " + e.getClass().getName() + " - "+ e.getMessage());
+      Helpers.msgLong(mContext,mContext.getString(R.string.download_error) + " " + e.getClass().getName()+ " - "+ e.getMessage());
       Log.e(TAG,mTAG + ": Download OCID exception: " + e);
     }
     return "Error";
