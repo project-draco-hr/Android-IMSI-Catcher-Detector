@@ -10,7 +10,7 @@
     }
   }
  catch (  Exception ee) {
-    System.out.println("Out>>> " + ee);
+    ee.printStackTrace();
   }
  finally {
     if (reader != null) {
@@ -18,7 +18,7 @@
         reader.close();
       }
  catch (      Exception ee) {
-        System.out.println("Out>>> " + ee);
+        ee.printStackTrace();
       }
     }
   }
