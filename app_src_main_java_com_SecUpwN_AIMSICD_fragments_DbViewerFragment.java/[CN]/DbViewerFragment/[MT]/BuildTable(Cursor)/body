@@ -9,6 +9,9 @@ case "Imported OCID Data":
           CardItemData data=new CardItemData("CID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"MCC: " + tableData.getString(2),"MNC: " + tableData.getString(3),"Lat: " + tableData.getString(4),"Lon: " + tableData.getString(5),"AvgSignal: " + tableData.getString(6),"Samples: " + tableData.getString(7),"" + (tableData.getPosition() + 1) + " / "+ count);
           adapter.addItem(data,false);
         }
+        if (!tableData.isClosed()) {
+          tableData.close();
+        }
         return adapter;
       }
 case "Default MCC Locations":
@@ -18,6 +21,9 @@ case "Default MCC Locations":
       while (tableData.moveToNext()) {
         CardItemData data=new CardItemData("Country: " + tableData.getString(0),"MCC: " + tableData.getString(1),"Lat: " + tableData.getString(2),"Lon: " + tableData.getString(3),"" + (tableData.getPosition() + 1) + " / "+ count);
         adapter.addItem(data,false);
+      }
+      if (!tableData.isClosed()) {
+        tableData.close();
       }
       return adapter;
     }
@@ -29,6 +35,9 @@ case "Silent SMS":
       data.setIsFakeData(isExample(data));
       adapter.addItem(data,false);
     }
+    if (!tableData.isClosed()) {
+      tableData.close();
+    }
     return adapter;
   }
 case "Measured Signal Strengths":
@@ -37,6 +46,9 @@ case "Measured Signal Strengths":
   while (tableData.moveToNext()) {
     MeasuredCellStrengthCardData data=new MeasuredCellStrengthCardData(tableData.getInt(0),tableData.getInt(1),tableData.getLong(2));
     adapter.addItem(data,false);
+  }
+  if (!tableData.isClosed()) {
+    tableData.close();
   }
   return adapter;
 }
@@ -49,6 +61,9 @@ while (tableData.moveToNext()) {
   data.setIsFakeData(isExample(data));
   adapter.addItem(data,false);
 }
+if (!tableData.isClosed()) {
+  tableData.close();
+}
 return adapter;
 }
 default :
@@ -58,6 +73,9 @@ int count=tableData.getCount();
 while (tableData.moveToNext()) {
 CardItemData data=new CardItemData("CID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"RAT: " + tableData.getString(2),"Lat: " + tableData.getString(3),"Lon: " + tableData.getString(4),"RSS: " + tableData.getString(5),"" + (tableData.getPosition() + 1) + " / "+ count);
 adapter.addItem(data,false);
+}
+if (!tableData.isClosed()) {
+tableData.close();
 }
 return adapter;
 }

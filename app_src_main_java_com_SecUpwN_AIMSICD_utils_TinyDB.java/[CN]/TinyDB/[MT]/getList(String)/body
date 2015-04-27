@@ -1,5 +1,4 @@
 {
   String[] mylist=TextUtils.split(preferences.getString(key,""),"?????????");
-  ArrayList<String> gottenlist=new ArrayList<String>(Arrays.asList(mylist));
-  return gottenlist;
+  return new ArrayList<>(Arrays.asList(mylist));
 }
