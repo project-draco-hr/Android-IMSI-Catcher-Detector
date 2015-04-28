@@ -1,5 +1,5 @@
 {
-  ArrayList<String> origList=new ArrayList<String>();
+  ArrayList<String> origList=new ArrayList<>();
   for (  Boolean b : marray) {
     if (b) {
       origList.add("true");
