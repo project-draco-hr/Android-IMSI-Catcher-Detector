@@ -1,7 +1,6 @@
 {
   super.onResume();
   setUpMapIfNeeded();
-  isViewingGUI=true;
   prefs=this.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   prefs.registerOnSharedPreferenceChangeListener(this);
   LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter(updateOpenCellIDMarkers));

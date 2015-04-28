@@ -11,18 +11,18 @@
   menu.add(DrawerMenuItem.create(DrawerMenu.ID.TRACKING.TOGGLE_AIMSICD_MONITORING,getString(R.string.toggle_aimsicd_monitoring),R.drawable.untrack_cell,false));
   menu.add(DrawerMenuItem.create(DrawerMenu.ID.TRACKING.TOGGLE_2G_ONLY_NETWORK,getString(R.string.toggle_2g_only_network_lock),R.drawable.untrack_cell,false));
   if (CellTracker.PHONE_TYPE == TelephonyManager.PHONE_TYPE_CDMA) {
-    menu.add(DrawerMenuItem.create(DrawerMenu.ID.TRACKING.TRACK_FEMTOCELL,getString(R.string.track_femtocell),R.drawable.ic_action_network_cell,false,false));
+    menu.add(DrawerMenuItem.create(DrawerMenu.ID.TRACKING.TRACK_FEMTOCELL,getString(R.string.toggle_femtocell),R.drawable.ic_action_network_cell,false,false));
   }
   menu.add(DrawerMenuSection.create(DrawerMenu.ID.SECTION_SETTINGS,getString(R.string.settings)));
   menu.add(DrawerMenuItem.create(DrawerMenu.ID.SETTINGS.PREFERENCES,getString(R.string.preferences),R.drawable.ic_action_settings,false));
   menu.add(DrawerMenuItem.create(DrawerMenu.ID.SETTINGS.BACKUP_DB,getString(R.string.backup_database),R.drawable.ic_action_import_export,false));
   menu.add(DrawerMenuItem.create(DrawerMenu.ID.SETTINGS.RESTORE_DB,getString(R.string.restore_database),R.drawable.ic_action_import_export,false));
   menu.add(DrawerMenuSection.create(DrawerMenu.ID.SECTION_APPLICATION,getString(R.string.application)));
-  menu.add(DrawerMenuItem.create(DrawerMenu.ID.APPLICATION.DOWNLOAD_LOCAL_BST_DATA,getString(R.string.get_opencellid),R.drawable.stat_sys_download_anim0,false,false));
-  menu.add(DrawerMenuItem.create(DrawerMenu.ID.APPLICATION.UPLOAD_LOCAL_BST_DATA,getString(R.string.upload_bts),R.drawable.stat_sys_upload_anim0,false,false));
+  menu.add(DrawerMenuItem.create(DrawerMenu.ID.APPLICATION.DOWNLOAD_LOCAL_BST_DATA,getString(R.string.get_opencellid),R.drawable.stat_sys_download_anim0,false));
+  menu.add(DrawerMenuItem.create(DrawerMenu.ID.APPLICATION.UPLOAD_LOCAL_BST_DATA,getString(R.string.upload_bts),R.drawable.stat_sys_upload_anim0,false));
   menu.add(DrawerMenuItem.create(DrawerMenu.ID.APPLICATION.ABOUT,getString(R.string.about_aimsicd),R.drawable.ic_action_about,true));
-  menu.add(DrawerMenuItem.create(DrawerMenu.ID.APPLICATION.SEND_DEBUGGING_LOG,getString(R.string.send_logs),R.drawable.ic_action_computer,false,false));
-  menu.add(DrawerMenuItem.create(DrawerMenu.ID.APPLICATION.QUIT,getString(R.string.quit),R.drawable.ic_action_remove,false,false));
+  menu.add(DrawerMenuItem.create(DrawerMenu.ID.APPLICATION.SEND_DEBUGGING_LOG,getString(R.string.send_logs),R.drawable.ic_action_computer,false));
+  menu.add(DrawerMenuItem.create(DrawerMenu.ID.APPLICATION.QUIT,getString(R.string.quit),R.drawable.ic_action_remove,false));
   DrawerMenuActivityConfiguration navDrawerActivityConfiguration=new DrawerMenuActivityConfiguration();
   navDrawerActivityConfiguration.setMainLayout(R.layout.main);
   navDrawerActivityConfiguration.setDrawerLayoutId(R.id.drawer_layout);
