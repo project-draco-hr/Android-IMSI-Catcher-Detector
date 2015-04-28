@@ -1,6 +1,5 @@
 {
   super.onPause();
-  isViewingGUI=false;
   LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
   if (mCompassOverlay != null) {
     mCompassOverlay.disableCompass();
