@@ -9,7 +9,7 @@
     return BUSYBOX_UNAVAILABLE;
   }
   try {
-    mAtResponse.setText("*** Looking for AT serial devices...\n");
+    mAtResponse.setText(R.string.at_command_response_looking);
     mSerialDevices.clear();
     try {
       String rilDevice=Helpers.getSystemProp(mContext,"rild.libargs","UNKNOWN");
@@ -37,7 +37,7 @@
       }
       if (add) {
         mSerialDevices.add(file.getAbsolutePath());
-        mAtResponse.append("Found: " + file.getAbsolutePath() + "\n");
+        mAtResponse.append(getString(R.string.at_command_response_found) + file.getAbsolutePath() + "\n");
       }
     }
     File xgold=new File("/system/etc/ril_xgold_radio.cfg");
@@ -48,7 +48,7 @@
             if (!line.trim().equals("") && line.contains("/dev/")) {
               int place=line.indexOf("=") + 1;
               mSerialDevices.add(line.substring(place,line.length() - 1));
-              mAtResponse.append("Found: " + line.substring(place,line.length() - 1) + "\n");
+              mAtResponse.append(getString(R.string.at_command_response_found) + line.substring(place,line.length() - 1) + "\n");
             }
           }
           super.commandOutput(id,line);
@@ -71,7 +71,7 @@
     mSerialDeviceSpinner.setVisibility(View.VISIBLE);
     mSerialDeviceSpinnerLabel.setVisibility(View.VISIBLE);
   }
-  mAtResponse.append("*** Setup Complete ***\n");
+  mAtResponse.append(getString(R.string.at_command_response_setup_complete));
   mAtResponse.setVisibility(View.VISIBLE);
   return SERIAL_INIT_OK;
 }
