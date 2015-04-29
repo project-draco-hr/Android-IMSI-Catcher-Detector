@@ -7,50 +7,49 @@
       @Override protected BaseInflaterAdapter doInBackground(      Void... params){
         mDb.open();
         Cursor result=null;
-switch (mTableSelected) {
-case "Unique BTS Data":
+        if (getString(R.string.unique_bts_data).equalsIgnoreCase(mTableSelected)) {
           result=mDb.getCellData();
-        break;
-case "BTS Measurements":
-      result=mDb.getLocationData();
-    break;
-case "Imported OCID Data":
-  result=mDb.getOpenCellIDData();
-break;
-case "Default MCC Locations":
-result=mDb.getDefaultMccLocationData();
-break;
-case "Silent SMS":
-result=mDb.getSilentSmsData();
-break;
-case "Measured Signal Strengths":
-result=mDb.getSignalStrengthMeasurementData();
-break;
-case "EventLog":
-result=mDb.getEventLogData();
-}
-BaseInflaterAdapter adapter=null;
-if (result != null) {
-adapter=BuildTable(result);
-}
-mDb.close();
-return adapter;
-}
-@Override protected void onPostExecute(BaseInflaterAdapter adapter){
-if (getActivity() == null) return;
-lv.setEmptyView(emptyView);
-if (adapter != null) {
-lv.setAdapter(adapter);
-lv.setVisibility(View.VISIBLE);
-}
+        }
+ else         if (getString(R.string.bts_measurements).equalsIgnoreCase(mTableSelected)) {
+          result=mDb.getLocationData();
+        }
+ else         if (getString(R.string.imported_ocid_data).equalsIgnoreCase(mTableSelected)) {
+          result=mDb.getOpenCellIDData();
+        }
+ else         if (getString(R.string.default_mmc_locations).equalsIgnoreCase(mTableSelected)) {
+          result=mDb.getDefaultMccLocationData();
+        }
+ else         if (getString(R.string.silent_sms).equalsIgnoreCase(mTableSelected)) {
+          result=mDb.getSilentSmsData();
+        }
+ else         if (getString(R.string.measured_signal_strengths).equalsIgnoreCase(mTableSelected)) {
+          result=mDb.getSignalStrengthMeasurementData();
+        }
+ else         if (getString(R.string.eventlog).equalsIgnoreCase(mTableSelected)) {
+          result=mDb.getEventLogData();
+        }
+        BaseInflaterAdapter adapter=null;
+        if (result != null) {
+          adapter=BuildTable(result);
+        }
+        mDb.close();
+        return adapter;
+      }
+      @Override protected void onPostExecute(      BaseInflaterAdapter adapter){
+        if (getActivity() == null)         return;
+        lv.setEmptyView(emptyView);
+        if (adapter != null) {
+          lv.setAdapter(adapter);
+          lv.setVisibility(View.VISIBLE);
+        }
  else {
-lv.setVisibility(View.GONE);
-emptyView.setVisibility(View.VISIBLE);
-}
-v.setEnabled(true);
-getActivity().setProgressBarIndeterminateVisibility(false);
-}
-}
+          lv.setVisibility(View.GONE);
+          emptyView.setVisibility(View.VISIBLE);
+        }
+        v.setEnabled(true);
+        getActivity().setProgressBarIndeterminateVisibility(false);
+      }
+    }
 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-}
+  }
 }
