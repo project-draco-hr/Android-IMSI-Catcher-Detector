@@ -6,6 +6,7 @@
       mMap.setMultiTouchControls(true);
       mMap.setMinZoomLevel(3);
       mMap.setMaxZoomLevel(19);
+      mMap.getTileProvider().createTileCache();
       mCompassOverlay=new CompassOverlay(this,new InternalCompassOrientationProvider(this),mMap);
       mScaleBarOverlay=new ScaleBarOverlay(this);
       mScaleBarOverlay.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels / 2,10);
@@ -23,7 +24,7 @@
       mMap.getOverlays().add(mScaleBarOverlay);
     }
  else {
-      Helpers.msgShort(this,"Unable to create map!");
+      Helpers.msgShort(this,getString(R.string.unable_to_create_map));
     }
   }
 }

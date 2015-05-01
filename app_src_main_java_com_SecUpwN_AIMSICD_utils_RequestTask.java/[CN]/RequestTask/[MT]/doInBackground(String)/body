@@ -40,7 +40,7 @@ case DBE_UPLOAD_REQUEST:
         return "Successful";
       }
  else {
-        Helpers.msgLong(mContext,"No data for publishing available");
+        Helpers.msgLong(mContext,mContext.getString(R.string.no_data_for_publishing));
         return null;
       }
     }
@@ -48,64 +48,67 @@ case DBE_UPLOAD_REQUEST:
       Log.e(TAG,mTAG + ": Upload OpenCellID data Exception - " + e.getMessage());
     }
 case DBE_DOWNLOAD_REQUEST:
+  mTimeOut=REQUEST_TIMEOUT_MENU;
 case DBE_DOWNLOAD_REQUEST_FROM_MAP:
-  int count;
+int count;
 try {
-  int total;
-  int progress=0;
-  File dir=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/");
-  if (!dir.exists()) {
-    dir.mkdirs();
+int total;
+int progress=0;
+File dir=new File(Environment.getExternalStorageDirectory() + "/AIMSICD/OpenCellID/");
+if (!dir.exists()) {
+  dir.mkdirs();
+}
+File file=new File(dir,"opencellid.csv");
+URL url=new URL(commandString[0]);
+HttpURLConnection urlConnection=(HttpURLConnection)url.openConnection();
+urlConnection.setRequestMethod("GET");
+urlConnection.setConnectTimeout(mTimeOut);
+urlConnection.setReadTimeout(mTimeOut);
+urlConnection.setDoInput(true);
+urlConnection.connect();
+if (urlConnection.getResponseCode() != 200) {
+  try {
+    String error=Helpers.convertStreamToString(urlConnection.getErrorStream());
+    Helpers.msgLong(mContext,mContext.getString(R.string.download_error) + " " + error);
+    Log.e(TAG,mTAG + ": Download OCID data error: " + error);
   }
-  File file=new File(dir,"opencellid.csv");
-  URL url=new URL(commandString[0]);
-  HttpURLConnection urlConnection=(HttpURLConnection)url.openConnection();
-  urlConnection.setRequestMethod("GET");
-  urlConnection.setConnectTimeout(20000);
-  urlConnection.setReadTimeout(20000);
-  urlConnection.setDoInput(true);
-  urlConnection.connect();
-  if (urlConnection.getResponseCode() != 200) {
-    try {
-      String error=Helpers.convertStreamToString(urlConnection.getErrorStream());
-      Helpers.msgLong(mContext,"Download error: " + error);
-      Log.e(TAG,mTAG + ": Download OCID data error: " + error);
-    }
- catch (    Exception e) {
-      Helpers.msgLong(mContext,"Download error: " + e.getClass().getName() + " - "+ e.getMessage());
-      Log.e(TAG,mTAG + ": Download OCID exception: " + e);
-    }
-    return "Error";
+ catch (  Exception e) {
+    Helpers.msgLong(mContext,mContext.getString(R.string.download_error) + " " + e.getClass().getName()+ " - "+ e.getMessage());
+    Log.e(TAG,mTAG + ": Download OCID exception: " + e);
+  }
+  return "Error";
+}
+ else {
+  total=urlConnection.getContentLength();
+  if (total == -1) {
+    Log.d(TAG,mTAG + ":doInBackground DBE_DOWNLOAD_REQUEST total not returned!");
+    total=1024;
   }
  else {
-    total=urlConnection.getContentLength();
-    if (total == -1) {
-      Log.d(TAG,mTAG + ":doInBackground DBE_DOWNLOAD_REQUEST total not returned!");
-      total=1024;
-    }
- else {
-      Log.d(TAG,mTAG + ":doInBackground DBE_DOWNLOAD_REQUEST total: " + total);
-      publishProgress((int)(0.25 * total),total);
-    }
-    FileOutputStream output=new FileOutputStream(file,false);
-    InputStream input=new BufferedInputStream(urlConnection.getInputStream());
-    byte[] data=new byte[1024];
-    while ((count=input.read(data)) > 0) {
-      output.write(data,0,count);
-      progress+=count;
-      publishProgress(progress,total);
-    }
-    output.flush();
-    output.close();
+    Log.d(TAG,mTAG + ":doInBackground DBE_DOWNLOAD_REQUEST total: " + total);
+    publishProgress((int)(0.25 * total),total);
   }
-  urlConnection.disconnect();
-  return "Successful";
+  FileOutputStream output=new FileOutputStream(file,false);
+  InputStream input=new BufferedInputStream(urlConnection.getInputStream());
+  byte[] data=new byte[1024];
+  while ((count=input.read(data)) > 0) {
+    output.write(data,0,count);
+    progress+=count;
+    publishProgress(progress,total);
+  }
+  output.flush();
+  output.close();
+}
+urlConnection.disconnect();
+return "Successful";
 }
  catch (MalformedURLException e) {
-  return null;
+e.printStackTrace();
+return null;
 }
 catch (IOException e) {
-  return null;
+e.printStackTrace();
+return null;
 }
 case BACKUP_DATABASE:
 mDbAdapter.open();

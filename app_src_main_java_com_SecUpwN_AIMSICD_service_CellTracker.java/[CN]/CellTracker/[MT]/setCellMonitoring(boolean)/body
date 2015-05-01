@@ -1,13 +1,11 @@
 {
   if (monitor) {
-    timerHandler.postDelayed(timerRunnable,0);
     mMonitoringCell=true;
-    Helpers.msgShort(context,"Monitoring Cell Information.");
+    Helpers.msgShort(context,context.getString(R.string.monitoring_cell_information));
   }
  else {
-    timerHandler.removeCallbacks(timerRunnable);
     mMonitoringCell=false;
-    Helpers.msgShort(context,"Stopped monitoring Cell Information.");
+    Helpers.msgShort(context,context.getString(R.string.stopped_monitoring_cell_information));
   }
   setNotification();
 }

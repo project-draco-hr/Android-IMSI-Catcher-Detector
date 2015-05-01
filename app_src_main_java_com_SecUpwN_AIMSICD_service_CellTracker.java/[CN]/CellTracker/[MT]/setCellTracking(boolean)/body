@@ -1,8 +1,8 @@
 {
   if (track) {
-    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_DATA_ACTIVITY| PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
+    tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS | PhoneStateListener.LISTEN_DATA_ACTIVITY| PhoneStateListener.LISTEN_DATA_CONNECTION_STATE| PhoneStateListener.LISTEN_CELL_INFO);
     mTrackingCell=true;
-    Helpers.msgShort(context,"Tracking Cell Information.");
+    Helpers.msgShort(context,context.getString(R.string.tracking_cell_information));
   }
  else {
     tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
@@ -10,7 +10,7 @@
     mDevice.mCell.setLat(0.0);
     mDevice.setCellInfo("[0,0]|nn|nn|");
     mTrackingCell=false;
-    Helpers.msgShort(context,"Stopped tracking Cell Information.");
+    Helpers.msgShort(context,context.getString(R.string.stopped_tracking_cell_information));
   }
   setNotification();
 }

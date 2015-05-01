@@ -3,7 +3,6 @@
     @Override protected GeoPoint doInBackground(    Void... voids){
       final int SIGNAL_SIZE_RATIO=15;
       int signal;
-      int color;
       mCellTowerGridMarkerClusterer.getItems().clear();
       loadOpenCellIDMarkers();
       LinkedList<CellTowerMarker> items=new LinkedList<>();
@@ -33,120 +32,84 @@
           }
           if ((dlat != 0.0) || (dlng != 0.0)) {
             loc=new GeoPoint(dlat,dlng);
-switch (net) {
-case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-              color=0xF0F8FF;
-            break;
-case TelephonyManager.NETWORK_TYPE_GPRS:
-          color=0xA9A9A9;
-        break;
-case TelephonyManager.NETWORK_TYPE_EDGE:
-      color=0x87CEFA;
-    break;
-case TelephonyManager.NETWORK_TYPE_UMTS:
-  color=0x7CFC00;
-break;
-case TelephonyManager.NETWORK_TYPE_HSDPA:
-color=0xFF6347;
-break;
-case TelephonyManager.NETWORK_TYPE_HSUPA:
-color=0xFF00FF;
-break;
-case TelephonyManager.NETWORK_TYPE_HSPA:
-color=0x238E6B;
-break;
-case TelephonyManager.NETWORK_TYPE_CDMA:
-color=0x8A2BE2;
-break;
-case TelephonyManager.NETWORK_TYPE_EVDO_0:
-color=0xFF69B4;
-break;
-case TelephonyManager.NETWORK_TYPE_EVDO_A:
-color=0xFFFF00;
-break;
-case TelephonyManager.NETWORK_TYPE_1xRTT:
-color=0x7CFC00;
-break;
-default :
-color=0xF0F8FF;
-break;
-}
-CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,"Cell ID: " + cellID,"",loc,new MarkerData("" + cellID,"" + loc.getLatitude(),"" + loc.getLongitude(),"" + lac,"" + mcc,"" + mnc,"",false));
-ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_blue));
-items.add(ovm);
-}
-}
+            CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,"Cell ID: " + cellID,"",loc,new MarkerData("" + cellID,"" + loc.getLatitude(),"" + loc.getLongitude(),"" + lac,"" + mcc,"" + mnc,"",false));
+            ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_blue));
+            items.add(ovm);
+          }
+        }
  while (c.moveToNext());
-}
+      }
  else {
-runOnUiThread(new Runnable(){
-@Override public void run(){
-Helpers.msgLong(MapViewerOsmDroid.this,"No tracked locations found to show on map.");
-}
-}
+        runOnUiThread(new Runnable(){
+          @Override public void run(){
+            Helpers.msgLong(MapViewerOsmDroid.this,getString(R.string.no_tracked_locations_found));
+          }
+        }
 );
-}
-GeoPoint ret=new GeoPoint(0,0);
-if (mBound) {
-try {
-int mcc=mAimsicdService.getCell().getMCC();
-double[] d=mDbHelper.getDefaultLocation(mcc);
-ret=new GeoPoint(d[0],d[1]);
-}
- catch (Exception e) {
-Log.e("map","Error getting default location!",e);
-}
-}
-c.close();
-mDbHelper.close();
-while (mAimsicdService == null) try {
-Thread.sleep(100);
-}
- catch (Exception e) {
-}
-List<Cell> nc=mAimsicdService.getCellTracker().updateNeighbouringCells();
-for (Cell cell : nc) {
-try {
-loc=new GeoPoint(cell.getLat(),cell.getLon());
-CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,"Cell ID: " + cell.getCID(),"",loc,new MarkerData("" + cell.getCID(),"" + loc.getLatitude(),"" + loc.getLongitude(),"" + cell.getLAC(),"" + cell.getMCC(),"" + cell.getMNC(),"",false));
-ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_orange));
-items.add(ovm);
-}
- catch (Exception e) {
-Log.e("map","Error plotting neighbouring cells",e);
-}
-}
-mCellTowerGridMarkerClusterer.addAll(items);
-return ret;
-}
-/** 
+      }
+      GeoPoint ret=new GeoPoint(0,0);
+      if (mBound) {
+        try {
+          int mcc=mAimsicdService.getCell().getMCC();
+          double[] d=mDbHelper.getDefaultLocation(mcc);
+          ret=new GeoPoint(d[0],d[1]);
+        }
+ catch (        Exception e) {
+          Log.e("map","Error getting default location!",e);
+        }
+      }
+      if (c != null && !c.isClosed()) {
+        c.close();
+      }
+      mDbHelper.close();
+      while (mAimsicdService == null)       try {
+        Thread.sleep(100);
+      }
+ catch (      Exception e) {
+      }
+      List<Cell> nc=mAimsicdService.getCellTracker().updateNeighbouringCells();
+      for (      Cell cell : nc) {
+        try {
+          loc=new GeoPoint(cell.getLat(),cell.getLon());
+          CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,getString(R.string.cell_id_label) + cell.getCID(),"",loc,new MarkerData("" + cell.getCID(),"" + loc.getLatitude(),"" + loc.getLongitude(),"" + cell.getLAC(),"" + cell.getMCC(),"" + cell.getMNC(),"",false));
+          ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_orange));
+          items.add(ovm);
+        }
+ catch (        Exception e) {
+          Log.e("map","Error plotting neighbouring cells",e);
+        }
+      }
+      mCellTowerGridMarkerClusterer.addAll(items);
+      return ret;
+    }
+    /** 
  * TODO:  We need a manual way to add our own location in case:
  * a) GPS is jammed or not working
  * b) WiFi location is not used
  * c) Default MCC is too far off
  * @param defaultLoc
  */
-@Override protected void onPostExecute(GeoPoint defaultLoc){
-if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
-mMap.getController().setZoom(16);
-mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
-}
+    @Override protected void onPostExecute(    GeoPoint defaultLoc){
+      if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
+        mMap.getController().setZoom(16);
+        mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+      }
  else {
-if (mBound) {
-GeoLocation lastLoc=mAimsicdService.lastKnownLocation();
-if (lastLoc != null) {
-loc=new GeoPoint(lastLoc.getLatitudeInDegrees(),lastLoc.getLongitudeInDegrees());
-mMap.getController().setZoom(16);
-mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
-}
+        if (mBound) {
+          GeoLocation lastLoc=mAimsicdService.lastKnownLocation();
+          if (lastLoc != null) {
+            loc=new GeoPoint(lastLoc.getLatitudeInDegrees(),lastLoc.getLongitudeInDegrees());
+            mMap.getController().setZoom(16);
+            mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+          }
  else {
-loc=defaultLoc;
-mMap.getController().setZoom(12);
-mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
-}
-}
-}
-}
-}
+            loc=defaultLoc;
+            mMap.getController().setZoom(12);
+            mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+          }
+        }
+      }
+    }
+  }
 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 }

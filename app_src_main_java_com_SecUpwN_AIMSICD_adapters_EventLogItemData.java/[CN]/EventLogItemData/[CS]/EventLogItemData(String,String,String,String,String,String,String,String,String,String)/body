@@ -1,12 +1,3 @@
 {
-  mTimestamp=time;
-  mLac=LAC;
-  mCellID=CID;
-  mPsc=PSC;
-  mLat=gpsd_lat;
-  mLng=gpsd_lon;
-  mgpsd_accu=gpsd_accu;
-  mDF_id=DF_id;
-  mDF_desc=DF_desc;
-  mRecordId=recordId;
+  this(time,LAC,CID,PSC,gpsd_lat,gpsd_lon,gpsd_accu,DF_id,DF_desc,recordId,false);
 }

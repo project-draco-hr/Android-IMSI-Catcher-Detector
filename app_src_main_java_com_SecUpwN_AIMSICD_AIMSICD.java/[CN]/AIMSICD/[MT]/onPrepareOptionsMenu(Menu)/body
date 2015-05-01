@@ -6,43 +6,45 @@
     }
   }
   NavDrawerItem femtoTrackingItem=null;
+  NavDrawerItem cellMonitoringItem=null;
+  NavDrawerItem cellTrackingItem=null;
   List<NavDrawerItem> menuItems=mNavConf.getNavItems();
-  NavDrawerItem cellMonitoringItem=menuItems.get(1);
-  NavDrawerItem cellTrackingItem=menuItems.get(2);
-  if (CellTracker.PHONE_TYPE == TelephonyManager.PHONE_TYPE_CDMA) {
-    femtoTrackingItem=menuItems.get(3);
+  for (  NavDrawerItem lItem : menuItems) {
+    if (lItem.getId() == DrawerMenu.ID.TRACKING.TOGGLE_AIMSICD_MONITORING) {
+      cellMonitoringItem=lItem;
+    }
+ else     if (lItem.getId() == DrawerMenu.ID.TRACKING.TOGGLE_2G_ONLY_NETWORK) {
+      cellTrackingItem=lItem;
+    }
+ else     if (lItem.getId() == DrawerMenu.ID.TRACKING.TRACK_FEMTOCELL) {
+      femtoTrackingItem=lItem;
+    }
   }
   if (mBound) {
     if (cellMonitoringItem != null) {
       if (mAimsicdService.isMonitoringCell()) {
-        cellMonitoringItem.setLabel(getString(R.string.unmonitor_cell));
-        cellMonitoringItem.setIcon(R.drawable.track_cell);
+        cellMonitoringItem.setmIconId(R.drawable.track_cell);
       }
  else {
-        cellMonitoringItem.setLabel(getString(R.string.monitor_cell));
-        cellMonitoringItem.setIcon(R.drawable.untrack_cell);
+        cellMonitoringItem.setmIconId(R.drawable.untrack_cell);
       }
       mNavConf.getBaseAdapter().notifyDataSetChanged();
     }
     if (cellTrackingItem != null) {
       if (mAimsicdService.isTrackingCell()) {
-        cellTrackingItem.setLabel(getString(R.string.untrack_cell));
-        cellTrackingItem.setIcon(R.drawable.track_cell);
+        cellTrackingItem.setmIconId(R.drawable.track_cell);
       }
  else {
-        cellTrackingItem.setLabel(getString(R.string.track_cell));
-        cellTrackingItem.setIcon(R.drawable.untrack_cell);
+        cellTrackingItem.setmIconId(R.drawable.untrack_cell);
       }
       mNavConf.getBaseAdapter().notifyDataSetChanged();
     }
     if (femtoTrackingItem != null) {
       if (mAimsicdService.isTrackingFemtocell()) {
-        femtoTrackingItem.setLabel(getString(R.string.untrack_femtocell));
-        femtoTrackingItem.setIcon(R.drawable.ic_action_network_cell);
+        femtoTrackingItem.setmIconId(R.drawable.ic_action_network_cell);
       }
  else {
-        femtoTrackingItem.setLabel(getString(R.string.track_femtocell));
-        femtoTrackingItem.setIcon(R.drawable.ic_action_network_cell_not_tracked);
+        femtoTrackingItem.setmIconId(R.drawable.ic_action_network_cell_not_tracked);
       }
       mNavConf.getBaseAdapter().notifyDataSetChanged();
     }
