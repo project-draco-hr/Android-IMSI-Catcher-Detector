@@ -2,4 +2,5 @@
   mType=type;
   mContext=context;
   mDbAdapter=new AIMSICDDbAdapter(mContext);
+  mTimeOut=REQUEST_TIMEOUT_MAPS;
 }
