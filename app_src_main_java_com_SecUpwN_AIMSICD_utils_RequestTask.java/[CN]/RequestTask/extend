@@ -1,1 +1,1 @@
-AsyncTask<String,Integer,String>
+BaseAsyncTask<String,Integer,String>

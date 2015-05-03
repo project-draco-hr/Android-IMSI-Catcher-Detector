@@ -1,0 +1,5 @@
+{
+  if (mType == DBE_DOWNLOAD_REQUEST_FROM_MAP) {
+    showHideMapProgressBar(false);
+  }
+}

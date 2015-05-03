@@ -15,6 +15,7 @@
       if (!file.exists()) {
         result=file.createNewFile();
         if (!result) {
+          c.close();
           return false;
         }
         CSVWriter csvWrite=new CSVWriter(new FileWriter(file));

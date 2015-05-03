@@ -1,0 +1,18 @@
+{
+  if (activity == null) {
+    return;
+  }
+  if (BuildConfig.DEBUG) {
+    Log.d(TAG,"BaseTask addTask activity:" + activity.getClass().getCanonicalName());
+  }
+  int key=activity.getClass().getCanonicalName().hashCode();
+  List<BaseAsyncTask<?,?,?>> tasks=mActivityTaskMap.get(key);
+  if (tasks == null) {
+    tasks=new ArrayList<>();
+    mActivityTaskMap.put(key,tasks);
+  }
+  if (BuildConfig.DEBUG) {
+    Log.v(TAG,"BaseTask added:" + pTask.toString());
+  }
+  tasks.add(pTask);
+}

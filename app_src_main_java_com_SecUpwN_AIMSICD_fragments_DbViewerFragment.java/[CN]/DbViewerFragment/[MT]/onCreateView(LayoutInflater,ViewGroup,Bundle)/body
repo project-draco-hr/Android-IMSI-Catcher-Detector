@@ -4,6 +4,8 @@
     lv=(ListView)view.findViewById(R.id.list_view);
     emptyView=view.findViewById(R.id.db_list_empty);
     tblSpinner=(Spinner)view.findViewById(R.id.table_spinner);
+    DbViewerSpinnerAdapter mSpinnerAdapter=new DbViewerSpinnerAdapter(getActivity(),R.layout.item_spinner_db_viewer);
+    tblSpinner.setAdapter(mSpinnerAdapter);
     tblSpinner.setOnItemSelectedListener(new spinnerListener());
     Button loadTable=(Button)view.findViewById(R.id.load_table_data);
     loadTable.setOnClickListener(new btnClick());

@@ -4,14 +4,14 @@
   String sqlq;
   Log.d(TAG,mTAG + ":checkDBe() Attempting to delete bad import data from DBe_import table...");
   sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Samples < 1";
-  mDb.rawQuery(sqlq,null);
+  mDb.execSQL(sqlq);
   sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Lac < 1";
-  mDb.rawQuery(sqlq,null);
+  mDb.execSQL(sqlq);
   sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE Lac > 65534";
-  mDb.rawQuery(sqlq,null);
+  mDb.execSQL(sqlq);
   sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE CellID < 1";
-  mDb.rawQuery(sqlq,null);
+  mDb.execSQL(sqlq);
   sqlq="DELETE FROM " + OPENCELLID_TABLE + " WHERE CellID > 268435455";
-  mDb.rawQuery(sqlq,null);
+  mDb.execSQL(sqlq);
   Log.i(TAG,mTAG + ":checkDBe() Deleted BTS entries from DBe_import table with bad LAC/CID...");
 }

@@ -1,0 +1,14 @@
+{
+  View lView=pConvertView;
+  ViewTableNameSpinnerHolder lHolder;
+  if (lView == null || (lView.getId() != R.id.item_root_layout && !(lView.getTag() instanceof ViewTableNameSpinnerHolder))) {
+    lView=((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.item_spinner_db_viewer,pParent,false);
+    lHolder=setViewHolderToView(lView);
+  }
+ else {
+    lHolder=(ViewTableNameSpinnerHolder)lView.getTag();
+  }
+  StatesDbViewer lEntry=mDataList.get(pPosition);
+  lHolder.name.setText(lEntry.getDisplayName(getContext()));
+  return lView;
+}

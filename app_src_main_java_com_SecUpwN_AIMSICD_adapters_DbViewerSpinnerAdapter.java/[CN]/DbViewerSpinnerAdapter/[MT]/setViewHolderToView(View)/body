@@ -1,0 +1,7 @@
+{
+  ViewTableNameSpinnerHolder lHolder;
+  lHolder=new ViewTableNameSpinnerHolder();
+  lHolder.name=(TextView)pView.findViewById(R.id.item_name);
+  pView.setTag(lHolder);
+  return lHolder;
+}

@@ -1,0 +1,4 @@
+{
+  super.onStart();
+  ((AppAIMSICD)getApplication()).attach(this);
+}

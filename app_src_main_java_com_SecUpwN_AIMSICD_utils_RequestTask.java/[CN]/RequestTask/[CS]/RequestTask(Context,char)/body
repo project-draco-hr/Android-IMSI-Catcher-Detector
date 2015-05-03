@@ -1,6 +1,7 @@
 {
+  super((Activity)context);
   mType=type;
-  mContext=context;
-  mDbAdapter=new AIMSICDDbAdapter(mContext);
+  mAppContext=context.getApplicationContext();
+  mDbAdapter=new AIMSICDDbAdapter(mAppContext);
   mTimeOut=REQUEST_TIMEOUT_MAPS;
 }
