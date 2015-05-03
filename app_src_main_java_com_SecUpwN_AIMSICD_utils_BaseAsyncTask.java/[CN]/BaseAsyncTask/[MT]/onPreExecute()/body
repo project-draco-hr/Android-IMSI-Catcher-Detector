@@ -1,0 +1,3 @@
+{
+  mApp.addTask(mWeakReferenceActivity.get(),this);
+}

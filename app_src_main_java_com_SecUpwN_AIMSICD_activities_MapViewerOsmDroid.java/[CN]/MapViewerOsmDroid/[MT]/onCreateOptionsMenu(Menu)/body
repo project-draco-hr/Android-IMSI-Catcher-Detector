@@ -1,4 +1,5 @@
 {
+  this.mOptionsMenu=menu;
   MenuInflater inflater=getMenuInflater();
   inflater.inflate(R.menu.map_viewer_menu,menu);
   return super.onCreateOptionsMenu(menu);

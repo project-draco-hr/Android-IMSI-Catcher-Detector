@@ -1,0 +1,4 @@
+{
+  mWeakReferenceActivity=new WeakReference<>(activity);
+  mApp=(AppAIMSICD)activity.getApplication();
+}

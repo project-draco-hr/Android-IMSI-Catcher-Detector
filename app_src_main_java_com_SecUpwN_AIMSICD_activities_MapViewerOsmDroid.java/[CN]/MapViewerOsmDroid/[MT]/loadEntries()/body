@@ -58,7 +58,7 @@
           Log.e("map","Error getting default location!",e);
         }
       }
-      if (c != null && !c.isClosed()) {
+      if (c != null) {
         c.close();
       }
       mDbHelper.close();
