@@ -109,6 +109,12 @@
           }
         }
       }
+      if (mCellTowerGridMarkerClusterer != null) {
+        if (BuildConfig.DEBUG && mCellTowerGridMarkerClusterer.getItems() != null) {
+          Log.v(TAG,"CellTowerMarkers.invalidate() markers.size():" + mCellTowerGridMarkerClusterer.getItems().size());
+        }
+        mCellTowerGridMarkerClusterer.invalidate();
+      }
     }
   }
 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
