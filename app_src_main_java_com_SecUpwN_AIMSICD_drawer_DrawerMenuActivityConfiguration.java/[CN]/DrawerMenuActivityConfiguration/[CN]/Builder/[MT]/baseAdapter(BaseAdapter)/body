@@ -1,0 +1,4 @@
+{
+  mBaseAdapter=pBaseAdapter;
+  return this;
+}
