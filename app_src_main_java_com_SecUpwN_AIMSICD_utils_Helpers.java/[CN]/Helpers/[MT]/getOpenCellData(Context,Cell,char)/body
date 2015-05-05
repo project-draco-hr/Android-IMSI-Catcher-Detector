@@ -22,10 +22,16 @@
       }
     }
  else {
+      if (context instanceof MapViewerOsmDroid) {
+        ((MapViewerOsmDroid)context).setRefreshActionButtonState(false);
+      }
       Helpers.sendMsg(context,context.getString(R.string.no_opencellid_key_detected));
     }
   }
  else {
+    if (context instanceof MapViewerOsmDroid) {
+      ((MapViewerOsmDroid)context).setRefreshActionButtonState(false);
+    }
     final AlertDialog.Builder builder=new AlertDialog.Builder(context);
     builder.setTitle(R.string.no_network_connection_title).setMessage(R.string.no_network_connection_message);
     builder.create().show();
