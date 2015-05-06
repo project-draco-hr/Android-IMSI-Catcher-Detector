@@ -1,0 +1,10 @@
+{
+  mMainLayout=pBuilder.mMainLayout;
+  mDrawerLayoutId=pBuilder.mDrawerLayoutId;
+  mLeftDrawerId=pBuilder.mLeftDrawerId;
+  mActionMenuItemsToHideWhenDrawerOpen=pBuilder.mActionMenuItemsToHideWhenDrawerOpen;
+  mNavItems=pBuilder.mNavItems;
+  mDrawerOpenDesc=pBuilder.mDrawerOpenDesc;
+  mDrawerCloseDesc=pBuilder.mDrawerCloseDesc;
+  mBaseAdapter=pBuilder.mBaseAdapter;
+}

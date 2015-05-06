@@ -1,0 +1,4 @@
+{
+  mActionMenuItemsToHideWhenDrawerOpen=pActionMenuItemsToHideWhenDrawerOpen;
+  return this;
+}
