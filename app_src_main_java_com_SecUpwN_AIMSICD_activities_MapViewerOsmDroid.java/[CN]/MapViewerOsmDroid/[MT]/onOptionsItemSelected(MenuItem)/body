@@ -14,6 +14,8 @@ if (mBound) {
     cell=mAimsicdService.getCell();
     cell.setLon(lastKnown.getLongitudeInDegrees());
     cell.setLat(lastKnown.getLatitudeInDegrees());
+    setRefreshActionButtonState(true);
+    TinyDB.getInstance().putBoolean(TinyDbKeys.FINISHED_LOAD_IN_MAP,false);
     Helpers.getOpenCellData(mContext,cell,RequestTask.DBE_DOWNLOAD_REQUEST_FROM_MAP);
     return true;
   }
@@ -23,6 +25,8 @@ if (loc != null) {
   Cell cell=new Cell();
   cell.setLat(loc.getLatitude());
   cell.setLon(loc.getLongitude());
+  setRefreshActionButtonState(true);
+  TinyDB.getInstance().putBoolean(TinyDbKeys.FINISHED_LOAD_IN_MAP,false);
   Helpers.getOpenCellData(mContext,cell,RequestTask.DBE_DOWNLOAD_REQUEST_FROM_MAP);
 }
  else {

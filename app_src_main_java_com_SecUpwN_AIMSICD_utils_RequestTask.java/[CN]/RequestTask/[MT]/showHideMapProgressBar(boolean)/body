@@ -1,0 +1,9 @@
+{
+  Activity lActivity=getActivity();
+  if (BuildConfig.DEBUG && lActivity == null) {
+    Log.v(TAG,"BaseTask showHideMapProgressBar() activity is null");
+  }
+  if (lActivity != null && lActivity instanceof MapViewerOsmDroid) {
+    ((MapViewerOsmDroid)lActivity).setRefreshActionButtonState(pFlag);
+  }
+}

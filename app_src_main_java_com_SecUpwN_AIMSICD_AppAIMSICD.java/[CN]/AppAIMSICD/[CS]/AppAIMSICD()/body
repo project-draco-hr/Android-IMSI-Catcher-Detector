@@ -1,0 +1,3 @@
+{
+  mActivityTaskMap=new SparseArray<>();
+}

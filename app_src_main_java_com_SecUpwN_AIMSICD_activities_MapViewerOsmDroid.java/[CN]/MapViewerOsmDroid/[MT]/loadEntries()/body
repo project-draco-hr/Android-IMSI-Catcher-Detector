@@ -58,7 +58,7 @@
           Log.e("map","Error getting default location!",e);
         }
       }
-      if (c != null && !c.isClosed()) {
+      if (c != null) {
         c.close();
       }
       mDbHelper.close();
@@ -108,6 +108,12 @@
             mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
           }
         }
+      }
+      if (mCellTowerGridMarkerClusterer != null) {
+        if (BuildConfig.DEBUG && mCellTowerGridMarkerClusterer.getItems() != null) {
+          Log.v(TAG,"CellTowerMarkers.invalidate() markers.size():" + mCellTowerGridMarkerClusterer.getItems().size());
+        }
+        mCellTowerGridMarkerClusterer.invalidate();
       }
     }
   }

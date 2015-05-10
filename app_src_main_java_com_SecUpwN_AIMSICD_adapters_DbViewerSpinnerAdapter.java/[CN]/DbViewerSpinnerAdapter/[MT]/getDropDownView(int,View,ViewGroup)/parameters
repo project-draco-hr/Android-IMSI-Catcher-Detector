@@ -1,0 +1,3 @@
+int pPosition
+View pConvertView
+ViewGroup pParent

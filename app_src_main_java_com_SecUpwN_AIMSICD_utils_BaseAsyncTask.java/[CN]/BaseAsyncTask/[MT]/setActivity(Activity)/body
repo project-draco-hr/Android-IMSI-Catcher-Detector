@@ -1,0 +1,10 @@
+{
+  if (activity == null) {
+    mWeakReferenceActivity.clear();
+    onActivityDetached();
+  }
+ else {
+    onActivityAttached();
+    mWeakReferenceActivity=new WeakReference<>(activity);
+  }
+}

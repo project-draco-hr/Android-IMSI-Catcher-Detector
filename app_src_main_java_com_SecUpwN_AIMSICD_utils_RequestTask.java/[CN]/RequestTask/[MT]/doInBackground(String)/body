@@ -40,12 +40,13 @@ case DBE_UPLOAD_REQUEST:
         return "Successful";
       }
  else {
-        Helpers.msgLong(mContext,mContext.getString(R.string.no_data_for_publishing));
+        Helpers.msgLong(mAppContext,mAppContext.getString(R.string.no_data_for_publishing));
         return null;
       }
     }
  catch (    Exception e) {
       Log.e(TAG,mTAG + ": Upload OpenCellID data Exception - " + e.getMessage());
+      e.printStackTrace();
     }
 case DBE_DOWNLOAD_REQUEST:
   mTimeOut=REQUEST_TIMEOUT_MENU;
@@ -69,12 +70,13 @@ urlConnection.connect();
 if (urlConnection.getResponseCode() != 200) {
   try {
     String error=Helpers.convertStreamToString(urlConnection.getErrorStream());
-    Helpers.msgLong(mContext,mContext.getString(R.string.download_error) + " " + error);
+    Helpers.msgLong(mAppContext,mAppContext.getString(R.string.download_error) + " " + error);
     Log.e(TAG,mTAG + ": Download OCID data error: " + error);
   }
  catch (  Exception e) {
-    Helpers.msgLong(mContext,mContext.getString(R.string.download_error) + " " + e.getClass().getName()+ " - "+ e.getMessage());
+    Helpers.msgLong(mAppContext,mAppContext.getString(R.string.download_error) + " " + e.getClass().getName()+ " - "+ e.getMessage());
     Log.e(TAG,mTAG + ": Download OCID exception: " + e);
+    e.printStackTrace();
   }
   return "Error";
 }
