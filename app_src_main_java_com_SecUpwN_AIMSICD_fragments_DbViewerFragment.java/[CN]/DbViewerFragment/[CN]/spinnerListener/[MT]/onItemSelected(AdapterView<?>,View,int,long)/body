@@ -1,4 +1,0 @@
-{
-  mTableSelected=(StatesDbViewer)tblSpinner.getSelectedItem();
-  mMadeSelection=true;
-}
