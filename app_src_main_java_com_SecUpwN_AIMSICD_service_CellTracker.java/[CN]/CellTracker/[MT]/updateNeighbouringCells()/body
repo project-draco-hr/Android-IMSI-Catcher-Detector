@@ -1,8 +1,8 @@
 {
   List<Cell> neighboringCells=new ArrayList<>();
-  List<NeighboringCellInfo> neighboringCellInfo;
-  neighboringCellInfo=tm.getNeighboringCellInfo();
-  if (neighboringCellInfo.size() == 0) {
+  List<NeighboringCellInfo> neighboringCellInfo=tm.getNeighboringCellInfo();
+  if (neighboringCellInfo == null)   neighboringCellInfo=new ArrayList<>();
+  if (neighboringCellInfo != null && neighboringCellInfo.size() == 0) {
     neighboringCellBlockingQueue=new LinkedBlockingQueue<>(100);
     Log.i(TAG,mTAG + ": neighbouringCellInfo empty - start polling");
     if (Build.VERSION.SDK_INT > 16) {
@@ -17,7 +17,7 @@
         NeighboringCellInfo info=neighboringCellBlockingQueue.poll(1,TimeUnit.SECONDS);
         if (info == null) {
           neighboringCellInfo=tm.getNeighboringCellInfo();
-          if (neighboringCellInfo.size() > 0) {
+          if (neighboringCellInfo != null)           if (neighboringCellInfo.size() > 0) {
             Log.d(TAG,mTAG + ": neighbouringCellInfo found on " + i+ " try. (time based)");
             break;
           }
@@ -36,7 +36,6 @@
       }
     }
   }
-  Log.d(TAG,mTAG + ": neighbouringCellInfo size: " + neighboringCellInfo.size());
   for (  NeighboringCellInfo neighbourCell : neighboringCellInfo) {
     Log.i(TAG,mTAG + ": neighbouringCellInfo -" + " LAC:"+ neighbourCell.getLac()+ " CID:"+ neighbourCell.getCid()+ " PSC:"+ neighbourCell.getPsc()+ " RSSI:"+ neighbourCell.getRssi());
     final Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),neighbourCell.getRssi(),neighbourCell.getPsc(),neighbourCell.getNetworkType(),false);

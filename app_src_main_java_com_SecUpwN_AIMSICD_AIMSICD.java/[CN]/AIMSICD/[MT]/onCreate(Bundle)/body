@@ -1,5 +1,6 @@
 {
   super.onCreate(savedInstanceState);
+  moveData();
   getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
   mNavConf=new DrawerMenuActivityConfiguration.Builder(this).build();
   setContentView(mNavConf.getMainLayout());

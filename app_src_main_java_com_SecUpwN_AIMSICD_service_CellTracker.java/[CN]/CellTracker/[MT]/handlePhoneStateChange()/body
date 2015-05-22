@@ -1,10 +1,10 @@
 {
-  List<NeighboringCellInfo> neighboringCellInfo;
-  neighboringCellInfo=tm.getNeighboringCellInfo();
-  if (neighboringCellInfo.size() == 0) {
+  List<NeighboringCellInfo> neighboringCellInfo=tm.getNeighboringCellInfo();
+  if (neighboringCellInfo == null || neighboringCellInfo.size() == 0) {
     return;
   }
   Log.i(TAG,mTAG + ": neighbouringCellInfo empty - event based polling succeeded!");
   tm.listen(phoneStatelistener,PhoneStateListener.LISTEN_NONE);
+  if (neighboringCellInfo == null)   neighboringCellInfo=new ArrayList<>();
   neighboringCellBlockingQueue.addAll(neighboringCellInfo);
 }

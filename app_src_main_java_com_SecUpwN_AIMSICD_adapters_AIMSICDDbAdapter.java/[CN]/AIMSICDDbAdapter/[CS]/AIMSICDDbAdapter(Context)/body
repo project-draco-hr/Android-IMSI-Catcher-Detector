@@ -1,5 +1,6 @@
 {
   mContext=context;
+  FOLDER=mContext.getExternalFilesDir(null) + File.separator;
   mDbHelper=new DbHelper(context);
   mTables=new String[]{LOCATION_TABLE,CELL_TABLE,OPENCELLID_TABLE,SILENT_SMS_TABLE,TABLE_EVENTLOG};
 }
