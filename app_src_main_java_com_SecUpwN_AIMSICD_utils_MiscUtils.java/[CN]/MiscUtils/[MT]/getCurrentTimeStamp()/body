@@ -1,0 +1,5 @@
+{
+  Date now=new Date();
+  String timestamp=new SimpleDateFormat("yyyyMMddHHmmss").format(now);
+  return timestamp;
+}
