@@ -1,0 +1,6 @@
+{
+  Intent intent=new Intent(tContext,AimsicdService.class);
+  tContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+  start();
+  Log.i(TAG,"sms detection started");
+}

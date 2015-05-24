@@ -1,0 +1,4 @@
+{
+  d_string.setText(item.getDetectionString());
+  d_type.setText(item.getDetectionType());
+}

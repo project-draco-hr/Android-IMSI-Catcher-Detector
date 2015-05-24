@@ -1,0 +1,4 @@
+{
+  dbhelper.close();
+  Log.i(LOGTAG,"database closed");
+}

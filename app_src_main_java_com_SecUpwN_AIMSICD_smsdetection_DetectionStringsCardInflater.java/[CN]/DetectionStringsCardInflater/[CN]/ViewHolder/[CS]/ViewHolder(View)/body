@@ -1,0 +1,6 @@
+{
+  mRootView=rootView;
+  d_string=(TextView)mRootView.findViewById(R.id.tv_det_str_info);
+  d_type=(TextView)mRootView.findViewById(R.id.tv_det_type_info);
+  rootView.setTag(this);
+}

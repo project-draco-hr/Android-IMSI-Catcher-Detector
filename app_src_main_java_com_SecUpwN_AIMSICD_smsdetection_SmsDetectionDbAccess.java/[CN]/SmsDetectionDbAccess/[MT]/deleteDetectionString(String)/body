@@ -1,0 +1,10 @@
+{
+  try {
+    dectection_db.delete(SmsDetectionDbHelper.SILENT_SMS_STRINGS_TABLE,SmsDetectionDbHelper.SILENT_SMS_STRING_COLUMN + "='" + deleteme+ "'",null);
+    return true;
+  }
+ catch (  Exception ee) {
+    Log.i(LOGTAG,"Delete String failed");
+  }
+  return false;
+}

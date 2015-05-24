@@ -1,0 +1,14 @@
+{
+  ViewHolder holder;
+  if (convertView == null) {
+    LayoutInflater inflater=LayoutInflater.from(parent.getContext());
+    convertView=inflater.inflate(R.layout.detection_sms_db_listview,parent,false);
+    holder=new ViewHolder(convertView);
+  }
+ else {
+    holder=(ViewHolder)convertView.getTag();
+  }
+  final CapturedSmsData item=adapter.getTItem(pos);
+  holder.updateDisplay(item);
+  return convertView;
+}

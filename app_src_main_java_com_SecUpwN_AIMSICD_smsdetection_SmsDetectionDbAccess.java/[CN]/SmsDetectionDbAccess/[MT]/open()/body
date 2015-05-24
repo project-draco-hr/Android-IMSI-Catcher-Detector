@@ -1,0 +1,4 @@
+{
+  dectection_db=dbhelper.getWritableDatabase();
+  Log.i(LOGTAG,"database opened");
+}

@@ -1,0 +1,3 @@
+{
+  this.senderMsg=senderMsg;
+}

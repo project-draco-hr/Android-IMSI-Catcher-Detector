@@ -1,0 +1,18 @@
+{
+  String check4String=String.format("SELECT * FROM %s WHERE %s = \"%s\"",SmsDetectionDbHelper.SILENT_SMS_STRINGS_TABLE,SmsDetectionDbHelper.SILENT_SMS_STRING_COLUMN,newstring.get(SmsDetectionDbHelper.SILENT_SMS_STRING_COLUMN));
+  Cursor stringcount=dectection_db.rawQuery(check4String,null);
+  if (stringcount.getCount() > 0) {
+    Log.i(LOGTAG,"Detection String already in Database");
+  }
+ else {
+    try {
+      dectection_db.insert(SmsDetectionDbHelper.SILENT_SMS_STRINGS_TABLE,null,newstring);
+      Log.i(LOGTAG,"Detection String Added");
+      return true;
+    }
+ catch (    Exception ee) {
+      Log.i(LOGTAG,"Detection String failed");
+    }
+  }
+  return false;
+}
