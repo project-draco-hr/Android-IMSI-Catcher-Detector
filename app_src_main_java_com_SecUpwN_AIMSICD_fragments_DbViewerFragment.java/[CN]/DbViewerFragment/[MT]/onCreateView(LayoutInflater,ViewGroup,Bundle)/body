@@ -27,13 +27,16 @@ case 3:
 result=mDb.getDefaultMccLocationData();
 break;
 case 4:
-result=mDb.getSilentSmsData();
+result=smsdetection_db.returnDetectedSmsData();
 break;
 case 5:
 result=mDb.getSignalStrengthMeasurementData();
 break;
 case 6:
 result=mDb.getEventLogData();
+break;
+case 7:
+result=smsdetection_db.getDetectionStringCursor();
 break;
 default :
 throw new IllegalArgumentException("Unknown type of table");

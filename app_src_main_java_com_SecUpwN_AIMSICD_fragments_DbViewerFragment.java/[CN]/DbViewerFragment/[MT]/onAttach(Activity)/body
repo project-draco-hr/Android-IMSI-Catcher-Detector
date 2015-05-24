@@ -2,4 +2,5 @@
   super.onAttach(activity);
   mContext=activity.getBaseContext();
   mDb=new AIMSICDDbAdapter(mContext);
+  smsdetection_db=new SmsDetectionDbAccess(mContext);
 }
