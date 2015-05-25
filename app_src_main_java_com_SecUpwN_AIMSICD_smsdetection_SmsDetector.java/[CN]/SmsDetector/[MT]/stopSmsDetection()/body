@@ -1,0 +1,8 @@
+{
+  setSmsDetectionState(false);
+  if (mBound) {
+    tContext.unbindService(mConnection);
+    mBound=false;
+  }
+  Log.i(TAG,"sms detection stopped");
+}

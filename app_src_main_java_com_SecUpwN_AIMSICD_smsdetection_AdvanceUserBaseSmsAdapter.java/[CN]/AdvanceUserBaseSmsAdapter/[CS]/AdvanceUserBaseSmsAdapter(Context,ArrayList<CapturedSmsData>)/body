@@ -1,0 +1,4 @@
+{
+  detectionItemDetails=results;
+  l_Inflater=LayoutInflater.from(context);
+}

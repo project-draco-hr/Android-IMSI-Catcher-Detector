@@ -1,0 +1,12 @@
+{
+  smsd_timestamp.setText(item.getSmsTimestamp());
+  smsd_smstype.setText(item.getSmsType());
+  smsd_number.setText(item.getSenderNumber());
+  smsd_data.setText(item.getSenderMsg());
+  smsd_lac.setText(SV(item.getCurrent_lac()));
+  smsd_cid.setText(SV(item.getCurrent_cid()));
+  smsd_rat.setText(item.getCurrent_nettype());
+  smsd_roam.setText(item.getCurrent_roam_status());
+  smsd_lat.setText(String.valueOf(item.getCurrent_gps_lat()));
+  smsd_lon.setText(String.valueOf(item.getCurrent_gps_lon()));
+}

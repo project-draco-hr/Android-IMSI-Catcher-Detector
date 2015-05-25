@@ -8,6 +8,14 @@
  else {
     onBackPressedToast.cancel();
     super.onBackPressed();
+    try {
+      if (mAimsicdService.isSmsTracking()) {
+        mAimsicdService.stopSmsTracking();
+      }
+    }
+ catch (    Exception ee) {
+      System.out.println("Error Stopping sms detection");
+    }
     finish();
   }
 }

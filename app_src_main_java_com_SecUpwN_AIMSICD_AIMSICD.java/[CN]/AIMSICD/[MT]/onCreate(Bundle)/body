@@ -4,6 +4,7 @@
   getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
   mNavConf=new DrawerMenuActivityConfiguration.Builder(this).build();
   setContentView(mNavConf.getMainLayout());
+  dbhelper=new SmsDetectionDbHelper(this);
   mDrawerLayout=(DrawerLayout)findViewById(mNavConf.getDrawerLayoutId());
   mDrawerList=(ListView)findViewById(mNavConf.getLeftDrawerId());
   mActionBar=getActionBar();
@@ -34,6 +35,15 @@
   mActionBar.setHomeButtonEnabled(true);
   mProgressBar=(ProgressBar)findViewById(R.id.progressBar);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  prefListener=new SharedPreferences.OnSharedPreferenceChangeListener(){
+    public void onSharedPreferenceChanged(    SharedPreferences prefs,    String key){
+      if (key.equals(mContext.getString(R.string.adv_user_root_pref_key))) {
+        SmsDetection();
+      }
+    }
+  }
+;
+  prefs.registerOnSharedPreferenceChangeListener(prefListener);
   mDisclaimerAccepted=getResources().getString(R.string.disclaimer_accepted);
   if (!prefs.getBoolean(mDisclaimerAccepted,false)) {
     final AlertDialog.Builder disclaimer=new AlertDialog.Builder(this).setTitle(R.string.disclaimer_title).setMessage(R.string.disclaimer).setPositiveButton(R.string.text_agree,new DialogInterface.OnClickListener(){

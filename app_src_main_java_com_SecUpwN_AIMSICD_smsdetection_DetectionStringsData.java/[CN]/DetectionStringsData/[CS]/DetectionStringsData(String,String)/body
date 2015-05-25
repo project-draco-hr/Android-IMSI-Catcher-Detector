@@ -1,0 +1,3 @@
+{
+  this(detection_string,detection_type,false);
+}

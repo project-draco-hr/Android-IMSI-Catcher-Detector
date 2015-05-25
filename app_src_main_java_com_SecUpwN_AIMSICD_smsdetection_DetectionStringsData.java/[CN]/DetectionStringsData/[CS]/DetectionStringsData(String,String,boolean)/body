@@ -1,0 +1,5 @@
+{
+  mDetection_string=pString;
+  mDetection_type=pType;
+  mIsFakeData=pIsFakeData;
+}

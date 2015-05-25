@@ -1,0 +1,3 @@
+{
+  this.current_roam_status=current_roam_status;
+}

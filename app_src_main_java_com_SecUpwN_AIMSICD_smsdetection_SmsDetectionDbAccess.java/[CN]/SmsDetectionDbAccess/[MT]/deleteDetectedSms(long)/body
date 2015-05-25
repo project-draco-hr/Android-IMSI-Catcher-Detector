@@ -1,0 +1,10 @@
+{
+  try {
+    dectection_db.delete(SmsDetectionDbHelper.SMS_DATA_TABLE_NAME,SmsDetectionDbHelper.SMS_DATA_ID + "=" + deleteme,null);
+    return true;
+  }
+ catch (  Exception ee) {
+    Log.i(LOGTAG,"Sms Deleted failed");
+  }
+  return false;
+}

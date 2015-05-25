@@ -1,0 +1,3 @@
+{
+  this.current_nettype=current_nettype;
+}

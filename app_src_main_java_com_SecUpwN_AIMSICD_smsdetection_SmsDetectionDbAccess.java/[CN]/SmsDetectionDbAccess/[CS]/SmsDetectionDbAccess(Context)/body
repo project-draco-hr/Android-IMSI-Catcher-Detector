@@ -1,0 +1,5 @@
+{
+  mContext=context;
+  dbhelper=new SmsDetectionDbHelper(context);
+  dectection_db=dbhelper.getWritableDatabase();
+}
