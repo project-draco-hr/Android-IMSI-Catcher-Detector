@@ -52,7 +52,7 @@ if (mFemtoDetected) {
 contentText=context.getString(R.string.aletr_femtocell_connection_detected);
 }
  else if (mTypeZeroSmsDetected) {
-contentText=context.getString(R.string.alert_silent_sms_intercepted);
+contentText=context.getString(R.string.alert_silent_sms_detected);
 }
 break;
 default :
