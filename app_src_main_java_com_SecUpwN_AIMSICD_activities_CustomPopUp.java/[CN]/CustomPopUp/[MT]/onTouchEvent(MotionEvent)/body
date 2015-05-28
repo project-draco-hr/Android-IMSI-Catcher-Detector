@@ -1,7 +1,10 @@
 {
 switch (event.getAction()) {
 case MotionEvent.ACTION_DOWN:
-    finish();
+    if (mode == 6 || mode == 7) {
+      MiscUtils.showNotification(getApplicationContext(),getResources().getString(R.string.app_name_short),getResources().getString(R.string.app_name_short) + " - " + getResources().getString(R.string.status_good),R.drawable.sense_ok,false);
+    }
+  finish();
 }
 return true;
 }
