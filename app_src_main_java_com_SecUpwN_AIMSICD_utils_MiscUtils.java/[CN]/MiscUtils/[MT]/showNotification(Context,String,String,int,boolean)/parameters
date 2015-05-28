@@ -1,0 +1,5 @@
+Context context
+String tickertext
+String contentText
+int drawable_id
+boolean auto_cancel
