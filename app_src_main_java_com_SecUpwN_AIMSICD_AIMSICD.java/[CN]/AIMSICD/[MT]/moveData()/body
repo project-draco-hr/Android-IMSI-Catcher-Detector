@@ -6,7 +6,7 @@
       File[] content=currentPath.listFiles();
       for (int i=0; i < content.length; i++) {
         File from=new File(content[i].toString());
-        from.renameTo(new File(destinedPath.toString() + content[i].getName().toString()));
+        from.renameTo(new File(destinedPath.toString() + content[i].getName()));
       }
     }
     currentPath.delete();

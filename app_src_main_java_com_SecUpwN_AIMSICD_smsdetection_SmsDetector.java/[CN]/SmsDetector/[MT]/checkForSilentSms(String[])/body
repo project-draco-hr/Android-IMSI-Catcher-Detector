@@ -12,16 +12,16 @@
             int newcount=(x - 15);
             if (newcount > 0) {
               while (newcount < x) {
-                if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[2].toString())) {
+                if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[2])) {
                   try {
-                    String number=progress[newcount].substring(progress[newcount].indexOf("OrigAddr")).replace(DETECTION_PHONENUM_SMS_DATA[2].toString(),"").trim();
+                    String number=progress[newcount].substring(progress[newcount].indexOf("OrigAddr")).replace(DETECTION_PHONENUM_SMS_DATA[2],"").trim();
                     setmsg.setSenderNumber(number);
                   }
  catch (                  Exception ee) {
                     Log.e(TAG,"Error parsing number");
                   }
                 }
- else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[1].toString())) {
+ else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[1])) {
                   try {
                     String smsdata=progress[newcount].substring(progress[newcount].indexOf("'") + 1,progress[newcount].length() - 1);
                     setmsg.setSenderMsg(smsdata);
@@ -54,7 +54,7 @@
             int newcount=(x - 15);
             if (newcount > 0) {
               while (newcount < x) {
-                if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[0].toString())) {
+                if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[0])) {
                   try {
                     String number=progress[newcount].substring(progress[newcount].indexOf("+"));
                     setmsg.setSenderNumber(number);
@@ -62,16 +62,16 @@
  catch (                  Exception ee) {
                   }
                 }
- else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[2].toString())) {
+ else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[2])) {
                   try {
-                    String number=progress[newcount].substring(progress[newcount].indexOf("OrigAddr")).replace(DETECTION_PHONENUM_SMS_DATA[2].toString(),"").trim();
+                    String number=progress[newcount].substring(progress[newcount].indexOf("OrigAddr")).replace(DETECTION_PHONENUM_SMS_DATA[2],"").trim();
                     setmsg.setSenderNumber(number);
                   }
  catch (                  Exception ee) {
                     Log.e(TAG,"Error parsing number");
                   }
                 }
- else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[1].toString())) {
+ else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[1])) {
                   try {
                     String smsdata=progress[newcount].substring(progress[newcount].indexOf("'") + 1,progress[newcount].length() - 1);
                     setmsg.setSenderMsg(smsdata);
