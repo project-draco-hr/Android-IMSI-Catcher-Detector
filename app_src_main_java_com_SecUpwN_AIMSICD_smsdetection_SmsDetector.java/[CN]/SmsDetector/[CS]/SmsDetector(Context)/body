@@ -7,6 +7,6 @@
   SILENT_ONLY_TAGS=new String[silent_string.size()];
   for (int x=0; x < silent_string.size(); x++) {
     SILENT_ONLY_TAGS[x]=silent_string.get(x).getDetection_string() + "#" + silent_string.get(x).getDetection_type();
-    prefs=newcontext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   }
+  prefs=newcontext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
 }
