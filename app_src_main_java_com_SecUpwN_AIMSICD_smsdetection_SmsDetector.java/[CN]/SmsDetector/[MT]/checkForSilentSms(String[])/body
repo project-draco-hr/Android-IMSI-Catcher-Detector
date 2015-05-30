@@ -96,6 +96,43 @@
             dbacess.close();
             MiscUtils.startPopUpInfo(tContext,7);
           }
+ else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("WAPPUSH")) {
+            CapturedSmsData setmsg=new CapturedSmsData();
+            setmsg.setSenderNumber("unknown");
+            setmsg.setSenderMsg("no data");
+            int startindex=x - 2;
+            int endindex=x + 3;
+            if (progress[x + 3].contains("DestPort 0x0B84")) {
+              Log.i(TAG,"WAPPUSH DETECTED");
+              if (endindex + 3 <= progress.length) {
+                while (startindex < endindex) {
+                  if (progress[startindex].contains(DETECTION_PHONENUM_SMS_DATA[2].toString())) {
+                    try {
+                      String number=progress[startindex].substring(progress[startindex].indexOf("OrigAddr")).replace(DETECTION_PHONENUM_SMS_DATA[2].toString(),"").trim();
+                      setmsg.setSenderNumber(number);
+                      break;
+                    }
+ catch (                    Exception ee) {
+                      Log.e(TAG,"Error parsing number");
+                    }
+                  }
+                  startindex++;
+                }
+              }
+              setmsg.setSmsTimestamp(MiscUtils.getCurrentTimeStamp());
+              setmsg.setSmsType("WAPPUSH");
+              setmsg.setCurrent_lac(mAimsicdService.getCellTracker().getMonitorCell().getLAC());
+              setmsg.setCurrent_cid(mAimsicdService.getCellTracker().getMonitorCell().getCID());
+              setmsg.setCurrent_nettype(Device.getNetworkTypeName(mAimsicdService.getCell().getNetType()));
+              setmsg.setCurrent_roam_status(mAimsicdService.getCellTracker().getDevice().isRoaming());
+              setmsg.setCurrent_gps_lat(mAimsicdService.lastKnownLocation().getLatitudeInDegrees());
+              setmsg.setCurrent_gps_lon(mAimsicdService.lastKnownLocation().getLongitudeInDegrees());
+              dbacess.open();
+              dbacess.storeCapturedSms(setmsg);
+              dbacess.close();
+              MiscUtils.startPopUpInfo(tContext,8);
+            }
+          }
           break;
         }
       }
