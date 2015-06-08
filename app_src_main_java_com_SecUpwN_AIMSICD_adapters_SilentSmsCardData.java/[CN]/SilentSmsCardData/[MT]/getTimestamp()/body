@@ -1,5 +1,5 @@
 {
-  SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+  SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss",Locale.getDefault());
   String dateString=formatter.format(mTimestamp);
   return "Timestamp: " + dateString;
 }
