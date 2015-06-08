@@ -1,0 +1,6 @@
+{
+  String SMS_DATABASE_CREATE="CREATE TABLE " + SILENT_SMS_TABLE + " ("+ COLUMN_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+ "Address VARCHAR, "+ "Display VARCHAR, "+ "Class VARCHAR, "+ "ServiceCtr VARCHAR, "+ "Message VARCHAR, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);";
+  database.execSQL(SMS_DATABASE_CREATE);
+  String ZeroSMS="INSERT INTO " + SILENT_SMS_TABLE + " (Address,Display,Class,ServiceCtr,Message) "+ "VALUES ('"+ Examples.SILENT_SMS_CARD_DATA.ADDRESS+ "','"+ Examples.SILENT_SMS_CARD_DATA.DISPLAY+ "','CLAZZ','SMSC','DaTestMessage');";
+  database.execSQL(ZeroSMS);
+}
