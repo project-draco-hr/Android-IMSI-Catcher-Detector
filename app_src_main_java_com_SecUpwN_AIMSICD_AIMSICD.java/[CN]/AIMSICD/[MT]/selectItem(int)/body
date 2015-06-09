@@ -28,10 +28,10 @@ case DrawerMenu.ID.APPLICATION.UPLOAD_LOCAL_BST_DATA:
 new RequestTask(mContext,com.SecUpwN.AIMSICD.utils.RequestTask.DBE_UPLOAD_REQUEST).execute("");
 break;
 }
-if (selectedItem.getId() == DrawerMenu.ID.TRACKING.TOGGLE_AIMSICD_MONITORING) {
+if (selectedItem.getId() == DrawerMenu.ID.TRACKING.TOGGLE_ATTACK_DETECTION) {
 monitorcell();
 }
- else if (selectedItem.getId() == DrawerMenu.ID.TRACKING.TOGGLE_2G_ONLY_NETWORK) {
+ else if (selectedItem.getId() == DrawerMenu.ID.TRACKING.TOGGLE_CELL_TRACKING) {
 trackcell();
 }
  else if (selectedItem.getId() == DrawerMenu.ID.TRACKING.TRACK_FEMTOCELL) {
