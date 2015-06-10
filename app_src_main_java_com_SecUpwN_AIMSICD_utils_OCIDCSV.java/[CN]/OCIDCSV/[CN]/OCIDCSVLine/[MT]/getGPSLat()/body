@@ -1,0 +1,3 @@
+{
+  return truncateDouble(this.ocidCell[0],5);
+}

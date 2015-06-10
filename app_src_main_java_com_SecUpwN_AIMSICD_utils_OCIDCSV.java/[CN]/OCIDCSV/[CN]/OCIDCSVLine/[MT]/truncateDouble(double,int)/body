@@ -1,0 +1,4 @@
+{
+  String s=String.format("%." + Integer.toString(numDecimal) + "f",d);
+  return Double.parseDouble(s);
+}
