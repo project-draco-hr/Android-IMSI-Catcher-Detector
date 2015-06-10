@@ -1,7 +1,5 @@
 {
-  String fileName=(mContext.getExternalFilesDir(null) + File.separator) + "OpenCellID/opencellid.csv";
-  Log.i(TAG,mTAG + ":updateOpenCellID: reading file: " + fileName);
-  File file=new File(fileName);
+  File file=new File(RequestTask.getOCDBDownloadFilePath(mContext));
   try {
     if (file.exists()) {
       CSVReader csvReader=new CSVReader(new FileReader(file));

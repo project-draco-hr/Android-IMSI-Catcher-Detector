@@ -55,11 +55,11 @@ int count;
 try {
 int total;
 int progress=0;
-File dir=new File((mAppContext.getExternalFilesDir(null) + File.separator) + "OpenCellID/");
+File dir=new File(getOCDBDownloadDirectoryPath(mAppContext));
 if (!dir.exists()) {
   dir.mkdirs();
 }
-File file=new File(dir,"opencellid.csv");
+File file=new File(dir,OCDB_File_Name);
 URL url=new URL(commandString[0]);
 HttpURLConnection urlConnection=(HttpURLConnection)url.openConnection();
 urlConnection.setRequestMethod("GET");
