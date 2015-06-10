@@ -1,5 +1,7 @@
 {
-  File file=new File(RequestTask.getOCDBDownloadFilePath(mContext));
+  String filename=RequestTask.getOCDBDownloadFilePath(mContext);
+  Log.i(TAG,mTAG + ":updateOpenCellID: reading file: " + filename);
+  File file=new File(filename);
   try {
     if (file.exists()) {
       CSVReader csvReader=new CSVReader(new FileReader(file));
