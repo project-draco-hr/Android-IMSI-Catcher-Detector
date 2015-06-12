@@ -1,17 +1,17 @@
 {
-  String fileName=(mContext.getExternalFilesDir(null) + File.separator) + "OpenCellID/opencellid.csv";
-  Log.i(TAG,mTAG + ":updateOpenCellID: reading file: " + fileName);
-  File file=new File(fileName);
+  String filename=RequestTask.getOCDBDownloadFilePath(mContext);
+  Log.i(TAG,mTAG + ":updateOpenCellID: reading file: " + filename);
+  File file=new File(filename);
   try {
     if (file.exists()) {
       CSVReader csvReader=new CSVReader(new FileReader(file));
-      List<String[]> csvCellID=new ArrayList<>();
+      OCIDCSV ocidCSV=new OCIDCSV();
       String next[];
       while ((next=csvReader.readNext()) != null) {
-        csvCellID.add(next);
+        ocidCSV.add(next);
       }
-      if (!csvCellID.isEmpty()) {
-        int lines=csvCellID.size();
+      if (!ocidCSV.isEmpty()) {
+        int lines=ocidCSV.size();
         Log.i(TAG,mTAG + ":updateOpenCellID: OCID CSV size (lines): " + lines);
         String lQuery="SELECT CellID, COUNT(CellID) FROM " + OPENCELLID_TABLE + " GROUP BY CellID;";
         Cursor lCursor=mDb.rawQuery(lQuery,null);
@@ -26,10 +26,11 @@
         AIMSICD.mProgressBar.setMax(lines);
         for (int i=1; i < lines; i++) {
           AIMSICD.mProgressBar.setProgress(i);
-          if (lPresentCellID.get(Integer.parseInt(csvCellID.get(i)[5]),false)) {
+          OCIDCSV.OCIDCSVLine ocidLine=ocidCSV.get(i);
+          if (lPresentCellID.get(ocidLine.getCID(),false)) {
             continue;
           }
-          insertOpenCell(Double.parseDouble(csvCellID.get(i)[0]),Double.parseDouble(csvCellID.get(i)[1]),Integer.parseInt(csvCellID.get(i)[2]),Integer.parseInt(csvCellID.get(i)[3]),Integer.parseInt(csvCellID.get(i)[4]),Integer.parseInt(csvCellID.get(i)[5]),Integer.parseInt(csvCellID.get(i)[6]),Integer.parseInt(csvCellID.get(i)[7]),Integer.parseInt(csvCellID.get(i)[8]),Integer.parseInt(csvCellID.get(i)[9]),String.valueOf(csvCellID.get(i)[10]),false);
+          insertOpenCell(ocidLine.getGPSLat(),ocidLine.getGPSLon(),ocidLine.getMCC(),ocidLine.getMNC(),ocidLine.getLAC(),ocidLine.getCID(),ocidLine.getAvgSig(),ocidLine.getAvgRange(),ocidLine.getSamples(),ocidLine.isGPSExact(),ocidLine.getRAT(),false);
         }
       }
     }

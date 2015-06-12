@@ -1,0 +1,3 @@
+{
+  return Integer.parseInt(this.ocidCell[4]);
+}
