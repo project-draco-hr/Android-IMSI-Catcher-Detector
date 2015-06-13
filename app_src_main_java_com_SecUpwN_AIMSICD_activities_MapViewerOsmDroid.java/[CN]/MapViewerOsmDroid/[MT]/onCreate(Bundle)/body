@@ -9,4 +9,5 @@
   mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
   TelephonyManager tm=(TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
   tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
+  mMap.setMapListener(mMapListener);
 }

@@ -9,7 +9,7 @@
     mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
   }
   loadPreferences();
-  loadEntries();
+  loadEntries(true);
   if (mCompassOverlay != null) {
     mCompassOverlay.enableCompass();
   }
