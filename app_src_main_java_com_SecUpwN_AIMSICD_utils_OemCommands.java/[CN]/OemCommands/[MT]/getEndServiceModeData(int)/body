@@ -4,7 +4,16 @@
     DataOutputStream dos=new DataOutputStream(baos);
     dos.writeByte(OEM_SERVM_FUNCTAG);
     dos.writeByte(OEM_SM_END_MODE_MESSAGE);
-    dos.writeShort(5);
+    if (mApiVersion == 1) {
+      dos.writeShort(5);
+    }
+ else     if (mApiVersion == 2) {
+      dos.writeShort(6);
+      dos.writeByte(4);
+    }
+ else {
+      throw new IllegalArgumentException("Invalid API version " + mApiVersion);
+    }
     dos.writeByte(modeType);
     return baos.toByteArray();
   }
