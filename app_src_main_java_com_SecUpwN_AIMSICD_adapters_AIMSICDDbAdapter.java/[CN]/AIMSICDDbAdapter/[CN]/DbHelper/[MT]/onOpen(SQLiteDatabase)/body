@@ -1,0 +1,12 @@
+{
+  String CreateView="CREATE TEMP VIEW " + OPENCELLID_VIEW + " AS"+ " SELECT CellID, Lac, Mcc, Mnc, Lat, Lng, AvgSigStr, Samples"+ " FROM "+ OPENCELLID_TABLE;
+  File lacells=new File(LACELLS_DB_NAME);
+  if (lacells.isFile() && lacells.canRead()) {
+    SQLiteDatabase ladb=SQLiteDatabase.openDatabase(LACELLS_DB_NAME,null,0);
+    ladb.execSQL("CREATE INDEX IF NOT EXISTS _idxspatial ON " + LACELLS_TABLE + " (latitude, longitude);");
+    ladb.close();
+    db.execSQL("ATTACH DATABASE \"" + LACELLS_DB_NAME + "\" AS "+ LACELLS_LOCAL_DB);
+    CreateView+=" UNION ALL" + " SELECT cid AS CellID, lac AS Lac, mcc AS Mcc, mnc AS Mnc," + " latitude AS Lat, longitude AS Lng, NULL AS AvgSigStr, samples AS Samples"+ " FROM " + LACELLS_LOCAL_DB + "."+ LACELLS_TABLE+ " WHERE Samples >= 1 AND Lac >= 1 AND Lac <= 65535"+ " AND CellID >= 1 AND CellID <= 268435455 ";
+  }
+  db.execSQL(CreateView);
+}
