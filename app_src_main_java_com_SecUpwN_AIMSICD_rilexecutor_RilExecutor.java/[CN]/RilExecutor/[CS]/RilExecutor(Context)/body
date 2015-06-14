@@ -1,4 +1,5 @@
 {
+  mOemCommands=OemCommands.getInstance(context);
   mRequestExecutor=new SamsungMulticlientRilExecutor();
   mRilExecutorDetectResult=mRequestExecutor.detect();
   if (!mRilExecutorDetectResult.available) {
