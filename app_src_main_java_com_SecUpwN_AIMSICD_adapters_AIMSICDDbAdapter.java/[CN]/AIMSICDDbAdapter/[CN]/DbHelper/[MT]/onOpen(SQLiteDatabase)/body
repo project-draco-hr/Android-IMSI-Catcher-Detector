@@ -3,6 +3,8 @@
   File lacells=new File(LACELLS_DB_NAME);
   if (lacells.isFile() && lacells.canRead()) {
     SQLiteDatabase ladb=SQLiteDatabase.openDatabase(LACELLS_DB_NAME,null,0);
+    String LACELLS_TABLE_CREATE="CREATE TABLE " + LACELLS_TABLE + " ("+ COLUMN_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+ "Lac INTEGER, CellID INTEGER, "+ "Net VARCHAR, "+ "Lat VARCHAR, "+ "Lng VARCHAR, "+ "Signal INTEGER, "+ "Connection VARCHAR, "+ "Timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);";
+    ladb.execSQL(LACELLS_TABLE_CREATE);
     ladb.execSQL("CREATE INDEX IF NOT EXISTS _idxspatial ON " + LACELLS_TABLE + " (Lat, Lng);");
     ladb.close();
     db.execSQL("ATTACH DATABASE \"" + LACELLS_DB_NAME + "\" AS "+ LACELLS_LOCAL_DB);
