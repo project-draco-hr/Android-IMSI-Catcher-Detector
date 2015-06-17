@@ -1,0 +1,7 @@
+{
+  String[] buffer=line.split(" ");
+  Calendar calendar=Calendar.getInstance();
+  line=String.valueOf(calendar.get(Calendar.YEAR)) + buffer[0] + buffer[1];
+  String timestamp=line.substring(0,line.length() - 4).replace(":","").replace(".","").replace("-","");
+  return timestamp;
+}
