@@ -8,7 +8,7 @@
       e.printStackTrace();
     }
     try {
-      String MODE="logcat -b radio\n";
+      String MODE="logcat -v time -b radio\n";
       Runtime r=Runtime.getRuntime();
       Process process=r.exec("su");
       dos=new DataOutputStream(process.getOutputStream());
@@ -33,16 +33,18 @@
         }
       }
  catch (      IOException e) {
-        if (e.getMessage() != null)         System.out.println(e.getMessage());
         e.printStackTrace();
+        Log.e(TAG,e.toString());
       }
 catch (      InterruptedException e) {
+        Log.e(TAG,e.toString());
         e.printStackTrace();
       }
     }
   }
  catch (  Exception e) {
     e.printStackTrace();
+    Log.e(TAG,e.toString());
   }
  finally {
   }
