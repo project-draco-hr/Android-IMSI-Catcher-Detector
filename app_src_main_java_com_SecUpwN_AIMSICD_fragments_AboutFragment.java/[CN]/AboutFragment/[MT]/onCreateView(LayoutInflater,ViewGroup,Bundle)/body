@@ -17,12 +17,12 @@
     View tv=v.findViewById(R.id.aimsicd_status_icons);
     tv=v.findViewById(R.id.aimsicd_wiki_link);
     setLink(tv,R.string.wiki_link);
-    tv=v.findViewById(R.id.aimsicd_contribute_link);
-    setLink(tv,R.string.contribute_link);
+    tv=v.findViewById(R.id.aimsicd_github_link);
+    setLink(tv,R.string.github_link);
     tv=v.findViewById(R.id.aimsicd_disclaimer_link);
     setLink(tv,R.string.disclaimer_link);
     tv=v.findViewById(R.id.aimsicd_contribute_link);
-    setLink(tv,R.string.aimsicd_github_link);
+    setLink(tv,R.string.aimsicd_contribute_link);
     tv=v.findViewById(R.id.aimsicd_release_link);
     setLink(tv,R.string.aimsicd_release_link);
     tv=v.findViewById(R.id.aimsicd_changelog_link);
