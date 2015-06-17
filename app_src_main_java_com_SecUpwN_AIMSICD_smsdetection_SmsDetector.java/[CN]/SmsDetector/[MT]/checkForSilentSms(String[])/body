@@ -1,15 +1,16 @@
 {
   for (int arrayindex=0; arrayindex < SILENT_ONLY_TAGS.length; arrayindex++) {
-    int MAX_INT=progress.length - 4;
     for (int x=0; x < progress.length; x++) {
       if (progress[x].length() < 250) {
         if (progress[x].contains(SILENT_ONLY_TAGS[arrayindex].split("#")[0])) {
-          System.out.println("Detected>>>>" + SILENT_ONLY_TAGS[arrayindex].split("#")[1]);
+          String logcat_timestamp=MiscUtils.logcatTimeStampParser(progress[x]);
+          Log.i(TAG,"TIME::" + logcat_timestamp);
+          Log.i(TAG,"Detected>>>>" + SILENT_ONLY_TAGS[arrayindex].split("#")[1]);
           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].equals("TYPE0")) {
             CapturedSmsData setmsg=new CapturedSmsData();
             setmsg.setSenderNumber("unknown");
             setmsg.setSenderMsg("no data");
-            int newcount=(x - 15);
+            int newcount=x - 15;
             if (newcount > 0) {
               while (newcount < x) {
                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[2].toString())) {
@@ -18,7 +19,7 @@
                     setmsg.setSenderNumber(number);
                   }
  catch (                  Exception ee) {
-                    Log.e(TAG,"Error parsing number");
+                    Log.e(TAG,"Error parsing number\n" + ee.toString());
                   }
                 }
  else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[1].toString())) {
@@ -27,13 +28,13 @@
                     setmsg.setSenderMsg(smsdata);
                   }
  catch (                  Exception ee) {
-                    Log.e(TAG,"Error parsing sms data");
+                    Log.e(TAG,"Error parsing sms data\n" + ee.toString());
                   }
                 }
                 newcount++;
               }
             }
-            setmsg.setSmsTimestamp(MiscUtils.getCurrentTimeStamp());
+            setmsg.setSmsTimestamp(logcat_timestamp);
             setmsg.setSmsType("TYPE0");
             setmsg.setCurrent_lac(mAimsicdService.getCellTracker().getMonitorCell().getLAC());
             setmsg.setCurrent_cid(mAimsicdService.getCellTracker().getMonitorCell().getCID());
@@ -42,16 +43,18 @@
             setmsg.setCurrent_gps_lat(mAimsicdService.lastKnownLocation().getLatitudeInDegrees());
             setmsg.setCurrent_gps_lon(mAimsicdService.lastKnownLocation().getLongitudeInDegrees());
             dbacess.open();
-            dbacess.storeCapturedSms(setmsg);
+            if (!dbacess.isTimeStampInDB(logcat_timestamp)) {
+              dbacess.storeCapturedSms(setmsg);
+              MiscUtils.startPopUpInfo(tContext,6);
+            }
             dbacess.close();
-            MiscUtils.startPopUpInfo(tContext,6);
           }
  else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("SILENTVOICE")) {
             Log.i(TAG,"SILENT DETECTED");
             CapturedSmsData setmsg=new CapturedSmsData();
             setmsg.setSenderNumber("unknown");
             setmsg.setSenderMsg("no data");
-            int newcount=(x - 15);
+            int newcount=x - 15;
             if (newcount > 0) {
               while (newcount < x) {
                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[0].toString())) {
@@ -60,6 +63,7 @@
                     setmsg.setSenderNumber(number);
                   }
  catch (                  Exception ee) {
+                    Log.e(TAG,"Error parsing number\n" + ee.toString());
                   }
                 }
  else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[2].toString())) {
@@ -68,7 +72,7 @@
                     setmsg.setSenderNumber(number);
                   }
  catch (                  Exception ee) {
-                    Log.e(TAG,"Error parsing number");
+                    Log.e(TAG,"Error parsing number\n" + ee.toString());
                   }
                 }
  else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[1].toString())) {
@@ -77,13 +81,14 @@
                     setmsg.setSenderMsg(smsdata);
                   }
  catch (                  Exception ee) {
-                    Log.e(TAG,"Error parsing sms data");
+                    Log.e(TAG,"Error parsing sms data\n" + ee.toString());
+                    ;
                   }
                 }
                 newcount++;
               }
             }
-            setmsg.setSmsTimestamp(MiscUtils.getCurrentTimeStamp());
+            setmsg.setSmsTimestamp(logcat_timestamp);
             setmsg.setSmsType("SILENTVOICE");
             setmsg.setCurrent_lac(mAimsicdService.getCellTracker().getMonitorCell().getLAC());
             setmsg.setCurrent_cid(mAimsicdService.getCellTracker().getMonitorCell().getCID());
@@ -92,9 +97,11 @@
             setmsg.setCurrent_gps_lat(mAimsicdService.lastKnownLocation().getLatitudeInDegrees());
             setmsg.setCurrent_gps_lon(mAimsicdService.lastKnownLocation().getLongitudeInDegrees());
             dbacess.open();
-            dbacess.storeCapturedSms(setmsg);
+            if (!dbacess.isTimeStampInDB(logcat_timestamp)) {
+              dbacess.storeCapturedSms(setmsg);
+              MiscUtils.startPopUpInfo(tContext,7);
+            }
             dbacess.close();
-            MiscUtils.startPopUpInfo(tContext,7);
           }
  else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("WAPPUSH")) {
             CapturedSmsData setmsg=new CapturedSmsData();
@@ -113,13 +120,13 @@
                       break;
                     }
  catch (                    Exception ee) {
-                      Log.e(TAG,"Error parsing number");
+                      Log.e(TAG,"Error parsing number\n" + ee.toString());
                     }
                   }
                   startindex++;
                 }
               }
-              setmsg.setSmsTimestamp(MiscUtils.getCurrentTimeStamp());
+              setmsg.setSmsTimestamp(logcat_timestamp);
               setmsg.setSmsType("WAPPUSH");
               setmsg.setCurrent_lac(mAimsicdService.getCellTracker().getMonitorCell().getLAC());
               setmsg.setCurrent_cid(mAimsicdService.getCellTracker().getMonitorCell().getCID());
@@ -128,9 +135,11 @@
               setmsg.setCurrent_gps_lat(mAimsicdService.lastKnownLocation().getLatitudeInDegrees());
               setmsg.setCurrent_gps_lon(mAimsicdService.lastKnownLocation().getLongitudeInDegrees());
               dbacess.open();
-              dbacess.storeCapturedSms(setmsg);
+              if (!dbacess.isTimeStampInDB(logcat_timestamp)) {
+                dbacess.storeCapturedSms(setmsg);
+                MiscUtils.startPopUpInfo(tContext,8);
+              }
               dbacess.close();
-              MiscUtils.startPopUpInfo(tContext,8);
             }
           }
           break;
