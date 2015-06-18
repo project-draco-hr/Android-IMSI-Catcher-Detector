@@ -1,0 +1,18 @@
+{
+  try {
+    return CellTracker.requestNewOCIDKey();
+  }
+ catch (  final Exception e) {
+    Log.e(TAG,e.getMessage());
+    e.printStackTrace();
+    runOnUiThread(new Runnable(){
+      @Override public void run(){
+        pd.dismiss();
+        Helpers.msgLong(OpenCellIdActivity.this,getString(R.string.ocid_api_error) + e.getClass().getName() + " - "+ e.getMessage());
+      }
+    }
+);
+    finish();
+    return null;
+  }
+}

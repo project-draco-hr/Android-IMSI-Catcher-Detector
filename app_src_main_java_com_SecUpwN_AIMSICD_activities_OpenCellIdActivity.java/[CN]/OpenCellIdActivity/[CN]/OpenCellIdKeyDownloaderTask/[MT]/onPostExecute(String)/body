@@ -1,0 +1,14 @@
+{
+  if (s == null || s.isEmpty())   return;
+  if (isKeyValid(s) == true) {
+    String opcidKey=getString(R.string.pref_ocid_key);
+    prefs.edit().putString(opcidKey,s).commit();
+    CellTracker.OCID_API_KEY=s;
+    Helpers.msgShort(OpenCellIdActivity.this,getString(R.string.ocid_api_success));
+  }
+ else {
+    Helpers.msgShort(OpenCellIdActivity.this,getString(R.string.invalid_key_try_later));
+  }
+  pd.dismiss();
+  finish();
+}
