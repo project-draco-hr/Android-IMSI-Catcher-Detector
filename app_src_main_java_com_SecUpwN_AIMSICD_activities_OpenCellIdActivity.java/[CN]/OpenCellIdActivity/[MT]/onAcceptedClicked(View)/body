@@ -1,0 +1,7 @@
+{
+  pd=new ProgressDialog(this);
+  pd.setMessage(getString(R.string.getting_ocid_key));
+  pd.show();
+  OpenCellIdKeyDownloaderTask ocikd=new OpenCellIdKeyDownloaderTask();
+  ocikd.execute();
+}

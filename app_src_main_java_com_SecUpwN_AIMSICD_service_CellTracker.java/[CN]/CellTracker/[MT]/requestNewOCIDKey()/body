@@ -1,6 +1,6 @@
 {
   DefaultHttpClient httpclient=new DefaultHttpClient();
-  HttpGet httpGet=new HttpGet("http://opencellid.org/gsmCell/user/generateApiKey");
+  HttpGet httpGet=new HttpGet(context.getString(R.string.opencellid_api_get_key));
   OCIDResponse result=new OCIDResponse(httpclient.execute(httpGet));
   if (result.getStatusCode() == 200) {
     String responseFromServer=result.getResponseFromServer();
