@@ -1,2 +1,13 @@
 {
+  super(context,textViewResourceId,objects);
+  inflater=LayoutInflater.from(context);
+  this.context=context;
+  mInfoButtonListener=new View.OnClickListener(){
+    @Override public void onClick(    View pView){
+      pView.startAnimation(mBounceHelpButtonAnimation);
+      if (pView.getTag() != null && pView.getTag() instanceof Integer)       showHelpToast((Integer)pView.getTag());
+    }
+  }
+;
+  mBounceHelpButtonAnimation=AnimationUtils.loadAnimation(context.getApplicationContext(),R.anim.action_button_help);
 }
