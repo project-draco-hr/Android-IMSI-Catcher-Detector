@@ -1,4 +1,3 @@
 {
-  mToast.setText(getContext().getString(pToastValueId));
-  mToast.show();
+  Helpers.msgLong(context.getApplicationContext(),context.getApplicationContext().getString(pToastValueId));
 }
