@@ -1,7 +1,7 @@
 {
   super(context,textViewResourceId,objects);
   inflater=LayoutInflater.from(context);
-  this.context=context;
+  appContext=context.getApplicationContext();
   mInfoButtonListener=new View.OnClickListener(){
     @Override public void onClick(    View pView){
       pView.startAnimation(mBounceHelpButtonAnimation);
@@ -9,5 +9,5 @@
     }
   }
 ;
-  mBounceHelpButtonAnimation=AnimationUtils.loadAnimation(context.getApplicationContext(),R.anim.action_button_help);
+  mBounceHelpButtonAnimation=AnimationUtils.loadAnimation(appContext,R.anim.action_button_help);
 }

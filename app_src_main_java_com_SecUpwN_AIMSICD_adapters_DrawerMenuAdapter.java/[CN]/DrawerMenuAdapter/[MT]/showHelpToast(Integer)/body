@@ -1,3 +1,3 @@
 {
-  Helpers.msgLong(context.getApplicationContext(),context.getApplicationContext().getString(pToastValueId));
+  Helpers.msgLong(appContext,appContext.getString(pToastValueId));
 }
