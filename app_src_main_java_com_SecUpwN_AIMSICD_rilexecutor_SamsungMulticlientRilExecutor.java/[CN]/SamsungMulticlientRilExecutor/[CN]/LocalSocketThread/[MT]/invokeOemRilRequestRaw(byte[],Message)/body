@@ -1,11 +1,11 @@
 {
   int token;
   if (mMessages.size() > MAX_MESSAGES) {
-    Log.e(TAG,"message queue is full");
+    Log.e(TAG,mTAG + " message queue is full");
     return;
   }
   if (mOutputStream == null) {
-    Log.e(TAG,"Local write() error: not connected");
+    Log.e(TAG,mTAG + " Local write() error: not connected");
     return;
   }
   do {

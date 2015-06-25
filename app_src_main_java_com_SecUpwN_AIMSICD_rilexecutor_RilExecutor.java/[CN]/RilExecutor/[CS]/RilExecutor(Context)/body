@@ -4,7 +4,7 @@
   mRilExecutorDetectResult=mRequestExecutor.detect();
   if (!mRilExecutorDetectResult.available) {
     mMultiRilCompatible=false;
-    Log.e(TAG,"Samsung Multiclient RIL not available: " + mRilExecutorDetectResult.error);
+    Log.e(TAG,mTAG + " Samsung Multiclient RIL not available: " + mRilExecutorDetectResult.error);
     mRequestExecutor=null;
   }
  else {

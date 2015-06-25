@@ -5,7 +5,7 @@
   mRequestCondvar.close();
   mHandler.obtainMessage(ID_REQUEST_START_SERVICE_MODE_COMMAND,type,subtype,keySeqence).sendToTarget();
   if (!mRequestCondvar.block(timeout)) {
-    Log.e(TAG,"request timeout");
+    Log.e(TAG,mTAG + " request timeout");
     return Collections.emptyList();
   }
  else {
