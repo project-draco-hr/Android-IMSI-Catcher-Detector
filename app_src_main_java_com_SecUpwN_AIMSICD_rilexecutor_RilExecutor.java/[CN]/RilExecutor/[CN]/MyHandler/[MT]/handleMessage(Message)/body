@@ -40,15 +40,15 @@ lastKeyStep=mKeySequence.poll();
 try {
 RawResult result=(RawResult)msg.obj;
 if (result == null) {
-Log.e(TAG,"result is null");
+Log.e(TAG,mTAG + ": result is null");
 break;
 }
 if (result.exception != null) {
-Log.e(TAG,"",result.exception);
+Log.e(TAG,mTAG + ": ",result.exception);
 break;
 }
 if (result.result == null) {
-Log.v(TAG,"No need to refresh.");
+Log.v(TAG,mTAG + ": No need to refresh.");
 break;
 }
 if (lastKeyStep.captureResponse) {

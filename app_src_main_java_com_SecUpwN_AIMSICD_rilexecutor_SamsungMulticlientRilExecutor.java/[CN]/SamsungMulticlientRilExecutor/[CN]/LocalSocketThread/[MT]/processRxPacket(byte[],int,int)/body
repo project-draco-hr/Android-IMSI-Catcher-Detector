@@ -11,13 +11,13 @@
     responseType=p.readInt();
 switch (responseType) {
 case RESPONSE_UNSOLICITED:
-      Log.v(TAG,"Unsolicited response ");
+      Log.v(TAG,mTAG + ": Unsolicited response ");
     break;
 case RESPONSE_SOLICITED:
   processSolicited(p);
 break;
 default :
-Log.v(TAG,"Invalid response type: " + responseType);
+Log.v(TAG,mTAG + ": Invalid response type: " + responseType);
 break;
 }
 }

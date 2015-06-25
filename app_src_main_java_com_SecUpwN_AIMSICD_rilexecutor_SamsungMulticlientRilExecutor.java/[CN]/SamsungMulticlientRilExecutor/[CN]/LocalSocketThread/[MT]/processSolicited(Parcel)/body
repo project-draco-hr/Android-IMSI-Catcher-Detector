@@ -19,7 +19,7 @@
     errorEx=ex;
   }
   if (token == null) {
-    Log.e(TAG,"token is null",errorEx);
+    Log.e(TAG,mTAG + ": token is null",errorEx);
   }
  else {
 synchronized (this) {
@@ -38,7 +38,7 @@ default :
 }
 }
  else {
-Log.i(TAG,"Message with token " + token + " not found");
+Log.i(TAG,mTAG + ": Message with token " + token+ " not found");
 }
 }
 }
