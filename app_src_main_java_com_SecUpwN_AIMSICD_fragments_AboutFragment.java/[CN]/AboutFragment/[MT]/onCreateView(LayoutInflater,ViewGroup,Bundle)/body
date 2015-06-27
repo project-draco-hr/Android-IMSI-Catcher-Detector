@@ -11,7 +11,7 @@
  catch (  PackageManager.NameNotFoundException nnfe) {
     version="";
   }
-  BUILDOZER_BUILDNUMBER=prefs.getString(BUILDOZER_BUILDNUMBER,BuildConfig.BUILDOZER_BUILDNUMBER);
+  BUILDOZER_BUILDNUMBER=BuildConfig.BUILDOZER_BUILDNUMBER;
   if (BUILDOZER_BUILDNUMBER == null) {
     BUILDOZER_BUILDNUMBER="NA";
   }
