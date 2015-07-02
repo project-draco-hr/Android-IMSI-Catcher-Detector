@@ -1,0 +1,3 @@
+{
+  return truncateDouble(super.getLatitude(),5);
+}

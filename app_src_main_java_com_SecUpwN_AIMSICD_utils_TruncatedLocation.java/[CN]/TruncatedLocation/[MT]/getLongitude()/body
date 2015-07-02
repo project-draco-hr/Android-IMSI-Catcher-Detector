@@ -1,0 +1,3 @@
+{
+  return truncateDouble(super.getLongitude(),5);
+}
