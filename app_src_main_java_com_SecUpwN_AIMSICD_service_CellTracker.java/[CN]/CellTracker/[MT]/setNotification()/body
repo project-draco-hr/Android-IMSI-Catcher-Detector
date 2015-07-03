@@ -49,7 +49,7 @@ break;
 case ALARM:
 tickerText=context.getResources().getString(R.string.app_name_short) + " - " + context.getString(R.string.alert_threat_detected);
 if (mFemtoDetected) {
-contentText=context.getString(R.string.aletr_femtocell_connection_detected);
+contentText=context.getString(R.string.alert_femtocell_connection_detected);
 }
  else if (mTypeZeroSmsDetected) {
 contentText=context.getString(R.string.alert_silent_sms_detected);

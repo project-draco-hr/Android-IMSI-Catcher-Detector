@@ -8,7 +8,7 @@
     return responseFromServer;
   }
  else   if (result.getStatusCode() == 503) {
-    Helpers.msgLong(context,context.getString(R.string.only_one_api_per_day));
+    Helpers.msgLong(context,context.getString(R.string.only_one_key_per_day));
     String responseFromServer=result.getResponseFromServer();
     Log.d("AIMSICD","CellTracker: OCID Reached 24hr API key limit: " + responseFromServer);
     return responseFromServer;
