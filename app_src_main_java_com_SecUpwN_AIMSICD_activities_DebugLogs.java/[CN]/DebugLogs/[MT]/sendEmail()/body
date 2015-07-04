@@ -12,7 +12,7 @@
         startActivity(Intent.createChooser(intent,"Send Error Log"));
       }
  catch (      IOException e) {
-        Log.e("AIMSICD","DebugLogs: Error reading logs",e);
+        Log.e(TAG,mTAG + ": Error reading logs",e);
       }
     }
   }

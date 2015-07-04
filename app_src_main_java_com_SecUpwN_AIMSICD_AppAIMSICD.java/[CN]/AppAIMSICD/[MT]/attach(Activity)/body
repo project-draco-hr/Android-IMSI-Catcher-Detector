@@ -3,7 +3,7 @@
     return;
   }
   if (BuildConfig.DEBUG) {
-    Log.d(TAG,"BaseTask attach:" + activity.getClass().getCanonicalName());
+    Log.d(TAG,mTAG + ": BaseTask attach:" + activity.getClass().getCanonicalName());
   }
   List<BaseAsyncTask<?,?,?>> tasks=mActivityTaskMap.get(activity.getClass().getCanonicalName().hashCode());
   if (tasks != null) {

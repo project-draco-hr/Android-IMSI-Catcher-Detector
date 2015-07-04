@@ -18,7 +18,7 @@
         clearLogs();
       }
  catch (      Exception e) {
-        Log.e("AIMSICD","DebugLogs: Error clearing logs",e);
+        Log.e(TAG,mTAG + ": Error clearing logs",e);
       }
     }
   }

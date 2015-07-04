@@ -1,18 +1,18 @@
 {
   if (deviceIsMoving()) {
-    Log.i(TAG,"Cannot check signal strength for CID: " + cellID + " as the device is currently moving around.");
+    Log.i(TAG,"Cannot check signal strength for CID: " + cellID + " since device is moving around.");
     return false;
   }
   int storedAvg;
   if (averageSignalCache.get(cellID) != null) {
     storedAvg=averageSignalCache.get(cellID);
-    Log.d(TAG,"Cached average SS for CID: " + cellID + " is: "+ storedAvg);
+    Log.d(TAG,mTAG + ": Cached average SS for CID: " + cellID+ " is: "+ storedAvg);
   }
  else {
     mDbHelper.open();
     storedAvg=mDbHelper.getAverageSignalStrength(cellID);
     averageSignalCache.put(cellID,storedAvg);
-    Log.d(TAG,"Average SS in DB for  CID: " + cellID + " is: "+ storedAvg);
+    Log.d(TAG,mTAG + ": Average SS in DB for  CID: " + cellID+ " is: "+ storedAvg);
     mDbHelper.close();
   }
   boolean result;
