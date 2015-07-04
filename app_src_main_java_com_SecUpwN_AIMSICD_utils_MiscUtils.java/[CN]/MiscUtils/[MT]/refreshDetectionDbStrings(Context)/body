@@ -9,7 +9,7 @@
       json_file.append(rline);
       rline=reader.readLine();
     }
-    Log.i("refreshDetectionDbStrings",json_file.toString());
+    Log.i(TAG,mTAG + ": refreshDetectionDbStrings: " + json_file.toString());
   }
  catch (  Exception ee) {
     ee.printStackTrace();
@@ -36,14 +36,14 @@
       store_new_det_string.put(SmsDetectionDbHelper.SILENT_SMS_STRING_COLUMN,current_json_object.optString("detection_string").toString());
       store_new_det_string.put(SmsDetectionDbHelper.SILENT_SMS_TYPE_COLUMN,current_json_object.optString("detection_type").toString());
       if (dbaccess.insertNewDetectionString(store_new_det_string)) {
-        Log.i("refreshDetectionDbStrings",">>>String added success");
+        Log.i(TAG,mTAG + ": refreshDetectionDbStrings: New string added!");
       }
     }
     dbaccess.close();
   }
  catch (  JSONException e) {
     dbaccess.close();
-    Log.e("refreshDetectionDbStrings",">>> Error parsing JsonFile " + e.toString());
+    Log.e(TAG,mTAG + ": refreshDetectionDbStrings: " + "Error parsing JsonFile "+ e.toString());
     e.printStackTrace();
   }
 }
