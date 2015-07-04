@@ -11,9 +11,11 @@
         Log.i(TAG,mTAG + ":OCID BBOX is set to: " + boundParameter+ "  with radius "+ radius+ " Km.");
         StringBuilder sb=new StringBuilder();
         sb.append("http://www.opencellid.org/cell/getInArea?key=").append(CellTracker.OCID_API_KEY).append("&BBOX=").append(boundParameter);
+        Log.i(TAG,mTAG + ":OCID MCC is set to: " + cell.getMCC());
         if (cell.getMCC() != Integer.MAX_VALUE) {
           sb.append("&mcc=").append(cell.getMCC());
         }
+        Log.i(TAG,mTAG + ":OCID MNC is set to: " + cell.getMNC());
         if (cell.getMNC() != Integer.MAX_VALUE) {
           sb.append("&mnc=").append(cell.getMNC());
         }
