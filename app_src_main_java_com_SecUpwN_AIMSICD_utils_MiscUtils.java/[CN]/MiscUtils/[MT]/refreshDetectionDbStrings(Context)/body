@@ -33,8 +33,8 @@
     for (int i=0; i < json_array_len; i++) {
       JSONObject current_json_object=json_array_node.getJSONObject(i);
       ContentValues store_new_det_string=new ContentValues();
-      store_new_det_string.put(SmsDetectionDbHelper.SILENT_SMS_STRING_COLUMN,current_json_object.optString("detection_string").toString());
-      store_new_det_string.put(SmsDetectionDbHelper.SILENT_SMS_TYPE_COLUMN,current_json_object.optString("detection_type").toString());
+      store_new_det_string.put(SmsDetectionDbHelper.SILENT_SMS_STRING_COLUMN,current_json_object.optString("detection_string"));
+      store_new_det_string.put(SmsDetectionDbHelper.SILENT_SMS_TYPE_COLUMN,current_json_object.optString("detection_type"));
       if (dbaccess.insertNewDetectionString(store_new_det_string)) {
         Log.i(TAG,mTAG + ": refreshDetectionDbStrings: New string added!");
       }
