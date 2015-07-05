@@ -15,7 +15,7 @@ case 1:
     t=15L;
   break;
 default :
-t=(rate * 1L);
+t=((long)rate);
 break;
 }
 REFRESH_RATE=TimeUnit.SECONDS.toMillis(t);
