@@ -49,7 +49,7 @@
             }
             dbacess.close();
           }
- else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("SILENTVOICE")) {
+ else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("MWI")) {
             Log.i(TAG,"SILENT DETECTED");
             CapturedSmsData setmsg=new CapturedSmsData();
             setmsg.setSenderNumber("unknown");
@@ -89,7 +89,7 @@
               }
             }
             setmsg.setSmsTimestamp(logcat_timestamp);
-            setmsg.setSmsType("SILENTVOICE");
+            setmsg.setSmsType("MWI");
             setmsg.setCurrent_lac(mAimsicdService.getCellTracker().getMonitorCell().getLAC());
             setmsg.setCurrent_cid(mAimsicdService.getCellTracker().getMonitorCell().getCID());
             setmsg.setCurrent_nettype(Device.getNetworkTypeName(mAimsicdService.getCell().getNetType()));
