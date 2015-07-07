@@ -8,7 +8,7 @@
       e.printStackTrace();
     }
     try {
-      String MODE="logcat -v time -b radio\n";
+      String MODE="logcat -v time -b radio -b main\n";
       Runtime r=Runtime.getRuntime();
       Process process=r.exec("su");
       dos=new DataOutputStream(process.getOutputStream());
