@@ -14,7 +14,7 @@
       }
     }
  catch (    Exception ee) {
-      System.out.println("Error Stopping sms detection");
+      System.out.println("Error: Stopping SMS detection");
     }
     finish();
   }

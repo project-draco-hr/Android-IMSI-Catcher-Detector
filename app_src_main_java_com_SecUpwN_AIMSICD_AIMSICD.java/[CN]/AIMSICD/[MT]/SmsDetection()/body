@@ -2,12 +2,12 @@
   boolean root_sms=prefs.getBoolean(mContext.getString(R.string.adv_user_root_pref_key),false);
   if (root_sms && !mAimsicdService.isSmsTracking()) {
     mAimsicdService.startSmsTracking();
-    Helpers.msgShort(mContext,"Sms Detection Started");
-    Log.i(TAG,"Sms Detection Thread Started");
+    Helpers.msgShort(mContext,"SMS Detection Started");
+    Log.i(TAG,"SMS Detection Thread Started");
   }
  else   if (!root_sms && mAimsicdService.isSmsTracking()) {
     mAimsicdService.stopSmsTracking();
     Helpers.msgShort(mContext,"Sms Detection Stopped");
-    Log.i(TAG,"Sms Detection Thread Stopped");
+    Log.i(TAG,"SMS Detection Thread Stopped");
   }
 }
