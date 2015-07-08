@@ -110,6 +110,7 @@ startActivity(i);
 }
  else if (selectedItem.getId() == DrawerMenu.ID.APPLICATION.QUIT) {
 finish();
+if (mAimsicdService != null) mAimsicdService.onDestroy();
 }
 mDrawerList.setItemChecked(position,true);
 if (selectedItem.updateActionBarTitle()) {
