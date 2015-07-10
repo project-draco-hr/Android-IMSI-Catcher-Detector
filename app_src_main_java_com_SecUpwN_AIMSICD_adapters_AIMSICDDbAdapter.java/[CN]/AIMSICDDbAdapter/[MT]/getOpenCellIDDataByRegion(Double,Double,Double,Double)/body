@@ -1,3 +1,0 @@
-{
-  return mDb.query(OPENCELLID_VIEW,new String[]{"CellID","Lac","Mcc","Mnc","Lat","Lng","AvgSigStr","Samples"},"? <= Lng AND Lng <= ? AND ? <= Lat AND Lat <= ?",new String[]{lng1.toString(),lng2.toString(),lat1.toString(),lat2.toString()},null,null,null);
-}
