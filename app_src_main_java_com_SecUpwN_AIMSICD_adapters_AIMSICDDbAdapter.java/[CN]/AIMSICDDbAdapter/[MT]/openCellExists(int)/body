@@ -1,5 +1,5 @@
 {
-  Cursor cursor=mDb.rawQuery("SELECT * FROM " + OPENCELLID_VIEW + " WHERE CellID = "+ cellID,null);
+  Cursor cursor=mDb.rawQuery("SELECT * FROM " + OPENCELLID_TABLE + " WHERE CellID = "+ cellID,null);
   boolean exists=cursor.getCount() > 0;
   cursor.close();
   return exists;
