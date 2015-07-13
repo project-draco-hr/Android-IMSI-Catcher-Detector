@@ -4,9 +4,8 @@
       final int SIGNAL_SIZE_RATIO=15;
       int signal;
       mCellTowerGridMarkerClusterer.getItems().clear();
-      loadOpenCellIDMarkers();
+      loadOcidMarkersByNetwork();
       LinkedList<CellTowerMarker> items=new LinkedList<>();
-      mDbHelper.open();
       Cursor c=null;
       try {
         c=mDbHelper.getCellData();
@@ -16,17 +15,17 @@
       }
       if (c != null && c.moveToFirst()) {
         do {
-          final int cellID=c.getInt(0);
-          final int lac=c.getInt(1);
-          final int net=c.getInt(2);
-          final int mcc=c.getInt(6);
-          final int mnc=c.getInt(7);
-          final double dlat=Double.parseDouble(c.getString(3));
-          final double dlng=Double.parseDouble(c.getString(4));
+          if (isCancelled())           return null;
+          final int cellID=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_CID));
+          final int lac=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAC));
+          final int mcc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MCC));
+          final int mnc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MNC));
+          final double dlat=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAT));
+          final double dlng=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LON));
           if (dlat == 0.0 && dlng == 0.0) {
             continue;
           }
-          signal=c.getInt(5);
+          signal=1;
           if (signal <= 0) {
             signal=20;
           }
@@ -61,14 +60,15 @@
       if (c != null) {
         c.close();
       }
-      mDbHelper.close();
       while (mAimsicdService == null)       try {
+        if (isCancelled())         return null;
         Thread.sleep(100);
       }
  catch (      Exception e) {
       }
       List<Cell> nc=mAimsicdService.getCellTracker().updateNeighbouringCells();
       for (      Cell cell : nc) {
+        if (isCancelled())         return null;
         try {
           loc=new GeoPoint(cell.getLat(),cell.getLon());
           CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,getString(R.string.cell_id_label) + cell.getCID(),"",loc,new MarkerData("" + cell.getCID(),"" + loc.getLatitude(),"" + loc.getLongitude(),"" + cell.getLAC(),"" + cell.getMCC(),"" + cell.getMNC(),"",false));

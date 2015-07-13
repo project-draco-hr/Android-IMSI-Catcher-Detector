@@ -1,0 +1,14 @@
+{
+  if (!checkDataBase()) {
+    this.getReadableDatabase();
+    try {
+      copyDataBase();
+      Log.i(TAG,"Database created");
+      return true;
+    }
+ catch (    IOException e) {
+      throw new Error("Error copying database\n" + e.toString());
+    }
+  }
+  return false;
+}

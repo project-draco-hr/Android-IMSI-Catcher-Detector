@@ -1,0 +1,11 @@
+{
+  LAC.setText(item.getLac());
+  CID.setText(item.getCid());
+  MCC.setText(item.getMcc());
+  MNC.setText(item.getMnc());
+  PSC.setText(item.getPsc());
+  TIME_FIRST.setText(item.getTime_first());
+  TIME_LAST.setText(item.getTime_last());
+  LAT.setText(String.valueOf(item.getLat()));
+  LON.setText(String.valueOf(item.getLon()));
+}

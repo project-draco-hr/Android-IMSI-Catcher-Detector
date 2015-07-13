@@ -1,0 +1,3 @@
+{
+  return mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.SMS_DATA_TABLE_NAME,null);
+}

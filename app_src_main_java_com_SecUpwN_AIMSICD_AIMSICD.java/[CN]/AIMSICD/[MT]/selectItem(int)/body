@@ -56,7 +56,6 @@ new RequestTask(mContext,RequestTask.RESTORE_DATABASE).execute();
 }
 }
  else if (selectedItem.getId() == DrawerMenu.ID.SETTINGS.RESET_DB) {
-Helpers.askAndDeleteDb(this);
 }
  else if (selectedItem.getId() == DrawerMenu.ID.APPLICATION.DOWNLOAD_LOCAL_BST_DATA) {
 if (CellTracker.OCID_API_KEY != null && !CellTracker.OCID_API_KEY.equals("NA")) {
@@ -118,6 +117,8 @@ mAimsicdService.stopSmsTracking();
 System.out.println("Error: Stopping SMS detection");
 }
 if (mAimsicdService != null) mAimsicdService.onDestroy();
+Log.i(TAG,"Closing db from DrawerMenu.ID.APPLICATION.QUIT");
+new AIMSICDDbAdapter(getApplicationContext()).close();
 finish();
 }
 mDrawerList.setItemChecked(position,true);

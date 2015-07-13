@@ -1,0 +1,13 @@
+{
+  SQLiteDatabase checkDB=null;
+  try {
+    checkDB=SQLiteDatabase.openDatabase(DB_LOCATION,null,SQLiteDatabase.OPEN_READONLY);
+  }
+ catch (  SQLiteException e) {
+    Log.e(TAG,"database not created yet " + e.toString());
+  }
+  if (checkDB != null) {
+    checkDB.close();
+  }
+  return checkDB != null ? true : false;
+}

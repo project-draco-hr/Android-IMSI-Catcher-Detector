@@ -11,5 +11,4 @@
   cancelNotification();
   tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
   prefs.unregisterOnSharedPreferenceChangeListener(this);
-  context.unregisterReceiver(mMessageReceiver);
 }

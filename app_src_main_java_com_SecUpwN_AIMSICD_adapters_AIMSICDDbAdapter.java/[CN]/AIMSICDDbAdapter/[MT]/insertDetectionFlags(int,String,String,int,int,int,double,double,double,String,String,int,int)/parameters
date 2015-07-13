@@ -1,0 +1,13 @@
+int code
+String name
+String description
+int p1
+int p2
+int p3
+double p1_fine
+double p2_fine
+double p3_fine
+String app_text
+String func_use
+int istatus
+int CM_id

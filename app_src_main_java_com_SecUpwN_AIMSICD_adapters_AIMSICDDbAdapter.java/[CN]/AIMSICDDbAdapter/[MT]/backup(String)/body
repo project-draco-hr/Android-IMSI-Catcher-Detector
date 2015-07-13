@@ -9,7 +9,6 @@
     file.createNewFile();
     CSVWriter csvWrite=new CSVWriter(new FileWriter(file));
     Log.d(TAG,mTAG + ": table name " + tableName);
-    open();
     Cursor c=mDb.rawQuery("SELECT * FROM " + tableName,new String[0]);
     csvWrite.writeNext(c.getColumnNames());
     String[] rowData=new String[c.getColumnCount()];

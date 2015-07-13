@@ -1,0 +1,20 @@
+{
+  Cursor cursor=mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME,null);
+  ArrayList<AdvanceUserItems> detection_strs=new ArrayList<>();
+  if (cursor.getCount() > 0) {
+    while (cursor.moveToNext()) {
+      AdvanceUserItems setitems=new AdvanceUserItems();
+      setitems.setDetection_string(cursor.getString(cursor.getColumnIndex(DBTableColumnIds.DETECTION_STRINGS_LOGCAT_STRING)));
+      setitems.setDetection_type(cursor.getString(cursor.getColumnIndex(DBTableColumnIds.DETECTION_STRINGS_SMS_TYPE)));
+      detection_strs.add(setitems);
+    }
+  }
+ else {
+    AdvanceUserItems setitems=new AdvanceUserItems();
+    setitems.setDetection_string("No data");
+    setitems.setDetection_type("No data");
+    detection_strs.add(setitems);
+  }
+  cursor.close();
+  return detection_strs;
+}

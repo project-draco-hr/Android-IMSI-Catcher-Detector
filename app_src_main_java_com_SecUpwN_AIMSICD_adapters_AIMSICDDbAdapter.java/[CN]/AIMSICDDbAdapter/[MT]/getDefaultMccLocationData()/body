@@ -1,3 +1,0 @@
-{
-  return mDb.query(TABLE_DEFAULT_MCC,new String[]{"Country","Mcc","Lat","Lng"},null,null,null,null,null);
-}

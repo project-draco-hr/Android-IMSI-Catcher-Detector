@@ -1,8 +1,0 @@
-int LAC
-int CID
-int PSC
-double latitude
-double longitude
-double accu
-int DF_id
-String DF_description

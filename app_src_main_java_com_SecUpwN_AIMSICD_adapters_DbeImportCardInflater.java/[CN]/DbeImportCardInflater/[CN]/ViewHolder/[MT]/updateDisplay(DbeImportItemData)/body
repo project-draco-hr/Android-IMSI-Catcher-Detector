@@ -1,0 +1,17 @@
+{
+  DB_SOURCE.setText(item.getDB_SOURCE());
+  RAT.setText(item.getRAT());
+  MCC.setText(item.getMCC());
+  MNC.setText(item.getMNC());
+  LAC.setText(item.getLAC());
+  CID.setText(item.getCID());
+  PSC.setText(item.getPSC());
+  GPS_LAT.setText(item.getGPS_LAT());
+  GPS_LON.setText(item.getGPS_LON());
+  IS_GPS_EXACT.setText(item.getIS_GPS_EXACT());
+  AVG_RANGE.setText(item.getAVG_RANGE());
+  AVG_SIGNAL.setText(item.getAVG_SIGNAL());
+  SAMPLES.setText(item.getSAMPLES());
+  TIME_FIRST.setText(item.getTIME_FIRST());
+  TIME_LAST.setText(item.getTIME_LAST());
+}

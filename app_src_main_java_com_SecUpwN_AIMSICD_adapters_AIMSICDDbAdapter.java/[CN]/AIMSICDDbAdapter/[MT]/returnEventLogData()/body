@@ -1,0 +1,3 @@
+{
+  return mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.EVENTLOG_TABLE_NAME,null);
+}

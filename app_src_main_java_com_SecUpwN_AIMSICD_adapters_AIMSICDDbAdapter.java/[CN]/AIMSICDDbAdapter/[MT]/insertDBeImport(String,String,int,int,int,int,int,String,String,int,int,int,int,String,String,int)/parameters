@@ -1,0 +1,16 @@
+String db_src
+String rat
+int mcc
+int mnc
+int lac
+int cid
+int psc
+String lat
+String lon
+int isGPSexact
+int avg_range
+int avg_signal
+int samples
+String time_first
+String time_last
+int rej_cause

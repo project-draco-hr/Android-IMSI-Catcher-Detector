@@ -1,0 +1,10 @@
+{
+  try {
+    mDb.delete(DBTableColumnIds.SMS_DATA_TABLE_NAME,DBTableColumnIds.SMS_DATA_ID + "=" + deleteme,null);
+    return true;
+  }
+ catch (  Exception ee) {
+    Log.i("AIMSICDDbAdapter","Sms Deleted failed");
+  }
+  return false;
+}

@@ -9,7 +9,6 @@
   }
   File file=new File(dir,"aimsicd-ocid-data.csv");
   try {
-    open();
     Cursor c=getOPCIDSubmitData();
     if (c.getCount() > 0) {
       if (!file.exists()) {

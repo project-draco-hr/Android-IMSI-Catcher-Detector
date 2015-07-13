@@ -1,0 +1,3 @@
+{
+  this.gpsd_accu=gpsd_accu;
+}

@@ -1,5 +1,5 @@
 {
-  mAddress.setText(item.getCellID());
-  mDisplayAddress.setText(item.getSignal());
-  mMessageClass.setText(item.getTimestamp());
+  cid.setText(item.getCellID());
+  rss.setText(item.getSignal());
+  time.setText(item.getTimestamp());
 }
