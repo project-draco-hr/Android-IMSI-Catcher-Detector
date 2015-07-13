@@ -1,0 +1,9 @@
+String time
+int lac
+int cid
+int psc
+String gpsd_lat
+String gpsd_lon
+int gpsd_accu
+int DF_id
+String DF_description

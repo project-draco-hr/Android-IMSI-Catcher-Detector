@@ -1,0 +1,15 @@
+String db_source
+String rat
+String mcc
+String mnc
+String lac
+String cid
+String psc
+String gps_lat
+String gps_lon
+String is_gps_exact
+String avg_range
+String avg_signal
+String samples
+String time_first
+String time_last

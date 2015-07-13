@@ -1,0 +1,40 @@
+{
+  String query=String.format("SELECT * FROM %s WHERE %s = %d AND %s = %d AND %s = %d",DBTableColumnIds.EVENTLOG_TABLE_NAME,DBTableColumnIds.EVENTLOG_CID,cid,DBTableColumnIds.EVENTLOG_LAC,lac,DBTableColumnIds.EVENTLOG_DF_ID,DF_id);
+  Cursor cursor=mDb.rawQuery(query,null);
+  boolean EVENT_ALREADY_LOGGED=cursor.getCount() > 0;
+  Log.d(mTAG,"EVENT_AREADLY_LOGGED=" + EVENT_ALREADY_LOGGED);
+  boolean insertData=true;
+  cursor.close();
+switch (DF_id) {
+case 1:
+    if (EVENT_ALREADY_LOGGED) {
+      insertData=false;
+    }
+  break;
+case 2:
+if (EVENT_ALREADY_LOGGED) {
+  insertData=false;
+}
+break;
+case 3:
+break;
+case 4:
+break;
+}
+if (insertData) {
+ContentValues eventLog=new ContentValues();
+eventLog.put(DBTableColumnIds.EVENTLOG_TIME,time);
+eventLog.put(DBTableColumnIds.EVENTLOG_LAC,lac);
+eventLog.put(DBTableColumnIds.EVENTLOG_CID,cid);
+eventLog.put(DBTableColumnIds.EVENTLOG_PSC,psc);
+eventLog.put(DBTableColumnIds.EVENTLOG_LAT,gpsd_lat);
+eventLog.put(DBTableColumnIds.EVENTLOG_LON,gpsd_lon);
+eventLog.put(DBTableColumnIds.EVENTLOG_ACCU,gpsd_accu);
+eventLog.put(DBTableColumnIds.EVENTLOG_DF_ID,DF_id);
+eventLog.put(DBTableColumnIds.EVENTLOG_DF_DESC,DF_description);
+mDb.insert(DBTableColumnIds.EVENTLOG_TABLE_NAME,null,eventLog);
+Log.v(TAG,mTAG + ": Insert Detection into EventLog Table: " + cid);
+}
+ else {
+}
+}

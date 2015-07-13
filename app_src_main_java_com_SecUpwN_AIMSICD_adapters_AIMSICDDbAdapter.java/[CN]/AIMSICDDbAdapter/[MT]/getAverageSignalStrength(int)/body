@@ -1,5 +1,6 @@
 {
-  Cursor c=mDb.rawQuery("SELECT AVG(signal) FROM " + CELL_SIGNAL_TABLE + " WHERE cellID="+ cellID,new String[0]);
+  String query=String.format("SELECT AVG(%s) FROM %s WHERE %s= %d",DBTableColumnIds.DBI_MEASURE_RX_SIGNAL,DBTableColumnIds.DBI_MEASURE_TABLE_NAME,DBTableColumnIds.DBI_MEASURE_BTS_ID,cellID);
+  Cursor c=mDb.rawQuery(query,null);
   c.moveToFirst();
   int lAnswer=c.getInt(0);
   c.close();

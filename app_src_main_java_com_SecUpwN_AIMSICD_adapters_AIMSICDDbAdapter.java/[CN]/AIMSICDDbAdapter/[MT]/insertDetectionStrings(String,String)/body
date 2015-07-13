@@ -1,0 +1,14 @@
+{
+  ContentValues detectonStrings=new ContentValues();
+  detectonStrings.put(DBTableColumnIds.DETECTION_STRINGS_LOGCAT_STRING,det_str);
+  detectonStrings.put(DBTableColumnIds.DETECTION_STRINGS_SMS_TYPE,sms_type);
+  String query=String.format("SELECT * FROM %s WHERE %s = \"%s\" AND %s = \"%s\"",DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME,DBTableColumnIds.DETECTION_STRINGS_LOGCAT_STRING,det_str,DBTableColumnIds.DETECTION_STRINGS_SMS_TYPE,sms_type);
+  Cursor cursor=mDb.rawQuery(query,null);
+  if (cursor.getCount() <= 0) {
+    mDb.insert(DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME,null,detectonStrings);
+    cursor.close();
+  }
+ else {
+    cursor.close();
+  }
+}

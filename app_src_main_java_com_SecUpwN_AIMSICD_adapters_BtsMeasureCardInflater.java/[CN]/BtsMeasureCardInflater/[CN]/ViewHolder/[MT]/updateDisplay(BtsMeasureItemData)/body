@@ -1,0 +1,13 @@
+{
+  bts_id.setText(item.getBts_id());
+  nc_list.setText(item.getNc_list());
+  time.setText(item.getTime());
+  gpsd_lat.setText(item.getGpsd_lat());
+  gpsd_lon.setText(item.getGpsd_lon());
+  gpsd_accu.setText(item.getGpsd_accu());
+  bb_power.setText(item.getBb_power());
+  rx_signal.setText(item.getRx_signal());
+  rat.setText(item.getRat());
+  isSubmitted.setText(item.getIsSubmitted());
+  isNeighbour.setText(item.getIsNeighbour());
+}

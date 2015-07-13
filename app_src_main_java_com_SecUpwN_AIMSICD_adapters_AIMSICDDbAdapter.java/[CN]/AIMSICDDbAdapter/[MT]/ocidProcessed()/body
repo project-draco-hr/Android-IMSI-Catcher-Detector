@@ -1,5 +1,5 @@
 {
   ContentValues ocidValues=new ContentValues();
-  ocidValues.put("OCID_SUBMITTED",1);
-  mDb.update(CELL_TABLE,ocidValues,"OCID_SUBMITTED<>?",new String[]{"1"});
+  ocidValues.put(DBTableColumnIds.DBI_MEASURE_IS_SUBMITTED,1);
+  mDb.update(DBTableColumnIds.DBI_MEASURE_TABLE_NAME,ocidValues,DBTableColumnIds.DBI_MEASURE_IS_SUBMITTED + "<>?",new String[]{"1"});
 }

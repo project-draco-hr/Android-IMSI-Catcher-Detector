@@ -1,0 +1,3 @@
+{
+  return mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.SECTOR_TYPE_TABLE_NAME,null);
+}

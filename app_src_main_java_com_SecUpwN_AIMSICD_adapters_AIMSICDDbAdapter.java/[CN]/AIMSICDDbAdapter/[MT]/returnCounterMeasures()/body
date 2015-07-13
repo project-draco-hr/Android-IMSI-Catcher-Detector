@@ -1,0 +1,3 @@
+{
+  return mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.COUNTER_MEASURES_TABLE_NAME,null);
+}

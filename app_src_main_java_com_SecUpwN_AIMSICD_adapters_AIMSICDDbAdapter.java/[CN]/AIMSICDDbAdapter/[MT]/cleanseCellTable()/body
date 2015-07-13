@@ -1,4 +1,6 @@
 {
-  mDb.execSQL("DELETE FROM " + CELL_TABLE + " WHERE "+ COLUMN_ID+ " NOT IN (SELECT MAX("+ COLUMN_ID+ ") FROM "+ CELL_TABLE+ " GROUP BY CellID)");
-  mDb.execSQL("DELETE FROM " + CELL_TABLE + " WHERE CellID = "+ Integer.MAX_VALUE+ " OR CellID = -1");
+  String query=String.format("DELETE FROM %s WHERE %s NOT IN (SELECT MAX(%s) FROM %s GROUP BY %s)",DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_BTS_ID,DBTableColumnIds.DBI_BTS_ID,DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_BTS_CID);
+  mDb.execSQL(query);
+  String query2=String.format("DELETE FROM %s WHERE %s = %d OR %s = -1",DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_BTS_CID,Integer.MAX_VALUE,DBTableColumnIds.DBI_BTS_CID);
+  mDb.execSQL(query2);
 }

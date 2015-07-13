@@ -1,0 +1,3 @@
+{
+  return mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.DBE_IMPORT_TABLE_NAME,null);
+}

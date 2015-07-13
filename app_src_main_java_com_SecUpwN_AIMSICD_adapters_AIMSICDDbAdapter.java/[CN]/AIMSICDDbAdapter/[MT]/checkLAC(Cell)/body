@@ -1,16 +1,16 @@
 {
-  Cursor cursor=mDb.query(CELL_TABLE,new String[]{"CellID","Lac","Net","Lat","Lng","Signal","Mcc","Mnc","Accuracy","Speed","Direction","Timestamp"},"CellID=" + cell.getCID(),null,null,null,null);
-  while (cursor.moveToNext()) {
-    if (cell.getLAC() != cursor.getInt(1)) {
-      Log.i(TAG,"ALERT: Changing LAC on CID: " + cell.getCID() + " LAC(API): "+ cell.getLAC()+ " LAC(DBi): "+ cursor.getInt(1));
-      insertDetection(cell.getLAC(),cell.getCID(),cell.getPSC(),cursor.getDouble(3),cursor.getDouble(4),cursor.getInt(8),1,"Changing LAC");
-      cursor.close();
+  String query=String.format("SELECT * FROM %s WHERE %s = %d",DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_BTS_CID,cell.getCID());
+  Cursor bts_cursor=mDb.rawQuery(query,null);
+  while (bts_cursor.moveToNext()) {
+    if (cell.getLAC() != bts_cursor.getInt(bts_cursor.getColumnIndex(DBTableColumnIds.DBI_BTS_LAC))) {
+      Log.i(TAG,"ALERT: Changing LAC on CID: " + cell.getCID() + " LAC(API): "+ cell.getLAC()+ " LAC(DBi): "+ bts_cursor.getInt(bts_cursor.getColumnIndex(DBTableColumnIds.DBI_BTS_LAC)));
+      bts_cursor.close();
       return false;
     }
  else {
-      Log.v(TAG,"LAC checked - no change on CID:" + cell.getCID() + " LAC(API): "+ cell.getLAC()+ " LAC(DBi): "+ cursor.getInt(1));
+      Log.v(TAG,"LAC checked - no change on CID:" + cell.getCID() + " LAC(API): "+ cell.getLAC()+ " LAC(DBi): "+ bts_cursor.getInt(bts_cursor.getColumnIndex(DBTableColumnIds.DBI_BTS_LAC)));
     }
   }
-  cursor.close();
+  bts_cursor.close();
   return true;
 }

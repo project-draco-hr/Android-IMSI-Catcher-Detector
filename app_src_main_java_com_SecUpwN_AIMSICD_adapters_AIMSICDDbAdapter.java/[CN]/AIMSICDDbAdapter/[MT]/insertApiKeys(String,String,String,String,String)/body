@@ -1,0 +1,17 @@
+{
+  ContentValues ApiKeys=new ContentValues();
+  ApiKeys.put(DBTableColumnIds.API_KEYS_NAME,name);
+  ApiKeys.put(DBTableColumnIds.API_KEYS_TYPE,type);
+  ApiKeys.put(DBTableColumnIds.API_KEYS_KEY,key);
+  ApiKeys.put(DBTableColumnIds.API_KEYS_TIME_ADD,time_add);
+  ApiKeys.put(DBTableColumnIds.API_KEYS_TIME_EXP,time_exp);
+  String query=String.format("SELECT * FROM %s WHERE %s = \"%s\"",DBTableColumnIds.API_KEYS_TABLE_NAME,DBTableColumnIds.API_KEYS_KEY,key);
+  Cursor cursor=mDb.rawQuery(query,null);
+  if (cursor.getCount() <= 0) {
+    mDb.insert(DBTableColumnIds.API_KEYS_TABLE_NAME,null,ApiKeys);
+    cursor.close();
+    return true;
+  }
+  cursor.close();
+  return false;
+}

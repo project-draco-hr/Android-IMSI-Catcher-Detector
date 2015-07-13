@@ -1,0 +1,7 @@
+{
+  String check4timestamp=String.format("SELECT * FROM %s WHERE %s = \"%s\"",DBTableColumnIds.SMS_DATA_TABLE_NAME,DBTableColumnIds.SMS_DATA_TIMESTAMP,TS);
+  Cursor cursor=mDb.rawQuery(check4timestamp,null);
+  boolean exists=cursor.getCount() > 0;
+  cursor.close();
+  return exists;
+}

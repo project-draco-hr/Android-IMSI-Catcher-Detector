@@ -1,0 +1,4 @@
+String country
+int mcc
+String lat
+String lon

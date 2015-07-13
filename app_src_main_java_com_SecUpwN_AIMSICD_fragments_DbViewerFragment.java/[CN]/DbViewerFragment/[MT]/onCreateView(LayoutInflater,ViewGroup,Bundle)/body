@@ -5,37 +5,38 @@
   tblSpinner=(Spinner)view.findViewById(R.id.table_spinner);
   DbViewerSpinnerAdapter mSpinnerAdapter=new DbViewerSpinnerAdapter(getActivity(),R.layout.item_spinner_db_viewer);
   tblSpinner.setAdapter(mSpinnerAdapter);
-  tblSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+  Spinner spnLocale=(Spinner)view.findViewById(R.id.table_spinner);
+  spnLocale.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
     @Override public void onItemSelected(    AdapterView<?> parentView,    View selectedItemView,    final int position,    long id){
       new AsyncTask<Void,Void,BaseInflaterAdapter>(){
         @Override protected BaseInflaterAdapter doInBackground(        Void... params){
-          mDb.open();
           Cursor result;
+          ArrayList<String> CellDetails=new ArrayList<String>();
           mTableSelected=(StatesDbViewer)tblSpinner.getSelectedItem();
 switch (position) {
 case 0:
-            result=mDb.getCellData();
+            result=mDb.returnDBiBts();
           break;
 case 1:
-        result=mDb.getLocationData();
+        result=mDb.returnDBiMeasure();
       break;
 case 2:
-    result=mDb.getOpenCellIDData();
+    result=mDb.returnDBeImport();
   break;
 case 3:
-result=mDb.getDefaultMccLocationData();
+result=mDb.returnDefaultLocation();
 break;
 case 4:
-result=smsdetection_db.returnDetectedSmsData();
+result=mDb.returnSmsData();
 break;
 case 5:
-result=mDb.getSignalStrengthMeasurementData();
+result=mDb.returnDBiMeasure();
 break;
 case 6:
-result=mDb.getEventLogData();
+result=mDb.returnEventLogData();
 break;
 case 7:
-result=smsdetection_db.getDetectionStringCursor();
+result=mDb.returnDetectionStrings();
 break;
 default :
 throw new IllegalArgumentException("Unknown type of table");
@@ -44,7 +45,7 @@ BaseInflaterAdapter adapter=null;
 if (result != null) {
 adapter=BuildTable(result);
 }
-mDb.close();
+result.close();
 return adapter;
 }
 @Override protected void onPostExecute(BaseInflaterAdapter adapter){
@@ -64,6 +65,7 @@ getActivity().setProgressBarIndeterminateVisibility(false);
 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 }
 @Override public void onNothingSelected(AdapterView<?> parentView){
+return;
 }
 }
 );

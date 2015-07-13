@@ -1,3 +1,0 @@
-{
-  return insertOpenCell(latitude,longitude,mcc,mnc,lac,cellID,avgSigStr,range,samples,isGPSexact,RAT,true);
-}

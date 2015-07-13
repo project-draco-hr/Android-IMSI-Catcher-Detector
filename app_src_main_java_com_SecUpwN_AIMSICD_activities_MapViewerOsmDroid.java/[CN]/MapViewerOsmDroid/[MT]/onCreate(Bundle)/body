@@ -5,6 +5,7 @@
   setContentView(R.layout.map);
   setUpMapIfNeeded();
   mDbHelper=new AIMSICDDbAdapter(mContext);
+  tm=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
   Intent intent=new Intent(mContext,AimsicdService.class);
   mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
   TelephonyManager tm=(TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);

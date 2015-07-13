@@ -1,3 +1,0 @@
-{
-  return dectection_db.query(SmsDetectionDbHelper.SILENT_SMS_STRINGS_TABLE,new String[]{SmsDetectionDbHelper.SILENT_SMS_STRING_COLUMN,SmsDetectionDbHelper.SILENT_SMS_TYPE_COLUMN},null,null,null,null,null);
-}

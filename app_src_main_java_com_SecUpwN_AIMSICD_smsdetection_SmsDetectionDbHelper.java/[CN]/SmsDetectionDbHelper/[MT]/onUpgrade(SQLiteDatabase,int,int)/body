@@ -1,6 +1,0 @@
-{
-  db.execSQL("DROP TABLE IF EXISTS " + SILENT_SMS_STRINGS_TABLE_CREATE);
-  db.execSQL("DROP TABLE IF EXISTS " + SMS_DATA_TABLE_NAME);
-  onCreate(db);
-  Log.i(LOGTAG,"onUpgrade >> Database has been created");
-}

@@ -1,0 +1,31 @@
+{
+  LinkedList<CellTowerMarker> items=new LinkedList<>();
+  String networkOperator=tm.getNetworkOperator();
+  int imcc=0;
+  int imnc=0;
+  if (networkOperator != null) {
+    imcc=Integer.parseInt(networkOperator.substring(0,3));
+    imnc=Integer.parseInt(networkOperator.substring(3));
+  }
+  Drawable cellTowerMarkerIcon=getResources().getDrawable(R.drawable.ic_map_pin_green);
+  IProjection p=mMap.getProjection();
+  Cursor c=mDbHelper.returnOcidBtsByNetwork(imcc,imnc);
+  if (c.moveToFirst()) {
+    do {
+      final int cellID=c.getInt(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_CID));
+      final int lac=c.getInt(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_LAC));
+      final int mcc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_MCC));
+      final int mnc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_MNC));
+      final double dlat=Double.parseDouble(c.getString(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_GPS_LAT)));
+      final double dlng=Double.parseDouble(c.getString(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_GPS_LON)));
+      final GeoPoint location=new GeoPoint(dlat,dlng);
+      final int samples=c.getInt(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_SAMPLES));
+      CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,"Cell ID: " + cellID,"",location,new MarkerData("" + cellID,"" + location.getLatitude(),"" + location.getLongitude(),"" + lac,"" + mcc,"" + mnc,"" + samples,false));
+      ovm.setIcon(cellTowerMarkerIcon);
+      items.add(ovm);
+    }
+ while (c.moveToNext());
+  }
+  c.close();
+  mCellTowerGridMarkerClusterer.addAll(items);
+}

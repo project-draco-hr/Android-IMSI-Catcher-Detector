@@ -5,12 +5,10 @@
 switch (mType) {
 case DBE_DOWNLOAD_REQUEST:
     if (result != null && result.equals("Successful")) {
-      mDbAdapter.open();
-      if (mDbAdapter.updateOpenCellID()) {
+      if (mDbAdapter.populateDBeImport()) {
         Helpers.msgShort(mAppContext,mAppContext.getString(R.string.opencellid_data_successfully_received));
       }
       mDbAdapter.checkDBe();
-      mDbAdapter.close();
       tinydb.putBoolean("ocid_downloaded",true);
     }
  else {
@@ -19,13 +17,11 @@ case DBE_DOWNLOAD_REQUEST:
   break;
 case DBE_DOWNLOAD_REQUEST_FROM_MAP:
 if (result != null && result.equals("Successful")) {
-  mDbAdapter.open();
-  if (mDbAdapter.updateOpenCellID()) {
+  if (mDbAdapter.populateDBeImport()) {
     Intent intent=new Intent(MapViewerOsmDroid.updateOpenCellIDMarkers);
     LocalBroadcastManager.getInstance(mAppContext).sendBroadcast(intent);
     Helpers.msgShort(mAppContext,mAppContext.getString(R.string.opencellid_data_successfully_received_markers_updated));
     mDbAdapter.checkDBe();
-    mDbAdapter.close();
     tinydb.putBoolean("ocid_downloaded",true);
   }
 }

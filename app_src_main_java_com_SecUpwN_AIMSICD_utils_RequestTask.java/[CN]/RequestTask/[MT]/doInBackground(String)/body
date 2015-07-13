@@ -115,20 +115,14 @@ e.printStackTrace();
 return null;
 }
 case BACKUP_DATABASE:
-mDbAdapter.open();
 if (mDbAdapter.backupDB()) {
-mDbAdapter.close();
 return "Successful";
 }
-mDbAdapter.close();
 return null;
 case RESTORE_DATABASE:
-mDbAdapter.open();
 if (mDbAdapter.restoreDB()) {
-mDbAdapter.close();
 return "Successful";
 }
-mDbAdapter.close();
 return null;
 }
 return null;

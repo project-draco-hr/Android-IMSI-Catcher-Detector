@@ -1,0 +1,3 @@
+{
+  return mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.DBE_CAPABILITIES_TABLE_NAME,null);
+}
