@@ -1,0 +1,16 @@
+{
+  ContentValues values=new ContentValues();
+  values.put(DBTableColumnIds.SMS_DATA_SENDER_NUMBER,smsdata.getSenderNumber());
+  values.put(DBTableColumnIds.SMS_DATA_SENDER_MSG,smsdata.getSenderMsg());
+  values.put(DBTableColumnIds.SMS_DATA_TIMESTAMP,smsdata.getSmsTimestamp());
+  values.put(DBTableColumnIds.SMS_DATA_SMS_TYPE,smsdata.getSmsType());
+  values.put(DBTableColumnIds.SMS_DATA_LAC,smsdata.getCurrent_lac());
+  values.put(DBTableColumnIds.SMS_DATA_CID,smsdata.getCurrent_cid());
+  values.put(DBTableColumnIds.SMS_DATA_RAT,smsdata.getCurrent_nettype());
+  values.put(DBTableColumnIds.SMS_DATA_ROAM_STATE,smsdata.getCurrent_roam_status());
+  values.put(DBTableColumnIds.SMS_DATA_GPS_LAT,smsdata.getCurrent_gps_lat());
+  values.put(DBTableColumnIds.SMS_DATA_GPS_LON,smsdata.getCurrent_gps_lon());
+  long insertid=mDb.insert(DBTableColumnIds.SMS_DATA_TABLE_NAME,null,values);
+  smsdata.setId(insertid);
+  return smsdata;
+}

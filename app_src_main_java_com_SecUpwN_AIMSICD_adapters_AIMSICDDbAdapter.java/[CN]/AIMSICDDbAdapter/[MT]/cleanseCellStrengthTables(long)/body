@@ -1,4 +1,5 @@
 {
-  Log.d(TAG,mTAG + ": Cleaning " + CELL_SIGNAL_TABLE+ " WHERE timestamp < "+ maxTime);
-  mDb.execSQL("DELETE FROM " + CELL_SIGNAL_TABLE + " WHERE timestamp < "+ maxTime);
+  String query=String.format("DELETE FROM %s WHERE %s < %d",DBTableColumnIds.DBI_MEASURE_TABLE_NAME,DBTableColumnIds.DBI_MEASURE_TIME,maxTime);
+  Log.d(TAG,mTAG + ": Cleaning " + DBTableColumnIds.DBI_MEASURE_TABLE_NAME+ " WHERE time < "+ maxTime);
+  mDb.execSQL(query);
 }

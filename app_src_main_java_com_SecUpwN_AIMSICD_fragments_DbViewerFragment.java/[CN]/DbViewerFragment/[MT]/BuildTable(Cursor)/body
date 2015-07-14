@@ -1,12 +1,12 @@
 {
   if (tableData != null && tableData.getCount() > 0) {
 switch (mTableSelected) {
-case IMPORTED_OCID_DATA:
+case UNIQUE_BTS_DATA:
 {
-        BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new OpenCellIdCardInflater());
+        BaseInflaterAdapter<UniqueBtsItemData> adapter=new BaseInflaterAdapter<>(new UniqueBtsCardInflater());
         int count=tableData.getCount();
         while (tableData.moveToNext()) {
-          CardItemData data=new CardItemData("CID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"MCC: " + tableData.getString(2),"MNC: " + tableData.getString(3),"Lat: " + tableData.getString(4),"Lon: " + tableData.getString(5),"AvgSignal: " + tableData.getString(6),"Samples: " + tableData.getString(7),"" + (tableData.getPosition() + 1) + " / "+ count);
+          UniqueBtsItemData data=new UniqueBtsItemData("MCC: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBI_BTS_MCC))),"MNC: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBI_BTS_MNC))),"LAC: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBI_BTS_LAC))),"CID: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBI_BTS_CID))),"PSC: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBI_BTS_PSC))),"Time First: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_BTS_TIME_FIRST)),"Time Last: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_BTS_TIME_LAST)),"LAT: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_BTS_LAT)),"LON: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_BTS_LON)));
           adapter.addItem(data,false);
         }
         if (!tableData.isClosed()) {
@@ -14,12 +14,11 @@ case IMPORTED_OCID_DATA:
         }
         return adapter;
       }
-case DEFAULT_MCC_LOCATIONS:
+case BTS_MEASUREMENTS:
 {
-      BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new DefaultLocationCardInflater());
-      int count=tableData.getCount();
+      BaseInflaterAdapter<BtsMeasureItemData> adapter=new BaseInflaterAdapter<>(new BtsMeasureCardInflater());
       while (tableData.moveToNext()) {
-        CardItemData data=new CardItemData("Country: " + tableData.getString(0),"MCC: " + tableData.getString(1),"Lat: " + tableData.getString(2),"Lon: " + tableData.getString(3),"" + (tableData.getPosition() + 1) + " / "+ count);
+        BtsMeasureItemData data=new BtsMeasureItemData("BTS ID: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_BTS_ID))),"NC LIST: ","TIME: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_TIME)),"GPSD LAT: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_GPSD_LAT)),"GPSD LON: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_GPSD_LON)),"GPSD ACCU: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_GPSD_ACCURACY))),"BB POWER: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_BB_POWER)),"RX SIGNAL: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_RX_SIGNAL)),"RAT: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_RAT)),"IS SUBMITTED: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_IS_SUBMITTED))),"IS NEIGHBOUR: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_IS_NEIGHBOUR))));
         adapter.addItem(data,false);
       }
       if (!tableData.isClosed()) {
@@ -27,35 +26,24 @@ case DEFAULT_MCC_LOCATIONS:
       }
       return adapter;
     }
-case SILENT_SMS:
+case IMPORTED_OCID_DATA:
 {
-    BaseInflaterAdapter<CapturedSmsData> adapter=new BaseInflaterAdapter<>(new CapturedSmsCardInflater());
-    if (tableData.getCount() > 0) {
-      while (tableData.moveToNext()) {
-        CapturedSmsData getdata=new CapturedSmsData();
-        getdata.setSmsTimestamp(tableData.getString(tableData.getColumnIndex(SmsDetectionDbHelper.SMS_DATA_TIMESTAMP)));
-        getdata.setSmsType(tableData.getString(tableData.getColumnIndex(SmsDetectionDbHelper.SMS_DATA_SMS_TYPE)));
-        getdata.setSenderNumber(tableData.getString(tableData.getColumnIndex(SmsDetectionDbHelper.SMS_DATA_SENDER_NUMBER)));
-        getdata.setSenderMsg(tableData.getString(tableData.getColumnIndex(SmsDetectionDbHelper.SMS_DATA_SENDER_MSG)));
-        getdata.setCurrent_lac(tableData.getInt(tableData.getColumnIndex(SmsDetectionDbHelper.SMS_DATA_CURRENT_LAC)));
-        getdata.setCurrent_cid(tableData.getInt(tableData.getColumnIndex(SmsDetectionDbHelper.SMS_DATA_CURRENT_CID)));
-        getdata.setCurrent_nettype(tableData.getString(tableData.getColumnIndex(SmsDetectionDbHelper.SMS_DATA_CURRENT_NETTYPE)));
-        getdata.setCurrent_roam_status(tableData.getString(tableData.getColumnIndex(SmsDetectionDbHelper.SMS_DATA_CURRENT_ROAM_STATE)));
-        getdata.setCurrent_gps_lat(tableData.getDouble(tableData.getColumnIndex(SmsDetectionDbHelper.SMS_DATA_CURRENT_GPS_LAT)));
-        getdata.setCurrent_gps_lon(tableData.getDouble(tableData.getColumnIndex(SmsDetectionDbHelper.SMS_DATA_CURRENT_GPS_LON)));
-        adapter.addItem(getdata,false);
-      }
+    BaseInflaterAdapter<DbeImportItemData> adapter=new BaseInflaterAdapter<>(new DbeImportCardInflater());
+    while (tableData.moveToNext()) {
+      DbeImportItemData data=new DbeImportItemData("Source: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_DBSOURCE)),"RAT: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_RAT)),"MCC: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_MCC))),"MNC: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_MNC))),"CID: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_CID))),"LAC: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_LAC))),"PSC: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_PSC))),"Lat: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_GPS_LAT)),"Lon: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_GPS_LON)),"isExact: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_IS_GPS_EXACT))),"Range: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_AVG_RANGE))),"AvgSignal: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_AVG_SIGNAL))),"Samples: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_SAMPLES))),"first: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_TIME_FIRST)),"last: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_TIME_LAST)));
+      adapter.addItem(data,false);
     }
     if (!tableData.isClosed()) {
       tableData.close();
     }
     return adapter;
   }
-case MEASURED_SIGNAL_STRENGTHS:
+case DEFAULT_MCC_LOCATIONS:
 {
-  BaseInflaterAdapter<MeasuredCellStrengthCardData> adapter=new BaseInflaterAdapter<>(new MeasuredCellStrengthCardInflater());
+  BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new DefaultLocationCardInflater());
+  int count=tableData.getCount();
   while (tableData.moveToNext()) {
-    MeasuredCellStrengthCardData data=new MeasuredCellStrengthCardData(tableData.getInt(0),tableData.getInt(1),tableData.getLong(2));
+    CardItemData data=new CardItemData("Country: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_COUNTRY)),"MCC: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_MCC))),"Lat: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_LAT)),"Lon: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_LON)),"" + (tableData.getPosition() + 1) + " / "+ count);
     adapter.addItem(data,false);
   }
   if (!tableData.isClosed()) {
@@ -63,17 +51,53 @@ case MEASURED_SIGNAL_STRENGTHS:
   }
   return adapter;
 }
+case SILENT_SMS:
+{
+BaseInflaterAdapter<CapturedSmsData> adapter=new BaseInflaterAdapter<>(new CapturedSmsCardInflater());
+if (tableData.getCount() > 0) {
+  while (tableData.moveToNext()) {
+    CapturedSmsData getdata=new CapturedSmsData();
+    getdata.setSmsTimestamp(tableData.getString(tableData.getColumnIndex(DBTableColumnIds.SMS_DATA_TIMESTAMP)));
+    getdata.setSmsType(tableData.getString(tableData.getColumnIndex(DBTableColumnIds.SMS_DATA_SMS_TYPE)));
+    getdata.setSenderNumber(tableData.getString(tableData.getColumnIndex(DBTableColumnIds.SMS_DATA_SENDER_NUMBER)));
+    getdata.setSenderMsg(tableData.getString(tableData.getColumnIndex(DBTableColumnIds.SMS_DATA_SENDER_MSG)));
+    getdata.setCurrent_lac(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.SMS_DATA_LAC)));
+    getdata.setCurrent_cid(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.SMS_DATA_CID)));
+    getdata.setCurrent_nettype(tableData.getString(tableData.getColumnIndex(DBTableColumnIds.SMS_DATA_RAT)));
+    getdata.setCurrent_roam_status(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.SMS_DATA_ROAM_STATE)));
+    getdata.setCurrent_gps_lat(tableData.getDouble(tableData.getColumnIndex(DBTableColumnIds.SMS_DATA_GPS_LAT)));
+    getdata.setCurrent_gps_lon(tableData.getDouble(tableData.getColumnIndex(DBTableColumnIds.SMS_DATA_GPS_LON)));
+    adapter.addItem(getdata,false);
+  }
+}
+if (!tableData.isClosed()) {
+  tableData.close();
+}
+return adapter;
+}
+case MEASURED_SIGNAL_STRENGTHS:
+{
+BaseInflaterAdapter<MeasuredCellStrengthCardData> adapter=new BaseInflaterAdapter<>(new MeasuredCellStrengthCardInflater());
+while (tableData.moveToNext()) {
+MeasuredCellStrengthCardData data=new MeasuredCellStrengthCardData(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_BTS_ID)),Integer.parseInt(tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_BB_POWER))),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBI_MEASURE_TIME)));
+adapter.addItem(data,false);
+}
+if (!tableData.isClosed()) {
+tableData.close();
+}
+return adapter;
+}
 case EVENT_LOG:
 {
 BaseInflaterAdapter<EventLogItemData> adapter=new BaseInflaterAdapter<>(new EventLogCardInflater());
 int count=tableData.getCount();
 while (tableData.moveToNext()) {
-  EventLogItemData data=new EventLogItemData("Time: " + tableData.getString(0),"LAC: " + tableData.getInt(1),"CID: " + tableData.getInt(2),"PSC: " + tableData.getInt(3),"Lat: " + tableData.getDouble(4),"Lon: " + tableData.getDouble(5),"Accuracy: " + tableData.getInt(6),"DetID: " + tableData.getInt(7),"Event: " + tableData.getString(8),"" + (tableData.getPosition() + 1) + " / "+ count);
-  data.setIsFakeData(isExample(data));
-  adapter.addItem(data,false);
+EventLogItemData data=new EventLogItemData("Time: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.EVENTLOG_TIME)),"LAC: " + tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.EVENTLOG_LAC)),"CID: " + tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.EVENTLOG_CID)),"PSC: " + tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.EVENTLOG_PSC)),"Lat: " + tableData.getDouble(tableData.getColumnIndex(DBTableColumnIds.EVENTLOG_LAT)),"Lon: " + tableData.getDouble(tableData.getColumnIndex(DBTableColumnIds.EVENTLOG_LON)),"Accuracy: " + tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.EVENTLOG_ACCU)),"DetID: " + tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.EVENTLOG_DF_ID)),"Event: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.EVENTLOG_DF_DESC)),"" + (tableData.getPosition() + 1) + " / "+ count);
+data.setIsFakeData(isExample(data));
+adapter.addItem(data,false);
 }
 if (!tableData.isClosed()) {
-  tableData.close();
+tableData.close();
 }
 return adapter;
 }
@@ -82,7 +106,7 @@ case DETECTION_STRINGS:
 BaseInflaterAdapter<DetectionStringsData> adapter=new BaseInflaterAdapter<>(new DetectionStringsCardInflater());
 int count=tableData.getCount();
 while (tableData.moveToNext()) {
-DetectionStringsData data=new DetectionStringsData(tableData.getString(0),tableData.getString(1));
+DetectionStringsData data=new DetectionStringsData(tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DETECTION_STRINGS_LOGCAT_STRING)),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DETECTION_STRINGS_SMS_TYPE)));
 adapter.addItem(data,false);
 }
 if (!tableData.isClosed()) {
@@ -90,20 +114,10 @@ tableData.close();
 }
 return adapter;
 }
-default :
-BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new CellCardInflater());
-int count=tableData.getCount();
-while (tableData.moveToNext()) {
-CardItemData data=new CardItemData("CID: " + tableData.getString(0),"LAC: " + tableData.getString(1),"RAT: " + tableData.getString(2),"Lat: " + tableData.getString(3),"Lon: " + tableData.getString(4),"RSS: " + tableData.getString(5),"" + (tableData.getPosition() + 1) + " / "+ count);
-adapter.addItem(data,false);
-}
-if (!tableData.isClosed()) {
-tableData.close();
-}
-return adapter;
 }
 }
  else {
 return null;
 }
+return null;
 }

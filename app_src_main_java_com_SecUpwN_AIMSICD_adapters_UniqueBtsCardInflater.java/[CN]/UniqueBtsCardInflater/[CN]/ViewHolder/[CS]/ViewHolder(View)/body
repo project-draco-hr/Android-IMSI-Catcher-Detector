@@ -1,0 +1,13 @@
+{
+  mRootView=rootView;
+  LAC=(TextView)mRootView.findViewById(R.id.tv_uniquebts_lac);
+  CID=(TextView)mRootView.findViewById(R.id.tv_uniquebts_cid);
+  MCC=(TextView)mRootView.findViewById(R.id.tv_uniquebts_mcc);
+  MNC=(TextView)mRootView.findViewById(R.id.tv_uniquebts_mnc);
+  PSC=(TextView)mRootView.findViewById(R.id.tv_uniquebts_psc);
+  TIME_FIRST=(TextView)mRootView.findViewById(R.id.tv_uniquebts_time_first);
+  TIME_LAST=(TextView)mRootView.findViewById(R.id.tv_uniquebts_time_last);
+  LAT=(TextView)mRootView.findViewById(R.id.tv_uniquebts_lat);
+  LON=(TextView)mRootView.findViewById(R.id.tv_uniquebts_lon);
+  rootView.setTag(this);
+}

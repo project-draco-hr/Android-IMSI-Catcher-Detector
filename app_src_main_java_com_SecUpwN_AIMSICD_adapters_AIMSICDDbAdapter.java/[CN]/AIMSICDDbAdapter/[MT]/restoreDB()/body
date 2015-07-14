@@ -16,33 +16,72 @@
           for (int i=1; i < lines; i++) {
             AIMSICD.mProgressBar.setProgress(i);
 switch (table) {
-case CELL_TABLE:
-              insertCell(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]),Double.parseDouble(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.valueOf(records.get(i)[7]),Integer.valueOf(records.get(i)[8]),Double.valueOf(records.get(i)[9]),Double.valueOf(records.get(i)[10]),Double.valueOf(records.get(i)[11]),String.valueOf(records.get(i)[12]),Long.valueOf(records.get(i)[13]));
+case DBTableColumnIds.DEFAULT_LOCATION_TABLE_NAME:
+              try {
+                insertDefaultLocation(records.get(i)[1].toString(),Integer.parseInt(records.get(i)[2]),records.get(i)[3].toString(),records.get(i)[4].toString());
+              }
+ catch (              Exception ee) {
+                Log.e(mTAG,"err DEFAULT_LOCATION");
+              }
             break;
-case LOCATION_TABLE:
-          insertLocation(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]),Double.parseDouble(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),String.valueOf(records.get(i)[7]));
+case DBTableColumnIds.API_KEYS_TABLE_NAME:
+          insertApiKeys(records.get(i)[1].toString(),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString());
         break;
-case OPENCELLID_TABLE:
-      insertOpenCell(Double.parseDouble(records.get(i)[1]),Double.parseDouble(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),Integer.parseInt(records.get(i)[9]),Integer.parseInt(records.get(i)[10]),String.valueOf(records.get(i)[11]));
+case DBTableColumnIds.COUNTER_MEASURES_TABLE_NAME:
+      insertCounterMeasures(records.get(i)[1].toString(),records.get(i)[2].toString(),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]));
     break;
-case SILENT_SMS_TABLE:
-  Bundle bundle=new Bundle();
-bundle.putString("address",String.valueOf(records.get(i)[1]));
-bundle.putString("display_address",String.valueOf(records.get(i)[2]));
-bundle.putString("message_class",String.valueOf(records.get(i)[3]));
-bundle.putString("service_centre",String.valueOf(records.get(i)[4]));
-bundle.putString("message",String.valueOf(records.get(i)[5]));
-insertSilentSms(bundle);
+case DBTableColumnIds.DBE_CAPABILITIES_TABLE_NAME:
+  insertDBeCapabilities(records.get(i)[1].toString(),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString(),records.get(i)[6].toString());
+break;
+case DBTableColumnIds.DBE_IMPORT_TABLE_NAME:
+try {
+insertDBeImport(records.get(i)[1].toString(),records.get(i)[2].toString(),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),records.get(i)[8].toString(),records.get(i)[9].toString(),Integer.parseInt(records.get(i)[10]),Integer.parseInt(records.get(i)[11]),Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]),records.get(i)[14].toString(),records.get(i)[15].toString(),0);
+}
+ catch (Exception ee) {
+Log.e(mTAG,"err DBE_IMPORT_");
+}
+break;
+case DBTableColumnIds.DBI_BTS_TABLE_NAME:
+try {
+insertBTS(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString(),records.get(i)[10].toString(),Double.parseDouble(records.get(i)[11]),Double.parseDouble(records.get(i)[12]));
+}
+ catch (Exception ee) {
+Log.e(mTAG,"err DBI_BTS");
+}
+break;
+case DBTableColumnIds.DBI_MEASURE_TABLE_NAME:
+try {
+insertDbiMeasure(Integer.parseInt(records.get(i)[1]),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString(),Integer.parseInt(records.get(i)[6]),records.get(i)[7].toString(),records.get(i)[8].toString(),records.get(i)[9].toString(),records.get(i)[10].toString(),records.get(i)[11].toString(),records.get(i)[12].toString(),records.get(i)[13].toString(),records.get(i)[14].toString(),records.get(i)[15].toString(),records.get(i)[16].toString(),Integer.parseInt(records.get(i)[17]),Integer.parseInt(records.get(i)[18]),Integer.parseInt(records.get(i)[19]),records.get(i)[20].toString(),Integer.parseInt(records.get(i)[21]),Integer.parseInt(records.get(i)[22]));
+}
+ catch (Exception ee) {
+Log.e(mTAG,"err DBI_MEASURE");
+}
+break;
+case DBTableColumnIds.DETECTION_FLAGS_TABLE_NAME:
+insertDetectionFlags(Integer.parseInt(records.get(i)[1]),records.get(i)[2].toString(),records.get(i)[3].toString(),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Double.parseDouble(records.get(i)[7]),Double.parseDouble(records.get(i)[8]),Double.parseDouble(records.get(i)[9]),records.get(i)[10].toString(),records.get(i)[11].toString(),Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]));
+break;
+case DBTableColumnIds.EVENTLOG_TABLE_NAME:
+insertEventLog(records.get(i)[1].toString(),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),records.get(i)[5].toString(),records.get(i)[6].toString(),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString());
+break;
+case DBTableColumnIds.SECTOR_TYPE_TABLE_NAME:
+insertSectorType(records.get(i)[1].toString());
+break;
+case DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME:
+insertDetectionStrings(records.get(i)[1].toString(),records.get(i)[2].toString());
+break;
+case DBTableColumnIds.SMS_DATA_TABLE_NAME:
+insertSmsData(records.get(i)[1].toString(),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString(),records.get(i)[6].toString(),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString(),Double.parseDouble(records.get(i)[10]),Double.parseDouble(records.get(i)[11]),Integer.parseInt(records.get(i)[12]));
 break;
 }
 }
 }
 }
 }
+Log.i(TAG,mTAG + ": restoreDB() Finished ");
 return true;
 }
  catch (Exception e) {
-Log.e(TAG,mTAG + ": restoreDB() " + e);
+Log.e(TAG,mTAG + ": restoreDB() Error\n" + e);
 return false;
 }
  finally {

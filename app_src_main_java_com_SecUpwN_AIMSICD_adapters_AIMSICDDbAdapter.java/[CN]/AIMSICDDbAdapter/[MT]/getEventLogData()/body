@@ -1,3 +1,0 @@
-{
-  return mDb.query(TABLE_EVENTLOG,new String[]{"time","LAC","CID","PSC","gpsd_lat","gpsd_lon","gpsd_accu","DF_id","DF_desc"},null,null,null,null,null);
-}

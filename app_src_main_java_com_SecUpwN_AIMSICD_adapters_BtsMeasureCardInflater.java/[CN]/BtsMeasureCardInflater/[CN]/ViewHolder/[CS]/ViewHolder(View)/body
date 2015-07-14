@@ -1,0 +1,15 @@
+{
+  mRootView=rootView;
+  bts_id=(TextView)mRootView.findViewById(R.id.tv_bts_measure_bts_id);
+  nc_list=(TextView)mRootView.findViewById(R.id.tv_bts_measure_nc_list);
+  time=(TextView)mRootView.findViewById(R.id.tv_bts_measure_time);
+  gpsd_lat=(TextView)mRootView.findViewById(R.id.tv_bts_measure_gpsd_lat);
+  gpsd_lon=(TextView)mRootView.findViewById(R.id.tv_bts_measure_gpsd_lon);
+  gpsd_accu=(TextView)mRootView.findViewById(R.id.tv_bts_measure_gpsd_accu);
+  bb_power=(TextView)mRootView.findViewById(R.id.tv_bts_measure_bb_power);
+  rx_signal=(TextView)mRootView.findViewById(R.id.tv_bts_measure_rx_signal);
+  rat=(TextView)mRootView.findViewById(R.id.tv_bts_measure_rat);
+  isSubmitted=(TextView)mRootView.findViewById(R.id.tv_bts_measure_isSubmitted);
+  isNeighbour=(TextView)mRootView.findViewById(R.id.tv_bts_measure_isNeighbour);
+  rootView.setTag(this);
+}

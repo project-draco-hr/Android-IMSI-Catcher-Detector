@@ -1,0 +1,10 @@
+{
+  try {
+    mDb.delete(DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME,DBTableColumnIds.DETECTION_STRINGS_LOGCAT_STRING + "='" + deleteme+ "'",null);
+    return true;
+  }
+ catch (  Exception ee) {
+    Log.i("AIMSICDDbAdapter","Delete String failed");
+  }
+  return false;
+}

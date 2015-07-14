@@ -1,0 +1,3 @@
+{
+  this.gpsd_lon=gpsd_lon;
+}

@@ -1,3 +1,0 @@
-{
-  return mDb.query(OPENCELLID_TABLE,new String[]{"CellID","Lac","Mcc","Mnc","Lat","Lng","AvgSigStr","Samples"},null,null,null,null,null);
-}

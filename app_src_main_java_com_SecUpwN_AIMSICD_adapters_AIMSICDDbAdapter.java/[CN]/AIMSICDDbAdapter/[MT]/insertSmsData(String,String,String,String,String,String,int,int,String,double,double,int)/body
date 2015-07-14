@@ -1,0 +1,18 @@
+{
+  ContentValues smsData=new ContentValues();
+  smsData.put(DBTableColumnIds.SMS_DATA_TIMESTAMP,time);
+  smsData.put(DBTableColumnIds.SMS_DATA_SENDER_NUMBER,number);
+  smsData.put(DBTableColumnIds.SMS_DATA_SENDER_SMSC,smsc);
+  smsData.put(DBTableColumnIds.SMS_DATA_SENDER_MSG,message);
+  smsData.put(DBTableColumnIds.SMS_DATA_SMS_TYPE,type);
+  smsData.put(DBTableColumnIds.SMS_DATA_SMS_CLASS,CLASS);
+  smsData.put(DBTableColumnIds.SMS_DATA_LAC,lac);
+  smsData.put(DBTableColumnIds.SMS_DATA_CID,cid);
+  smsData.put(DBTableColumnIds.SMS_DATA_RAT,rat);
+  smsData.put(DBTableColumnIds.SMS_DATA_GPS_LAT,gps_lat);
+  smsData.put(DBTableColumnIds.SMS_DATA_GPS_LON,gps_lon);
+  smsData.put(DBTableColumnIds.SMS_DATA_ROAM_STATE,isRoaming);
+  if (!isTimeStampInDB(time)) {
+    mDb.insert(DBTableColumnIds.SMS_DATA_TABLE_NAME,null,smsData);
+  }
+}

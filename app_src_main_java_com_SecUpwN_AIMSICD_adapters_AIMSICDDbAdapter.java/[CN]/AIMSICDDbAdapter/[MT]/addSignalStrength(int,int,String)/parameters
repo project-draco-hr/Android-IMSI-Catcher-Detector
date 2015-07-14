@@ -1,0 +1,3 @@
+int cellID
+int signal
+String timestamp

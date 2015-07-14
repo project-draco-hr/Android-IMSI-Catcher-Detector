@@ -1,4 +1,0 @@
-{
-  Cursor getsmsdata_cursor=dectection_db.rawQuery("SELECT * FROM " + SmsDetectionDbHelper.SMS_DATA_TABLE_NAME,null);
-  return getsmsdata_cursor;
-}

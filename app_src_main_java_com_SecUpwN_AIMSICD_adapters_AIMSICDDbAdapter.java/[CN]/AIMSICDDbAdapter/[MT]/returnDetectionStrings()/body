@@ -1,0 +1,3 @@
+{
+  return mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME,null);
+}

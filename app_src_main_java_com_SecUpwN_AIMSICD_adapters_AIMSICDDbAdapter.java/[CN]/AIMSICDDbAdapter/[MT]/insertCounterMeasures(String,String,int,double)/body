@@ -1,0 +1,8 @@
+{
+  ContentValues counterMeasures=new ContentValues();
+  counterMeasures.put(DBTableColumnIds.COUNTER_MEASURES_NAME,name);
+  counterMeasures.put(DBTableColumnIds.COUNTER_MEASURES_DESCRIPTION,description);
+  counterMeasures.put(DBTableColumnIds.COUNTER_MEASURES_THRESH,thresh);
+  counterMeasures.put(DBTableColumnIds.COUNTER_MEASURES_THFINE,thfine);
+  mDb.insert(DBTableColumnIds.COUNTER_MEASURES_TABLE_NAME,null,counterMeasures);
+}

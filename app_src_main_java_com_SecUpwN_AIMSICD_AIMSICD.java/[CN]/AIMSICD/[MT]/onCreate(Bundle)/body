@@ -1,11 +1,9 @@
 {
   super.onCreate(savedInstanceState);
-  MiscUtils.refreshDetectionDbStrings(getApplicationContext());
   moveData();
   getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
   mNavConf=new DrawerMenuActivityConfiguration.Builder(this).build();
   setContentView(mNavConf.getMainLayout());
-  dbhelper=new SmsDetectionDbHelper(this);
   mDrawerLayout=(DrawerLayout)findViewById(mNavConf.getDrawerLayoutId());
   mDrawerList=(ListView)findViewById(mNavConf.getLeftDrawerId());
   mActionBar=getActionBar();

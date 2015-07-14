@@ -1,0 +1,7 @@
+{
+  String query=String.format("SELECT * FROM %s WHERE %s = %d",DBTableColumnIds.DBI_MEASURE_TABLE_NAME,DBTableColumnIds.DBI_MEASURE_BTS_ID,cellID);
+  Cursor cursor=mDb.rawQuery(query,null);
+  boolean exists=cursor.getCount() > 0;
+  cursor.close();
+  return exists;
+}

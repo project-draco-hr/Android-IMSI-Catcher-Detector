@@ -1,5 +1,0 @@
-{
-  database.execSQL("CREATE TABLE " + CELL_SIGNAL_TABLE + " ("+ COLUMN_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+ "cellID INTEGER, signal INTEGER, "+ "timestamp INTEGER);");
-  database.execSQL("CREATE INDEX cellID_index ON " + CELL_SIGNAL_TABLE + " (cellID);");
-  database.execSQL("CREATE INDEX cellID_timestamp ON " + CELL_SIGNAL_TABLE + " (timestamp);");
-}

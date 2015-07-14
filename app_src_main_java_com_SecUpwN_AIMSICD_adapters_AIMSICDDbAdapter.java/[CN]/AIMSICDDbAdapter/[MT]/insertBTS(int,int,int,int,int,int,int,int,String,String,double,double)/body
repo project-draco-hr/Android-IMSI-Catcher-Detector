@@ -1,0 +1,23 @@
+{
+  if (cid != -1) {
+    ContentValues btsValues=new ContentValues();
+    btsValues.put(DBTableColumnIds.DBI_BTS_MCC,mcc);
+    btsValues.put(DBTableColumnIds.DBI_BTS_MNC,mnc);
+    btsValues.put(DBTableColumnIds.DBI_BTS_LAC,lac);
+    btsValues.put(DBTableColumnIds.DBI_BTS_CID,cid);
+    btsValues.put(DBTableColumnIds.DBI_BTS_PSC,psc);
+    btsValues.put(DBTableColumnIds.DBI_BTS_T3212,t3231);
+    btsValues.put(DBTableColumnIds.DBI_BTS_A5X,a5x);
+    btsValues.put(DBTableColumnIds.DBI_BTS_ST_ID,st_id);
+    btsValues.put(DBTableColumnIds.DBI_BTS_TIME_FIRST,time_first);
+    btsValues.put(DBTableColumnIds.DBI_BTS_TIME_LAST,time_last);
+    btsValues.put(DBTableColumnIds.DBI_BTS_LAT,lat);
+    btsValues.put(DBTableColumnIds.DBI_BTS_LON,lon);
+    if (!cellInDbiBts(lac,cid)) {
+      mDb.insert(DBTableColumnIds.DBI_BTS_TABLE_NAME,null,btsValues);
+    }
+ else {
+      mDb.update(DBTableColumnIds.DBI_BTS_TABLE_NAME,btsValues,"CID=?",new String[]{Integer.toString(cid)});
+    }
+  }
+}

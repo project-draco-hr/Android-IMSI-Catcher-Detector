@@ -1,0 +1,52 @@
+{
+  String fileName=mContext.getExternalFilesDir(null) + File.separator + "OpenCellID/opencellid.csv";
+  File file=new File(fileName);
+  try {
+    if (file.exists()) {
+      CSVReader csvReader=new CSVReader(new FileReader(file));
+      List<String[]> csvCellID=new ArrayList<>();
+      String next[];
+      while ((next=csvReader.readNext()) != null) {
+        csvCellID.add(next);
+      }
+      if (!csvCellID.isEmpty()) {
+        int lines=csvCellID.size();
+        Log.i(TAG,mTAG + ":updateOpenCellID: OCID CSV size (lines): " + lines);
+        String lQuery=String.format("SELECT %s, COUNT(%s) FROM %s GROUP BY %s;",DBTableColumnIds.DBE_IMPORT_CID,DBTableColumnIds.DBE_IMPORT_CID,DBTableColumnIds.DBE_IMPORT_TABLE_NAME,DBTableColumnIds.DBE_IMPORT_CID);
+        Cursor lCursor=mDb.rawQuery(lQuery,null);
+        SparseArray<Boolean> lPresentCellID=new SparseArray<>();
+        if (lCursor.getCount() > 0) {
+          while (lCursor.moveToNext()) {
+            lPresentCellID.put(lCursor.getInt(0),true);
+          }
+        }
+        lCursor.close();
+        AIMSICD.mProgressBar.setProgress(0);
+        AIMSICD.mProgressBar.setMax(lines);
+        for (int i=1; i < lines; i++) {
+          AIMSICD.mProgressBar.setProgress(i);
+          if (lPresentCellID.get(Integer.parseInt(csvCellID.get(i)[5]),false)) {
+            continue;
+          }
+          String lat=csvCellID.get(i)[0], lon=csvCellID.get(i)[1], mcc=csvCellID.get(i)[2], mnc=csvCellID.get(i)[3], lac=csvCellID.get(i)[4], cellid=csvCellID.get(i)[5], avg_sig=csvCellID.get(i)[6], range=csvCellID.get(i)[7], samples=csvCellID.get(i)[8], change=csvCellID.get(i)[9], radio=csvCellID.get(i)[10], rnc=csvCellID.get(i)[11], cid=csvCellID.get(i)[12], psc=csvCellID.get(i)[13];
+          int iPsc=0;
+          if (psc != null && !psc.equals("")) {
+            iPsc=Integer.parseInt(psc);
+          }
+          insertDBeImport("OCID",radio,Integer.parseInt(mcc),Integer.parseInt(mnc),Integer.parseInt(lac),Integer.parseInt(cellid),iPsc,lat,lon,0,Integer.parseInt(avg_sig),Integer.parseInt(range),Integer.parseInt(samples),"no_time","no_time",0);
+        }
+      }
+    }
+ else {
+      Log.e(TAG,mTAG + ">>>>> file doesnt exist ");
+    }
+    return true;
+  }
+ catch (  Exception e) {
+    Log.e(TAG,mTAG + ": Error parsing OpenCellID data: " + e.getMessage());
+    return false;
+  }
+ finally {
+    AIMSICD.mProgressBar.setProgress(0);
+  }
+}

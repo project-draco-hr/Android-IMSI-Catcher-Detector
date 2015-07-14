@@ -1,3 +1,0 @@
-{
-  super(context,DB_NAME,null,DATABASE_VERSION);
-}

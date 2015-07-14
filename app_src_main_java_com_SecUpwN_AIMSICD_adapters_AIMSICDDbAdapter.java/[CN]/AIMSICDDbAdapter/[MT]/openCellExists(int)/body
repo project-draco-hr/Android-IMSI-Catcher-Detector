@@ -1,5 +1,6 @@
 {
-  Cursor cursor=mDb.rawQuery("SELECT * FROM " + OPENCELLID_TABLE + " WHERE CellID = "+ cellID,null);
+  String qry=String.format("SELECT * FROM %s WHERE %s = %d",DBTableColumnIds.DBE_IMPORT_TABLE_NAME,DBTableColumnIds.DBE_IMPORT_CID,cellID);
+  Cursor cursor=mDb.rawQuery(qry,null);
   boolean exists=cursor.getCount() > 0;
   cursor.close();
   return exists;

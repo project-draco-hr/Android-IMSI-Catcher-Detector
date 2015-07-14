@@ -1,7 +1,0 @@
-{
-  ContentValues row=new ContentValues();
-  row.put("cellID",cellID);
-  row.put("signal",signal);
-  row.put("timestamp",timestamp);
-  mDb.insert(CELL_SIGNAL_TABLE,null,row);
-}

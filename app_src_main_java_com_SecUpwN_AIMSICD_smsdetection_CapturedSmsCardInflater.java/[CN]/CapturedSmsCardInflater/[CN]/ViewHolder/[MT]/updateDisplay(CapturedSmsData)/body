@@ -6,7 +6,11 @@
   smsd_lac.setText(SV(item.getCurrent_lac()));
   smsd_cid.setText(SV(item.getCurrent_cid()));
   smsd_rat.setText(item.getCurrent_nettype());
-  smsd_roam.setText(item.getCurrent_roam_status());
+  String isRoaming="false";
+  if (item.getCurrent_roam_status() == 1) {
+    isRoaming="true";
+  }
+  smsd_roam.setText(isRoaming);
   smsd_lat.setText(String.valueOf(item.getCurrent_gps_lat()));
   smsd_lon.setText(String.valueOf(item.getCurrent_gps_lon()));
 }

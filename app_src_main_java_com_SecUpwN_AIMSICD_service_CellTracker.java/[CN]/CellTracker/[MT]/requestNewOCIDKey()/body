@@ -14,6 +14,9 @@
     return responseFromServer;
   }
  else {
+    httpclient=null;
+    httpGet=null;
+    result=null;
     Log.d("AIMSICD","CellTracker: OCID Returned " + result.getStatusCode() + " "+ result.getReasonPhrase());
     return null;
   }
