@@ -14,7 +14,7 @@
  while (mMessages.containsKey(token));
   byte req[]=marshallRequest(token,data);
   if (DBG) {
-    Log.v(TAG,String.format("invokeOemRilRequestRaw() token: 0x%X, header: %s, req: %s ",token,HexDump.toHexString(getHeader(req)),HexDump.toHexString(req)));
+    Log.v(TAG,mTAG + String.format(": invokeOemRilRequestRaw() token: 0x%X, header: %s, req: %s ",token,HexDump.toHexString(getHeader(req)),HexDump.toHexString(req)));
   }
   mOutputStream.write(getHeader(req));
   mOutputStream.write(req);

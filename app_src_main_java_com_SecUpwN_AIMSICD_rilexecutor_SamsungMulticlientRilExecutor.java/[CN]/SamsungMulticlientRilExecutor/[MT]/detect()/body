@@ -9,6 +9,9 @@
  catch (  Exception ignore) {
     ignore.printStackTrace();
   }
+  if (!gsmVerRilImpl.matches("Samsung\\s+RIL\\(IPC\\).*")) {
+    return DetectResult.Unavailable("gsm.version.ril-impl = " + gsmVerRilImpl);
+  }
   LocalSocket s=new LocalSocket();
   try {
     s.connect(new LocalSocketAddress(MULTICLIENT_SOCKET));
