@@ -28,12 +28,12 @@
           if (lPresentCellID.get(Integer.parseInt(csvCellID.get(i)[5]),false)) {
             continue;
           }
-          String lat=csvCellID.get(i)[0], lon=csvCellID.get(i)[1], mcc=csvCellID.get(i)[2], mnc=csvCellID.get(i)[3], lac=csvCellID.get(i)[4], cellid=csvCellID.get(i)[5], avg_sig=csvCellID.get(i)[6], range=csvCellID.get(i)[7], samples=csvCellID.get(i)[8], change=csvCellID.get(i)[9], radio=csvCellID.get(i)[10], rnc=csvCellID.get(i)[11], cid=csvCellID.get(i)[12], psc=csvCellID.get(i)[13];
+          String lat=csvCellID.get(i)[0], lon=csvCellID.get(i)[1], mcc=csvCellID.get(i)[2], mnc=csvCellID.get(i)[3], lac=csvCellID.get(i)[4], cellid=csvCellID.get(i)[5], range=csvCellID.get(i)[6], avg_sig=csvCellID.get(i)[7], samples=csvCellID.get(i)[8], change=csvCellID.get(i)[9], radio=csvCellID.get(i)[10], rnc=csvCellID.get(i)[11], cid=csvCellID.get(i)[12], psc=csvCellID.get(i)[13];
           int iPsc=0;
           if (psc != null && !psc.equals("")) {
             iPsc=Integer.parseInt(psc);
           }
-          insertDBeImport("OCID",radio,Integer.parseInt(mcc),Integer.parseInt(mnc),Integer.parseInt(lac),Integer.parseInt(cellid),iPsc,lat,lon,0,Integer.parseInt(avg_sig),Integer.parseInt(range),Integer.parseInt(samples),"no_time","no_time",0);
+          insertDBeImport("OCID",radio,Integer.parseInt(mcc),Integer.parseInt(mnc),Integer.parseInt(lac),Integer.parseInt(cellid),iPsc,lat,lon,Integer.parseInt(change),Integer.parseInt(avg_sig),Integer.parseInt(range),Integer.parseInt(samples),"no_time","no_time",0);
         }
       }
     }
