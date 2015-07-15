@@ -34,6 +34,12 @@ break;
 case DBE_UPLOAD_REQUEST:
 if (result != null && result.equals("Successful")) {
 Helpers.msgShort(mAppContext,mAppContext.getString(R.string.uploaded_bts_data_successfully));
+Activity lActivity=getActivity();
+if (lActivity != null) {
+final AlertDialog.Builder builder=new AlertDialog.Builder(lActivity);
+builder.setTitle(R.string.restore_database_completed_title).setMessage(lActivity.getString(R.string.restore_database_completed));
+builder.create().show();
+}
 }
  else {
 Helpers.msgLong(mAppContext,mAppContext.getString(R.string.error_uploading_bts_data));
