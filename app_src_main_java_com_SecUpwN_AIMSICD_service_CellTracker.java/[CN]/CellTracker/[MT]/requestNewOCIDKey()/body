@@ -2,6 +2,7 @@
   DefaultHttpClient httpclient=new DefaultHttpClient();
   HttpGet httpGet=new HttpGet(context.getString(R.string.opencellid_api_get_key));
   OCIDResponse result=new OCIDResponse(httpclient.execute(httpGet));
+  Log.d("OCID Response",result.getResponseFromServer() + " Code=" + String.valueOf(result.getStatusCode()));
   if (result.getStatusCode() == 200) {
     String responseFromServer=result.getResponseFromServer();
     Log.d("OCID",responseFromServer);
@@ -14,9 +15,6 @@
     return responseFromServer;
   }
  else {
-    httpclient=null;
-    httpGet=null;
-    result=null;
     Log.d("AIMSICD","CellTracker: OCID Returned " + result.getStatusCode() + " "+ result.getReasonPhrase());
     return null;
   }
