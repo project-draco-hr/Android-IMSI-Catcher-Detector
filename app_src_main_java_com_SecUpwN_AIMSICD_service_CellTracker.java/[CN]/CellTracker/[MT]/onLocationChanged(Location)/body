@@ -36,7 +36,7 @@ prefsEditor=prefs.edit();
 prefsEditor.putString(context.getString(R.string.data_last_lat_lon),String.valueOf(loc.getLatitude()) + ":" + String.valueOf(loc.getLongitude()));
 prefsEditor.apply();
 if (mTrackingCell) {
-dbHelper.insertBTS(mDevice);
+dbHelper.insertBTS(mDevice.mCell);
 }
 }
 }
