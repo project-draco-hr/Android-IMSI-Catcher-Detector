@@ -2,7 +2,7 @@
   String query=String.format("SELECT * FROM %s WHERE %s = %d AND %s = %d AND %s = %d",DBTableColumnIds.EVENTLOG_TABLE_NAME,DBTableColumnIds.EVENTLOG_CID,cid,DBTableColumnIds.EVENTLOG_LAC,lac,DBTableColumnIds.EVENTLOG_DF_ID,DF_id);
   Cursor cursor=mDb.rawQuery(query,null);
   boolean EVENT_ALREADY_LOGGED=cursor.getCount() > 0;
-  Log.d(mTAG,"EVENT_AREADLY_LOGGED=" + EVENT_ALREADY_LOGGED);
+  Log.d(TAG,mTAG + ": EVENT_ALREADY_LOGGED=" + EVENT_ALREADY_LOGGED);
   boolean insertData=true;
   cursor.close();
 switch (DF_id) {

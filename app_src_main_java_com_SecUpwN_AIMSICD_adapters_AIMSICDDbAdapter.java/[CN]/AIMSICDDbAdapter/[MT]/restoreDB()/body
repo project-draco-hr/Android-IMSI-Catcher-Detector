@@ -21,7 +21,7 @@ case DBTableColumnIds.DEFAULT_LOCATION_TABLE_NAME:
                 insertDefaultLocation(records.get(i)[1].toString(),Integer.parseInt(records.get(i)[2]),records.get(i)[3].toString(),records.get(i)[4].toString());
               }
  catch (              Exception ee) {
-                Log.e(mTAG,"err DEFAULT_LOCATION");
+                Log.e(TAG,mTAG + ": err DEFAULT_LOCATION");
               }
             break;
 case DBTableColumnIds.API_KEYS_TABLE_NAME:
@@ -38,7 +38,7 @@ try {
 insertDBeImport(records.get(i)[1].toString(),records.get(i)[2].toString(),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),records.get(i)[8].toString(),records.get(i)[9].toString(),Integer.parseInt(records.get(i)[10]),Integer.parseInt(records.get(i)[11]),Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]),records.get(i)[14].toString(),records.get(i)[15].toString(),0);
 }
  catch (Exception ee) {
-Log.e(mTAG,"err DBE_IMPORT_");
+Log.e(TAG,mTAG + ": err DBE_IMPORT_");
 }
 break;
 case DBTableColumnIds.DBI_BTS_TABLE_NAME:
@@ -46,7 +46,7 @@ try {
 insertBTS(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString(),records.get(i)[10].toString(),Double.parseDouble(records.get(i)[11]),Double.parseDouble(records.get(i)[12]));
 }
  catch (Exception ee) {
-Log.e(mTAG,"err DBI_BTS");
+Log.e(TAG,mTAG + ": err DBI_BTS");
 }
 break;
 case DBTableColumnIds.DBI_MEASURE_TABLE_NAME:
@@ -54,7 +54,7 @@ try {
 insertDbiMeasure(Integer.parseInt(records.get(i)[1]),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString(),Integer.parseInt(records.get(i)[6]),records.get(i)[7].toString(),records.get(i)[8].toString(),records.get(i)[9].toString(),records.get(i)[10].toString(),records.get(i)[11].toString(),records.get(i)[12].toString(),records.get(i)[13].toString(),records.get(i)[14].toString(),records.get(i)[15].toString(),records.get(i)[16].toString(),Integer.parseInt(records.get(i)[17]),Integer.parseInt(records.get(i)[18]),Integer.parseInt(records.get(i)[19]),records.get(i)[20].toString(),Integer.parseInt(records.get(i)[21]),Integer.parseInt(records.get(i)[22]));
 }
  catch (Exception ee) {
-Log.e(mTAG,"err DBI_MEASURE");
+Log.e(TAG,mTAG + ": err DBI_MEASURE");
 }
 break;
 case DBTableColumnIds.DETECTION_FLAGS_TABLE_NAME:

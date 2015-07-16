@@ -38,7 +38,7 @@
       }
     }
  else {
-      Log.e(TAG,mTAG + ">>>>> file doesnt exist ");
+      Log.e(TAG,mTAG + ": File does NOT exist! ");
     }
     return true;
   }

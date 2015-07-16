@@ -11,7 +11,7 @@
     values.put(DBTableColumnIds.DBI_BTS_LAT,cell.getLat());
     values.put(DBTableColumnIds.DBI_BTS_LON,cell.getLon());
     mDb.insert(DBTableColumnIds.DBI_BTS_TABLE_NAME,null,values);
-    Log.i(mTAG,"DBi_bts inserted");
+    Log.i(TAG,mTAG + ": DBi_bts inserted");
   }
  else {
     ContentValues values=new ContentValues();
@@ -21,7 +21,7 @@
       values.put(DBTableColumnIds.DBI_BTS_LON,cell.getLon());
     }
     mDb.update(DBTableColumnIds.DBI_BTS_TABLE_NAME,values,"CID=?",new String[]{Integer.toString(cell.getCID())});
-    Log.i(mTAG,"DBi_bts Updated Cid=" + cell.getCID() + " Lac="+ cell.getLAC());
+    Log.i(TAG,mTAG + ": DBi_bts updated: CID=" + cell.getCID()+ " LAC="+ cell.getLAC());
   }
   if (!cellInDbiMeasure(cell.getCID())) {
     ContentValues dbiMeasure=new ContentValues();

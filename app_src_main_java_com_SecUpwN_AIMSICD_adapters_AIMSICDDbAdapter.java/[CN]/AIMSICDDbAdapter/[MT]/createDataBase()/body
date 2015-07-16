@@ -3,7 +3,7 @@
     this.getReadableDatabase();
     try {
       copyDataBase();
-      Log.i(TAG,"Database created");
+      Log.i(TAG,mTAG + ": Database created");
       return true;
     }
  catch (    IOException e) {
