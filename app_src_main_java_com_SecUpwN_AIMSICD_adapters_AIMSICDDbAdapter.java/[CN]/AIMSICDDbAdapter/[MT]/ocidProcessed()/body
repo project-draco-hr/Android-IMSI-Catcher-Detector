@@ -1,5 +1,5 @@
 {
   ContentValues ocidValues=new ContentValues();
-  ocidValues.put(DBTableColumnIds.DBI_MEASURE_IS_SUBMITTED,1);
-  mDb.update(DBTableColumnIds.DBI_MEASURE_TABLE_NAME,ocidValues,DBTableColumnIds.DBI_MEASURE_IS_SUBMITTED + "<>?",new String[]{"1"});
+  ocidValues.put("isSubmitted",1);
+  mDb.update("DBi_measure",ocidValues,"isSubmitted<>?",new String[]{"1"});
 }

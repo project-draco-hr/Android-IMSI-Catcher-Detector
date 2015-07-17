@@ -12,8 +12,7 @@
       if (!csvCellID.isEmpty()) {
         int lines=csvCellID.size();
         Log.i(TAG,mTAG + ":updateOpenCellID: OCID CSV size (lines): " + lines);
-        String lQuery=String.format("SELECT %s, COUNT(%s) FROM %s GROUP BY %s;",DBTableColumnIds.DBE_IMPORT_CID,DBTableColumnIds.DBE_IMPORT_CID,DBTableColumnIds.DBE_IMPORT_TABLE_NAME,DBTableColumnIds.DBE_IMPORT_CID);
-        Cursor lCursor=mDb.rawQuery(lQuery,null);
+        Cursor lCursor=mDb.rawQuery("SELECT CID, COUNT(CID) FROM DBe_import GROUP BY CID",null);
         SparseArray<Boolean> lPresentCellID=new SparseArray<>();
         if (lCursor.getCount() > 0) {
           while (lCursor.moveToNext()) {

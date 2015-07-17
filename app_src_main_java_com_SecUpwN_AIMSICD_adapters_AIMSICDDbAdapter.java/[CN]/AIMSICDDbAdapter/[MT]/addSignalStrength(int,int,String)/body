@@ -1,7 +1,7 @@
 {
   ContentValues row=new ContentValues();
-  row.put(DBTableColumnIds.DBI_MEASURE_BTS_ID,cellID);
-  row.put(DBTableColumnIds.DBI_MEASURE_RX_SIGNAL,signal);
-  row.put(DBTableColumnIds.DBI_MEASURE_TIME,timestamp);
-  mDb.insert(DBTableColumnIds.DBI_MEASURE_TABLE_NAME,null,row);
+  row.put("bts_id",cellID);
+  row.put("rx_signal",signal);
+  row.put("time",timestamp);
+  mDb.insert("DBi_measure",null,row);
 }

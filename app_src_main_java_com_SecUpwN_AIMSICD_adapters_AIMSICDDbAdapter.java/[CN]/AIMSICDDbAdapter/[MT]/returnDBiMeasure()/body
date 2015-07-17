@@ -1,3 +1,3 @@
 {
-  return mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.DBI_MEASURE_TABLE_NAME,null);
+  return mDb.rawQuery("SELECT * FROM DBi_measure",null);
 }

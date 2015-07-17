@@ -1,6 +1,6 @@
 {
   try {
-    mDb.delete(DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME,DBTableColumnIds.DETECTION_STRINGS_LOGCAT_STRING + "='" + deleteme+ "'",null);
+    mDb.delete("DetectionStrings","det_str='" + deleteme + "'",null);
     return true;
   }
  catch (  Exception ee) {

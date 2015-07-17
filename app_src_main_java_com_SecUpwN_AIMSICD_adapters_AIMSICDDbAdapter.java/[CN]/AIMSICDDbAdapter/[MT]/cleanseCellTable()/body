@@ -1,6 +1,5 @@
 {
-  String query=String.format("DELETE FROM %s WHERE %s NOT IN (SELECT MAX(%s) FROM %s GROUP BY %s)",DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_BTS_ID,DBTableColumnIds.DBI_BTS_ID,DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_BTS_CID);
-  mDb.execSQL(query);
-  String query2=String.format("DELETE FROM %s WHERE %s = %d OR %s = -1",DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_BTS_CID,Integer.MAX_VALUE,DBTableColumnIds.DBI_BTS_CID);
+  mDb.execSQL("DELETE FROM DBi_bts WHERE _id NOT IN (SELECT MAX(_id) FROM DBi_bts GROUP BY CID)");
+  String query2=String.format("DELETE FROM DBi_bts WHERE CID = %d OR CID = -1",Integer.MAX_VALUE);
   mDb.execSQL(query2);
 }

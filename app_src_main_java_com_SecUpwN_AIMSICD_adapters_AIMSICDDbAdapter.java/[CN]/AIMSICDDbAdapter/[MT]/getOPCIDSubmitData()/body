@@ -1,3 +1,4 @@
 {
-  return mDb.query(DBTableColumnIds.DBI_BTS_TABLE_NAME,new String[]{"Mcc","Mnc","Lac","CellID","Lng","Lat","Signal","Timestamp","Accuracy","Speed","Direction","NetworkType"},"OCID_SUBMITTED <> 1",null,null,null,null);
+  String query="SELECT MCC,MNC,LAC,CID,gpsd_lon,gpsd_lat,rx_signal,time,gpsd_accu FROM DBi_bts WHERE isSubmitted <> 1";
+  return mDb.rawQuery(query,null);
 }

@@ -1,5 +1,5 @@
 {
   ContentValues sectorType=new ContentValues();
-  sectorType.put(DBTableColumnIds.SECTOR_TYPE_DESCRIPTION,description);
-  mDb.insert(DBTableColumnIds.SECTOR_TYPE_TABLE_NAME,null,sectorType);
+  sectorType.put("description",description);
+  mDb.insert("SectorType",null,sectorType);
 }

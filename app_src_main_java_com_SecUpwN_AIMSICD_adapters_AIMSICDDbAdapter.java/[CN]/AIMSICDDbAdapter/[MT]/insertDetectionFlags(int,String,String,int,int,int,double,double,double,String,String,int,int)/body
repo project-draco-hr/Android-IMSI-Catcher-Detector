@@ -1,17 +1,17 @@
 {
   ContentValues detectionFlags=new ContentValues();
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_CODE,code);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_NAME,name);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_DESCRIPTION,description);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_P1,p1);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_P2,p2);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_P3,p3);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_P1_FINE,p1_fine);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_P2_FINE,p2_fine);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_P3_FINE,p3_fine);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_APP_TEXT,app_text);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_FUNC_USE,func_use);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_IS_STATUS,istatus);
-  detectionFlags.put(DBTableColumnIds.DETECTION_FLAGS_CM_ID,CM_id);
-  mDb.insert(DBTableColumnIds.DETECTION_FLAGS_TABLE_NAME,null,detectionFlags);
+  detectionFlags.put("code",code);
+  detectionFlags.put("name",name);
+  detectionFlags.put("description",description);
+  detectionFlags.put("p1",p1);
+  detectionFlags.put("p2",p2);
+  detectionFlags.put("p3",p3);
+  detectionFlags.put("p1_fine",p1_fine);
+  detectionFlags.put("p2_fine",p2_fine);
+  detectionFlags.put("p3_fine",p3_fine);
+  detectionFlags.put("app_text",app_text);
+  detectionFlags.put("func_use",func_use);
+  detectionFlags.put("istatus",istatus);
+  detectionFlags.put("CM_id",CM_id);
+  mDb.insert("DetectionFlags",null,detectionFlags);
 }

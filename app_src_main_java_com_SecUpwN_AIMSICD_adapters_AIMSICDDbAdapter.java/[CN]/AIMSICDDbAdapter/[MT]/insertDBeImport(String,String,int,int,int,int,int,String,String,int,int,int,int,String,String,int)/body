@@ -1,25 +1,25 @@
 {
   ContentValues dbeImport=new ContentValues();
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_DBSOURCE,db_src);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_RAT,rat);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_MCC,mcc);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_MNC,mnc);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_LAC,lac);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_CID,cid);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_PSC,psc);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_GPS_LAT,lat);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_GPS_LON,lon);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_IS_GPS_EXACT,isGPSexact);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_AVG_RANGE,avg_range);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_AVG_SIGNAL,avg_signal);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_SAMPLES,samples);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_TIME_FIRST,time_first);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_TIME_LAST,time_last);
-  dbeImport.put(DBTableColumnIds.DBE_IMPORT_REJ_CAUSE,rej_cause);
-  String query=String.format("SELECT * FROM %s WHERE %s = %d AND %s = %d ",DBTableColumnIds.DBE_IMPORT_TABLE_NAME,DBTableColumnIds.DBE_IMPORT_LAC,lac,DBTableColumnIds.DBE_IMPORT_CID,cid);
+  dbeImport.put("DBsource",db_src);
+  dbeImport.put("RAT",rat);
+  dbeImport.put("MCC",mcc);
+  dbeImport.put("MNC",mnc);
+  dbeImport.put("LAC",lac);
+  dbeImport.put("CID",cid);
+  dbeImport.put("PSC",psc);
+  dbeImport.put("gps_lat",lat);
+  dbeImport.put("gps_lon",lon);
+  dbeImport.put("isGPSexact",isGPSexact);
+  dbeImport.put("avg_range",avg_range);
+  dbeImport.put("avg_signal",avg_signal);
+  dbeImport.put("samples",samples);
+  dbeImport.put("time_first",time_first);
+  dbeImport.put("time_last",time_last);
+  dbeImport.put("rej_cause",rej_cause);
+  String query=String.format("SELECT * FROM DBe_import WHERE LAC = %d AND CID = %d ",lac,cid);
   Cursor cursor=mDb.rawQuery(query,null);
   if (cursor.getCount() <= 0) {
-    mDb.insert(DBTableColumnIds.DBE_IMPORT_TABLE_NAME,null,dbeImport);
+    mDb.insert("DBe_import",null,dbeImport);
   }
   cursor.close();
 }

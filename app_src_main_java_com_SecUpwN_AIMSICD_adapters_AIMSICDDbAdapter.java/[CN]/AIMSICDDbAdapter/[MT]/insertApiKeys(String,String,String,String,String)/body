@@ -1,14 +1,14 @@
 {
   ContentValues ApiKeys=new ContentValues();
-  ApiKeys.put(DBTableColumnIds.API_KEYS_NAME,name);
-  ApiKeys.put(DBTableColumnIds.API_KEYS_TYPE,type);
-  ApiKeys.put(DBTableColumnIds.API_KEYS_KEY,key);
-  ApiKeys.put(DBTableColumnIds.API_KEYS_TIME_ADD,time_add);
-  ApiKeys.put(DBTableColumnIds.API_KEYS_TIME_EXP,time_exp);
-  String query=String.format("SELECT * FROM %s WHERE %s = \"%s\"",DBTableColumnIds.API_KEYS_TABLE_NAME,DBTableColumnIds.API_KEYS_KEY,key);
+  ApiKeys.put("name",name);
+  ApiKeys.put("type",type);
+  ApiKeys.put("key",key);
+  ApiKeys.put("time_add",time_add);
+  ApiKeys.put("time_exp",time_exp);
+  String query=String.format("SELECT * FROM API_keys WHERE key = \"%s\"",key);
   Cursor cursor=mDb.rawQuery(query,null);
   if (cursor.getCount() <= 0) {
-    mDb.insert(DBTableColumnIds.API_KEYS_TABLE_NAME,null,ApiKeys);
+    mDb.insert("API_keys",null,ApiKeys);
     cursor.close();
     return true;
   }

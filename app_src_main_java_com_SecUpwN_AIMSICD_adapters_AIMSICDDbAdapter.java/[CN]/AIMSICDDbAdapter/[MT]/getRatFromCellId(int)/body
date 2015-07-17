@@ -1,7 +1,10 @@
 {
+  String RAT=null;
   String query=String.format("SELECT * FROM DBi_measure WHERE bts_id = %d",cellID);
   Cursor cursor=mDb.rawQuery(query,null);
-  boolean exists=cursor.getCount() > 0;
+  if (cursor != null && cursor.moveToNext()) {
+    RAT=cursor.getString(cursor.getColumnIndex("RAT"));
+  }
   cursor.close();
-  return exists;
+  return RAT;
 }

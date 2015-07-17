@@ -1,5 +1,5 @@
 {
-  String query=String.format("SELECT * FROM %s WHERE %s = %d AND %s = %d",DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_BTS_LAC,lac,DBTableColumnIds.DBI_BTS_CID,cellID);
+  String query=String.format("SELECT * FROM DBi_bts WHERE LAC = %d AND CID = %d",lac,cellID);
   Cursor cursor=mDb.rawQuery(query,null);
   boolean exists=cursor.getCount() > 0;
   cursor.close();

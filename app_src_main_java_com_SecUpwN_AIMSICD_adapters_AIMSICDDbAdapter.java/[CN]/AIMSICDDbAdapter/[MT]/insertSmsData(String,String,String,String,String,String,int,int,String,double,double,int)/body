@@ -1,18 +1,18 @@
 {
   ContentValues smsData=new ContentValues();
-  smsData.put(DBTableColumnIds.SMS_DATA_TIMESTAMP,time);
-  smsData.put(DBTableColumnIds.SMS_DATA_SENDER_NUMBER,number);
-  smsData.put(DBTableColumnIds.SMS_DATA_SENDER_SMSC,smsc);
-  smsData.put(DBTableColumnIds.SMS_DATA_SENDER_MSG,message);
-  smsData.put(DBTableColumnIds.SMS_DATA_SMS_TYPE,type);
-  smsData.put(DBTableColumnIds.SMS_DATA_SMS_CLASS,CLASS);
-  smsData.put(DBTableColumnIds.SMS_DATA_LAC,lac);
-  smsData.put(DBTableColumnIds.SMS_DATA_CID,cid);
-  smsData.put(DBTableColumnIds.SMS_DATA_RAT,rat);
-  smsData.put(DBTableColumnIds.SMS_DATA_GPS_LAT,gps_lat);
-  smsData.put(DBTableColumnIds.SMS_DATA_GPS_LON,gps_lon);
-  smsData.put(DBTableColumnIds.SMS_DATA_ROAM_STATE,isRoaming);
+  smsData.put("time",time);
+  smsData.put("number",number);
+  smsData.put("smsc",smsc);
+  smsData.put("message",message);
+  smsData.put("type",type);
+  smsData.put("class",CLASS);
+  smsData.put("lac",lac);
+  smsData.put("cid",cid);
+  smsData.put("rat",rat);
+  smsData.put("gps_lat",gps_lat);
+  smsData.put("gps_lon",gps_lon);
+  smsData.put("isRoaming",isRoaming);
   if (!isTimeStampInDB(time)) {
-    mDb.insert(DBTableColumnIds.SMS_DATA_TABLE_NAME,null,smsData);
+    mDb.insert("SmsData",null,smsData);
   }
 }

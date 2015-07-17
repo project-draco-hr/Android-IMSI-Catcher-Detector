@@ -1,4 +1,4 @@
 {
-  String query=String.format("SELECT * FROM %s WHERE %s = %d AND %s = %d",DBTableColumnIds.DBE_IMPORT_TABLE_NAME,DBTableColumnIds.DBE_IMPORT_MCC,mcc,DBTableColumnIds.DBE_IMPORT_MNC,mnc);
+  String query=String.format("SELECT * FROM DBe_import WHERE MCC = %d AND MNC = %d",mcc,mnc);
   return mDb.rawQuery(query,null);
 }

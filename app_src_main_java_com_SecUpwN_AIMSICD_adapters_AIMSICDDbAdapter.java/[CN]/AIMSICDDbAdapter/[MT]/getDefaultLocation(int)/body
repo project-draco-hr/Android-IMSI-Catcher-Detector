@@ -1,10 +1,10 @@
 {
-  String query=String.format("SELECT %s,%s FROM %s WHERE %s = %d",DBTableColumnIds.DEFAULT_LOCATION_LAT,DBTableColumnIds.DEFAULT_LOCATION_LON,DBTableColumnIds.DEFAULT_LOCATION_TABLE_NAME,DBTableColumnIds.DEFAULT_LOCATION_MCC,mcc);
+  String query=String.format("SELECT lat,lon FROM defaultlocation WHERE MCC = %d",mcc);
   double[] loc=new double[2];
   Cursor cursor=mDb.rawQuery(query,null);
   if (cursor != null && cursor.moveToFirst()) {
-    loc[0]=Double.parseDouble(cursor.getString(cursor.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_LAT)));
-    loc[1]=Double.parseDouble(cursor.getString(cursor.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_LON)));
+    loc[0]=Double.parseDouble(cursor.getString(cursor.getColumnIndex("lat")));
+    loc[1]=Double.parseDouble(cursor.getString(cursor.getColumnIndex("lon")));
   }
  else {
     loc[0]=0.0;
