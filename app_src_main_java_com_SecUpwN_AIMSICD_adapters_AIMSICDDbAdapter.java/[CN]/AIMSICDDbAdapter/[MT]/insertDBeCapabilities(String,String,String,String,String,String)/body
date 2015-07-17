@@ -1,10 +1,10 @@
 {
   ContentValues dbeCapabilities=new ContentValues();
-  dbeCapabilities.put(DBTableColumnIds.DBE_CAPABILITIES_MCC,mcc);
-  dbeCapabilities.put(DBTableColumnIds.DBE_CAPABILITIES_MNC,mnc);
-  dbeCapabilities.put(DBTableColumnIds.DBE_CAPABILITIES_LAC,lac);
-  dbeCapabilities.put(DBTableColumnIds.DBE_CAPABILITIES_OP_NAME,op_name);
-  dbeCapabilities.put(DBTableColumnIds.DBE_CAPABILITIES_BAND_PLAN,band_plan);
-  dbeCapabilities.put(DBTableColumnIds.DBE_CAPABILITIES_EXPAND,__EXPAND__);
-  mDb.insert(DBTableColumnIds.DBE_CAPABILITIES_TABLE_NAME,null,dbeCapabilities);
+  dbeCapabilities.put("MCC",mcc);
+  dbeCapabilities.put("MNC",mnc);
+  dbeCapabilities.put("LAC",lac);
+  dbeCapabilities.put("op_name",op_name);
+  dbeCapabilities.put("band_plan",band_plan);
+  dbeCapabilities.put("__EXPAND__",__EXPAND__);
+  mDb.insert("DBe_capabilities",null,dbeCapabilities);
 }

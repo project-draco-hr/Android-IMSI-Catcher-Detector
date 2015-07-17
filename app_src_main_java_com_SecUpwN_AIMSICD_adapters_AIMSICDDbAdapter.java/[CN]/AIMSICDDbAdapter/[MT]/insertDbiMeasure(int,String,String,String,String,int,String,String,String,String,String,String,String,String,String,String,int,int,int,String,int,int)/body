@@ -1,28 +1,28 @@
 {
   if (cellInDbiMeasure(bts_id)) {
     ContentValues dbiMeasure=new ContentValues();
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_BTS_ID,bts_id);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_NC_LIST,nc_list);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_TIME,time);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_GPSD_LAT,gpsd_lat);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_GPSD_LON,gpsd_lon);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_GPSD_ACCURACY,gpsd_accuracy);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_GPSE_LAT,gpse_lat);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_GPSE_LON,gpse_lon);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_BB_POWER,bb_power);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_BB_RF_TEMP,bb_rf_temp);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_TX_POWER,tx_power);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_RX_SIGNAL,rx_signal);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_RX_STYPE,rx_stype);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_RAT,rat);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_BCCH,BCCH);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_TMSI,TMSI);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_TA,TA);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_PD,PD);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_BER,BER);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_AVG_EC_NO,AvgEcNo);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_IS_SUBMITTED,isSubmitted);
-    dbiMeasure.put(DBTableColumnIds.DBI_MEASURE_IS_NEIGHBOUR,isNeighbour);
-    mDb.insert(DBTableColumnIds.DBI_MEASURE_TABLE_NAME,null,dbiMeasure);
+    dbiMeasure.put("bts_id",bts_id);
+    dbiMeasure.put("nc_list",nc_list);
+    dbiMeasure.put("time",time);
+    dbiMeasure.put("gpsd_lat",gpsd_lat);
+    dbiMeasure.put("gpsd_lon",gpsd_lon);
+    dbiMeasure.put("gpsd_accu",gpsd_accuracy);
+    dbiMeasure.put("gpse_lat",gpse_lat);
+    dbiMeasure.put("gpse_lon",gpse_lon);
+    dbiMeasure.put("bb_power",bb_power);
+    dbiMeasure.put("bb_rf_temp",bb_rf_temp);
+    dbiMeasure.put("tx_power",tx_power);
+    dbiMeasure.put("rx_signal",rx_signal);
+    dbiMeasure.put("rx_stype",rx_stype);
+    dbiMeasure.put("RAT",rat);
+    dbiMeasure.put("BCCH",BCCH);
+    dbiMeasure.put("TMSI",TMSI);
+    dbiMeasure.put("TA",TA);
+    dbiMeasure.put("PD",PD);
+    dbiMeasure.put("BER",BER);
+    dbiMeasure.put("AvgEcNo",AvgEcNo);
+    dbiMeasure.put("isSubmitted",isSubmitted);
+    dbiMeasure.put("isNeighbour",isNeighbour);
+    mDb.insert("DBi_measure",null,dbiMeasure);
   }
 }

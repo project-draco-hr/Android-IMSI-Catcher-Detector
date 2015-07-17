@@ -1,5 +1,5 @@
 {
-  String query=String.format("SELECT COUNT(%s) FROM %s WHERE %s= %d",DBTableColumnIds.DBI_MEASURE_BTS_ID,DBTableColumnIds.DBI_MEASURE_TABLE_NAME,DBTableColumnIds.DBI_MEASURE_BTS_ID,cellID);
+  String query=String.format("SELECT COUNT(bts_id) FROM DBi_measure WHERE bts_id= %d",cellID);
   Cursor c=mDb.rawQuery(query,null);
   c.moveToFirst();
   int lAnswer=c.getInt(0);

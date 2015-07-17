@@ -16,7 +16,7 @@
           for (int i=1; i < lines; i++) {
             AIMSICD.mProgressBar.setProgress(i);
 switch (table) {
-case DBTableColumnIds.DEFAULT_LOCATION_TABLE_NAME:
+case "defaultlocation":
               try {
                 insertDefaultLocation(records.get(i)[1].toString(),Integer.parseInt(records.get(i)[2]),records.get(i)[3].toString(),records.get(i)[4].toString());
               }
@@ -24,16 +24,16 @@ case DBTableColumnIds.DEFAULT_LOCATION_TABLE_NAME:
                 Log.e(TAG,mTAG + ": err DEFAULT_LOCATION");
               }
             break;
-case DBTableColumnIds.API_KEYS_TABLE_NAME:
+case "API_keys":
           insertApiKeys(records.get(i)[1].toString(),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString());
         break;
-case DBTableColumnIds.COUNTER_MEASURES_TABLE_NAME:
+case "CounterMeasures":
       insertCounterMeasures(records.get(i)[1].toString(),records.get(i)[2].toString(),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]));
     break;
-case DBTableColumnIds.DBE_CAPABILITIES_TABLE_NAME:
+case "DBe_capabilities":
   insertDBeCapabilities(records.get(i)[1].toString(),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString(),records.get(i)[6].toString());
 break;
-case DBTableColumnIds.DBE_IMPORT_TABLE_NAME:
+case "DBe_import":
 try {
 insertDBeImport(records.get(i)[1].toString(),records.get(i)[2].toString(),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),records.get(i)[8].toString(),records.get(i)[9].toString(),Integer.parseInt(records.get(i)[10]),Integer.parseInt(records.get(i)[11]),Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]),records.get(i)[14].toString(),records.get(i)[15].toString(),0);
 }
@@ -41,7 +41,7 @@ insertDBeImport(records.get(i)[1].toString(),records.get(i)[2].toString(),Intege
 Log.e(TAG,mTAG + ": err DBE_IMPORT_");
 }
 break;
-case DBTableColumnIds.DBI_BTS_TABLE_NAME:
+case "DBi_bts":
 try {
 insertBTS(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString(),records.get(i)[10].toString(),Double.parseDouble(records.get(i)[11]),Double.parseDouble(records.get(i)[12]));
 }
@@ -49,7 +49,7 @@ insertBTS(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]
 Log.e(TAG,mTAG + ": err DBI_BTS");
 }
 break;
-case DBTableColumnIds.DBI_MEASURE_TABLE_NAME:
+case "DBi_measure":
 try {
 insertDbiMeasure(Integer.parseInt(records.get(i)[1]),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString(),Integer.parseInt(records.get(i)[6]),records.get(i)[7].toString(),records.get(i)[8].toString(),records.get(i)[9].toString(),records.get(i)[10].toString(),records.get(i)[11].toString(),records.get(i)[12].toString(),records.get(i)[13].toString(),records.get(i)[14].toString(),records.get(i)[15].toString(),records.get(i)[16].toString(),Integer.parseInt(records.get(i)[17]),Integer.parseInt(records.get(i)[18]),Integer.parseInt(records.get(i)[19]),records.get(i)[20].toString(),Integer.parseInt(records.get(i)[21]),Integer.parseInt(records.get(i)[22]));
 }
@@ -57,19 +57,19 @@ insertDbiMeasure(Integer.parseInt(records.get(i)[1]),records.get(i)[2].toString(
 Log.e(TAG,mTAG + ": err DBI_MEASURE");
 }
 break;
-case DBTableColumnIds.DETECTION_FLAGS_TABLE_NAME:
+case "DetectionFlags":
 insertDetectionFlags(Integer.parseInt(records.get(i)[1]),records.get(i)[2].toString(),records.get(i)[3].toString(),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Double.parseDouble(records.get(i)[7]),Double.parseDouble(records.get(i)[8]),Double.parseDouble(records.get(i)[9]),records.get(i)[10].toString(),records.get(i)[11].toString(),Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]));
 break;
-case DBTableColumnIds.EVENTLOG_TABLE_NAME:
+case "EventLog":
 insertEventLog(records.get(i)[1].toString(),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),records.get(i)[5].toString(),records.get(i)[6].toString(),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString());
 break;
-case DBTableColumnIds.SECTOR_TYPE_TABLE_NAME:
+case "SectorType":
 insertSectorType(records.get(i)[1].toString());
 break;
-case DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME:
+case "DetectionStrings":
 insertDetectionStrings(records.get(i)[1].toString(),records.get(i)[2].toString());
 break;
-case DBTableColumnIds.SMS_DATA_TABLE_NAME:
+case "SmsData":
 insertSmsData(records.get(i)[1].toString(),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString(),records.get(i)[6].toString(),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString(),Double.parseDouble(records.get(i)[10]),Double.parseDouble(records.get(i)[11]),Integer.parseInt(records.get(i)[12]));
 break;
 }

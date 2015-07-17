@@ -1,6 +1,6 @@
 {
   try {
-    mDb.delete(DBTableColumnIds.SMS_DATA_TABLE_NAME,DBTableColumnIds.SMS_DATA_ID + "=" + deleteme,null);
+    mDb.delete("SmsData","_id=" + deleteme,null);
     return true;
   }
  catch (  Exception ee) {

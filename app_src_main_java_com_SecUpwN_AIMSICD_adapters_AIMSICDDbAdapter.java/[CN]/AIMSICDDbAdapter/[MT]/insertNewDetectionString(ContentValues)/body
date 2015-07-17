@@ -1,5 +1,5 @@
 {
-  String check4String=String.format("SELECT * FROM %s WHERE %s = \"%s\"",DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME,DBTableColumnIds.DETECTION_STRINGS_LOGCAT_STRING,newstring.get(DBTableColumnIds.DETECTION_STRINGS_LOGCAT_STRING).toString());
+  String check4String=String.format("SELECT * FROM DetectionStrings WHERE det_str = \"%s\"",newstring.get("det_str").toString());
   Cursor cursor=mDb.rawQuery(check4String,null);
   boolean exists=cursor.getCount() > 0;
   cursor.close();
@@ -8,7 +8,7 @@
   }
  else {
     try {
-      mDb.insert(DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME,null,newstring);
+      mDb.insert("DetectionStrings",null,newstring);
       Log.i(TAG,mTAG + ": New detection string added.");
       return true;
     }

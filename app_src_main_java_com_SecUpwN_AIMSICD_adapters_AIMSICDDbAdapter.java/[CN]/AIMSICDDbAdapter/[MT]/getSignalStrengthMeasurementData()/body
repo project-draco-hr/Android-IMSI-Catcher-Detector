@@ -1,4 +1,3 @@
 {
-  String query=String.format("SELECT %s, %s, %s FROM  %s ORDER BY %s DESC",DBTableColumnIds.DBI_MEASURE_BTS_ID,DBTableColumnIds.DBI_MEASURE_RX_SIGNAL,DBTableColumnIds.DBI_MEASURE_TIME,DBTableColumnIds.DBI_MEASURE_TABLE_NAME,DBTableColumnIds.DBI_MEASURE_TIME);
-  return mDb.rawQuery(query,null);
+  return mDb.rawQuery("SELECT bts_id, rx_signal, time FROM DBi_measure ORDER BY time DESC",null);
 }

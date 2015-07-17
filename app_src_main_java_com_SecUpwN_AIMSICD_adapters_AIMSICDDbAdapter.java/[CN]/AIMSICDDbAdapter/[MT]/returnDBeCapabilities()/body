@@ -1,3 +1,3 @@
 {
-  return mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.DBE_CAPABILITIES_TABLE_NAME,null);
+  return mDb.rawQuery("SELECT * FROM DBe_capabilities",null);
 }

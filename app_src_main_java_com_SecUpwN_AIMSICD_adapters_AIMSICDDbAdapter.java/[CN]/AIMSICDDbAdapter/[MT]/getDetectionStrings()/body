@@ -1,11 +1,11 @@
 {
-  Cursor cursor=mDb.rawQuery("SELECT * FROM " + DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME,null);
+  Cursor cursor=mDb.rawQuery("SELECT * FROM DetectionStrings",null);
   ArrayList<AdvanceUserItems> detection_strs=new ArrayList<>();
   if (cursor.getCount() > 0) {
     while (cursor.moveToNext()) {
       AdvanceUserItems setitems=new AdvanceUserItems();
-      setitems.setDetection_string(cursor.getString(cursor.getColumnIndex(DBTableColumnIds.DETECTION_STRINGS_LOGCAT_STRING)));
-      setitems.setDetection_type(cursor.getString(cursor.getColumnIndex(DBTableColumnIds.DETECTION_STRINGS_SMS_TYPE)));
+      setitems.setDetection_string(cursor.getString(cursor.getColumnIndex("det_str")));
+      setitems.setDetection_type(cursor.getString(cursor.getColumnIndex("sms_type")));
       detection_strs.add(setitems);
     }
   }
