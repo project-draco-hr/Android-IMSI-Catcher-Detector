@@ -17,7 +17,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
     }
     if (tinydb.getBoolean("ocid_downloaded")) {
       if (!dbHelper.openCellExists(mMonitorCell.getCID())) {
-        Log.i(mTAG,"ALERT: Connected to unknown CID not in DBe_import: " + mMonitorCell.getCID());
+        Log.i(TAG,mTAG + ": ALERT: Connected to unknown CID not in DBe_import: " + mMonitorCell.getCID());
         dbHelper.insertEventLog(MiscUtils.getCurrentTimeStamp(),mMonitorCell.getLAC(),mMonitorCell.getCID(),mMonitorCell.getPSC(),String.valueOf(mDevice.mCell.getLat()),String.valueOf(mDevice.mCell.getLon()),(int)mDevice.mCell.getAccuracy(),2,"CID not in DBe_import");
         mCellIdNotInOpenDb=true;
         setNotification();
