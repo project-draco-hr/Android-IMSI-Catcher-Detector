@@ -3,7 +3,7 @@
     return CellTracker.requestNewOCIDKey();
   }
  catch (  final Exception e) {
-    Log.e(TAG,e.getMessage());
+    Log.e(TAG,mTAG + ": " + e.getMessage());
     e.printStackTrace();
     runOnUiThread(new Runnable(){
       @Override public void run(){
