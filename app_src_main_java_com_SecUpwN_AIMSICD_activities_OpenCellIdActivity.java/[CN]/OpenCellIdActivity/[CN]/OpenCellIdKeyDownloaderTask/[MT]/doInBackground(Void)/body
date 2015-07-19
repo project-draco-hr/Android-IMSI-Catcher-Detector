@@ -1,6 +1,6 @@
 {
   try {
-    return CellTracker.requestNewOCIDKey();
+    return requestNewOCIDKey();
   }
  catch (  final Exception e) {
     Log.e(TAG,mTAG + ": " + e.getMessage());
@@ -9,10 +9,10 @@
       @Override public void run(){
         pd.dismiss();
         Helpers.msgLong(OpenCellIdActivity.this,getString(R.string.ocid_api_error) + e.getClass().getName() + " - "+ e.getMessage());
+        finish();
       }
     }
 );
-    finish();
     return null;
   }
 }

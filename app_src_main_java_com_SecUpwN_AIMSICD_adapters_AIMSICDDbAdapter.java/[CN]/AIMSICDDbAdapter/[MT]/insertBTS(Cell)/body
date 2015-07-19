@@ -6,8 +6,8 @@
     values.put("LAC",cell.getLAC());
     values.put("CID",cell.getCID());
     values.put("PSC",cell.getPSC());
-    values.put("time_first",String.valueOf(System.currentTimeMillis()));
-    values.put("time_last",String.valueOf(System.currentTimeMillis()));
+    values.put("time_first",MiscUtils.getCurrentTimeStamp());
+    values.put("time_last",MiscUtils.getCurrentTimeStamp());
     values.put("gps_lat",cell.getLat());
     values.put("gps_lon",cell.getLon());
     mDb.insert("DBi_bts",null,values);
@@ -15,7 +15,7 @@
   }
  else {
     ContentValues values=new ContentValues();
-    values.put("time_last",String.valueOf(System.currentTimeMillis()));
+    values.put("time_last",MiscUtils.getCurrentTimeStamp());
     if (cell.getLat() != 0.0 && cell.getLat() != 0 && cell.getLon() != 0.0 && cell.getLon() != 0) {
       values.put("gps_lat",cell.getLat());
       values.put("gps_lon",cell.getLon());
@@ -27,7 +27,7 @@
     ContentValues dbiMeasure=new ContentValues();
     dbiMeasure.put("bts_id",cell.getCID());
     dbiMeasure.put("nc_list","no_data");
-    dbiMeasure.put("time",String.valueOf(System.currentTimeMillis()));
+    dbiMeasure.put("time",MiscUtils.getCurrentTimeStamp());
     String slat=String.valueOf(cell.getLat());
     String slon=String.valueOf(cell.getLon());
     if (slat == null) {
@@ -41,7 +41,7 @@
     dbiMeasure.put("gpsd_accu",cell.getAccuracy());
     dbiMeasure.put("bb_power",String.valueOf(cell.getDBM()));
     dbiMeasure.put("tx_power","0");
-    dbiMeasure.put("rx_signal","0");
+    dbiMeasure.put("rx_signal",String.valueOf(cell.getDBM()));
     dbiMeasure.put("RAT",String.valueOf(cell.getNetType()));
     dbiMeasure.put("TA",cell.getTimingAdvance());
     dbiMeasure.put("BER",0);
