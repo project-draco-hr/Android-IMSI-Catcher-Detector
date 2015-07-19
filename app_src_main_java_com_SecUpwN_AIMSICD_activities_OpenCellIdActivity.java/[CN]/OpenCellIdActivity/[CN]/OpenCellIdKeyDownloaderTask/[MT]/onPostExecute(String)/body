@@ -1,6 +1,6 @@
 {
   if (s == null || s.isEmpty())   return;
-  if (isKeyValid(s) == true) {
+  if (isKeyValid(s)) {
     String opcidKey=getString(R.string.pref_ocid_key);
     prefs.edit().putString(opcidKey,s).commit();
     CellTracker.OCID_API_KEY=s;
@@ -10,7 +10,7 @@
     Helpers.msgLong(getApplicationContext(),getString(R.string.only_one_key_per_day));
   }
  else   if (s.contains("Bad Request")) {
-    Helpers.msgShort(OpenCellIdActivity.this,"Bad Request 400 or 403 error ");
+    Helpers.msgShort(OpenCellIdActivity.this,"Bad Request 400, 403 or 500 error ");
   }
  else {
     Helpers.msgShort(OpenCellIdActivity.this,"Unknown error please view logcat");
