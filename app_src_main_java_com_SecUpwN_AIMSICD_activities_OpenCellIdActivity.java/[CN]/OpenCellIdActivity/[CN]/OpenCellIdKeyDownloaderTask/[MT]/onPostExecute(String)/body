@@ -6,8 +6,14 @@
     CellTracker.OCID_API_KEY=s;
     Helpers.msgShort(OpenCellIdActivity.this,getString(R.string.ocid_api_success));
   }
+ else   if (s.contains("Error: You can not register new account")) {
+    Helpers.msgLong(getApplicationContext(),getString(R.string.only_one_key_per_day));
+  }
+ else   if (s.contains("Bad Request")) {
+    Helpers.msgShort(OpenCellIdActivity.this,"Bad Request 400 or 403 error ");
+  }
  else {
-    Helpers.msgShort(OpenCellIdActivity.this,getString(R.string.invalid_key_try_later));
+    Helpers.msgShort(OpenCellIdActivity.this,"Unknown error please view logcat");
   }
   pd.dismiss();
   finish();

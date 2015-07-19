@@ -1,0 +1,23 @@
+{
+  HttpGet httpRequest=new HttpGet(getString(R.string.opencellid_api_get_key));
+  HttpClient httpclient=new DefaultHttpClient();
+  HttpResponse response=httpclient.execute(httpRequest);
+  int responseCode=response.getStatusLine().getStatusCode();
+  String htmlResponse=EntityUtils.toString(response.getEntity(),"UTF-8");
+  Log.d("OCID Response Message","Response Html=" + htmlResponse + " Response Code="+ String.valueOf(responseCode));
+  if (responseCode == 200) {
+    Log.d(TAG,mTAG + ": OCID Server Repsonse: " + htmlResponse);
+    return htmlResponse;
+  }
+ else   if (responseCode == 503) {
+    Log.d(TAG,mTAG + ": OCID Reached 24hr API key request limit: " + htmlResponse);
+    return htmlResponse;
+  }
+ else   if (responseCode == 400 || responseCode == 403) {
+    return "Bad Request";
+  }
+ else {
+    Log.d(TAG,mTAG + ": OCID Returned " + responseCode);
+    return null;
+  }
+}
