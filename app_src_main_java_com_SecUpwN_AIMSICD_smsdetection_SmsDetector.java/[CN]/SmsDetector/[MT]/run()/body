@@ -34,17 +34,17 @@
       }
  catch (      IOException e) {
         e.printStackTrace();
-        Log.e(TAG,e.toString());
+        Log.e(TAG,mTAG + ": IOE Stacktrace: " + e.toString());
       }
 catch (      InterruptedException e) {
-        Log.e(TAG,e.toString());
+        Log.e(TAG,mTAG + ": IE Exception: " + e.toString());
         e.printStackTrace();
       }
     }
   }
  catch (  Exception e) {
     e.printStackTrace();
-    Log.e(TAG,e.toString());
+    Log.e(TAG,mTAG + ": Exception: " + e.toString());
   }
  finally {
   }
