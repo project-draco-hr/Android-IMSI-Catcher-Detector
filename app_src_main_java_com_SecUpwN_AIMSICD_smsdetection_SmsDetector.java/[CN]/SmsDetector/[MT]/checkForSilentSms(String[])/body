@@ -4,8 +4,8 @@
       if (progress[x].length() < 250) {
         if (progress[x].contains(SILENT_ONLY_TAGS[arrayindex].split("#")[0])) {
           String logcat_timestamp=MiscUtils.logcatTimeStampParser(progress[x]);
-          Log.i(TAG,"TIME::" + logcat_timestamp);
-          Log.i(TAG,"Detected>>>>" + SILENT_ONLY_TAGS[arrayindex].split("#")[1]);
+          Log.i(TAG,mTAG + " TIME::" + logcat_timestamp);
+          Log.i(TAG,mTAG + " Detected>>>>" + SILENT_ONLY_TAGS[arrayindex].split("#")[1]);
           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].equals("TYPE0")) {
             CapturedSmsData setmsg=new CapturedSmsData();
             setmsg.setSenderNumber("unknown");
@@ -50,6 +50,9 @@
               dbacess.storeCapturedSms(setmsg);
               dbacess.insertEventLog(MiscUtils.getCurrentTimeStamp(),mAimsicdService.getCellTracker().getMonitorCell().getLAC(),mAimsicdService.getCellTracker().getMonitorCell().getCID(),mAimsicdService.getCellTracker().getMonitorCell().getPSC(),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),(int)mAimsicdService.getCell().getAccuracy(),3,"Detected TYPE0 sms");
               MiscUtils.startPopUpInfo(tContext,6);
+            }
+ else {
+              Log.d(TAG,mTAG + "Detected Sms already logged");
             }
           }
  else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("MWI")) {
@@ -108,6 +111,9 @@
               dbacess.insertEventLog(MiscUtils.getCurrentTimeStamp(),mAimsicdService.getCellTracker().getMonitorCell().getLAC(),mAimsicdService.getCellTracker().getMonitorCell().getCID(),mAimsicdService.getCellTracker().getMonitorCell().getPSC(),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),(int)mAimsicdService.getCell().getAccuracy(),3,"Detected MWI sms");
               MiscUtils.startPopUpInfo(tContext,7);
             }
+ else {
+              Log.d(TAG,mTAG + "Detected Sms already logged");
+            }
           }
  else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("WAPPUSH")) {
             CapturedSmsData setmsg=new CapturedSmsData();
@@ -148,6 +154,57 @@
                 dbacess.storeCapturedSms(setmsg);
                 dbacess.insertEventLog(MiscUtils.getCurrentTimeStamp(),mAimsicdService.getCellTracker().getMonitorCell().getLAC(),mAimsicdService.getCellTracker().getMonitorCell().getCID(),mAimsicdService.getCellTracker().getMonitorCell().getPSC(),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),(int)mAimsicdService.getCell().getAccuracy(),3,"Detected WAP PUSH sms");
                 MiscUtils.startPopUpInfo(tContext,8);
+              }
+ else {
+                Log.d(TAG,mTAG + "Detected Sms already logged");
+              }
+            }
+ else             if (progress[x - 1].contains("SMS originating address:")) {
+              Log.i(TAG,"WAPPUSH DETECTED");
+              endindex=x + 3;
+              startindex=x - 3;
+              if (endindex <= progress.length) {
+                while (startindex < endindex) {
+                  if (progress[startindex].contains("SMS originating address:")) {
+                    try {
+                      String number=progress[startindex].substring(progress[startindex].indexOf("+"));
+                      setmsg.setSenderNumber(number);
+                    }
+ catch (                    Exception ee) {
+                      Log.e(TAG,mTAG + ": Error parsing number:\n" + ee.toString());
+                    }
+                  }
+                  if (progress[startindex].contains("SMS SC address:")) {
+                    try {
+                      String number=progress[startindex].substring(progress[startindex].indexOf("+"));
+                      Log.d(TAG,mTAG + " Detected msg smsc:" + number);
+                    }
+ catch (                    Exception ee) {
+                      Log.e(TAG,mTAG + ": Error parsing smsc number:\n" + ee.toString());
+                    }
+                  }
+                  startindex++;
+                }
+              }
+              setmsg.setSmsTimestamp(logcat_timestamp);
+              setmsg.setSmsType("WAPPUSH");
+              setmsg.setCurrent_lac(mAimsicdService.getCellTracker().getMonitorCell().getLAC());
+              setmsg.setCurrent_cid(mAimsicdService.getCellTracker().getMonitorCell().getCID());
+              setmsg.setCurrent_nettype(Device.getNetworkTypeName(mAimsicdService.getCell().getNetType()));
+              int isRoaming=0;
+              if (mAimsicdService.getCellTracker().getDevice().isRoaming() == "true") {
+                isRoaming=1;
+              }
+              setmsg.setCurrent_roam_status(isRoaming);
+              setmsg.setCurrent_gps_lat(mAimsicdService.lastKnownLocation().getLatitudeInDegrees());
+              setmsg.setCurrent_gps_lon(mAimsicdService.lastKnownLocation().getLongitudeInDegrees());
+              if (!dbacess.isTimeStampInDB(logcat_timestamp)) {
+                dbacess.storeCapturedSms(setmsg);
+                dbacess.insertEventLog(MiscUtils.getCurrentTimeStamp(),mAimsicdService.getCellTracker().getMonitorCell().getLAC(),mAimsicdService.getCellTracker().getMonitorCell().getCID(),mAimsicdService.getCellTracker().getMonitorCell().getPSC(),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),(int)mAimsicdService.getCell().getAccuracy(),3,"Detected WAP PUSH sms");
+                MiscUtils.startPopUpInfo(tContext,8);
+              }
+ else {
+                Log.d(TAG,mTAG + "Detected Sms already logged");
               }
             }
           }
