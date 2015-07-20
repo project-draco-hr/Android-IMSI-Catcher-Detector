@@ -2,7 +2,8 @@
   List<Cell> neighboringCells=new ArrayList<>();
   List<NeighboringCellInfo> neighboringCellInfo=tm.getNeighboringCellInfo();
   if (neighboringCellInfo == null)   neighboringCellInfo=new ArrayList<>();
-  if (neighboringCellInfo != null && neighboringCellInfo.size() == 0) {
+  Boolean nclp=tinydb.getBoolean("nc_list_present");
+  if (neighboringCellInfo != null && neighboringCellInfo.size() == 0 && nclp) {
     neighboringCellBlockingQueue=new LinkedBlockingQueue<>(100);
     Log.i(TAG,mTAG + ": neighbouringCellInfo empty - start polling");
     if (Build.VERSION.SDK_INT > 16) {
