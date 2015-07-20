@@ -1,6 +1,6 @@
 {
   if (!isSmsTracking()) {
-    Log.i(TAG,"Sms Detection Thread Started");
+    Log.i(TAG,mTAG + ": Sms Detection Thread Started");
     smsdetector=new SmsDetector(this);
     smsdetector.startSmsDetection();
   }
