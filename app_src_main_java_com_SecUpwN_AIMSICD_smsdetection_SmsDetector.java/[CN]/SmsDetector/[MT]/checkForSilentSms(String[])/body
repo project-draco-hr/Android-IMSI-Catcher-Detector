@@ -52,7 +52,7 @@
               MiscUtils.startPopUpInfo(tContext,6);
             }
  else {
-              Log.d(TAG,mTAG + "Detected Sms already logged");
+              Log.d(TAG,mTAG + " Detected Sms already logged");
             }
           }
  else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("MWI")) {
@@ -112,7 +112,7 @@
               MiscUtils.startPopUpInfo(tContext,7);
             }
  else {
-              Log.d(TAG,mTAG + "Detected Sms already logged");
+              Log.d(TAG,mTAG + " Detected Sms already logged");
             }
           }
  else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("WAPPUSH")) {
@@ -156,7 +156,7 @@
                 MiscUtils.startPopUpInfo(tContext,8);
               }
  else {
-                Log.d(TAG,mTAG + "Detected Sms already logged");
+                Log.d(TAG,mTAG + " Detected Sms already logged");
               }
             }
  else             if (progress[x - 1].contains("SMS originating address:")) {
@@ -204,7 +204,7 @@
                 MiscUtils.startPopUpInfo(tContext,8);
               }
  else {
-                Log.d(TAG,mTAG + "Detected Sms already logged");
+                Log.d(TAG,mTAG + " Detected Sms already logged");
               }
             }
           }
