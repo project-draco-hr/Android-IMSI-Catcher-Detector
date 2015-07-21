@@ -13,7 +13,7 @@
       return true;
     }
  catch (    Exception ee) {
-      Log.i(TAG,mTAG + ": Adding detection string Failed!");
+      Log.i(TAG,mTAG + ": Adding detection string Failed! " + ee.toString());
     }
   }
   return false;

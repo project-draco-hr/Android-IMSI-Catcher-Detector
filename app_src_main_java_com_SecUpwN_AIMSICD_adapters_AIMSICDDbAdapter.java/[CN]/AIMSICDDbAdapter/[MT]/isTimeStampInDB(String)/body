@@ -1,5 +1,5 @@
 {
-  String check4timestamp=String.format("SELECT * FROM SmsData WHERE time = \"%s\"",timestamp);
+  String check4timestamp=String.format("SELECT time FROM SmsData WHERE time = \"%s\"",timestamp);
   Cursor cursor=mDb.rawQuery(check4timestamp,null);
   boolean exists=cursor.getCount() > 0;
   cursor.close();

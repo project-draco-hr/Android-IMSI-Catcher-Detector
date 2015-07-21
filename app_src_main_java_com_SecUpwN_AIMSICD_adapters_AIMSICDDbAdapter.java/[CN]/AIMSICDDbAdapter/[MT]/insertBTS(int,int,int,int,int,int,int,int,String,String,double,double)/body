@@ -18,6 +18,7 @@
     }
  else {
       mDb.update("DBi_bts",btsValues,"CID=?",new String[]{Integer.toString(cid)});
+      Log.i(TAG,mTAG + ": Warning: Physical cell data in DBi_bts has changed! CID=" + cid);
     }
   }
 }
