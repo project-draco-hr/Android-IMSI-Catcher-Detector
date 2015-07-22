@@ -11,5 +11,5 @@
   mLocationTracker=new LocationTracker(this,mLocationListener);
   mRilExecutor=new RilExecutor(this);
   mCellTracker=new CellTracker(this,signalStrengthTracker);
-  Log.i(TAG,"Service launched successfully.");
+  Log.i(TAG,mTAG + ": Service launched successfully.");
 }

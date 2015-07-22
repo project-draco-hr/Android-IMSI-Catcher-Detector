@@ -17,7 +17,7 @@
     return cells;
   }
  catch (  Exception e) {
-    Log.i("AIMSICD","Cell Lookup - " + e.getMessage());
+    Log.i(TAG,mTAG + ": Cell Lookup: " + e.getMessage());
     return null;
   }
 }

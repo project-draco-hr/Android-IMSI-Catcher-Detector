@@ -11,7 +11,7 @@
     values.put("gps_lat",cell.getLat());
     values.put("gps_lon",cell.getLon());
     mDb.insert("DBi_bts",null,values);
-    Log.i(TAG,mTAG + ": DBi_bts inserted");
+    Log.i(TAG,mTAG + ": DBi_bts was populated.");
   }
  else {
     ContentValues values=new ContentValues();
@@ -66,6 +66,6 @@
       dbiMeasure.put("TA",cell.getTimingAdvance());
     }
     mDb.update("DBi_measure",dbiMeasure,"bts_id=?",new String[]{Integer.toString(cell.getCID())});
-    Log.i(mTAG,"DBi_measure updated bts_id=" + cell.getCID());
+    Log.i(TAG,mTAG + ": DBi_measure updated bts_id=" + cell.getCID());
   }
 }

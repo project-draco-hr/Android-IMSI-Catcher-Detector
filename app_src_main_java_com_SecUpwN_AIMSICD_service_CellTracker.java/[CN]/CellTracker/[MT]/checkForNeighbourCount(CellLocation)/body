@@ -10,6 +10,7 @@
   }
  else   if (ncls == 0 && nclp) {
     Log.i(TAG,mTAG + ": ALERT: No neighboring cells detected for CID: " + mDevice.mCell.getCID());
+    dbHelper.insertEventLog(MiscUtils.getCurrentTimeStamp(),mMonitorCell.getLAC(),mMonitorCell.getCID(),mMonitorCell.getPSC(),String.valueOf(mMonitorCell.getLat()),String.valueOf(mMonitorCell.getLon()),(int)mMonitorCell.getAccuracy(),4,"No neighboring cells detected");
   }
  else {
     Log.d(TAG,mTAG + ": NC list not supported by AOS on this device. Nothing to do. CID: " + mDevice.mCell.getCID());

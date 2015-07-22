@@ -4,7 +4,7 @@
     return true;
   }
  catch (  Exception ee) {
-    Log.i("AIMSICDDbAdapter","Delete String failed");
+    Log.i(TAG,mTAG + ": Deleting detection string failed: " + ee);
   }
   return false;
 }

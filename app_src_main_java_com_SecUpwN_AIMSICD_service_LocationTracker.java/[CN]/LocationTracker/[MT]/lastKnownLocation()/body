@@ -22,7 +22,6 @@
           Cell cell=context.getCell();
           if (cell != null) {
             Log.d("location","Looking up MCC " + cell.getMCC());
-            AIMSICDDbAdapter mDbHelper=new AIMSICDDbAdapter(context);
             double[] defLoc=mDbHelper.getDefaultLocation(cell.getMCC());
             loc=GeoLocation.fromDegrees(defLoc[0],defLoc[1]);
           }

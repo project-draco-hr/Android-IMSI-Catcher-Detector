@@ -1,11 +1,11 @@
 {
-  ContentValues detectonStrings=new ContentValues();
-  detectonStrings.put("det_str",det_str);
-  detectonStrings.put("sms_type",sms_type);
+  ContentValues detectionStrings=new ContentValues();
+  detectionStrings.put("det_str",det_str);
+  detectionStrings.put("sms_type",sms_type);
   String query=String.format("SELECT * FROM DetectionStrings WHERE det_str = \"%s\" AND sms_type = \"%s\"",det_str,sms_type);
   Cursor cursor=mDb.rawQuery(query,null);
   if (cursor.getCount() <= 0) {
-    mDb.insert("DetectionStrings",null,detectonStrings);
+    mDb.insert("DetectionStrings",null,detectionStrings);
     cursor.close();
   }
  else {
