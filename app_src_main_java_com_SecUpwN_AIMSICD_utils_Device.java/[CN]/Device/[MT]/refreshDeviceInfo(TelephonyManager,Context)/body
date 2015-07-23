@@ -5,7 +5,7 @@
   mRoaming=tm.isNetworkRoaming();
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
     mNetType=getNetworkTypeName();
-    DeviceApi17.loadCellInfo(tm,this);
+    DeviceApi18.loadCellInfo(tm,this);
   }
   if (mCell == null)   mCell=new Cell();
 switch (mPhoneID) {
@@ -20,7 +20,7 @@ if (mMncmcc != null && mMncmcc.length() >= 5) {
     if (mCell.getMNC() == Integer.MAX_VALUE)     mCell.setMNC(Integer.parseInt(tm.getNetworkOperator().substring(3,5)));
   }
  catch (  Exception e) {
-    Log.i(TAG,mTAG + ":MncMcc parse exception - " + e.getMessage());
+    Log.i(TAG,mTAG + ": MncMcc parse exception: " + e.getMessage());
   }
 }
 mNetName=tm.getNetworkOperatorName();
