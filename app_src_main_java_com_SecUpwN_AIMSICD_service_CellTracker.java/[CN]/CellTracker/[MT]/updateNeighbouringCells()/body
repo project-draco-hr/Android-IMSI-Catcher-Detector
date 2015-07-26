@@ -6,8 +6,8 @@
   if (neighboringCellInfo != null && neighboringCellInfo.size() == 0 && nclp) {
     neighboringCellBlockingQueue=new LinkedBlockingQueue<>(100);
     Log.i(TAG,mTAG + ": neighbouringCellInfo empty - start polling");
-    if (Build.VERSION.SDK_INT > 16) {
-      DeviceApi17.startListening(tm,phoneStatelistener);
+    if (Build.VERSION.SDK_INT > 17) {
+      DeviceApi18.startListening(tm,phoneStatelistener);
     }
  else {
       tm.listen(phoneStatelistener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_CELL_INFO | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE| PhoneStateListener.LISTEN_SERVICE_STATE| PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
