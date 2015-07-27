@@ -6,7 +6,6 @@
   gpsd_lat=(TextView)mRootView.findViewById(R.id.tv_bts_measure_gpsd_lat);
   gpsd_lon=(TextView)mRootView.findViewById(R.id.tv_bts_measure_gpsd_lon);
   gpsd_accu=(TextView)mRootView.findViewById(R.id.tv_bts_measure_gpsd_accu);
-  bb_power=(TextView)mRootView.findViewById(R.id.tv_bts_measure_bb_power);
   rx_signal=(TextView)mRootView.findViewById(R.id.tv_bts_measure_rx_signal);
   rat=(TextView)mRootView.findViewById(R.id.tv_bts_measure_rat);
   isSubmitted=(TextView)mRootView.findViewById(R.id.tv_bts_measure_isSubmitted);
