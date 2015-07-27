@@ -44,7 +44,7 @@ case DEFAULT_MCC_LOCATIONS:
   BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new DefaultLocationCardInflater());
   int count=tableData.getCount();
   while (tableData.moveToNext()) {
-    CardItemData data=new CardItemData("Country: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_COUNTRY)),"MCC: " + String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_MCC))),"Lat: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_LAT)),"Lon: " + tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_LON)),"" + (tableData.getPosition() + 1) + " / "+ count);
+    CardItemData data=new CardItemData(tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_COUNTRY)),String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_MCC))),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_LAT)),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_LON)),(tableData.getPosition() + 1) + " / " + count);
     adapter.addItem(data,false);
   }
   if (!tableData.isClosed()) {
