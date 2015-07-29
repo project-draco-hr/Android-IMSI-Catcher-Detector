@@ -6,6 +6,9 @@
     values.put("LAC",cell.getLAC());
     values.put("CID",cell.getCID());
     values.put("PSC",cell.getPSC());
+    values.put("T3212",0);
+    values.put("A5x",0);
+    values.put("ST_id",0);
     values.put("time_first",MiscUtils.getCurrentTimeStamp());
     values.put("time_last",MiscUtils.getCurrentTimeStamp());
     values.put("gps_lat",cell.getLat());
@@ -39,7 +42,7 @@
     dbiMeasure.put("gpsd_lat",slat);
     dbiMeasure.put("gpsd_lon",slon);
     dbiMeasure.put("gpsd_accu",cell.getAccuracy());
-    dbiMeasure.put("bb_power",String.valueOf(cell.getDBM()));
+    dbiMeasure.put("bb_power","0");
     dbiMeasure.put("tx_power","0");
     dbiMeasure.put("rx_signal",String.valueOf(cell.getDBM()));
     dbiMeasure.put("RAT",String.valueOf(cell.getNetType()));
@@ -60,7 +63,7 @@
       dbiMeasure.put("gpsd_accu",cell.getAccuracy());
     }
     if (cell.getDBM() > 0) {
-      dbiMeasure.put("bb_power",String.valueOf(cell.getDBM()));
+      dbiMeasure.put("rx_signal",String.valueOf(cell.getDBM()));
     }
     if (cell.getTimingAdvance() > 0) {
       dbiMeasure.put("TA",cell.getTimingAdvance());

@@ -8,17 +8,14 @@
   try {
     file.createNewFile();
     CSVWriter csvWrite=new CSVWriter(new FileWriter(file));
-    Log.d(TAG,mTAG + ": table name " + tableName);
+    Log.d(TAG,mTAG + ": DB backup() tableName: " + tableName);
     Cursor c=mDb.rawQuery("SELECT * FROM " + tableName,new String[0]);
     csvWrite.writeNext(c.getColumnNames());
     String[] rowData=new String[c.getColumnCount()];
     int size=c.getColumnCount();
-    AIMSICD.mProgressBar.setProgress(0);
-    AIMSICD.mProgressBar.setMax(size);
     while (c.moveToNext()) {
       for (int i=0; i < size; i++) {
         rowData[i]=c.getString(i);
-        AIMSICD.mProgressBar.setProgress(i);
       }
       csvWrite.writeNext(rowData);
     }
@@ -29,7 +26,6 @@
     Log.e(TAG,mTAG + ": Error exporting table: " + tableName+ " "+ e.toString());
   }
  finally {
-    AIMSICD.mProgressBar.setProgress(0);
   }
   Log.i(TAG,mTAG + ": Database Export complete.");
 }

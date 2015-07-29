@@ -1,5 +1,5 @@
 {
-  String qry=String.format("SELECT * FROM DBe_import WHERE CID = %d",cellID);
+  String qry=String.format("SELECT CID FROM DBe_import WHERE CID = %d",cellID);
   Cursor cursor=mDb.rawQuery(qry,null);
   boolean exists=cursor.getCount() > 0;
   cursor.close();

@@ -44,7 +44,7 @@
       }
     }
  else {
-      Log.e(TAG,mTAG + ": File does NOT exist! ");
+      Log.e(TAG,mTAG + ": opencellid.csv file does not exist!");
     }
     return true;
   }
