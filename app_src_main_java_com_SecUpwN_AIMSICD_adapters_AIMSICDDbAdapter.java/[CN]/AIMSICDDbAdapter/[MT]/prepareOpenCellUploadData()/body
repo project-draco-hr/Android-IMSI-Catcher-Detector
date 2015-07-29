@@ -22,11 +22,8 @@
         int size=c.getCount();
         Log.d(TAG,mTAG + " OCID UPLOAD: row count = " + size);
         int startcount=0;
-        AIMSICD.mProgressBar.setProgress(startcount);
-        AIMSICD.mProgressBar.setMax(size);
         while (c.moveToNext()) {
           csvWrite.writeNext(String.valueOf(c.getInt(c.getColumnIndex("MCC"))),String.valueOf(c.getInt(c.getColumnIndex("MNC"))),String.valueOf(c.getInt(c.getColumnIndex("LAC"))),String.valueOf(c.getInt(c.getColumnIndex("CID"))),c.getString(c.getColumnIndex("gpsd_lon")),c.getString(c.getColumnIndex("gpsd_lat")),c.getString(c.getColumnIndex("rx_signal")),c.getString(c.getColumnIndex("time")),String.valueOf(c.getInt(c.getColumnIndex("gpsd_accu"))));
-          AIMSICD.mProgressBar.setProgress(++startcount);
         }
         csvWrite.close();
         c.close();
@@ -37,10 +34,7 @@
     return false;
   }
  catch (  Exception e) {
-    Log.e(TAG,mTAG + ": Error creating OpenCellID Upload Data: " + e.toString());
+    Log.e(TAG,mTAG + ": prepareOpenCellUploadData(): Error creating OpenCellID Upload Data: " + e.toString());
     return false;
-  }
- finally {
-    AIMSICD.mProgressBar.setProgress(0);
   }
 }
