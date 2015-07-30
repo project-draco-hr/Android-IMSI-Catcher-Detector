@@ -9,4 +9,5 @@
   this.rat=_rat;
   this.isSubmitted=_isSubmitted;
   this.isNeighbour=_isNeighbour;
+  this.mRecordId=_mRecordId;
 }

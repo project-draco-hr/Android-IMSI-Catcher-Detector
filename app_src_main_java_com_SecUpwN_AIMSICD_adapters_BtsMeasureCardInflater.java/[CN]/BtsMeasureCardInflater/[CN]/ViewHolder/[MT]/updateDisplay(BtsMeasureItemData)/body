@@ -9,4 +9,5 @@
   rat.setText(item.getRat());
   isSubmitted.setText(item.getIsSubmitted());
   isNeighbour.setText(item.getIsNeighbour());
+  mRecordId.setText(item.getRecordId());
 }
