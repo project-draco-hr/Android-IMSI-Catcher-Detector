@@ -11,5 +11,5 @@
   TIME_LAST.setText(item.getTime_last());
   LAT.setText(String.valueOf(item.getLat()));
   LON.setText(String.valueOf(item.getLon()));
-  RecordId.setText("fail");
+  RecordId.setText(item.getRecordId());
 }

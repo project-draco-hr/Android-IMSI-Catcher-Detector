@@ -14,4 +14,5 @@
   SAMPLES=samples;
   TIME_FIRST=time_first;
   TIME_LAST=time_last;
+  mRecordId=_mRecordId;
 }
