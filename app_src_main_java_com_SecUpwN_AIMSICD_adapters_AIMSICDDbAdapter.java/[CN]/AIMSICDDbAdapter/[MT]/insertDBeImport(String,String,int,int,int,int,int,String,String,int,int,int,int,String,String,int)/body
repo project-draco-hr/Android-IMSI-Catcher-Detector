@@ -16,7 +16,7 @@
   dbeImport.put("time_first",time_first);
   dbeImport.put("time_last",time_last);
   dbeImport.put("rej_cause",rej_cause);
-  String query=String.format("SELECT * FROM DBe_import WHERE LAC = %d AND CID = %d ",lac,cid);
+  String query=String.format("SELECT LAC,CID FROM DBe_import WHERE LAC = %d AND CID = %d ",lac,cid);
   Cursor cursor=mDb.rawQuery(query,null);
   if (cursor.getCount() <= 0) {
     mDb.insert("DBe_import",null,dbeImport);
