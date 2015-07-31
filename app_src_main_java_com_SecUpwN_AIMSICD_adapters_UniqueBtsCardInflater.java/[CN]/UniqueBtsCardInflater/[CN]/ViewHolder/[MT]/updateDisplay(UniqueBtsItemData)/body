@@ -4,8 +4,12 @@
   MCC.setText(item.getMcc());
   MNC.setText(item.getMnc());
   PSC.setText(item.getPsc());
+  T3212.setText("n/a");
+  A5X.setText("n/a");
+  ST_ID.setText("n/a");
   TIME_FIRST.setText(item.getTime_first());
   TIME_LAST.setText(item.getTime_last());
   LAT.setText(String.valueOf(item.getLat()));
   LON.setText(String.valueOf(item.getLon()));
+  RecordId.setText(item.getRecordId());
 }

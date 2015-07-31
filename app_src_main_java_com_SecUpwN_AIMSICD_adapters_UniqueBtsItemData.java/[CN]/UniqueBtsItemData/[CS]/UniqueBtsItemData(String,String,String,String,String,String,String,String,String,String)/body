@@ -8,4 +8,5 @@
   time_last=itime_last;
   lat=ilat;
   lon=ilon;
+  mRecordId=iRecordId;
 }

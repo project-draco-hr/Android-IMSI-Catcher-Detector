@@ -5,9 +5,9 @@
   this.gpsd_lat=_gpsd_lat;
   this.gpsd_lon=_gpsd_lon;
   this.gpsd_accu=_gpsd_accu;
-  this.bb_power=_bb_power;
   this.rx_signal=_rx_signal;
   this.rat=_rat;
   this.isSubmitted=_isSubmitted;
   this.isNeighbour=_isNeighbour;
+  this.mRecordId=_mRecordId;
 }

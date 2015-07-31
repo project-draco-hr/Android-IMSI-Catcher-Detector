@@ -6,7 +6,7 @@
     btsValues.put("LAC",lac);
     btsValues.put("CID",cid);
     btsValues.put("PSC",psc);
-    btsValues.put("T3212",t3231);
+    btsValues.put("T3212",t3212);
     btsValues.put("A5x",a5x);
     btsValues.put("ST_id",st_id);
     btsValues.put("time_first",time_first);

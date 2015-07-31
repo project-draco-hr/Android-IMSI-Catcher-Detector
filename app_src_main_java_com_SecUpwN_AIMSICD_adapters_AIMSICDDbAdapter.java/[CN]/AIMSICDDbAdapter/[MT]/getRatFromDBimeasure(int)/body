@@ -5,6 +5,11 @@
   if (cursor != null && cursor.moveToNext()) {
     RAT=cursor.getString(cursor.getColumnIndex("RAT"));
   }
-  cursor.close();
+  try {
+    cursor.close();
+  }
+ catch (  Exception ee) {
+    Log.i(TAG,mTAG + ": getRatFromDBimeasure() cursor close failed: " + ee);
+  }
   return RAT;
 }

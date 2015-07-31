@@ -39,7 +39,7 @@
     mSignal="RSSI: " + cell.getRssi();
   }
  else   if (cell.getDBM() != Integer.MAX_VALUE && cell.getDBM() != -1) {
-    mSignal="Dbm: " + cell.getDBM();
+    mSignal="dBm: " + cell.getDBM();
   }
  else {
     mSignal="N/A";

@@ -1,5 +1,5 @@
 {
-  String query=String.format("SELECT * FROM DBi_bts WHERE LAC = %d AND CID = %d",lac,cellID);
+  String query=String.format("SELECT CID,LAC FROM DBi_bts WHERE LAC = %d AND CID = %d",lac,cellID);
   Cursor cursor=mDb.rawQuery(query,null);
   boolean exists=cursor.getCount() > 0;
   cursor.close();

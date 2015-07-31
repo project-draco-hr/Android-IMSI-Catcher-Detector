@@ -1,40 +1,28 @@
 {
-  String query=String.format("SELECT * FROM EventLog WHERE CID = %d AND LAC = %d AND DF_id = %d",cid,lac,DF_id);
-  Cursor cursor=mDb.rawQuery(query,null);
-  boolean EVENT_ALREADY_LOGGED=cursor.getCount() > 0;
-  Log.d(TAG,mTAG + ": EVENT_ALREADY_LOGGED=" + EVENT_ALREADY_LOGGED);
-  boolean insertData=true;
-  cursor.close();
-switch (DF_id) {
-case 1:
-    if (EVENT_ALREADY_LOGGED) {
+  if (cid != -1) {
+    String query=String.format("SELECT * from EventLog WHERE _id=(SELECT max(_id) from EventLog) AND CID=%d AND LAC=%d AND DF_id=%d",cid,lac,DF_id);
+    Cursor cursor=mDb.rawQuery(query,null);
+    boolean insertData=true;
+    if (cursor.getCount() > 0) {
       insertData=false;
     }
-  break;
-case 2:
-if (EVENT_ALREADY_LOGGED) {
-  insertData=false;
-}
-break;
-case 3:
-break;
-case 4:
-break;
-}
-if (insertData) {
-ContentValues eventLog=new ContentValues();
-eventLog.put("time",time);
-eventLog.put("LAC",lac);
-eventLog.put("CID",cid);
-eventLog.put("PSC",psc);
-eventLog.put("gpsd_lat",gpsd_lat);
-eventLog.put("gpsd_lon",gpsd_lon);
-eventLog.put("gpsd_accu",gpsd_accu);
-eventLog.put("DF_id",DF_id);
-eventLog.put("DF_description",DF_description);
-mDb.insert("EventLog",null,eventLog);
-Log.v(TAG,mTAG + ": Insert Detection into EventLog Table: " + cid);
-}
+    cursor.close();
+    if (insertData) {
+      ContentValues eventLog=new ContentValues();
+      eventLog.put("time",time);
+      eventLog.put("LAC",lac);
+      eventLog.put("CID",cid);
+      eventLog.put("PSC",psc);
+      eventLog.put("gpsd_lat",gpsd_lat);
+      eventLog.put("gpsd_lon",gpsd_lon);
+      eventLog.put("gpsd_accu",gpsd_accu);
+      eventLog.put("DF_id",DF_id);
+      eventLog.put("DF_description",DF_description);
+      mDb.insert("EventLog",null,eventLog);
+      Log.i(TAG,mTAG + ":insertEventLog(): Insert detection event into EventLog table with CID=" + cid);
+    }
  else {
-}
+      Log.v(TAG,mTAG + ":insertEventLog(): Skipped inserting duplicate event into EventLog table with CID=" + cid);
+    }
+  }
 }

@@ -5,9 +5,9 @@
   gpsd_lat.setText(item.getGpsd_lat());
   gpsd_lon.setText(item.getGpsd_lon());
   gpsd_accu.setText(item.getGpsd_accu());
-  bb_power.setText(item.getBb_power());
   rx_signal.setText(item.getRx_signal());
   rat.setText(item.getRat());
   isSubmitted.setText(item.getIsSubmitted());
   isNeighbour.setText(item.getIsNeighbour());
+  mRecordId.setText(item.getRecordId());
 }

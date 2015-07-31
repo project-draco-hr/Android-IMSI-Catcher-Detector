@@ -4,8 +4,8 @@ String _time
 String _gpsd_lat
 String _gpsd_lon
 String _gpsd_accu
-String _bb_power
 String _rx_signal
 String _rat
 String _isSubmitted
 String _isNeighbour
+String _mRecordId

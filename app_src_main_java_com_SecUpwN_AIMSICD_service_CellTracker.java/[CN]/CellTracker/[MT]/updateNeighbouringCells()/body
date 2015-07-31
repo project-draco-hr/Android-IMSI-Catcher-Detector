@@ -4,8 +4,8 @@
   if (neighboringCellInfo == null)   neighboringCellInfo=new ArrayList<>();
   Boolean nclp=tinydb.getBoolean("nc_list_present");
   if (neighboringCellInfo != null && neighboringCellInfo.size() == 0 && nclp) {
+    Log.i(TAG,mTAG + ": neighbouringCellInfo is empty: start polling...");
     neighboringCellBlockingQueue=new LinkedBlockingQueue<>(100);
-    Log.i(TAG,mTAG + ": neighbouringCellInfo empty - start polling");
     if (Build.VERSION.SDK_INT > 17) {
       DeviceApi18.startListening(tm,phoneStatelistener);
     }
