@@ -2,6 +2,8 @@
   super.onPostExecute(result);
   AIMSICD.mProgressBar.setProgress(0);
   TinyDB tinydb=TinyDB.getInstance();
+  tm=(TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+  CellLocation cellLocation=tm.getCellLocation();
 switch (mType) {
 case DBE_DOWNLOAD_REQUEST:
     if (result != null && result.equals("Successful")) {
@@ -10,6 +12,7 @@ case DBE_DOWNLOAD_REQUEST:
       }
       mDbAdapter.checkDBe();
       tinydb.putBoolean("ocid_downloaded",true);
+      mAimsicdService.getCellTracker().compareLac(cellLocation);
     }
  else {
       Helpers.msgLong(mAppContext,mAppContext.getString(R.string.error_retrieving_opencellid_data));
