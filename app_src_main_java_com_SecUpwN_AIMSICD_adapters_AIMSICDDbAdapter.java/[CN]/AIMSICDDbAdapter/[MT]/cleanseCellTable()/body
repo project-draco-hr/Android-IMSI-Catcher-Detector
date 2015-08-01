@@ -1,5 +1,5 @@
 {
-  mDb.execSQL("DELETE FROM DBi_bts WHERE _id NOT IN (SELECT MAX(_id) FROM DBi_bts GROUP BY CID)");
+  mDb.execSQL("DELETE FROM DBi_bts WHERE _id NOT IN (SELECT MAX(_id) FROM DBi_bts)");
   String query2=String.format("DELETE FROM DBi_bts WHERE CID = %d OR CID = -1",Integer.MAX_VALUE);
   mDb.execSQL(query2);
 }
