@@ -6,9 +6,13 @@
       CSVReader csvReader=new CSVReader(new FileReader(file));
       List<String[]> csvCellID=new ArrayList<>();
       String next[];
+      AIMSICD.mProgressBar.setProgress(0);
+      AIMSICD.mProgressBar.setMax(4);
+      AIMSICD.mProgressBar.setProgress(1);
       while ((next=csvReader.readNext()) != null) {
         csvCellID.add(next);
       }
+      AIMSICD.mProgressBar.setProgress(2);
       if (!csvCellID.isEmpty()) {
         int lines=csvCellID.size();
         Log.i(TAG,mTAG + ":updateOpenCellID: OCID CSV size (lines): " + lines);
@@ -20,9 +24,10 @@
           }
         }
         lCursor.close();
-        AIMSICD.mProgressBar.setProgress(0);
+        AIMSICD.mProgressBar.setProgress(3);
         AIMSICD.mProgressBar.setMax(lines);
-        for (int i=1; i < lines; i++) {
+        int i;
+        for (i=1; i < lines; i++) {
           AIMSICD.mProgressBar.setProgress(i);
           if (lPresentCellID.get(Integer.parseInt(csvCellID.get(i)[5]),false)) {
             continue;
@@ -39,8 +44,9 @@
  else           if (ichange == 1) {
             ichange=0;
           }
-          insertDBeImport("OCID",radio,Integer.parseInt(mcc),Integer.parseInt(mnc),Integer.parseInt(lac),Integer.parseInt(cellid),iPsc,lat,lon,ichange,Integer.parseInt(avg_sig),Integer.parseInt(range),Integer.parseInt(samples),"no_time","no_time",0);
+          insertDBeImport("OCID",radio,Integer.parseInt(mcc),Integer.parseInt(mnc),Integer.parseInt(lac),Integer.parseInt(cellid),iPsc,lat,lon,ichange,Integer.parseInt(avg_sig),Integer.parseInt(range),Integer.parseInt(samples),"n/a","n/a",0);
         }
+        Log.d(TAG,mTAG + ":populateDBeImport(): " + i+ " cells inserted.");
       }
     }
  else {
