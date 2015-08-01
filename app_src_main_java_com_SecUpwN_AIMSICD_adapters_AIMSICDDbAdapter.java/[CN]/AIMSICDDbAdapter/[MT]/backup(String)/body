@@ -25,7 +25,5 @@
  catch (  Exception e) {
     Log.e(TAG,mTAG + ": Error exporting table: " + tableName+ " "+ e.toString());
   }
- finally {
-  }
-  Log.i(TAG,mTAG + ": Database Export complete.");
+  Log.i(TAG,mTAG + ":backup(): Successfully exported DB table to: " + file);
 }
