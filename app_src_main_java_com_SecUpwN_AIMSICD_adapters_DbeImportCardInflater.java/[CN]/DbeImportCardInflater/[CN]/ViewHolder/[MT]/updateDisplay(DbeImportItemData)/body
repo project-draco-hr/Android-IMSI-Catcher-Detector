@@ -14,5 +14,6 @@
   SAMPLES.setText(item.getSAMPLES());
   TIME_FIRST.setText(item.getTIME_FIRST());
   TIME_LAST.setText(item.getTIME_LAST());
+  REJ_CAUSE.setText(item.getREJ_CAUSE());
   mRecordId.setText(item.getRecordId());
 }

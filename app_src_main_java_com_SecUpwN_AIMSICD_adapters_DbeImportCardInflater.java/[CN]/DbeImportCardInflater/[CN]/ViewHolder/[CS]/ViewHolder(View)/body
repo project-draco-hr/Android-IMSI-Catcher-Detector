@@ -15,6 +15,7 @@
   SAMPLES=(TextView)mRootView.findViewById(R.id.nSAMPLES);
   TIME_FIRST=(TextView)mRootView.findViewById(R.id.nTIME_FIRST);
   TIME_LAST=(TextView)mRootView.findViewById(R.id.nTIME_LAST);
+  REJ_CAUSE=(TextView)mRootView.findViewById(R.id.nREJ_CAUSE);
   mRecordId=(TextView)mRootView.findViewById(R.id.record_id);
   rootView.setTag(this);
 }

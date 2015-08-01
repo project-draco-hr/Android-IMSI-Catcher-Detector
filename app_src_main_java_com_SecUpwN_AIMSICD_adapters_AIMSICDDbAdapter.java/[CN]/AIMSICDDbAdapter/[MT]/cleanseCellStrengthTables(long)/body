@@ -1,5 +1,5 @@
 {
+  Log.d(TAG,mTAG + ": cleanseCellStrengthTables(): Cleaning DBi_measure WHERE time < " + maxTime);
   String query=String.format("DELETE FROM DBi_measure WHERE time < %d",maxTime);
-  Log.d(TAG,mTAG + ": Cleaning " + DBTableColumnIds.DBI_MEASURE_TABLE_NAME+ " WHERE time < "+ maxTime);
   mDb.execSQL(query);
 }
