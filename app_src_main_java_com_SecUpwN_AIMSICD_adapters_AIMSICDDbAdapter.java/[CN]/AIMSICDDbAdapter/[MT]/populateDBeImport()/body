@@ -28,7 +28,6 @@
         AIMSICD.mProgressBar.setMax(lines);
         int i;
         for (i=1; i < lines; i++) {
-          AIMSICD.mProgressBar.setProgress(i);
           if (lPresentCellID.get(Integer.parseInt(csvCellID.get(i)[5]),false)) {
             continue;
           }
@@ -46,6 +45,7 @@
           }
           insertDBeImport("OCID",radio,Integer.parseInt(mcc),Integer.parseInt(mnc),Integer.parseInt(lac),Integer.parseInt(cellid),iPsc,lat,lon,ichange,Integer.parseInt(avg_sig),Integer.parseInt(range),Integer.parseInt(samples),"n/a","n/a",0);
         }
+        AIMSICD.mProgressBar.setProgress(4);
         Log.d(TAG,mTAG + ":populateDBeImport(): " + i+ " cells inserted.");
       }
     }
@@ -59,6 +59,12 @@
     return false;
   }
  finally {
+    try {
+      Thread.sleep(1000);
+    }
+ catch (    InterruptedException ex) {
+      Thread.currentThread().interrupt();
+    }
     AIMSICD.mProgressBar.setProgress(0);
   }
 }

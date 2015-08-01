@@ -10,5 +10,5 @@
  catch (  Exception e) {
     Log.e(TAG,mTAG + ":dumpDB() Failed to export DB dump file: " + e.toString());
   }
-  Log.i(TAG,mTAG + ":dumpDB() Database dumped to: " + file);
+  Log.i(TAG,mTAG + ":dumpDB() Dumped internal database to: " + aimdir+ file);
 }
