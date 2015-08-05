@@ -48,7 +48,7 @@
             setmsg.setCurrent_gps_lon(mAimsicdService.lastKnownLocation().getLongitudeInDegrees());
             if (!dbacess.isTimeStampInDB(logcat_timestamp)) {
               dbacess.storeCapturedSms(setmsg);
-              dbacess.insertEventLog(MiscUtils.getCurrentTimeStamp(),mAimsicdService.getCellTracker().getMonitorCell().getLAC(),mAimsicdService.getCellTracker().getMonitorCell().getCID(),mAimsicdService.getCellTracker().getMonitorCell().getPSC(),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),(int)mAimsicdService.getCell().getAccuracy(),3,"Detected TYPE0 sms");
+              dbacess.toEventLog(3,"Detected Type-0 SMS");
               MiscUtils.startPopUpInfo(tContext,6);
             }
  else {
@@ -108,7 +108,7 @@
             setmsg.setCurrent_gps_lon(mAimsicdService.lastKnownLocation().getLongitudeInDegrees());
             if (!dbacess.isTimeStampInDB(logcat_timestamp)) {
               dbacess.storeCapturedSms(setmsg);
-              dbacess.insertEventLog(MiscUtils.getCurrentTimeStamp(),mAimsicdService.getCellTracker().getMonitorCell().getLAC(),mAimsicdService.getCellTracker().getMonitorCell().getCID(),mAimsicdService.getCellTracker().getMonitorCell().getPSC(),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),(int)mAimsicdService.getCell().getAccuracy(),3,"Detected MWI sms");
+              dbacess.toEventLog(4,"Detected MWI SMS");
               MiscUtils.startPopUpInfo(tContext,7);
             }
  else {
@@ -152,7 +152,7 @@
               setmsg.setCurrent_gps_lon(mAimsicdService.lastKnownLocation().getLongitudeInDegrees());
               if (!dbacess.isTimeStampInDB(logcat_timestamp)) {
                 dbacess.storeCapturedSms(setmsg);
-                dbacess.insertEventLog(MiscUtils.getCurrentTimeStamp(),mAimsicdService.getCellTracker().getMonitorCell().getLAC(),mAimsicdService.getCellTracker().getMonitorCell().getCID(),mAimsicdService.getCellTracker().getMonitorCell().getPSC(),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),(int)mAimsicdService.getCell().getAccuracy(),3,"Detected WAP PUSH sms");
+                dbacess.toEventLog(5,"Detected WAP PUSH SMS");
                 MiscUtils.startPopUpInfo(tContext,8);
               }
  else {
@@ -200,7 +200,7 @@
               setmsg.setCurrent_gps_lon(mAimsicdService.lastKnownLocation().getLongitudeInDegrees());
               if (!dbacess.isTimeStampInDB(logcat_timestamp)) {
                 dbacess.storeCapturedSms(setmsg);
-                dbacess.insertEventLog(MiscUtils.getCurrentTimeStamp(),mAimsicdService.getCellTracker().getMonitorCell().getLAC(),mAimsicdService.getCellTracker().getMonitorCell().getCID(),mAimsicdService.getCellTracker().getMonitorCell().getPSC(),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),String.valueOf(mAimsicdService.lastKnownLocation().getLatitudeInDegrees()),(int)mAimsicdService.getCell().getAccuracy(),3,"Detected WAP PUSH sms");
+                dbacess.toEventLog(6,"Detected WAP PUSH (2) SMS");
                 MiscUtils.startPopUpInfo(tContext,8);
               }
  else {

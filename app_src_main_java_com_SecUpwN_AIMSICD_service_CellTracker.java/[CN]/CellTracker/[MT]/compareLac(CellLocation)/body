@@ -10,7 +10,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
     boolean lacOK=dbHelper.checkLAC(mMonitorCell);
     if (!lacOK) {
       mChangedLAC=true;
-      dbHelper.insertEventLog(MiscUtils.getCurrentTimeStamp(),mMonitorCell.getLAC(),mMonitorCell.getCID(),mMonitorCell.getPSC(),String.valueOf(mMonitorCell.getLat()),String.valueOf(mMonitorCell.getLon()),(int)mMonitorCell.getAccuracy(),1,"Changing LAC");
+      dbHelper.toEventLog(1,"Changing LAC");
       Vibrator v=(Vibrator)this.context.getSystemService(Context.VIBRATOR_SERVICE);
       v.vibrate(100);
       setNotification();
@@ -41,7 +41,7 @@ mMonitorCell.setCID(cdmaCellLocation.getBaseStationId());
 boolean lacOK=dbHelper.checkLAC(mMonitorCell);
 if (!lacOK) {
 mChangedLAC=true;
-dbHelper.insertEventLog(MiscUtils.getCurrentTimeStamp(),mMonitorCell.getLAC(),mMonitorCell.getCID(),mMonitorCell.getPSC(),String.valueOf(mMonitorCell.getLat()),String.valueOf(mMonitorCell.getLon()),(int)mMonitorCell.getAccuracy(),1,"Changing LAC");
+dbHelper.toEventLog(1,"Changing LAC");
 setNotification();
 }
  else {

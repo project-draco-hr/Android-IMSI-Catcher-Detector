@@ -14,7 +14,7 @@
     Log.i(TAG,mTAG + ": ALERT: No neighboring cells detected for CID: " + mDevice.mCell.getCID());
     Vibrator v=(Vibrator)this.context.getSystemService(Context.VIBRATOR_SERVICE);
     v.vibrate(100);
-    dbHelper.insertEventLog(MiscUtils.getCurrentTimeStamp(),mMonitorCell.getLAC(),mMonitorCell.getCID(),mMonitorCell.getPSC(),String.valueOf(mMonitorCell.getLat()),String.valueOf(mMonitorCell.getLon()),(int)mMonitorCell.getAccuracy(),4,"No neighboring cells detected");
+    dbHelper.toEventLog(4,"No neighboring cells detected");
   }
  else {
     Log.d(TAG,mTAG + ": NC list not supported by AOS on this device. Nothing to do.");
