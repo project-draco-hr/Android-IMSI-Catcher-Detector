@@ -13,4 +13,5 @@ String avg_signal
 String samples
 String time_first
 String time_last
+String rej_cause
 String _mRecordId
