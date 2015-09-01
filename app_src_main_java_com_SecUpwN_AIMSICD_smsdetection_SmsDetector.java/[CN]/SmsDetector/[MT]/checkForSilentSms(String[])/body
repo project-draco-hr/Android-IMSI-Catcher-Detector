@@ -204,7 +204,7 @@
                 MiscUtils.startPopUpInfo(tContext,8);
               }
  else {
-                Log.d(TAG,mTAG + " Detected Sms already logged");
+                Log.d(TAG,mTAG + " Detected SMS already logged");
               }
             }
           }
