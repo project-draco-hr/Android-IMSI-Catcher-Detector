@@ -1,0 +1,24 @@
+{
+  String orgText=getText().toString();
+  if (orgText.equals(text)) {
+    setBackgroundColor(0x00000000);
+  }
+ else {
+    final int currentColor=getCurrentTextColor();
+    ViewTransitionBuilder.transit(this).addTransitionHandler(new ScaledTransitionHandler(){
+      ArgbEvaluator argbEvaluator=new ArgbEvaluator();
+      @Override protected void onUpdateScaledProgress(      TransitionController transitionController,      View view,      float modifiedProgress){
+        setTextColor((Integer)argbEvaluator.evaluate(modifiedProgress,currentColor,getResources().getColor(R.color.red_text)));
+      }
+    }
+).range(0f,0.2f).buildAnimationFor(animationManager);
+    ViewTransitionBuilder.transit(this).addTransitionHandler(new ScaledTransitionHandler(){
+      ArgbEvaluator argbEvaluator=new ArgbEvaluator();
+      @Override protected void onUpdateScaledProgress(      TransitionController transitionController,      View view,      float modifiedProgress){
+        setTextColor((Integer)argbEvaluator.evaluate(modifiedProgress,getResources().getColor(R.color.red_text),getResources().getColor(R.color.medium_blue)));
+      }
+    }
+).range(0.2f,1f).buildAnimationFor(animationManager);
+  }
+  setText(text);
+}
