@@ -5,6 +5,7 @@
     mOutputStream.flush();
   }
  catch (  IOException e) {
+    Log.e(TAG,"moutputstream didnt close",e);
   }
   mReadProc.destroy();
   mWriteProc.destroy();
