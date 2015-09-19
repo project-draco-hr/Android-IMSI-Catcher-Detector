@@ -1,11 +1,11 @@
 {
   int token;
   if (mMessages.size() > MAX_MESSAGES) {
-    Log.e(TAG,mTAG + ": message queue is full");
+    Log.e(TAG,"Message queue is full");
     return;
   }
   if (mOutputStream == null) {
-    Log.e(TAG,mTAG + ": Local write() error: not connected");
+    Log.e(TAG,"Local write() error: not connected");
     return;
   }
   do {
@@ -14,7 +14,7 @@
  while (mMessages.containsKey(token));
   byte[] req=marshallRequest(token,strings);
   if (DBG) {
-    Log.v(TAG,mTAG + String.format(": invokeOemRilRequestStrings() token: 0x%X, header: %s, req: %s ",token,HexDump.toHexString(getHeader(req)),HexDump.toHexString(req)));
+    Log.v(TAG,String.format("InvokeOemRilRequestStrings() token: 0x%X, header: %s, req: %s ",token,HexDump.toHexString(getHeader(req)),HexDump.toHexString(req)));
   }
   mOutputStream.write(getHeader(req));
   mOutputStream.write(req);

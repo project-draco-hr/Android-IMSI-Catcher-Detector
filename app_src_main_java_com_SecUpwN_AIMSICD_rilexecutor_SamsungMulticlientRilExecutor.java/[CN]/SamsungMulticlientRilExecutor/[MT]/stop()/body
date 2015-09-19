@@ -1,6 +1,6 @@
 {
   if (mThread == null) {
-    Log.e(TAG,mTAG + ": OEM raw request executor thread is not running");
+    Log.e(TAG,"OEM raw request executor thread is not running");
     return;
   }
   mThread.cancel();
