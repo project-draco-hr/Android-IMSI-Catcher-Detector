@@ -1,3 +1,0 @@
-{
-  return mDb.rawQuery("SELECT bts_id,rx_signal,time FROM DBi_measure ORDER BY time DESC",null);
-}

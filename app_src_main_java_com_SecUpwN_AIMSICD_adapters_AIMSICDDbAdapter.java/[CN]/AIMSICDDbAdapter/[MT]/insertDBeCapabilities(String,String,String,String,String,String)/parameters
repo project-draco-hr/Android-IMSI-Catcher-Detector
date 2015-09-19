@@ -2,5 +2,5 @@ String mcc
 String mnc
 String lac
 String op_name
-String band_plan
+String bandPlan
 String __EXPAND__

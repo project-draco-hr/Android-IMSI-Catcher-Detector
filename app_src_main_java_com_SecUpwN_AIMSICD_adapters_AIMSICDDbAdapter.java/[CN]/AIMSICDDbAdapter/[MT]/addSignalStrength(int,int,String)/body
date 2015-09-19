@@ -1,7 +1,0 @@
-{
-  ContentValues row=new ContentValues();
-  row.put("bts_id",cellID);
-  row.put("rx_signal",signal);
-  row.put("time",timestamp);
-  mDb.insert("DBi_measure",null,row);
-}
