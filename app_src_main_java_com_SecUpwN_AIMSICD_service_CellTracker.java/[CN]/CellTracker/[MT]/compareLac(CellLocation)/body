@@ -21,7 +21,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
     if (tinydb.getBoolean("ocid_downloaded")) {
       if (!dbHelper.openCellExists(mMonitorCell.getCID())) {
         dbHelper.toEventLog(2,"CID not in DBe_import");
-        Log.i(TAG,mTAG + ": ALERT: Connected to unknown CID not in DBe_import: " + mMonitorCell.getCID());
+        Log.i(TAG,"ALERT: Connected to unknown CID not in DBe_import: " + mMonitorCell.getCID());
         Vibrator v=(Vibrator)this.context.getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(100);
         mCellIdNotInOpenDb=true;
