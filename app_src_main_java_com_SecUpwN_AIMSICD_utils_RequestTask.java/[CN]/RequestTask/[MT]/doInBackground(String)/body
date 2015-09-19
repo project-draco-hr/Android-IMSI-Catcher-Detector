@@ -45,19 +45,19 @@ case DBE_UPLOAD_REQUEST:
       }
     }
  catch (    UnsupportedEncodingException e) {
-      Log.e(TAG,"Upload OpenCellID data Exception ",e);
+      Log.e(TAG,"Upload OpenCellID data Exception",e);
     }
 catch (    FileNotFoundException e) {
-      Log.e(TAG,"Upload OpenCellID data Exception ",e);
+      Log.e(TAG,"Upload OpenCellID data Exception",e);
     }
 catch (    ClientProtocolException e) {
-      Log.e(TAG,"Upload OpenCellID data Exception ",e);
+      Log.e(TAG,"Upload OpenCellID data Exception",e);
     }
 catch (    IOException e) {
-      Log.e(TAG,"Upload OpenCellID data Exception ",e);
+      Log.e(TAG,"Upload OpenCellID data Exception",e);
     }
 catch (    Exception e) {
-      Log.e(TAG,"Upload OpenCellID data Exception ",e);
+      Log.e(TAG,"Upload OpenCellID data Exception",e);
     }
 case DBE_DOWNLOAD_REQUEST:
   mTimeOut=REQUEST_TIMEOUT_MENU;
