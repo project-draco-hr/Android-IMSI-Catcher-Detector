@@ -1,9 +1,0 @@
-{
-  Bitmap theGottenBitmap=null;
-  try {
-    theGottenBitmap=BitmapFactory.decodeFile(path);
-  }
- catch (  Exception e) {
-  }
-  return theGottenBitmap;
-}

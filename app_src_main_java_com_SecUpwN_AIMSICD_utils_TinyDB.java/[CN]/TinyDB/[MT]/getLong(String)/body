@@ -1,3 +1,0 @@
-{
-  return preferences.getLong(key,0l);
-}

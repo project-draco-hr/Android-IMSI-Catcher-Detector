@@ -1,3 +1,0 @@
-{
-  putString(key,String.valueOf(value));
-}

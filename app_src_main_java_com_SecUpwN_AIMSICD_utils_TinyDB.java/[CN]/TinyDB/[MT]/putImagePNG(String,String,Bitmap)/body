@@ -1,7 +1,0 @@
-{
-  this.DEFAULT_APP_IMAGEDATA_DIRECTORY=theFolder;
-  String mFullPath=setupFolderPath(theImageName);
-  saveBitmapPNG(mFullPath,theBitmap);
-  lastImagePath=mFullPath;
-  return mFullPath;
-}

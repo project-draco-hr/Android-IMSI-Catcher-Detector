@@ -1,3 +1,0 @@
-{
-  return preferences.getInt(key,0);
-}

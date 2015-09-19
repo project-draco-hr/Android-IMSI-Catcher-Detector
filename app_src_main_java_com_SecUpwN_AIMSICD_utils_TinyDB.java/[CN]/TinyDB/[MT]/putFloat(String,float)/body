@@ -1,5 +1,0 @@
-{
-  SharedPreferences.Editor editor=preferences.edit();
-  editor.putFloat(key,value);
-  editor.apply();
-}
