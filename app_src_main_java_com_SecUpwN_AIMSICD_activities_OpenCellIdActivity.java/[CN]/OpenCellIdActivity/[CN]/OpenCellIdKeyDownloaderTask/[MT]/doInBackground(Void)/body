@@ -2,9 +2,8 @@
   try {
     return requestNewOCIDKey();
   }
- catch (  final Exception e) {
-    Log.e(TAG,mTAG + ": " + e.getMessage());
-    e.printStackTrace();
+ catch (  final IOException e) {
+    Log.w(TAG,"Error getting new OCID-API",e);
     runOnUiThread(new Runnable(){
       @Override public void run(){
         pd.dismiss();
