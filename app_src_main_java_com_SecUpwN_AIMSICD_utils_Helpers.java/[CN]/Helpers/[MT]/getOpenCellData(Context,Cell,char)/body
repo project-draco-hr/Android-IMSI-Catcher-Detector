@@ -3,7 +3,7 @@
     if (!"NA".equals(CellTracker.OCID_API_KEY)) {
       double earthRadius=6371.01;
       int radius=2;
-      if (cell.getLat() != 0.0 && cell.getLon() != 0.0) {
+      if (Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0) {
         GeoLocation currentLoc=GeoLocation.fromDegrees(cell.getLat(),cell.getLon());
         GeoLocation[] boundingCoords=currentLoc.boundingCoordinates(radius,earthRadius);
         String boundParameter;
