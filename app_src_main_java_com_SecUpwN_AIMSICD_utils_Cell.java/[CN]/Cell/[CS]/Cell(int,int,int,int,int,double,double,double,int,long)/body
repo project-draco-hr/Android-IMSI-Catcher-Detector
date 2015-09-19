@@ -4,9 +4,9 @@
   this.mcc=mcc;
   this.mnc=mnc;
   this.dbm=dbm;
-  rssi=Integer.MAX_VALUE;
-  timingAdvance=Integer.MAX_VALUE;
-  sid=Integer.MAX_VALUE;
+  this.rssi=Integer.MAX_VALUE;
+  this.timingAdvance=Integer.MAX_VALUE;
+  this.sid=Integer.MAX_VALUE;
   this.accuracy=accuracy;
   this.speed=speed;
   this.bearing=bearing;

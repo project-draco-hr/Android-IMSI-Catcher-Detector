@@ -20,7 +20,7 @@
       final double dlng=Double.parseDouble(c.getString(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_GPS_LON)));
       final GeoPoint location=new GeoPoint(dlat,dlng);
       final int samples=c.getInt(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_SAMPLES));
-      CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,"Cell ID: " + cellID,"",location,new MarkerData("" + cellID,"" + location.getLatitude(),"" + location.getLongitude(),"" + lac,"" + mcc,"" + mnc,"" + samples,false));
+      CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,"Cell ID: " + cellID,"",location,new MarkerData(String.valueOf(cellID),String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()),String.valueOf(lac),String.valueOf(mcc),String.valueOf(mnc),String.valueOf(samples),false));
       ovm.setIcon(cellTowerMarkerIcon);
       items.add(ovm);
     }
