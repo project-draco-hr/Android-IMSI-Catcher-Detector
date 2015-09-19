@@ -7,10 +7,10 @@
       float y=event.values[1];
       float z=event.values[2];
       if (!mInitialized) {
+        mInitialized=true;
         mLastX=x;
         mLastY=y;
         mLastZ=z;
-        mInitialized=true;
       }
  else {
         float deltaX=Math.abs(mLastX - x);
@@ -25,7 +25,10 @@
         if (deltaX > 0 || deltaY > 0 || deltaZ > 0) {
           stop();
           lastMovementTime=System.currentTimeMillis();
-          if (onMovement != null)           onMovement.run();
+          if (onMovement != null) {
+            Thread runThread=new Thread(onMovement);
+            runThread.start();
+          }
         }
       }
     }
