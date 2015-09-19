@@ -4,5 +4,5 @@
     tContext.unbindService(mConnection);
     mBound=false;
   }
-  Log.i(TAG,mTAG + ": SMS detection stopped");
+  Log.i(TAG,"SMS detection stopped");
 }
