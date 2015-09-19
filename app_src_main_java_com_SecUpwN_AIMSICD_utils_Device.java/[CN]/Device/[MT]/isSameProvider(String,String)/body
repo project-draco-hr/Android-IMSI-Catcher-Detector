@@ -1,6 +1,0 @@
-{
-  if (provider1 == null) {
-    return provider2 == null;
-  }
-  return provider1.equals(provider2);
-}

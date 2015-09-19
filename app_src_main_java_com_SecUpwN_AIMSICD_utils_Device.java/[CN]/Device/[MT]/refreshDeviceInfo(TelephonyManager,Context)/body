@@ -20,7 +20,7 @@ if (mMncmcc != null && mMncmcc.length() >= 5) {
     if (mCell.getMNC() == Integer.MAX_VALUE)     mCell.setMNC(Integer.parseInt(tm.getNetworkOperator().substring(3,5)));
   }
  catch (  Exception e) {
-    Log.i(TAG,mTAG + ": MncMcc parse exception: " + e.getMessage());
+    Log.i(TAG,"MncMcc parse exception: ",e);
   }
 }
 mNetName=tm.getNetworkOperatorName();
@@ -49,7 +49,7 @@ if (mCell.getMCC() == Integer.MAX_VALUE) mCell.setMCC(Integer.valueOf(homeOperat
 if (mCell.getMNC() == Integer.MAX_VALUE) mCell.setMNC(Integer.valueOf(homeOperator.substring(3,5)));
 }
  catch (Exception e) {
-Log.i(TAG,mTAG + ":homeOperator parse exception - " + e.getMessage());
+Log.i(TAG,"HomeOperator parse exception - " + e.getMessage(),e);
 }
 }
 }
@@ -59,13 +59,9 @@ break;
 int simState=tm.getSimState();
 switch (simState) {
 case (TelephonyManager.SIM_STATE_ABSENT):
-break;
 case (TelephonyManager.SIM_STATE_NETWORK_LOCKED):
-break;
 case (TelephonyManager.SIM_STATE_PIN_REQUIRED):
-break;
 case (TelephonyManager.SIM_STATE_PUK_REQUIRED):
-break;
 case (TelephonyManager.SIM_STATE_UNKNOWN):
 break;
 case (TelephonyManager.SIM_STATE_READY):
