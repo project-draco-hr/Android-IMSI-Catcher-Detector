@@ -9,5 +9,6 @@
     log.append(line);
     log.append("\n");
   }
+  bufferedReader.close();
   return log.toString();
 }

@@ -100,6 +100,7 @@ if (urlConnection.getResponseCode() != 200) {
     progress+=count;
     publishProgress(progress,total);
   }
+  input.close();
   output.flush();
   output.close();
 }
