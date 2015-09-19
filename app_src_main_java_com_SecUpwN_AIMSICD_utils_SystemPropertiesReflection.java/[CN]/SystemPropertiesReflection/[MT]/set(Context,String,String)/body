@@ -12,9 +12,11 @@
     params[1]=val;
     set.invoke(SystemProperties,params);
   }
- catch (  IllegalArgumentException iAE) {
-    throw iAE;
+ catch (  IllegalArgumentException iae) {
+    Log.e(TAG,iae.getMessage(),iae);
+    throw iae;
   }
 catch (  Exception ignored) {
+    Log.d(TAG,ignored.getMessage(),ignored);
   }
 }

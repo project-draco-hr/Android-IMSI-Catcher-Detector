@@ -1,5 +1,5 @@
 {
-  String ret=def;
+  String ret;
   try {
     ClassLoader cl=context.getClassLoader();
     Class<?> SystemProperties=cl.loadClass("android.os.SystemProperties");
@@ -12,10 +12,12 @@
     params[1]=def;
     ret=(String)get.invoke(SystemProperties,params);
   }
- catch (  IllegalArgumentException iAE) {
-    throw iAE;
+ catch (  IllegalArgumentException iae) {
+    Log.e(TAG,iae.getMessage(),iae);
+    throw iae;
   }
 catch (  Exception e) {
+    Log.e(TAG,e.getMessage(),e);
     ret=def;
   }
   return ret;
