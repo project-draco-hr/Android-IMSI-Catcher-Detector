@@ -1,3 +1,0 @@
-{
-  return CMDProcessor.runSuCommand("setprop " + prop + " "+ value).getStdout();
-}

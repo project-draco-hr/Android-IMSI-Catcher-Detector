@@ -4,7 +4,7 @@
     result=SystemPropertiesReflection.get(context,prop);
   }
  catch (  IllegalArgumentException iae) {
-    Log.e(TAG,mTAG + ": Failed to get system property: " + prop);
+    Log.e(TAG,"Failed to get system property: " + prop,iae);
   }
   return result == null ? def : result;
 }
