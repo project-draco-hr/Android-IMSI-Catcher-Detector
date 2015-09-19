@@ -4,10 +4,11 @@
     checkDB=SQLiteDatabase.openDatabase(DB_LOCATION,null,SQLiteDatabase.OPEN_READONLY);
   }
  catch (  SQLiteException e) {
-    Log.e(TAG,mTAG + ": database not yet created: " + e.toString());
+    Log.e(TAG,"database not yet created",e);
   }
   if (checkDB != null) {
     checkDB.close();
+    return true;
   }
-  return checkDB != null;
+  return false;
 }

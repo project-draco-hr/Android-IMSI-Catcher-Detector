@@ -1,4 +1,3 @@
 {
   super.onPreExecute();
-  Log.d(TAG,mTAG + ":onPreExecute Started");
 }
