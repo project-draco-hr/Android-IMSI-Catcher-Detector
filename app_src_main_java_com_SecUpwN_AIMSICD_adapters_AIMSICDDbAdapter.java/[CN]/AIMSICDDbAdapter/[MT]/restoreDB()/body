@@ -47,7 +47,7 @@ try {
 insertBTS(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString(),records.get(i)[10].toString(),Double.parseDouble(records.get(i)[11]),Double.parseDouble(records.get(i)[12]));
 }
  catch (Exception ee) {
-Log.e(TAG,"RestoreDB: Error in insertBTS()");
+Log.e(TAG,"RestoreDB: Error in insertBTS()",ee);
 }
 break;
 case "DBi_measure":
