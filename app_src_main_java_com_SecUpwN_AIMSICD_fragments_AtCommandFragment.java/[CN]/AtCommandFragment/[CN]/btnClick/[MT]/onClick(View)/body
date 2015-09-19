@@ -1,7 +1,7 @@
 {
   if (mAtCommand.getText() != null) {
     String command=mAtCommand.getText().toString();
-    Log.i("AIMSICD","AT Command Detected: " + command);
+    Log.i(TAG,"AT Command Detected: " + command);
     executeAT();
   }
 }

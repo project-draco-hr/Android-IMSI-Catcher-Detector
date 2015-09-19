@@ -1,8 +1,8 @@
 {
   Editable cmd=mAtCommand.getText();
   if (cmd != null && cmd.length() != 0) {
-    openSerialDevice();
-    if (mCommandTerminal != null) {
+    Log.d(TAG,"ExecuteAT: attempting to send: " + cmd.toString());
+    if (getSerialDevice() != null) {
       mCommandTerminal.send(cmd.toString(),new Handler(Looper.getMainLooper()){
         @Override public void handleMessage(        Message message){
           if (message.obj instanceof List) {
