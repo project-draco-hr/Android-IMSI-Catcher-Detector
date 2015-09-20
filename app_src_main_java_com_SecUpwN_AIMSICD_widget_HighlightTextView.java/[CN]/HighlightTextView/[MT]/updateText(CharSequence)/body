@@ -1,0 +1,5 @@
+{
+  AnimationManager animationManager=new AnimationManager();
+  updateText(text,animationManager);
+  animationManager.startAnimation(DURATION);
+}

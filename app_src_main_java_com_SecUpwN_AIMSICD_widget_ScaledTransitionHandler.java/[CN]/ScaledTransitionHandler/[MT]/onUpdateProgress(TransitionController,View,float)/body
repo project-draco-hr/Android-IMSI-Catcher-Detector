@@ -1,0 +1,21 @@
+{
+  final float start=controller.getStart();
+  final float end=controller.getEnd();
+  if (progress < start) {
+    if (updateOnceOutsideRange && updateMinProgress) {
+      onUpdateScaledProgress(controller,target,0);
+    }
+    updateMinProgress=false;
+    return;
+  }
+  updateMinProgress=true;
+  if (progress > end) {
+    if (updateOnceOutsideRange && updateMaxProgress) {
+      onUpdateScaledProgress(controller,target,1);
+    }
+    updateMaxProgress=false;
+    return;
+  }
+  updateMaxProgress=true;
+  onUpdateScaledProgress(controller,target,(progress - start) / (end - start));
+}
