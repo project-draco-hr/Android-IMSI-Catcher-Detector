@@ -26,7 +26,7 @@
       eventLog.put("DF_id",DF_id);
       eventLog.put("DF_description",DF_desc);
       mDb.insert("EventLog",null,eventLog);
-      Log.i(TAG,mTAG + ":toEventLog(): Added new event: id=" + DF_id+ " time="+ time+ " cid="+ cid);
+      Log.i(TAG,"ToEventLog(): Added new event: id=" + DF_id + " time="+ time+ " cid="+ cid);
       Vibrator v=(Vibrator)mContext.getSystemService(Context.VIBRATOR_SERVICE);
       v.vibrate(100);
     }

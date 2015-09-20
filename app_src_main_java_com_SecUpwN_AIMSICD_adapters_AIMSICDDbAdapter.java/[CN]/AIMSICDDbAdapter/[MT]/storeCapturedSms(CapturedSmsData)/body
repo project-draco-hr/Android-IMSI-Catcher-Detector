@@ -10,7 +10,7 @@
   values.put("isRoaming",smsdata.getCurrent_roam_status());
   values.put("gps_lat",smsdata.getCurrent_gps_lat());
   values.put("gps_lon",smsdata.getCurrent_gps_lon());
-  long insertid=mDb.insert("SmsData",null,values);
-  smsdata.setId(insertid);
+  long insertId=mDb.insert("SmsData",null,values);
+  smsdata.setId(insertId);
   return smsdata;
 }

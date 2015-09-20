@@ -1,0 +1,3 @@
+{
+  mAimsicdService.setCellMonitoring(!mAimsicdService.isMonitoringCell());
+}

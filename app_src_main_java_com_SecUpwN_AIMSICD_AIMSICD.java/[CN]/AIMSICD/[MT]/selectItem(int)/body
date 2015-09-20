@@ -29,16 +29,16 @@ new RequestTask(mContext,com.SecUpwN.AIMSICD.utils.RequestTask.DBE_UPLOAD_REQUES
 break;
 }
 if (selectedItem.getId() == DrawerMenu.ID.TRACKING.TOGGLE_ATTACK_DETECTION) {
-monitorcell();
+monitorCell();
 }
  else if (selectedItem.getId() == DrawerMenu.ID.TRACKING.TOGGLE_CELL_TRACKING) {
-trackcell();
+trackCell();
 }
  else if (selectedItem.getId() == DrawerMenu.ID.TRACKING.TRACK_FEMTOCELL) {
 trackFemtocell();
 }
  else if (selectedItem.getId() == DrawerMenu.ID.MAIN.ANTENNA_MAP_VIEW) {
-showmap();
+showMap();
 }
  else if (selectedItem.getId() == DrawerMenu.ID.SETTINGS.PREFERENCES) {
 Intent intent=new Intent(this,PrefActivity.class);
@@ -124,7 +124,7 @@ mAimsicdService.stopSmsTracking();
 }
 }
  catch (Exception ee) {
-System.out.println("Error: Stopping SMS detection");
+Log.w(TAG,"Exception in smstracking module: " + ee.getMessage());
 }
 if (mAimsicdService != null) mAimsicdService.onDestroy();
 Log.i(TAG,"Closing db from DrawerMenu.ID.APPLICATION.QUIT");

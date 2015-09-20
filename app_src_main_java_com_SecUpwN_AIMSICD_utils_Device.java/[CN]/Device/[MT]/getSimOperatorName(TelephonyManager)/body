@@ -8,6 +8,7 @@
     }
   }
  catch (  Exception e) {
+    Log.e(TAG,e.getMessage(),e);
     mSimOperatorName="N/A";
   }
   if (mSimOperatorName.isEmpty()) {

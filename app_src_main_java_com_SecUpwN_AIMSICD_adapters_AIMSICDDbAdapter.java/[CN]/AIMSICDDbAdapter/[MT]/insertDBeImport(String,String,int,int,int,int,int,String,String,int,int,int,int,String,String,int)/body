@@ -9,7 +9,7 @@
   dbeImport.put("PSC",psc);
   dbeImport.put("gps_lat",lat);
   dbeImport.put("gps_lon",lon);
-  dbeImport.put("isGPSexact",isGPSexact);
+  dbeImport.put("isGPSexact",isGpsExact);
   dbeImport.put("avg_range",avg_range);
   dbeImport.put("avg_signal",avg_signal);
   dbeImport.put("samples",samples);

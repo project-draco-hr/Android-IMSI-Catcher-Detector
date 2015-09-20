@@ -1,13 +1,15 @@
 {
   SQLiteDatabase checkDB=null;
   try {
+    Log.i(TAG,"Checking for db first install this will throw an error on install and is noraml");
     checkDB=SQLiteDatabase.openDatabase(DB_LOCATION,null,SQLiteDatabase.OPEN_READONLY);
   }
  catch (  SQLiteException e) {
-    Log.e(TAG,mTAG + ": database not yet created: " + e.toString());
+    Log.e(TAG,"database not yet created",e);
   }
   if (checkDB != null) {
     checkDB.close();
+    return true;
   }
-  return checkDB != null;
+  return false;
 }

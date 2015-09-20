@@ -1,0 +1,15 @@
+{
+  if (mCommandTerminal == null) {
+    try {
+      mCommandTerminal=new TtyPrivFile(mSerialDevice);
+      return mCommandTerminal;
+    }
+ catch (    IOException e) {
+      mAtResponse.append(e.toString());
+    }
+  }
+ else {
+    return mCommandTerminal;
+  }
+  return null;
+}

@@ -1,6 +1,0 @@
-{
-  SharedPreferences.Editor editor=preferences.edit();
-  Double[] mystringlist=marray.toArray(new Double[marray.size()]);
-  editor.putString(key,TextUtils.join("??????????????????????",mystringlist));
-  editor.apply();
-}

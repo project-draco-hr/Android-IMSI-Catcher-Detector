@@ -1,3 +1,0 @@
-{
-  return mDb.query(DBTableColumnIds.DBE_IMPORT_TABLE_NAME,new String[]{"CID","LAC","MCC","MNC","gps_lat","gps_lon","avg_signal","samples"},"? <= gps_lon AND gps_lon <= ? AND ? <= gps_lat AND gps_lat <= ?",new String[]{lng1.toString(),lng2.toString(),lat1.toString(),lat2.toString()},null,null,null);
-}

@@ -7,7 +7,7 @@
     token=p.readInt();
     int err=p.readInt();
     if (DBG) {
-      Log.v(TAG,mTAG + String.format(": processSolicited() token: 0x%X err: %d",token,err));
+      Log.v(TAG,String.format(": processSolicited() token: 0x%X err: %d",token,err));
     }
     if (err != RIL_CLIENT_ERR_SUCCESS) {
       throw new RemoteException("remote error " + err);
@@ -16,10 +16,11 @@
     stringsResponseData=p.createStringArray();
   }
  catch (  Exception ex) {
+    Log.e(TAG,ex.getMessage());
     errorEx=ex;
   }
   if (token == null) {
-    Log.e(TAG,mTAG + ": token is null",errorEx);
+    Log.e(TAG,"token is null",errorEx);
   }
  else {
 synchronized (this) {
@@ -38,7 +39,7 @@ default :
 }
 }
  else {
-Log.i(TAG,mTAG + ": Message with token " + token+ " not found");
+Log.i(TAG,"Message with token " + token + " not found");
 }
 }
 }

@@ -14,12 +14,12 @@
         return !((networkID < FEMTO_NID_MIN) || (networkID >= FEMTO_NID_MAX));
       }
  else {
-        Log.v(TAG,mTAG + ": Cell location info is null.");
+        Log.v(TAG,"Cell location info is null.");
         return false;
       }
     }
  else {
-      Log.v(TAG,mTAG + ": Telephony Manager is null.");
+      Log.v(TAG,"Telephony Manager is null.");
       return false;
     }
   }
@@ -33,12 +33,12 @@
         return !((networkID < FEMTO_NID_MIN) || (networkID >= FEMTO_NID_MAX));
       }
  else {
-        Log.v(TAG,mTAG + ": Cell location info is null.");
+        Log.v(TAG,"Cell location info is null.");
         return false;
       }
     }
  else {
-      Log.v(TAG,mTAG + ": Telephony Manager is null.");
+      Log.v(TAG,"Telephony Manager is null.");
       return false;
     }
   }

@@ -7,7 +7,7 @@ int cid
 int psc
 String lat
 String lon
-int isGPSexact
+int isGpsExact
 int avg_range
 int avg_signal
 int samples

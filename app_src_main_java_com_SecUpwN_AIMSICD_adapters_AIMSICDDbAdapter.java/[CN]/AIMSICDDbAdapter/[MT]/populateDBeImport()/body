@@ -15,7 +15,7 @@
       AIMSICD.mProgressBar.setProgress(2);
       if (!csvCellID.isEmpty()) {
         int lines=csvCellID.size();
-        Log.i(TAG,mTAG + ":updateOpenCellID: OCID CSV size (lines): " + lines);
+        Log.i(TAG,"UpdateOpenCellID: OCID CSV size (lines): " + lines);
         Cursor lCursor=mDb.rawQuery("SELECT CID, COUNT(CID) FROM DBe_import GROUP BY CID",null);
         SparseArray<Boolean> lPresentCellID=new SparseArray<>();
         if (lCursor.getCount() > 0) {
@@ -26,36 +26,31 @@
         lCursor.close();
         AIMSICD.mProgressBar.setProgress(3);
         AIMSICD.mProgressBar.setMax(lines);
-        int i;
-        for (i=1; i < lines; i++) {
-          if (lPresentCellID.get(Integer.parseInt(csvCellID.get(i)[5]),false)) {
+        int rowCounter;
+        for (rowCounter=1; rowCounter < lines; rowCounter++) {
+          if (lPresentCellID.get(Integer.parseInt(csvCellID.get(rowCounter)[5]),false)) {
             continue;
           }
-          String lat=csvCellID.get(i)[0], lon=csvCellID.get(i)[1], mcc=csvCellID.get(i)[2], mnc=csvCellID.get(i)[3], lac=csvCellID.get(i)[4], cellid=csvCellID.get(i)[5], range=csvCellID.get(i)[6], avg_sig=csvCellID.get(i)[7], samples=csvCellID.get(i)[8], change=csvCellID.get(i)[9], radio=csvCellID.get(i)[10], rnc=csvCellID.get(i)[11], cid=csvCellID.get(i)[12], psc=csvCellID.get(i)[13];
+          String lat=csvCellID.get(rowCounter)[0], lon=csvCellID.get(rowCounter)[1], mcc=csvCellID.get(rowCounter)[2], mnc=csvCellID.get(rowCounter)[3], lac=csvCellID.get(rowCounter)[4], cellid=csvCellID.get(rowCounter)[5], range=csvCellID.get(rowCounter)[6], avg_sig=csvCellID.get(rowCounter)[7], samples=csvCellID.get(rowCounter)[8], change=csvCellID.get(rowCounter)[9], radio=csvCellID.get(rowCounter)[10], rnc=csvCellID.get(rowCounter)[11], cid=csvCellID.get(rowCounter)[12], psc=csvCellID.get(rowCounter)[13];
           int iPsc=0;
-          if (psc != null && !psc.equals("")) {
+          if (psc != null && !psc.isEmpty()) {
             iPsc=Integer.parseInt(psc);
           }
           int ichange=Integer.parseInt(change);
-          if (ichange == 0) {
-            ichange=1;
-          }
- else           if (ichange == 1) {
-            ichange=0;
-          }
+          ichange=(ichange == 0 ? 1 : 0);
           insertDBeImport("OCID",radio,Integer.parseInt(mcc),Integer.parseInt(mnc),Integer.parseInt(lac),Integer.parseInt(cellid),iPsc,lat,lon,ichange,Integer.parseInt(avg_sig),Integer.parseInt(range),Integer.parseInt(samples),"n/a","n/a",0);
         }
         AIMSICD.mProgressBar.setProgress(4);
-        Log.d(TAG,mTAG + ":populateDBeImport(): inserted " + i+ " cells.");
+        Log.d(TAG,"PopulateDBeImport(): inserted " + rowCounter + " cells.");
       }
     }
  else {
-      Log.e(TAG,mTAG + ": opencellid.csv file does not exist!");
+      Log.e(TAG,"Opencellid.csv file does not exist!");
     }
     return true;
   }
  catch (  Exception e) {
-    Log.e(TAG,mTAG + ": Error parsing OpenCellID data: " + e.getMessage());
+    Log.e(TAG,"Error parsing OpenCellID data: " + e.getMessage());
     return false;
   }
  finally {

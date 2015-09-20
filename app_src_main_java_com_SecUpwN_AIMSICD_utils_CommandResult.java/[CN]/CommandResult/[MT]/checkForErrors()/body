@@ -1,5 +1,5 @@
 {
-  if (mExitValue != 0 || !"".equals(mStderr.trim())) {
+  if (mExitValue != 0 || !mStderr.trim().isEmpty()) {
     boolean skipOfflineCpu=mStderr.contains("chmod: /sys/devices/system/cpu/cpu") || mStderr.contains(": can't create /sys/devices/system/cpu/cpu");
     String lineEnding=System.getProperty("line.separator");
     FileWriter errorWriter=null;
@@ -30,6 +30,7 @@
           errorWriter.close();
         }
  catch (        IOException ignored) {
+          Log.e(TAG,"Failed to close error writer",ignored);
         }
       }
     }

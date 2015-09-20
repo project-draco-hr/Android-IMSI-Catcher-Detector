@@ -1,4 +1,3 @@
 {
-  Date now=new Date();
-  return new SimpleDateFormat("yyyyMMddHHmmss",Locale.getDefault()).format(now);
+  return new SimpleDateFormat("yyyyMMddHHmmss",Locale.getDefault()).format(new Date());
 }

@@ -9,7 +9,7 @@
   }
  catch (  Exception e) {
     mSimSerial="N/A";
-    Log.e(TAG,mTAG + ":getSimSerial " + e);
+    Log.e(TAG,"GetSimSerial " + e);
   }
   if (mSimSerial.isEmpty()) {
     mSimSerial="N/A";

@@ -1,4 +1,4 @@
 {
-  Log.i(TAG,mTAG + ": Deleted CID: " + cellId);
+  Log.i(TAG,"Deleted CID: " + cellId);
   return mDb.delete("DBi_bts","CID=" + cellId,null);
 }

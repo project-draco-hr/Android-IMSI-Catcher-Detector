@@ -1,24 +1,24 @@
 {
-  Log.i(TAG,mTAG + ": checkForNeighbourCount()...");
+  Log.i(TAG,"CheckForNeighbourCount()");
   Integer ncls=0;
   if (tm != null && tm.getNeighboringCellInfo() != null)   ncls=tm.getNeighboringCellInfo().size();
   Boolean nclp=tinydb.getBoolean("nc_list_present");
   if (ncls > 0) {
-    Log.d(TAG,mTAG + ": neighbouringCellInfo size: " + ncls);
+    Log.d(TAG,"NeighbouringCellInfo size: " + ncls);
     if (!nclp) {
-      Log.d(TAG,mTAG + ": Setting nc_list_present to: true");
+      Log.d(TAG,"Setting nc_list_present to: true");
       tinydb.putBoolean("nc_list_present",true);
     }
   }
  else   if (ncls == 0 && nclp) {
-    Log.i(TAG,mTAG + ": ALERT: No neighboring cells detected for CID: " + mDevice.mCell.getCID());
+    Log.i(TAG,"ALERT: No neighboring cells detected for CID: " + mDevice.mCell.getCID());
     Vibrator v=(Vibrator)this.context.getSystemService(Context.VIBRATOR_SERVICE);
     v.vibrate(100);
     dbHelper.toEventLog(4,"No neighboring cells detected");
   }
  else {
-    Log.d(TAG,mTAG + ": NC list not supported by AOS on this device. Nothing to do.");
-    Log.d(TAG,mTAG + ": Setting nc_list_present to: false");
+    Log.d(TAG,"NC list not supported by AOS on this device. Nothing to do.");
+    Log.d(TAG,": Setting nc_list_present to: false");
     tinydb.putBoolean("nc_list_present",false);
   }
 }

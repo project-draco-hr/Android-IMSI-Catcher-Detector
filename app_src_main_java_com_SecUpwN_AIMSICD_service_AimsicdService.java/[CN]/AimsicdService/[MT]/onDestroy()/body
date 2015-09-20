@@ -7,5 +7,5 @@
   if (SmsDetector.getSmsDetectionState()) {
     smsdetector.stopSmsDetection();
   }
-  Log.i(TAG,mTAG + ": Service destroyed.");
+  Log.i(TAG,"Service destroyed.");
 }

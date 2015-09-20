@@ -24,7 +24,7 @@ break;
 }
 }
 }
-if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
+if (loc != null && (Double.doubleToRawLongBits(loc.getLatitude()) != 0 && Double.doubleToRawLongBits(loc.getLongitude()) != 0)) {
 mDevice.mCell.setLon(loc.getLongitude());
 mDevice.mCell.setLat(loc.getLatitude());
 mDevice.mCell.setSpeed(loc.getSpeed());

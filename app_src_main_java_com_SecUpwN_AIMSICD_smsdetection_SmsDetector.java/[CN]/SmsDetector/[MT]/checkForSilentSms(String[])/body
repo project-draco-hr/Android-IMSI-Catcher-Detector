@@ -1,37 +1,37 @@
 {
-  for (int arrayindex=0; arrayindex < SILENT_ONLY_TAGS.length; arrayindex++) {
+  for (int index=0; index < SILENT_ONLY_TAGS.length; index++) {
     for (int x=0; x < progress.length; x++) {
       if (progress[x].length() < 250) {
-        if (progress[x].contains(SILENT_ONLY_TAGS[arrayindex].split("#")[0])) {
+        if (progress[x].contains(SILENT_ONLY_TAGS[index].split("#")[0])) {
           String logcat_timestamp=MiscUtils.logcatTimeStampParser(progress[x]);
-          Log.i(TAG,mTAG + " TIME::" + logcat_timestamp);
-          Log.i(TAG,mTAG + " Detected>>>>" + SILENT_ONLY_TAGS[arrayindex].split("#")[1]);
-          if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].equals("TYPE0")) {
+          Log.i(TAG,"TIME::" + logcat_timestamp);
+          Log.i(TAG,"Detected>>>>" + SILENT_ONLY_TAGS[index].split("#")[1]);
+          if (SILENT_ONLY_TAGS[index].split("#")[1].equals("TYPE0")) {
             CapturedSmsData setmsg=new CapturedSmsData();
             setmsg.setSenderNumber("unknown");
             setmsg.setSenderMsg("no data");
-            int newcount=x - 15;
-            if (newcount > 0) {
-              while (newcount < x) {
-                if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[2].toString())) {
+            int newCount=x - 15;
+            if (newCount > 0) {
+              while (newCount < x) {
+                if (progress[newCount].contains(DETECTION_PHONENUM_SMS_DATA[2].toString())) {
                   try {
-                    String number=progress[newcount].substring(progress[newcount].indexOf("OrigAddr")).replace(DETECTION_PHONENUM_SMS_DATA[2].toString(),"").trim();
+                    String number=progress[newCount].substring(progress[newCount].indexOf("OrigAddr")).replace(DETECTION_PHONENUM_SMS_DATA[2].toString(),"").trim();
                     setmsg.setSenderNumber(number);
                   }
  catch (                  Exception ee) {
-                    Log.e(TAG,mTAG + ": Error parsing number:\n" + ee.toString());
+                    Log.e(TAG,"Error parsing number",ee);
                   }
                 }
- else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[1].toString())) {
+ else                 if (progress[newCount].contains(DETECTION_PHONENUM_SMS_DATA[1].toString())) {
                   try {
-                    String smsdata=progress[newcount].substring(progress[newcount].indexOf("'") + 1,progress[newcount].length() - 1);
+                    String smsdata=progress[newCount].substring(progress[newCount].indexOf("'") + 1,progress[newCount].length() - 1);
                     setmsg.setSenderMsg(smsdata);
                   }
  catch (                  Exception ee) {
-                    Log.e(TAG,mTAG + ": Error parsing SMS data:\n" + ee.toString());
+                    Log.e(TAG,"Error parsing SMS data:\n" + ee.toString(),ee);
                   }
                 }
-                newcount++;
+                newCount++;
               }
             }
             setmsg.setSmsTimestamp(logcat_timestamp);
@@ -40,7 +40,7 @@
             setmsg.setCurrent_cid(mAimsicdService.getCellTracker().getMonitorCell().getCID());
             setmsg.setCurrent_nettype(Device.getNetworkTypeName(mAimsicdService.getCell().getNetType()));
             int isRoaming=0;
-            if (mAimsicdService.getCellTracker().getDevice().isRoaming() == "true") {
+            if ("true".equals(mAimsicdService.getCellTracker().getDevice().isRoaming())) {
               isRoaming=1;
             }
             setmsg.setCurrent_roam_status(isRoaming);
@@ -52,46 +52,45 @@
               MiscUtils.startPopUpInfo(tContext,6);
             }
  else {
-              Log.d(TAG,mTAG + " Detected Sms already logged");
+              Log.d(TAG,"Detected Sms already logged");
             }
           }
- else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("MWI")) {
+ else           if ("MWI".equals(SILENT_ONLY_TAGS[index].split("#")[1].trim())) {
             Log.i(TAG,"MWI DETECTED");
             CapturedSmsData setmsg=new CapturedSmsData();
             setmsg.setSenderNumber("unknown");
             setmsg.setSenderMsg("no data");
-            int newcount=x - 15;
-            if (newcount > 0) {
-              while (newcount < x) {
-                if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[0].toString())) {
+            int newCount=x - 15;
+            if (newCount > 0) {
+              while (newCount < x) {
+                if (progress[newCount].contains(DETECTION_PHONENUM_SMS_DATA[0].toString())) {
                   try {
-                    String number=progress[newcount].substring(progress[newcount].indexOf("+"));
+                    String number=progress[newCount].substring(progress[newCount].indexOf("+"));
                     setmsg.setSenderNumber(number);
                   }
  catch (                  Exception ee) {
-                    Log.e(TAG,mTAG + ": Error parsing number:\n" + ee.toString());
+                    Log.e(TAG,"Error parsing number",ee);
                   }
                 }
- else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[2].toString())) {
+ else                 if (progress[newCount].contains(DETECTION_PHONENUM_SMS_DATA[2].toString())) {
                   try {
-                    String number=progress[newcount].substring(progress[newcount].indexOf("OrigAddr")).replace(DETECTION_PHONENUM_SMS_DATA[2].toString(),"").trim();
+                    String number=progress[newCount].substring(progress[newCount].indexOf("OrigAddr")).replace(DETECTION_PHONENUM_SMS_DATA[2].toString(),"").trim();
                     setmsg.setSenderNumber(number);
                   }
  catch (                  Exception ee) {
-                    Log.e(TAG,mTAG + ": Error parsing number:\n" + ee.toString());
+                    Log.e(TAG,"Error parsing number:" + ee.getMessage(),ee);
                   }
                 }
- else                 if (progress[newcount].contains(DETECTION_PHONENUM_SMS_DATA[1].toString())) {
+ else                 if (progress[newCount].contains(DETECTION_PHONENUM_SMS_DATA[1].toString())) {
                   try {
-                    String smsdata=progress[newcount].substring(progress[newcount].indexOf("'") + 1,progress[newcount].length() - 1);
-                    setmsg.setSenderMsg(smsdata);
+                    String smsData=progress[newCount].substring(progress[newCount].indexOf("'") + 1,progress[newCount].length() - 1);
+                    setmsg.setSenderMsg(smsData);
                   }
  catch (                  Exception ee) {
-                    Log.e(TAG,mTAG + ": Error parsing SMS data:\n" + ee.toString());
-                    ;
+                    Log.e(TAG,"Error parsing SMS data" + ee.getMessage(),ee);
                   }
                 }
-                newcount++;
+                newCount++;
               }
             }
             setmsg.setSmsTimestamp(logcat_timestamp);
@@ -100,7 +99,7 @@
             setmsg.setCurrent_cid(mAimsicdService.getCellTracker().getMonitorCell().getCID());
             setmsg.setCurrent_nettype(Device.getNetworkTypeName(mAimsicdService.getCell().getNetType()));
             int isRoaming=0;
-            if (mAimsicdService.getCellTracker().getDevice().isRoaming() == "true") {
+            if ("true".equals(mAimsicdService.getCellTracker().getDevice().isRoaming())) {
               isRoaming=1;
             }
             setmsg.setCurrent_roam_status(isRoaming);
@@ -112,17 +111,17 @@
               MiscUtils.startPopUpInfo(tContext,7);
             }
  else {
-              Log.d(TAG,mTAG + " Detected Sms already logged");
+              Log.d(TAG," Detected Sms already logged");
             }
           }
- else           if (SILENT_ONLY_TAGS[arrayindex].split("#")[1].trim().equals("WAPPUSH")) {
+ else           if ("WAPPUSH".equals(SILENT_ONLY_TAGS[index].split("#")[1].trim())) {
             CapturedSmsData setmsg=new CapturedSmsData();
             setmsg.setSenderNumber("unknown");
             setmsg.setSenderMsg("no data");
             int startindex=x - 2;
             int endindex=x + 3;
             if (progress[x + 3].contains("DestPort 0x0B84")) {
-              Log.i(TAG,"WAPPUSH DETECTED");
+              Log.d(TAG,"WAPPUSH DETECTED");
               if (endindex + 3 <= progress.length) {
                 while (startindex < endindex) {
                   if (progress[startindex].contains(DETECTION_PHONENUM_SMS_DATA[2].toString())) {
@@ -132,7 +131,7 @@
                       break;
                     }
  catch (                    Exception ee) {
-                      Log.e(TAG,mTAG + ": Error parsing number:\n" + ee.toString());
+                      Log.e(TAG,"Error parsing number",ee);
                     }
                   }
                   startindex++;
@@ -144,7 +143,7 @@
               setmsg.setCurrent_cid(mAimsicdService.getCellTracker().getMonitorCell().getCID());
               setmsg.setCurrent_nettype(Device.getNetworkTypeName(mAimsicdService.getCell().getNetType()));
               int isRoaming=0;
-              if (mAimsicdService.getCellTracker().getDevice().isRoaming() == "true") {
+              if ("true".equals(mAimsicdService.getCellTracker().getDevice().isRoaming())) {
                 isRoaming=1;
               }
               setmsg.setCurrent_roam_status(isRoaming);
@@ -156,7 +155,7 @@
                 MiscUtils.startPopUpInfo(tContext,8);
               }
  else {
-                Log.d(TAG,mTAG + " Detected Sms already logged");
+                Log.d(TAG,"Detected Sms already logged");
               }
             }
  else             if (progress[x - 1].contains("SMS originating address:")) {
@@ -171,16 +170,16 @@
                       setmsg.setSenderNumber(number);
                     }
  catch (                    Exception ee) {
-                      Log.e(TAG,mTAG + ": Error parsing number:\n" + ee.toString());
+                      Log.e(TAG,"Error parsing number " + ee.toString());
                     }
                   }
                   if (progress[startindex].contains("SMS SC address:")) {
                     try {
                       String number=progress[startindex].substring(progress[startindex].indexOf("+"));
-                      Log.d(TAG,mTAG + " Detected msg smsc:" + number);
+                      Log.d(TAG,"Detected msg smsc: " + number);
                     }
  catch (                    Exception ee) {
-                      Log.e(TAG,mTAG + ": Error parsing smsc number:\n" + ee.toString());
+                      Log.e(TAG,"Error parsing smsc number: " + ee.toString());
                     }
                   }
                   startindex++;
@@ -192,7 +191,7 @@
               setmsg.setCurrent_cid(mAimsicdService.getCellTracker().getMonitorCell().getCID());
               setmsg.setCurrent_nettype(Device.getNetworkTypeName(mAimsicdService.getCell().getNetType()));
               int isRoaming=0;
-              if (mAimsicdService.getCellTracker().getDevice().isRoaming() == "true") {
+              if ("true".equals(mAimsicdService.getCellTracker().getDevice().isRoaming())) {
                 isRoaming=1;
               }
               setmsg.setCurrent_roam_status(isRoaming);
@@ -204,7 +203,7 @@
                 MiscUtils.startPopUpInfo(tContext,8);
               }
  else {
-                Log.d(TAG,mTAG + " Detected SMS already logged");
+                Log.d(TAG,"Detected SMS already logged");
               }
             }
           }

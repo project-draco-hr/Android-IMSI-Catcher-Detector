@@ -1,11 +1,6 @@
 {
   updateLogs=true;
-  try {
-    logUpdater=new LogUpdaterThread();
-    logUpdater.start();
-  }
- catch (  Exception e) {
-    Log.e(TAG,mTAG + ": Error starting log updater thread",e);
-  }
+  logUpdater=new LogUpdaterThread();
+  logUpdater.start();
   btnStop.setText(getString(R.string.btn_stop_logs));
 }

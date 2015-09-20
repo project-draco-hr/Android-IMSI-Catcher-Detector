@@ -1,8 +1,0 @@
-{
-  String query=String.format("SELECT COUNT(bts_id) FROM DBi_measure WHERE bts_id= %d",cellID);
-  Cursor c=mDb.rawQuery(query,null);
-  c.moveToFirst();
-  int lAnswer=c.getInt(0);
-  c.close();
-  return lAnswer;
-}

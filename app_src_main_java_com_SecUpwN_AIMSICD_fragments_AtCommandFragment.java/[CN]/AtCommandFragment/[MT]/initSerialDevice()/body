@@ -13,12 +13,13 @@
     mSerialDevices.clear();
     try {
       String rilDevice=Helpers.getSystemProp(mContext,"rild.libargs","UNKNOWN");
-      mSerialDevice=(rilDevice.equals("UNKNOWN") ? rilDevice : rilDevice.substring(3));
-      if (!mSerialDevice.equals("UNKNOWN")) {
+      mSerialDevice=("UNKNOWN".equals(rilDevice) ? rilDevice : rilDevice.substring(3));
+      if (!"UNKNOWN".equals(mSerialDevice)) {
         mSerialDevices.add(mSerialDevice);
       }
     }
  catch (    StringIndexOutOfBoundsException e) {
+      Log.w(TAG,e.getMessage());
     }
     for (    File file : new File("/dev").listFiles()) {
       String name=file.getName();
@@ -26,7 +27,7 @@
       if (name.matches("^smd.$")) {
         add=true;
       }
- else       if (name.equals("radio")) {
+ else       if ("radio".equals(name)) {
         for (        File subfile : file.listFiles()) {
           String subname=subfile.getName();
           if (subname.contains("atci")) {
@@ -45,7 +46,7 @@
       Command cmd=new Command(1,"\\cat /system/etc/ril_xgold_radio.cfg | " + "\\grep -E \"atport*|dataport*\""){
         @Override public void commandOutput(        int id,        String line){
           if (id == 0) {
-            if (!line.trim().equals("") && line.contains("/dev/")) {
+            if (!line.trim().isEmpty() && line.contains("/dev/")) {
               int place=line.indexOf("=") + 1;
               mSerialDevices.add(line.substring(place,line.length() - 1));
               mAtResponse.append(getString(R.string.at_command_response_found) + line.substring(place,line.length() - 1) + "\n");
@@ -61,7 +62,7 @@
     }
   }
  catch (  Exception e) {
-    Log.e("AIMSICD","ATCoP: initSerialDevice " + e);
+    Log.e(TAG,"InitSerialDevice ",e);
   }
   if (!mSerialDevices.isEmpty()) {
     String[] entries=new String[mSerialDevices.size()];

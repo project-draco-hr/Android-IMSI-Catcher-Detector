@@ -1,8 +1,0 @@
-{
-  if (mAimsicdService.isTrackingCell()) {
-    mAimsicdService.setCellTracking(false);
-  }
- else {
-    mAimsicdService.setCellTracking(true);
-  }
-}

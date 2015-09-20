@@ -1,19 +1,19 @@
 {
-  String check4String=String.format("SELECT * FROM DetectionStrings WHERE det_str = \"%s\"",newstring.get("det_str").toString());
+  String check4String=String.format("SELECT * FROM DetectionStrings WHERE det_str = \"%s\"",newString.get("det_str").toString());
   Cursor cursor=mDb.rawQuery(check4String,null);
-  boolean exists=cursor.getCount() > 0;
+  final boolean exists=cursor.getCount() > 0;
   cursor.close();
   if (exists) {
-    Log.i(TAG,mTAG + ": Detection String already in Database");
+    Log.i(TAG,"Detection String already in Database");
   }
  else {
     try {
-      mDb.insert("DetectionStrings",null,newstring);
-      Log.i(TAG,mTAG + ": New detection string added.");
+      mDb.insert("DetectionStrings",null,newString);
+      Log.i(TAG,"New detection string added.");
       return true;
     }
  catch (    Exception ee) {
-      Log.i(TAG,mTAG + ": Adding detection string Failed! " + ee.toString());
+      Log.i(TAG,"Adding detection string Failed! ",ee);
     }
   }
   return false;

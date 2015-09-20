@@ -1,7 +1,6 @@
 {
   new AsyncTask<Void,Void,GeoPoint>(){
     @Override protected GeoPoint doInBackground(    Void... voids){
-      final int SIGNAL_SIZE_RATIO=15;
       int signal;
       mCellTowerGridMarkerClusterer.getItems().clear();
       loadOcidMarkersByNetwork();
@@ -11,7 +10,7 @@
         c=mDbHelper.getCellData();
       }
  catch (      IllegalStateException ix) {
-        Log.e(TAG,ix.getMessage(),ix);
+        Log.e(TAG,"Problem getting data from CELL_TABLE",ix);
       }
       if (c != null && c.moveToFirst()) {
         do {
@@ -22,16 +21,13 @@
           final int mnc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MNC));
           final double dlat=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAT));
           final double dlng=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LON));
-          if (dlat == 0.0 && dlng == 0.0) {
+          if (Double.doubleToRawLongBits(dlat) == 0 && Double.doubleToRawLongBits(dlng) == 0) {
             continue;
           }
           signal=1;
-          if (signal <= 0) {
-            signal=20;
-          }
-          if ((dlat != 0.0) || (dlng != 0.0)) {
+          if (Double.doubleToRawLongBits(dlat) != 0 || Double.doubleToRawLongBits(dlng) != 0) {
             loc=new GeoPoint(dlat,dlng);
-            CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,"Cell ID: " + cellID,"",loc,new MarkerData("" + cellID,"" + loc.getLatitude(),"" + loc.getLongitude(),"" + lac,"" + mcc,"" + mnc,"",false));
+            CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,"Cell ID: " + cellID,"",loc,new MarkerData(String.valueOf(cellID),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(lac),String.valueOf(mcc),String.valueOf(mnc),"",false));
             ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_blue));
             items.add(ovm);
           }
@@ -64,14 +60,15 @@
         if (isCancelled())         return null;
         Thread.sleep(100);
       }
- catch (      Exception e) {
+ catch (      InterruptedException e) {
+        Log.w(TAG,"thread interrupted",e);
       }
       List<Cell> nc=mAimsicdService.getCellTracker().updateNeighbouringCells();
       for (      Cell cell : nc) {
         if (isCancelled())         return null;
         try {
           loc=new GeoPoint(cell.getLat(),cell.getLon());
-          CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,getString(R.string.cell_id_label) + cell.getCID(),"",loc,new MarkerData("" + cell.getCID(),"" + loc.getLatitude(),"" + loc.getLongitude(),"" + cell.getLAC(),"" + cell.getMCC(),"" + cell.getMNC(),"",false));
+          CellTowerMarker ovm=new CellTowerMarker(mContext,mMap,getString(R.string.cell_id_label) + cell.getCID(),"",loc,new MarkerData(String.valueOf(cell.getCID()),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(cell.getLAC()),String.valueOf(cell.getMCC()),String.valueOf(cell.getMNC()),"",false));
           ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_orange));
           items.add(ovm);
         }
@@ -90,7 +87,7 @@
  * @param defaultLoc
  */
     @Override protected void onPostExecute(    GeoPoint defaultLoc){
-      if (loc != null && (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0)) {
+      if (loc != null && (Double.doubleToRawLongBits(loc.getLatitude()) != 0 && Double.doubleToRawLongBits(loc.getLongitude()) != 0)) {
         mMap.getController().setZoom(16);
         mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
       }

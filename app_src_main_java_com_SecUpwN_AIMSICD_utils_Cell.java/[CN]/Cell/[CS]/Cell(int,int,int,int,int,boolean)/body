@@ -1,8 +1,8 @@
 {
   this.cid=cid;
   this.lac=lac;
-  mcc=Integer.MAX_VALUE;
-  mnc=Integer.MAX_VALUE;
+  this.mcc=Integer.MAX_VALUE;
+  this.mnc=Integer.MAX_VALUE;
   if (dbm) {
     this.dbm=signal;
   }
@@ -11,12 +11,12 @@
   }
   this.psc=psc;
   this.netType=netType;
-  timingAdvance=Integer.MAX_VALUE;
-  sid=Integer.MAX_VALUE;
-  lon=0.0;
-  lat=0.0;
-  speed=0.0;
-  accuracy=0.0;
-  bearing=0.0;
+  this.timingAdvance=Integer.MAX_VALUE;
+  this.sid=Integer.MAX_VALUE;
+  this.lon=0.0;
+  this.lat=0.0;
+  this.speed=0.0;
+  this.accuracy=0.0;
+  this.bearing=0.0;
   this.timestamp=SystemClock.currentThreadTimeMillis();
 }

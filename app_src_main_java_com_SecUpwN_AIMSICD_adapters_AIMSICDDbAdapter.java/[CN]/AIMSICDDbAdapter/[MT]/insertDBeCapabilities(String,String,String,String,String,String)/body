@@ -4,7 +4,7 @@
   dbeCapabilities.put("MNC",mnc);
   dbeCapabilities.put("LAC",lac);
   dbeCapabilities.put("op_name",op_name);
-  dbeCapabilities.put("band_plan",band_plan);
+  dbeCapabilities.put("band_plan",bandPlan);
   dbeCapabilities.put("__EXPAND__",__EXPAND__);
   mDb.insert("DBe_capabilities",null,dbeCapabilities);
 }
