@@ -1,6 +1,7 @@
 {
   super(context,DB_NAME,null,1);
   mContext=context;
+  mPreferences=PreferenceManager.getDefaultSharedPreferences(mContext);
   FOLDER=mContext.getExternalFilesDir(null) + File.separator;
   createDataBase();
   mDb=SQLiteDatabase.openDatabase(DB_LOCATION,null,SQLiteDatabase.OPEN_READWRITE);
