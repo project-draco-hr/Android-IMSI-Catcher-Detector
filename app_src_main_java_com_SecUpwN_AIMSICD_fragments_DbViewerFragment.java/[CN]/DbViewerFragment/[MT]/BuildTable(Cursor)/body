@@ -106,7 +106,6 @@ return adapter;
 case DETECTION_STRINGS:
 {
 BaseInflaterAdapter<DetectionStringsData> adapter=new BaseInflaterAdapter<>(new DetectionStringsCardInflater());
-int count=tableData.getCount();
 while (tableData.moveToNext()) {
 DetectionStringsData data=new DetectionStringsData(tableData.getString(tableData.getColumnIndex("det_str")),tableData.getString(tableData.getColumnIndex("sms_type")));
 adapter.addItem(data,false);
