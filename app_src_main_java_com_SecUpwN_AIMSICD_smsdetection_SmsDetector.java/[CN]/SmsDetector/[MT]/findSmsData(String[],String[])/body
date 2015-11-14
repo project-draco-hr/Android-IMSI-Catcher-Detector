@@ -1,0 +1,24 @@
+{
+  if (preBuffer != null) {
+    for (    String preBufferLine : preBuffer) {
+      if (preBufferLine != null) {
+        if (preBufferLine.contains("SMS message body (raw):") && preBufferLine.contains("'")) {
+          preBufferLine=preBufferLine.substring(preBufferLine.indexOf("'") + 1,preBufferLine.length() - 1);
+          return preBufferLine;
+        }
+      }
+    }
+    if (postBuffer != null) {
+      for (int x=0; x < postBuffer.length; x++) {
+        if (postBuffer[x] != null) {
+          String testLine=preBuffer[x];
+          if (testLine.contains("SMS message body (raw):") && testLine.contains("'")) {
+            testLine=testLine.substring(testLine.indexOf("'") + 1,testLine.length() - 1);
+            return testLine;
+          }
+        }
+      }
+    }
+  }
+  return null;
+}

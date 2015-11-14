@@ -1,10 +1,9 @@
 {
-  tContext=newcontext;
-  dbacess=new AIMSICDDbAdapter(newcontext);
-  ArrayList<AdvanceUserItems> silent_string=dbacess.getDetectionStrings();
-  SILENT_ONLY_TAGS=new String[silent_string.size()];
+  mContext=context;
+  mDbAdapter=new AIMSICDDbAdapter(context);
+  ArrayList<AdvanceUserItems> silent_string=mDbAdapter.getDetectionStrings();
+  LOADED_DETECTION_STRINGS=new String[silent_string.size()];
   for (int x=0; x < silent_string.size(); x++) {
-    SILENT_ONLY_TAGS[x]=silent_string.get(x).getDetection_string() + "#" + silent_string.get(x).getDetection_type();
+    LOADED_DETECTION_STRINGS[x]=silent_string.get(x).getDetection_string() + "#" + silent_string.get(x).getDetection_type();
   }
-  prefs=newcontext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
 }

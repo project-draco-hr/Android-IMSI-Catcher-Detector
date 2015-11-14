@@ -1,40 +1,82 @@
 {
   setSmsDetectionState(true);
   try {
-    new Thread().sleep(500);
+    Thread.sleep(500);
     String MODE="logcat -v time -b radio -b main\n";
     Runtime r=Runtime.getRuntime();
     Process process=r.exec("su");
-    dos=new DataOutputStream(process.getOutputStream());
+    DataOutputStream dos=new DataOutputStream(process.getOutputStream());
     dos.writeBytes(MODE);
     dos.flush();
     dos.close();
-    dis=new DataInputStream(process.getInputStream());
+    mLogcatReader=new BufferedReader(new InputStreamReader(process.getInputStream()));
   }
- catch (  InterruptedException e) {
-    Log.e(TAG,"thread interrupted",e);
+ catch (  InterruptedException|IOException e) {
+    Log.e(TAG,"Exception while initializing LogCat (time, radio, main) reader",e);
   }
-catch (  IOException e) {
-    Log.e(TAG,"thread interrupted",e);
-  }
+  String logcatLine;
+  List<String> logcatLines=new ArrayList<>();
   while (getSmsDetectionState()) {
     try {
-      int bufferlen=dis.available();
-      if (bufferlen != 0) {
-        byte[] b=new byte[bufferlen];
-        dis.read(b);
-        String split[]=new String(b).split("\n");
-        checkForSilentSms(split);
+      logcatLine=mLogcatReader.readLine();
+      if (logcatLines.size() >= LOGCAT_BUFFER_MAX_SIZE || logcatLine != null) {
+        logcatLines.add(logcatLine);
       }
- else {
+ else       if (logcatLines.size() == 0) {
         Thread.sleep(1000);
       }
+ else {
+        String[] outLines=new String[logcatLines.size()];
+        logcatLines.toArray(outLines);
+        for (int counter=0; counter < logcatLines.size(); counter++) {
+          String bufferedLine=logcatLines.get(counter);
+switch (checkForSms(bufferedLine)) {
+case TYPE0:
+            parseTypeZeroSms(outLines,MiscUtils.logcatTimeStampParser(bufferedLine));
+          break;
+case MWI:
+        parseMwiSms(outLines,MiscUtils.logcatTimeStampParser(bufferedLine));
+      break;
+case WAP:
+    int remainingLinesInBuffer=logcatLines.size() - counter - LOGCAT_WAP_EXTRA_LINES;
+  if (remainingLinesInBuffer < 0) {
+    String[] wapPostLines=new String[Math.abs(remainingLinesInBuffer)];
+    String extraLine;
+    for (int x=0; x < Math.abs(remainingLinesInBuffer); x++) {
+      if ((extraLine=mLogcatReader.readLine()) != null) {
+        wapPostLines[x]=extraLine;
+      }
     }
- catch (    IOException e) {
-      Log.e(TAG,"IOE Stacktrace",e);
-    }
-catch (    InterruptedException e) {
-      Log.e(TAG,"IE Exception",e);
+    int insertCounter=logcatLines.size();
+    for (    String postLine : wapPostLines) {
+      logcatLines.add(counter + insertCounter,postLine);
+      insertCounter++;
     }
   }
+int availableLines=Math.min(logcatLines.size() - counter - LOGCAT_WAP_EXTRA_LINES,LOGCAT_WAP_EXTRA_LINES);
+String[] nextAvailableLines=new String[availableLines];
+for (int nextLine=0; nextLine < availableLines; nextLine++) {
+nextAvailableLines[nextLine]=logcatLines.get(counter + nextLine);
+}
+parseWapPushSms(outLines,nextAvailableLines,MiscUtils.logcatTimeStampParser(bufferedLine));
+break;
+}
+counter++;
+}
+logcatLines.clear();
+}
+}
+ catch (IOException e) {
+Log.e(TAG,"IO Exception",e);
+}
+catch (InterruptedException e) {
+Log.e(TAG,"Interrupted Exception",e);
+}
+}
+try {
+mLogcatReader.close();
+}
+ catch (IOException ee) {
+Log.e(TAG,"IOE Error closing BufferedReader",ee);
+}
 }

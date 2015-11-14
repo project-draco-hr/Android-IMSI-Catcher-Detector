@@ -1,0 +1,3 @@
+String[] logcatLines
+String[] postWapMessageLines
+String logcat_timestamp
