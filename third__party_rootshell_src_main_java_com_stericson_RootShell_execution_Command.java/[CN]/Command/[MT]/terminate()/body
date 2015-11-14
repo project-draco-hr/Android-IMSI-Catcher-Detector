@@ -1,0 +1,4 @@
+{
+  RootShell.log("Terminating command at users request!");
+  terminated("Terminated at users request!");
+}

@@ -1,5 +1,5 @@
 {
-  String desourcedPath=path.toString().replace("src/","");
+  String desourcedPath=path.toString().replace("src" + File.separator,"");
   File[] files=path.listFiles();
   for (  File file : files) {
     if (file.isDirectory()) {
