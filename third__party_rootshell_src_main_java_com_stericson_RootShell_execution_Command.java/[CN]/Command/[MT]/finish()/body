@@ -1,0 +1,4 @@
+{
+  RootShell.log("Command finished at users request!");
+  commandFinished();
+}

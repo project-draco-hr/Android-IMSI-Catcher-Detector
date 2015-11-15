@@ -27,8 +27,13 @@
       eventLog.put("DF_description",DF_desc);
       mDb.insert("EventLog",null,eventLog);
       Log.i(TAG,"ToEventLog(): Added new event: id=" + DF_id + " time="+ time+ " cid="+ cid);
-      Vibrator v=(Vibrator)mContext.getSystemService(Context.VIBRATOR_SERVICE);
-      v.vibrate(100);
+      boolean vibrationEnabled=mPreferences.getBoolean(mContext.getString(R.string.pref_notification_vibrate_enable),true);
+      int thresholdLevel=Integer.valueOf(mPreferences.getString(mContext.getString(R.string.pref_notification_vibrate_min_level),String.valueOf(Status.Type.MEDIUM.level)));
+      boolean higherLevelThanThreshold=Status.Type.MEDIUM.level <= thresholdLevel;
+      if (vibrationEnabled && higherLevelThanThreshold) {
+        Vibrator v=(Vibrator)mContext.getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(100);
+      }
     }
  else {
     }
