@@ -1,15 +1,17 @@
 {
-  while (!finished) {
+  if (timeout > 0) {
+    while (!finished) {
 synchronized (Command.this) {
-      try {
-        Command.this.wait(timeout);
+        try {
+          Command.this.wait(timeout);
+        }
+ catch (        InterruptedException e) {
+        }
       }
- catch (      InterruptedException e) {
+      if (!finished) {
+        RootShell.log("Timeout Exception has occurred.");
+        terminate("Timeout Exception");
       }
-    }
-    if (!finished) {
-      RootShell.log("Timeout Exception has occurred.");
-      terminate("Timeout Exception");
     }
   }
 }

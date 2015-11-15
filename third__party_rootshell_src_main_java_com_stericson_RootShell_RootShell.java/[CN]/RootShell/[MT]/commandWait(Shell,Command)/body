@@ -1,6 +1,7 @@
 {
   while (!cmd.isFinished()) {
     RootShell.log(version,shell.getCommandQueuePositionString(cmd));
+    RootShell.log(version,"Processed " + cmd.totalOutputProcessed + " of "+ cmd.totalOutput+ " output from command.");
 synchronized (cmd) {
       try {
         if (!cmd.isFinished()) {
