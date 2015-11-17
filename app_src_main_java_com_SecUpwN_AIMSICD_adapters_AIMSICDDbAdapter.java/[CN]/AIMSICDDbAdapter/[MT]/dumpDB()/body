@@ -1,9 +1,9 @@
 {
   AIMSICD.mProgressBar.setMax(2);
   AIMSICD.mProgressBar.setProgress(1);
-  File dumpdir=new File(FOLDER);
+  File dumpdir=new File(mExternalFilesDirPath);
   File file=new File(dumpdir,"aimsicd_dump.db");
-  String aimdir="/data/data/com.SecUpwN.AIMSICD/databases/";
+  String aimdir=new File(mDatabasePath).getParent();
   String execString="/system/xbin/sqlite3 " + aimdir + "aimsicd.db '.backup "+ file+ "'";
   try {
     Log.i(TAG,"DumpDB() Attempting to dump DB to: " + file + "\nUsing: \""+ execString+ "\"\n");

@@ -5,7 +5,7 @@
     int tcount=1;
     for (    String table : mTables) {
       AIMSICD.mProgressBar.setProgress(tcount++);
-      File file=new File(FOLDER + "aimsicd-" + table+ ".csv");
+      File file=new File(mExternalFilesDirPath + "aimsicd-" + table+ ".csv");
       if (file.exists()) {
         List<String[]> records=new ArrayList<>();
         String next[];
@@ -19,24 +19,24 @@
 switch (table) {
 case "defaultlocation":
               try {
-                insertDefaultLocation(records.get(i)[1].toString(),Integer.parseInt(records.get(i)[2]),records.get(i)[3].toString(),records.get(i)[4].toString());
+                insertDefaultLocation(records.get(i)[1],Integer.parseInt(records.get(i)[2]),records.get(i)[3],records.get(i)[4]);
               }
  catch (              Exception ee) {
                 Log.e(TAG,"RestoreDB: Error in insertDefaultLocation()",ee);
               }
             break;
 case "API_keys":
-          insertApiKeys(records.get(i)[1].toString(),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString());
+          insertApiKeys(records.get(i)[1],records.get(i)[2],records.get(i)[3],records.get(i)[4],records.get(i)[5]);
         break;
 case "CounterMeasures":
-      insertCounterMeasures(records.get(i)[1].toString(),records.get(i)[2].toString(),Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]));
+      insertCounterMeasures(records.get(i)[1],records.get(i)[2],Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]));
     break;
 case "DBe_capabilities":
-  insertDBeCapabilities(records.get(i)[1].toString(),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString(),records.get(i)[6].toString());
+  insertDBeCapabilities(records.get(i)[1],records.get(i)[2],records.get(i)[3],records.get(i)[4],records.get(i)[5],records.get(i)[6]);
 break;
 case "DBe_import":
 try {
-insertDBeImport(records.get(i)[1].toString(),records.get(i)[2].toString(),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),records.get(i)[8].toString(),records.get(i)[9].toString(),Integer.parseInt(records.get(i)[10]),Integer.parseInt(records.get(i)[11]),Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]),records.get(i)[14].toString(),records.get(i)[15].toString(),0);
+insertDBeImport(records.get(i)[1],records.get(i)[2],Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),records.get(i)[8],records.get(i)[9],Integer.parseInt(records.get(i)[10]),Integer.parseInt(records.get(i)[11]),Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]),records.get(i)[14],records.get(i)[15],0);
 }
  catch (Exception ee) {
 Log.e(TAG,"RestoreDB: Error in insertDBeImport()",ee);
@@ -44,7 +44,7 @@ Log.e(TAG,"RestoreDB: Error in insertDBeImport()",ee);
 break;
 case "DBi_bts":
 try {
-insertBTS(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString(),records.get(i)[10].toString(),Double.parseDouble(records.get(i)[11]),Double.parseDouble(records.get(i)[12]));
+insertBTS(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9],records.get(i)[10],Double.parseDouble(records.get(i)[11]),Double.parseDouble(records.get(i)[12]));
 }
  catch (Exception ee) {
 Log.e(TAG,"RestoreDB: Error in insertBTS()",ee);
@@ -52,26 +52,26 @@ Log.e(TAG,"RestoreDB: Error in insertBTS()",ee);
 break;
 case "DBi_measure":
 try {
-insertDbiMeasure(Integer.parseInt(records.get(i)[1]),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString(),Integer.parseInt(records.get(i)[6]),records.get(i)[7].toString(),records.get(i)[8].toString(),records.get(i)[9].toString(),records.get(i)[10].toString(),records.get(i)[11].toString(),records.get(i)[12].toString(),records.get(i)[13].toString(),records.get(i)[14].toString(),records.get(i)[15].toString(),records.get(i)[16].toString(),Integer.parseInt(records.get(i)[17]),Integer.parseInt(records.get(i)[18]),Integer.parseInt(records.get(i)[19]),records.get(i)[20].toString(),Integer.parseInt(records.get(i)[21]),Integer.parseInt(records.get(i)[22]));
+insertDbiMeasure(Integer.parseInt(records.get(i)[1]),records.get(i)[2],records.get(i)[3],records.get(i)[4],records.get(i)[5],Integer.parseInt(records.get(i)[6]),records.get(i)[7],records.get(i)[8],records.get(i)[9],records.get(i)[10],records.get(i)[11],records.get(i)[12],records.get(i)[13],records.get(i)[14],records.get(i)[15],records.get(i)[16],Integer.parseInt(records.get(i)[17]),Integer.parseInt(records.get(i)[18]),Integer.parseInt(records.get(i)[19]),records.get(i)[20],Integer.parseInt(records.get(i)[21]),Integer.parseInt(records.get(i)[22]));
 }
  catch (Exception ee) {
 Log.e(TAG,"RestoreDB: Error in insertDbiMeasure()",ee);
 }
 break;
 case "DetectionFlags":
-insertDetectionFlags(Integer.parseInt(records.get(i)[1]),records.get(i)[2].toString(),records.get(i)[3].toString(),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Double.parseDouble(records.get(i)[7]),Double.parseDouble(records.get(i)[8]),Double.parseDouble(records.get(i)[9]),records.get(i)[10].toString(),records.get(i)[11].toString(),Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]));
+insertDetectionFlags(Integer.parseInt(records.get(i)[1]),records.get(i)[2],records.get(i)[3],Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Double.parseDouble(records.get(i)[7]),Double.parseDouble(records.get(i)[8]),Double.parseDouble(records.get(i)[9]),records.get(i)[10],records.get(i)[11],Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]));
 break;
 case "EventLog":
-insertEventLog(records.get(i)[1].toString(),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),records.get(i)[5].toString(),records.get(i)[6].toString(),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString());
+insertEventLog(records.get(i)[1],Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),records.get(i)[5],records.get(i)[6],Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9]);
 break;
 case "SectorType":
-insertSectorType(records.get(i)[1].toString());
+insertSectorType(records.get(i)[1]);
 break;
 case "DetectionStrings":
-insertDetectionStrings(records.get(i)[1].toString(),records.get(i)[2].toString());
+insertDetectionStrings(records.get(i)[1],records.get(i)[2]);
 break;
 case "SmsData":
-insertSmsData(records.get(i)[1].toString(),records.get(i)[2].toString(),records.get(i)[3].toString(),records.get(i)[4].toString(),records.get(i)[5].toString(),records.get(i)[6].toString(),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9].toString(),Double.parseDouble(records.get(i)[10]),Double.parseDouble(records.get(i)[11]),Integer.parseInt(records.get(i)[12]));
+insertSmsData(records.get(i)[1],records.get(i)[2],records.get(i)[3],records.get(i)[4],records.get(i)[5],records.get(i)[6],Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9],Double.parseDouble(records.get(i)[10]),Double.parseDouble(records.get(i)[11]),Integer.parseInt(records.get(i)[12]));
 break;
 }
 }

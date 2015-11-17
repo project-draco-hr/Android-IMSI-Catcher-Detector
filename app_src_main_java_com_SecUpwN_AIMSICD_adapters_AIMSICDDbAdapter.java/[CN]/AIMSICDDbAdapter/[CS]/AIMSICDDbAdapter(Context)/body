@@ -2,9 +2,10 @@
   super(context,DB_NAME,null,1);
   mContext=context;
   mPreferences=PreferenceManager.getDefaultSharedPreferences(mContext);
-  FOLDER=mContext.getExternalFilesDir(null) + File.separator;
+  mDatabasePath=mContext.getDatabasePath(DB_NAME).getAbsolutePath();
+  mExternalFilesDirPath=mContext.getExternalFilesDir(null) + File.separator;
   createDataBase();
-  mDb=SQLiteDatabase.openDatabase(DB_LOCATION,null,SQLiteDatabase.OPEN_READWRITE);
+  mDb=SQLiteDatabase.openDatabase(mDatabasePath,null,SQLiteDatabase.OPEN_READWRITE);
   this.getWritableDatabase();
   mTables=new String[]{DBTableColumnIds.DEFAULT_LOCATION_TABLE_NAME,DBTableColumnIds.DBE_IMPORT_TABLE_NAME,DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_MEASURE_TABLE_NAME,DBTableColumnIds.EVENTLOG_TABLE_NAME,DBTableColumnIds.DETECTION_STRINGS_TABLE_NAME,DBTableColumnIds.SMS_DATA_TABLE_NAME};
 }
