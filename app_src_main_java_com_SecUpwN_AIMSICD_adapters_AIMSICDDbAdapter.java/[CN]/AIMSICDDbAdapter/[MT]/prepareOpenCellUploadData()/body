@@ -1,6 +1,6 @@
 {
   boolean result;
-  File dir=new File(FOLDER + "OpenCellID/");
+  File dir=new File(mExternalFilesDirPath + "OpenCellID/");
   if (!dir.exists()) {
     result=dir.mkdirs();
     if (!result) {

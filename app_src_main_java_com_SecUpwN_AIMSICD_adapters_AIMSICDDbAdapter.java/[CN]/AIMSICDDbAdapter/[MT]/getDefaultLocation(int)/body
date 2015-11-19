@@ -10,6 +10,8 @@
     loc[0]=0.0;
     loc[1]=0.0;
   }
-  cursor.close();
+  if (cursor != null) {
+    cursor.close();
+  }
   return loc;
 }
