@@ -31,8 +31,8 @@
           if (lPresentCellID.get(Integer.parseInt(csvCellID.get(rowCounter)[5]),false)) {
             continue;
           }
-          String lat=csvCellID.get(rowCounter)[0], lon=csvCellID.get(rowCounter)[1], mcc=csvCellID.get(rowCounter)[2], mnc=csvCellID.get(rowCounter)[3], lac=csvCellID.get(rowCounter)[4], cellid=csvCellID.get(rowCounter)[5], range=csvCellID.get(rowCounter)[6], avg_sig=csvCellID.get(rowCounter)[7], samples=csvCellID.get(rowCounter)[8], change=csvCellID.get(rowCounter)[9], radio=csvCellID.get(rowCounter)[10], rnc=csvCellID.get(rowCounter)[11], cid=csvCellID.get(rowCounter)[12], psc=csvCellID.get(rowCounter)[13];
-          int iPsc=0;
+          String lat=csvCellID.get(rowCounter)[0], lon=csvCellID.get(rowCounter)[1], mcc=csvCellID.get(rowCounter)[2], mnc=csvCellID.get(rowCounter)[3], lac=csvCellID.get(rowCounter)[4], cellid=csvCellID.get(rowCounter)[5], range=csvCellID.get(rowCounter)[6], avg_sig=csvCellID.get(rowCounter)[7], samples=csvCellID.get(rowCounter)[8], change=csvCellID.get(rowCounter)[9], radio=csvCellID.get(rowCounter)[10], psc=csvCellID.get(rowCounter)[13];
+          int iPsc=666;
           if (psc != null && !psc.isEmpty()) {
             iPsc=Integer.parseInt(psc);
           }

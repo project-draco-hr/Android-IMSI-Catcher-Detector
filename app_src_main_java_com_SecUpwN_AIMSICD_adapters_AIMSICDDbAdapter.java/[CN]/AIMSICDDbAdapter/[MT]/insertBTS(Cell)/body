@@ -33,10 +33,10 @@
     dbiMeasure.put("time",MiscUtils.getCurrentTimeStamp());
     String slat=String.valueOf(cell.getLat());
     String slon=String.valueOf(cell.getLon());
-    if (slat == null) {
+    if (slat.isEmpty()) {
       slat="0.0";
     }
-    if (slon == null) {
+    if (slon.isEmpty()) {
       slat="0.0";
     }
     dbiMeasure.put("gpsd_lat",slat);

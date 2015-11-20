@@ -1,0 +1,27 @@
+{
+  CapturedSmsData capturedSms=new CapturedSmsData();
+  String smsText=findSmsData(bufferLines,null);
+  String num=findSmsNumber(bufferLines,null);
+  capturedSms.setSenderNumber(num == null ? "null" : num);
+  capturedSms.setSenderMsg(smsText == null ? "null" : num);
+  capturedSms.setSmsTimestamp(logcat_timestamp);
+  capturedSms.setSmsType("TYPE0");
+  capturedSms.setCurrent_lac(mAIMSICDService.getCellTracker().getMonitorCell().getLAC());
+  capturedSms.setCurrent_cid(mAIMSICDService.getCellTracker().getMonitorCell().getCID());
+  capturedSms.setCurrent_nettype(Device.getNetworkTypeName(mAIMSICDService.getCell().getNetType()));
+  int isRoaming=0;
+  if ("true".equals(mAIMSICDService.getCellTracker().getDevice().isRoaming())) {
+    isRoaming=1;
+  }
+  capturedSms.setCurrent_roam_status(isRoaming);
+  capturedSms.setCurrent_gps_lat(mAIMSICDService.lastKnownLocation().getLatitudeInDegrees());
+  capturedSms.setCurrent_gps_lon(mAIMSICDService.lastKnownLocation().getLongitudeInDegrees());
+  if (!mDbAdapter.isTimeStampInDB(logcat_timestamp)) {
+    mDbAdapter.storeCapturedSms(capturedSms);
+    mDbAdapter.toEventLog(3,"Detected Type-0 SMS");
+    MiscUtils.startPopUpInfo(mContext,6);
+  }
+ else {
+    Log.d(TAG,"Detected Sms already logged");
+  }
+}

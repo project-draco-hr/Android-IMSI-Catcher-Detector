@@ -15,7 +15,7 @@
         setShellOom();
         break;
       }
-      shell.error="unkown error occured.";
+      shell.error="unknown error occurred.";
     }
   }
  catch (  IOException e) {

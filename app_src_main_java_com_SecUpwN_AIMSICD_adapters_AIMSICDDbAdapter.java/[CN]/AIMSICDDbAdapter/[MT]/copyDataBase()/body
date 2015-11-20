@@ -1,6 +1,6 @@
 {
   InputStream myInput=mContext.getAssets().open(DB_NAME);
-  OutputStream myOutput=new FileOutputStream(DB_LOCATION);
+  OutputStream myOutput=new FileOutputStream(mDatabasePath);
   byte[] buffer=new byte[1024];
   int length;
   while ((length=myInput.read(buffer)) > 0) {

@@ -11,8 +11,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
     if (!lacOK) {
       mChangedLAC=true;
       dbHelper.toEventLog(1,"Changing LAC");
-      Vibrator v=(Vibrator)this.context.getSystemService(Context.VIBRATOR_SERVICE);
-      v.vibrate(100);
+      vibrate(100,Status.Type.MEDIUM);
       setNotification();
     }
  else {
@@ -22,8 +21,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
       if (!dbHelper.openCellExists(mMonitorCell.getCID())) {
         dbHelper.toEventLog(2,"CID not in DBe_import");
         Log.i(TAG,"ALERT: Connected to unknown CID not in DBe_import: " + mMonitorCell.getCID());
-        Vibrator v=(Vibrator)this.context.getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(100);
+        vibrate(100,Status.Type.MEDIUM);
         mCellIdNotInOpenDb=true;
         setNotification();
       }

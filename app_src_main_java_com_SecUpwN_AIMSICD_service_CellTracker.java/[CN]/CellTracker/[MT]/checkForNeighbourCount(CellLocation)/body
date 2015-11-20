@@ -12,8 +12,7 @@
   }
  else   if (ncls == 0 && nclp) {
     Log.i(TAG,"ALERT: No neighboring cells detected for CID: " + mDevice.mCell.getCID());
-    Vibrator v=(Vibrator)this.context.getSystemService(Context.VIBRATOR_SERVICE);
-    v.vibrate(100);
+    vibrate(100,Status.Type.MEDIUM);
     dbHelper.toEventLog(4,"No neighboring cells detected");
   }
  else {
