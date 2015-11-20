@@ -1,7 +1,7 @@
 {
   setSmsDetectionState(false);
   if (mBound) {
-    tContext.unbindService(mConnection);
+    mContext.unbindService(mConnection);
     mBound=false;
   }
   Log.i(TAG,"SMS detection stopped");

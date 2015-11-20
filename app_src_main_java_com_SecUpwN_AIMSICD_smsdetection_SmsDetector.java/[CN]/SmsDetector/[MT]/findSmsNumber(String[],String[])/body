@@ -1,0 +1,29 @@
+{
+  if (preBuffer != null) {
+    for (    String preBufferLine : preBuffer) {
+      if (preBufferLine != null) {
+        if (preBufferLine.contains("SMS originating address:") && preBufferLine.contains("+")) {
+          return preBufferLine.substring(preBufferLine.indexOf("+"));
+        }
+ else         if (preBufferLine.contains("OrigAddr")) {
+          preBufferLine=preBufferLine.substring(preBufferLine.indexOf("OrigAddr")).replace("OrigAddr","").trim();
+          return preBufferLine;
+        }
+      }
+    }
+  }
+  if (postBuffer != null) {
+    for (    String postBufferLine : postBuffer) {
+      if (postBufferLine != null) {
+        if (postBufferLine.contains("SMS originating address:") && postBufferLine.contains("+")) {
+          return postBufferLine.substring(postBufferLine.indexOf("+"));
+        }
+ else         if (postBufferLine.contains("OrigAddr")) {
+          postBufferLine=postBufferLine.substring(postBufferLine.indexOf("OrigAddr")).replace("OrigAddr","").trim();
+          return postBufferLine;
+        }
+      }
+    }
+  }
+  return null;
+}
