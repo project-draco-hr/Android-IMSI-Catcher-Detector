@@ -1,15 +1,14 @@
 {
   super.onCreate(savedInstanceState);
   moveData();
-  getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
   mNavConf=new DrawerMenuActivityConfiguration.Builder(this).build();
   setContentView(mNavConf.getMainLayout());
   mDrawerLayout=(DrawerLayout)findViewById(mNavConf.getDrawerLayoutId());
   mDrawerList=(ListView)findViewById(mNavConf.getLeftDrawerId());
-  mActionBar=getActionBar();
+  mActionBar=getSupportActionBar();
   mTitle=mDrawerTitle=getTitle();
   mDrawerList.setAdapter(mNavConf.getBaseAdapter());
-  mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open,R.string.drawer_close){
+  mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.string.drawer_open,R.string.drawer_close){
     /** 
  * Called when a drawer has settled in a completely closed state. 
  */
