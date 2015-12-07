@@ -1,7 +1,4 @@
 {
-  if (title != null) {
-    tv_popup_title.setText(title);
-  }
   if (header != null) {
     about_tv_status.setText(header);
   }
