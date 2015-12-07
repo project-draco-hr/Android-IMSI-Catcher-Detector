@@ -1,5 +1,6 @@
 {
   super.onCreate(savedInstanceState);
+  okHttpClient=((AppAIMSICD)getApplication()).getOkHttpClient();
   moveData();
   mNavConf=new DrawerMenuActivityConfiguration.Builder(this).build();
   setContentView(mNavConf.getMainLayout());
