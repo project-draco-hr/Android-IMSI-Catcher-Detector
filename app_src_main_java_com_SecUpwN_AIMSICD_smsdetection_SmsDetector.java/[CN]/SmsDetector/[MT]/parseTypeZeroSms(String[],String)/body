@@ -19,7 +19,7 @@
   if (!mDbAdapter.isTimeStampInDB(logcat_timestamp)) {
     mDbAdapter.storeCapturedSms(capturedSms);
     mDbAdapter.toEventLog(3,"Detected Type-0 SMS");
-    MiscUtils.startPopUpInfo(mContext,6);
+    startPopUpInfo(mContext,6);
   }
  else {
     Log.d(TAG,"Detected Sms already logged");
