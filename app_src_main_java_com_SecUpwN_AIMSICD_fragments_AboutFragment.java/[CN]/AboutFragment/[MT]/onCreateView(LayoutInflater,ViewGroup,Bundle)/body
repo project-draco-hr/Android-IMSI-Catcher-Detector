@@ -42,42 +42,42 @@
     View imgView_idle=v.findViewById(R.id.imgView_idle);
     imgView_idle.setOnClickListener(new View.OnClickListener(){
       @Override public void onClick(      View view){
-        MiscUtils.startPopUpInfo(mContext,0);
+        showInfoDialog(Status.IDLE);
       }
     }
 );
     View imgView_normal=v.findViewById(R.id.imgView_normal);
     imgView_normal.setOnClickListener(new View.OnClickListener(){
       @Override public void onClick(      View view){
-        MiscUtils.startPopUpInfo(mContext,1);
+        showInfoDialog(Status.NORMAL);
       }
     }
 );
     View imgView_medium=v.findViewById(R.id.imgView_medium);
     imgView_medium.setOnClickListener(new View.OnClickListener(){
       @Override public void onClick(      View view){
-        MiscUtils.startPopUpInfo(mContext,2);
+        showInfoDialog(Status.MEDIUM);
       }
     }
 );
     View imgView_high=v.findViewById(R.id.imgView_high);
     imgView_high.setOnClickListener(new View.OnClickListener(){
       @Override public void onClick(      View view){
-        MiscUtils.startPopUpInfo(mContext,3);
+        showInfoDialog(Status.HIGH);
       }
     }
 );
     View imgView_danger=v.findViewById(R.id.imgView_danger);
     imgView_danger.setOnClickListener(new View.OnClickListener(){
       @Override public void onClick(      View view){
-        MiscUtils.startPopUpInfo(mContext,4);
+        showInfoDialog(Status.DANGER);
       }
     }
 );
     View imgView_run=v.findViewById(R.id.imgView_run);
     imgView_run.setOnClickListener(new View.OnClickListener(){
       @Override public void onClick(      View view){
-        MiscUtils.startPopUpInfo(mContext,5);
+        showInfoDialog(Status.RUN);
       }
     }
 );
