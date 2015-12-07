@@ -1,0 +1,4 @@
+{
+  MiscUtils.showNotification(mContext,mContext.getString(mode.getAlert()),mContext.getString(R.string.app_name_short) + " - " + mContext.getString(mode.getTitle()),R.drawable.sense_danger,true);
+  new AlertDialog.Builder(mContext).setTitle(mode.getTitle()).setMessage(mode.getMessage()).setIcon(R.drawable.sense_danger).show();
+}

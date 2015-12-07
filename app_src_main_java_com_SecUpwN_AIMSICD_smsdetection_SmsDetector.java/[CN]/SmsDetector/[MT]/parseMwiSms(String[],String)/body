@@ -19,7 +19,7 @@
   if (!mDbAdapter.isTimeStampInDB(logcat_timestamp)) {
     mDbAdapter.storeCapturedSms(capturedSms);
     mDbAdapter.toEventLog(4,"Detected MWI SMS");
-    startPopUpInfo(7);
+    startPopUpInfo(SmsType.MWI);
   }
  else {
     Log.d(TAG," Detected Sms already logged");
