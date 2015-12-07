@@ -19,7 +19,7 @@
   if (!mDbAdapter.isTimeStampInDB(logcat_timestamp)) {
     mDbAdapter.storeCapturedSms(capturedSms);
     mDbAdapter.toEventLog(6,"Detected WAPPUSH SMS");
-    startPopUpInfo(mContext,8);
+    startPopUpInfo(8);
   }
  else {
     Log.d(TAG,"Detected SMS already logged");
