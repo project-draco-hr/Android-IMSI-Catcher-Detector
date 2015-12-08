@@ -9,7 +9,7 @@
         c=mDbHelper.getCellData();
       }
  catch (      IllegalStateException ix) {
-        Log.e(TAG,"Problem getting data from CELL_TABLE",ix);
+        log.error("Problem getting data from CELL_TABLE",ix);
       }
       if (c != null && c.moveToFirst()) {
         do {
@@ -48,7 +48,7 @@
           ret=new GeoPoint(d[0],d[1]);
         }
  catch (        Exception e) {
-          Log.e("map","Error getting default location!",e);
+          log.error("Error getting default location!",e);
         }
       }
       if (c != null) {
@@ -59,7 +59,7 @@
         Thread.sleep(100);
       }
  catch (      InterruptedException e) {
-        Log.w(TAG,"thread interrupted",e);
+        log.warn("thread interrupted",e);
       }
       List<Cell> nc=mAimsicdService.getCellTracker().updateNeighbouringCells();
       for (      Cell cell : nc) {
@@ -71,7 +71,7 @@
           items.add(ovm);
         }
  catch (        Exception e) {
-          Log.e("map","Error plotting neighbouring cells",e);
+          log.error("Error plotting neighbouring cells",e);
         }
       }
       mCellTowerGridMarkerClusterer.addAll(items);
@@ -106,7 +106,7 @@
       }
       if (mCellTowerGridMarkerClusterer != null) {
         if (BuildConfig.DEBUG && mCellTowerGridMarkerClusterer.getItems() != null) {
-          Log.v(TAG,"CellTowerMarkers.invalidate() markers.size():" + mCellTowerGridMarkerClusterer.getItems().size());
+          log.verbose("CellTowerMarkers.invalidate() markers.size():" + mCellTowerGridMarkerClusterer.getItems().size());
         }
         mCellTowerGridMarkerClusterer.invalidate();
       }
