@@ -1,7 +1,7 @@
 {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.activity_debug_logs);
-  getActionBar().setDisplayHomeAsUpEnabled(true);
+  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   logView=(TextView)findViewById(R.id.debug_log_view);
   btnClear=(Button)findViewById(R.id.btnClear);
   btnStop=(Button)findViewById(R.id.btnStopLogs);
