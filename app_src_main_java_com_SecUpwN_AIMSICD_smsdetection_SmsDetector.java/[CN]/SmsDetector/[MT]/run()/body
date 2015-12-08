@@ -13,6 +13,7 @@
   }
  catch (  InterruptedException|IOException e) {
     Log.e(TAG,"Exception while initializing LogCat (time, radio, main) reader",e);
+    return;
   }
   String logcatLine;
   List<String> logcatLines=new ArrayList<>();
