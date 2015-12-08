@@ -4,16 +4,16 @@
   final boolean exists=cursor.getCount() > 0;
   cursor.close();
   if (exists) {
-    Log.i(TAG,"Detection String already in Database");
+    log.info("Detection String already in Database");
   }
  else {
     try {
       mDb.insert("DetectionStrings",null,newString);
-      Log.i(TAG,"New detection string added.");
+      log.info("New detection string added.");
       return true;
     }
  catch (    Exception ee) {
-      Log.i(TAG,"Adding detection string Failed! ",ee);
+      log.info("Adding detection string Failed! ",ee);
     }
   }
   return false;

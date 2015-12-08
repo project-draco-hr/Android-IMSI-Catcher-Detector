@@ -9,7 +9,7 @@
     return true;
   }
  catch (  Exception ioe) {
-    Log.e(TAG,"BackupDB() Error: ",ioe);
+    log.error("BackupDB() Error: ",ioe);
     return false;
   }
 }

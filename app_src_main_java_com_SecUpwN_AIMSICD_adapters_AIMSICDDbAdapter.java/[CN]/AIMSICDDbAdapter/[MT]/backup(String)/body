@@ -1,16 +1,16 @@
 {
-  Log.i(TAG,"Database Backup: " + DB_NAME);
+  log.info("Database Backup: " + DB_NAME);
   File dir=new File(mExternalFilesDirPath);
   if (!dir.exists()) {
     if (!dir.mkdirs()) {
-      Log.e(TAG,"Backup(): Cannot create directory structure to " + dir.getAbsolutePath());
+      log.error("Backup(): Cannot create directory structure to " + dir.getAbsolutePath());
     }
   }
   File file=new File(dir,"aimsicd-" + tableName + ".csv");
   try {
-    Log.i(TAG,"Backup(): Backup file was created? " + file.createNewFile());
+    log.info("Backup(): Backup file was created? " + file.createNewFile());
     CSVWriter csvWrite=new CSVWriter(new FileWriter(file));
-    Log.d(TAG,"DB backup() tableName: " + tableName);
+    log.debug("DB backup() tableName: " + tableName);
     Cursor c=mDb.rawQuery("SELECT * FROM " + tableName,new String[0]);
     csvWrite.writeNext(c.getColumnNames());
     String[] rowData=new String[c.getColumnCount()];
@@ -25,7 +25,7 @@
     c.close();
   }
  catch (  Exception e) {
-    Log.e(TAG,"Error exporting table: " + tableName,e);
+    log.error("Error exporting table: " + tableName,e);
   }
-  Log.i(TAG,"Backup(): Successfully exported DB table to: " + file);
+  log.info("Backup(): Successfully exported DB table to: " + file);
 }

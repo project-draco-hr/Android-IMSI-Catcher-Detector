@@ -7,25 +7,25 @@ synchronized (cmd) {
         }
       }
  catch (      InterruptedException e) {
-        Log.e(TAG,e.getMessage());
+        log.error(e.getMessage());
       }
     }
     if (!cmd.isExecuting() && !cmd.isFinished()) {
       Exception e=new Exception();
       if (!shell.isExecuting && !shell.isReading) {
-        Log.w(TAG,"Waiting for a command to be executed in a shell that is not executing and not reading! \n\n Command: " + cmd.getCommand());
+        log.warn("Waiting for a command to be executed in a shell that is not executing and not reading! \n\n Command: " + cmd.getCommand());
         e.setStackTrace(Thread.currentThread().getStackTrace());
-        Log.e(TAG,e.getMessage(),e);
+        log.error(e.getMessage(),e);
       }
  else       if (shell.isExecuting && !shell.isReading) {
-        Log.e(TAG,"Waiting for a command to be executed in a shell that is executing but not reading! \n\n Command: " + cmd.getCommand());
+        log.error("Waiting for a command to be executed in a shell that is executing but not reading! \n\n Command: " + cmd.getCommand());
         e.setStackTrace(Thread.currentThread().getStackTrace());
-        Log.e(TAG,e.getMessage(),e);
+        log.error(e.getMessage(),e);
       }
  else {
-        Log.e(TAG,"Waiting for a command to be executed in a shell that is not reading! \n\n Command: " + cmd.getCommand());
+        log.error("Waiting for a command to be executed in a shell that is not reading! \n\n Command: " + cmd.getCommand());
         e.setStackTrace(Thread.currentThread().getStackTrace());
-        Log.e(TAG,e.getMessage(),e);
+        log.error(e.getMessage(),e);
       }
     }
   }

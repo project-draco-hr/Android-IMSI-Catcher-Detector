@@ -19,7 +19,7 @@
       }
     }
  catch (    StringIndexOutOfBoundsException e) {
-      Log.w(TAG,e.getMessage());
+      log.warn(e.getMessage());
     }
     for (    File file : new File("/dev").listFiles()) {
       String name=file.getName();
@@ -62,7 +62,7 @@
     }
   }
  catch (  Exception e) {
-    Log.e(TAG,"InitSerialDevice ",e);
+    log.error("InitSerialDevice ",e);
   }
   if (!mSerialDevices.isEmpty()) {
     String[] entries=new String[mSerialDevices.size()];
