@@ -1,6 +1,4 @@
 {
-  AIMSICD.mProgressBar.setMax(2);
-  AIMSICD.mProgressBar.setProgress(1);
   File dumpdir=new File(mExternalFilesDirPath);
   File file=new File(dumpdir,"aimsicd_dump.db");
   String aimdir=new File(mDatabasePath).getParent();
@@ -8,11 +6,9 @@
   try {
     log.info("DumpDB() Attempting to dump DB to: " + file + "\nUsing: \""+ execString+ "\"\n");
     CMDProcessor.runSuCommand(execString);
-    AIMSICD.mProgressBar.setProgress(2);
   }
  catch (  Exception e) {
     log.error("DumpDB() Failed to export DB dump file: ",e);
   }
   log.info("DumpDB() Dumped internal database to: " + aimdir + file);
-  AIMSICD.mProgressBar.setProgress(0);
 }

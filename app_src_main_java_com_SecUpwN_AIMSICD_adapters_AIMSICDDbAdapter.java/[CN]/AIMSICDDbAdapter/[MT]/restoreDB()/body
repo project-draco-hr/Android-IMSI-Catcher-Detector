@@ -1,10 +1,6 @@
 {
   try {
-    AIMSICD.mProgressBar.setMax(mTables.length);
-    AIMSICD.mProgressBar.setProgress(0);
-    int tcount=1;
     for (    String table : mTables) {
-      AIMSICD.mProgressBar.setProgress(tcount++);
       File file=new File(mExternalFilesDirPath + "aimsicd-" + table+ ".csv");
       if (file.exists()) {
         List<String[]> records=new ArrayList<>();
@@ -84,8 +80,5 @@ return true;
  catch (Exception e) {
 log.error("RestoreDB() Error",e);
 return false;
-}
- finally {
-AIMSICD.mProgressBar.setProgress(0);
 }
 }
