@@ -68,7 +68,7 @@ int mcc=Integer.parseInt(networkOperator.substring(0,3));
 cell.setMCC(Integer.parseInt(networkOperator.substring(0,3)));
 int mnc=Integer.parseInt(networkOperator.substring(3));
 cell.setMNC(Integer.parseInt(networkOperator.substring(3,5)));
-Log.d(TAG,"CELL:: mcc=" + mcc + " mnc="+ mnc);
+log.debug("CELL:: mcc=" + mcc + " mnc="+ mnc);
 }
 GeoLocation loc=mAimsicdService.lastKnownLocation();
 if (loc != null) {
@@ -136,10 +136,10 @@ mAimsicdService.stopSmsTracking();
 }
 }
  catch (Exception ee) {
-Log.w(TAG,"Exception in smstracking module: " + ee.getMessage());
+log.warn("Exception in smstracking module: " + ee.getMessage());
 }
 if (mAimsicdService != null) mAimsicdService.onDestroy();
-Log.i(TAG,"Closing db from DrawerMenu.ID.APPLICATION.QUIT");
+log.info("Closing db from DrawerMenu.ID.APPLICATION.QUIT");
 new AIMSICDDbAdapter(getApplicationContext()).close();
 finish();
 }

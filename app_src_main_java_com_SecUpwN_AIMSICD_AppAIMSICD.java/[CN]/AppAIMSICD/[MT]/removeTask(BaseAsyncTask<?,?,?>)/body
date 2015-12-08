@@ -6,9 +6,7 @@
     for (    BaseAsyncTask<?,?,?> lTask : tasks) {
       if (lTask.equals(pTask)) {
         tasks.remove(lTask);
-        if (BuildConfig.DEBUG) {
-          Log.v(TAG,mTAG + ": BaseTask removed:" + pTask.toString());
-        }
+        log.verbose("BaseTask removed:" + pTask.toString());
         break;
       }
     }

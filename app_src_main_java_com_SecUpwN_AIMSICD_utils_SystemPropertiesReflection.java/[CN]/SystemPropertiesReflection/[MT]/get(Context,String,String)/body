@@ -13,11 +13,11 @@
     ret=(String)get.invoke(SystemProperties,params);
   }
  catch (  IllegalArgumentException iae) {
-    Log.e(TAG,iae.getMessage(),iae);
+    log.error(iae.getMessage(),iae);
     throw iae;
   }
 catch (  Exception e) {
-    Log.e(TAG,e.getMessage(),e);
+    log.error(e.getMessage(),e);
     ret=def;
   }
   return ret;

@@ -23,6 +23,6 @@
     listViewAdv.setAdapter(new AdvanceUserBaseSmsAdapter(getApplicationContext(),newmsglist));
   }
  catch (  Exception ee) {
-    Log.e(TAG,"DB ERROR>>>>" + ee.toString());
+    log.error("DB ERROR",ee);
   }
 }

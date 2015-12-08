@@ -22,6 +22,6 @@
     startPopUpInfo(SmsType.WAP_PUSH);
   }
  else {
-    Log.d(TAG,"Detected SMS already logged");
+    log.debug("Detected SMS already logged");
   }
 }

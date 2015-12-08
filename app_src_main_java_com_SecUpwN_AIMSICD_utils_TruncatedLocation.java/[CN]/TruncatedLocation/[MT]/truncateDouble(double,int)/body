@@ -7,7 +7,7 @@
     td=number.doubleValue();
   }
  catch (  ParseException e) {
-    Log.e(TAG,"parsing exception",e);
+    log.error("parsing exception",e);
   }
   return td;
 }

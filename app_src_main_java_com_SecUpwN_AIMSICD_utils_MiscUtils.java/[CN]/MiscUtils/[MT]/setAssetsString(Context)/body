@@ -10,7 +10,7 @@
     }
   }
  catch (  Exception ee) {
-    Log.e(TAG,ee.getMessage());
+    log.error(ee.getMessage());
   }
  finally {
     if (reader != null) {
@@ -18,7 +18,7 @@
         reader.close();
       }
  catch (      Exception ee) {
-        Log.e(TAG,ee.getMessage());
+        log.error(ee.getMessage());
       }
     }
   }

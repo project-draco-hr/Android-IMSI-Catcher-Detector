@@ -1,6 +1,6 @@
 {
   if (aob.length == 0) {
-    Log.v(TAG,"invokeOemRilRequestRaw: byte-list response Length = 0");
+    log.verbose("invokeOemRilRequestRaw: byte-list response Length = 0");
     return Collections.emptyList();
   }
   int lines=aob.length / CHARS_PER_LINE;
@@ -10,13 +10,13 @@
     offset=i * CHARS_PER_LINE + 2;
     byteCount=0;
     if (offset + byteCount >= aob.length) {
-      Log.e(TAG,"Unexpected EOF");
+      log.error("Unexpected EOF");
       break;
     }
     while (aob[offset + byteCount] != 0 && (byteCount < CHARS_PER_LINE)) {
       byteCount+=1;
       if (offset + byteCount >= aob.length) {
-        Log.e(TAG,"Unexpected EOF");
+        log.error("Unexpected EOF");
         break;
       }
     }

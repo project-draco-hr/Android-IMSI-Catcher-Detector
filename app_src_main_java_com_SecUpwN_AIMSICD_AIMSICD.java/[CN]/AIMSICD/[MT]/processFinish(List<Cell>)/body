@@ -2,7 +2,7 @@
   if (cells != null) {
     if (!cells.isEmpty()) {
       for (      Cell cell : cells) {
-        Log.i(TAG,"processFinish - Cell =" + cell.toString());
+        log.info("processFinish - Cell =" + cell.toString());
         if (cell.isValid()) {
           mAimsicdService.setCell(cell);
           Intent intent=new Intent(AimsicdService.UPDATE_DISPLAY);

@@ -14,7 +14,7 @@
         errorWriter.write("Attempted to write to an offline cpu core (ignore me).");
       }
  else {
-        errorWriter.write(TAG + " shell error detected!");
+        errorWriter.write("shell error detected!");
         errorWriter.write(lineEnding);
         errorWriter.write("CommandResult {" + this.toString() + '}');
         errorWriter.write(lineEnding);
@@ -22,7 +22,7 @@
       errorWriter.write(lineEnding);
     }
  catch (    IOException e) {
-      Log.e(TAG,"Failed to write command result to error file",e);
+      log.error("Failed to write command result to error file",e);
     }
  finally {
       if (errorWriter != null) {
@@ -30,7 +30,7 @@
           errorWriter.close();
         }
  catch (        IOException ignored) {
-          Log.e(TAG,"Failed to close error writer",ignored);
+          log.error("Failed to close error writer",ignored);
         }
       }
     }
