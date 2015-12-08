@@ -18,7 +18,7 @@
         clearLogs();
       }
  catch (      IOException e) {
-        Log.e(TAG,"Error clearing logs",e);
+        log.error("Error clearing logs",e);
       }
     }
   }

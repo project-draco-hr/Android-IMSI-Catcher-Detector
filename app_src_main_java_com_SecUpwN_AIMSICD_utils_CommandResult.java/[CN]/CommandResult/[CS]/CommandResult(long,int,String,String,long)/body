@@ -4,6 +4,6 @@
   this.mStdout=stdout;
   this.mStderr=stderr;
   this.mEndTime=endTime;
-  Log.d(TAG,"Time to execute: " + (mEndTime - mStartTime) + " ns (nanoseconds)");
+  log.debug("Time to execute: " + (mEndTime - mStartTime) + " ns (nanoseconds)");
   checkForErrors();
 }

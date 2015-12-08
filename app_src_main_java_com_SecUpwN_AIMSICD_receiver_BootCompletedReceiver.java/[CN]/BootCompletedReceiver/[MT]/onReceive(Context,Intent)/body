@@ -3,7 +3,7 @@
   final String AUTO_START=context.getString(R.string.pref_autostart_key);
   boolean mAutoStart=prefs.getBoolean(AUTO_START,false);
   if (mAutoStart) {
-    Log.i("AIMSICD","System booted starting service.");
+    log.info("System booted starting service.");
     context.startService(new Intent(context,AimsicdService.class));
   }
 }

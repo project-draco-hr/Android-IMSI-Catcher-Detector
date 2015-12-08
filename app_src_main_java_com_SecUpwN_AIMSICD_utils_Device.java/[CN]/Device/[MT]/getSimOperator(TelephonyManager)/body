@@ -9,7 +9,7 @@
   }
  catch (  Exception e) {
     mSimOperator="N/A";
-    Log.e(TAG,"GetSimOperator " + e.getMessage(),e);
+    log.error("GetSimOperator " + e.getMessage(),e);
   }
   if (mSimOperator.isEmpty()) {
     mSimOperator="N/A";

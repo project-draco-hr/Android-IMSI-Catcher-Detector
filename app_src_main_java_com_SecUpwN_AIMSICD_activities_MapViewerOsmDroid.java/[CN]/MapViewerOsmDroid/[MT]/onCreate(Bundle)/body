@@ -1,5 +1,5 @@
 {
-  Log.i(TAG,"Starting MapViewer");
+  log.info("Starting MapViewer");
   super.onCreate(savedInstanceState);
   mContext=this;
   setContentView(R.layout.map);

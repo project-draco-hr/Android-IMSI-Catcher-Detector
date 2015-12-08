@@ -8,7 +8,7 @@
     version=(info != null ? info.versionName : "");
   }
  catch (  PackageManager.NameNotFoundException e) {
-    Log.e(TAG,"Something went wrong",e);
+    log.error("Something went wrong",e);
     version="";
   }
   String BUILDOZER_BUILDNUMBER=BuildConfig.BUILDOZER_BUILDNUMBER;

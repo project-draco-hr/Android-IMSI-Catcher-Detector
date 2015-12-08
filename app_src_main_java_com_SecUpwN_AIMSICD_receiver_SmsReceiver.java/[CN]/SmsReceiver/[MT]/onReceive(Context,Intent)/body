@@ -19,12 +19,12 @@
           full_pdu_string=sb.toString();
         }
  catch (        Exception err) {
-          Log.e("SmsReceiver","Exception PDU smsReceiver" + err);
+          log.error("Exception PDU smsReceiver" + err);
         }
         int firstByte=smsPdu[0] & 0xff;
         int mti=firstByte & 0x3;
         int pID=smsPdu[1] & 0xc0;
-        Log.i("AIMSICD_SmsReceiver","PDU Data: firstByte: " + firstByte + " TP-MTI: "+ mti+ " TP-PID: "+ pID);
+        log.info("PDU Data: firstByte: " + firstByte + " TP-MTI: "+ mti+ " TP-PID: "+ pID);
         if (pID == 0x40 && mti == 0) {
           messages.add(SmsMessage.createFromPdu((byte[])pdu));
         }
@@ -40,12 +40,12 @@
           smsData.putString("message",sms.getMessageBody());
           smsIntent.putExtras(smsData);
           context.sendBroadcast(smsIntent);
-          Log.i("AIMSICD_SmsReceiver","Type-0 SMS received! Sender: " + sms.getOriginatingAddress() + " Message: "+ sms.getMessageBody());
+          log.info("Type-0 SMS received! Sender: " + sms.getOriginatingAddress() + " Message: "+ sms.getMessageBody());
         }
       }
     }
   }
  catch (  NullPointerException npe) {
-    Log.e("SmsReceiver","Exception smsReceiver" + npe);
+    log.error("Exception smsReceiver",npe);
   }
 }

@@ -3,12 +3,12 @@
   Cursor bts_cursor=mDb.rawQuery(query,null);
   while (bts_cursor.moveToNext()) {
     if (cell.getLAC() != bts_cursor.getInt(bts_cursor.getColumnIndex("LAC"))) {
-      Log.i(TAG,"ALERT: Changing LAC on CID: " + cell.getCID() + " LAC(API): "+ cell.getLAC()+ " LAC(DBi): "+ bts_cursor.getInt(bts_cursor.getColumnIndex("LAC")));
+      log.info("ALERT: Changing LAC on CID: " + cell.getCID() + " LAC(API): "+ cell.getLAC()+ " LAC(DBi): "+ bts_cursor.getInt(bts_cursor.getColumnIndex("LAC")));
       bts_cursor.close();
       return false;
     }
  else {
-      Log.v(TAG,"LAC checked - no change on CID:" + cell.getCID() + " LAC(API): "+ cell.getLAC()+ " LAC(DBi): "+ bts_cursor.getInt(bts_cursor.getColumnIndex("LAC")));
+      log.verbose("LAC checked - no change on CID:" + cell.getCID() + " LAC(API): "+ cell.getLAC()+ " LAC(DBi): "+ bts_cursor.getInt(bts_cursor.getColumnIndex("LAC")));
     }
   }
   bts_cursor.close();

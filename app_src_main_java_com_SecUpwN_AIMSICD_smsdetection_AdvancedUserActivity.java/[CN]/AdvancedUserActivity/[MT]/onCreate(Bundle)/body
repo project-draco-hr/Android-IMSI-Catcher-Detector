@@ -10,7 +10,7 @@
     msgItems=dbAccess.getDetectionStrings();
   }
  catch (  Exception ee) {
-    Log.e(TAG,"Database error",ee);
+    log.error("Database error",ee);
     msgItems=new ArrayList<>();
     AdvanceUserItems advUserItems=new AdvanceUserItems();
     advUserItems.setDetection_string("NO DATA");
@@ -33,7 +33,7 @@
         loadDbString();
       }
  catch (      Exception ee) {
-        Log.d(TAG,"Error loading db string",ee);
+        log.debug("Error loading db string",ee);
       }
       return false;
     }
@@ -58,7 +58,7 @@
           loadDbString();
         }
  catch (        Exception ee) {
-          Log.e(TAG,ee.getMessage(),ee);
+          log.error(ee.getMessage(),ee);
         }
       }
     }

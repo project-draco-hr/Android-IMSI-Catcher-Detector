@@ -3,11 +3,11 @@
   if (root_sms && !mAimsicdService.isSmsTracking()) {
     mAimsicdService.startSmsTracking();
     Helpers.msgShort(mContext,"SMS Detection Started");
-    Log.i(TAG,"SMS Detection Thread Started");
+    log.info("SMS Detection Thread Started");
   }
  else   if (!root_sms && mAimsicdService.isSmsTracking()) {
     mAimsicdService.stopSmsTracking();
     Helpers.msgShort(mContext,"Sms Detection Stopped");
-    Log.i(TAG,"SMS Detection Thread Stopped");
+    log.info("SMS Detection Thread Stopped");
   }
 }
