@@ -1,4 +1,3 @@
 {
   super.onAttach(activity);
-  mContext=activity.getBaseContext();
 }
