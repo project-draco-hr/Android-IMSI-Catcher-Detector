@@ -90,8 +90,6 @@ Helpers.sendMsg(mContext,mContext.getString(R.string.no_opencellid_key_detected)
 }
  else if (selectedItem.getId() == DrawerMenu.ID.MAIN.ACD) {
 if (CellTracker.OCID_API_KEY != null && !CellTracker.OCID_API_KEY.equals("NA")) {
-Cell.CellLookUpAsync cellLookUpAsync=new Cell.CellLookUpAsync();
-cellLookUpAsync.delegate=this;
 StringBuilder sb=new StringBuilder();
 sb.append("http://www.opencellid.org/cell/get?key=").append(CellTracker.OCID_API_KEY);
 if (mAimsicdService.getCell().getMCC() != Integer.MAX_VALUE) {
@@ -107,7 +105,21 @@ if (mAimsicdService.getCell().getCID() != Integer.MAX_VALUE) {
 sb.append("&cellid=").append(mAimsicdService.getCell().getCID());
 }
 sb.append("&format=xml");
-cellLookUpAsync.execute(sb.toString());
+Request request=new Request.Builder().url(sb.toString()).get().build();
+okHttpClient.newCall(request).enqueue(new Callback(){
+@Override public void onFailure(Request request,IOException e){
+}
+@Override public void onResponse(Response response) throws IOException {
+try {
+List<Cell> cellList=new StackOverflowXmlParser().parse(response.body().byteStream());
+AIMSICD.this.processFinish(cellList);
+}
+ catch (XmlPullParserException e) {
+e.printStackTrace();
+}
+}
+}
+);
 }
  else {
 Helpers.sendMsg(mContext,mContext.getString(R.string.no_opencellid_key_detected));

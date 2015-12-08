@@ -1,4 +1,5 @@
 {
+  OkHttpClient okHttpClient=((AppAIMSICD)getActivity().getApplication()).getOkHttpClient();
 switch (mType) {
 case DBE_UPLOAD_REQUEST:
     try {
@@ -7,32 +8,14 @@ case DBE_UPLOAD_REQUEST:
       if (prepared) {
         File file=new File((mAppContext.getExternalFilesDir(null) + File.separator) + "OpenCellID/aimsicd-ocid-data.csv");
         publishProgress(25,100);
-        MultipartEntity mpEntity=new MultipartEntity();
-        FileInputStream fin=new FileInputStream(file);
-        String csv=Helpers.convertStreamToString(fin);
-        mpEntity.addPart("key",new StringBody(CellTracker.OCID_API_KEY));
-        mpEntity.addPart("datafile",new InputStreamBody(new ByteArrayInputStream(csv.getBytes()),"text/csv","aimsicd-ocid-data.csv"));
-        ByteArrayOutputStream bAOS=new ByteArrayOutputStream();
-        publishProgress(50,100);
-        mpEntity.writeTo(bAOS);
-        bAOS.flush();
-        ByteArrayEntity bArrEntity=new ByteArrayEntity(bAOS.toByteArray());
-        bAOS.close();
-        bArrEntity.setChunked(false);
-        bArrEntity.setContentEncoding(mpEntity.getContentEncoding());
-        bArrEntity.setContentType(mpEntity.getContentType());
-        HttpClient httpclient;
-        HttpPost httppost;
-        HttpResponse response;
-        httpclient=new DefaultHttpClient();
-        httppost=new HttpPost("http://www.opencellid.org/measure/uploadCsv");
+        RequestBody requestBody=new MultipartBuilder().type(MultipartBuilder.FORM).addFormDataPart("key",CellTracker.OCID_API_KEY).addFormDataPart("datafile","aimsicd-ocid-data.csv",RequestBody.create(MediaType.parse("text/csv"),file)).build();
+        Request request=new Request.Builder().url("http://www.opencellid.org/measure/uploadCsv").post(requestBody).build();
         publishProgress(60,100);
-        httppost.setEntity(bArrEntity);
-        response=httpclient.execute(httppost);
+        Response response=okHttpClient.newCall(request).execute();
         publishProgress(80,100);
         if (response != null) {
-          Log.i(TAG,"OCID Upload Response: " + response.getStatusLine().getStatusCode() + " - "+ response.getStatusLine());
-          if (response.getStatusLine().getStatusCode() == org.apache.http.HttpStatus.SC_OK) {
+          Log.i(TAG,"OCID Upload Response: " + response.code() + " - "+ response.message());
+          if (response.code() == 200) {
             mDbAdapter.ocidProcessed();
           }
           publishProgress(95,100);
@@ -50,9 +33,6 @@ case DBE_UPLOAD_REQUEST:
 catch (    FileNotFoundException e) {
       Log.e(TAG,"Upload OpenCellID data Exception",e);
     }
-catch (    ClientProtocolException e) {
-      Log.e(TAG,"Upload OpenCellID data Exception",e);
-    }
 catch (    IOException e) {
       Log.e(TAG,"Upload OpenCellID data Exception",e);
     }
@@ -64,7 +44,7 @@ case DBE_DOWNLOAD_REQUEST:
 case DBE_DOWNLOAD_REQUEST_FROM_MAP:
 int count;
 try {
-int total;
+long total;
 int progress=0;
 String dirName=getOCDBDownloadDirectoryPath(mAppContext);
 File dir=new File(dirName);
@@ -73,16 +53,11 @@ if (!dir.exists()) {
 }
 File file=new File(dir,OCDB_File_Name);
 Log.i(TAG,"DBE_DOWNLOAD_REQUEST write to: " + dirName + OCDB_File_Name);
-URL url=new URL(commandString[0]);
-HttpURLConnection urlConnection=(HttpURLConnection)url.openConnection();
-urlConnection.setRequestMethod("GET");
-urlConnection.setConnectTimeout(mTimeOut);
-urlConnection.setReadTimeout(mTimeOut);
-urlConnection.setDoInput(true);
-urlConnection.connect();
-if (urlConnection.getResponseCode() != 200) {
+Request request=new Request.Builder().url(commandString[0]).get().build();
+Response response=okHttpClient.newCall(request).execute();
+if (response.code() != 200) {
   try {
-    String error=Helpers.convertStreamToString(urlConnection.getErrorStream());
+    String error=response.body().string();
     Helpers.msgLong(mAppContext,mAppContext.getString(R.string.download_error) + " " + error);
     Log.e(TAG,"Download OCID data error: " + error);
   }
@@ -93,35 +68,30 @@ if (urlConnection.getResponseCode() != 200) {
   return "Error";
 }
  else {
-  total=urlConnection.getContentLength();
+  total=response.body().contentLength();
   if (total == -1) {
     Log.d(TAG,"doInBackground DBE_DOWNLOAD_REQUEST total not returned!");
     total=1024;
   }
  else {
     Log.d(TAG,"doInBackground DBE_DOWNLOAD_REQUEST total: " + total);
-    publishProgress((int)(0.25 * total),total);
+    publishProgress((int)(0.25 * total),(int)total);
   }
   FileOutputStream output=new FileOutputStream(file,false);
-  InputStream input=new BufferedInputStream(urlConnection.getInputStream());
+  InputStream input=new BufferedInputStream(response.body().byteStream());
   byte[] data=new byte[1024];
   while ((count=input.read(data)) > 0) {
     output.write(data,0,count);
     progress+=count;
-    publishProgress(progress,total);
+    publishProgress(progress,(int)total);
   }
   input.close();
   output.flush();
   output.close();
 }
-urlConnection.disconnect();
 return "Successful";
 }
- catch (MalformedURLException e) {
-Log.e(TAG,"Malformed URL",e);
-return null;
-}
-catch (IOException e) {
+ catch (IOException e) {
 Log.w(TAG,"Problem reading data from steam",e);
 return null;
 }
