@@ -12,7 +12,7 @@
       mScaleBarOverlay.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels / 2,10);
       mScaleBarOverlay.setCentred(true);
       mCellTowerGridMarkerClusterer=new CellTowerGridMarkerClusterer(MapViewerOsmDroid.this);
-      BitmapDrawable mapPinDrawable=(BitmapDrawable)mContext.getResources().getDrawable(R.drawable.ic_map_pin_orange);
+      BitmapDrawable mapPinDrawable=(BitmapDrawable)getResources().getDrawable(R.drawable.ic_map_pin_orange);
       mCellTowerGridMarkerClusterer.setIcon(mapPinDrawable == null ? null : mapPinDrawable.getBitmap());
       GpsMyLocationProvider gpsMyLocationProvider=new GpsMyLocationProvider(MapViewerOsmDroid.this.getBaseContext());
       gpsMyLocationProvider.setLocationUpdateMinDistance(100);

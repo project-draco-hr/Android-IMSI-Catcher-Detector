@@ -2,10 +2,10 @@
   super.onDestroy();
   prefs.unregisterOnSharedPreferenceChangeListener(this);
   if (mBound) {
-    mContext.unbindService(mConnection);
+    unbindService(mConnection);
     mBound=false;
   }
-  TelephonyManager tm=(TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
+  TelephonyManager tm=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
   tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_NONE);
   LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
 }
