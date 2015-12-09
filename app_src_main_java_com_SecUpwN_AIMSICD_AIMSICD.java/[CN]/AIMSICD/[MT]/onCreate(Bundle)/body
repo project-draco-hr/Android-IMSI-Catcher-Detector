@@ -32,7 +32,6 @@
   mDrawerLayout.setDrawerListener(mDrawerToggle);
   mActionBar.setDisplayHomeAsUpEnabled(true);
   mActionBar.setHomeButtonEnabled(true);
-  mProgressBar=(ProgressBar)findViewById(R.id.progressBar);
   prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   prefListener=new SharedPreferences.OnSharedPreferenceChangeListener(){
     public void onSharedPreferenceChanged(    SharedPreferences prefs,    String key){

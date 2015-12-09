@@ -1,6 +1,0 @@
-{
-  super.onProgressUpdate(values);
-  log.verbose("onProgressUpdate values[0]: " + values[0] + " values[1]: "+ values[1]);
-  AIMSICD.mProgressBar.setProgress(values[0]);
-  AIMSICD.mProgressBar.setMax(values[1]);
-}
