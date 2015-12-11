@@ -4,7 +4,7 @@
     return true;
   }
  catch (  Exception ee) {
-    Log.i(TAG,"Deleting detection string failed",ee);
+    log.info("Deleting detection string failed",ee);
   }
   return false;
 }

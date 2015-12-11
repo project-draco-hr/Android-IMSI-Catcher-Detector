@@ -5,6 +5,6 @@
     listViewAdv.setAdapter(new AdvanceUserBaseAdapter(getApplicationContext(),newmsglist));
   }
  catch (  Exception ee) {
-    Log.e(TAG,"<AdvanceUserItems>",ee);
+    log.error("<AdvanceUserItems>",ee);
   }
 }

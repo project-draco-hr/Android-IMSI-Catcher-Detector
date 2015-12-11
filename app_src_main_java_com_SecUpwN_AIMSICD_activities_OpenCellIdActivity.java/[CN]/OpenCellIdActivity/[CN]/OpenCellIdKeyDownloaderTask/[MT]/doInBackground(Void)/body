@@ -3,7 +3,7 @@
     return requestNewOCIDKey();
   }
  catch (  final IOException e) {
-    Log.w(TAG,"Error getting new OCID-API",e);
+    log.warn("Error getting new OCID-API",e);
     runOnUiThread(new Runnable(){
       @Override public void run(){
         pd.dismiss();

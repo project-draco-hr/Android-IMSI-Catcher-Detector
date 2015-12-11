@@ -12,7 +12,8 @@
     mLogcatReader=new BufferedReader(new InputStreamReader(process.getInputStream()));
   }
  catch (  InterruptedException|IOException e) {
-    Log.e(TAG,"Exception while initializing LogCat (time, radio, main) reader",e);
+    log.error("Exception while initializing LogCat (time, radio, main) reader",e);
+    return;
   }
   String logcatLine;
   List<String> logcatLines=new ArrayList<>();
@@ -67,16 +68,16 @@ logcatLines.clear();
 }
 }
  catch (IOException e) {
-Log.e(TAG,"IO Exception",e);
+log.error("IO Exception",e);
 }
 catch (InterruptedException e) {
-Log.e(TAG,"Interrupted Exception",e);
+log.error("Interrupted Exception",e);
 }
 }
 try {
 mLogcatReader.close();
 }
  catch (IOException ee) {
-Log.e(TAG,"IOE Error closing BufferedReader",ee);
+log.error("IOE Error closing BufferedReader",ee);
 }
 }

@@ -14,6 +14,6 @@
     mChildStderrReader.start();
   }
  catch (  IOException e) {
-    Log.d(TAG,e.getMessage(),e);
+    log.debug(e.getMessage(),e);
   }
 }

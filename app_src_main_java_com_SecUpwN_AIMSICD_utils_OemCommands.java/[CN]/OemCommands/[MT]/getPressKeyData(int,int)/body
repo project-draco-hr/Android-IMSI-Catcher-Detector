@@ -19,7 +19,7 @@
     return baos.toByteArray();
   }
  catch (  IOException e) {
-    Log.e(TAG,"",e);
+    log.error("",e);
   }
   return null;
 }

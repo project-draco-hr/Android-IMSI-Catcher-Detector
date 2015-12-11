@@ -1,6 +1,5 @@
 {
   super.onPostExecute(result);
-  AIMSICD.mProgressBar.setProgress(0);
   TinyDB tinydb=TinyDB.getInstance();
 switch (mType) {
 case DBE_DOWNLOAD_REQUEST:

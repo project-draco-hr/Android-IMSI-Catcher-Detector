@@ -12,7 +12,7 @@
         startActivity(Intent.createChooser(intent,"Send Error Log"));
       }
  catch (      IOException e) {
-        Log.w(TAG,"Error reading logs",e);
+        log.warn("Error reading logs",e);
       }
     }
   }

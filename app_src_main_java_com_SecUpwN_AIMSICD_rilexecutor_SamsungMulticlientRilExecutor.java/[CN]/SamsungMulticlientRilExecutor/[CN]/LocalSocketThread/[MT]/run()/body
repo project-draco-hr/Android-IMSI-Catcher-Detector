@@ -2,7 +2,7 @@
   int rcvd;
   int endpos=0;
   final byte buf[]=new byte[4096];
-  Log.i(TAG,"BEGIN LocalSocketThread-Socket");
+  log.info("BEGIN LocalSocketThread-Socket");
   setName("MultiClientThread");
   mSocket=new LocalSocket();
   try {
@@ -11,7 +11,7 @@
     mOutputStream=mSocket.getOutputStream();
   }
  catch (  IOException e) {
-    Log.e(TAG,"Connect error",e);
+    log.error("Connect error",e);
     return;
   }
   while (!mCancelRequested.get()) {
@@ -19,7 +19,7 @@
       rcvd=mInputStream.read(buf,endpos,buf.length - endpos);
       if (rcvd < 0) {
         if (DBG) {
-          Log.v(TAG,"EOF reached");
+          log.verbose("EOF reached");
         }
         break;
       }
@@ -29,7 +29,7 @@
       }
       int msgLen=(buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8)| (buf[3] & 0xff);
       if (msgLen + 4 > buf.length) {
-        Log.e(TAG,"Message to big. Length: " + msgLen);
+        log.error("Message to big. Length: " + msgLen);
         endpos=0;
         continue;
       }

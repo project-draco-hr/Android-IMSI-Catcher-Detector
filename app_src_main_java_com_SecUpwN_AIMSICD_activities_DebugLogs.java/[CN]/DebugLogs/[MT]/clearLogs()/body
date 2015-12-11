@@ -5,7 +5,7 @@
         Runtime.getRuntime().exec("logcat -c -b main -b system -b radio -b events");
       }
  catch (      IOException e) {
-        Log.e(TAG,"Error clearing logs",e);
+        log.error("Error clearing logs",e);
       }
       runOnUiThread(new Runnable(){
         @Override public void run(){

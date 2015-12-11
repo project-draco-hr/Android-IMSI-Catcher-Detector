@@ -1,7 +1,7 @@
 {
   if (mAtCommand.getText() != null) {
     String command=mAtCommand.getText().toString();
-    Log.i(TAG,"AT Command Detected: " + command);
+    log.info("AT Command Detected: " + command);
     executeAT();
   }
 }

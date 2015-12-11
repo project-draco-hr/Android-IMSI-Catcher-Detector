@@ -6,7 +6,7 @@
       term=new TtyPrivFile(smdFile.getAbsolutePath());
     }
  catch (    IOException e) {
-      Log.e(TAG,mTAG + " IOException in constructor",e);
+      log.error("IOException in constructor",e);
     }
   }
   if (term == null) {

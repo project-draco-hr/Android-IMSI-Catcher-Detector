@@ -3,6 +3,6 @@
     tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_NONE);
     mTrackingFemtocell=false;
     setNotification();
-    Log.v(TAG,context.getString(R.string.stopped_tracking_femtocell));
+    log.verbose(context.getString(R.string.stopped_tracking_femtocell));
   }
 }

@@ -19,10 +19,10 @@
       eventLog.put("DF_id",DF_id);
       eventLog.put("DF_description",DF_description);
       mDb.insert("EventLog",null,eventLog);
-      Log.i(TAG,"InsertEventLog(): Insert detection event into EventLog table with CID=" + cid);
+      log.info("InsertEventLog(): Insert detection event into EventLog table with CID=" + cid);
     }
  else {
-      Log.v(TAG,"InsertEventLog(): Skipped inserting duplicate event into EventLog table with CID=" + cid);
+      log.verbose("InsertEventLog(): Skipped inserting duplicate event into EventLog table with CID=" + cid);
     }
   }
 }

@@ -3,11 +3,11 @@
     this.getReadableDatabase();
     try {
       copyDataBase();
-      Log.i(TAG,"Database created");
+      log.info("Database created");
       return true;
     }
  catch (    IOException e) {
-      Log.e(TAG,"Error creating database",e);
+      log.error("Error creating database",e);
       throw new Error("Error copying database",e);
     }
   }

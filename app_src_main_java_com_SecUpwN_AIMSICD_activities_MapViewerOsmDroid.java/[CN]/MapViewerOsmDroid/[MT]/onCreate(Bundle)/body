@@ -1,13 +1,12 @@
 {
-  Log.i(TAG,"Starting MapViewer");
+  log.info("Starting MapViewer");
   super.onCreate(savedInstanceState);
-  mContext=this;
   setContentView(R.layout.map);
   setUpMapIfNeeded();
-  mDbHelper=new AIMSICDDbAdapter(mContext);
+  mDbHelper=new AIMSICDDbAdapter(this);
   tm=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-  Intent intent=new Intent(mContext,AimsicdService.class);
-  mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
-  TelephonyManager tm=(TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
+  Intent intent=new Intent(this,AimsicdService.class);
+  bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+  TelephonyManager tm=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
   tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_CELL_LOCATION | PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
 }

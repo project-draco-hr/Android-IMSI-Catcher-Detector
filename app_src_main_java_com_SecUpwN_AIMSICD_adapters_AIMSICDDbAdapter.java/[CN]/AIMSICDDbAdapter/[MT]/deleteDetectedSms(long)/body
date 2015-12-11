@@ -6,7 +6,7 @@
     return true;
   }
  catch (  Exception ee) {
-    Log.i(TAG,mTAG + ": Deleting SMS data failed",ee);
+    log.info(mTAG + ": Deleting SMS data failed",ee);
   }
   return false;
 }

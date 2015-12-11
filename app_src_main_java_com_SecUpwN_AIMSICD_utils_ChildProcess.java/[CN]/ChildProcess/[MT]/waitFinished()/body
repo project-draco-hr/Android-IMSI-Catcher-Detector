@@ -14,7 +14,7 @@
       }
     }
  catch (    InterruptedException e) {
-      Log.d(TAG,e.getMessage(),e);
+      log.debug(e.getMessage(),e);
     }
   }
   return mExitValue;

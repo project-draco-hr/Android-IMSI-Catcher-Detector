@@ -14,7 +14,7 @@
     values.put("gps_lat",cell.getLat());
     values.put("gps_lon",cell.getLon());
     mDb.insert("DBi_bts",null,values);
-    Log.i(TAG,"DBi_bts was populated.");
+    log.info("DBi_bts was populated.");
   }
  else {
     ContentValues values=new ContentValues();
@@ -24,7 +24,7 @@
       values.put("gps_lon",cell.getLon());
     }
     mDb.update("DBi_bts",values,"CID=?",new String[]{Integer.toString(cell.getCID())});
-    Log.i(TAG,"DBi_bts updated: CID=" + cell.getCID() + " LAC="+ cell.getLAC());
+    log.info("DBi_bts updated: CID=" + cell.getCID() + " LAC="+ cell.getLAC());
   }
   if (!cellInDbiMeasure(cell.getCID())) {
     ContentValues dbiMeasure=new ContentValues();
@@ -51,7 +51,7 @@
     dbiMeasure.put("isSubmitted",0);
     dbiMeasure.put("isNeighbour",0);
     mDb.insert("DBi_measure",null,dbiMeasure);
-    Log.i(TAG,"DBi_measure inserted bts_id=" + cell.getCID());
+    log.info("DBi_measure inserted bts_id=" + cell.getCID());
   }
  else {
     ContentValues dbiMeasure=new ContentValues();
@@ -69,6 +69,6 @@
       dbiMeasure.put("TA",cell.getTimingAdvance());
     }
     mDb.update("DBi_measure",dbiMeasure,"bts_id=?",new String[]{Integer.toString(cell.getCID())});
-    Log.i(TAG,"DBi_measure updated bts_id=" + cell.getCID());
+    log.info("DBi_measure updated bts_id=" + cell.getCID());
   }
 }

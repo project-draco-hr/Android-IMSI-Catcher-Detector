@@ -26,7 +26,7 @@
     smscur.close();
   }
  catch (  Exception ee) {
-    Log.e(TAG,"DB ERROR>>>>" + ee.toString());
+    log.error("DB ERROR",ee);
   }
   listViewAdv.setAdapter(new AdvanceUserBaseSmsAdapter(getApplicationContext(),msgitems));
   listViewAdv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){

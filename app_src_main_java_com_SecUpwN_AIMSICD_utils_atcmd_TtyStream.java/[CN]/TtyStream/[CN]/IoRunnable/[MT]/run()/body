@@ -18,7 +18,7 @@
         mOutputStream.flush();
       }
  catch (      IOException e) {
-        Log.e(TAG,"Output IOException",e);
+        log.error("Output IOException",e);
         if (resultMessage != null) {
           resultMessage.obj=e;
           resultMessage.sendToTarget();
@@ -33,7 +33,7 @@
           if (line == null)           throw new IOException("reader closed");
         }
  catch (        IOException e) {
-          Log.e(TAG,"Input IOException",e);
+          log.error("Input IOException",e);
           if (resultMessage != null) {
             resultMessage.obj=e;
             resultMessage.sendToTarget();
@@ -48,7 +48,7 @@
         resultMessage.sendToTarget();
       }
  else {
-        Log.d(TAG,"Data came in with no handler");
+        log.debug("Data came in with no handler");
       }
     }
   }

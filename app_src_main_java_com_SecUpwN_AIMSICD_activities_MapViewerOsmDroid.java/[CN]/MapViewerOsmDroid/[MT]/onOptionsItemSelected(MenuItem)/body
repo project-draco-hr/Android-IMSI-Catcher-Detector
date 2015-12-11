@@ -9,14 +9,14 @@ case R.id.get_opencellid:
 if (mBound) {
   GeoLocation lastKnown=mAimsicdService.lastKnownLocation();
   if (lastKnown != null) {
-    Helpers.msgLong(mContext,getString(R.string.contacting_opencellid_for_data));
+    Helpers.msgLong(this,getString(R.string.contacting_opencellid_for_data));
     Cell cell;
     cell=mAimsicdService.getCell();
     cell.setLon(lastKnown.getLongitudeInDegrees());
     cell.setLat(lastKnown.getLatitudeInDegrees());
     setRefreshActionButtonState(true);
     TinyDB.getInstance().putBoolean(TinyDbKeys.FINISHED_LOAD_IN_MAP,false);
-    Helpers.getOpenCellData(mContext,cell,RequestTask.DBE_DOWNLOAD_REQUEST_FROM_MAP);
+    Helpers.getOpenCellData(this,cell,RequestTask.DBE_DOWNLOAD_REQUEST_FROM_MAP);
     return true;
   }
 }
@@ -27,10 +27,10 @@ if (loc != null) {
   cell.setLon(loc.getLongitude());
   setRefreshActionButtonState(true);
   TinyDB.getInstance().putBoolean(TinyDbKeys.FINISHED_LOAD_IN_MAP,false);
-  Helpers.getOpenCellData(mContext,cell,RequestTask.DBE_DOWNLOAD_REQUEST_FROM_MAP);
+  Helpers.getOpenCellData(this,cell,RequestTask.DBE_DOWNLOAD_REQUEST_FROM_MAP);
 }
  else {
-  Helpers.msgLong(mContext,getString(R.string.unable_to_determine_last_location));
+  Helpers.msgLong(this,getString(R.string.unable_to_determine_last_location));
 }
 return true;
 }

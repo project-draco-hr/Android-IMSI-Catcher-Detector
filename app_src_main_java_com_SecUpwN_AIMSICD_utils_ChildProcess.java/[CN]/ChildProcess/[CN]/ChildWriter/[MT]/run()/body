@@ -9,12 +9,12 @@
     }
   }
  catch (  IOException e) {
-    Log.d(TAG,e.getMessage());
+    log.debug(e.getMessage());
   }
   try {
     mStream.close();
   }
  catch (  IOException e) {
-    Log.d(TAG,"cannot close stream",e);
+    log.debug("cannot close stream",e);
   }
 }
