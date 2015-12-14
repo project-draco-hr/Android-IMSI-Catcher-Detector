@@ -1,6 +1,0 @@
-{
-  Intent i=new Intent(context,CustomPopUp.class);
-  i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-  i.putExtra("display_mode",mode);
-  context.startActivity(i);
-}

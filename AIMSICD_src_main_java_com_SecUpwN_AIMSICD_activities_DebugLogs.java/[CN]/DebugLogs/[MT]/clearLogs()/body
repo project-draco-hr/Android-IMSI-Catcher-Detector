@@ -1,0 +1,19 @@
+{
+  new Thread(){
+    @Override public void run(){
+      try {
+        Runtime.getRuntime().exec("logcat -c -b main -b system -b radio -b events");
+      }
+ catch (      IOException e) {
+        log.error("Error clearing logs",e);
+      }
+      runOnUiThread(new Runnable(){
+        @Override public void run(){
+          logView.setText("");
+        }
+      }
+);
+    }
+  }
+.start();
+}

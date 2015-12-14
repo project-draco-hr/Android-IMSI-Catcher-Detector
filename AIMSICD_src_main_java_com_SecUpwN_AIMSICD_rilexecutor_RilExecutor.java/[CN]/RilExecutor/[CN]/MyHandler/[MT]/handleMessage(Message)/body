@@ -1,0 +1,77 @@
+{
+  byte[] requestData;
+  Message responseMsg;
+  KeyStep lastKeyStep;
+switch (msg.what) {
+case ID_REQUEST_START_SERVICE_MODE_COMMAND:
+    mCurrentType=msg.arg1;
+  mCurrentSubtype=msg.arg2;
+mKeySequence=new ArrayDeque<>(3);
+if (msg.obj != null) {
+mKeySequence.addAll((java.util.Collection<KeyStep>)msg.obj);
+}
+ else {
+mKeySequence.add(KeyStep.KEY_START_SERVICE_MODE);
+}
+synchronized (mLastResponseLock) {
+mLastResponse=new ArrayList<>();
+}
+requestData=mOemCommands.getEnterServiceModeData(mCurrentType,mCurrentSubtype,OemCommands.OEM_SM_ACTION);
+responseMsg=mHandler.obtainMessage(ID_RESPONSE);
+mRequestExecutor.invokeOemRilRequestRaw(requestData,responseMsg);
+break;
+case ID_REQUEST_FINISH_SERVICE_MODE_COMMAND:
+requestData=mOemCommands.getEndServiceModeData(mCurrentType);
+responseMsg=mHandler.obtainMessage(ID_RESPONSE_FINISH_SERVICE_MODE_COMMAND);
+mRequestExecutor.invokeOemRilRequestRaw(requestData,responseMsg);
+break;
+case ID_REQUEST_PRESS_A_KEY:
+requestData=mOemCommands.getPressKeyData(msg.arg1,OemCommands.OEM_SM_ACTION);
+responseMsg=mHandler.obtainMessage(ID_RESPONSE_PRESS_A_KEY);
+mRequestExecutor.invokeOemRilRequestRaw(requestData,responseMsg);
+break;
+case ID_REQUEST_REFRESH:
+requestData=mOemCommands.getPressKeyData('\0',OemCommands.OEM_SM_QUERY);
+responseMsg=mHandler.obtainMessage(ID_RESPONSE);
+mRequestExecutor.invokeOemRilRequestRaw(requestData,responseMsg);
+break;
+case ID_RESPONSE:
+lastKeyStep=mKeySequence.poll();
+try {
+RawResult result=(RawResult)msg.obj;
+if (result == null) {
+log.error("result is null");
+break;
+}
+if (result.exception != null) {
+log.error("",result.exception);
+break;
+}
+if (result.result == null) {
+log.verbose("No need to refresh");
+break;
+}
+if (lastKeyStep.captureResponse) {
+synchronized (mLastResponseLock) {
+mLastResponse.addAll(Helpers.unpackByteListOfStrings(result.result));
+}
+}
+}
+  finally {
+if (mKeySequence.isEmpty()) {
+mHandler.obtainMessage(ID_REQUEST_FINISH_SERVICE_MODE_COMMAND).sendToTarget();
+}
+ else {
+mHandler.obtainMessage(ID_REQUEST_PRESS_A_KEY,mKeySequence.element().keychar,0).sendToTarget();
+}
+}
+break;
+case ID_RESPONSE_PRESS_A_KEY:
+mHandler.sendMessageDelayed(mHandler.obtainMessage(ID_REQUEST_REFRESH),10);
+break;
+case ID_RESPONSE_FINISH_SERVICE_MODE_COMMAND:
+mRequestCondvar.open();
+break;
+}
+return true;
+}

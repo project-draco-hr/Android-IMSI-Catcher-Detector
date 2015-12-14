@@ -1,0 +1,17 @@
+{
+  try {
+    return requestNewOCIDKey();
+  }
+ catch (  final IOException e) {
+    log.warn("Error getting new OCID-API",e);
+    runOnUiThread(new Runnable(){
+      @Override public void run(){
+        pd.dismiss();
+        Helpers.msgLong(OpenCellIdActivity.this,getString(R.string.ocid_api_error) + e.getClass().getName() + " - "+ e.getMessage());
+        finish();
+      }
+    }
+);
+    return null;
+  }
+}

@@ -1,0 +1,5 @@
+{
+  this.icon=icon;
+  this.name=name;
+  this.description=description;
+}

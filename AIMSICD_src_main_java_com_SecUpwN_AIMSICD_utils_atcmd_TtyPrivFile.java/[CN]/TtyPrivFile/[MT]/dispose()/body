@@ -1,0 +1,12 @@
+{
+  super.dispose();
+  try {
+    mOutputStream.write("ATE0\r".getBytes("ASCII"));
+    mOutputStream.flush();
+  }
+ catch (  IOException e) {
+    log.error("moutputstream didnt close",e);
+  }
+  mReadProc.destroy();
+  mWriteProc.destroy();
+}

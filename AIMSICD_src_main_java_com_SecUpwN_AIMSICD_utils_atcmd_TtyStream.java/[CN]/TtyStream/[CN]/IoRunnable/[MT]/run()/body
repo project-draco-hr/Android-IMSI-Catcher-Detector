@@ -1,0 +1,61 @@
+{
+  try {
+    BufferedReader in=new BufferedReader(new InputStreamReader(mInputStream,"ASCII"));
+    while (mThreadRun) {
+      byte[] bytesOut;
+      Message resultMessage;
+      try {
+        Pair<byte[],Message> p=mWriteQ.take();
+        bytesOut=p.first;
+        resultMessage=p.second;
+      }
+ catch (      InterruptedException e) {
+        continue;
+      }
+      try {
+        mOutputStream.write(bytesOut);
+        mOutputStream.write('\r');
+        mOutputStream.flush();
+      }
+ catch (      IOException e) {
+        log.error("Output IOException",e);
+        if (resultMessage != null) {
+          resultMessage.obj=e;
+          resultMessage.sendToTarget();
+        }
+        return;
+      }
+      String line;
+      List<String> lines=new ArrayList<>();
+      do {
+        try {
+          line=in.readLine();
+          if (line == null)           throw new IOException("reader closed");
+        }
+ catch (        IOException e) {
+          log.error("Input IOException",e);
+          if (resultMessage != null) {
+            resultMessage.obj=e;
+            resultMessage.sendToTarget();
+          }
+          return;
+        }
+        if (line.length() != 0)         lines.add(line);
+      }
+ while (!(line.equals("OK") || line.equals("ERROR") || line.startsWith("+CME ERROR")));
+      if (resultMessage != null) {
+        resultMessage.obj=lines;
+        resultMessage.sendToTarget();
+      }
+ else {
+        log.debug("Data came in with no handler");
+      }
+    }
+  }
+ catch (  UnsupportedEncodingException e) {
+    throw new RuntimeException(e);
+  }
+ finally {
+    dispose();
+  }
+}

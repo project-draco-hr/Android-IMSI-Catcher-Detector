@@ -1,0 +1,31 @@
+{
+  while (updateLogs) {
+    try {
+      final String logs=getLogs();
+      if (!logs.equals(logView.getText().toString())) {
+        runOnUiThread(new Runnable(){
+          @Override public void run(){
+            logView.setText(logs);
+            final ScrollView scroll=((ScrollView)logView.getParent());
+            scroll.post(new Runnable(){
+              @Override public void run(){
+                scroll.fullScroll(View.FOCUS_DOWN);
+              }
+            }
+);
+          }
+        }
+);
+      }
+    }
+ catch (    IOException e) {
+      log.warn("Error updating logs",e);
+    }
+    try {
+      Thread.sleep(1000);
+    }
+ catch (    InterruptedException e) {
+      log.warn("Thread was interrupted",e);
+    }
+  }
+}

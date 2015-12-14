@@ -1,0 +1,8 @@
+{
+  if (lastLocation != null && lastLocation.getLongitude() == loc.getLongitude() && lastLocation.getLatitude() == loc.getLatitude()) {
+    return;
+  }
+  lastLocation=loc;
+  lastLocationTime=System.currentTimeMillis();
+  extLocationListener.onLocationChanged(loc);
+}

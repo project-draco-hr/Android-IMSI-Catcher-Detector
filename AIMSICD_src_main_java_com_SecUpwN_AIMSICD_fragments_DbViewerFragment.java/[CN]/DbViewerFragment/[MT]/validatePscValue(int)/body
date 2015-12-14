@@ -1,0 +1,6 @@
+{
+  if (dbPsc > 511) {
+    return "invalid";
+  }
+  return String.valueOf(dbPsc);
+}

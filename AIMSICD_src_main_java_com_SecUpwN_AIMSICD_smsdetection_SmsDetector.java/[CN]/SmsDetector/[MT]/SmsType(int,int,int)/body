@@ -1,0 +1,5 @@
+{
+  this.alert=alert;
+  this.title=title;
+  this.message=message;
+}

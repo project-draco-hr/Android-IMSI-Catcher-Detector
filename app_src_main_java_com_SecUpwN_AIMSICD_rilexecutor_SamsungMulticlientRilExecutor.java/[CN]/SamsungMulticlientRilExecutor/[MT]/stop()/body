@@ -1,8 +1,0 @@
-{
-  if (mThread == null) {
-    Log.e(TAG,"OEM raw request executor thread is not running");
-    return;
-  }
-  mThread.cancel();
-  mThread=null;
-}

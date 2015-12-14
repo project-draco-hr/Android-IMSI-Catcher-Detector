@@ -1,0 +1,22 @@
+{
+  int token;
+  if (mMessages.size() > MAX_MESSAGES) {
+    log.error("Message queue is full");
+    return;
+  }
+  if (mOutputStream == null) {
+    log.error("Local write() error: not connected");
+    return;
+  }
+  do {
+    token=mTokenGen.nextInt();
+  }
+ while (mMessages.containsKey(token));
+  byte[] req=marshallRequest(token,strings);
+  if (DBG) {
+    log.verbose(String.format("InvokeOemRilRequestStrings() token: 0x%X, header: %s, req: %s ",token,HexDump.toHexString(getHeader(req)),HexDump.toHexString(req)));
+  }
+  mOutputStream.write(getHeader(req));
+  mOutputStream.write(req);
+  mMessages.put(token,response);
+}

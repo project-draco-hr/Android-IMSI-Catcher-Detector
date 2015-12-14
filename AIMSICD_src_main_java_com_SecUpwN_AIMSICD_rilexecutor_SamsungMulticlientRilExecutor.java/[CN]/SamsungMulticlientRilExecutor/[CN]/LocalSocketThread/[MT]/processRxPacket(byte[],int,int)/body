@@ -1,0 +1,27 @@
+{
+  int responseType;
+  Parcel p;
+  if (DBG) {
+    log.verbose("Received " + length + " bytes: "+ HexDump.toHexString(data,pos,length));
+  }
+  p=Parcel.obtain();
+  try {
+    p.unmarshall(data,pos,length);
+    p.setDataPosition(0);
+    responseType=p.readInt();
+switch (responseType) {
+case RESPONSE_UNSOLICITED:
+      log.verbose("Unsolicited response ");
+    break;
+case RESPONSE_SOLICITED:
+  processSolicited(p);
+break;
+default :
+log.verbose("Invalid response type: " + responseType);
+break;
+}
+}
+  finally {
+p.recycle();
+}
+}

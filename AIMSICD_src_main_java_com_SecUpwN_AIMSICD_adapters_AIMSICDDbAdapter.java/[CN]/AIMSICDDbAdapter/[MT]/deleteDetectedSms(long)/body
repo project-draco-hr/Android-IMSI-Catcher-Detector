@@ -1,0 +1,12 @@
+{
+  String TAG="AIMSICD";
+  String mTAG="AIMSICDDbAdapter";
+  try {
+    mDb.delete("SmsData","_id=" + deleteme,null);
+    return true;
+  }
+ catch (  Exception ee) {
+    log.info(mTAG + ": Deleting SMS data failed",ee);
+  }
+  return false;
+}

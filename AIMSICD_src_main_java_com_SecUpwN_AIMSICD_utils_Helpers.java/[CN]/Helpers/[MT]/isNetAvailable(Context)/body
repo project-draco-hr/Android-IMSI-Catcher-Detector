@@ -1,0 +1,14 @@
+{
+  try {
+    ConnectivityManager cM=(ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo wifiInfo=cM.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+    NetworkInfo mobileInfo=cM.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+    if (wifiInfo != null && mobileInfo != null) {
+      return wifiInfo.isConnected() || mobileInfo.isConnected();
+    }
+  }
+ catch (  Exception e) {
+    log.error(e.getMessage(),e);
+  }
+  return false;
+}

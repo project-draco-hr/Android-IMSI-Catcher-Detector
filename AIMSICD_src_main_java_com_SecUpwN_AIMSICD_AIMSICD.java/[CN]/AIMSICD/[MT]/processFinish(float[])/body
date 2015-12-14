@@ -1,0 +1,10 @@
+{
+  log.info("processFinish - location[0]=" + location[0] + " location[1]="+ location[1]);
+  if (Float.floatToRawIntBits(location[0]) == 0 && Float.floatToRawIntBits(location[1]) != 0) {
+    Helpers.msgLong(mContext,mContext.getString(R.string.contacting_opencellid_for_data));
+    Helpers.getOpenCellData(mContext,mAimsicdService.getCell(),RequestTask.DBE_DOWNLOAD_REQUEST);
+  }
+ else {
+    Helpers.msgLong(mContext,mContext.getString(R.string.unable_to_determine_last_location));
+  }
+}

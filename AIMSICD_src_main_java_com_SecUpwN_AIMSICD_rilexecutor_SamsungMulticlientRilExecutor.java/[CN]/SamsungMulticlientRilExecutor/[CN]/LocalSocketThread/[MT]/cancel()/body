@@ -1,0 +1,10 @@
+{
+  if (DBG) {
+    log.verbose("SamsungMulticlientRil cancel()");
+  }
+synchronized (this) {
+    mCancelRequested.set(true);
+    disconnect();
+    notifyAll();
+  }
+}

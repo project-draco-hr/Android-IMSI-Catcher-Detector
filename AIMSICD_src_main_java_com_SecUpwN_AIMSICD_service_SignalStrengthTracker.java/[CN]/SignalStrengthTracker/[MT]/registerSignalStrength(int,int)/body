@@ -1,0 +1,15 @@
+{
+  long now=System.currentTimeMillis();
+  if (deviceIsMoving()) {
+    log.info("Ignored signal sample for CID: " + cellID + " due to device movement. Waiting for "+ ((minimumIdleTime * 1000) - (now - lastMovementDetected))+ " ms.");
+    return;
+  }
+  if (now - (sleepTimeBetweenSignalRegistration * 1000) > lastRegistrationTime) {
+    long diff=now - lastRegistrationTime;
+    log.info("Scheduling signal strength calculation from CID: " + cellID + " @ "+ signalStrength+ " dBm. Last registration was "+ diff+ "ms ago.");
+    lastRegistrationTime=now;
+  }
+  if (now - (sleepTimeBetweenCleanup * 1000) > lastCleanupTime) {
+    log.info("Removing old signal strength entries from DB.");
+  }
+}

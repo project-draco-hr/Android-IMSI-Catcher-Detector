@@ -1,0 +1,7 @@
+{
+  if (mAtCommand.getText() != null) {
+    String command=mAtCommand.getText().toString();
+    log.info("AT Command Detected: " + command);
+    executeAT();
+  }
+}

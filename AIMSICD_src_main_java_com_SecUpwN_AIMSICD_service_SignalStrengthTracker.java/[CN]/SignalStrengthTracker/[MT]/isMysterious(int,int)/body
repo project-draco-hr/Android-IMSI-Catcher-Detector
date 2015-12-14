@@ -1,0 +1,25 @@
+{
+  if (deviceIsMoving()) {
+    log.info("Cannot check signal strength for CID: " + cellID + " because of device movements.");
+    return false;
+  }
+  int storedAvg;
+  if (averageSignalCache.get(cellID) != null) {
+    storedAvg=averageSignalCache.get(cellID);
+    log.debug("Cached average SS for CID: " + cellID + " is: "+ storedAvg);
+  }
+ else {
+    storedAvg=mDbHelper.getAverageSignalStrength(cellID);
+    averageSignalCache.put(cellID,storedAvg);
+    log.debug("Average SS in DB for  CID: " + cellID + " is: "+ storedAvg);
+  }
+  boolean result;
+  if (storedAvg > signalStrength) {
+    result=storedAvg - signalStrength > mysteriousSignalDifference;
+  }
+ else {
+    result=signalStrength - storedAvg > mysteriousSignalDifference;
+  }
+  log.debug("Signal Strength mystery check for CID: " + cellID + " is "+ result+ ", avg:"+ storedAvg+ ", this signal: "+ signalStrength);
+  return result;
+}

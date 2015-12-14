@@ -1,0 +1,11 @@
+{
+  super.onDestroy();
+  mCellTracker.stop();
+  mLocationTracker.stop();
+  mAccelerometerMonitor.stop();
+  mRilExecutor.stop();
+  if (SmsDetector.getSmsDetectionState()) {
+    smsdetector.stopSmsDetection();
+  }
+  log.info("Service destroyed.");
+}

@@ -1,9 +1,0 @@
-{
-  CommandResult r=runShellCommand("id");
-  StringBuilder out=new StringBuilder(0);
-  out.append(r.getStdout());
-  out.append(" ; ");
-  out.append(r.getStderr());
-  Log.d(TAG,"canSU() su[" + r.getExitValue() + "]: "+ out);
-  return r.success();
-}

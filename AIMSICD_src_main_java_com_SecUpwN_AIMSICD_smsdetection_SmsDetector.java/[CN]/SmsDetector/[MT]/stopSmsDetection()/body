@@ -1,0 +1,8 @@
+{
+  setSmsDetectionState(false);
+  if (mBound) {
+    mContext.unbindService(mConnection);
+    mBound=false;
+  }
+  log.info("SMS detection stopped");
+}

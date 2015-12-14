@@ -1,0 +1,10 @@
+{
+  String result=null;
+  try {
+    result=SystemPropertiesReflection.get(context,prop);
+  }
+ catch (  IllegalArgumentException iae) {
+    log.error("Failed to get system property: " + prop,iae);
+  }
+  return result == null ? def : result;
+}

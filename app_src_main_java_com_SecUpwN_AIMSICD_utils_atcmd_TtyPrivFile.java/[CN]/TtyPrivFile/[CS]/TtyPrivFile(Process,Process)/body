@@ -1,6 +1,0 @@
-{
-  super(read.getInputStream(),write.getOutputStream());
-  mReadProc=read;
-  mWriteProc=write;
-  Log.d(TAG,"mReadProc=" + mReadProc + ", mWriteProc="+ mWriteProc);
-}

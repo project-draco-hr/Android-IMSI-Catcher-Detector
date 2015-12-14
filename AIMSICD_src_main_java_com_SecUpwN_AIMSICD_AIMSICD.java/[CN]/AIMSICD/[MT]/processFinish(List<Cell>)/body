@@ -1,0 +1,15 @@
+{
+  if (cells != null) {
+    if (!cells.isEmpty()) {
+      for (      Cell cell : cells) {
+        log.info("processFinish - Cell =" + cell.toString());
+        if (cell.isValid()) {
+          mAimsicdService.setCell(cell);
+          Intent intent=new Intent(AimsicdService.UPDATE_DISPLAY);
+          intent.putExtra("update",true);
+          mContext.sendBroadcast(intent);
+        }
+      }
+    }
+  }
+}

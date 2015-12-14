@@ -1,0 +1,50 @@
+{
+switch (mDevice.getPhoneID()) {
+case TelephonyManager.PHONE_TYPE_NONE:
+case TelephonyManager.PHONE_TYPE_SIP:
+case TelephonyManager.PHONE_TYPE_GSM:
+    GsmCellLocation gsmCellLocation=(GsmCellLocation)location;
+  if (gsmCellLocation != null) {
+    mMonitorCell.setLAC(gsmCellLocation.getLac());
+    mMonitorCell.setCID(gsmCellLocation.getCid());
+    boolean lacOK=dbHelper.checkLAC(mMonitorCell);
+    if (!lacOK) {
+      mChangedLAC=true;
+      dbHelper.toEventLog(1,"Changing LAC");
+      vibrate(100,Status.Type.MEDIUM);
+      setNotification();
+    }
+ else {
+      mChangedLAC=false;
+    }
+    if (tinydb.getBoolean("ocid_downloaded")) {
+      if (!dbHelper.openCellExists(mMonitorCell.getCID())) {
+        dbHelper.toEventLog(2,"CID not in DBe_import");
+        log.info("ALERT: Connected to unknown CID not in DBe_import: " + mMonitorCell.getCID());
+        vibrate(100,Status.Type.MEDIUM);
+        mCellIdNotInOpenDb=true;
+        setNotification();
+      }
+ else {
+        mCellIdNotInOpenDb=false;
+      }
+    }
+  }
+break;
+case TelephonyManager.PHONE_TYPE_CDMA:
+CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)location;
+if (cdmaCellLocation != null) {
+mMonitorCell.setLAC(cdmaCellLocation.getNetworkId());
+mMonitorCell.setCID(cdmaCellLocation.getBaseStationId());
+boolean lacOK=dbHelper.checkLAC(mMonitorCell);
+if (!lacOK) {
+mChangedLAC=true;
+dbHelper.toEventLog(1,"Changing LAC");
+setNotification();
+}
+ else {
+mChangedLAC=false;
+}
+}
+}
+}

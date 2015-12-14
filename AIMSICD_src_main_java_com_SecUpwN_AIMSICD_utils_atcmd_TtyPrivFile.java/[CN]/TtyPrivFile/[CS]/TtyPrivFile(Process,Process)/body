@@ -1,0 +1,6 @@
+{
+  super(read.getInputStream(),write.getOutputStream());
+  mReadProc=read;
+  mWriteProc=write;
+  log.debug("mReadProc=" + mReadProc + ", mWriteProc="+ mWriteProc);
+}

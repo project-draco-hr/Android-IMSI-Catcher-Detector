@@ -1,0 +1,7 @@
+{
+  if (!isSmsTracking()) {
+    log.info("Sms Detection Thread Started");
+    smsdetector=new SmsDetector(this);
+    smsdetector.startSmsDetection();
+  }
+}

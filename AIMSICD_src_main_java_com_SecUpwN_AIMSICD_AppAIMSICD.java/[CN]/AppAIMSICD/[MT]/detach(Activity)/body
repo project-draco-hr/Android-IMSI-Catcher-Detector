@@ -1,0 +1,12 @@
+{
+  if (activity == null) {
+    return;
+  }
+  log.debug("BaseTask detach:" + activity.getClass().getCanonicalName());
+  List<BaseAsyncTask<?,?,?>> tasks=mActivityTaskMap.get(activity.getClass().getCanonicalName().hashCode());
+  if (tasks != null) {
+    for (    BaseAsyncTask<?,?,?> task : tasks) {
+      task.setActivity(null);
+    }
+  }
+}

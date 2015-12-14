@@ -1,0 +1,18 @@
+{
+  int key;
+  for (int i=0; i < mActivityTaskMap.size(); i++) {
+    key=mActivityTaskMap.keyAt(i);
+    List<BaseAsyncTask<?,?,?>> tasks=mActivityTaskMap.get(key);
+    for (    BaseAsyncTask<?,?,?> lTask : tasks) {
+      if (lTask.equals(pTask)) {
+        tasks.remove(lTask);
+        log.verbose("BaseTask removed:" + pTask.toString());
+        break;
+      }
+    }
+    if (tasks.size() == 0) {
+      mActivityTaskMap.remove(key);
+      return;
+    }
+  }
+}

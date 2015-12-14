@@ -1,0 +1,6 @@
+{
+  super.onResume();
+  log.debug("StatusWatcher starting watching");
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("StatusChange"));
+  updateIcon(this);
+}

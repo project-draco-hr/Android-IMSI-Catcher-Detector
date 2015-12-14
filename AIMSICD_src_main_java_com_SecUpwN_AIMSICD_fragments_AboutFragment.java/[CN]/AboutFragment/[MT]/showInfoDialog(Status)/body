@@ -1,0 +1,3 @@
+{
+  new AlertDialog.Builder(getActivity()).setIcon(status.getIcon()).setTitle(getString(R.string.status) + "\t" + getString(status.getName())).setMessage(status.getDescription()).show();
+}

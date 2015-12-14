@@ -1,0 +1,42 @@
+{
+  if (DBG) {
+    log.verbose("Local disconnect()");
+  }
+  if (mSocket == null) {
+    return;
+  }
+  try {
+    mSocket.shutdownInput();
+  }
+ catch (  IOException e) {
+    log.error("Local shutdownInput() of mSocket failed",e);
+  }
+  try {
+    mSocket.shutdownOutput();
+  }
+ catch (  IOException e) {
+    log.error("Local shutdownOutput() of mSocket failed",e);
+  }
+  try {
+    mInputStream.close();
+  }
+ catch (  IOException e) {
+    log.error("Local close() of mInputStream failed",e);
+  }
+  try {
+    mOutputStream.close();
+  }
+ catch (  IOException e) {
+    log.error("Local close() of mOutputStream failed",e);
+  }
+  try {
+    mSocket.close();
+  }
+ catch (  IOException e) {
+    log.error("Local close() of mSocket failed",e);
+  }
+  mSocket=null;
+  mInputStream=null;
+  mOutputStream=null;
+  System.gc();
+}

@@ -1,0 +1,10 @@
+{
+  ArrayList<AdvanceUserItems> newmsglist;
+  try {
+    newmsglist=dbAccess.getDetectionStrings();
+    listViewAdv.setAdapter(new AdvanceUserBaseAdapter(getApplicationContext(),newmsglist));
+  }
+ catch (  Exception ee) {
+    log.error("<AdvanceUserItems>",ee);
+  }
+}

@@ -1,0 +1,17 @@
+{
+  String query=String.format("SELECT lat, lon FROM defaultlocation WHERE MCC = %d",mcc);
+  double[] loc=new double[2];
+  Cursor cursor=mDb.rawQuery(query,null);
+  if (cursor != null && cursor.moveToFirst()) {
+    loc[0]=Double.parseDouble(cursor.getString(cursor.getColumnIndex("lat")));
+    loc[1]=Double.parseDouble(cursor.getString(cursor.getColumnIndex("lon")));
+  }
+ else {
+    loc[0]=0.0;
+    loc[1]=0.0;
+  }
+  if (cursor != null) {
+    cursor.close();
+  }
+  return loc;
+}

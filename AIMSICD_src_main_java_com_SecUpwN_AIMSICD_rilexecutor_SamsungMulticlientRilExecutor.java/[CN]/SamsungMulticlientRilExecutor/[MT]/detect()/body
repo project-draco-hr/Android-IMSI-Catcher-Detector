@@ -1,0 +1,32 @@
+{
+  String gsmVerRilImpl="";
+  try {
+    Class clazz;
+    clazz=Class.forName("android.os.SystemProperties");
+    Method method=clazz.getDeclaredMethod("get",String.class,String.class);
+    gsmVerRilImpl=(String)method.invoke(null,"gsm.version.ril-impl","");
+  }
+ catch (  Exception ignore) {
+    log.debug("ignore this exception?",ignore);
+  }
+  if (!gsmVerRilImpl.matches("Samsung\\s+RIL\\(IPC\\).*")) {
+    return DetectResult.Unavailable("gsm.version.ril-impl = " + gsmVerRilImpl);
+  }
+  LocalSocket s=new LocalSocket();
+  try {
+    s.connect(new LocalSocketAddress(MULTICLIENT_SOCKET));
+  }
+ catch (  IOException e) {
+    log.warn(e.getMessage());
+    return DetectResult.Unavailable("Multiclient socket is not available\n" + "gsm.version.ril-impl = " + gsmVerRilImpl);
+  }
+ finally {
+    try {
+      s.close();
+    }
+ catch (    IOException e) {
+      log.error(e.getMessage(),e);
+    }
+  }
+  return DetectResult.AVAILABLE;
+}

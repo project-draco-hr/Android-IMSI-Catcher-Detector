@@ -1,0 +1,6 @@
+{
+  if (isSmsTracking()) {
+    smsdetector.stopSmsDetection();
+    log.info("Sms Detection Thread Stopped");
+  }
+}

@@ -1,0 +1,13 @@
+{
+  double td=0;
+  NumberFormat format=NumberFormat.getInstance();
+  String s=String.format("%." + Integer.toString(numDecimal) + "f",d);
+  try {
+    Number number=format.parse(s);
+    td=number.doubleValue();
+  }
+ catch (  ParseException e) {
+    log.error("parsing exception",e);
+  }
+  return td;
+}

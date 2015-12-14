@@ -1,0 +1,19 @@
+{
+  mStartTime=nanoTime();
+  mChildStdout=new StringBuffer();
+  mChildStderr=new StringBuffer();
+  try {
+    mChildProc=Runtime.getRuntime().exec(cmdarray);
+    if (childStdin != null) {
+      mChildStdinWriter=new ChildWriter(mChildProc.getOutputStream(),childStdin);
+      mChildStdinWriter.start();
+    }
+    mChildStdoutReader=new ChildReader(mChildProc.getInputStream(),mChildStdout);
+    mChildStdoutReader.start();
+    mChildStderrReader=new ChildReader(mChildProc.getErrorStream(),mChildStderr);
+    mChildStderrReader.start();
+  }
+ catch (  IOException e) {
+    log.debug(e.getMessage(),e);
+  }
+}

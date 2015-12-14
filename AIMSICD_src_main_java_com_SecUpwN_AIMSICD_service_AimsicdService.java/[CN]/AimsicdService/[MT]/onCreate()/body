@@ -1,0 +1,26 @@
+{
+  signalStrengthTracker=new SignalStrengthTracker(getBaseContext());
+  mAccelerometerMonitor=new AccelerometerMonitor(this,new Runnable(){
+    @Override public void run(){
+      Runnable runnable=new Runnable(){
+        @Override public void run(){
+          timerHandler.post(new Runnable(){
+            @Override public void run(){
+              mLocationTracker.start();
+            }
+          }
+);
+        }
+      }
+;
+      new Thread(runnable).start();
+      signalStrengthTracker.onSensorChanged();
+      timerHandler.postDelayed(batterySavingRunnable,AccelerometerMonitor.MOVEMENT_THRESHOLD_MS);
+    }
+  }
+);
+  mLocationTracker=new LocationTracker(this,mLocationListener);
+  mRilExecutor=new RilExecutor(this);
+  mCellTracker=new CellTracker(this,signalStrengthTracker);
+  log.info("Service launched successfully.");
+}

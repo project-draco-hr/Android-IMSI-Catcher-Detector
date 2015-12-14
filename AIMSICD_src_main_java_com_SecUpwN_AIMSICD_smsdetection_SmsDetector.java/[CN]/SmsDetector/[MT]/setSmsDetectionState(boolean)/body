@@ -1,0 +1,3 @@
+{
+  SmsDetector.isRunning=isRunning;
+}

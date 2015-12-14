@@ -1,0 +1,12 @@
+{
+  if (mThread == null) {
+    log.error(" OEM raw request executor thread is not running");
+    return;
+  }
+  try {
+    mThread.invokeOemRilRequestRaw(data,response);
+  }
+ catch (  IOException ioe) {
+    log.error("InvokeOemRilRequestRaw() error",ioe);
+  }
+}

@@ -1,8 +1,0 @@
-{
-  if (mPhoneStateListener != null) {
-    tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_NONE);
-    mTrackingFemtocell=false;
-    setNotification();
-    Log.v(TAG,context.getString(R.string.stopped_tracking_femtocell));
-  }
-}

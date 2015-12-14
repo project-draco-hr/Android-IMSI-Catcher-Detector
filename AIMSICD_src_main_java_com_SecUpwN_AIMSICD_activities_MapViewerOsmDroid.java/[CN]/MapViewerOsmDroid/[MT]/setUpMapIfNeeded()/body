@@ -1,0 +1,31 @@
+{
+  if (mMap == null) {
+    mMap=(MapView)findViewById(R.id.mapview);
+    if (mMap != null) {
+      mMap.setBuiltInZoomControls(true);
+      mMap.setMultiTouchControls(true);
+      mMap.setMinZoomLevel(3);
+      mMap.setMaxZoomLevel(19);
+      mMap.getTileProvider().createTileCache();
+      mCompassOverlay=new CompassOverlay(this,new InternalCompassOrientationProvider(this),mMap);
+      ScaleBarOverlay mScaleBarOverlay=new ScaleBarOverlay(this);
+      mScaleBarOverlay.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels / 2,10);
+      mScaleBarOverlay.setCentred(true);
+      mCellTowerGridMarkerClusterer=new CellTowerGridMarkerClusterer(MapViewerOsmDroid.this);
+      BitmapDrawable mapPinDrawable=(BitmapDrawable)getResources().getDrawable(R.drawable.ic_map_pin_orange);
+      mCellTowerGridMarkerClusterer.setIcon(mapPinDrawable == null ? null : mapPinDrawable.getBitmap());
+      GpsMyLocationProvider gpsMyLocationProvider=new GpsMyLocationProvider(MapViewerOsmDroid.this.getBaseContext());
+      gpsMyLocationProvider.setLocationUpdateMinDistance(100);
+      gpsMyLocationProvider.setLocationUpdateMinTime(10000);
+      mMyLocationOverlay=new MyLocationNewOverlay(MapViewerOsmDroid.this.getBaseContext(),gpsMyLocationProvider,mMap);
+      mMyLocationOverlay.setDrawAccuracyEnabled(true);
+      mMap.getOverlays().add(mCellTowerGridMarkerClusterer);
+      mMap.getOverlays().add(mMyLocationOverlay);
+      mMap.getOverlays().add(mCompassOverlay);
+      mMap.getOverlays().add(mScaleBarOverlay);
+    }
+ else {
+      Helpers.msgShort(this,getString(R.string.unable_to_create_map));
+    }
+  }
+}

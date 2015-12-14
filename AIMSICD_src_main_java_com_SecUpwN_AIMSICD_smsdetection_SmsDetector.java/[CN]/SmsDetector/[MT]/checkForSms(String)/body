@@ -1,0 +1,24 @@
+{
+  for (  String LOADED_DETECTION_STRING : LOADED_DETECTION_STRINGS) {
+    String[] splitDetectionString=LOADED_DETECTION_STRING == null ? null : LOADED_DETECTION_STRING.split("#");
+    if (splitDetectionString == null || splitDetectionString.length < 2 || splitDetectionString[0] == null || splitDetectionString[1] == null) {
+      log.debug("Broken detection string: " + LOADED_DETECTION_STRING);
+      continue;
+    }
+    if (line.contains(splitDetectionString[0])) {
+      if ("TYPE0".equalsIgnoreCase(splitDetectionString[1])) {
+        log.info("TYPE0 detected");
+        return TYPE0;
+      }
+ else       if ("MWI".equalsIgnoreCase(splitDetectionString[1])) {
+        log.info("MWI detected");
+        return MWI;
+      }
+ else       if ("WAPPUSH".equalsIgnoreCase(splitDetectionString[1])) {
+        log.info("WAPPUSH detected");
+        return WAP;
+      }
+    }
+  }
+  return 0;
+}

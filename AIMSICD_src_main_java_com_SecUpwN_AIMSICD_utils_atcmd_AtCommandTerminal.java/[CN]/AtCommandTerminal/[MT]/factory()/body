@@ -1,0 +1,16 @@
+{
+  AtCommandTerminal term=null;
+  File smdFile=new File("/dev/smd7");
+  if (smdFile.exists()) {
+    try {
+      term=new TtyPrivFile(smdFile.getAbsolutePath());
+    }
+ catch (    IOException e) {
+      log.error("IOException in constructor",e);
+    }
+  }
+  if (term == null) {
+    throw new UnsupportedOperationException("unable to find AT command terminal");
+  }
+  return term;
+}
