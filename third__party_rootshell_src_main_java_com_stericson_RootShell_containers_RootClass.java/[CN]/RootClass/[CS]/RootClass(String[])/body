@@ -1,9 +1,0 @@
-{
-  String className=args[0];
-  RootArgs actualArgs=new RootArgs();
-  actualArgs.args=new String[args.length - 1];
-  System.arraycopy(args,1,actualArgs.args,0,args.length - 1);
-  Class<?> classHandler=Class.forName(className);
-  Constructor<?> classConstructor=classHandler.getConstructor(RootArgs.class);
-  classConstructor.newInstance(actualArgs);
-}

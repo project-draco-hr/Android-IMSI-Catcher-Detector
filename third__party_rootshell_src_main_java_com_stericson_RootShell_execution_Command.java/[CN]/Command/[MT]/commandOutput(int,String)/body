@@ -1,4 +1,0 @@
-{
-  RootShell.log("Command","ID: " + id + ", "+ line);
-  totalOutputProcessed++;
-}

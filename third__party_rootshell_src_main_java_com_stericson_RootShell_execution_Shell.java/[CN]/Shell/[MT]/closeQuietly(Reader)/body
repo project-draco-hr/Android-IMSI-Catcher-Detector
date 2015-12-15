@@ -1,9 +1,0 @@
-{
-  try {
-    if (input != null) {
-      input.close();
-    }
-  }
- catch (  Exception ignore) {
-  }
-}

@@ -1,3 +1,0 @@
-{
-  return "Command is in position " + getCommandQueuePosition(cmd) + " currently executing command at position "+ this.write+ " and the number of commands is "+ commands.size();
-}

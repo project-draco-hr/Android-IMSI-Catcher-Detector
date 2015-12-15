@@ -1,8 +1,0 @@
-{
-  this.finished=false;
-  this.totalOutput=0;
-  this.totalOutputProcessed=0;
-  this.executing=false;
-  this.terminated=false;
-  this.exitCode=-1;
-}
