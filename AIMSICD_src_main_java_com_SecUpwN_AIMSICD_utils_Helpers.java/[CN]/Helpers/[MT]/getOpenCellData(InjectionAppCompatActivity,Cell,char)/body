@@ -1,5 +1,5 @@
 {
-  if (Helpers.isNetAvailable(context)) {
+  if (Helpers.isNetAvailable(injectionActivity)) {
     if (!"NA".equals(CellTracker.OCID_API_KEY)) {
       double earthRadius=6371.01;
       int radius=2;
@@ -20,21 +20,21 @@
           sb.append("&mnc=").append(cell.getMNC());
         }
         sb.append("&format=csv");
-        new RequestTask(context,type).execute(sb.toString());
+        new RequestTask(injectionActivity,type).execute(sb.toString());
       }
     }
  else {
-      if (context instanceof MapViewerOsmDroid) {
-        ((MapViewerOsmDroid)context).setRefreshActionButtonState(false);
+      if (injectionActivity instanceof MapViewerOsmDroid) {
+        ((MapViewerOsmDroid)injectionActivity).setRefreshActionButtonState(false);
       }
-      Helpers.sendMsg(context,context.getString(R.string.no_opencellid_key_detected));
+      Helpers.sendMsg(injectionActivity,injectionActivity.getString(R.string.no_opencellid_key_detected));
     }
   }
  else {
-    if (context instanceof MapViewerOsmDroid) {
-      ((MapViewerOsmDroid)context).setRefreshActionButtonState(false);
+    if (injectionActivity instanceof MapViewerOsmDroid) {
+      ((MapViewerOsmDroid)injectionActivity).setRefreshActionButtonState(false);
     }
-    final AlertDialog.Builder builder=new AlertDialog.Builder(context);
+    final AlertDialog.Builder builder=new AlertDialog.Builder(injectionActivity);
     builder.setTitle(R.string.no_network_connection_title).setMessage(R.string.no_network_connection_message);
     builder.create().show();
   }

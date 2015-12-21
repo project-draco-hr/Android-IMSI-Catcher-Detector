@@ -2,5 +2,4 @@
   super.onCreate(savedInstanceState);
   setContentView(R.layout.activity_open_cell_id);
   prefs=getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
-  okHttpClient=((AppAIMSICD)getApplication()).getOkHttpClient();
 }

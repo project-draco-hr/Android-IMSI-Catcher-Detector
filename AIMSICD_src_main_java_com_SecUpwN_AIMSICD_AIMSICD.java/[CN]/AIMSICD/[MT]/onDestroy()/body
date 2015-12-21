@@ -4,9 +4,9 @@
     unbindService(mConnection);
     mBound=false;
   }
-  final String PERSIST_SERVICE=mContext.getString(R.string.pref_persistservice_key);
+  final String PERSIST_SERVICE=getString(R.string.pref_persistservice_key);
   boolean persistService=prefs.getBoolean(PERSIST_SERVICE,false);
   if (!persistService) {
-    stopService(new Intent(mContext,AimsicdService.class));
+    stopService(new Intent(this,AimsicdService.class));
   }
 }

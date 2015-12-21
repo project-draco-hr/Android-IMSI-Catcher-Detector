@@ -1,4 +1,5 @@
 {
   mWeakReferenceActivity=new WeakReference<>(activity);
   mApp=(AppAIMSICD)activity.getApplication();
+  activity.getInjector().inject(this);
 }
