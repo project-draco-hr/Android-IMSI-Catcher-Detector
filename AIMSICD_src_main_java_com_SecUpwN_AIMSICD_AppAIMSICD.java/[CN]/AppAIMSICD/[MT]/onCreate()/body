@@ -1,4 +1,5 @@
 {
+  new AndroidLoggerModule().configure(getInjector());
   super.onCreate();
   TinyDB.getInstance().init(getApplicationContext());
   TinyDB.getInstance().putBoolean(TinyDbKeys.FINISHED_LOAD_IN_MAP,true);
