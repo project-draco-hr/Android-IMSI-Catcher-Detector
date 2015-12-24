@@ -1,8 +1,6 @@
 {
   super.onCreate(savedInstanceState);
-  mSeekBar=(SeekBar)findViewById(R.id.seekbar);
   mSeekBar.setOnSeekBarChangeListener(this);
-  mCreditsRollView=(CreditsRollView)findViewById(R.id.creditsroll);
   mCreditsRollView.setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View v){
       if (!mScrolling) {
