@@ -1,6 +1,5 @@
 {
   setTheme(R.style.AppTheme);
-  InjectionContainer.getInstance().inject(this);
   signalStrengthTracker=new SignalStrengthTracker(getBaseContext());
   mAccelerometerMonitor=new AccelerometerMonitor(this,new Runnable(){
     @Override public void run(){
