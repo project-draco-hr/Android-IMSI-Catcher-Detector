@@ -1,12 +1,8 @@
 {
   super.onViewCreated(v,savedInstanceState);
   String version=BuildConfig.VERSION_NAME;
-  btncredits=(Button)v.findViewById(R.id.aimsicd_credits_link);
-  String buildNumber=BuildConfig.BUILD_NUMBER;
-  TextView versionNumber;
-  TextView BuildozerView;
-  versionNumber=(TextView)v.findViewById(R.id.aimsicd_version);
   versionNumber.setText(getString(R.string.app_version) + version);
+  String buildNumber=BuildConfig.BUILD_NUMBER;
   if (buildNumber != null) {
     BuildozerView=(TextView)v.findViewById(R.id.buildozer_buildnumber);
     BuildozerView.setText(getString(R.string.buildnumber) + buildNumber);

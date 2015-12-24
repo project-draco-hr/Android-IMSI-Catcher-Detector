@@ -1,11 +1,4 @@
 {
   super.onViewCreated(view,savedInstanceState);
-  lv=(ListView)view.findViewById(R.id.list_view);
-  mNeighbouringCells=(TextView)view.findViewById(R.id.neighbouring_cells);
-  mNeighbouringTotal=(TextView)view.findViewById(R.id.neighbouring_number);
-  mNeighbouringTotalView=(TableRow)view.findViewById(R.id.neighbouring_total);
-  mCipheringIndicatorLabel=(TextView)view.findViewById(R.id.ciphering_indicator_title);
-  mCipheringIndicator=(TextView)view.findViewById(R.id.ciphering_indicator);
-  Button refresh=(Button)view.findViewById(R.id.button_refresh);
   refresh.setOnClickListener(new btnClick());
 }
