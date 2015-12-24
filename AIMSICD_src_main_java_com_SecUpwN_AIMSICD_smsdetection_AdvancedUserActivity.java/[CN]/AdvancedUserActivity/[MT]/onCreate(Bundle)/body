@@ -1,6 +1,5 @@
 {
   super.onCreate(savedInstanceState);
-  setContentView(R.layout.activity_advanced_user);
   dbAccess=new AIMSICDDbAdapter(getApplicationContext());
   insertButton=(Button)findViewById(R.id.btn_insert);
   editAdvUserDet=(EditText)findViewById(R.id.edit_adv_user_string);
