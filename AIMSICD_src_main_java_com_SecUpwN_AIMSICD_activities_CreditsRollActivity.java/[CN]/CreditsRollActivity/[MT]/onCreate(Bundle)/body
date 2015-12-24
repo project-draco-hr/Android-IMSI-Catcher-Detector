@@ -1,6 +1,5 @@
 {
   super.onCreate(savedInstanceState);
-  setContentView(R.layout.creditroll);
   mSeekBar=(SeekBar)findViewById(R.id.seekbar);
   mSeekBar.setOnSeekBarChangeListener(this);
   mCreditsRollView=(CreditsRollView)findViewById(R.id.creditsroll);
