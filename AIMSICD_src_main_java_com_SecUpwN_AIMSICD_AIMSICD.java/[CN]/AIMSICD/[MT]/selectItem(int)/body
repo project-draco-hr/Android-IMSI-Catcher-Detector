@@ -22,7 +22,8 @@ mDetailsFrag.setCurrentPage(2);
 title=getString(R.string.app_name_short);
 break;
 case DrawerMenu.ID.APPLICATION.ABOUT:
-getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new AboutFragment()).commit();
+Intent aboutIntent=new Intent(this,AboutActivity.class);
+startActivity(aboutIntent);
 break;
 case DrawerMenu.ID.APPLICATION.UPLOAD_LOCAL_BTS_DATA:
 new RequestTask(this,com.SecUpwN.AIMSICD.utils.RequestTask.DBE_UPLOAD_REQUEST).execute("");
