@@ -1,4 +1,0 @@
-{
-  getMenuInflater().inflate(R.menu.activity_debug_logs,menu);
-  return true;
-}

@@ -7,7 +7,7 @@
           mAimsicdService.setCell(cell);
           Intent intent=new Intent(AimsicdService.UPDATE_DISPLAY);
           intent.putExtra("update",true);
-          mContext.sendBroadcast(intent);
+          sendBroadcast(intent);
         }
       }
     }

@@ -1,7 +1,6 @@
 {
-  log.info("Starting MapViewer");
   super.onCreate(savedInstanceState);
-  setContentView(R.layout.map);
+  log.info("Starting MapViewer");
   setUpMapIfNeeded();
   mDbHelper=new AIMSICDDbAdapter(this);
   tm=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);

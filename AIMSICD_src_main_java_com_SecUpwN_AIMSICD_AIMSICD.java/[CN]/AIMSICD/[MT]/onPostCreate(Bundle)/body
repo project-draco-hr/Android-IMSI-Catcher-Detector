@@ -1,6 +1,6 @@
 {
   super.onPostCreate(savedInstanceState);
-  final String iconType=prefs.getString(mContext.getString(R.string.pref_ui_icons_key),"SENSE").toUpperCase();
+  final String iconType=prefs.getString(getString(R.string.pref_ui_icons_key),"SENSE").toUpperCase();
   mActionBar.setIcon(Icon.getIcon(Icon.Type.valueOf(iconType)));
   mDrawerToggle.syncState();
 }
