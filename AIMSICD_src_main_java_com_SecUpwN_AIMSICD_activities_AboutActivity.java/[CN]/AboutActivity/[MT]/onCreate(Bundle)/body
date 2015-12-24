@@ -2,12 +2,8 @@
   super.onCreate(savedInstanceState);
   String version=BuildConfig.VERSION_NAME;
   versionNumber.setText(getString(R.string.app_version) + version);
-  String buildNumber=BuildConfig.BUILD_NUMBER;
-  if (buildNumber != null) {
-    BuildozerView=(TextView)findViewById(R.id.buildozer_buildnumber);
-    BuildozerView.setText(getString(R.string.buildnumber) + buildNumber);
-    BuildozerView.setVisibility(View.VISIBLE);
-  }
+  buildNumberTextView.setText(getString(R.string.buildnumber,BuildConfig.BUILD_NUMBER));
+  gitShaTextView.setText(getString(R.string.git_sha,BuildConfig.GIT_SHA));
   View tv=findViewById(R.id.aimsicd_wiki_link);
   setLink(tv,R.string.aimsicd_wiki_link);
   tv=findViewById(R.id.aimsicd_github_link);
