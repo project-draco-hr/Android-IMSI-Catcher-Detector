@@ -53,4 +53,10 @@
     }
   }
 );
+  btncredits.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      new AlertDialog.Builder(AboutActivity.this).setTitle(R.string.about_credits).setMessage(MiscUtils.setAssetsString(getApplicationContext())).setPositiveButton(android.R.string.ok,null).show();
+    }
+  }
+);
 }

@@ -1,5 +1,0 @@
-{
-  super.setTextAppearance(context,resid);
-  initTextPaint();
-  invalidate();
-}

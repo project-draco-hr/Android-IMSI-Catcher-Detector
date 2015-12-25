@@ -1,6 +1,0 @@
-{
-  if (mScrollAnimator != null) {
-    mScrollAnimator.cancel();
-    mScrollAnimator=null;
-  }
-}

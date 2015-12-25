@@ -1,5 +1,0 @@
-{
-  super.setTextColor(color);
-  mTextColor=color;
-  initTextPaint();
-}
