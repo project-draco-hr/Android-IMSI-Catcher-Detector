@@ -8,7 +8,7 @@
 );
   btncredits.setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View view){
-      Intent i=new Intent(getActivity(),CreditsRollActivity.class);
+      Intent i=new Intent(AboutActivity.this,CreditsRollActivity.class);
       startActivity(i);
     }
   }

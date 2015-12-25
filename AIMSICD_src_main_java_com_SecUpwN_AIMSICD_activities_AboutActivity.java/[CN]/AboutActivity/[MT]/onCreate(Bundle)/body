@@ -1,0 +1,56 @@
+{
+  super.onCreate(savedInstanceState);
+  versionNumber.setText(getString(R.string.app_version,BuildConfig.VERSION_NAME));
+  buildNumberTextView.setText(getString(R.string.buildnumber,BuildConfig.BUILD_NUMBER));
+  gitShaTextView.setText(getString(R.string.git_sha,BuildConfig.GIT_SHA));
+  View tv=findViewById(R.id.aimsicd_wiki_link);
+  setLink(tv,R.string.aimsicd_wiki_link);
+  tv=findViewById(R.id.aimsicd_github_link);
+  setLink(tv,R.string.aimsicd_github_link);
+  tv=findViewById(R.id.aimsicd_disclaimer_link);
+  setLink(tv,R.string.disclaimer_link);
+  tv=findViewById(R.id.aimsicd_contribute_link);
+  setLink(tv,R.string.aimsicd_contribute_link);
+  tv=findViewById(R.id.aimsicd_release_link);
+  setLink(tv,R.string.aimsicd_release_link);
+  tv=findViewById(R.id.aimsicd_changelog_link);
+  setLink(tv,R.string.aimsicd_changelog_link);
+  tv=findViewById(R.id.aimsicd_license_link);
+  setLink(tv,R.string.aimsicd_license_link);
+  idleTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.IDLE);
+    }
+  }
+);
+  okTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.NORMAL);
+    }
+  }
+);
+  mediumTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.MEDIUM);
+    }
+  }
+);
+  highTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.HIGH);
+    }
+  }
+);
+  dangerTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.DANGER);
+    }
+  }
+);
+  skullTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.RUN);
+    }
+  }
+);
+}
