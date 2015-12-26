@@ -25,7 +25,7 @@
 );
   okTextView.setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View view){
-      showInfoDialog(Status.NORMAL);
+      showInfoDialog(Status.OK);
     }
   }
 );

@@ -13,7 +13,7 @@
     contentText=context.getString(R.string.cell_id_doesnt_exist_in_db);
   }
  else   if (mTrackingFemtocell || mTrackingCell || mMonitoringCell) {
-    Status.setCurrentStatus(Status.Type.NORMAL,this.context,mVibrateEnabled,mVibrateMinThreatLevel);
+    Status.setCurrentStatus(Status.Type.OK,this.context,mVibrateEnabled,mVibrateMinThreatLevel);
     if (mTrackingFemtocell) {
       contentText=context.getString(R.string.femtocell_detection_active);
     }
@@ -32,7 +32,7 @@ case IDLE:
     contentText=context.getString(R.string.phone_type) + mDevice.getPhoneType();
   tickerText=context.getResources().getString(R.string.app_name_short) + " " + context.getString(R.string.status_idle);
 break;
-case NORMAL:
+case OK:
 tickerText=context.getResources().getString(R.string.app_name_short) + " " + context.getString(R.string.status_good);
 break;
 case MEDIUM:

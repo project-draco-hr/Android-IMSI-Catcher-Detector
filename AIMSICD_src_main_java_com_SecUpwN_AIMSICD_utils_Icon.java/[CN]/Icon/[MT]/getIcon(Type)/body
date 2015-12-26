@@ -4,7 +4,7 @@ case FLAT:
 switch (Status.getStatus()) {
 case IDLE:
       return R.drawable.flat_idle;
-case NORMAL:
+case OK:
     return R.drawable.flat_ok;
 case MEDIUM:
   return R.drawable.flat_medium;
@@ -17,7 +17,7 @@ case SENSE:
 switch (Status.getStatus()) {
 case IDLE:
 return R.drawable.sense_idle;
-case NORMAL:
+case OK:
 return R.drawable.sense_ok;
 case MEDIUM:
 return R.drawable.sense_medium;
@@ -30,7 +30,7 @@ case WHITE:
 switch (Status.getStatus()) {
 case IDLE:
 return R.drawable.white_idle;
-case NORMAL:
+case OK:
 return R.drawable.white_ok;
 case MEDIUM:
 return R.drawable.white_medium;
