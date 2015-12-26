@@ -49,7 +49,7 @@
 );
   skullTextView.setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View view){
-      showInfoDialog(Status.RUN);
+      showInfoDialog(Status.SKULL);
     }
   }
 );
