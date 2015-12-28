@@ -2,7 +2,7 @@
   String tickerText;
   String contentText="Phone Type " + mDevice.getPhoneType();
   if (mFemtoDetected || mTypeZeroSmsDetected) {
-    Status.setCurrentStatus(Status.Type.ALARM,this.context,mVibrateEnabled,mVibrateMinThreatLevel);
+    Status.setCurrentStatus(Status.Type.DANGER,this.context,mVibrateEnabled,mVibrateMinThreatLevel);
   }
  else   if (mChangedLAC) {
     Status.setCurrentStatus(Status.Type.MEDIUM,this.context,mVibrateEnabled,mVibrateMinThreatLevel);
@@ -46,7 +46,7 @@ contentText=context.getString(R.string.cell_id_doesnt_exist_in_db);
 tickerText+=" - " + contentText;
 }
 break;
-case ALARM:
+case DANGER:
 tickerText=context.getResources().getString(R.string.app_name_short) + " - " + context.getString(R.string.alert_threat_detected);
 if (mFemtoDetected) {
 contentText=context.getString(R.string.alert_femtocell_connection_detected);
