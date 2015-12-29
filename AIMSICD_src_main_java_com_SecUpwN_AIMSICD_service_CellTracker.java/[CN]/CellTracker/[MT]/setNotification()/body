@@ -30,10 +30,10 @@
 switch (Status.getStatus()) {
 case IDLE:
     contentText=context.getString(R.string.phone_type) + mDevice.getPhoneType();
-  tickerText=context.getResources().getString(R.string.app_name_short) + " " + context.getString(R.string.status_idle);
+  tickerText=context.getResources().getString(R.string.app_name_short) + " " + context.getString(R.string.status_idle_description);
 break;
 case OK:
-tickerText=context.getResources().getString(R.string.app_name_short) + " " + context.getString(R.string.status_good);
+tickerText=context.getResources().getString(R.string.app_name_short) + " " + context.getString(R.string.status_good_description);
 break;
 case MEDIUM:
 tickerText=context.getResources().getString(R.string.app_name_short);
