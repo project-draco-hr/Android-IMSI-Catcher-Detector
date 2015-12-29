@@ -45,6 +45,6 @@ getOcidKey();
 mVibrateEnabled=sharedPreferences.getBoolean(VIBRATE_ENABLE,true);
 }
  else if (key.equals(VIBRATE_MIN_LEVEL)) {
-mVibrateMinThreatLevel=Integer.valueOf(sharedPreferences.getString(VIBRATE_MIN_LEVEL,String.valueOf(Status.Type.MEDIUM.level)));
+mVibrateMinThreatLevel=Integer.valueOf(sharedPreferences.getString(VIBRATE_MIN_LEVEL,String.valueOf(Status.MEDIUM.ordinal())));
 }
 }

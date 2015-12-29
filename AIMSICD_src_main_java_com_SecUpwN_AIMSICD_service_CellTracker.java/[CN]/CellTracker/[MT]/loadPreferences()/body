@@ -6,7 +6,7 @@
   CELL_TABLE_CLEANSED=prefs.getBoolean(context.getString(R.string.pref_cell_table_cleansed),false);
   String refreshRate=prefs.getString(context.getString(R.string.pref_refresh_key),"1");
   this.mVibrateEnabled=prefs.getBoolean(context.getString(R.string.pref_notification_vibrate_enable),true);
-  this.mVibrateMinThreatLevel=Integer.valueOf(prefs.getString(context.getString(R.string.pref_notification_vibrate_min_level),String.valueOf(Status.Type.MEDIUM.level)));
+  this.mVibrateMinThreatLevel=Integer.valueOf(prefs.getString(context.getString(R.string.pref_notification_vibrate_min_level),String.valueOf(Status.MEDIUM.ordinal())));
   if (refreshRate.isEmpty()) {
     refreshRate="1";
   }

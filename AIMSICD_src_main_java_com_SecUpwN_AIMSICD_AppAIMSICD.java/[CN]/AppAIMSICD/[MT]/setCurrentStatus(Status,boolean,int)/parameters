@@ -1,4 +1,3 @@
-Type t
-Context context
+Status status
 boolean vibrate
 int minVibrateLevel
