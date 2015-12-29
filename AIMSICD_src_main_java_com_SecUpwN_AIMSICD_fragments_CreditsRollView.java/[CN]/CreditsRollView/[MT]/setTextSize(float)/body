@@ -1,5 +1,0 @@
-{
-  super.setTextSize(size);
-  initTextPaint();
-  invalidate();
-}

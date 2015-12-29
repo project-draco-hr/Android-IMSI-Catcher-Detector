@@ -1,7 +1,0 @@
-{
-  super.setText(text,type);
-  if (mTextPaint == null) {
-    initTextPaint();
-  }
-  measureAndLayoutText(text);
-}
