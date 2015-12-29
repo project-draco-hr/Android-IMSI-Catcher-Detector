@@ -2,18 +2,18 @@
   String tickerText;
   String contentText="Phone Type " + mDevice.getPhoneType();
   if (mFemtoDetected || mTypeZeroSmsDetected) {
-    Status.setCurrentStatus(Status.Type.DANGER,this.context,mVibrateEnabled,mVibrateMinThreatLevel);
+    AppAIMSICD.getInstance().setCurrentStatus(Status.DANGER,mVibrateEnabled,mVibrateMinThreatLevel);
   }
  else   if (mChangedLAC) {
-    Status.setCurrentStatus(Status.Type.MEDIUM,this.context,mVibrateEnabled,mVibrateMinThreatLevel);
+    AppAIMSICD.getInstance().setCurrentStatus(Status.MEDIUM,mVibrateEnabled,mVibrateMinThreatLevel);
     contentText=context.getString(R.string.hostile_service_area_changing_lac_detected);
   }
  else   if (mCellIdNotInOpenDb) {
-    Status.setCurrentStatus(Status.Type.MEDIUM,this.context,mVibrateEnabled,mVibrateMinThreatLevel);
+    AppAIMSICD.getInstance().setCurrentStatus(Status.MEDIUM,mVibrateEnabled,mVibrateMinThreatLevel);
     contentText=context.getString(R.string.cell_id_doesnt_exist_in_db);
   }
  else   if (mTrackingFemtocell || mTrackingCell || mMonitoringCell) {
-    Status.setCurrentStatus(Status.Type.OK,this.context,mVibrateEnabled,mVibrateMinThreatLevel);
+    AppAIMSICD.getInstance().setCurrentStatus(Status.OK,mVibrateEnabled,mVibrateMinThreatLevel);
     if (mTrackingFemtocell) {
       contentText=context.getString(R.string.femtocell_detection_active);
     }
@@ -25,9 +25,9 @@
     }
   }
  else {
-    Status.setCurrentStatus(Status.Type.IDLE,this.context,mVibrateEnabled,mVibrateMinThreatLevel);
+    AppAIMSICD.getInstance().setCurrentStatus(Status.IDLE,mVibrateEnabled,mVibrateMinThreatLevel);
   }
-switch (Status.getStatus()) {
+switch (AppAIMSICD.getInstance().getStatus()) {
 case IDLE:
     contentText=context.getString(R.string.phone_type) + mDevice.getPhoneType();
   tickerText=context.getResources().getString(R.string.app_name_short) + " " + context.getString(R.string.status_idle_description);

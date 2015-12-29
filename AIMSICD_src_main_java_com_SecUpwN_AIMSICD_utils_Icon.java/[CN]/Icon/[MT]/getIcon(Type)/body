@@ -1,7 +1,7 @@
 {
 switch (t) {
 case FLAT:
-switch (Status.getStatus()) {
+switch (AppAIMSICD.getInstance().getStatus()) {
 case IDLE:
       return R.drawable.flat_idle;
 case OK:
@@ -14,7 +14,7 @@ default :
 return R.drawable.flat_idle;
 }
 case SENSE:
-switch (Status.getStatus()) {
+switch (AppAIMSICD.getInstance().getStatus()) {
 case IDLE:
 return R.drawable.sense_idle;
 case OK:
@@ -27,7 +27,7 @@ default :
 return R.drawable.sense_idle;
 }
 case WHITE:
-switch (Status.getStatus()) {
+switch (AppAIMSICD.getInstance().getStatus()) {
 case IDLE:
 return R.drawable.white_idle;
 case OK:

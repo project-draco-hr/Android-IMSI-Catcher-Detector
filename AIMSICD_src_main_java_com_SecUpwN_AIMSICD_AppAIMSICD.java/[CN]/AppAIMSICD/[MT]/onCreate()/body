@@ -1,4 +1,5 @@
 {
+  instance=new WeakReference<>(this);
   addModule(new AndroidLoggerModule());
   addModule(OkHttpModule.withCache(this));
   super.onCreate();

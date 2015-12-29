@@ -1,6 +1,6 @@
 {
   if (currentStatus == null) {
-    return Type.IDLE;
+    return Status.IDLE;
   }
   return currentStatus;
 }
