@@ -1,6 +1,5 @@
 {
   super.onCreate(savedInstanceState);
-  moveData();
   mNavConf=new DrawerMenuActivityConfiguration.Builder(this).build();
   setContentView(mNavConf.getMainLayout());
   mDrawerLayout=(DrawerLayout)findViewById(mNavConf.getDrawerLayoutId());
