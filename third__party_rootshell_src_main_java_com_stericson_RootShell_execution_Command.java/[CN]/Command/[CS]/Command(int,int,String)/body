@@ -1,6 +1,0 @@
-{
-  this.command=command;
-  this.id=id;
-  this.timeout=timeout;
-  createHandler(RootShell.handlerEnabled);
-}

@@ -1,6 +1,0 @@
-{
-  if (mVibrateEnabled && (threatLevel == null || threatLevel.level >= mVibrateMinThreatLevel)) {
-    Vibrator v=(Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-    v.vibrate(msec);
-  }
-}

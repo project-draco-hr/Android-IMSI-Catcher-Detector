@@ -1,4 +1,6 @@
 {
   MiscUtils.showNotification(mContext,mContext.getString(smsType.getAlert()),mContext.getString(R.string.app_name_short) + " - " + mContext.getString(smsType.getTitle()),R.drawable.sense_danger,true);
-  new AlertDialog.Builder(mContext).setTitle(smsType.getTitle()).setMessage(smsType.getMessage()).setIcon(R.drawable.sense_danger).show();
+  AlertDialog alertDialog=new AlertDialog.Builder(mContext).setTitle(smsType.getTitle()).setMessage(smsType.getMessage()).setIcon(R.drawable.sense_danger).create();
+  alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+  alertDialog.show();
 }

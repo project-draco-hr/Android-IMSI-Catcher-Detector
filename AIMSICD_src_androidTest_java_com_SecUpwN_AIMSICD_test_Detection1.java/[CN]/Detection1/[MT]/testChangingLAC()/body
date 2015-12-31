@@ -1,3 +1,0 @@
-{
-  dbHelper.deleteCell(CELL_ID);
-}

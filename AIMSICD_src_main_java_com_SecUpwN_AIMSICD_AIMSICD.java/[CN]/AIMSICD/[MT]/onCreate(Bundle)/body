@@ -1,7 +1,5 @@
 {
   super.onCreate(savedInstanceState);
-  okHttpClient=((AppAIMSICD)getApplication()).getOkHttpClient();
-  moveData();
   mNavConf=new DrawerMenuActivityConfiguration.Builder(this).build();
   setContentView(mNavConf.getMainLayout());
   mDrawerLayout=(DrawerLayout)findViewById(mNavConf.getDrawerLayoutId());
@@ -32,10 +30,10 @@
   mDrawerLayout.setDrawerListener(mDrawerToggle);
   mActionBar.setDisplayHomeAsUpEnabled(true);
   mActionBar.setHomeButtonEnabled(true);
-  prefs=mContext.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  prefs=getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
   prefListener=new SharedPreferences.OnSharedPreferenceChangeListener(){
     public void onSharedPreferenceChanged(    SharedPreferences prefs,    String key){
-      if (key.equals(mContext.getString(R.string.adv_user_root_pref_key))) {
+      if (key.equals(getString(R.string.adv_user_root_pref_key))) {
         SmsDetection();
       }
     }

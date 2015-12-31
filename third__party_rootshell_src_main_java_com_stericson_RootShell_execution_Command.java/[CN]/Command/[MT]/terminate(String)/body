@@ -1,9 +1,0 @@
-{
-  try {
-    Shell.closeAll();
-    RootShell.log("Terminating all shells.");
-    terminated(reason);
-  }
- catch (  IOException e) {
-  }
-}

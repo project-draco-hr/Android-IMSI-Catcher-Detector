@@ -1,3 +1,0 @@
-{
-  return getShell(root,timeout,Shell.defaultContext,3);
-}

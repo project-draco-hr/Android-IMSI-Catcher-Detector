@@ -1,5 +1,4 @@
 {
-  OkHttpClient okHttpClient=((AppAIMSICD)getActivity().getApplication()).getOkHttpClient();
 switch (mType) {
 case DBE_UPLOAD_REQUEST:
     try {

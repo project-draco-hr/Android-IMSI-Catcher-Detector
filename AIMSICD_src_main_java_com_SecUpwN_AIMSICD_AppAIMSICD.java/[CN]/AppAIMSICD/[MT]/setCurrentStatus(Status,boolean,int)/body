@@ -1,0 +1,13 @@
+{
+  if (status == null) {
+    status=Status.IDLE;
+  }
+  if (status != currentStatus) {
+    Intent intent=new Intent("StatusChange");
+    LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    if (vibrate && status.ordinal() >= minVibrateLevel) {
+      ((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(100);
+    }
+  }
+  currentStatus=status;
+}

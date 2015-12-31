@@ -1,4 +1,0 @@
-{
-  super.setUp();
-  dbHelper=new AIMSICDDbAdapter(getContext());
-}

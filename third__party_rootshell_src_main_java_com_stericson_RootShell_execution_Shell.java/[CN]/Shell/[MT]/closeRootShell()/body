@@ -1,7 +1,0 @@
-{
-  RootShell.log("Request to close root shell!");
-  if (Shell.rootShell == null) {
-    return;
-  }
-  Shell.rootShell.close();
-}

@@ -1,3 +1,0 @@
-{
-  add(new Command(-1,false,"cd " + context.getApplicationInfo().dataDir));
-}

@@ -1,3 +1,0 @@
-{
-  return getShell(root,0,shellContext,3);
-}

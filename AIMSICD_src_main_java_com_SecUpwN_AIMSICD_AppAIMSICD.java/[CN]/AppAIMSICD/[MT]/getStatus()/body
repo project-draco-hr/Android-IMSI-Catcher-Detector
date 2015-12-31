@@ -1,0 +1,6 @@
+{
+  if (currentStatus == null) {
+    return Status.IDLE;
+  }
+  return currentStatus;
+}

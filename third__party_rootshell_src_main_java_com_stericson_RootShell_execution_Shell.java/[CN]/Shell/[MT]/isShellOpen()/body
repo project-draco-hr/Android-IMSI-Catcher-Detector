@@ -1,3 +1,0 @@
-{
-  return Shell.shell == null;
-}

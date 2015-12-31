@@ -1,6 +1,0 @@
-{
-  RootShell.log("Request to close all shells!");
-  Shell.closeShell();
-  Shell.closeRootShell();
-  Shell.closeCustomShell();
-}

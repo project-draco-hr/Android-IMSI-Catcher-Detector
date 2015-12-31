@@ -1,4 +1,0 @@
-{
-  mView=inflater.inflate(R.layout.device,container,false);
-  return mView;
-}

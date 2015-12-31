@@ -28,8 +28,8 @@
       mDb.insert("EventLog",null,eventLog);
       log.info("ToEventLog(): Added new event: id=" + DF_id + " time="+ time+ " cid="+ cid);
       boolean vibrationEnabled=mPreferences.getBoolean(mContext.getString(R.string.pref_notification_vibrate_enable),true);
-      int thresholdLevel=Integer.valueOf(mPreferences.getString(mContext.getString(R.string.pref_notification_vibrate_min_level),String.valueOf(Status.Type.MEDIUM.level)));
-      boolean higherLevelThanThreshold=Status.Type.MEDIUM.level <= thresholdLevel;
+      int thresholdLevel=Integer.valueOf(mPreferences.getString(mContext.getString(R.string.pref_notification_vibrate_min_level),String.valueOf(Status.MEDIUM.ordinal())));
+      boolean higherLevelThanThreshold=Status.MEDIUM.ordinal() <= thresholdLevel;
       if (vibrationEnabled && higherLevelThanThreshold) {
         Vibrator v=(Vibrator)mContext.getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(100);

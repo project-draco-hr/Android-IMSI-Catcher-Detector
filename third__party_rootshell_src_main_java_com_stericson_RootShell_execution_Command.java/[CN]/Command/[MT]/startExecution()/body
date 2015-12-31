@@ -1,6 +1,0 @@
-{
-  executionMonitor=new ExecutionMonitor();
-  executionMonitor.setPriority(Thread.MIN_PRIORITY);
-  executionMonitor.start();
-  executing=true;
-}

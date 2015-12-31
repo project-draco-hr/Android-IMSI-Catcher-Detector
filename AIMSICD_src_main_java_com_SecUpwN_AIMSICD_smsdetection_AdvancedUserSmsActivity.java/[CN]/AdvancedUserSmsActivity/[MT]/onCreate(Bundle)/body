@@ -1,8 +1,6 @@
 {
   super.onCreate(savedInstanceState);
-  setContentView(R.layout.activity_advanced_sms_user);
   dbaccess=new AIMSICDDbAdapter(getApplicationContext());
-  listViewAdv=(ListView)findViewById(R.id.listView_Adv_Sms_Activity);
   msgitems=new ArrayList<>();
   try {
     Cursor smscur=dbaccess.returnSmsData();
