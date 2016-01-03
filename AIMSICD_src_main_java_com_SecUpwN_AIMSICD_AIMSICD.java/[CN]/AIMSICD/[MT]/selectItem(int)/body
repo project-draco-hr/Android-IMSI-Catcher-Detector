@@ -14,7 +14,8 @@ mDetailsFrag.setCurrentPage(1);
 title=getString(R.string.app_name_short);
 break;
 case DrawerMenu.ID.MAIN.AT_COMMAND_INTERFACE:
-getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,new AtCommandFragment()).commit();
+Intent atCommandIntent=new Intent(this,AtCommandActivity.class);
+startActivity(atCommandIntent);
 break;
 case DrawerMenu.ID.MAIN.DB_VIEWER:
 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,mDetailsFrag).commit();

@@ -12,7 +12,7 @@
     mAtResponse.setText(R.string.at_command_response_looking);
     mSerialDevices.clear();
     try {
-      String rilDevice=Helpers.getSystemProp(mContext,"rild.libargs","UNKNOWN");
+      String rilDevice=Helpers.getSystemProp(this,"rild.libargs","UNKNOWN");
       mSerialDevice=("UNKNOWN".equals(rilDevice) ? rilDevice : rilDevice.substring(3));
       if (!"UNKNOWN".equals(mSerialDevice)) {
         mSerialDevices.add(mSerialDevice);
@@ -67,7 +67,7 @@
   if (!mSerialDevices.isEmpty()) {
     String[] entries=new String[mSerialDevices.size()];
     entries=mSerialDevices.toArray(entries);
-    ArrayAdapter<String> spinnerAdapter=new ArrayAdapter<>(mContext,android.R.layout.simple_spinner_item,entries);
+    ArrayAdapter<String> spinnerAdapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,entries);
     mSerialDeviceSpinner.setAdapter(spinnerAdapter);
     mSerialDeviceSpinner.setVisibility(View.VISIBLE);
     mSerialDeviceSpinnerLabel.setVisibility(View.VISIBLE);
