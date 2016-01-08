@@ -23,7 +23,7 @@
   menu.add(DrawerMenuItem.create(DrawerMenu.ID.APPLICATION.QUIT,mContext.getString(R.string.quit),R.drawable.ic_action_remove,false));
   mNavItems=menu;
   if (mMainLayout == 0) {
-    this.mainLayout(R.layout.main);
+    this.mainLayout(R.layout.activity_main);
   }
   if (mDrawerLayoutId == 0) {
     this.drawerLayoutId(R.id.drawer_layout);
