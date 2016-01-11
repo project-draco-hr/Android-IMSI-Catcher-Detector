@@ -1,20 +1,46 @@
 {
   if (isLocationRequestShowing)   return;
-  AlertDialog alertDialog=new AlertDialog.Builder(this).setMessage(R.string.location_error_message).setTitle(R.string.location_error_title).setCancelable(false).setPositiveButton(R.string.text_ok,new DialogInterface.OnClickListener(){
-    public void onClick(    DialogInterface dialog,    int which){
+  LayoutInflater dialogInflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+  View dialogView=dialogInflater.inflate(R.layout.dialog_request_gps,null,false);
+  CheckBox rememberChoice=(CheckBox)dialogView.findViewById(R.id.check_choice);
+  Button notNow=(Button)dialogView.findViewById(R.id.not_now_button);
+  Button enableGPS=(Button)dialogView.findViewById(R.id.enable_gps_button);
+  final AlertDialog alertDialog=new AlertDialog.Builder(this).setView(dialogView).setCancelable(false).create();
+  rememberChoice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+    @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
+      if (isChecked) {
+        isGPSchoiceChecked=true;
+        gpsPreferences=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor=gpsPreferences.edit();
+        editor.putBoolean(GPS_REMEMBER_CHOICE,isGPSchoiceChecked);
+        editor.apply();
+      }
+ else {
+        isGPSchoiceChecked=false;
+      }
+    }
+  }
+);
+  notNow.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View v){
+      isLocationRequestShowing=false;
+      setCellTracking(false);
+      alertDialog.cancel();
+      alertDialog.dismiss();
+    }
+  }
+);
+  enableGPS.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View v){
       isLocationRequestShowing=false;
       Intent gpsSettings=new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
       gpsSettings.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      alertDialog.cancel();
+      alertDialog.dismiss();
       startActivity(gpsSettings);
     }
   }
-).setNegativeButton(R.string.text_cancel,new DialogInterface.OnClickListener(){
-    public void onClick(    DialogInterface dialog,    int which){
-      isLocationRequestShowing=false;
-      setCellTracking(false);
-    }
-  }
-).create();
+);
   alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
   alertDialog.show();
   isLocationRequestShowing=true;
