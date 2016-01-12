@@ -1,0 +1,13 @@
+{
+  super.onActivityResult(requestCode,resultCode,data);
+  if (requestCode == 1) {
+    if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+      gpsPref.setChecked(true);
+      gpsPref.setDefaultValue(true);
+    }
+ else {
+      gpsPref.setDefaultValue(false);
+      gpsPref.setChecked(false);
+    }
+  }
+}
