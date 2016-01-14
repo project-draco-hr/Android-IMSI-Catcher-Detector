@@ -1,5 +1,4 @@
 {
-  String TAG="AIMSICD";
   String mTAG="AIMSICDDbAdapter";
   try {
     mDb.delete("SmsData","_id=" + deleteme,null);
