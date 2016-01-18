@@ -1,9 +1,0 @@
-{
-  try {
-    if (simInfo != null && !simInfo.isEmpty())     return simInfo;
-  }
- catch (  Exception e) {
-    log.error(String.format("%s %s",errorMsg,e.toString()));
-  }
-  return "N/A";
-}

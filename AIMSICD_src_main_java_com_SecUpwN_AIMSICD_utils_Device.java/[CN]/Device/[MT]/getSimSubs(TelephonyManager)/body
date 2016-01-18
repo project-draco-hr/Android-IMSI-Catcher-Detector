@@ -1,3 +1,8 @@
 {
-  return getSimInformation(tm.getSubscriberId(),"GetSimSubs");
+  return getSimInformation(new Supplier<String>(){
+    @Nullable @Override public String get(){
+      return tm.getSubscriberId();
+    }
+  }
+);
 }
