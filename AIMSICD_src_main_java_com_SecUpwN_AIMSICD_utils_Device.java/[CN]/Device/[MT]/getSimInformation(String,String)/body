@@ -1,9 +1,0 @@
-{
-  try {
-    if (simInfo != null && !simInfo.isEmpty())     return Optional.of(simInfo);
-  }
- catch (  Exception e) {
-    log.error(String.format("%s %s",errorMsg,e.toString()));
-  }
-  return Optional.empty();
-}
