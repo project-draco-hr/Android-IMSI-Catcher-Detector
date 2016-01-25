@@ -1,0 +1,9 @@
+{
+  try {
+    return Optional.ofNullable(simInfoSupplier.get());
+  }
+ catch (  Exception e) {
+    log.error("Failed to get SIM-Information",e);
+  }
+  return Optional.empty();
+}

@@ -1,18 +1,8 @@
 {
-  try {
-    if (tm.getSimState() == TelephonyManager.SIM_STATE_READY) {
-      mSimSubs=(tm.getSubscriberId() != null) ? tm.getSubscriberId() : "N/A";
-    }
- else {
-      mSimSubs="N/A";
+  return getSimInformation(new Supplier<String>(){
+    @Nullable @Override public String get(){
+      return tm.getSubscriberId();
     }
   }
- catch (  Exception e) {
-    mSimSubs="N/A";
-    log.error("GetSimSubs " + e.getMessage(),e);
-  }
-  if (mSimSubs.isEmpty()) {
-    mSimSubs="N/A";
-  }
-  return mSimSubs;
+);
 }

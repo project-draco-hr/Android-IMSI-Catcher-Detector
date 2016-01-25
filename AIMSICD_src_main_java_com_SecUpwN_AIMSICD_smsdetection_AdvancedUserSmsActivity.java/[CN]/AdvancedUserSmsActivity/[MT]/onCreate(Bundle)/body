@@ -41,6 +41,7 @@
         loadDbString();
       }
  catch (      Exception ee) {
+        log.debug("",ee);
       }
       return false;
     }

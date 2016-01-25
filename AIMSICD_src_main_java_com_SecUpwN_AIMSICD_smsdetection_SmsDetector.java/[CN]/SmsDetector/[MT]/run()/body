@@ -1,5 +1,6 @@
 {
   setSmsDetectionState(true);
+  BufferedReader mLogcatReader;
   try {
     Thread.sleep(500);
     String MODE="logcat -v time -b radio -b main\n";
