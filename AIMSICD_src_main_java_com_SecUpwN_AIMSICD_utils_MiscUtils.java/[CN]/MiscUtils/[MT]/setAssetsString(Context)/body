@@ -10,7 +10,7 @@
     }
   }
  catch (  Exception ee) {
-    log.error(ee.getMessage());
+    log.error(ee.toString());
   }
  finally {
     if (reader != null) {
