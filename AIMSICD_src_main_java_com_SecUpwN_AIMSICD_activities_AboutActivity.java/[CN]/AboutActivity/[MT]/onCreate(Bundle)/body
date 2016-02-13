@@ -55,7 +55,7 @@
 );
   btncredits.setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View view){
-      new AlertDialog.Builder(AboutActivity.this).setTitle(R.string.about_credits).setMessage(MiscUtils.setAssetsString(getApplicationContext())).setPositiveButton(android.R.string.ok,null).show();
+      new AlertDialog.Builder(AboutActivity.this).setTitle(R.string.about_credits).setMessage(R.string.about_credits_content).setPositiveButton(android.R.string.ok,null).show();
     }
   }
 );
