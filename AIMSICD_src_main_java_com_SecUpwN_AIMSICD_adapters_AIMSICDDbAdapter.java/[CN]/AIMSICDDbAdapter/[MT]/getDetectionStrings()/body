@@ -1,6 +1,6 @@
 {
   Cursor cursor=mDb.rawQuery("SELECT * FROM DetectionStrings",null);
-  ArrayList<AdvanceUserItems> detectionStrings=new ArrayList<>();
+  List<AdvanceUserItems> detectionStrings=new ArrayList<>();
   if (cursor.getCount() > 0) {
     while (cursor.moveToNext()) {
       AdvanceUserItems setItems=new AdvanceUserItems();

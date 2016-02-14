@@ -1,8 +1,0 @@
-{
-  super.onViewCreated(view,savedInstanceState);
-  atCommandExecute.setOnClickListener(new btnClick());
-  mSerialDeviceSpinner.setOnItemSelectedListener(new spinnerListener());
-  timeoutSpinner.setOnItemSelectedListener(new timeoutSpinnerListener());
-  timeoutSpinner.setSelection(1);
-  mTimeout=5000;
-}

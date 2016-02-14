@@ -1,4 +1,3 @@
 {
-  mContext=appContext;
-  preferences=PreferenceManager.getDefaultSharedPreferences(mContext);
+  preferences=PreferenceManager.getDefaultSharedPreferences(appContext);
 }

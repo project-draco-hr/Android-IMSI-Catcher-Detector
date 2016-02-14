@@ -1,3 +1,5 @@
 {
+  gpsPreferences=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+  isGPSchoiceChecked=gpsPreferences.getBoolean(GPS_REMEMBER_CHOICE,false);
   return START_STICKY;
 }

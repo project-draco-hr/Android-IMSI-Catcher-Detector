@@ -1,5 +1,3 @@
 {
-  if (context != null && msg != null) {
-    Toaster.getInstance().msgLong(context,msg);
-  }
+  Toaster.msgLong(context,msg);
 }

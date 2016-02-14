@@ -56,23 +56,11 @@ log.info("HomeOperator parse exception - " + e.getMessage(),e);
 }
 break;
 }
-int simState=tm.getSimState();
-switch (simState) {
-case (TelephonyManager.SIM_STATE_ABSENT):
-case (TelephonyManager.SIM_STATE_NETWORK_LOCKED):
-case (TelephonyManager.SIM_STATE_PIN_REQUIRED):
-case (TelephonyManager.SIM_STATE_PUK_REQUIRED):
-case (TelephonyManager.SIM_STATE_UNKNOWN):
-break;
-case (TelephonyManager.SIM_STATE_READY):
-{
 mSimCountry=getSimCountry(tm);
 mSimOperator=getSimOperator(tm);
 mSimOperatorName=getSimOperatorName(tm);
 mSimSerial=getSimSerial(tm);
 mSimSubs=getSimSubs(tm);
-}
-}
 mDataActivityType=getDataActivity(tm);
 mDataState=getDataState(tm);
 }

@@ -1,18 +1,8 @@
 {
-  try {
-    if (tm.getSimState() == TelephonyManager.SIM_STATE_READY) {
-      mSimOperator=(tm.getSimOperator() != null) ? tm.getSimOperator() : "N/A";
-    }
- else {
-      mSimOperator="N/A";
+  return getSimInformation(new Supplier<String>(){
+    @Nullable @Override public String get(){
+      return tm.getSimOperator();
     }
   }
- catch (  Exception e) {
-    mSimOperator="N/A";
-    log.error("GetSimOperator " + e.getMessage(),e);
-  }
-  if (mSimOperator.isEmpty()) {
-    mSimOperator="N/A";
-  }
-  return mSimOperator;
+);
 }
