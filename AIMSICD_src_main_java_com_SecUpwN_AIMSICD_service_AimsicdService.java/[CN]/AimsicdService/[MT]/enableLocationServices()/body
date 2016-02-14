@@ -1,5 +1,7 @@
 {
-  if (isLocationRequestShowing)   return;
+  if (isLocationRequestShowing) {
+    return;
+  }
   LayoutInflater dialogInflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
   View dialogView=dialogInflater.inflate(R.layout.dialog_request_gps,null,false);
   CheckBox rememberChoice=(CheckBox)dialogView.findViewById(R.id.check_choice);

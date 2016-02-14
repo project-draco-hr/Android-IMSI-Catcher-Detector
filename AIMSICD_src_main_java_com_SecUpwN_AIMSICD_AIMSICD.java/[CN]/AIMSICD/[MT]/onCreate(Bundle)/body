@@ -59,7 +59,9 @@
         Intent uninstallIntent=new Intent(Intent.ACTION_DELETE,packageUri);
         startActivity(uninstallIntent);
         finish();
-        if (mAimsicdService != null)         mAimsicdService.onDestroy();
+        if (mAimsicdService != null) {
+          mAimsicdService.onDestroy();
+        }
       }
     }
 );

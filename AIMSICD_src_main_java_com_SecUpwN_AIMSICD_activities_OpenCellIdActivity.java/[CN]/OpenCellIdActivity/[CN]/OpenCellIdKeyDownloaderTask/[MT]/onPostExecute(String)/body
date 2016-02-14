@@ -1,5 +1,7 @@
 {
-  if (s == null || s.isEmpty())   return;
+  if (s == null || s.isEmpty()) {
+    return;
+  }
   if (isKeyValid(s)) {
     String opcidKey=getString(R.string.pref_ocid_key);
     prefs.edit().putString(opcidKey,s).commit();

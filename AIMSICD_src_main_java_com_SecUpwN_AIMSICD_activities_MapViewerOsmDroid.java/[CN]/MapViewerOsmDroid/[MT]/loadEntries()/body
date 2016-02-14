@@ -13,7 +13,9 @@
       }
       if (c != null && c.moveToFirst()) {
         do {
-          if (isCancelled())           return null;
+          if (isCancelled()) {
+            return null;
+          }
           final int cellID=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_CID));
           final int lac=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAC));
           final int mcc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MCC));
@@ -54,16 +56,22 @@
       if (c != null) {
         c.close();
       }
-      while (mAimsicdService == null)       try {
-        if (isCancelled())         return null;
-        Thread.sleep(100);
-      }
- catch (      InterruptedException e) {
-        log.warn("thread interrupted",e);
+      while (mAimsicdService == null) {
+        try {
+          if (isCancelled()) {
+            return null;
+          }
+          Thread.sleep(100);
+        }
+ catch (        InterruptedException e) {
+          log.warn("thread interrupted",e);
+        }
       }
       List<Cell> nc=mAimsicdService.getCellTracker().updateNeighbouringCells();
       for (      Cell cell : nc) {
-        if (isCancelled())         return null;
+        if (isCancelled()) {
+          return null;
+        }
         try {
           loc=new GeoPoint(cell.getLat(),cell.getLon());
           CellTowerMarker ovm=new CellTowerMarker(MapViewerOsmDroid.this,mMap,getString(R.string.cell_id_label) + cell.getCID(),"",loc,new MarkerData(String.valueOf(cell.getCID()),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(cell.getLAC()),String.valueOf(cell.getMCC()),String.valueOf(cell.getMNC()),"",false));

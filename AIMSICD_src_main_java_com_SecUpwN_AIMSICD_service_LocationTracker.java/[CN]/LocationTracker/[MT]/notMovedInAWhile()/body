@@ -1,4 +1,6 @@
 {
-  if (lastLocationTime <= 0)   return true;
+  if (lastLocationTime <= 0) {
+    return true;
+  }
   return System.currentTimeMillis() - lastLocationTime > MOVEMENT_THRESHOLD_MS;
 }

@@ -1,4 +1,8 @@
 {
-  if (track)   mCellTracker.startTrackingFemto();
- else   mCellTracker.stopTrackingFemto();
+  if (track) {
+    mCellTracker.startTrackingFemto();
+  }
+ else {
+    mCellTracker.stopTrackingFemto();
+  }
 }

@@ -48,7 +48,9 @@
  else {
           log.info("Unknown type of cell signal!" + "\n ClassName: " + info.getClass().getSimpleName() + "\n ToString: "+ info.toString());
         }
-        if (pDevice.mCell.isValid())         break;
+        if (pDevice.mCell.isValid()) {
+          break;
+        }
       }
     }
   }

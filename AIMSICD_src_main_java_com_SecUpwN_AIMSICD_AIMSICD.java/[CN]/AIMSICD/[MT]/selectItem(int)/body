@@ -140,7 +140,9 @@ mAimsicdService.stopSmsTracking();
  catch (Exception ee) {
 log.warn("Exception in smstracking module: " + ee.getMessage());
 }
-if (mAimsicdService != null) mAimsicdService.onDestroy();
+if (mAimsicdService != null) {
+mAimsicdService.onDestroy();
+}
 log.info("Closing db from DrawerMenu.ID.APPLICATION.QUIT");
 new AIMSICDDbAdapter(getApplicationContext()).close();
 finish();
