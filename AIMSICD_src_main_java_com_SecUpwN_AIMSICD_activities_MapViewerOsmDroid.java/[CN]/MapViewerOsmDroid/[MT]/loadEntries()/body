@@ -3,7 +3,7 @@
     @Override protected GeoPoint doInBackground(    Void... voids){
       mCellTowerGridMarkerClusterer.getItems().clear();
       loadOcidMarkersByNetwork();
-      LinkedList<CellTowerMarker> items=new LinkedList<>();
+      List<CellTowerMarker> items=new LinkedList<>();
       Cursor c=null;
       try {
         c=mDbHelper.getCellData();

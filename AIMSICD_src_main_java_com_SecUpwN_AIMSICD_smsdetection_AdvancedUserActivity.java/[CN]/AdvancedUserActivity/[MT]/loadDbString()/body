@@ -1,5 +1,5 @@
 {
-  ArrayList<AdvanceUserItems> newmsglist;
+  List<AdvanceUserItems> newmsglist;
   try {
     newmsglist=dbAccess.getDetectionStrings();
     listViewAdv.setAdapter(new AdvanceUserBaseAdapter(getApplicationContext(),newmsglist));

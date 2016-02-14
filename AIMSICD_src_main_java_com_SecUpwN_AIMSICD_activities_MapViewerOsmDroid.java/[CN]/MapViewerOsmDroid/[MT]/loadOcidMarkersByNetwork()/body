@@ -1,5 +1,5 @@
 {
-  LinkedList<CellTowerMarker> items=new LinkedList<>();
+  List<CellTowerMarker> items=new LinkedList<>();
   String networkOperator=tm.getNetworkOperator();
   int currentMmc=0;
   int currentMnc=0;

@@ -1,5 +1,5 @@
 {
-  ArrayList<CapturedSmsData> newmsglist=new ArrayList<>();
+  List<CapturedSmsData> newmsglist=new ArrayList<>();
   try {
     Cursor smscur=dbaccess.returnSmsData();
     if (smscur.getCount() > 0) {
