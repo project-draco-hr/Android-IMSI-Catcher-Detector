@@ -1,5 +1,9 @@
 {
-  if (mnc == null)   return "00";
-  if (mnc.length() >= 2)   return mnc;
+  if (mnc == null) {
+    return "00";
+  }
+  if (mnc.length() >= 2) {
+    return mnc;
+  }
   return ("00" + mnc).substring(mnc.length());
 }

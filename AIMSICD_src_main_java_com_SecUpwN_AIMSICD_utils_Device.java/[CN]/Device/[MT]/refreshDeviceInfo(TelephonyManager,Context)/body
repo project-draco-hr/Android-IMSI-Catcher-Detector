@@ -7,7 +7,9 @@
     mNetType=getNetworkTypeName();
     DeviceApi18.loadCellInfo(tm,this);
   }
-  if (mCell == null)   mCell=new Cell();
+  if (mCell == null) {
+    mCell=new Cell();
+  }
 switch (mPhoneID) {
 case TelephonyManager.PHONE_TYPE_NONE:
 case TelephonyManager.PHONE_TYPE_SIP:
@@ -16,8 +18,12 @@ case TelephonyManager.PHONE_TYPE_GSM:
   mMncmcc=tm.getNetworkOperator();
 if (mMncmcc != null && mMncmcc.length() >= 5) {
   try {
-    if (mCell.getMCC() == Integer.MAX_VALUE)     mCell.setMCC(Integer.parseInt(tm.getNetworkOperator().substring(0,3)));
-    if (mCell.getMNC() == Integer.MAX_VALUE)     mCell.setMNC(Integer.parseInt(tm.getNetworkOperator().substring(3,5)));
+    if (mCell.getMCC() == Integer.MAX_VALUE) {
+      mCell.setMCC(Integer.parseInt(tm.getNetworkOperator().substring(0,3)));
+    }
+    if (mCell.getMNC() == Integer.MAX_VALUE) {
+      mCell.setMNC(Integer.parseInt(tm.getNetworkOperator().substring(3,5)));
+    }
   }
  catch (  Exception e) {
     log.info("MncMcc parse exception: ",e);
@@ -45,8 +51,12 @@ mCell.setMNC(cdmaCellLocation.getSystemId());
 String homeOperator=Helpers.getSystemProp(context,"ro.cdma.home.operator.numeric","UNKNOWN");
 if (!homeOperator.contains("UNKNOWN")) {
 try {
-if (mCell.getMCC() == Integer.MAX_VALUE) mCell.setMCC(Integer.valueOf(homeOperator.substring(0,3)));
-if (mCell.getMNC() == Integer.MAX_VALUE) mCell.setMNC(Integer.valueOf(homeOperator.substring(3,5)));
+if (mCell.getMCC() == Integer.MAX_VALUE) {
+mCell.setMCC(Integer.valueOf(homeOperator.substring(0,3)));
+}
+if (mCell.getMNC() == Integer.MAX_VALUE) {
+mCell.setMNC(Integer.valueOf(homeOperator.substring(3,5)));
+}
 }
  catch (Exception e) {
 log.info("HomeOperator parse exception - " + e.getMessage(),e);

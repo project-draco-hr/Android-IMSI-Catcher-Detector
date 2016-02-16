@@ -1,7 +1,9 @@
 {
   List<Cell> neighboringCells=new ArrayList<>();
   List<NeighboringCellInfo> neighboringCellInfo=tm.getNeighboringCellInfo();
-  if (neighboringCellInfo == null)   neighboringCellInfo=new ArrayList<>();
+  if (neighboringCellInfo == null) {
+    neighboringCellInfo=new ArrayList<>();
+  }
   Boolean nclp=tinydb.getBoolean("nc_list_present");
   if (neighboringCellInfo != null && neighboringCellInfo.size() == 0 && nclp) {
     log.info("NeighbouringCellInfo is empty: start polling...");
@@ -18,12 +20,14 @@
         NeighboringCellInfo info=neighboringCellBlockingQueue.poll(1,TimeUnit.SECONDS);
         if (info == null) {
           neighboringCellInfo=tm.getNeighboringCellInfo();
-          if (neighboringCellInfo != null)           if (neighboringCellInfo.size() > 0) {
-            log.debug("NeighbouringCellInfo found on " + i + " try. (time based)");
-            break;
-          }
+          if (neighboringCellInfo != null) {
+            if (neighboringCellInfo.size() > 0) {
+              log.debug("NeighbouringCellInfo found on " + i + " try. (time based)");
+              break;
+            }
  else {
-            continue;
+              continue;
+            }
           }
         }
         List<NeighboringCellInfo> cellInfoList=new ArrayList<>(neighboringCellBlockingQueue.size() + 1);
@@ -34,6 +38,7 @@
         neighboringCellInfo=cellInfoList;
       }
  catch (      InterruptedException e) {
+        log.error("",e);
       }
     }
   }

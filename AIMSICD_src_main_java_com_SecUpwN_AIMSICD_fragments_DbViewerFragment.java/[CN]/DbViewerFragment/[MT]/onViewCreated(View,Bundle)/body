@@ -48,7 +48,9 @@ result.close();
 return adapter;
 }
 @Override protected void onPostExecute(BaseInflaterAdapter adapter){
-if (getActivity() == null) return;
+if (getActivity() == null) {
+return;
+}
 lv.setEmptyView(emptyView);
 if (adapter != null) {
 lv.setAdapter(adapter);

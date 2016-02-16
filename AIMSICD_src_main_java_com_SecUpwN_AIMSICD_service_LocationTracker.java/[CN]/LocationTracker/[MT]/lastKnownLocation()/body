@@ -32,6 +32,8 @@
       }
     }
   }
-  if (loc != null)   log.info("Last known location " + loc.toString());
+  if (loc != null) {
+    log.info("Last known location " + loc.toString());
+  }
   return loc;
 }

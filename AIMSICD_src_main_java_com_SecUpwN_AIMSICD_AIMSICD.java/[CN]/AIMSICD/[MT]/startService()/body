@@ -1,5 +1,7 @@
 {
-  if (!prefs.getBoolean(mDisclaimerAccepted,false))   return;
+  if (!prefs.getBoolean(mDisclaimerAccepted,false)) {
+    return;
+  }
   if (!mBound) {
     Intent intent=new Intent(AIMSICD.this,AimsicdService.class);
     startService(intent);
