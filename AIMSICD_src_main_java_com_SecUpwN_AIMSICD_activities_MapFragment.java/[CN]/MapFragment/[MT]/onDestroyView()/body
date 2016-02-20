@@ -1,0 +1,18 @@
+{
+  super.onDestroy();
+  LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
+  if (mCompassOverlay != null) {
+    mCompassOverlay.disableCompass();
+  }
+  if (mMyLocationOverlay != null) {
+    mMyLocationOverlay.disableMyLocation();
+  }
+  prefs.unregisterOnSharedPreferenceChangeListener(this);
+  if (mBound) {
+    getActivity().unbindService(mConnection);
+    mBound=false;
+  }
+  TelephonyManager tm=(TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+  tm.listen(mPhoneStateListener,PhoneStateListener.LISTEN_NONE);
+  LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
+}

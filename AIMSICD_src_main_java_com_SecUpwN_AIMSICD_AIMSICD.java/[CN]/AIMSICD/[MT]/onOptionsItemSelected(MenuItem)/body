@@ -1,3 +1,23 @@
 {
-  return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+switch (item.getItemId()) {
+case R.id.toggle_attack_detection:
+    monitorCell();
+  break;
+case R.id.toggle_cell_tracking:
+trackCell();
+break;
+case R.id.settings:
+Intent settingsIntent=new Intent(this,SettingsActivity.class);
+startActivity(settingsIntent);
+break;
+case R.id.about:
+Intent aboutIntent=new Intent(this,AboutActivity.class);
+startActivity(aboutIntent);
+break;
+case R.id.debugging:
+Intent i=new Intent(this,DebugLogs.class);
+startActivity(i);
+break;
+}
+return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 }

@@ -1,0 +1,19 @@
+{
+  super.onResume();
+  setUpMapIfNeeded();
+  prefs=getActivity().getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  prefs.registerOnSharedPreferenceChangeListener(this);
+  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter(updateOpenCellIDMarkers));
+  if (!mBound) {
+    Intent intent=new Intent(getActivity(),AimsicdService.class);
+    getActivity().bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+  }
+  loadPreferences();
+  loadEntries();
+  if (mCompassOverlay != null) {
+    mCompassOverlay.enableCompass();
+  }
+  if (mMyLocationOverlay != null) {
+    mMyLocationOverlay.enableMyLocation();
+  }
+}

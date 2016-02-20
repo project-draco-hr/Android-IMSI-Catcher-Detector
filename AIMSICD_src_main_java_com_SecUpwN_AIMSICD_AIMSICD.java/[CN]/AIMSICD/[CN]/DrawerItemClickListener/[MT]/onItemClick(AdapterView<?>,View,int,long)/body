@@ -1,4 +1,4 @@
 {
   mDrawerLayout.closeDrawer(mDrawerList);
-  selectItem(position);
+  selectDrawerItem(position);
 }

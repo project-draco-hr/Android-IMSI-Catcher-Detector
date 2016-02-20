@@ -1,0 +1,4 @@
+AdapterView<?> parentView
+View selectedItemView
+int position
+long id

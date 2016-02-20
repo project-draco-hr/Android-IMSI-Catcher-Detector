@@ -1,0 +1,7 @@
+{
+  SettingsFragment settingsFragment=new SettingsFragment();
+  FragmentManager fragmentManager=getFragmentManager();
+  FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+  fragmentTransaction.replace(android.R.id.content,settingsFragment);
+  fragmentTransaction.commit();
+}

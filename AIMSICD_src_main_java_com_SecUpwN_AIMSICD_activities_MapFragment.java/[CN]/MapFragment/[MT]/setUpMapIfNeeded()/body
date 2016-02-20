@@ -1,0 +1,23 @@
+{
+  mMap.setBuiltInZoomControls(true);
+  mMap.setMultiTouchControls(true);
+  mMap.setMinZoomLevel(3);
+  mMap.setMaxZoomLevel(19);
+  mMap.getTileProvider().createTileCache();
+  mCompassOverlay=new CompassOverlay(getActivity(),new InternalCompassOrientationProvider(getActivity()),mMap);
+  ScaleBarOverlay mScaleBarOverlay=new ScaleBarOverlay(getActivity());
+  mScaleBarOverlay.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels / 2,10);
+  mScaleBarOverlay.setCentred(true);
+  mCellTowerGridMarkerClusterer=new CellTowerGridMarkerClusterer(getActivity());
+  BitmapDrawable mapPinDrawable=(BitmapDrawable)getResources().getDrawable(R.drawable.ic_map_pin_orange);
+  mCellTowerGridMarkerClusterer.setIcon(mapPinDrawable == null ? null : mapPinDrawable.getBitmap());
+  GpsMyLocationProvider gpsMyLocationProvider=new GpsMyLocationProvider(getActivity().getBaseContext());
+  gpsMyLocationProvider.setLocationUpdateMinDistance(100);
+  gpsMyLocationProvider.setLocationUpdateMinTime(10000);
+  mMyLocationOverlay=new MyLocationNewOverlay(getActivity().getBaseContext(),gpsMyLocationProvider,mMap);
+  mMyLocationOverlay.setDrawAccuracyEnabled(true);
+  mMap.getOverlays().add(mCellTowerGridMarkerClusterer);
+  mMap.getOverlays().add(mMyLocationOverlay);
+  mMap.getOverlays().add(mCompassOverlay);
+  mMap.getOverlays().add(mScaleBarOverlay);
+}

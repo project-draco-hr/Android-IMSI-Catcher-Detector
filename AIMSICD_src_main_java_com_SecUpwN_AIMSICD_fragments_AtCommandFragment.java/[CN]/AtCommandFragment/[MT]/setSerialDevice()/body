@@ -1,0 +1,6 @@
+{
+  if (mCommandTerminal != null) {
+    mCommandTerminal.dispose();
+    mCommandTerminal=null;
+  }
+}
