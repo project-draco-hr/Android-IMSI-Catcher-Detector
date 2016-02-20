@@ -1,9 +1,11 @@
 {
 switch (item.getItemId()) {
 case R.id.toggle_attack_detection:
-    monitorCell();
-  break;
+    item.setChecked(!item.isChecked());
+  monitorCell();
+break;
 case R.id.toggle_cell_tracking:
+item.setChecked(!item.isChecked());
 trackCell();
 break;
 case R.id.settings:
