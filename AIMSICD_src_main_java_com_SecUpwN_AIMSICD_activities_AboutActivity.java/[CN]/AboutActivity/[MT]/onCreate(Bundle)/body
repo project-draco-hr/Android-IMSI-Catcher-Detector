@@ -1,7 +1,11 @@
 {
   super.onCreate(savedInstanceState);
   versionNumber.setText(getString(R.string.app_version,BuildConfig.VERSION_NAME));
-  buildNumberTextView.setText(getString(R.string.buildnumber,BuildConfig.BUILD_NUMBER));
+  String buildNumber=BuildConfig.BUILD_NUMBER;
+  if (buildNumber == null) {
+    buildNumber=getString(R.string.n_a);
+  }
+  buildNumberTextView.setText(getString(R.string.buildnumber,buildNumber));
   gitShaTextView.setText(getString(R.string.git_sha,BuildConfig.GIT_SHA));
   View tv=findViewById(R.id.aimsicd_wiki_link);
   setLink(tv,R.string.aimsicd_wiki_link);
