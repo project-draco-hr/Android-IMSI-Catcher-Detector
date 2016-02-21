@@ -1,6 +1,0 @@
-{
-  super.onDestroy();
-  if (mCommandTerminal != null) {
-    mCommandTerminal.dispose();
-  }
-}
