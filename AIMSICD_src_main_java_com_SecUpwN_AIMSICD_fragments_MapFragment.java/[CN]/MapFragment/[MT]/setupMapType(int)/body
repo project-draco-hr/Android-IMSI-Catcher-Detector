@@ -1,0 +1,14 @@
+{
+  mMap.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
+switch (mapType) {
+case 0:
+    mMap.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
+  break;
+case 1:
+mMap.setTileSource(TileSourceFactory.CYCLEMAP);
+break;
+default :
+mMap.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
+break;
+}
+}

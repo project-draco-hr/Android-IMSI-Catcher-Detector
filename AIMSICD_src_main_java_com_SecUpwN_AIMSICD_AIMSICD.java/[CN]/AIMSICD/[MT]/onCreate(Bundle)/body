@@ -1,7 +1,12 @@
 {
   super.onCreate(savedInstanceState);
+  setContentView(R.layout.activity_main);
+  deviceFragment=new DeviceFragment();
+  cellInfoFragment=new CellInfoFragment();
+  atCommandFragment=new AtCommandFragment();
+  dbViewerFragment=new DbViewerFragment();
+  mapFragment=new MapFragment();
   mNavConf=new DrawerMenuActivityConfiguration.Builder(this).build();
-  setContentView(mNavConf.getMainLayout());
   mDrawerLayout=(DrawerLayout)findViewById(mNavConf.getDrawerLayoutId());
   mDrawerList=(ListView)findViewById(mNavConf.getLeftDrawerId());
   mActionBar=getSupportActionBar();
@@ -9,17 +14,11 @@
   mDrawerTitle=getTitle();
   mDrawerList.setAdapter(mNavConf.getBaseAdapter());
   mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.string.drawer_open,R.string.drawer_close){
-    /** 
- * Called when a drawer has settled in a completely closed state. 
- */
     public void onDrawerClosed(    View view){
       super.onDrawerClosed(view);
       mActionBar.setTitle(mTitle);
       invalidateOptionsMenu();
     }
-    /** 
- * Called when a drawer has settled in a completely open state. 
- */
     public void onDrawerOpened(    View drawerView){
       super.onDrawerOpened(drawerView);
       mActionBar.setTitle(mDrawerTitle);

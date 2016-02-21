@@ -4,7 +4,7 @@ case MAIN.PHONE_SIM_DETAILS:
     return R.string.help_main_phone_sim_details;
 case MAIN.CURRENT_TREAT_LEVEL:
   return R.string.help_main_current_threat_level;
-case MAIN.ACD:
+case MAIN.ALL_CURRENT_CELL_DETAILS:
 return R.string.help_main_acd;
 case MAIN.DB_VIEWER:
 return R.string.help_main_database_viewer;
