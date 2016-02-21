@@ -1,0 +1,7 @@
+{
+  final String KEY_MAP_TYPE=getActivity().getBaseContext().getString(R.string.pref_map_type_key);
+  if (key.equals(KEY_MAP_TYPE)) {
+    int item=Integer.parseInt(sharedPreferences.getString(key,"0"));
+    setupMapType(item);
+  }
+}

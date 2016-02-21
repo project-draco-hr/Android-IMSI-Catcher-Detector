@@ -1,0 +1,4 @@
+{
+  this.mOptionsMenu=menu;
+  inflater.inflate(R.menu.fragment_map_menu,mOptionsMenu);
+}

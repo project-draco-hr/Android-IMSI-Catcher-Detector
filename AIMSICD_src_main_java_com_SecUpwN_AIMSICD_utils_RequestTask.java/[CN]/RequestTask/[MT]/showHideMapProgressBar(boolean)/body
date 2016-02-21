@@ -1,9 +1,10 @@
 {
-  Activity lActivity=getActivity();
+  InjectionAppCompatActivity lActivity=getActivity();
   if (BuildConfig.DEBUG && lActivity == null) {
     log.verbose("BaseTask showHideMapProgressBar() activity is null");
   }
-  if (lActivity != null && lActivity instanceof MapViewerOsmDroid) {
-    ((MapViewerOsmDroid)lActivity).setRefreshActionButtonState(pFlag);
+  Fragment myFragment=lActivity.getSupportFragmentManager().findFragmentByTag(String.valueOf(DrawerMenu.ID.MAIN.ALL_CURRENT_CELL_DETAILS));
+  if (myFragment instanceof MapFragment) {
+    ((MapFragment)myFragment).setRefreshActionButtonState(pFlag);
   }
 }
