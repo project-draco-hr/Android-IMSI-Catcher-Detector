@@ -59,17 +59,26 @@ sb.append("&lac=").append(mAimsicdService.getCell().getLAC());
 if (mAimsicdService.getCell().getCID() != Integer.MAX_VALUE) {
 sb.append("&cellid=").append(mAimsicdService.getCell().getCID());
 }
-sb.append("&format=xml");
+sb.append("&format=json");
 Request request=new Request.Builder().url(sb.toString()).get().build();
 okHttpClient.newCall(request).enqueue(new Callback(){
 @Override public void onFailure(Request request,IOException e){
 }
 @Override public void onResponse(Response response) throws IOException {
 try {
-List<Cell> cellList=new StackOverflowXmlParser().parse(response.body().byteStream());
+JSONObject jsonCell=new JSONObject(response.body().string());
+Cell cell=new Cell();
+cell.setLat(jsonCell.getDouble("lat"));
+cell.setLon(jsonCell.getDouble("lon"));
+cell.setMCC(jsonCell.getInt("mcc"));
+cell.setMNC(jsonCell.getInt("mnc"));
+cell.setCID(jsonCell.getInt("cellid"));
+cell.setLAC(jsonCell.getInt("lac"));
+List<Cell> cellList=new ArrayList<>();
+cellList.add(cell);
 AIMSICD.this.processFinish(cellList);
 }
- catch (XmlPullParserException e) {
+ catch (JSONException e) {
 e.printStackTrace();
 }
 }
