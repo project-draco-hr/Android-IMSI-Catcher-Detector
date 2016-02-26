@@ -81,8 +81,6 @@
           if (closeAfterFinish) {
             mCreditsDialog.cancel();
           }
- else {
-          }
         }
         @Override public void onAnimationRepeat(        Animation animation){
         }
