@@ -1,0 +1,17 @@
+{
+  try {
+    JSONObject jsonCell=new JSONObject(response.body().string());
+    Cell cell=new Cell();
+    cell.setLat(jsonCell.getDouble("lat"));
+    cell.setLon(jsonCell.getDouble("lon"));
+    cell.setMCC(jsonCell.getInt("mcc"));
+    cell.setMNC(jsonCell.getInt("mnc"));
+    cell.setCID(jsonCell.getInt("cellid"));
+    cell.setLAC(jsonCell.getInt("lac"));
+    return cell;
+  }
+ catch (  JSONException|IOException e) {
+    e.printStackTrace();
+  }
+  return null;
+}
