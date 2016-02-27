@@ -1,12 +1,12 @@
 {
 switch (item.getItemId()) {
 case R.id.toggle_attack_detection:
-    item.setChecked(!item.isChecked());
-  monitorCell();
+    monitorCell();
+  item.setChecked(mAimsicdService.isMonitoringCell());
 break;
 case R.id.toggle_cell_tracking:
-item.setChecked(!item.isChecked());
 trackCell();
+item.setChecked(mAimsicdService.isTrackingCell());
 break;
 case R.id.settings:
 Intent settingsIntent=new Intent(this,SettingsActivity.class);

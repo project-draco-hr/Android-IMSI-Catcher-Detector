@@ -2,8 +2,8 @@
   MenuInflater inflater=getMenuInflater();
   inflater.inflate(R.menu.main_menu,menu);
   MenuItem toggleAttackDetectionMenuItem=menu.findItem(R.id.toggle_attack_detection);
-  toggleAttackDetectionMenuItem.setChecked(true);
+  toggleAttackDetectionMenuItem.setChecked(mAimsicdService.isMonitoringCell());
   MenuItem toggleCellTrackingMenuItem=menu.findItem(R.id.toggle_cell_tracking);
-  toggleCellTrackingMenuItem.setChecked(true);
+  toggleCellTrackingMenuItem.setChecked(mAimsicdService.isTrackingCell());
   return true;
 }
