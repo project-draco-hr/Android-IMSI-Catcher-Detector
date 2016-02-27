@@ -1,6 +1,6 @@
 {
   final List<String> list=rilExecutor.getCipheringInfo();
-  mActivity.runOnUiThread(new Runnable(){
+  getActivity().runOnUiThread(new Runnable(){
     @Override public void run(){
       if (list != null) {
         mCipheringIndicatorLabel.setVisibility(View.VISIBLE);

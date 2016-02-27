@@ -1,6 +1,6 @@
 {
   final List<String> list=rilExecutor.getNeighbours();
-  mActivity.runOnUiThread(new Runnable(){
+  getActivity().runOnUiThread(new Runnable(){
     @Override public void run(){
       if (list != null) {
         mNeighbouringCells.setText(TextUtils.join("\n",list));
