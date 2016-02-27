@@ -1,0 +1,11 @@
+{
+  if (cell != null) {
+    log.info("processFinish - Cell =" + cell.toString());
+    if (cell.isValid()) {
+      mAimsicdService.setCell(cell);
+      Helpers.msgShort(mContext,getActivity().getString(R.string.refreshed_cell_id_info));
+      updateUI();
+      swipeRefreshLayout.setRefreshing(false);
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  Helpers.msgShort(mContext,"Failed to refresh CellId. Check network connection.");
+  swipeRefreshLayout.setRefreshing(false);
+}
