@@ -1,4 +1,0 @@
-{
-  Helpers.msgShort(mContext,mAimsicdService.getString(R.string.refreshing_now));
-  updateUI();
-}
