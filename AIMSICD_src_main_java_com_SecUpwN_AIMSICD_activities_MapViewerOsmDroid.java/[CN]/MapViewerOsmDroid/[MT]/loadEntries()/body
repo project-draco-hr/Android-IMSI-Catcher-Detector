@@ -28,7 +28,7 @@
           }
           if (Double.doubleToRawLongBits(dLat) != 0 || Double.doubleToRawLongBits(dLng) != 0) {
             loc=new GeoPoint(dLat,dLng);
-            CellTowerMarker ovm=new CellTowerMarker(MapViewerOsmDroid.this,mMap,"Cell ID: " + cellID,"",loc,new MarkerData(getApplicationContext(),String.valueOf(cellID),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(lac),String.valueOf(mcc),String.valueOf(mnc),String.valueOf(psc),"",false));
+            CellTowerMarker ovm=new CellTowerMarker(MapViewerOsmDroid.this,mMap,"Cell ID: " + cellID,"",loc,new MarkerData(getApplicationContext(),String.valueOf(cellID),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(lac),String.valueOf(mcc),String.valueOf(mnc),String.valueOf(psc),null,"",false));
             ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_blue));
             items.add(ovm);
           }
@@ -75,7 +75,7 @@
         }
         try {
           loc=new GeoPoint(cell.getLat(),cell.getLon());
-          CellTowerMarker ovm=new CellTowerMarker(MapViewerOsmDroid.this,mMap,getString(R.string.cell_id_label) + cell.getCID(),"",loc,new MarkerData(getApplicationContext(),String.valueOf(cell.getCID()),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(cell.getLAC()),String.valueOf(cell.getMCC()),String.valueOf(cell.getMNC()),String.valueOf(cell.getPSC()),"",false));
+          CellTowerMarker ovm=new CellTowerMarker(MapViewerOsmDroid.this,mMap,getString(R.string.cell_id_label) + cell.getCID(),"",loc,new MarkerData(getApplicationContext(),String.valueOf(cell.getCID()),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(cell.getLAC()),String.valueOf(cell.getMCC()),String.valueOf(cell.getMNC()),String.valueOf(cell.getPSC()),String.valueOf(cell.getRAT()),"",false));
           ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_orange));
           items.add(ovm);
         }

@@ -7,6 +7,7 @@
   mcc=mobile_country_code;
   mnc=mobile_network_code;
   psc=primary_scrambling_code;
+  rat=radio_access_technology;
   samples=samples_taken;
   openCellID=openCellID_Data;
 }

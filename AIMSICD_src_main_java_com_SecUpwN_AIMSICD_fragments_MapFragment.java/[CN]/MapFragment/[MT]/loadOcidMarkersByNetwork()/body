@@ -16,11 +16,12 @@
       final int mcc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_MCC));
       final int mnc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_MNC));
       final int psc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_PSC));
+      final String rat=c.getString(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_RAT));
       final double dLat=Double.parseDouble(c.getString(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_GPS_LAT)));
       final double dLng=Double.parseDouble(c.getString(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_GPS_LON)));
       final GeoPoint location=new GeoPoint(dLat,dLng);
       final int samples=c.getInt(c.getColumnIndex(DBTableColumnIds.DBE_IMPORT_SAMPLES));
-      CellTowerMarker ovm=new CellTowerMarker(getActivity(),mMap,"Cell ID: " + cellID,"",location,new MarkerData(getContext(),String.valueOf(cellID),String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()),String.valueOf(lac),String.valueOf(mcc),String.valueOf(mnc),String.valueOf(psc),String.valueOf(samples),false));
+      CellTowerMarker ovm=new CellTowerMarker(getActivity(),mMap,"Cell ID: " + cellID,"",location,new MarkerData(getContext(),String.valueOf(cellID),String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()),String.valueOf(lac),String.valueOf(mcc),String.valueOf(mnc),String.valueOf(psc),rat,String.valueOf(samples),false));
       ovm.setIcon(cellTowerMarkerIcon);
       items.add(ovm);
     }

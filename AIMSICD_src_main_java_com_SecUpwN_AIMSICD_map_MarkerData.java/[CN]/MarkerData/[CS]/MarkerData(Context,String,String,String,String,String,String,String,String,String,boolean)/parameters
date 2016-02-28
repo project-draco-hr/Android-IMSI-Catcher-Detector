@@ -6,5 +6,6 @@ String local_area_code
 String mobile_country_code
 String mobile_network_code
 String primary_scrambling_code
+String radio_access_technology
 String samples_taken
 boolean openCellID_Data
