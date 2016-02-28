@@ -60,10 +60,16 @@
   btncredits.setOnClickListener(new View.OnClickListener(){
     AlertDialog mCreditsDialog;
     @Override public void onClick(    View view){
-      final TextView mCreditsText=new TextView(getApplicationContext());
+      final TextView mCreditsTitle=new TextView(getApplicationContext());
+      final TextView mCreditsText=new TextView(mContext);
+      final ScrollView mScrollView=new ScrollView(getApplicationContext());
       mCreditsText.setText(R.string.about_credits_content);
       mCreditsText.setTextSize(18);
-      final ScrollView mScrollView=new ScrollView(getApplicationContext());
+      mCreditsText.setTypeface(Typeface.DEFAULT_BOLD);
+      mCreditsTitle.setText(R.string.about_credits);
+      mCreditsTitle.setTypeface(Typeface.DEFAULT_BOLD);
+      mCreditsTitle.setTextSize(20);
+      mCreditsTitle.setGravity(Gravity.CENTER_HORIZONTAL);
       mScrollView.addView(mCreditsText);
       Animation scrollTo=(Animation)AnimationUtils.loadAnimation(getApplicationContext(),R.anim.credits_dialog_scroll);
       mCreditsText.setOnClickListener(new View.OnClickListener(){
@@ -85,13 +91,12 @@
         }
       }
 );
+      mCreditsText.setGravity(Gravity.CENTER_HORIZONTAL);
+      mCreditsText.setMovementMethod(LinkMovementMethod.getInstance());
       scrollTo.setDuration(countLines(getResources().getString(R.string.about_credits_content)) * 500);
-      ViewGroup.MarginLayoutParams mlp=(ViewGroup.MarginLayoutParams)mCreditsText.getLayoutParams();
-      mlp.setMargins(50,20,20,0);
-      mCreditsText.setTypeface(Typeface.DEFAULT_BOLD);
       mCreditsText.startAnimation(scrollTo);
       closeAfterFinish=true;
-      mCreditsDialog=new AlertDialog.Builder(AboutActivity.this).setTitle(R.string.about_credits).setPositiveButton(android.R.string.ok,null).setView(mScrollView).show();
+      mCreditsDialog=new AlertDialog.Builder(AboutActivity.this).setCustomTitle(mCreditsTitle).setPositiveButton(android.R.string.ok,null).setView(mScrollView).show();
     }
   }
 );
