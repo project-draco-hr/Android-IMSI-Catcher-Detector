@@ -15,6 +15,10 @@
       tv.setText(String.valueOf(data.lat));
       tv=(TextView)v.findViewById(R.id.lng);
       tv.setText(String.valueOf(data.lng));
+      tv=(TextView)v.findViewById(R.id.psc);
+      tv.setText(data.getPSC());
+      tv=(TextView)v.findViewById(R.id.rat);
+      tv.setText(data.getRAT());
       tv=(TextView)v.findViewById(R.id.pc);
       tv.setText(data.getPC());
       tv=(TextView)v.findViewById(R.id.samples);

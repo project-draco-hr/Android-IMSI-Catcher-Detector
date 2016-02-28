@@ -1,0 +1,6 @@
+{
+  if (psc < 0 || psc > 511) {
+    return INVALID_PSC;
+  }
+  return String.valueOf(psc);
+}
