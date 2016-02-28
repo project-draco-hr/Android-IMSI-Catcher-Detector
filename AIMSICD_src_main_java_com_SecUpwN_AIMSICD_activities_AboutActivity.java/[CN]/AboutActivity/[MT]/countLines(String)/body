@@ -1,0 +1,4 @@
+{
+  String[] lines=mString.split("\r\n|\r|\n");
+  return lines.length;
+}
