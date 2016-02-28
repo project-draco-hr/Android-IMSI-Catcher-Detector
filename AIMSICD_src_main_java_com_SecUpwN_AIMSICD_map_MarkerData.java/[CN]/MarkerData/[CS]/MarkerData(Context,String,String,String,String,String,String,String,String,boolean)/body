@@ -1,10 +1,12 @@
 {
+  c=context;
   cellID=cell_id;
   lat=latitude;
   lng=longitude;
   lac=local_area_code;
   mcc=mobile_country_code;
   mnc=mobile_network_code;
+  psc=primary_scrambling_code;
   samples=samples_taken;
   openCellID=openCellID_Data;
 }
