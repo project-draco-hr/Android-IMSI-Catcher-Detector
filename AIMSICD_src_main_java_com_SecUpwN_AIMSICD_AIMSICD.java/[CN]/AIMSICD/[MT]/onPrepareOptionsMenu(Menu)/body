@@ -1,0 +1,10 @@
+{
+  if (mAimsicdService == null) {
+    return super.onPrepareOptionsMenu(menu);
+  }
+  MenuItem toggleAttackDetectionMenuItem=menu.findItem(R.id.toggle_attack_detection);
+  MenuItem toggleCellTrackingMenuItem=menu.findItem(R.id.toggle_cell_tracking);
+  toggleAttackDetectionMenuItem.setChecked(mAimsicdService.isMonitoringCell());
+  toggleCellTrackingMenuItem.setChecked(mAimsicdService.isTrackingCell());
+  return super.onPrepareOptionsMenu(menu);
+}
