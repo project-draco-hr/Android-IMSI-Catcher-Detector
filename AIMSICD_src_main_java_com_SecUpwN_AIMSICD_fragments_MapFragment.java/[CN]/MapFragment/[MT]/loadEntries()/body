@@ -20,6 +20,7 @@
           final int lac=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAC));
           final int mcc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MCC));
           final int mnc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MNC));
+          final int psc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_PSC));
           final double dLat=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAT));
           final double dLng=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LON));
           if (Double.doubleToRawLongBits(dLat) == 0 && Double.doubleToRawLongBits(dLng) == 0) {
@@ -27,7 +28,7 @@
           }
           if (Double.doubleToRawLongBits(dLat) != 0 || Double.doubleToRawLongBits(dLng) != 0) {
             loc=new GeoPoint(dLat,dLng);
-            CellTowerMarker ovm=new CellTowerMarker(getActivity(),mMap,"Cell ID: " + cellID,"",loc,new MarkerData(String.valueOf(cellID),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(lac),String.valueOf(mcc),String.valueOf(mnc),"",false));
+            CellTowerMarker ovm=new CellTowerMarker(getActivity(),mMap,"Cell ID: " + cellID,"",loc,new MarkerData(getContext(),String.valueOf(cellID),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(lac),String.valueOf(mcc),String.valueOf(mnc),String.valueOf(psc),null,"",false));
             ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_blue));
             items.add(ovm);
           }
@@ -74,7 +75,7 @@
         }
         try {
           loc=new GeoPoint(cell.getLat(),cell.getLon());
-          CellTowerMarker ovm=new CellTowerMarker(getActivity(),mMap,getString(R.string.cell_id_label) + cell.getCID(),"",loc,new MarkerData(String.valueOf(cell.getCID()),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(cell.getLAC()),String.valueOf(cell.getMCC()),String.valueOf(cell.getMNC()),"",false));
+          CellTowerMarker ovm=new CellTowerMarker(getActivity(),mMap,getString(R.string.cell_id_label) + cell.getCID(),"",loc,new MarkerData(getContext(),String.valueOf(cell.getCID()),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(cell.getLAC()),String.valueOf(cell.getMCC()),String.valueOf(cell.getMNC()),String.valueOf(cell.getPSC()),String.valueOf(cell.getRAT()),"",false));
           ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_orange));
           items.add(ovm);
         }

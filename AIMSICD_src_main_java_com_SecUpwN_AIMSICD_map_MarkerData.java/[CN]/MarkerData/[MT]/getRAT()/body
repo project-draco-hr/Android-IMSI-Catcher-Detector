@@ -1,0 +1,6 @@
+{
+  if (rat == null || rat.isEmpty()) {
+    return c.getString(R.string.unknown);
+  }
+  return rat;
+}

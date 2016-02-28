@@ -1,0 +1,7 @@
+{
+  String s=validatePscValue(psc);
+  if (s.equals(INVALID_PSC)) {
+    return c.getString(R.string.unknown);
+  }
+  return s;
+}
