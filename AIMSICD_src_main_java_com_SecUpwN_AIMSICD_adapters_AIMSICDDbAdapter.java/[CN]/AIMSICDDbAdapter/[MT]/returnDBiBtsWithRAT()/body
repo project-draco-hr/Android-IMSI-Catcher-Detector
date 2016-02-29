@@ -1,0 +1,3 @@
+{
+  return mDb.rawQuery("SELECT DBi_bts.*, DBi_measure.RAT FROM DBi_bts JOIN DBi_measure ON DBi_measure.bts_id = DBi_bts.CID",null);
+}
