@@ -2,6 +2,5 @@
   if (mCell == null) {
     return "Unknown";
   }
-  mNetType=mCell.getRAT();
-  return mNetType;
+  return mCell.getRAT();
 }
