@@ -20,8 +20,11 @@
  else     if (mTrackingCell) {
       contentText=context.getString(R.string.cell_tracking_active);
     }
- else {
+    if (mMonitoringCell) {
       contentText=context.getString(R.string.cell_monitoring_active);
+    }
+ else {
+      getApplication().setCurrentStatus(Status.IDLE,mVibrateEnabled,mVibrateMinThreatLevel);
     }
   }
  else {
