@@ -19,7 +19,7 @@ openFragment(dbViewerFragment);
 title=getString(R.string.app_name_short);
 break;
 case DrawerMenu.ID.APPLICATION.UPLOAD_LOCAL_BTS_DATA:
-new RequestTask(this,com.SecUpwN.AIMSICD.utils.RequestTask.DBE_UPLOAD_REQUEST).execute("");
+new RequestTask(this,com.secupwn.aimsicd.utils.RequestTask.DBE_UPLOAD_REQUEST).execute("");
 break;
 case DrawerMenu.ID.MAIN.ANTENNA_MAP_VIEW:
 openFragment(mapFragment);
