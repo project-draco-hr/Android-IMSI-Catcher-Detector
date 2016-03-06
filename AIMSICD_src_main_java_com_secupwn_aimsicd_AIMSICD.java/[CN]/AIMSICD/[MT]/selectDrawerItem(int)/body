@@ -1,0 +1,69 @@
+{
+  NavDrawerItem selectedItem=mNavConf.getNavItems().get(position);
+  String title=selectedItem.getLabel();
+switch (selectedItem.getId()) {
+case DrawerMenu.ID.MAIN.PHONE_SIM_DETAILS:
+    openFragment(deviceFragment);
+  title=getString(R.string.app_name_short);
+break;
+case DrawerMenu.ID.MAIN.CURRENT_TREAT_LEVEL:
+openFragment(cellInfoFragment);
+title=getString(R.string.app_name_short);
+break;
+case DrawerMenu.ID.MAIN.AT_COMMAND_INTERFACE:
+openFragment(atCommandFragment);
+title=getString(R.string.app_name_short);
+break;
+case DrawerMenu.ID.MAIN.DB_VIEWER:
+openFragment(dbViewerFragment);
+title=getString(R.string.app_name_short);
+break;
+case DrawerMenu.ID.APPLICATION.UPLOAD_LOCAL_BTS_DATA:
+new RequestTask(this,com.secupwn.aimsicd.utils.RequestTask.DBE_UPLOAD_REQUEST).execute("");
+break;
+case DrawerMenu.ID.MAIN.ANTENNA_MAP_VIEW:
+openFragment(mapFragment);
+title=getString(R.string.app_name_short);
+break;
+case DrawerMenu.ID.DATABASE_SETTINGS.BACKUP_DB:
+new RequestTask(this,RequestTask.BACKUP_DATABASE).execute();
+break;
+}
+if (selectedItem.getId() == DrawerMenu.ID.DATABASE_SETTINGS.RESTORE_DB) {
+if (CellTracker.LAST_DB_BACKUP_VERSION < AIMSICDDbAdapter.DATABASE_VERSION) {
+Helpers.msgLong(this,getString(R.string.unable_to_restore_backup_from_previous_database_version));
+}
+ else {
+new RequestTask(this,RequestTask.RESTORE_DATABASE).execute();
+}
+}
+ else if (selectedItem.getId() == DrawerMenu.ID.DATABASE_SETTINGS.RESET_DB) {
+Helpers.askAndDeleteDb(this);
+}
+ else if (selectedItem.getId() == DrawerMenu.ID.APPLICATION.DOWNLOAD_LOCAL_BTS_DATA) {
+downloadBtsDataIfApiKeyAvailable();
+}
+ else if (selectedItem.getId() == DrawerMenu.ID.APPLICATION.QUIT) {
+try {
+if (mAimsicdService.isSmsTracking()) {
+mAimsicdService.stopSmsTracking();
+}
+}
+ catch (Exception ee) {
+log.warn("Exception in smstracking module: " + ee.getMessage());
+}
+if (mAimsicdService != null) {
+mAimsicdService.onDestroy();
+}
+log.info("Closing db from DrawerMenu.ID.APPLICATION.QUIT");
+new AIMSICDDbAdapter(getApplicationContext()).close();
+finish();
+}
+mDrawerList.setItemChecked(position,true);
+if (selectedItem.updateActionBarTitle()) {
+setTitle(title);
+}
+if (this.mDrawerLayout.isDrawerOpen(this.mDrawerList)) {
+mDrawerLayout.closeDrawer(mDrawerList);
+}
+}
