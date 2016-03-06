@@ -8,7 +8,7 @@
   capturedSms.setSmsType("WAPPUSH");
   capturedSms.setCurrent_lac(mAIMSICDService.getCellTracker().getMonitorCell().getLAC());
   capturedSms.setCurrent_cid(mAIMSICDService.getCellTracker().getMonitorCell().getCID());
-  capturedSms.setCurrent_nettype(Device.getNetworkTypeName(mAIMSICDService.getCell().getNetType()));
+  capturedSms.setCurrent_nettype(mAIMSICDService.getCell().getRAT());
   int isRoaming=0;
   if ("true".equals(mAIMSICDService.getCellTracker().getDevice().isRoaming())) {
     isRoaming=1;

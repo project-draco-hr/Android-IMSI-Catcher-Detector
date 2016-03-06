@@ -2,55 +2,5 @@
   if (mCell == null) {
     return "Unknown";
   }
-switch (mCell.getNetType()) {
-case TelephonyManager.NETWORK_TYPE_1xRTT:
-    mNetType="1xRTT";
-  break;
-case TelephonyManager.NETWORK_TYPE_CDMA:
-mNetType="CDMA";
-break;
-case TelephonyManager.NETWORK_TYPE_EDGE:
-mNetType="EDGE";
-break;
-case TelephonyManager.NETWORK_TYPE_EHRPD:
-mNetType="eHRPD";
-break;
-case TelephonyManager.NETWORK_TYPE_EVDO_0:
-mNetType="EVDO rev. 0";
-break;
-case TelephonyManager.NETWORK_TYPE_EVDO_A:
-mNetType="EVDO rev. A";
-break;
-case TelephonyManager.NETWORK_TYPE_EVDO_B:
-mNetType="EVDO rev. B";
-break;
-case TelephonyManager.NETWORK_TYPE_GPRS:
-mNetType="GPRS";
-break;
-case TelephonyManager.NETWORK_TYPE_HSDPA:
-mNetType="HSDPA";
-break;
-case TelephonyManager.NETWORK_TYPE_HSPA:
-mNetType="HSPA";
-break;
-case TelephonyManager.NETWORK_TYPE_HSPAP:
-mNetType="HSPA+";
-break;
-case TelephonyManager.NETWORK_TYPE_HSUPA:
-mNetType="HSUPA";
-break;
-case TelephonyManager.NETWORK_TYPE_IDEN:
-mNetType="iDen";
-break;
-case TelephonyManager.NETWORK_TYPE_LTE:
-mNetType="LTE";
-break;
-case TelephonyManager.NETWORK_TYPE_UMTS:
-mNetType="UMTS";
-break;
-case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-mNetType="Unknown";
-break;
-}
-return mNetType;
+  return mCell.getRAT();
 }
