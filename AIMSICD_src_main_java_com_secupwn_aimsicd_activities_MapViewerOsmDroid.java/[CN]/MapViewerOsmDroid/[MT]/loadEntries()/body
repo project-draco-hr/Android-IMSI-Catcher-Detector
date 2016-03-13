@@ -1,0 +1,125 @@
+{
+  new AsyncTask<Void,Void,GeoPoint>(){
+    @Override protected GeoPoint doInBackground(    Void... voids){
+      mCellTowerGridMarkerClusterer.getItems().clear();
+      loadOcidMarkersByNetwork();
+      List<CellTowerMarker> items=new LinkedList<>();
+      Cursor c=null;
+      try {
+        c=mDbHelper.getCellData();
+      }
+ catch (      IllegalStateException ix) {
+        log.error("Problem getting data from CELL_TABLE",ix);
+      }
+      if (c != null && c.moveToFirst()) {
+        do {
+          if (isCancelled()) {
+            return null;
+          }
+          final int cellID=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_CID));
+          final int lac=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAC));
+          final int mcc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MCC));
+          final int mnc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MNC));
+          final int psc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_PSC));
+          final double dLat=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAT));
+          final double dLng=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LON));
+          if (Double.doubleToRawLongBits(dLat) == 0 && Double.doubleToRawLongBits(dLng) == 0) {
+            continue;
+          }
+          if (Double.doubleToRawLongBits(dLat) != 0 || Double.doubleToRawLongBits(dLng) != 0) {
+            loc=new GeoPoint(dLat,dLng);
+            CellTowerMarker ovm=new CellTowerMarker(MapViewerOsmDroid.this,mMap,"Cell ID: " + cellID,"",loc,new MarkerData(getApplicationContext(),String.valueOf(cellID),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(lac),String.valueOf(mcc),String.valueOf(mnc),String.valueOf(psc),null,"",false));
+            ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_blue));
+            items.add(ovm);
+          }
+        }
+ while (c.moveToNext());
+      }
+ else {
+        runOnUiThread(new Runnable(){
+          @Override public void run(){
+            Helpers.msgLong(MapViewerOsmDroid.this,getString(R.string.no_tracked_locations_found));
+          }
+        }
+);
+      }
+      GeoPoint ret=new GeoPoint(0,0);
+      if (mBound) {
+        try {
+          int mcc=mAimsicdService.getCell().getMCC();
+          double[] d=mDbHelper.getDefaultLocation(mcc);
+          ret=new GeoPoint(d[0],d[1]);
+        }
+ catch (        Exception e) {
+          log.error("Error getting default location!",e);
+        }
+      }
+      if (c != null) {
+        c.close();
+      }
+      while (mAimsicdService == null) {
+        try {
+          if (isCancelled()) {
+            return null;
+          }
+          Thread.sleep(100);
+        }
+ catch (        InterruptedException e) {
+          log.warn("thread interrupted",e);
+        }
+      }
+      List<Cell> nc=mAimsicdService.getCellTracker().updateNeighbouringCells();
+      for (      Cell cell : nc) {
+        if (isCancelled()) {
+          return null;
+        }
+        try {
+          loc=new GeoPoint(cell.getLat(),cell.getLon());
+          CellTowerMarker ovm=new CellTowerMarker(MapViewerOsmDroid.this,mMap,getString(R.string.cell_id_label) + cell.getCID(),"",loc,new MarkerData(getApplicationContext(),String.valueOf(cell.getCID()),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(cell.getLAC()),String.valueOf(cell.getMCC()),String.valueOf(cell.getMNC()),String.valueOf(cell.getPSC()),String.valueOf(cell.getRAT()),"",false));
+          ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_orange));
+          items.add(ovm);
+        }
+ catch (        Exception e) {
+          log.error("Error plotting neighbouring cells",e);
+        }
+      }
+      mCellTowerGridMarkerClusterer.addAll(items);
+      return ret;
+    }
+    /** 
+ * TODO:  We need a manual way to add our own location in case:
+ * a) GPS is jammed or not working
+ * b) WiFi location is not used
+ * c) Default MCC is too far off
+ * @param defaultLoc Default location to open map on
+ */
+    @Override protected void onPostExecute(    GeoPoint defaultLoc){
+      if (loc != null && (Double.doubleToRawLongBits(loc.getLatitude()) != 0 && Double.doubleToRawLongBits(loc.getLongitude()) != 0)) {
+        mMap.getController().setZoom(16);
+        mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+      }
+ else {
+        if (mBound) {
+          GeoLocation lastLoc=mAimsicdService.lastKnownLocation();
+          if (lastLoc != null) {
+            loc=new GeoPoint(lastLoc.getLatitudeInDegrees(),lastLoc.getLongitudeInDegrees());
+            mMap.getController().setZoom(16);
+            mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+          }
+ else {
+            loc=defaultLoc;
+            mMap.getController().setZoom(12);
+            mMap.getController().animateTo(new GeoPoint(loc.getLatitude(),loc.getLongitude()));
+          }
+        }
+      }
+      if (mCellTowerGridMarkerClusterer != null) {
+        if (BuildConfig.DEBUG && mCellTowerGridMarkerClusterer.getItems() != null) {
+          log.verbose("CellTowerMarkers.invalidate() markers.size():" + mCellTowerGridMarkerClusterer.getItems().size());
+        }
+        mCellTowerGridMarkerClusterer.invalidate();
+      }
+    }
+  }
+.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+}

@@ -1,0 +1,15 @@
+{
+  MenuInflater inflater=getMenuInflater();
+  inflater.inflate(R.menu.main_menu,menu);
+  MenuItem toggleAttackDetectionMenuItem=menu.findItem(R.id.toggle_attack_detection);
+  MenuItem toggleCellTrackingMenuItem=menu.findItem(R.id.toggle_cell_tracking);
+  if (mAimsicdService == null) {
+    toggleAttackDetectionMenuItem.setChecked(false);
+    toggleCellTrackingMenuItem.setChecked(false);
+  }
+ else {
+    toggleAttackDetectionMenuItem.setChecked(mAimsicdService.isMonitoringCell());
+    toggleCellTrackingMenuItem.setChecked(mAimsicdService.isTrackingCell());
+  }
+  return true;
+}

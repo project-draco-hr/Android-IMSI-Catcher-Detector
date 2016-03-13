@@ -1,0 +1,103 @@
+{
+  super.onCreate(savedInstanceState);
+  versionNumber.setText(getString(R.string.app_version,BuildConfig.VERSION_NAME));
+  String buildNumber=BuildConfig.BUILD_NUMBER;
+  if (buildNumber == null) {
+    buildNumber=getString(R.string.n_a);
+  }
+  buildNumberTextView.setText(getString(R.string.buildnumber,buildNumber));
+  gitShaTextView.setText(getString(R.string.git_sha,BuildConfig.GIT_SHA));
+  View tv=findViewById(R.id.aimsicd_wiki_link);
+  setLink(tv,R.string.aimsicd_wiki_link);
+  tv=findViewById(R.id.aimsicd_github_link);
+  setLink(tv,R.string.aimsicd_github_link);
+  tv=findViewById(R.id.aimsicd_disclaimer_link);
+  setLink(tv,R.string.disclaimer_link);
+  tv=findViewById(R.id.aimsicd_contribute_link);
+  setLink(tv,R.string.aimsicd_contribute_link);
+  tv=findViewById(R.id.aimsicd_release_link);
+  setLink(tv,R.string.aimsicd_release_link);
+  tv=findViewById(R.id.aimsicd_changelog_link);
+  setLink(tv,R.string.aimsicd_changelog_link);
+  tv=findViewById(R.id.aimsicd_license_link);
+  setLink(tv,R.string.aimsicd_license_link);
+  idleTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.IDLE);
+    }
+  }
+);
+  okTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.OK);
+    }
+  }
+);
+  mediumTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.MEDIUM);
+    }
+  }
+);
+  highTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.HIGH);
+    }
+  }
+);
+  dangerTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.DANGER);
+    }
+  }
+);
+  skullTextView.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View view){
+      showInfoDialog(Status.SKULL);
+    }
+  }
+);
+  btncredits.setOnClickListener(new View.OnClickListener(){
+    AlertDialog mCreditsDialog;
+    @Override public void onClick(    View view){
+      final TextView mCreditsTitle=new TextView(getApplicationContext());
+      final TextView mCreditsText=new TextView(mContext);
+      final ScrollView mScrollView=new ScrollView(getApplicationContext());
+      mCreditsText.setText(R.string.about_credits_content);
+      mCreditsText.setTextSize(18);
+      mCreditsText.setTypeface(Typeface.DEFAULT_BOLD);
+      mCreditsTitle.setText(R.string.about_credits);
+      mCreditsTitle.setTypeface(Typeface.DEFAULT_BOLD);
+      mCreditsTitle.setTextSize(20);
+      mCreditsTitle.setGravity(Gravity.CENTER_HORIZONTAL);
+      mScrollView.addView(mCreditsText);
+      Animation scrollTo=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.credits_dialog_scroll);
+      mCreditsText.setOnClickListener(new View.OnClickListener(){
+        @Override public void onClick(        View v){
+          closeAfterFinish=false;
+          mCreditsText.clearAnimation();
+        }
+      }
+);
+      scrollTo.setAnimationListener(new Animation.AnimationListener(){
+        @Override public void onAnimationStart(        Animation animation){
+        }
+        @Override public void onAnimationEnd(        Animation animation){
+          if (closeAfterFinish) {
+            mCreditsDialog.cancel();
+          }
+        }
+        @Override public void onAnimationRepeat(        Animation animation){
+        }
+      }
+);
+      mCreditsText.setGravity(Gravity.CENTER_HORIZONTAL);
+      mCreditsText.setMovementMethod(LinkMovementMethod.getInstance());
+      scrollTo.setDuration(countLines(getResources().getString(R.string.about_credits_content)) * 500);
+      mCreditsText.startAnimation(scrollTo);
+      closeAfterFinish=true;
+      mCreditsDialog=new AlertDialog.Builder(AboutActivity.this).setCustomTitle(mCreditsTitle).setPositiveButton(android.R.string.ok,null).setView(mScrollView).show();
+    }
+  }
+);
+}

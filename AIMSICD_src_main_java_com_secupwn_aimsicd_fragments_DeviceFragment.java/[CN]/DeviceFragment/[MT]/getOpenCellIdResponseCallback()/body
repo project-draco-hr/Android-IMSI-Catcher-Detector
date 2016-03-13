@@ -1,0 +1,24 @@
+{
+  return new Callback(){
+    @Override public void onFailure(    Request request,    IOException e){
+      Handler refresh=new Handler(Looper.getMainLooper());
+      refresh.post(new Runnable(){
+        public void run(){
+          refreshFailed();
+        }
+      }
+);
+    }
+    @Override public void onResponse(    final Response response) throws IOException {
+      Handler refresh=new Handler(Looper.getMainLooper());
+      refresh.post(new Runnable(){
+        public void run(){
+          Cell cell=responseToCell(response);
+          processFinish(cell);
+        }
+      }
+);
+    }
+  }
+;
+}

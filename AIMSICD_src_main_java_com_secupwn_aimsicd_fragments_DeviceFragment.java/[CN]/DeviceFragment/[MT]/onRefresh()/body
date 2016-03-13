@@ -1,0 +1,16 @@
+{
+  if (CellTracker.OCID_API_KEY != null && !CellTracker.OCID_API_KEY.equals("NA")) {
+    Request request=createOpenCellIdApiCall();
+    okHttpClient.newCall(request).enqueue(getOpenCellIdResponseCallback());
+  }
+ else {
+    Handler refresh=new Handler(Looper.getMainLooper());
+    refresh.post(new Runnable(){
+      public void run(){
+        Helpers.sendMsg(getActivity(),getString(R.string.no_opencellid_key_detected));
+        swipeRefreshLayout.setRefreshing(false);
+      }
+    }
+);
+  }
+}

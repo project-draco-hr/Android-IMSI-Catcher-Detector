@@ -1,0 +1,4 @@
+{
+  updateUI();
+  swipeRefreshLayout.setRefreshing(false);
+}

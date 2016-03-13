@@ -1,3 +1,0 @@
-{
-  mAimsicdService.setCellTracking(mAimsicdService.isTrackingCell());
-}

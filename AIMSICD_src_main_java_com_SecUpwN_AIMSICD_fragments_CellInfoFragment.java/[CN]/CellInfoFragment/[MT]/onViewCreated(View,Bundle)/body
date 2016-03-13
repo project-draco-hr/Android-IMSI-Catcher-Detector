@@ -1,4 +1,0 @@
-{
-  super.onViewCreated(view,savedInstanceState);
-  refresh.setOnClickListener(new btnClick());
-}

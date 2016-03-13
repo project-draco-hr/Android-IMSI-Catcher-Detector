@@ -1,0 +1,3 @@
+{
+  return validatePscValue(Integer.parseInt(psc));
+}
