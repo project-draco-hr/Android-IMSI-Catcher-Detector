@@ -1,0 +1,6 @@
+{
+  if (mCell == null) {
+    return "Unknown";
+  }
+  return mCell.getRAT();
+}
