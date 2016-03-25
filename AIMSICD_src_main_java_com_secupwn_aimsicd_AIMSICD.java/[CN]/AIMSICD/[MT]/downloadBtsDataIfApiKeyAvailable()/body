@@ -15,7 +15,7 @@
       Helpers.msgLong(this,getString(R.string.contacting_opencellid_for_data));
       cell.setLon(loc.getLongitudeInDegrees());
       cell.setLat(loc.getLatitudeInDegrees());
-      Helpers.getOpenCellData(this,cell,RequestTask.DBE_DOWNLOAD_REQUEST);
+      Helpers.getOpenCellData(this,cell,RequestTask.DBE_DOWNLOAD_REQUEST,mAimsicdService);
     }
  else {
       Helpers.msgShort(this,getString(R.string.waiting_for_location));

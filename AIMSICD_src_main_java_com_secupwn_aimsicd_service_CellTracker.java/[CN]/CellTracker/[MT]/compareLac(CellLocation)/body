@@ -12,7 +12,6 @@ case TelephonyManager.PHONE_TYPE_GSM:
       mChangedLAC=true;
       dbHelper.toEventLog(1,"Changing LAC");
       vibrate(100,Status.MEDIUM);
-      setNotification();
     }
  else {
       mChangedLAC=false;
@@ -23,7 +22,6 @@ case TelephonyManager.PHONE_TYPE_GSM:
         log.info("ALERT: Connected to unknown CID not in DBe_import: " + mMonitorCell.getCID());
         vibrate(100,Status.MEDIUM);
         mCellIdNotInOpenDb=true;
-        setNotification();
       }
  else {
         mCellIdNotInOpenDb=false;
@@ -40,11 +38,11 @@ boolean lacOK=dbHelper.checkLAC(mMonitorCell);
 if (!lacOK) {
 mChangedLAC=true;
 dbHelper.toEventLog(1,"Changing LAC");
-setNotification();
 }
  else {
 mChangedLAC=false;
 }
 }
 }
+setNotification();
 }
