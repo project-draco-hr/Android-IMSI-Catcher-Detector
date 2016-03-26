@@ -1,0 +1,3 @@
+{
+  compareLac(tm.getCellLocation());
+}

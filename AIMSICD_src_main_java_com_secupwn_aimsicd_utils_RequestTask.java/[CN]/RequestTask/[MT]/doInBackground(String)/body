@@ -53,7 +53,16 @@ if (!dir.exists()) {
 File file=new File(dir,OCDB_File_Name);
 log.info("DBE_DOWNLOAD_REQUEST write to: " + dirName + OCDB_File_Name);
 Request request=new Request.Builder().url(commandString[0]).get().build();
-Response response=okHttpClient.newCall(request).execute();
+Response response;
+try {
+  okHttpClient.setReadTimeout(60,TimeUnit.SECONDS);
+  response=okHttpClient.newCall(request).execute();
+  okHttpClient.setReadTimeout(10,TimeUnit.SECONDS);
+}
+ catch (SocketTimeoutException e) {
+  log.warn("Trying to talk to OCID timed out after 60 seconds. API is slammed? Throttled?");
+  return "Timeout";
+}
 if (response.code() != 200) {
   try {
     String error=response.body().string();

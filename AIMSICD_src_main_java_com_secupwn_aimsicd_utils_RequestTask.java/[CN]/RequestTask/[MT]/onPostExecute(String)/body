@@ -10,6 +10,9 @@ case DBE_DOWNLOAD_REQUEST:
       mDbAdapter.checkDBe();
       tinydb.putBoolean("ocid_downloaded",true);
     }
+ else     if ("Timeout".equals(result)) {
+      Helpers.msgLong(mAppContext,mAppContext.getString(R.string.download_timed_out));
+    }
  else {
       Helpers.msgLong(mAppContext,mAppContext.getString(R.string.error_retrieving_opencellid_data));
     }
@@ -23,6 +26,9 @@ if ("Successful".equals(result)) {
     mDbAdapter.checkDBe();
     tinydb.putBoolean("ocid_downloaded",true);
   }
+}
+ else if ("Timeout".equals(result)) {
+  Helpers.msgLong(mAppContext,mAppContext.getString(R.string.download_timed_out));
 }
  else {
   Helpers.msgLong(mAppContext,mAppContext.getString(R.string.error_retrieving_opencellid_data));
@@ -64,6 +70,14 @@ builder.create().show();
 }
  else {
 Helpers.msgLong(mAppContext,mAppContext.getString(R.string.error_backing_up_data));
+}
+}
+if (mListener != null) {
+if ("Successful".equals(result)) {
+mListener.onAsyncTaskSucceeded();
+}
+ else {
+mListener.onAsyncTaskFailed(result);
 }
 }
 }
