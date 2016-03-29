@@ -1,54 +1,54 @@
 {
   if (cell.getCid() != Integer.MAX_VALUE && cell.getCid() != -1) {
-    mCellID="CID: " + cell.getCid() + "  (0x"+ Integer.toHexString(cell.getCid())+ ")";
+    cellId="CID: " + cell.getCid() + "  (0x"+ Integer.toHexString(cell.getCid())+ ")";
   }
  else {
-    mCellID="N/A";
+    cellId="N/A";
   }
   if (cell.getLac() != Integer.MAX_VALUE && cell.getLac() != -1) {
-    mLac="LAC: " + cell.getLac();
+    lac="LAC: " + cell.getLac();
   }
  else {
-    mLac="N/A";
+    lac="N/A";
   }
   if (cell.getMcc() != Integer.MAX_VALUE && cell.getMcc() != 0) {
-    mMcc="MCC: " + cell.getMcc();
+    mcc="MCC: " + cell.getMcc();
   }
  else {
-    mMcc="N/A";
+    mcc="N/A";
   }
   if (cell.getMnc() != Integer.MAX_VALUE && cell.getMnc() != 0) {
-    mMnc="MNC: " + cell.getMnc();
+    mnc="MNC: " + cell.getMnc();
   }
  else {
-    mMnc="N/A";
+    mnc="N/A";
   }
   if (cell.getNetType() != Integer.MAX_VALUE && cell.getNetType() != -1) {
-    mNet="Type: " + cell.getNetType() + " - "+ cell.getRat();
+    net="Type: " + cell.getNetType() + " - "+ cell.getRat();
   }
  else {
-    mNet="N/A";
+    net="N/A";
   }
   if (cell.getPsc() != Integer.MAX_VALUE && cell.getPsc() != -1) {
-    mPsc="PSC: " + cell.getPsc();
+    psc="PSC: " + cell.getPsc();
   }
  else {
-    mPsc="N/A";
+    psc="N/A";
   }
   if (cell.getRssi() != Integer.MAX_VALUE && cell.getRssi() != -1) {
-    mSignal="RSSI: " + cell.getRssi();
+    signal="RSSI: " + cell.getRssi();
   }
  else   if (cell.getDbm() != Integer.MAX_VALUE && cell.getDbm() != -1) {
-    mSignal="dBm: " + cell.getDbm();
+    signal="dBm: " + cell.getDbm();
   }
  else {
-    mSignal="N/A";
+    signal="N/A";
   }
-  mLat="N/A";
-  mLng="N/A";
-  mAvgSigStr="N/A";
-  mSamples="N/A";
-  mCountry="N/A";
-  mTimestamp="N/A";
-  mRecordId=recordId;
+  lat="N/A";
+  lon="N/A";
+  avgSigStr="N/A";
+  samples="N/A";
+  country="N/A";
+  timestamp="N/A";
+  this.recordId=recordId;
 }

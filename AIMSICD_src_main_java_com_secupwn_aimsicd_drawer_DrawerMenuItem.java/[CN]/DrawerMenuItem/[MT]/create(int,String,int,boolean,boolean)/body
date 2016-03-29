@@ -2,8 +2,8 @@
   DrawerMenuItem item=new DrawerMenuItem();
   item.setId(pMenuId);
   item.setLabel(pLabel);
-  item.setmIconId(pIconDrawableId);
+  item.setIconId(pIconDrawableId);
   item.setUpdateActionBarTitle(pUpdateActionBarTitle);
-  item.setIsShowInfoButton(pIsShowInfoButton);
+  item.setShowInfoButton(pIsShowInfoButton);
   return item;
 }

@@ -1,9 +1,9 @@
 {
-  this.mStartTime=startTime;
-  this.mExitValue=exitValue;
-  this.mStdout=stdout;
-  this.mStderr=stderr;
-  this.mEndTime=endTime;
-  log.debug("Time to execute: " + (mEndTime - mStartTime) + " ns (nanoseconds)");
+  this.startTime=startTime;
+  this.exitValue=exitValue;
+  this.stdOut=stdout;
+  this.stdErr=stderr;
+  this.endTime=endTime;
+  log.debug("Time to execute: " + (this.endTime - this.startTime) + " ns (nanoseconds)");
   checkForErrors();
 }
