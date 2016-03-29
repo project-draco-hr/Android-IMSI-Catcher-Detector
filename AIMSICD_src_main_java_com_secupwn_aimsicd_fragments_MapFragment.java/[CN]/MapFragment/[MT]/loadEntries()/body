@@ -13,7 +13,7 @@
       }
       if (c != null && c.moveToFirst()) {
         do {
-          if (isCancelled()) {
+          if (isCancelled() || !isAdded()) {
             return null;
           }
           final int cellID=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_CID));
@@ -60,7 +60,7 @@
       }
       while (mAimsicdService == null) {
         try {
-          if (isCancelled()) {
+          if (isCancelled() || !isAdded()) {
             return null;
           }
           Thread.sleep(100);
@@ -71,7 +71,7 @@
       }
       List<Cell> nc=mAimsicdService.getCellTracker().updateNeighbouringCells();
       for (      Cell cell : nc) {
-        if (isCancelled()) {
+        if (isCancelled() || !isAdded()) {
           return null;
         }
         try {
