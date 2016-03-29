@@ -1,5 +1,5 @@
 {
-  if (mDevice.getPhoneID() != TelephonyManager.PHONE_TYPE_CDMA) {
+  if (mDevice.getPhoneId() != TelephonyManager.PHONE_TYPE_CDMA) {
     Helpers.msgShort(context,context.getString(R.string.femtocell_only_on_cdma_devices));
     return;
   }

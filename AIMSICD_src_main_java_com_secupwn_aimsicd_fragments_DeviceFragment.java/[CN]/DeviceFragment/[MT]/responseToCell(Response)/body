@@ -4,10 +4,10 @@
     Cell cell=new Cell();
     cell.setLat(jsonCell.getDouble("lat"));
     cell.setLon(jsonCell.getDouble("lon"));
-    cell.setMCC(jsonCell.getInt("mcc"));
-    cell.setMNC(jsonCell.getInt("mnc"));
-    cell.setCID(jsonCell.getInt("cellid"));
-    cell.setLAC(jsonCell.getInt("lac"));
+    cell.setMcc(jsonCell.getInt("mcc"));
+    cell.setMnc(jsonCell.getInt("mnc"));
+    cell.setCid(jsonCell.getInt("cellid"));
+    cell.setLac(jsonCell.getInt("lac"));
     return cell;
   }
  catch (  JSONException|IOException e) {

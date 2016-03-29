@@ -1,6 +1,6 @@
 {
   super();
-  this.cid=cid;
+  this.cid=CID;
   this.lac=lac;
   this.mcc=mcc;
   this.mnc=mnc;

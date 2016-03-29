@@ -1,5 +1,5 @@
 {
-  this.cid=cid;
+  this.cid=CID;
   this.lac=lac;
   this.mcc=Integer.MAX_VALUE;
   this.mnc=Integer.MAX_VALUE;

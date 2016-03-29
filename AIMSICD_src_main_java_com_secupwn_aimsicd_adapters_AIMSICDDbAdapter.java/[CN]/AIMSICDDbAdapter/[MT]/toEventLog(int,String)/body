@@ -1,8 +1,8 @@
 {
   String time=MiscUtils.getCurrentTimeStamp();
-  int lac=CellTracker.mMonitorCell.getLAC();
-  int cid=CellTracker.mMonitorCell.getCID();
-  int psc=CellTracker.mMonitorCell.getPSC();
+  int lac=CellTracker.mMonitorCell.getLac();
+  int cid=CellTracker.mMonitorCell.getCid();
+  int psc=CellTracker.mMonitorCell.getPsc();
   String gpsd_lat=String.valueOf(CellTracker.mMonitorCell.getLat());
   String gpsd_lon=String.valueOf(CellTracker.mMonitorCell.getLon());
   int gpsd_accu=(int)CellTracker.mMonitorCell.getAccuracy();
