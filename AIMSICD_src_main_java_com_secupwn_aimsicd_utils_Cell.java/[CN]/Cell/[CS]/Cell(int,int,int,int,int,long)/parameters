@@ -1,4 +1,4 @@
-int cid
+int CID
 int lac
 int mcc
 int mnc

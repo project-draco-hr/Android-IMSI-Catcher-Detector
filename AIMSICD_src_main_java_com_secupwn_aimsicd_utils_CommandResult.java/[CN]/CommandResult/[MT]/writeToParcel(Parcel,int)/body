@@ -1,7 +1,7 @@
 {
-  parcel.writeLong(mStartTime);
-  parcel.writeInt(mExitValue);
-  parcel.writeString(mStdout);
-  parcel.writeString(mStderr);
-  parcel.writeLong(mEndTime);
+  parcel.writeLong(startTime);
+  parcel.writeInt(exitValue);
+  parcel.writeString(stdOut);
+  parcel.writeString(stdErr);
+  parcel.writeLong(endTime);
 }

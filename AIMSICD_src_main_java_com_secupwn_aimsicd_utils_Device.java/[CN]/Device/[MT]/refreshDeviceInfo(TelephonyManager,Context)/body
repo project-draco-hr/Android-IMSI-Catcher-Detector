@@ -1,60 +1,60 @@
 {
-  mIMEI=tm.getDeviceId();
-  mIMEIV=tm.getDeviceSoftwareVersion();
-  mPhoneID=tm.getPhoneType();
-  mRoaming=tm.isNetworkRoaming();
+  iMEI=tm.getDeviceId();
+  iMEIv=tm.getDeviceSoftwareVersion();
+  phoneId=tm.getPhoneType();
+  roaming=tm.isNetworkRoaming();
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
     DeviceApi18.loadCellInfo(tm,this);
   }
   if (mCell == null) {
     mCell=new Cell();
   }
-switch (mPhoneID) {
+switch (phoneId) {
 case TelephonyManager.PHONE_TYPE_NONE:
 case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
-    mPhoneType="GSM";
-  mMncmcc=tm.getNetworkOperator();
-if (mMncmcc != null && mMncmcc.length() >= 5) {
+    phoneType="GSM";
+  mncMcc=tm.getNetworkOperator();
+if (mncMcc != null && mncMcc.length() >= 5) {
   try {
-    if (mCell.getMCC() == Integer.MAX_VALUE) {
-      mCell.setMCC(Integer.parseInt(tm.getNetworkOperator().substring(0,3)));
+    if (mCell.getMcc() == Integer.MAX_VALUE) {
+      mCell.setMcc(Integer.parseInt(tm.getNetworkOperator().substring(0,3)));
     }
-    if (mCell.getMNC() == Integer.MAX_VALUE) {
-      mCell.setMNC(Integer.parseInt(tm.getNetworkOperator().substring(3,5)));
+    if (mCell.getMnc() == Integer.MAX_VALUE) {
+      mCell.setMnc(Integer.parseInt(tm.getNetworkOperator().substring(3,5)));
     }
   }
  catch (  Exception e) {
     log.info("MncMcc parse exception: ",e);
   }
 }
-mNetName=tm.getNetworkOperatorName();
+networkName=tm.getNetworkOperatorName();
 if (!mCell.isValid()) {
 GsmCellLocation gsmCellLocation=(GsmCellLocation)tm.getCellLocation();
 if (gsmCellLocation != null) {
-mCell.setCID(gsmCellLocation.getCid());
-mCell.setLAC(gsmCellLocation.getLac());
-mCell.setPSC(gsmCellLocation.getPsc());
+mCell.setCid(gsmCellLocation.getCid());
+mCell.setLac(gsmCellLocation.getLac());
+mCell.setPsc(gsmCellLocation.getPsc());
 }
 }
 break;
 case TelephonyManager.PHONE_TYPE_CDMA:
-mPhoneType="CDMA";
+phoneType="CDMA";
 if (!mCell.isValid()) {
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)tm.getCellLocation();
 if (cdmaCellLocation != null) {
-mCell.setCID(cdmaCellLocation.getBaseStationId());
-mCell.setLAC(cdmaCellLocation.getNetworkId());
-mCell.setSID(cdmaCellLocation.getSystemId());
-mCell.setMNC(cdmaCellLocation.getSystemId());
+mCell.setCid(cdmaCellLocation.getBaseStationId());
+mCell.setLac(cdmaCellLocation.getNetworkId());
+mCell.setSid(cdmaCellLocation.getSystemId());
+mCell.setMnc(cdmaCellLocation.getSystemId());
 String homeOperator=Helpers.getSystemProp(context,"ro.cdma.home.operator.numeric","UNKNOWN");
 if (!homeOperator.contains("UNKNOWN")) {
 try {
-if (mCell.getMCC() == Integer.MAX_VALUE) {
-mCell.setMCC(Integer.valueOf(homeOperator.substring(0,3)));
+if (mCell.getMcc() == Integer.MAX_VALUE) {
+mCell.setMcc(Integer.valueOf(homeOperator.substring(0,3)));
 }
-if (mCell.getMNC() == Integer.MAX_VALUE) {
-mCell.setMNC(Integer.valueOf(homeOperator.substring(3,5)));
+if (mCell.getMnc() == Integer.MAX_VALUE) {
+mCell.setMnc(Integer.valueOf(homeOperator.substring(3,5)));
 }
 }
  catch (Exception e) {
@@ -65,11 +65,11 @@ log.info("HomeOperator parse exception - " + e.getMessage(),e);
 }
 break;
 }
-mSimCountry=getSimCountry(tm);
-mSimOperator=getSimOperator(tm);
-mSimOperatorName=getSimOperatorName(tm);
-mSimSerial=getSimSerial(tm);
-mSimSubs=getSimSubs(tm);
-mDataActivityType=getDataActivity(tm);
-mDataState=getDataState(tm);
+simCountry=getSimCountry(tm);
+simOperator=getSimOperator(tm);
+simOperatorName=getSimOperatorName(tm);
+simSerial=getSimSerial(tm);
+simSubs=getSimSubs(tm);
+dataActivityType=getDataActivityType(tm);
+dataState=getDataState(tm);
 }

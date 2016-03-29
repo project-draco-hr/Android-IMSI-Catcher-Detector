@@ -1,5 +1,5 @@
 {
-  mDetection_string=pString;
-  mDetection_type=pType;
-  mIsFakeData=pIsFakeData;
+  detectionString=pString;
+  detectionType=pType;
+  fakeData=pIsFakeData;
 }

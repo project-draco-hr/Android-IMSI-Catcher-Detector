@@ -15,5 +15,5 @@
   TIME_FIRST=time_first;
   TIME_LAST=time_last;
   REJ_CAUSE=rej_cause;
-  mRecordId=_mRecordId;
+  recordId=_mRecordId;
 }

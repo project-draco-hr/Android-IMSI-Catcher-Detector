@@ -1,3 +1,0 @@
-{
-  return IS_GPS_EXACT;
-}

@@ -1,9 +1,9 @@
 {
   int result=0;
-  result=31 * result + (int)(mStartTime ^ (mStartTime >>> 32));
-  result=31 * result + mExitValue;
-  result=31 * result + (mStdout != null ? mStdout.hashCode() : 0);
-  result=31 * result + (mStderr != null ? mStderr.hashCode() : 0);
-  result=31 * result + (int)(mEndTime ^ (mEndTime >>> 32));
+  result=31 * result + (int)(startTime ^ (startTime >>> 32));
+  result=31 * result + exitValue;
+  result=31 * result + (stdOut != null ? stdOut.hashCode() : 0);
+  result=31 * result + (stdErr != null ? stdErr.hashCode() : 0);
+  result=31 * result + (int)(endTime ^ (endTime >>> 32));
   return result;
 }

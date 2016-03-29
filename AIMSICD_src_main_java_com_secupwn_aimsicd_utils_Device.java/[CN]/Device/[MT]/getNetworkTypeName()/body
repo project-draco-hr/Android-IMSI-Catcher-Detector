@@ -2,5 +2,5 @@
   if (mCell == null) {
     return "Unknown";
   }
-  return mCell.getRAT();
+  return mCell.getRat();
 }

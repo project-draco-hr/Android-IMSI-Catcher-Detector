@@ -1,6 +1,6 @@
 {
-  if (mExitValue != 0 || !mStderr.trim().isEmpty()) {
-    boolean skipOfflineCpu=mStderr.contains("chmod: /sys/devices/system/cpu/cpu") || mStderr.contains(": can't create /sys/devices/system/cpu/cpu");
+  if (exitValue != 0 || !stdErr.trim().isEmpty()) {
+    boolean skipOfflineCpu=stdErr.contains("chmod: /sys/devices/system/cpu/cpu") || stdErr.contains(": can't create /sys/devices/system/cpu/cpu");
     String lineEnding=System.getProperty("line.separator");
     FileWriter errorWriter=null;
     try {

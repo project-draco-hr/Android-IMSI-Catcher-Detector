@@ -1,6 +1,6 @@
 {
   StringBuilder result=new StringBuilder();
-  result.append("CID - ").append(cid).append("\n");
+  result.append("cid - ").append(cid).append("\n");
   result.append("LAC - ").append(lac).append("\n");
   result.append("MCC - ").append(mcc).append("\n");
   result.append("MNC - ").append(mnc).append("\n");

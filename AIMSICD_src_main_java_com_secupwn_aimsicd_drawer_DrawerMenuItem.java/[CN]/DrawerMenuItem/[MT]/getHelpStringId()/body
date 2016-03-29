@@ -1,5 +1,5 @@
 {
-switch (mId) {
+switch (id) {
 case MAIN.PHONE_SIM_DETAILS:
     return R.string.help_main_phone_sim_details;
 case MAIN.CURRENT_TREAT_LEVEL:
