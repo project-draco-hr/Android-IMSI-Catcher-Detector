@@ -1,0 +1,4 @@
+{
+  super.onStop();
+  ((AndroidIMSICatcherDetector)getApplication()).detach(this);
+}

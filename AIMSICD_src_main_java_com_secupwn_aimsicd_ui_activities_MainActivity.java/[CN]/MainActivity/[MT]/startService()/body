@@ -1,0 +1,11 @@
+{
+  if (!prefs.getBoolean(mDisclaimerAccepted,false)) {
+    return;
+  }
+  if (!mBound) {
+    Intent intent=new Intent(MainActivity.this,AimsicdService.class);
+    startService(intent);
+    bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
+    openFragment(deviceFragment);
+  }
+}

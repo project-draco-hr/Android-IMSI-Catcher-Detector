@@ -1,0 +1,4 @@
+{
+  super.onStart();
+  ((AndroidIMSICatcherDetector)getApplication()).attach(this);
+}

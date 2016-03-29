@@ -1,4 +1,0 @@
-{
-  super.onStop();
-  ((AppAIMSICD)getApplication()).detach(this);
-}

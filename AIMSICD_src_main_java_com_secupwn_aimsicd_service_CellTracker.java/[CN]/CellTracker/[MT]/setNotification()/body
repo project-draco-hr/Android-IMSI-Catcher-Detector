@@ -63,7 +63,7 @@ default :
 tickerText=context.getResources().getString(R.string.main_app_name);
 break;
 }
-Intent notificationIntent=new Intent(context,AIMSICD.class);
+Intent notificationIntent=new Intent(context,MainActivity.class);
 notificationIntent.putExtra("silent_sms",mTypeZeroSmsDetected);
 notificationIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_FROM_BACKGROUND);
 PendingIntent contentIntent=PendingIntent.getActivity(context,NOTIFICATION_ID,notificationIntent,PendingIntent.FLAG_CANCEL_CURRENT);
