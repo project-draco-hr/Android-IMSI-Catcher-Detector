@@ -4,7 +4,7 @@
   runOnUiThread(new Runnable(){
     @Override public void run(){
       if (getActionBar() != null) {
-        getActionBar().setIcon(Icon.getIcon(Icon.Type.valueOf(iconType),((AppAIMSICD)getApplication()).getStatus()));
+        getActionBar().setIcon(Icon.getIcon(Icon.Type.valueOf(iconType),((AndroidIMSICatcherDetector)getApplication()).getStatus()));
       }
     }
   }

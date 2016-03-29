@@ -1,4 +1,4 @@
 {
   super.onStart();
-  ((AppAIMSICD)getApplication()).attach(this);
+  ((AndroidIMSICatcherDetector)getApplication()).attach(this);
 }

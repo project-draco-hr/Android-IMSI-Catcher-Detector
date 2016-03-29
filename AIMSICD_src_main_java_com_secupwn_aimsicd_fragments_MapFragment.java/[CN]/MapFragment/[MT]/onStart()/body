@@ -1,6 +1,6 @@
 {
   super.onStart();
-  ((AppAIMSICD)getActivity().getApplication()).attach((InjectionAppCompatActivity)getActivity());
+  ((AndroidIMSICatcherDetector)getActivity().getApplication()).attach((InjectionAppCompatActivity)getActivity());
   if (TinyDB.getInstance().getBoolean(TinyDbKeys.FINISHED_LOAD_IN_MAP)) {
     setRefreshActionButtonState(false);
   }
