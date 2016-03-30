@@ -16,6 +16,6 @@
     prefsEditor.putBoolean(context.getString(R.string.pref_cell_table_cleansed),true);
     prefsEditor.apply();
   }
-  mDevice.refreshDeviceInfo(tm,context);
-  mMonitorCell=new Cell();
+  device.refreshDeviceInfo(tm,context);
+  monitorCell=new Cell();
 }

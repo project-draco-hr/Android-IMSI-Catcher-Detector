@@ -1,30 +1,30 @@
 {
-switch (mDevice.getPhoneId()) {
+switch (device.getPhoneId()) {
 case TelephonyManager.PHONE_TYPE_NONE:
 case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
     GsmCellLocation gsmCellLocation=(GsmCellLocation)location;
   if (gsmCellLocation != null) {
-    mMonitorCell.setLac(gsmCellLocation.getLac());
-    mMonitorCell.setCid(gsmCellLocation.getCid());
-    boolean lacOK=dbHelper.checkLAC(mMonitorCell);
+    monitorCell.setLac(gsmCellLocation.getLac());
+    monitorCell.setCid(gsmCellLocation.getCid());
+    boolean lacOK=dbHelper.checkLAC(monitorCell);
     if (!lacOK) {
-      mChangedLAC=true;
+      changedLAC=true;
       dbHelper.toEventLog(1,"Changing LAC");
       vibrate(100,Status.MEDIUM);
     }
  else {
-      mChangedLAC=false;
+      changedLAC=false;
     }
     if (tinydb.getBoolean("ocid_downloaded")) {
-      if (!dbHelper.openCellExists(mMonitorCell.getCid())) {
+      if (!dbHelper.openCellExists(monitorCell.getCid())) {
         dbHelper.toEventLog(2,"CID not in DBe_import");
-        log.info("ALERT: Connected to unknown CID not in DBe_import: " + mMonitorCell.getCid());
+        log.info("ALERT: Connected to unknown CID not in DBe_import: " + monitorCell.getCid());
         vibrate(100,Status.MEDIUM);
-        mCellIdNotInOpenDb=true;
+        cellIdNotInOpenDb=true;
       }
  else {
-        mCellIdNotInOpenDb=false;
+        cellIdNotInOpenDb=false;
       }
     }
   }
@@ -32,15 +32,15 @@ break;
 case TelephonyManager.PHONE_TYPE_CDMA:
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)location;
 if (cdmaCellLocation != null) {
-mMonitorCell.setLac(cdmaCellLocation.getNetworkId());
-mMonitorCell.setCid(cdmaCellLocation.getBaseStationId());
-boolean lacOK=dbHelper.checkLAC(mMonitorCell);
+monitorCell.setLac(cdmaCellLocation.getNetworkId());
+monitorCell.setCid(cdmaCellLocation.getBaseStationId());
+boolean lacOK=dbHelper.checkLAC(monitorCell);
 if (!lacOK) {
-mChangedLAC=true;
+changedLAC=true;
 dbHelper.toEventLog(1,"Changing LAC");
 }
  else {
-mChangedLAC=false;
+changedLAC=false;
 }
 }
 }
