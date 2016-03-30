@@ -9,33 +9,34 @@
         return;
       }
       mTableSelected=(StatesDbViewer)selectedItem;
-      new AsyncTask<Void,Void,BaseInflaterAdapter>(){
-        @Override protected BaseInflaterAdapter doInBackground(        Void... params){
-          Cursor result;
+      if (position == 4) {
+        setListAdapter(new SmsDataAdapter(getActivity(),realm.allObjects(SmsData.class),true));
+      }
+ else       if (position == 7) {
+        setListAdapter(new DetectionStringAdapter(getActivity(),realm.allObjects(SmsDetectionString.class),true));
+      }
+ else {
+        new AsyncTask<Void,Void,ListAdapter>(){
+          @Override protected ListAdapter doInBackground(          Void... params){
+            Cursor result;
 switch (position) {
 case 0:
-            result=mDb.returnDBiBts();
-          break;
+              result=mDb.returnDBiBts();
+            break;
 case 1:
-        result=mDb.returnDBiMeasure();
-      break;
+          result=mDb.returnDBiMeasure();
+        break;
 case 2:
-    result=mDb.returnDBeImport();
-  break;
+      result=mDb.returnDBeImport();
+    break;
 case 3:
-result=mDb.returnDefaultLocation();
-break;
-case 4:
-result=mDb.returnSmsData();
+  result=mDb.returnDefaultLocation();
 break;
 case 5:
 result=mDb.returnDBiMeasure();
 break;
 case 6:
 result=mDb.returnEventLogData();
-break;
-case 7:
-result=mDb.returnDetectionStrings();
 break;
 default :
 throw new IllegalArgumentException("Unknown type of table");
@@ -47,23 +48,12 @@ result.close();
 }
 return adapter;
 }
-@Override protected void onPostExecute(BaseInflaterAdapter adapter){
-if (getActivity() == null) {
-return;
-}
-lv.setEmptyView(emptyView);
-if (adapter != null) {
-lv.setAdapter(adapter);
-lv.setVisibility(View.VISIBLE);
-}
- else {
-lv.setVisibility(View.GONE);
-emptyView.setVisibility(View.VISIBLE);
-}
-getActivity().setProgressBarIndeterminateVisibility(false);
+@Override protected void onPostExecute(ListAdapter adapter){
+setListAdapter(adapter);
 }
 }
 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+}
 }
 @Override public void onNothingSelected(AdapterView<?> parentView){
 }

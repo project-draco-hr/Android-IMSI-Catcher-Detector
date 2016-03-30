@@ -1,0 +1,21 @@
+{
+  @Cleanup Realm realm=Realm.getDefaultInstance();
+  long count=realm.where(SmsData.class).equalTo("timestamp",logcat_timestamp).count();
+  if (count == 0) {
+    realm.beginTransaction();
+    SmsData capturedSms=realm.createObject(SmsData.class);
+    String smsText=findSmsData(logcatLines,postWapMessageLines);
+    String num=findSmsNumber(logcatLines,postWapMessageLines);
+    capturedSms.setSenderNumber(num);
+    capturedSms.setMessage(smsText);
+    capturedSms.setTimestamp(logcat_timestamp);
+    capturedSms.setType("WAPPUSH");
+    setCurrentLocationData(realm,capturedSms);
+    realm.commitTransaction();
+    mDbAdapter.toEventLog(6,"Detected WAPPUSH SMS");
+    startPopUpInfo(SmsType.WAP_PUSH);
+  }
+ else {
+    log.debug("Detected SMS already logged");
+  }
+}

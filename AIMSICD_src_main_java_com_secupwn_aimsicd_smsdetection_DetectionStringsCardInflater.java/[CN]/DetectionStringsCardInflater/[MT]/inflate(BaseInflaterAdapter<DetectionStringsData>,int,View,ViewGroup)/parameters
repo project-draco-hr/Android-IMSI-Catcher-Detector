@@ -1,4 +1,0 @@
-BaseInflaterAdapter<DetectionStringsData> adapter
-int pos
-View convertView
-ViewGroup parent

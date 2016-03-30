@@ -1,0 +1,15 @@
+{
+  if (getActivity() == null) {
+    return;
+  }
+  lv.setEmptyView(emptyView);
+  if (adapter != null) {
+    lv.setAdapter(adapter);
+    lv.setVisibility(View.VISIBLE);
+  }
+ else {
+    lv.setVisibility(View.GONE);
+    emptyView.setVisibility(View.VISIBLE);
+  }
+  getActivity().setProgressBarIndeterminateVisibility(false);
+}

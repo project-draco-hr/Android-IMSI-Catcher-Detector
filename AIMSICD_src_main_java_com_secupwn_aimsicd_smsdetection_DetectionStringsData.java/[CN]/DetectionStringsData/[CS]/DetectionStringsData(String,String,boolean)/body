@@ -1,5 +1,0 @@
-{
-  detectionString=pString;
-  detectionType=pType;
-  fakeData=pIsFakeData;
-}

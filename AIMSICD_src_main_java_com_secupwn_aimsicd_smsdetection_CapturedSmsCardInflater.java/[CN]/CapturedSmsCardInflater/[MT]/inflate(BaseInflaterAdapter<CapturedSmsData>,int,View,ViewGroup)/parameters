@@ -1,4 +1,0 @@
-BaseInflaterAdapter<CapturedSmsData> adapter
-int pos
-View convertView
-ViewGroup parent

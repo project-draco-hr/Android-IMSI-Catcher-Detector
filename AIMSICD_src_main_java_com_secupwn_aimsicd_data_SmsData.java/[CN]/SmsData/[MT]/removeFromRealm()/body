@@ -1,0 +1,4 @@
+{
+  location.removeFromRealm();
+  super.removeFromRealm();
+}

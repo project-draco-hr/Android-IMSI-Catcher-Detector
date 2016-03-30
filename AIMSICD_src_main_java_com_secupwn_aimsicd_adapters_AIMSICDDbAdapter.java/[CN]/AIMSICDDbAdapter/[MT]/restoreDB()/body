@@ -63,12 +63,6 @@ break;
 case "SectorType":
 insertSectorType(records.get(i)[1]);
 break;
-case "DetectionStrings":
-insertDetectionStrings(records.get(i)[1],records.get(i)[2]);
-break;
-case "SmsData":
-insertSmsData(records.get(i)[1],records.get(i)[2],records.get(i)[3],records.get(i)[4],records.get(i)[5],records.get(i)[6],Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9],Double.parseDouble(records.get(i)[10]),Double.parseDouble(records.get(i)[11]),Integer.parseInt(records.get(i)[12]));
-break;
 }
 }
 }
