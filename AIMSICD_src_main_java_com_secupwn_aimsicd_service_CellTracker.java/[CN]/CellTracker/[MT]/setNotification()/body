@@ -71,6 +71,6 @@ String iconType=prefs.getString(context.getString(R.string.pref_ui_icons_key),"S
 int iconResId=Icon.getIcon(Icon.Type.valueOf(iconType),status);
 Bitmap largeIcon=BitmapFactory.decodeResource(context.getResources(),iconResId);
 int color=context.getResources().getColor(status.getColor());
-Notification mBuilder=new NotificationCompat.Builder(context).setSmallIcon(R.drawable.tower48).setColor(color).setLargeIcon(largeIcon).setTicker(tickerText).setContentTitle(context.getResources().getString(R.string.main_app_name)).setContentText(contentText).setOngoing(true).setAutoCancel(false).setContentIntent(contentIntent).build();
+Notification mBuilder=new NotificationCompat.Builder(context).setSmallIcon(R.drawable.tower48).setColor(color).setLargeIcon(largeIcon).setTicker(tickerText).setContentTitle(context.getString(R.string.status) + " " + context.getString(status.getName())).setContentInfo(context.getResources().getString(R.string.app_name_short)).setContentText(contentText).setOngoing(true).setAutoCancel(false).setContentIntent(contentIntent).build();
 NotificationManagerCompat.from(context).notify(NOTIFICATION_ID,mBuilder);
 }
