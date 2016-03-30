@@ -2,11 +2,11 @@
   if (s != null) {
     if (IsConnectedToCdmaFemto(s)) {
       Helpers.msgShort(context,context.getString(R.string.alert_femtocell_tracking_detected));
-      mFemtoDetected=true;
+      femtoDetected=true;
       setNotification();
     }
  else {
-      mFemtoDetected=false;
+      femtoDetected=false;
       setNotification();
     }
   }
