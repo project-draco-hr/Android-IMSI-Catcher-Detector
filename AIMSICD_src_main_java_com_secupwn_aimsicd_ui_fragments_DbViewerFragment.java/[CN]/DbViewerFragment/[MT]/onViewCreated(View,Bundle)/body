@@ -12,6 +12,9 @@
       if (position == 4) {
         setListAdapter(new SmsDataAdapter(getActivity(),realm.allObjects(SmsData.class),true));
       }
+ else       if (position == 6) {
+        setListAdapter(new EventAdapter(getActivity(),realm.allObjects(Event.class),true));
+      }
  else       if (position == 7) {
         setListAdapter(new DetectionStringAdapter(getActivity(),realm.allObjects(SmsDetectionString.class),true));
       }
@@ -34,9 +37,6 @@ case 3:
 break;
 case 5:
 result=mDb.returnDBiMeasure();
-break;
-case 6:
-result=mDb.returnEventLogData();
 break;
 default :
 throw new IllegalArgumentException("Unknown type of table");

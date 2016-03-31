@@ -12,7 +12,7 @@
     capturedSms.setType("TYPE0");
     setCurrentLocationData(realm,capturedSms);
     realm.commitTransaction();
-    mDbAdapter.toEventLog(3,"Detected Type-0 SMS");
+    mDbAdapter.toEventLog(realm,3,"Detected Type-0 SMS");
     startPopUpInfo(SmsType.SILENT);
   }
  else {

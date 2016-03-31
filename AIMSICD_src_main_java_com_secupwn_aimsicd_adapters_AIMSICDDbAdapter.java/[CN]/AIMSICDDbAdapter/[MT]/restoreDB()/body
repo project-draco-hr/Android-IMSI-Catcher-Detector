@@ -57,9 +57,6 @@ break;
 case "DetectionFlags":
 insertDetectionFlags(Integer.parseInt(records.get(i)[1]),records.get(i)[2],records.get(i)[3],Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Double.parseDouble(records.get(i)[7]),Double.parseDouble(records.get(i)[8]),Double.parseDouble(records.get(i)[9]),records.get(i)[10],records.get(i)[11],Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]));
 break;
-case "EventLog":
-insertEventLog(records.get(i)[1],Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),records.get(i)[5],records.get(i)[6],Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9]);
-break;
 case "SectorType":
 insertSectorType(records.get(i)[1]);
 break;

@@ -12,7 +12,7 @@
     capturedSms.setType("MWI");
     setCurrentLocationData(null,capturedSms);
     realm.commitTransaction();
-    mDbAdapter.toEventLog(4,"Detected MWI SMS");
+    mDbAdapter.toEventLog(realm,4,"Detected MWI SMS");
     startPopUpInfo(SmsType.MWI);
   }
  else {

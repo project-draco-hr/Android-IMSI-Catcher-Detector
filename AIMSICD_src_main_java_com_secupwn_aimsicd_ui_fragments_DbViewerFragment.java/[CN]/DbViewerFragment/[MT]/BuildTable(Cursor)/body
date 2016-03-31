@@ -65,20 +65,6 @@ if (!tableData.isClosed()) {
 }
 return adapter;
 }
-case EVENT_LOG:
-{
-BaseInflaterAdapter<EventLogItemData> adapter=new BaseInflaterAdapter<>(new EventLogCardInflater());
-int count=tableData.getCount();
-while (tableData.moveToNext()) {
-EventLogItemData data=new EventLogItemData("" + tableData.getString(tableData.getColumnIndex("time")),"" + tableData.getInt(tableData.getColumnIndex("LAC")),"" + tableData.getInt(tableData.getColumnIndex("CID")),"" + Cell.validatePscValue(this.getContext(),tableData.getInt(tableData.getColumnIndex("PSC"))),"" + tableData.getDouble(tableData.getColumnIndex("gpsd_lat")),"" + tableData.getDouble(tableData.getColumnIndex("gpsd_lon")),"" + tableData.getInt(tableData.getColumnIndex("gpsd_accu")),"" + tableData.getInt(tableData.getColumnIndex("DF_id")),"" + tableData.getString(tableData.getColumnIndex("DF_description")),"" + (tableData.getPosition() + 1) + " / "+ count);
-data.setFakeData(isExample(data));
-adapter.addItem(data,false);
-}
-if (!tableData.isClosed()) {
-tableData.close();
-}
-return adapter;
-}
 }
 }
  else {

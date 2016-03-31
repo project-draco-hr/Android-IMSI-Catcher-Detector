@@ -1,4 +1,5 @@
 {
+  @Cleanup Realm realm=Realm.getDefaultInstance();
 switch (device.getPhoneId()) {
 case TelephonyManager.PHONE_TYPE_NONE:
 case TelephonyManager.PHONE_TYPE_SIP:
@@ -10,7 +11,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
     boolean lacOK=dbHelper.checkLAC(monitorCell);
     if (!lacOK) {
       changedLAC=true;
-      dbHelper.toEventLog(1,"Changing LAC");
+      dbHelper.toEventLog(realm,1,"Changing LAC");
       vibrate(100,Status.MEDIUM);
     }
  else {
@@ -18,7 +19,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
     }
     if (tinydb.getBoolean("ocid_downloaded")) {
       if (!dbHelper.openCellExists(monitorCell.getCid())) {
-        dbHelper.toEventLog(2,"CID not in DBe_import");
+        dbHelper.toEventLog(realm,2,"CID not in DBe_import");
         log.info("ALERT: Connected to unknown CID not in DBe_import: " + monitorCell.getCid());
         vibrate(100,Status.MEDIUM);
         cellIdNotInOpenDb=true;
@@ -37,7 +38,7 @@ monitorCell.setCid(cdmaCellLocation.getBaseStationId());
 boolean lacOK=dbHelper.checkLAC(monitorCell);
 if (!lacOK) {
 changedLAC=true;
-dbHelper.toEventLog(1,"Changing LAC");
+dbHelper.toEventLog(realm,1,"Changing LAC");
 }
  else {
 changedLAC=false;

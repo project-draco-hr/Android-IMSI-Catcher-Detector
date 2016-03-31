@@ -12,7 +12,7 @@
     capturedSms.setType("WAPPUSH");
     setCurrentLocationData(realm,capturedSms);
     realm.commitTransaction();
-    mDbAdapter.toEventLog(6,"Detected WAPPUSH SMS");
+    mDbAdapter.toEventLog(realm,6,"Detected WAPPUSH SMS");
     startPopUpInfo(SmsType.WAP_PUSH);
   }
  else {

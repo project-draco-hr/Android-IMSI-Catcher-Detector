@@ -1,0 +1,19 @@
+{
+  mtime.setText(DateFormat.getDateTimeInstance().format(item.getTimestamp()));
+  mLAC.setText(item.getLac());
+  mCID.setText(item.getCellId());
+  mPSC.setText(item.getPsc());
+  mgpsd_lat.setText(String.valueOf(item.getLocation().getLatitude()));
+  mgpsd_lon.setText(String.valueOf(item.getLocation().getLongitude()));
+  mgpsd_accu.setText(String.valueOf(item.getLocation().getAccuracy()));
+  mDF_id.setText(String.valueOf(item.getDfId()));
+  mDF_desc.setText(item.getDfDescription());
+  mRecordId.setText(String.valueOf(position));
+  if (item.isFakeData()) {
+    mExample.setText(mRootView.getContext().getString(R.string.example));
+    mExample.setVisibility(View.VISIBLE);
+  }
+ else {
+    mExample.setVisibility(View.GONE);
+  }
+}
