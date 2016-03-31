@@ -1,4 +1,4 @@
 {
-  location.removeFromRealm();
+  locationInfo.removeFromRealm();
   super.removeFromRealm();
 }

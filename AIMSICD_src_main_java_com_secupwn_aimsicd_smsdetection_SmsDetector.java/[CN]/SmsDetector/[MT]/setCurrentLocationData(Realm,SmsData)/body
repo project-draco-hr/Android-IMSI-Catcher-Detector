@@ -7,8 +7,8 @@
     isRoaming=true;
   }
   capturedSms.setRoaming(isRoaming);
-  Location location=realm.createObject(Location.class);
-  location.setLatitude(mAIMSICDService.lastKnownLocation().getLatitudeInDegrees());
-  location.setLongitude(mAIMSICDService.lastKnownLocation().getLongitudeInDegrees());
-  capturedSms.setLocation(location);
+  LocationInfo locationInfo=realm.createObject(LocationInfo.class);
+  locationInfo.setLatitude(mAIMSICDService.lastKnownLocation().getLatitudeInDegrees());
+  locationInfo.setLongitude(mAIMSICDService.lastKnownLocation().getLongitudeInDegrees());
+  capturedSms.setLocationInfo(locationInfo);
 }
