@@ -8,7 +8,7 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  final CardItemData item=adapter.getTItem(pos);
-  holder.updateDisplay(item);
+  final DefaultLocation item=getItem(position);
+  holder.updateDisplay(item,position);
   return convertView;
 }

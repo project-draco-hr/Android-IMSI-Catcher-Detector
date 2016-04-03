@@ -40,30 +40,17 @@ case IMPORTED_OCID_DATA:
     }
     return adapter;
   }
-case DEFAULT_MCC_LOCATIONS:
+case MEASURED_SIGNAL_STRENGTHS:
 {
-  BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new DefaultLocationCardInflater());
-  int count=tableData.getCount();
+  BaseInflaterAdapter<MeasuredCellStrengthCardData> adapter=new BaseInflaterAdapter<>(new MeasuredCellStrengthCardInflater());
   while (tableData.moveToNext()) {
-    CardItemData data=new CardItemData(tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_COUNTRY)),String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_MCC))),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_LAT)),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DEFAULT_LOCATION_LON)),(tableData.getPosition() + 1) + " / " + count);
+    MeasuredCellStrengthCardData data=new MeasuredCellStrengthCardData(tableData.getInt(tableData.getColumnIndex("bts_id")),Integer.parseInt(tableData.getString(tableData.getColumnIndex("rx_signal"))),tableData.getString(tableData.getColumnIndex("time")));
     adapter.addItem(data,false);
   }
   if (!tableData.isClosed()) {
     tableData.close();
   }
   return adapter;
-}
-case MEASURED_SIGNAL_STRENGTHS:
-{
-BaseInflaterAdapter<MeasuredCellStrengthCardData> adapter=new BaseInflaterAdapter<>(new MeasuredCellStrengthCardInflater());
-while (tableData.moveToNext()) {
-  MeasuredCellStrengthCardData data=new MeasuredCellStrengthCardData(tableData.getInt(tableData.getColumnIndex("bts_id")),Integer.parseInt(tableData.getString(tableData.getColumnIndex("rx_signal"))),tableData.getString(tableData.getColumnIndex("time")));
-  adapter.addItem(data,false);
-}
-if (!tableData.isClosed()) {
-  tableData.close();
-}
-return adapter;
 }
 }
 }

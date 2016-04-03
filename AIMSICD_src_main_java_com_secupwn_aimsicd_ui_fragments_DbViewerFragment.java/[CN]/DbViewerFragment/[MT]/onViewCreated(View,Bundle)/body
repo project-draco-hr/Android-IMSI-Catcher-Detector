@@ -9,31 +9,32 @@
         return;
       }
       mTableSelected=(StatesDbViewer)selectedItem;
-      if (position == 4) {
-        setListAdapter(new SmsDataAdapter(getActivity(),realm.allObjects(SmsData.class),true));
-      }
- else       if (position == 6) {
-        setListAdapter(new EventAdapter(getActivity(),realm.allObjects(Event.class),true));
-      }
- else       if (position == 7) {
-        setListAdapter(new DetectionStringAdapter(getActivity(),realm.allObjects(SmsDetectionString.class),true));
-      }
- else {
-        new AsyncTask<Void,Void,ListAdapter>(){
-          @Override protected ListAdapter doInBackground(          Void... params){
-            Cursor result;
+switch (position) {
+case 3:
+        setListAdapter(new DefaultLocationAdapter(getActivity(),realm.allObjects(DefaultLocation.class),true));
+      break;
+case 4:
+    setListAdapter(new SmsDataAdapter(getActivity(),realm.allObjects(SmsData.class),true));
+  break;
+case 6:
+setListAdapter(new EventAdapter(getActivity(),realm.allObjects(Event.class),true));
+break;
+case 7:
+setListAdapter(new DetectionStringAdapter(getActivity(),realm.allObjects(SmsDetectionString.class),true));
+break;
+default :
+new AsyncTask<Void,Void,ListAdapter>(){
+@Override protected ListAdapter doInBackground(Void... params){
+Cursor result;
 switch (position) {
 case 0:
-              result=mDb.returnDBiBts();
-            break;
+result=mDb.returnDBiBts();
+break;
 case 1:
-          result=mDb.returnDBiMeasure();
-        break;
+result=mDb.returnDBiMeasure();
+break;
 case 2:
-      result=mDb.returnDBeImport();
-    break;
-case 3:
-  result=mDb.returnDefaultLocation();
+result=mDb.returnDBeImport();
 break;
 case 5:
 result=mDb.returnDBiMeasure();
@@ -53,6 +54,7 @@ setListAdapter(adapter);
 }
 }
 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+break;
 }
 }
 @Override public void onNothingSelected(AdapterView<?> parentView){

@@ -13,35 +13,27 @@
           int lines=records.size();
           for (int i=1; i < lines; i++) {
 switch (table) {
-case "defaultlocation":
-              try {
-                insertDefaultLocation(records.get(i)[1],Integer.parseInt(records.get(i)[2]),records.get(i)[3],records.get(i)[4]);
-              }
- catch (              Exception ee) {
-                log.error("RestoreDB: Error in insertDefaultLocation()",ee);
-              }
-            break;
 case "CounterMeasures":
-          insertCounterMeasures(records.get(i)[1],records.get(i)[2],Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]));
-        break;
+              insertCounterMeasures(records.get(i)[1],records.get(i)[2],Integer.parseInt(records.get(i)[3]),Double.parseDouble(records.get(i)[4]));
+            break;
 case "DBe_capabilities":
-      insertDBeCapabilities(records.get(i)[1],records.get(i)[2],records.get(i)[3],records.get(i)[4],records.get(i)[5],records.get(i)[6]);
-    break;
+          insertDBeCapabilities(records.get(i)[1],records.get(i)[2],records.get(i)[3],records.get(i)[4],records.get(i)[5],records.get(i)[6]);
+        break;
 case "DBe_import":
+      try {
+        insertDBeImport(records.get(i)[1],records.get(i)[2],Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),records.get(i)[8],records.get(i)[9],Integer.parseInt(records.get(i)[10]),Integer.parseInt(records.get(i)[11]),Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]),records.get(i)[14],records.get(i)[15],0);
+      }
+ catch (      Exception ee) {
+        log.error("RestoreDB: Error in insertDBeImport()",ee);
+      }
+    break;
+case "DBi_bts":
   try {
-    insertDBeImport(records.get(i)[1],records.get(i)[2],Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),records.get(i)[8],records.get(i)[9],Integer.parseInt(records.get(i)[10]),Integer.parseInt(records.get(i)[11]),Integer.parseInt(records.get(i)[12]),Integer.parseInt(records.get(i)[13]),records.get(i)[14],records.get(i)[15],0);
+    insertBTS(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9],records.get(i)[10],Double.parseDouble(records.get(i)[11]),Double.parseDouble(records.get(i)[12]));
   }
  catch (  Exception ee) {
-    log.error("RestoreDB: Error in insertDBeImport()",ee);
+    log.error("RestoreDB: Error in insertBTS()",ee);
   }
-break;
-case "DBi_bts":
-try {
-insertBTS(Integer.parseInt(records.get(i)[1]),Integer.parseInt(records.get(i)[2]),Integer.parseInt(records.get(i)[3]),Integer.parseInt(records.get(i)[4]),Integer.parseInt(records.get(i)[5]),Integer.parseInt(records.get(i)[6]),Integer.parseInt(records.get(i)[7]),Integer.parseInt(records.get(i)[8]),records.get(i)[9],records.get(i)[10],Double.parseDouble(records.get(i)[11]),Double.parseDouble(records.get(i)[12]));
-}
- catch (Exception ee) {
-log.error("RestoreDB: Error in insertBTS()",ee);
-}
 break;
 case "DBi_measure":
 try {
