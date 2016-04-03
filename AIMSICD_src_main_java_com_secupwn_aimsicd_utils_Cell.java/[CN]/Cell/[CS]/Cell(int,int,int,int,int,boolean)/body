@@ -1,6 +1,6 @@
 {
   this.cid=CID;
-  this.lac=lac;
+  this.locationAreaCode=locationAreaCode;
   this.mcc=Integer.MAX_VALUE;
   this.mnc=Integer.MAX_VALUE;
   if (dbm) {

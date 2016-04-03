@@ -2,13 +2,13 @@
   String query=String.format("SELECT * FROM DBi_bts WHERE CID = %d",cell.getCid());
   Cursor bts_cursor=mDb.rawQuery(query,null);
   while (bts_cursor.moveToNext()) {
-    if (cell.getLac() != bts_cursor.getInt(bts_cursor.getColumnIndex("LAC"))) {
-      log.info("ALERT: Changing LAC on CID: " + cell.getCid() + " LAC(API): "+ cell.getLac()+ " LAC(DBi): "+ bts_cursor.getInt(bts_cursor.getColumnIndex("LAC")));
+    if (cell.getLocationAreaCode() != bts_cursor.getInt(bts_cursor.getColumnIndex("LAC"))) {
+      log.info("ALERT: Changing LAC on CID: " + cell.getCid() + " LAC(API): "+ cell.getLocationAreaCode()+ " LAC(DBi): "+ bts_cursor.getInt(bts_cursor.getColumnIndex("LAC")));
       bts_cursor.close();
       return false;
     }
  else {
-      log.verbose("LAC checked - no change on CID:" + cell.getCid() + " LAC(API): "+ cell.getLac()+ " LAC(DBi): "+ bts_cursor.getInt(bts_cursor.getColumnIndex("LAC")));
+      log.verbose("LAC checked - no change on CID:" + cell.getCid() + " LAC(API): "+ cell.getLocationAreaCode()+ " LAC(DBi): "+ bts_cursor.getInt(bts_cursor.getColumnIndex("LAC")));
     }
   }
   bts_cursor.close();

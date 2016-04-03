@@ -10,9 +10,9 @@
   }
   Cell other=(Cell)obj;
   if (this.psc != Integer.MAX_VALUE) {
-    return this.cid == other.getCid() && this.lac == other.getLac() && this.mcc == other.getMcc() && this.mnc == other.getMnc() && this.psc == other.getPsc();
+    return this.cid == other.getCid() && this.locationAreaCode == other.getLocationAreaCode() && this.mcc == other.getMcc() && this.mnc == other.getMnc() && this.psc == other.getPsc();
   }
  else {
-    return this.cid == other.getCid() && this.lac == other.getLac() && this.mcc == other.getMcc() && this.mnc == other.getMnc();
+    return this.cid == other.getCid() && this.locationAreaCode == other.getLocationAreaCode() && this.mcc == other.getMcc() && this.mnc == other.getMnc();
   }
 }

@@ -1,5 +1,5 @@
 int CID
-int lac
+int locationAreaCode
 int signal
 int psc
 int netType

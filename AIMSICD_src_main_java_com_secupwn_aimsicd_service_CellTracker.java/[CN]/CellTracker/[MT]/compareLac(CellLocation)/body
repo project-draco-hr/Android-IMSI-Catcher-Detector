@@ -6,7 +6,7 @@ case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
     GsmCellLocation gsmCellLocation=(GsmCellLocation)location;
   if (gsmCellLocation != null) {
-    monitorCell.setLac(gsmCellLocation.getLac());
+    monitorCell.setLocationAreaCode(gsmCellLocation.getLac());
     monitorCell.setCid(gsmCellLocation.getCid());
     boolean lacOK=dbHelper.checkLAC(monitorCell);
     if (!lacOK) {
@@ -33,7 +33,7 @@ break;
 case TelephonyManager.PHONE_TYPE_CDMA:
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)location;
 if (cdmaCellLocation != null) {
-monitorCell.setLac(cdmaCellLocation.getNetworkId());
+monitorCell.setLocationAreaCode(cdmaCellLocation.getNetworkId());
 monitorCell.setCid(cdmaCellLocation.getBaseStationId());
 boolean lacOK=dbHelper.checkLAC(monitorCell);
 if (!lacOK) {

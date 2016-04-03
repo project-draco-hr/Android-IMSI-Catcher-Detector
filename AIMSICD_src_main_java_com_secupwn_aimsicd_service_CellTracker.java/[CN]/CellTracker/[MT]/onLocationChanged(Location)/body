@@ -11,13 +11,13 @@ case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
         GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
       device.cell.setCid(gsmCellLocation.getCid());
-    device.cell.setLac(gsmCellLocation.getLac());
+    device.cell.setLocationAreaCode(gsmCellLocation.getLac());
   device.cell.setPsc(gsmCellLocation.getPsc());
 break;
 case TelephonyManager.PHONE_TYPE_CDMA:
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
 device.cell.setCid(cdmaCellLocation.getBaseStationId());
-device.cell.setLac(cdmaCellLocation.getNetworkId());
+device.cell.setLocationAreaCode(cdmaCellLocation.getNetworkId());
 device.cell.setSid(cdmaCellLocation.getSystemId());
 device.cell.setMnc(cdmaCellLocation.getSystemId());
 break;

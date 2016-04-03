@@ -11,7 +11,7 @@ case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
 {
         content=(HighlightTextView)getView().findViewById(R.id.network_lac);
-        content.updateText(String.valueOf(mAimsicdService.getCell().getLac()),ani);
+        content.updateText(String.valueOf(mAimsicdService.getCell().getLocationAreaCode()),ani);
         tr=(TableRow)getView().findViewById(R.id.gsm_cellid);
         tr.setVisibility(View.VISIBLE);
         content=(HighlightTextView)getView().findViewById(R.id.network_cellid);
@@ -23,7 +23,7 @@ case TelephonyManager.PHONE_TYPE_CDMA:
       tr=(TableRow)getView().findViewById(R.id.cdma_netid);
       tr.setVisibility(View.VISIBLE);
       content=(HighlightTextView)getView().findViewById(R.id.network_netid);
-      content.updateText(String.valueOf(mAimsicdService.getCell().getLac()),ani);
+      content.updateText(String.valueOf(mAimsicdService.getCell().getLocationAreaCode()),ani);
       tr=(TableRow)getView().findViewById(R.id.cdma_sysid);
       tr.setVisibility(View.VISIBLE);
       content=(HighlightTextView)getView().findViewById(R.id.network_sysid);

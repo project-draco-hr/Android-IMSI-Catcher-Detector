@@ -7,7 +7,7 @@
     cell.setMcc(jsonCell.getInt("mcc"));
     cell.setMnc(jsonCell.getInt("mnc"));
     cell.setCid(jsonCell.getInt("cellid"));
-    cell.setLac(jsonCell.getInt("lac"));
+    cell.setLocationAreaCode(jsonCell.getInt("lac"));
     return cell;
   }
  catch (  JSONException|IOException e) {

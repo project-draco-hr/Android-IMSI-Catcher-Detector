@@ -1,9 +1,9 @@
 {
-  if (!cellInDbiBts(cell.getLac(),cell.getCid())) {
+  if (!cellInDbiBts(cell.getLocationAreaCode(),cell.getCid())) {
     ContentValues values=new ContentValues();
     values.put("MCC",cell.getMcc());
     values.put("MNC",cell.getMnc());
-    values.put("LAC",cell.getLac());
+    values.put("LAC",cell.getLocationAreaCode());
     values.put("CID",cell.getCid());
     values.put("PSC",cell.getPsc());
     values.put("T3212",0);
@@ -24,7 +24,7 @@
       values.put("gps_lon",cell.getLon());
     }
     mDb.update("DBi_bts",values,"CID=?",new String[]{Integer.toString(cell.getCid())});
-    log.info("DBi_bts updated: CID=" + cell.getCid() + " LAC="+ cell.getLac());
+    log.info("DBi_bts updated: CID=" + cell.getCid() + " LAC="+ cell.getLocationAreaCode());
   }
   if (!cellInDbiMeasure(cell.getCid())) {
     ContentValues dbiMeasure=new ContentValues();

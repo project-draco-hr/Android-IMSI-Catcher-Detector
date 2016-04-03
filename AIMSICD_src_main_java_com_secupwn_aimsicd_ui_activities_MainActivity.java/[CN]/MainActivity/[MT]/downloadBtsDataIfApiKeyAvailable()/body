@@ -21,7 +21,7 @@
       Helpers.msgShort(this,getString(R.string.waiting_for_location));
       LocationServices.LocationAsync locationAsync=new LocationServices.LocationAsync();
       locationAsync.delegate=this;
-      locationAsync.execute(mAimsicdService.getCell().getCid(),mAimsicdService.getCell().getLac(),mAimsicdService.getCell().getMnc(),mAimsicdService.getCell().getMcc());
+      locationAsync.execute(mAimsicdService.getCell().getCid(),mAimsicdService.getCell().getLocationAreaCode(),mAimsicdService.getCell().getMnc(),mAimsicdService.getCell().getMcc());
     }
   }
  else {

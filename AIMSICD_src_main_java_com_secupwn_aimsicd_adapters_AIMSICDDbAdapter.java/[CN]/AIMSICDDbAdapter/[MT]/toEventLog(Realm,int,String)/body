@@ -1,6 +1,6 @@
 {
   final Date timestamp=new Date();
-  final int lac=CellTracker.monitorCell.getLac();
+  final int lac=CellTracker.monitorCell.getLocationAreaCode();
   final int cid=CellTracker.monitorCell.getCid();
   final int psc=CellTracker.monitorCell.getPsc();
   final double gpsd_lat=CellTracker.monitorCell.getLat();
@@ -16,12 +16,12 @@
         }
  else {
           Event lastEvent=events.last();
-          insertData=!(lastEvent.getCellId() == cid && lastEvent.getLac() == lac && lastEvent.getPsc() == psc && lastEvent.getDfId() == DF_id);
+          insertData=!(lastEvent.getCellId() == cid && lastEvent.getLocationAreaCode() == lac && lastEvent.getPsc() == psc && lastEvent.getDfId() == DF_id);
         }
         if (insertData) {
           Event event=realm.createObject(Event.class);
           event.setTimestamp(timestamp);
-          event.setLac(lac);
+          event.setLocationAreaCode(lac);
           event.setCellId(cid);
           event.setPsc(psc);
           LocationInfo locationInfo=realm.createObject(LocationInfo.class);

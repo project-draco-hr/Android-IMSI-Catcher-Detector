@@ -1,7 +1,7 @@
 {
   super();
   this.cid=CID;
-  this.lac=lac;
+  this.locationAreaCode=locationAreaCode;
   this.mcc=mcc;
   this.mnc=mnc;
   this.dbm=dbm;

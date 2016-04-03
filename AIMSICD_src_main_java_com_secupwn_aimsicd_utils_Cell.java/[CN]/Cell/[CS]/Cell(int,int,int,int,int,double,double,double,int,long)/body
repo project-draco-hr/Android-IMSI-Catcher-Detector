@@ -1,6 +1,6 @@
 {
   this.cid=cid;
-  this.lac=lac;
+  this.locationAreaCode=locationAreaCode;
   this.mcc=mcc;
   this.mnc=mnc;
   this.dbm=dbm;

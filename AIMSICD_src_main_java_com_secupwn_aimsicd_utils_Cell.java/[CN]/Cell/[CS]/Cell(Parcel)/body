@@ -2,7 +2,7 @@
   String[] data=new String[15];
   in.readStringArray(data);
   cid=Integer.valueOf(data[0]);
-  lac=Integer.valueOf(data[1]);
+  locationAreaCode=Integer.valueOf(data[1]);
   mcc=Integer.valueOf(data[2]);
   mnc=Integer.valueOf(data[3]);
   dbm=Integer.valueOf(data[4]);

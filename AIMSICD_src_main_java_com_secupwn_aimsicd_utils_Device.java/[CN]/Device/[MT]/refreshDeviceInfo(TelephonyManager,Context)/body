@@ -33,7 +33,7 @@ if (!cell.isValid()) {
 GsmCellLocation gsmCellLocation=(GsmCellLocation)tm.getCellLocation();
 if (gsmCellLocation != null) {
 cell.setCid(gsmCellLocation.getCid());
-cell.setLac(gsmCellLocation.getLac());
+cell.setLocationAreaCode(gsmCellLocation.getLac());
 cell.setPsc(gsmCellLocation.getPsc());
 }
 }
@@ -44,7 +44,7 @@ if (!cell.isValid()) {
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)tm.getCellLocation();
 if (cdmaCellLocation != null) {
 cell.setCid(cdmaCellLocation.getBaseStationId());
-cell.setLac(cdmaCellLocation.getNetworkId());
+cell.setLocationAreaCode(cdmaCellLocation.getNetworkId());
 cell.setSid(cdmaCellLocation.getSystemId());
 cell.setMnc(cdmaCellLocation.getSystemId());
 String homeOperator=Helpers.getSystemProp(context,"ro.cdma.home.operator.numeric","UNKNOWN");

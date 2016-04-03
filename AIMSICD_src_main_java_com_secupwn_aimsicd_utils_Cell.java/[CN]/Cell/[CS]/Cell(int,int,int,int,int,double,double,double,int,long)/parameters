@@ -1,5 +1,5 @@
 int cid
-int lac
+int locationAreaCode
 int mcc
 int mnc
 int dbm
