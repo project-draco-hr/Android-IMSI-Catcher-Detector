@@ -40,9 +40,6 @@ case "DBi_measure":
     log.error("RestoreDB: Error in insertDbiMeasure()",ee);
   }
 break;
-case "SectorType":
-insertSectorType(records.get(i)[1]);
-break;
 }
 }
 }

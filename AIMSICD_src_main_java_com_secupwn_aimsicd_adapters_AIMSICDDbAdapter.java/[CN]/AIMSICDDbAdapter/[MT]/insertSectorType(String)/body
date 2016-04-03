@@ -1,5 +1,0 @@
-{
-  ContentValues sectorType=new ContentValues();
-  sectorType.put("description",description);
-  mDb.insert("SectorType",null,sectorType);
-}
