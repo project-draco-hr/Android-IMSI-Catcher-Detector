@@ -5,7 +5,7 @@
     values.put("MNC",cell.getMnc());
     values.put("LAC",cell.getLocationAreaCode());
     values.put("CID",cell.getCid());
-    values.put("PSC",cell.getPsc());
+    values.put("PSC",cell.getPrimaryScramblingCode());
     values.put("T3212",0);
     values.put("A5x",0);
     values.put("ST_id",0);

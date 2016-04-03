@@ -1,4 +1,4 @@
 {
   @Cleanup Realm realm=Realm.getDefaultInstance();
-  return realm.where(DefaultLocation.class).equalTo("mcc",mcc).findAll().first().getLocationInfo();
+  return realm.where(DefaultLocation.class).equalTo("mobileCountryCode",mcc).findAll().first().getLocationInfo();
 }

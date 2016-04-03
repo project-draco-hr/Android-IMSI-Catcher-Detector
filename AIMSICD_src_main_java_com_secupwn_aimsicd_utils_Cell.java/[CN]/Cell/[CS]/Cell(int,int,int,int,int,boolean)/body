@@ -9,7 +9,7 @@
  else {
     this.rssi=signal;
   }
-  this.psc=psc;
+  this.primaryScramblingCode=primaryScramblingCode;
   this.netType=netType;
   this.timingAdvance=Integer.MAX_VALUE;
   this.sid=Integer.MAX_VALUE;

@@ -5,7 +5,7 @@
   result.append("MCC - ").append(mcc).append("\n");
   result.append("MNC - ").append(mnc).append("\n");
   result.append("DBm - ").append(dbm).append("\n");
-  result.append("PSC - ").append(validatePscValue(psc)).append("\n");
+  result.append("PSC - ").append(validatePscValue(primaryScramblingCode)).append("\n");
   result.append("Type - ").append(netType).append("\n");
   result.append("Lon - ").append(lon).append("\n");
   result.append("Lat - ").append(lat).append("\n");

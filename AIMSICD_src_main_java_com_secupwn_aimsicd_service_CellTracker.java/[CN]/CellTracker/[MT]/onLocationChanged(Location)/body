@@ -12,7 +12,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
         GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
       device.cell.setCid(gsmCellLocation.getCid());
     device.cell.setLocationAreaCode(gsmCellLocation.getLac());
-  device.cell.setPsc(gsmCellLocation.getPsc());
+  device.cell.setPrimaryScramblingCode(gsmCellLocation.getPsc());
 break;
 case TelephonyManager.PHONE_TYPE_CDMA:
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;

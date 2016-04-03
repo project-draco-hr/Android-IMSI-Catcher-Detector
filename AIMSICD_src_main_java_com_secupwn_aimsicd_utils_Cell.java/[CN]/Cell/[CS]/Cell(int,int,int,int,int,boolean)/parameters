@@ -1,6 +1,6 @@
 int CID
 int locationAreaCode
 int signal
-int psc
+int primaryScramblingCode
 int netType
 boolean dbm

@@ -6,7 +6,7 @@
   mcc=Integer.valueOf(data[2]);
   mnc=Integer.valueOf(data[3]);
   dbm=Integer.valueOf(data[4]);
-  psc=Integer.valueOf(data[5]);
+  primaryScramblingCode=Integer.valueOf(data[5]);
   rssi=Integer.valueOf(data[6]);
   timingAdvance=Integer.valueOf(data[7]);
   sid=Integer.valueOf(data[8]);

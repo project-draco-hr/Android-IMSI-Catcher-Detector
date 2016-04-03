@@ -6,7 +6,7 @@
   this.mnc=mnc;
   this.dbm=dbm;
   this.rssi=Integer.MAX_VALUE;
-  this.psc=Integer.MAX_VALUE;
+  this.primaryScramblingCode=Integer.MAX_VALUE;
   this.timestamp=timestamp;
   this.timingAdvance=Integer.MAX_VALUE;
   this.sid=Integer.MAX_VALUE;

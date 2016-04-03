@@ -5,8 +5,8 @@
   result=prime * result + locationAreaCode;
   result=prime * result + mcc;
   result=prime * result + mnc;
-  if (psc != -1) {
-    result=prime * result + psc;
+  if (primaryScramblingCode != -1) {
+    result=prime * result + primaryScramblingCode;
   }
   return result;
 }
