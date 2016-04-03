@@ -1,3 +1,0 @@
-{
-  return pEventLogItemData != null && pEventLogItemData.getLac().contains(Examples.EVENT_LOG_DATA.LAC) && pEventLogItemData.getCellID().contains(Examples.EVENT_LOG_DATA.CID) && pEventLogItemData.getPsc().contains(Examples.EVENT_LOG_DATA.PSC) && pEventLogItemData.getLat().contains(Examples.EVENT_LOG_DATA.GPSD_LAT) && pEventLogItemData.getLng().contains(Examples.EVENT_LOG_DATA.GPSD_LON) && pEventLogItemData.getgpsd_accu().contains(Examples.EVENT_LOG_DATA.GPSD_ACCU) && pEventLogItemData.getDF_id().contains(Examples.EVENT_LOG_DATA.DF_ID);
-}

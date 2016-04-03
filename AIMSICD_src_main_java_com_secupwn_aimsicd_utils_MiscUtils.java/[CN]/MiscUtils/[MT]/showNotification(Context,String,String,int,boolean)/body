@@ -1,6 +1,6 @@
 {
   int NOTIFICATION_ID=1;
-  Intent notificationIntent=new Intent(context,AIMSICD.class);
+  Intent notificationIntent=new Intent(context,MainActivity.class);
   notificationIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_FROM_BACKGROUND);
   PendingIntent contentIntent=PendingIntent.getActivity(context,NOTIFICATION_ID,notificationIntent,PendingIntent.FLAG_CANCEL_CURRENT);
   Bitmap largeIcon=BitmapFactory.decodeResource(context.getResources(),drawable_id);

@@ -9,6 +9,6 @@
     stopTrackingFemto();
   }
   cancelNotification();
-  tm.listen(mCellSignalListener,PhoneStateListener.LISTEN_NONE);
+  tm.listen(cellSignalListener,PhoneStateListener.LISTEN_NONE);
   prefs.unregisterOnSharedPreferenceChangeListener(this);
 }

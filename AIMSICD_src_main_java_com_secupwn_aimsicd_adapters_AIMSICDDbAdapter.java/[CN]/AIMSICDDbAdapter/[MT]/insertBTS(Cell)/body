@@ -1,11 +1,11 @@
 {
-  if (!cellInDbiBts(cell.getLAC(),cell.getCID())) {
+  if (!cellInDbiBts(cell.getLac(),cell.getCid())) {
     ContentValues values=new ContentValues();
-    values.put("MCC",cell.getMCC());
-    values.put("MNC",cell.getMNC());
-    values.put("LAC",cell.getLAC());
-    values.put("CID",cell.getCID());
-    values.put("PSC",cell.getPSC());
+    values.put("MCC",cell.getMcc());
+    values.put("MNC",cell.getMnc());
+    values.put("LAC",cell.getLac());
+    values.put("CID",cell.getCid());
+    values.put("PSC",cell.getPsc());
     values.put("T3212",0);
     values.put("A5x",0);
     values.put("ST_id",0);
@@ -23,12 +23,12 @@
       values.put("gps_lat",cell.getLat());
       values.put("gps_lon",cell.getLon());
     }
-    mDb.update("DBi_bts",values,"CID=?",new String[]{Integer.toString(cell.getCID())});
-    log.info("DBi_bts updated: CID=" + cell.getCID() + " LAC="+ cell.getLAC());
+    mDb.update("DBi_bts",values,"CID=?",new String[]{Integer.toString(cell.getCid())});
+    log.info("DBi_bts updated: CID=" + cell.getCid() + " LAC="+ cell.getLac());
   }
-  if (!cellInDbiMeasure(cell.getCID())) {
+  if (!cellInDbiMeasure(cell.getCid())) {
     ContentValues dbiMeasure=new ContentValues();
-    dbiMeasure.put("bts_id",cell.getCID());
+    dbiMeasure.put("bts_id",cell.getCid());
     dbiMeasure.put("nc_list","no_data");
     dbiMeasure.put("time",MiscUtils.getCurrentTimeStamp());
     String slat=String.valueOf(cell.getLat());
@@ -44,14 +44,14 @@
     dbiMeasure.put("gpsd_accu",cell.getAccuracy());
     dbiMeasure.put("bb_power","0");
     dbiMeasure.put("tx_power","0");
-    dbiMeasure.put("rx_signal",String.valueOf(cell.getDBM()));
+    dbiMeasure.put("rx_signal",String.valueOf(cell.getDbm()));
     dbiMeasure.put("RAT",String.valueOf(cell.getNetType()));
     dbiMeasure.put("TA",cell.getTimingAdvance());
     dbiMeasure.put("BER",0);
     dbiMeasure.put("isSubmitted",0);
     dbiMeasure.put("isNeighbour",0);
     mDb.insert("DBi_measure",null,dbiMeasure);
-    log.info("DBi_measure inserted bts_id=" + cell.getCID());
+    log.info("DBi_measure inserted bts_id=" + cell.getCid());
   }
  else {
     ContentValues dbiMeasure=new ContentValues();
@@ -62,13 +62,13 @@
     if (Double.doubleToRawLongBits(cell.getAccuracy()) != 0 && cell.getAccuracy() > 0) {
       dbiMeasure.put("gpsd_accu",cell.getAccuracy());
     }
-    if (cell.getDBM() > 0) {
-      dbiMeasure.put("rx_signal",String.valueOf(cell.getDBM()));
+    if (cell.getDbm() > 0) {
+      dbiMeasure.put("rx_signal",String.valueOf(cell.getDbm()));
     }
     if (cell.getTimingAdvance() > 0) {
       dbiMeasure.put("TA",cell.getTimingAdvance());
     }
-    mDb.update("DBi_measure",dbiMeasure,"bts_id=?",new String[]{Integer.toString(cell.getCID())});
-    log.info("DBi_measure updated bts_id=" + cell.getCID());
+    mDb.update("DBi_measure",dbiMeasure,"bts_id=?",new String[]{Integer.toString(cell.getCid())});
+    log.info("DBi_measure updated bts_id=" + cell.getCid());
   }
 }

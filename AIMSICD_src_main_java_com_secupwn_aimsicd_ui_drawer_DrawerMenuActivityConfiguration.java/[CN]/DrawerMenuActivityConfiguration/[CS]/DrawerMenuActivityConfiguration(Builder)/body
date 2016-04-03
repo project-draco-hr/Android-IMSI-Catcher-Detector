@@ -1,0 +1,8 @@
+{
+  mainLayout=pBuilder.mMainLayout;
+  drawerLayoutId=pBuilder.mDrawerLayoutId;
+  leftDrawerId=pBuilder.mLeftDrawerId;
+  actionMenuItemsToHideWhenDrawerOpen=pBuilder.mActionMenuItemsToHideWhenDrawerOpen;
+  navItems=pBuilder.mNavItems;
+  baseAdapter=pBuilder.mBaseAdapter;
+}

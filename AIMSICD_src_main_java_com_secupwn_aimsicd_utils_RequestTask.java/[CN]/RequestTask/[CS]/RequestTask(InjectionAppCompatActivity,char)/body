@@ -1,7 +1,4 @@
 {
-  super(context);
-  this.mType=type;
-  this.mAppContext=context.getApplicationContext();
-  this.mDbAdapter=new AIMSICDDbAdapter(mAppContext);
-  this.mTimeOut=REQUEST_TIMEOUT_MAPS;
+  this(context,type,null);
+  log.warn("RequestTask(InjectionAppCompatActivity, char) is deprecated in favour of using listener callbacks");
 }

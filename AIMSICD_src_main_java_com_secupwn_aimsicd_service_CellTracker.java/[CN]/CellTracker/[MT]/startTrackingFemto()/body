@@ -1,9 +1,9 @@
 {
-  if (mDevice.getPhoneID() != TelephonyManager.PHONE_TYPE_CDMA) {
+  if (device.getPhoneId() != TelephonyManager.PHONE_TYPE_CDMA) {
     Helpers.msgShort(context,context.getString(R.string.femtocell_only_on_cdma_devices));
     return;
   }
-  mTrackingFemtocell=true;
+  trackingFemtocell=true;
   mPhoneStateListener=new PhoneStateListener(){
     public void onServiceStateChanged(    ServiceState s){
       log.debug(context.getString(R.string.service_state_changed));

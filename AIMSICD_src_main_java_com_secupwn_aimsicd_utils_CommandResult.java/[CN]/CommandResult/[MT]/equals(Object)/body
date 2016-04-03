@@ -6,5 +6,5 @@
     return false;
   }
   CommandResult that=(CommandResult)o;
-  return (mStartTime == that.mStartTime && mExitValue == that.mExitValue && mStdout.equals(that.mStdout) && mStderr.equals(that.mStderr) && mEndTime == that.mEndTime);
+  return (startTime == that.startTime && exitValue == that.exitValue && stdOut.equals(that.stdOut) && stdErr.equals(that.stdErr) && endTime == that.endTime);
 }

@@ -1,11 +1,11 @@
 {
   String time=MiscUtils.getCurrentTimeStamp();
-  int lac=CellTracker.mMonitorCell.getLAC();
-  int cid=CellTracker.mMonitorCell.getCID();
-  int psc=CellTracker.mMonitorCell.getPSC();
-  String gpsd_lat=String.valueOf(CellTracker.mMonitorCell.getLat());
-  String gpsd_lon=String.valueOf(CellTracker.mMonitorCell.getLon());
-  int gpsd_accu=(int)CellTracker.mMonitorCell.getAccuracy();
+  int lac=CellTracker.monitorCell.getLac();
+  int cid=CellTracker.monitorCell.getCid();
+  int psc=CellTracker.monitorCell.getPsc();
+  String gpsd_lat=String.valueOf(CellTracker.monitorCell.getLat());
+  String gpsd_lon=String.valueOf(CellTracker.monitorCell.getLon());
+  int gpsd_accu=(int)CellTracker.monitorCell.getAccuracy();
   if (cid != -1 || lac != -1) {
     String query=String.format("SELECT * from EventLog WHERE _id=(SELECT max(_id) from EventLog) AND CID=%d AND LAC=%d AND PSC=%d AND DF_id=%d",cid,lac,psc,DF_id);
     Cursor cursor=mDb.rawQuery(query,null);

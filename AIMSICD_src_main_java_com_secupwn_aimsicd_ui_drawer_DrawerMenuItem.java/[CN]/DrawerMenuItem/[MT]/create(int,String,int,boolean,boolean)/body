@@ -1,0 +1,9 @@
+{
+  DrawerMenuItem item=new DrawerMenuItem();
+  item.setId(pMenuId);
+  item.setLabel(pLabel);
+  item.setIconId(pIconDrawableId);
+  item.setUpdateActionBarTitle(pUpdateActionBarTitle);
+  item.setShowInfoButton(pIsShowInfoButton);
+  return item;
+}

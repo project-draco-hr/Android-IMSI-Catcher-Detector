@@ -1,10 +1,10 @@
 {
   if (monitor) {
-    mMonitoringCell=true;
+    monitoringCell=true;
     Helpers.msgShort(context,context.getString(R.string.monitoring_cell_information));
   }
  else {
-    mMonitoringCell=false;
+    monitoringCell=false;
     Helpers.msgShort(context,context.getString(R.string.stopped_monitoring_cell_information));
   }
   setNotification();

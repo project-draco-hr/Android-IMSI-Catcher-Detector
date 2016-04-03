@@ -1,42 +1,42 @@
 {
   if (Build.VERSION.SDK_INT > 17) {
-    DeviceApi18.loadCellInfo(tm,mDevice);
+    DeviceApi18.loadCellInfo(tm,device);
   }
-  if (!mDevice.mCell.isValid()) {
+  if (!device.cell.isValid()) {
     CellLocation cellLocation=tm.getCellLocation();
     if (cellLocation != null) {
-switch (mDevice.getPhoneID()) {
+switch (device.getPhoneId()) {
 case TelephonyManager.PHONE_TYPE_NONE:
 case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
         GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
-      mDevice.mCell.setCID(gsmCellLocation.getCid());
-    mDevice.mCell.setLAC(gsmCellLocation.getLac());
-  mDevice.mCell.setPSC(gsmCellLocation.getPsc());
+      device.cell.setCid(gsmCellLocation.getCid());
+    device.cell.setLac(gsmCellLocation.getLac());
+  device.cell.setPsc(gsmCellLocation.getPsc());
 break;
 case TelephonyManager.PHONE_TYPE_CDMA:
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
-mDevice.mCell.setCID(cdmaCellLocation.getBaseStationId());
-mDevice.mCell.setLAC(cdmaCellLocation.getNetworkId());
-mDevice.mCell.setSID(cdmaCellLocation.getSystemId());
-mDevice.mCell.setMNC(cdmaCellLocation.getSystemId());
+device.cell.setCid(cdmaCellLocation.getBaseStationId());
+device.cell.setLac(cdmaCellLocation.getNetworkId());
+device.cell.setSid(cdmaCellLocation.getSystemId());
+device.cell.setMnc(cdmaCellLocation.getSystemId());
 break;
 }
 }
 }
 if (loc != null && (Double.doubleToRawLongBits(loc.getLatitude()) != 0 && Double.doubleToRawLongBits(loc.getLongitude()) != 0)) {
-mDevice.mCell.setLon(loc.getLongitude());
-mDevice.mCell.setLat(loc.getLatitude());
-mDevice.mCell.setSpeed(loc.getSpeed());
-mDevice.mCell.setAccuracy(loc.getAccuracy());
-mDevice.mCell.setBearing(loc.getBearing());
-mDevice.setLastLocation(loc);
+device.cell.setLon(loc.getLongitude());
+device.cell.setLat(loc.getLatitude());
+device.cell.setSpeed(loc.getSpeed());
+device.cell.setAccuracy(loc.getAccuracy());
+device.cell.setBearing(loc.getBearing());
+device.setLastLocation(loc);
 SharedPreferences.Editor prefsEditor;
 prefsEditor=prefs.edit();
 prefsEditor.putString(context.getString(R.string.data_last_lat_lon),String.valueOf(loc.getLatitude()) + ":" + String.valueOf(loc.getLongitude()));
 prefsEditor.apply();
-if (mTrackingCell) {
-dbHelper.insertBTS(mDevice.mCell);
+if (trackingCell) {
+dbHelper.insertBTS(device.cell);
 }
 }
 }

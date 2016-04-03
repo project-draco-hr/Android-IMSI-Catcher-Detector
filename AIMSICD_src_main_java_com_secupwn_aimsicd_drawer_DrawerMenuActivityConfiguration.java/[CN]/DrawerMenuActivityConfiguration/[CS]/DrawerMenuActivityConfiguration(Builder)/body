@@ -1,8 +1,0 @@
-{
-  mMainLayout=pBuilder.mMainLayout;
-  mDrawerLayoutId=pBuilder.mDrawerLayoutId;
-  mLeftDrawerId=pBuilder.mLeftDrawerId;
-  mActionMenuItemsToHideWhenDrawerOpen=pBuilder.mActionMenuItemsToHideWhenDrawerOpen;
-  mNavItems=pBuilder.mNavItems;
-  mBaseAdapter=pBuilder.mBaseAdapter;
-}

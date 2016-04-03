@@ -1,16 +1,16 @@
 {
-  mCellID=cellID;
-  mLac=lac;
-  mMcc=mcc;
-  mMnc=mnc;
-  mLat="Latitude: N/A";
-  mLng="Longitude: N/A";
-  mNet="Network Type: N/A";
-  mSignal=signal;
-  mAvgSigStr="Avg Signal: N/A";
-  mSamples="Samples: N/A";
-  mTimestamp=timestamp;
-  mPsc="PSC: N/A";
-  mCountry="Country: N/A";
-  mRecordId=recordId;
+  cellId=cellID;
+  this.lac=lac;
+  this.mcc=mcc;
+  this.mnc=mnc;
+  lat="Latitude: N/A";
+  lon="Longitude: N/A";
+  net="Network Type: N/A";
+  this.signal=signal;
+  avgSigStr="Avg Signal: N/A";
+  samples="Samples: N/A";
+  this.timestamp=timestamp;
+  psc="PSC: N/A";
+  country="Country: N/A";
+  this.recordId=recordId;
 }

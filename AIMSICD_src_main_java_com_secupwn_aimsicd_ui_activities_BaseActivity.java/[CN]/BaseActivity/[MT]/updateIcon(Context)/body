@@ -1,0 +1,12 @@
+{
+  SharedPreferences prefs=context.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
+  final String iconType=prefs.getString(context.getString(R.string.pref_ui_icons_key),"SENSE").toUpperCase();
+  runOnUiThread(new Runnable(){
+    @Override public void run(){
+      if (getActionBar() != null) {
+        getActionBar().setIcon(Icon.getIcon(Icon.Type.valueOf(iconType),((AndroidIMSICatcherDetector)getApplication()).getStatus()));
+      }
+    }
+  }
+);
+}
