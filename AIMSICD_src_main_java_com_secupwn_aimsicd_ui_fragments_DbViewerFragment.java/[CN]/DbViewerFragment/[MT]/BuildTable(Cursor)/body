@@ -27,12 +27,11 @@ case BTS_MEASUREMENTS:
       }
       return adapter;
     }
-case IMPORTED_OCID_DATA:
+case MEASURED_SIGNAL_STRENGTHS:
 {
-    BaseInflaterAdapter<DbeImportItemData> adapter=new BaseInflaterAdapter<>(new DbeImportCardInflater());
-    int count=tableData.getCount();
+    BaseInflaterAdapter<MeasuredCellStrengthCardData> adapter=new BaseInflaterAdapter<>(new MeasuredCellStrengthCardInflater());
     while (tableData.moveToNext()) {
-      DbeImportItemData data=new DbeImportItemData(tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_DBSOURCE)),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_RAT)),String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_MCC))),String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_MNC))),String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_LAC))),String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_CID))),Cell.validatePscValue(this.getContext(),tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_PSC))),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_GPS_LAT)),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_GPS_LON)),String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_IS_GPS_EXACT))),String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_AVG_RANGE))),String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_AVG_SIGNAL))),String.valueOf(tableData.getInt(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_SAMPLES))),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_TIME_FIRST)),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_TIME_LAST)),tableData.getString(tableData.getColumnIndex(DBTableColumnIds.DBE_IMPORT_REJ_CAUSE)),(tableData.getPosition() + 1) + " / " + count);
+      MeasuredCellStrengthCardData data=new MeasuredCellStrengthCardData(tableData.getInt(tableData.getColumnIndex("bts_id")),Integer.parseInt(tableData.getString(tableData.getColumnIndex("rx_signal"))),tableData.getString(tableData.getColumnIndex("time")));
       adapter.addItem(data,false);
     }
     if (!tableData.isClosed()) {
@@ -40,18 +39,6 @@ case IMPORTED_OCID_DATA:
     }
     return adapter;
   }
-case MEASURED_SIGNAL_STRENGTHS:
-{
-  BaseInflaterAdapter<MeasuredCellStrengthCardData> adapter=new BaseInflaterAdapter<>(new MeasuredCellStrengthCardInflater());
-  while (tableData.moveToNext()) {
-    MeasuredCellStrengthCardData data=new MeasuredCellStrengthCardData(tableData.getInt(tableData.getColumnIndex("bts_id")),Integer.parseInt(tableData.getString(tableData.getColumnIndex("rx_signal"))),tableData.getString(tableData.getColumnIndex("time")));
-    adapter.addItem(data,false);
-  }
-  if (!tableData.isClosed()) {
-    tableData.close();
-  }
-  return adapter;
-}
 }
 }
  else {

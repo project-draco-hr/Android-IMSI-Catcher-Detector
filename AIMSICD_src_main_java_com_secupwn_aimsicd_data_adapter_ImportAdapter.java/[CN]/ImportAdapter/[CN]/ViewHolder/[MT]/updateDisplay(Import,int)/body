@@ -1,0 +1,20 @@
+{
+  DB_SOURCE.setText(item.getDbSource());
+  RAT.setText(String.valueOf(item.getRadioAccessTechnology()));
+  MCC.setText(String.valueOf(item.getMobileCountryCode()));
+  MNC.setText(String.valueOf(item.getMobileNetworkCode()));
+  LAC.setText(String.valueOf(item.getLocationAreaCode()));
+  CID.setText(String.valueOf(item.getCellId()));
+  PSC.setText(String.valueOf(item.getPrimaryScramblingCode()));
+  GPS_LAT.setText(String.valueOf(item.getLocationInfo().getLatitude()));
+  GPS_LON.setText(String.valueOf(item.getLocationInfo().getLongitude()));
+  IS_GPS_EXACT.setText(String.valueOf(item.isGpsExact()));
+  AVG_RANGE.setText(String.valueOf(item.getAvgRange()));
+  AVG_SIGNAL.setText(String.valueOf(item.getAvgSignal()));
+  SAMPLES.setText(String.valueOf(item.getSamples()));
+  DateFormat df=DateFormat.getDateTimeInstance();
+  TIME_FIRST.setText(df.format(item.getTimeFirst()));
+  TIME_LAST.setText(df.format(item.getTimeLast()));
+  REJ_CAUSE.setText(String.valueOf(item.getRejCause()));
+  mRecordId.setText(String.valueOf(pos));
+}

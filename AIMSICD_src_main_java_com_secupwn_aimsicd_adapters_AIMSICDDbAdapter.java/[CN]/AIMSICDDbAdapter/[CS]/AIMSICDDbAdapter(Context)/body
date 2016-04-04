@@ -7,5 +7,5 @@
   createDataBase();
   mDb=SQLiteDatabase.openDatabase(mDatabasePath,null,SQLiteDatabase.OPEN_READWRITE);
   this.getWritableDatabase();
-  mTables=new String[]{DBTableColumnIds.DBE_IMPORT_TABLE_NAME,DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_MEASURE_TABLE_NAME};
+  mTables=new String[]{DBTableColumnIds.DBI_BTS_TABLE_NAME,DBTableColumnIds.DBI_MEASURE_TABLE_NAME};
 }

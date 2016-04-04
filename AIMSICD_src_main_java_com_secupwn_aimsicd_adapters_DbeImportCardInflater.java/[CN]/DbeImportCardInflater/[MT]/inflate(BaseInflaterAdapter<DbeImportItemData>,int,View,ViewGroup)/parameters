@@ -1,4 +1,0 @@
-BaseInflaterAdapter<DbeImportItemData> adapter
-int pos
-View convertView
-ViewGroup parent

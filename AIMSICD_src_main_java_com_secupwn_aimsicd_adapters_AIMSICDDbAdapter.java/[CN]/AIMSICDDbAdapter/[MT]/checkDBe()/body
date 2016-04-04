@@ -1,22 +1,23 @@
 {
-  int min_gps_precision=50;
-  String sqlQuery;
-  log.debug("CheckDBe() Attempting to delete bad import data from DBe_import table...");
-  sqlQuery="DELETE FROM DBe_import WHERE samples < 1";
-  mDb.execSQL(sqlQuery);
-  sqlQuery="DELETE FROM DBe_import WHERE LAC < 1";
-  mDb.execSQL(sqlQuery);
-  sqlQuery="DELETE FROM DBe_import WHERE LAC > 65534";
-  mDb.execSQL(sqlQuery);
-  sqlQuery="DELETE FROM DBe_import WHERE CID < 1";
-  mDb.execSQL(sqlQuery);
-  sqlQuery="DELETE FROM DBe_import WHERE CID > 268435455";
-  mDb.execSQL(sqlQuery);
-  sqlQuery="DELETE FROM DBe_import WHERE CID > 65534 AND (RAT='GSM' OR RAT='CDMA')";
-  mDb.execSQL(sqlQuery);
-  log.info("CheckDBe() Deleted BTS entries from DBe_import table with bad LAC/CID...");
-  sqlQuery="UPDATE DBe_import SET rej_cause = rej_cause + 3 WHERE isGPSexact=0";
-  mDb.execSQL(sqlQuery);
-  sqlQuery="UPDATE DBe_import SET rej_cause = rej_cause + 3 WHERE avg_range < " + min_gps_precision;
-  mDb.execSQL(sqlQuery);
+  return new Realm.Transaction(){
+    @Override public void execute(    Realm realm){
+      int min_gps_precision=50;
+      String sqlQuery;
+      log.debug("CheckDBe() Attempting to delete bad import data from Imports database...");
+      realm.where(Import.class).lessThan("samples",1).findAll().clear();
+      realm.where(Import.class).lessThan("locationAreaCode",1).findAll().clear();
+      realm.where(Import.class).greaterThan("locationAreaCode",65534).findAll().clear();
+      realm.where(Import.class).lessThan("cell",1).findAll().clear();
+      realm.where(Import.class).greaterThan("cellId",268435455).findAll().clear();
+      realm.where(Import.class).greaterThan("cellId",65534).beginGroup().equalTo("radioAccessTechnology","GSM").or().equalTo("radioAccessTechnology","CDMA").endGroup().findAll().clear();
+      log.info("CheckDBe() Deleted BTS entries from Import realm with bad LAC/CID...");
+      for (      Import i : realm.where(Import.class).equalTo("gpsExact",false).findAll()) {
+        i.setRejCause(i.getRejCause() + 3);
+      }
+      for (      Import i : realm.where(Import.class).lessThan("avgRange",min_gps_precision).findAll()) {
+        i.setRejCause(i.getRejCause() + 3);
+      }
+    }
+  }
+;
 }

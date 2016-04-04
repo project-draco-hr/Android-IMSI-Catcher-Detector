@@ -1,0 +1,3 @@
+Context context
+RealmResults<Import> realmResults
+boolean automaticUpdate

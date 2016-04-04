@@ -10,12 +10,15 @@
       }
       mTableSelected=(StatesDbViewer)selectedItem;
 switch (position) {
-case 3:
-        setListAdapter(new DefaultLocationAdapter(getActivity(),realm.allObjects(DefaultLocation.class),true));
+case 2:
+        setListAdapter(new ImportAdapter(getActivity(),realm.allObjects(Import.class),true));
       break;
-case 4:
-    setListAdapter(new SmsDataAdapter(getActivity(),realm.allObjects(SmsData.class),true));
+case 3:
+    setListAdapter(new DefaultLocationAdapter(getActivity(),realm.allObjects(DefaultLocation.class),true));
   break;
+case 4:
+setListAdapter(new SmsDataAdapter(getActivity(),realm.allObjects(SmsData.class),true));
+break;
 case 6:
 setListAdapter(new EventAdapter(getActivity(),realm.allObjects(Event.class),true));
 break;
@@ -32,9 +35,6 @@ result=mDb.returnDBiBts();
 break;
 case 1:
 result=mDb.returnDBiMeasure();
-break;
-case 2:
-result=mDb.returnDBeImport();
 break;
 case 5:
 result=mDb.returnDBiMeasure();

@@ -1,13 +1,14 @@
 {
   super.onPostExecute(result);
   TinyDB tinydb=TinyDB.getInstance();
+  @Cleanup Realm realm=Realm.getDefaultInstance();
 switch (mType) {
 case DBE_DOWNLOAD_REQUEST:
     if ("Successful".equals(result)) {
       if (mDbAdapter.populateDBeImport()) {
         Helpers.msgShort(mAppContext,mAppContext.getString(R.string.opencellid_data_successfully_received));
       }
-      mDbAdapter.checkDBe();
+      realm.executeTransaction(mDbAdapter.checkDBe());
       tinydb.putBoolean("ocid_downloaded",true);
     }
  else     if ("Timeout".equals(result)) {
@@ -23,7 +24,7 @@ if ("Successful".equals(result)) {
     Intent intent=new Intent(MapFragment.updateOpenCellIDMarkers);
     LocalBroadcastManager.getInstance(mAppContext).sendBroadcast(intent);
     Helpers.msgShort(mAppContext,mAppContext.getString(R.string.opencellid_data_successfully_received_markers_updated));
-    mDbAdapter.checkDBe();
+    realm.executeTransaction(mDbAdapter.checkDBe());
     tinydb.putBoolean("ocid_downloaded",true);
   }
 }

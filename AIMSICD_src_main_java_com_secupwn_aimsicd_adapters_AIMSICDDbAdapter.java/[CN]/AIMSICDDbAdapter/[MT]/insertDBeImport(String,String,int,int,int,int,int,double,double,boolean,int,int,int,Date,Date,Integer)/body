@@ -1,0 +1,29 @@
+{
+  return new Realm.Transaction(){
+    @Override public void execute(    Realm realm){
+      long count=realm.where(Import.class).equalTo("locationAreaCode",lac).equalTo("cellId",cid).count();
+      if (count <= 0) {
+        Import anImport=realm.createObject(Import.class);
+        anImport.setDbSource(db_src);
+        anImport.setRadioAccessTechnology(rat);
+        anImport.setMobileCountryCode(mcc);
+        anImport.setMobileNetworkCode(mnc);
+        anImport.setLocationAreaCode(lac);
+        anImport.setCellId(cid);
+        anImport.setPrimaryScramblingCode(psc);
+        LocationInfo locationInfo=realm.createObject(LocationInfo.class);
+        locationInfo.setLatitude(lat);
+        locationInfo.setLongitude(lon);
+        anImport.setLocationInfo(locationInfo);
+        anImport.setGpsExact(isGpsExact);
+        anImport.setAvgRange(avg_range);
+        anImport.setAvgSignal(avg_signal);
+        anImport.setSamples(samples);
+        anImport.setTimeFirst(time_first);
+        anImport.setTimeLast(time_last);
+        anImport.setRejCause(rej_cause);
+      }
+    }
+  }
+;
+}
