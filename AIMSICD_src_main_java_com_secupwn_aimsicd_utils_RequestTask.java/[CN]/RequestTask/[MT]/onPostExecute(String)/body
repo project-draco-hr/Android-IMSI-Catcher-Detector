@@ -5,7 +5,7 @@
 switch (mType) {
 case DBE_DOWNLOAD_REQUEST:
     if ("Successful".equals(result)) {
-      if (mDbAdapter.populateDBeImport()) {
+      if (mDbAdapter.populateDBeImport(realm)) {
         Helpers.msgShort(mAppContext,mAppContext.getString(R.string.opencellid_data_successfully_received));
       }
       realm.executeTransaction(mDbAdapter.checkDBe());
@@ -20,7 +20,7 @@ case DBE_DOWNLOAD_REQUEST:
   break;
 case DBE_DOWNLOAD_REQUEST_FROM_MAP:
 if ("Successful".equals(result)) {
-  if (mDbAdapter.populateDBeImport()) {
+  if (mDbAdapter.populateDBeImport(realm)) {
     Intent intent=new Intent(MapFragment.updateOpenCellIDMarkers);
     LocalBroadcastManager.getInstance(mAppContext).sendBroadcast(intent);
     Helpers.msgShort(mAppContext,mAppContext.getString(R.string.opencellid_data_successfully_received_markers_updated));

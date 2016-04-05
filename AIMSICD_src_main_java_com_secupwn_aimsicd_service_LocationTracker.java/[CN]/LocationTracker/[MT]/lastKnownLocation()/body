@@ -22,7 +22,8 @@
           Cell cell=context.getCell();
           if (cell != null) {
             log.debug("Looking up MCC " + cell.getMcc());
-            LocationInfo defLoc=mDbHelper.getDefaultLocation(cell.getMcc());
+            @Cleanup Realm realm=Realm.getDefaultInstance();
+            LocationInfo defLoc=mDbHelper.getDefaultLocation(realm,cell.getMcc());
             loc=GeoLocation.fromDegrees(defLoc.getLatitude(),defLoc.getLongitude());
           }
         }

@@ -12,7 +12,6 @@
       if (!csvCellID.isEmpty()) {
         int lines=csvCellID.size();
         log.info("UpdateOpenCellID: OCID CSV size (lines): " + lines);
-        @Cleanup Realm realm=Realm.getDefaultInstance();
         int rowCounter;
         for (rowCounter=1; rowCounter < lines; rowCounter++) {
           String lat=csvCellID.get(rowCounter)[0], lon=csvCellID.get(rowCounter)[1], mcc=csvCellID.get(rowCounter)[2], mnc=csvCellID.get(rowCounter)[3], lac=csvCellID.get(rowCounter)[4], cellid=csvCellID.get(rowCounter)[5], range=csvCellID.get(rowCounter)[6], avg_sig=csvCellID.get(rowCounter)[7], samples=csvCellID.get(rowCounter)[8], change=csvCellID.get(rowCounter)[9], radio=csvCellID.get(rowCounter)[10], psc=csvCellID.get(rowCounter)[13];
