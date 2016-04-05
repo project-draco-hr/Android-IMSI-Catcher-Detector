@@ -24,11 +24,11 @@
           event.setLocationAreaCode(lac);
           event.setCellId(cid);
           event.setPrimaryScramblingCode(psc);
-          LocationInfo locationInfo=realm.createObject(LocationInfo.class);
-          locationInfo.setLatitude(gpsd_lat);
-          locationInfo.setLongitude(gpsd_lon);
-          locationInfo.setAccuracy(gpsd_accu);
-          event.setLocationInfo(locationInfo);
+          GpsLocation gpsLocation=realm.createObject(GpsLocation.class);
+          gpsLocation.setLatitude(gpsd_lat);
+          gpsLocation.setLongitude(gpsd_lon);
+          gpsLocation.setAccuracy(gpsd_accu);
+          event.setGpsLocation(gpsLocation);
           event.setDfId(DF_id);
           event.setDfDescription(DF_desc);
         }

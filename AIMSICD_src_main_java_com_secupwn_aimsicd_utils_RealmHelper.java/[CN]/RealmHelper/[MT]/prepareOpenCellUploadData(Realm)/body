@@ -22,7 +22,7 @@
         int size=c.size();
         log.debug("OCID UPLOAD: row count = " + size);
         for (        Measure measure : c) {
-          csvWrite.writeNext(String.valueOf(measure.getBts().getMobileCountryCode()),String.valueOf(measure.getBts().getMobileNetworkCode()),String.valueOf(measure.getBts().getLocationAreaCode()),String.valueOf(measure.getBts().getCellId()),String.valueOf(measure.getGpsd().getLongitude()),String.valueOf(measure.getGpsd().getLatitude()),String.valueOf(measure.getRxSignal()),String.valueOf(measure.getTime().getTime()),String.valueOf(measure.getGpsd().getAccuracy()));
+          csvWrite.writeNext(String.valueOf(measure.getBaseStation().getMobileCountryCode()),String.valueOf(measure.getBaseStation().getMobileNetworkCode()),String.valueOf(measure.getBaseStation().getLocationAreaCode()),String.valueOf(measure.getBaseStation().getCellId()),String.valueOf(measure.getGpsd().getLongitude()),String.valueOf(measure.getGpsd().getLatitude()),String.valueOf(measure.getRxSignal()),String.valueOf(measure.getTime().getTime()),String.valueOf(measure.getGpsd().getAccuracy()));
         }
         csvWrite.close();
       }

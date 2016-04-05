@@ -8,7 +8,7 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  SmsDetectionString item=getItem(position);
-  holder.updateDisplay(item);
+  SmsDetectionString smsDetectionString=getItem(position);
+  holder.updateDisplay(smsDetectionString);
   return convertView;
 }

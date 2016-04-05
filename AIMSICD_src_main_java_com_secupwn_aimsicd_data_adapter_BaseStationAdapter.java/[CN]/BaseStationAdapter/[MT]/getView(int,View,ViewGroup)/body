@@ -8,7 +8,7 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  final BTS item=getItem(position);
+  final BaseTransceiverStation item=getItem(position);
   holder.updateDisplay(item,position);
   return convertView;
 }

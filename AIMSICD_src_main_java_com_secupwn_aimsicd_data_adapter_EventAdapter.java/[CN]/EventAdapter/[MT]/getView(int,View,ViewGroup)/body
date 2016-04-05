@@ -8,7 +8,7 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  final Event item=getItem(position);
-  holder.updateDisplay(item,position);
+  final Event event=getItem(position);
+  holder.updateDisplay(event,position);
   return convertView;
 }

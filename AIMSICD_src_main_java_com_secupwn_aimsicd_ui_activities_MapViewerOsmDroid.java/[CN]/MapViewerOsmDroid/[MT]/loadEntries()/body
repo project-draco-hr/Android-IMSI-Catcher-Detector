@@ -5,19 +5,19 @@
       loadOcidMarkersByNetwork();
       List<CellTowerMarker> items=new LinkedList<>();
       @Cleanup Realm realm=Realm.getDefaultInstance();
-      RealmResults<BTS> allCells=realm.allObjects(BTS.class);
-      if (allCells.size() > 0) {
-        for (        BTS c : allCells) {
+      RealmResults<BaseTransceiverStation> baseStations=realm.allObjects(BaseTransceiverStation.class);
+      if (baseStations.size() > 0) {
+        for (        BaseTransceiverStation baseStation : baseStations) {
           if (isCancelled()) {
             return null;
           }
-          final int cellID=c.getCellId();
-          final int lac=c.getLocationAreaCode();
-          final int mcc=c.getMobileCountryCode();
-          final int mnc=c.getMobileNetworkCode();
-          final int psc=c.getPrimaryScramblingCode();
-          final double dLat=c.getLocationInfo().getLatitude();
-          final double dLng=c.getLocationInfo().getLongitude();
+          final int cellID=baseStation.getCellId();
+          final int lac=baseStation.getLocationAreaCode();
+          final int mcc=baseStation.getMobileCountryCode();
+          final int mnc=baseStation.getMobileNetworkCode();
+          final int psc=baseStation.getPrimaryScramblingCode();
+          final double dLat=baseStation.getGpsLocation().getLatitude();
+          final double dLng=baseStation.getGpsLocation().getLongitude();
           if (Double.doubleToRawLongBits(dLat) == 0 && Double.doubleToRawLongBits(dLng) == 0) {
             continue;
           }
@@ -41,7 +41,7 @@
       if (mBound) {
         try {
           int mcc=mAimsicdService.getCell().getMobileCountryCode();
-          LocationInfo d=mDbHelper.getDefaultLocation(realm,mcc);
+          GpsLocation d=mDbHelper.getDefaultLocation(realm,mcc);
           ret=new GeoPoint(d.getLatitude(),d.getLongitude());
         }
  catch (        Exception e) {

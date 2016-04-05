@@ -8,7 +8,7 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  final Import item=getItem(position);
-  holder.updateDisplay(item,position);
+  final Import anImport=getItem(position);
+  holder.updateDisplay(anImport,position);
   return convertView;
 }

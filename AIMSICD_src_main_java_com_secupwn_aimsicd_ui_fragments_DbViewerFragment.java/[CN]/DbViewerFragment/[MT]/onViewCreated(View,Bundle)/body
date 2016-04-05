@@ -11,7 +11,7 @@
       mTableSelected=(StatesDbViewer)selectedItem;
 switch (position) {
 case 0:
-        setListAdapter(new BtsAdapter(getActivity(),realm.allObjects(BTS.class),true));
+        setListAdapter(new BaseStationAdapter(getActivity(),realm.allObjects(BaseTransceiverStation.class),true));
       break;
 case 1:
     setListAdapter(new MeasureAdapter(getActivity(),realm.allObjects(Measure.class),true));

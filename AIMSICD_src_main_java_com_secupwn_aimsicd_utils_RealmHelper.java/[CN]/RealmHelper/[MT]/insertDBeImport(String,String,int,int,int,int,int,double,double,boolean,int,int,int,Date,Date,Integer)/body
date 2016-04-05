@@ -11,10 +11,10 @@
         anImport.setLocationAreaCode(lac);
         anImport.setCellId(cid);
         anImport.setPrimaryScramblingCode(psc);
-        LocationInfo locationInfo=realm.createObject(LocationInfo.class);
-        locationInfo.setLatitude(lat);
-        locationInfo.setLongitude(lon);
-        anImport.setLocationInfo(locationInfo);
+        GpsLocation gpsLocation=realm.createObject(GpsLocation.class);
+        gpsLocation.setLatitude(lat);
+        gpsLocation.setLongitude(lon);
+        anImport.setGpsLocation(gpsLocation);
         anImport.setGpsExact(isGpsExact);
         anImport.setAvgRange(avg_range);
         anImport.setAvgSignal(avg_signal);

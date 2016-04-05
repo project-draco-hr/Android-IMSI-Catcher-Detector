@@ -1,7 +1,7 @@
 {
-  mCountry.setText(item.getCountry());
-  mMcc.setText(item.getMobileCountryCode());
-  mLat.setText(String.valueOf(item.getLocationInfo().getLatitude()));
-  mLng.setText(String.valueOf(item.getLocationInfo().getLongitude()));
+  mCountry.setText(defaultLocation.getCountry());
+  mMcc.setText(defaultLocation.getMobileCountryCode());
+  mLat.setText(String.valueOf(defaultLocation.getGpsLocation().getLatitude()));
+  mLng.setText(String.valueOf(defaultLocation.getGpsLocation().getLongitude()));
   mRecordId.setText(position);
 }

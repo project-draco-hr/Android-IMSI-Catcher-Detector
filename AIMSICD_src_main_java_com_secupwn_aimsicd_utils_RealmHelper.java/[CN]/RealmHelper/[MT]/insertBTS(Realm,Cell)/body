@@ -1,30 +1,30 @@
 {
   if (!cellInDbiBts(realm,cell.getLocationAreaCode(),cell.getCellId())) {
     realm.beginTransaction();
-    BTS bts=realm.createObject(BTS.class);
-    bts.setMobileCountryCode(cell.getMobileCountryCode());
-    bts.setMobileNetworkCode(cell.getMobileNetworkCode());
-    bts.setLocationAreaCode(cell.getLocationAreaCode());
-    bts.setCellId(cell.getCellId());
-    bts.setPrimaryScramblingCode(cell.getPrimaryScramblingCode());
-    bts.setTimeFirst(new Date());
-    bts.setTimeLast(new Date());
-    LocationInfo locationInfo=realm.createObject(LocationInfo.class);
-    locationInfo.setLatitude(cell.getLat());
-    locationInfo.setLongitude(cell.getLon());
-    bts.setLocationInfo(locationInfo);
+    BaseTransceiverStation baseStation=realm.createObject(BaseTransceiverStation.class);
+    baseStation.setMobileCountryCode(cell.getMobileCountryCode());
+    baseStation.setMobileNetworkCode(cell.getMobileNetworkCode());
+    baseStation.setLocationAreaCode(cell.getLocationAreaCode());
+    baseStation.setCellId(cell.getCellId());
+    baseStation.setPrimaryScramblingCode(cell.getPrimaryScramblingCode());
+    baseStation.setTimeFirst(new Date());
+    baseStation.setTimeLast(new Date());
+    GpsLocation gpsLocation=realm.createObject(GpsLocation.class);
+    gpsLocation.setLatitude(cell.getLat());
+    gpsLocation.setLongitude(cell.getLon());
+    baseStation.setGpsLocation(gpsLocation);
     realm.commitTransaction();
   }
  else {
-    BTS bts=realm.where(BTS.class).equalTo("cellId",cell.getCellId()).findFirst();
+    BaseTransceiverStation baseStation=realm.where(BaseTransceiverStation.class).equalTo("cellId",cell.getCellId()).findFirst();
     realm.beginTransaction();
-    bts.setTimeLast(new Date());
+    baseStation.setTimeLast(new Date());
     if (Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0) {
-      if (bts.getLocationInfo() == null) {
-        bts.setLocationInfo(realm.createObject(LocationInfo.class));
+      if (baseStation.getGpsLocation() == null) {
+        baseStation.setGpsLocation(realm.createObject(GpsLocation.class));
       }
-      bts.getLocationInfo().setLatitude(cell.getLat());
-      bts.getLocationInfo().setLongitude(cell.getLon());
+      baseStation.getGpsLocation().setLatitude(cell.getLat());
+      baseStation.getGpsLocation().setLongitude(cell.getLon());
     }
     realm.commitTransaction();
     log.info("BTS updated: CID=" + cell.getCellId() + " LAC="+ cell.getLocationAreaCode());
@@ -32,17 +32,17 @@
   if (!cellInDbiMeasure(realm,cell.getCellId())) {
     realm.beginTransaction();
     Measure measure=realm.createObject(Measure.class);
-    BTS bts=realm.where(BTS.class).equalTo("cellId",cell.getCellId()).findFirst();
-    measure.setBts(bts);
+    BaseTransceiverStation baseStation=realm.where(BaseTransceiverStation.class).equalTo("cellId",cell.getCellId()).findFirst();
+    measure.setBaseStation(baseStation);
     measure.setTime(new Date());
-    LocationInfo locationInfo=realm.createObject(LocationInfo.class);
-    locationInfo.setLatitude(cell.getLat());
-    locationInfo.setLongitude(cell.getLon());
-    locationInfo.setAccuracy(cell.getAccuracy());
-    measure.setGpsd(locationInfo);
+    GpsLocation gpsLocation=realm.createObject(GpsLocation.class);
+    gpsLocation.setLatitude(cell.getLat());
+    gpsLocation.setLongitude(cell.getLon());
+    gpsLocation.setAccuracy(cell.getAccuracy());
+    measure.setGpsd(gpsLocation);
     measure.setRxSignal(cell.getDbm());
     measure.setRadioAccessTechnology(String.valueOf(cell.getRat()));
-    measure.setTa(cell.getTimingAdvance());
+    measure.setTimingAdvance(cell.getTimingAdvance());
     measure.setSubmitted(false);
     measure.setNeighbour(false);
     realm.commitTransaction();
@@ -50,7 +50,7 @@
   }
  else {
     realm.beginTransaction();
-    RealmResults<Measure> all=realm.where(Measure.class).equalTo("bts.cellId",cell.getCellId()).findAll();
+    RealmResults<Measure> all=realm.where(Measure.class).equalTo("baseStation.cellId",cell.getCellId()).findAll();
     for (    Measure measure : all) {
       if (Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0) {
         measure.getGpsd().setLatitude(cell.getLat());
@@ -63,7 +63,7 @@
         measure.setRxSignal(cell.getDbm());
       }
       if (cell.getTimingAdvance() > 0) {
-        measure.setTa(cell.getTimingAdvance());
+        measure.setTimingAdvance(cell.getTimingAdvance());
       }
     }
     realm.commitTransaction();

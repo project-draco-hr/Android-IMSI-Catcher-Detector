@@ -1,4 +1,4 @@
 {
-  long count=realm.where(Measure.class).equalTo("bts.cellId",cellId).count();
+  long count=realm.where(Measure.class).equalTo("baseStation.cellId",cellId).count();
   return count > 0;
 }

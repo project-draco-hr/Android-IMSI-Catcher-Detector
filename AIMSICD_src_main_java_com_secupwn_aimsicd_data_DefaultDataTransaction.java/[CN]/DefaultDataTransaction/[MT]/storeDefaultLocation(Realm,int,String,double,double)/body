@@ -1,9 +1,9 @@
 {
-  LocationInfo locationInfo=new LocationInfo();
-  locationInfo.setLatitude(lat);
-  locationInfo.setLongitude(lon);
+  GpsLocation gpsLocation=new GpsLocation();
+  gpsLocation.setLatitude(lat);
+  gpsLocation.setLongitude(lon);
   DefaultLocation defaultLocation=new DefaultLocation();
-  defaultLocation.setLocationInfo(locationInfo);
+  defaultLocation.setGpsLocation(gpsLocation);
   defaultLocation.setCountry(country);
   defaultLocation.setMobileCountryCode(mcc);
   realm.copyToRealm(defaultLocation);
