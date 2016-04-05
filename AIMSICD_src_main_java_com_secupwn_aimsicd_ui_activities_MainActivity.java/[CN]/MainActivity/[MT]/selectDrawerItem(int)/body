@@ -30,12 +30,7 @@ new RequestTask(this,RequestTask.BACKUP_DATABASE).execute();
 break;
 }
 if (selectedItem.getId() == DrawerMenu.ID.DATABASE_SETTINGS.RESTORE_DB) {
-if (CellTracker.LAST_DB_BACKUP_VERSION < AIMSICDDbAdapter.DATABASE_VERSION) {
-Helpers.msgLong(this,getString(R.string.unable_to_restore_backup_from_previous_database_version));
-}
- else {
 new RequestTask(this,RequestTask.RESTORE_DATABASE).execute();
-}
 }
  else if (selectedItem.getId() == DrawerMenu.ID.DATABASE_SETTINGS.RESET_DB) {
 Helpers.askAndDeleteDb(this);
@@ -55,8 +50,6 @@ log.warn("Exception in smstracking module: " + ee.getMessage());
 if (mAimsicdService != null) {
 mAimsicdService.onDestroy();
 }
-log.info("Closing db from DrawerMenu.ID.APPLICATION.QUIT");
-new AIMSICDDbAdapter(getApplicationContext()).close();
 finish();
 }
 mDrawerList.setItemChecked(position,true);

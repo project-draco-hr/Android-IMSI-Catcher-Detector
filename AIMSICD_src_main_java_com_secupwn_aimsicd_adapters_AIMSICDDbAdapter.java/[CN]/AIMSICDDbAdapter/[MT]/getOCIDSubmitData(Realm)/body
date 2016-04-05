@@ -1,0 +1,3 @@
+{
+  return realm.where(Measure.class).notEqualTo("submitted",true).findAll();
+}

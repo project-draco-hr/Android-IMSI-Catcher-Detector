@@ -1,0 +1,14 @@
+{
+  RealmResults<BTS> btsRealmResults=realm.where(BTS.class).equalTo("cellId",cell.getCid()).findAll();
+  for (  BTS bts : btsRealmResults) {
+    int lac=bts.getLocationAreaCode();
+    if (cell.getLocationAreaCode() != lac) {
+      log.info("ALERT: Changing LAC on CID: " + cell.getCid() + " LAC(API): "+ cell.getLocationAreaCode()+ " LAC(DBi): "+ lac);
+      return false;
+    }
+ else {
+      log.verbose("LAC checked - no change on CID:" + cell.getCid() + " LAC(API): "+ cell.getLocationAreaCode()+ " LAC(DBi): "+ lac);
+    }
+  }
+  return true;
+}

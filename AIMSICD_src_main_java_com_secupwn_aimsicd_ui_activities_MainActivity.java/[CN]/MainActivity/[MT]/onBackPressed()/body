@@ -16,8 +16,6 @@
  catch (    Exception ee) {
       log.error("Error: Stopping SMS detection : " + ee.getMessage());
     }
-    log.info("Closing db from onBackPressed()");
-    new AIMSICDDbAdapter(getApplicationContext()).close();
     finish();
   }
 }

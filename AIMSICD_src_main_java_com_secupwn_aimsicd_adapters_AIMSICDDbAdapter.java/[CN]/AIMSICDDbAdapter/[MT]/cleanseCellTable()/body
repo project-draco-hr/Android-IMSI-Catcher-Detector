@@ -1,5 +1,8 @@
 {
-  mDb.execSQL("DELETE FROM DBi_bts WHERE _id NOT IN (SELECT MAX(_id) FROM DBi_bts)");
-  String query2=String.format("DELETE FROM DBi_bts WHERE CID = %d OR CID = -1",Integer.MAX_VALUE);
-  mDb.execSQL(query2);
+  return new Realm.Transaction(){
+    @Override public void execute(    Realm realm){
+      realm.where(BTS.class).equalTo("cellId",-1).or().equalTo("cellId",Integer.MAX_VALUE).findAll().clear();
+    }
+  }
+;
 }

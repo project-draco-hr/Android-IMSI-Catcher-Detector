@@ -1,5 +1,0 @@
-{
-  cid.setText(item.getCellID());
-  rss.setText(item.getSignal());
-  time.setText(item.getTimestamp());
-}

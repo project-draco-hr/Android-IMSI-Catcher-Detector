@@ -1,5 +1,11 @@
 {
-  ContentValues ocidValues=new ContentValues();
-  ocidValues.put("isSubmitted",1);
-  mDb.update("DBi_measure",ocidValues,"isSubmitted<>?",new String[]{"1"});
+  return new Realm.Transaction(){
+    @Override public void execute(    Realm realm){
+      RealmResults<Measure> all=realm.where(Measure.class).findAll();
+      for (      Measure measure : all) {
+        measure.setSubmitted(true);
+      }
+    }
+  }
+;
 }

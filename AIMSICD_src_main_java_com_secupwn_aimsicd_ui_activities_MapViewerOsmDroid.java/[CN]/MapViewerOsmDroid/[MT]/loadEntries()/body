@@ -4,25 +4,20 @@
       mCellTowerGridMarkerClusterer.getItems().clear();
       loadOcidMarkersByNetwork();
       List<CellTowerMarker> items=new LinkedList<>();
-      Cursor c=null;
-      try {
-        c=mDbHelper.getCellData();
-      }
- catch (      IllegalStateException ix) {
-        log.error("Problem getting data from CELL_TABLE",ix);
-      }
-      if (c != null && c.moveToFirst()) {
-        do {
+      @Cleanup Realm realm=Realm.getDefaultInstance();
+      RealmResults<BTS> allCells=realm.allObjects(BTS.class);
+      if (allCells.size() > 0) {
+        for (        BTS c : allCells) {
           if (isCancelled()) {
             return null;
           }
-          final int cellID=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_CID));
-          final int lac=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAC));
-          final int mcc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MCC));
-          final int mnc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MNC));
-          final int psc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_PSC));
-          final double dLat=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAT));
-          final double dLng=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LON));
+          final int cellID=c.getCellId();
+          final int lac=c.getLocationAreaCode();
+          final int mcc=c.getMobileCountryCode();
+          final int mnc=c.getMobileNetworkCode();
+          final int psc=c.getPrimaryScramblingCode();
+          final double dLat=c.getLocationInfo().getLatitude();
+          final double dLng=c.getLocationInfo().getLongitude();
           if (Double.doubleToRawLongBits(dLat) == 0 && Double.doubleToRawLongBits(dLng) == 0) {
             continue;
           }
@@ -33,7 +28,6 @@
             items.add(ovm);
           }
         }
- while (c.moveToNext());
       }
  else {
         runOnUiThread(new Runnable(){
@@ -53,9 +47,6 @@
  catch (        Exception e) {
           log.error("Error getting default location!",e);
         }
-      }
-      if (c != null) {
-        c.close();
       }
       while (mAimsicdService == null) {
         try {

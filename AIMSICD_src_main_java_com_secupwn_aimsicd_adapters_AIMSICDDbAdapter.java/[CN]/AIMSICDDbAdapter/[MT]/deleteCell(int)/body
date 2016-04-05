@@ -1,4 +1,0 @@
-{
-  log.info("Deleted CID: " + cellId);
-  return mDb.delete("DBi_bts","CID=" + cellId,null);
-}

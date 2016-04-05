@@ -1,0 +1,13 @@
+{
+  bts_id.setText(item.getBts().getCellId());
+  nc_list.setText(item.getNcList());
+  time.setText(DateFormat.getDateTimeInstance().format(item.getTime()));
+  gpsd_lat.setText(String.valueOf(item.getGpsd().getLatitude()));
+  gpsd_lon.setText(String.valueOf(item.getGpsd().getLongitude()));
+  gpsd_accu.setText(String.valueOf(item.getGpsd().getAccuracy()));
+  rx_signal.setText(item.getRxSignal());
+  rat.setText(item.getRadioAccessTechnology());
+  isSubmitted.setText(String.valueOf(item.isSubmitted()));
+  isNeighbour.setText(String.valueOf(item.isNeighbour()));
+  mRecordId.setText(String.valueOf(position));
+}

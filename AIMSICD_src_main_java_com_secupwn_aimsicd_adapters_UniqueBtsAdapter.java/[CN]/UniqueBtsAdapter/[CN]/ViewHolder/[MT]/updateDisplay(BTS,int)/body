@@ -1,0 +1,16 @@
+{
+  LAC.setText(String.valueOf(item.getLocationAreaCode()));
+  CID.setText(String.valueOf(item.getCellId()));
+  MCC.setText(String.valueOf(item.getMobileCountryCode()));
+  MNC.setText(String.valueOf(item.getMobileNetworkCode()));
+  PSC.setText(String.valueOf(item.getPrimaryScramblingCode()));
+  T3212.setText(R.string.n_a);
+  A5X.setText(R.string.n_a);
+  ST_ID.setText(R.string.n_a);
+  DateFormat dateFormat=DateFormat.getDateTimeInstance();
+  TIME_FIRST.setText(dateFormat.format(item.getTimeFirst()));
+  TIME_LAST.setText(dateFormat.format(item.getTimeLast()));
+  LAT.setText(String.valueOf(item.getLocationInfo().getLatitude()));
+  LON.setText(String.valueOf(item.getLocationInfo().getLongitude()));
+  RecordId.setText(String.valueOf(position));
+}

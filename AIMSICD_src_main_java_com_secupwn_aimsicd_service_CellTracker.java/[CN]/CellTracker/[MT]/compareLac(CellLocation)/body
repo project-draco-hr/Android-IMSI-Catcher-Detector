@@ -8,7 +8,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
   if (gsmCellLocation != null) {
     monitorCell.setLocationAreaCode(gsmCellLocation.getLac());
     monitorCell.setCid(gsmCellLocation.getCid());
-    boolean lacOK=dbHelper.checkLAC(monitorCell);
+    boolean lacOK=dbHelper.checkLAC(realm,monitorCell);
     if (!lacOK) {
       changedLAC=true;
       dbHelper.toEventLog(realm,1,"Changing LAC");
@@ -35,7 +35,7 @@ CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)location;
 if (cdmaCellLocation != null) {
 monitorCell.setLocationAreaCode(cdmaCellLocation.getNetworkId());
 monitorCell.setCid(cdmaCellLocation.getBaseStationId());
-boolean lacOK=dbHelper.checkLAC(monitorCell);
+boolean lacOK=dbHelper.checkLAC(realm,monitorCell);
 if (!lacOK) {
 changedLAC=true;
 dbHelper.toEventLog(realm,1,"Changing LAC");

@@ -1,3 +1,0 @@
-{
-  return "CID: " + cellID + "  (0x"+ Integer.toHexString(cellID)+ ")";
-}

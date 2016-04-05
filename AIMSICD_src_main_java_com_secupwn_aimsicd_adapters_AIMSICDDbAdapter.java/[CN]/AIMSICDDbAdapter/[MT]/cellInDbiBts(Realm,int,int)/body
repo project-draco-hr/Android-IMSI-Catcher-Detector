@@ -1,0 +1,4 @@
+{
+  long count=realm.where(BTS.class).equalTo("locationAreaCode",lac).equalTo("cellId",cellID).count();
+  return count > 0;
+}

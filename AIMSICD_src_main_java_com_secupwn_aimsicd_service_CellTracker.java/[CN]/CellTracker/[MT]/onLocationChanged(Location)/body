@@ -36,7 +36,8 @@ prefsEditor=prefs.edit();
 prefsEditor.putString(context.getString(R.string.data_last_lat_lon),String.valueOf(loc.getLatitude()) + ":" + String.valueOf(loc.getLongitude()));
 prefsEditor.apply();
 if (trackingCell) {
-dbHelper.insertBTS(device.cell);
+@Cleanup Realm realm=Realm.getDefaultInstance();
+dbHelper.insertBTS(realm,device.cell);
 }
 }
 }

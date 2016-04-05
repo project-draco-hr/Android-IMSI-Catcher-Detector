@@ -10,14 +10,23 @@
       }
       mTableSelected=(StatesDbViewer)selectedItem;
 switch (position) {
-case 2:
-        setListAdapter(new ImportAdapter(getActivity(),realm.allObjects(Import.class),true));
+case 0:
+        setListAdapter(new UniqueBtsAdapter(getActivity(),realm.allObjects(BTS.class),true));
       break;
-case 3:
-    setListAdapter(new DefaultLocationAdapter(getActivity(),realm.allObjects(DefaultLocation.class),true));
+case 1:
+    setListAdapter(new MeasureAdapter(getActivity(),realm.allObjects(Measure.class),true));
   break;
+case 2:
+setListAdapter(new ImportAdapter(getActivity(),realm.allObjects(Import.class),true));
+break;
+case 3:
+setListAdapter(new DefaultLocationAdapter(getActivity(),realm.allObjects(DefaultLocation.class),true));
+break;
 case 4:
 setListAdapter(new SmsDataAdapter(getActivity(),realm.allObjects(SmsData.class),true));
+break;
+case 5:
+setListAdapter(new MeasuredCellStrengthAdapter(getActivity(),realm.allObjects(Measure.class),true));
 break;
 case 6:
 setListAdapter(new EventAdapter(getActivity(),realm.allObjects(Event.class),true));
@@ -26,35 +35,7 @@ case 7:
 setListAdapter(new DetectionStringAdapter(getActivity(),realm.allObjects(SmsDetectionString.class),true));
 break;
 default :
-new AsyncTask<Void,Void,ListAdapter>(){
-@Override protected ListAdapter doInBackground(Void... params){
-Cursor result;
-switch (position) {
-case 0:
-result=mDb.returnDBiBts();
-break;
-case 1:
-result=mDb.returnDBiMeasure();
-break;
-case 5:
-result=mDb.returnDBiMeasure();
-break;
-default :
 throw new IllegalArgumentException("Unknown type of table");
-}
-BaseInflaterAdapter adapter=null;
-if (result != null) {
-adapter=BuildTable(result);
-result.close();
-}
-return adapter;
-}
-@Override protected void onPostExecute(ListAdapter adapter){
-setListAdapter(adapter);
-}
-}
-.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-break;
 }
 }
 @Override public void onNothingSelected(AdapterView<?> parentView){

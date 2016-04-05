@@ -61,7 +61,6 @@ Helpers.msgLong(mAppContext,mAppContext.getString(R.string.error_restoring_datab
 break;
 case BACKUP_DATABASE:
 if ("Successful".equals(result)) {
-tinydb.putInt("pref_last_db_backup_version",AIMSICDDbAdapter.DATABASE_VERSION);
 Activity lActivity=getActivity();
 if (lActivity != null) {
 final AlertDialog.Builder builder=new AlertDialog.Builder(lActivity);
