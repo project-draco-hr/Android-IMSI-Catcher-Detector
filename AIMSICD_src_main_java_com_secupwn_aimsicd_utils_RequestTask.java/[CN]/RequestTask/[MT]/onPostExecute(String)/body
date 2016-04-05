@@ -64,7 +64,7 @@ if ("Successful".equals(result)) {
 Activity lActivity=getActivity();
 if (lActivity != null) {
 final AlertDialog.Builder builder=new AlertDialog.Builder(lActivity);
-builder.setTitle(R.string.database_export_successful).setMessage(lActivity.getString(R.string.database_backup_successfully_saved_to) + "\n" + AIMSICDDbAdapter.mExternalFilesDirPath);
+builder.setTitle(R.string.database_export_successful).setMessage(lActivity.getString(R.string.database_backup_successfully_saved_to) + "\n" + RealmHelper.mExternalFilesDirPath);
 builder.create().show();
 }
 }

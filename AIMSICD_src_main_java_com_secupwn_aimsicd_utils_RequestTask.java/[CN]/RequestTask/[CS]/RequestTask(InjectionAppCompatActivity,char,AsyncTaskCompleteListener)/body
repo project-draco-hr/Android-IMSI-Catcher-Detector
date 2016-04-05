@@ -2,7 +2,7 @@
   super(context);
   this.mType=type;
   this.mAppContext=context.getApplicationContext();
-  this.mDbAdapter=new AIMSICDDbAdapter(mAppContext);
+  this.mDbAdapter=new RealmHelper(mAppContext);
   this.mTimeOut=REQUEST_TIMEOUT_MAPS;
   this.mListener=listener;
 }

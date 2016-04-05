@@ -1,4 +1,4 @@
 {
   mContext=context;
-  mDbAdapter=new AIMSICDDbAdapter(context);
+  mDbAdapter=new RealmHelper(context);
 }

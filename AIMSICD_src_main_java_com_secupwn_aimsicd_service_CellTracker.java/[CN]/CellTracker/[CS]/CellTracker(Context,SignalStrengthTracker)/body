@@ -8,7 +8,7 @@
   loadPreferences();
   setNotification();
   PHONE_TYPE=tm.getPhoneType();
-  dbHelper=new AIMSICDDbAdapter(context);
+  dbHelper=new RealmHelper(context);
   if (!CELL_TABLE_CLEANSED) {
     @Cleanup Realm realm=Realm.getDefaultInstance();
     Realm.Transaction transaction=dbHelper.cleanseCellTable();

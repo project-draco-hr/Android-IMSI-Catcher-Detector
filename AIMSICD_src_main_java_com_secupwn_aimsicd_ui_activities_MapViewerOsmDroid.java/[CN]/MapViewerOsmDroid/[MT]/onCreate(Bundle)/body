@@ -2,7 +2,7 @@
   super.onCreate(savedInstanceState);
   log.info("Starting MapViewer");
   setUpMapIfNeeded();
-  mDbHelper=new AIMSICDDbAdapter(this);
+  mDbHelper=new RealmHelper(this);
   tm=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
   Intent intent=new Intent(this,AimsicdService.class);
   bindService(intent,mConnection,Context.BIND_AUTO_CREATE);

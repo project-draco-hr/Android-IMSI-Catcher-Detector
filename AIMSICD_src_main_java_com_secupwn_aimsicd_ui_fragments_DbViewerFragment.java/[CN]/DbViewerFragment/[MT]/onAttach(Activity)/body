@@ -1,4 +1,4 @@
 {
   super.onAttach(activity);
-  mDb=new AIMSICDDbAdapter(activity.getBaseContext());
+  mDb=new RealmHelper(activity.getBaseContext());
 }
