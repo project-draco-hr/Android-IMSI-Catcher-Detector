@@ -1,8 +1,8 @@
 {
-  this.cid=cid;
+  this.cellId=cellId;
   this.locationAreaCode=locationAreaCode;
-  this.mcc=mcc;
-  this.mnc=mnc;
+  this.mobileCountryCode=mobileCountryCode;
+  this.mobileNetworkCode=mobileNetworkCode;
   this.dbm=dbm;
   this.rssi=Integer.MAX_VALUE;
   this.timingAdvance=Integer.MAX_VALUE;

@@ -1,7 +1,7 @@
 {
   final Date timestamp=new Date();
   final int lac=CellTracker.monitorCell.getLocationAreaCode();
-  final int cid=CellTracker.monitorCell.getCid();
+  final int cid=CellTracker.monitorCell.getCellId();
   final int psc=CellTracker.monitorCell.getPrimaryScramblingCode();
   final double gpsd_lat=CellTracker.monitorCell.getLat();
   final double gpsd_lon=CellTracker.monitorCell.getLon();

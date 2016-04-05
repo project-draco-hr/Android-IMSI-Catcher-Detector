@@ -15,7 +15,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
         tr=(TableRow)getView().findViewById(R.id.gsm_cellid);
         tr.setVisibility(View.VISIBLE);
         content=(HighlightTextView)getView().findViewById(R.id.network_cellid);
-        content.updateText(String.valueOf(mAimsicdService.getCell().getCid()),ani);
+        content.updateText(String.valueOf(mAimsicdService.getCell().getCellId()),ani);
         break;
       }
 case TelephonyManager.PHONE_TYPE_CDMA:
@@ -31,7 +31,7 @@ case TelephonyManager.PHONE_TYPE_CDMA:
       tr=(TableRow)getView().findViewById(R.id.cdma_baseid);
       tr.setVisibility(View.VISIBLE);
       content=(HighlightTextView)getView().findViewById(R.id.network_baseid);
-      content.updateText(String.valueOf(mAimsicdService.getCell().getCid()),ani);
+      content.updateText(String.valueOf(mAimsicdService.getCell().getCellId()),ani);
       break;
     }
 }

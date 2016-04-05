@@ -7,7 +7,7 @@ case TelephonyManager.PHONE_TYPE_GSM:
     GsmCellLocation gsmCellLocation=(GsmCellLocation)location;
   if (gsmCellLocation != null) {
     monitorCell.setLocationAreaCode(gsmCellLocation.getLac());
-    monitorCell.setCid(gsmCellLocation.getCid());
+    monitorCell.setCellId(gsmCellLocation.getCid());
     boolean lacOK=dbHelper.checkLAC(realm,monitorCell);
     if (!lacOK) {
       changedLAC=true;
@@ -18,9 +18,9 @@ case TelephonyManager.PHONE_TYPE_GSM:
       changedLAC=false;
     }
     if (tinydb.getBoolean("ocid_downloaded")) {
-      if (!dbHelper.openCellExists(realm,monitorCell.getCid())) {
+      if (!dbHelper.openCellExists(realm,monitorCell.getCellId())) {
         dbHelper.toEventLog(realm,2,"CID not in Import realm");
-        log.info("ALERT: Connected to unknown CID not in Import realm: " + monitorCell.getCid());
+        log.info("ALERT: Connected to unknown CID not in Import realm: " + monitorCell.getCellId());
         vibrate(100,Status.MEDIUM);
         cellIdNotInOpenDb=true;
       }
@@ -34,7 +34,7 @@ case TelephonyManager.PHONE_TYPE_CDMA:
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)location;
 if (cdmaCellLocation != null) {
 monitorCell.setLocationAreaCode(cdmaCellLocation.getNetworkId());
-monitorCell.setCid(cdmaCellLocation.getBaseStationId());
+monitorCell.setCellId(cdmaCellLocation.getBaseStationId());
 boolean lacOK=dbHelper.checkLAC(realm,monitorCell);
 if (!lacOK) {
 changedLAC=true;

@@ -1,11 +1,11 @@
 {
-  if (!cellInDbiBts(realm,cell.getLocationAreaCode(),cell.getCid())) {
+  if (!cellInDbiBts(realm,cell.getLocationAreaCode(),cell.getCellId())) {
     realm.beginTransaction();
     BTS bts=realm.createObject(BTS.class);
-    bts.setMobileCountryCode(cell.getMcc());
-    bts.setMobileNetworkCode(cell.getMnc());
+    bts.setMobileCountryCode(cell.getMobileCountryCode());
+    bts.setMobileNetworkCode(cell.getMobileNetworkCode());
     bts.setLocationAreaCode(cell.getLocationAreaCode());
-    bts.setCellId(cell.getCid());
+    bts.setCellId(cell.getCellId());
     bts.setPrimaryScramblingCode(cell.getPrimaryScramblingCode());
     bts.setTimeFirst(new Date());
     bts.setTimeLast(new Date());
@@ -16,7 +16,7 @@
     realm.commitTransaction();
   }
  else {
-    BTS bts=realm.where(BTS.class).equalTo("cellId",cell.getCid()).findFirst();
+    BTS bts=realm.where(BTS.class).equalTo("cellId",cell.getCellId()).findFirst();
     realm.beginTransaction();
     bts.setTimeLast(new Date());
     if (Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0) {
@@ -27,12 +27,12 @@
       bts.getLocationInfo().setLongitude(cell.getLon());
     }
     realm.commitTransaction();
-    log.info("BTS updated: CID=" + cell.getCid() + " LAC="+ cell.getLocationAreaCode());
+    log.info("BTS updated: CID=" + cell.getCellId() + " LAC="+ cell.getLocationAreaCode());
   }
-  if (!cellInDbiMeasure(realm,cell.getCid())) {
+  if (!cellInDbiMeasure(realm,cell.getCellId())) {
     realm.beginTransaction();
     Measure measure=realm.createObject(Measure.class);
-    BTS bts=realm.where(BTS.class).equalTo("cellId",cell.getCid()).findFirst();
+    BTS bts=realm.where(BTS.class).equalTo("cellId",cell.getCellId()).findFirst();
     measure.setBts(bts);
     measure.setTime(new Date());
     LocationInfo locationInfo=realm.createObject(LocationInfo.class);
@@ -46,11 +46,11 @@
     measure.setSubmitted(false);
     measure.setNeighbour(false);
     realm.commitTransaction();
-    log.info("Measure inserted cellId=" + cell.getCid());
+    log.info("Measure inserted cellId=" + cell.getCellId());
   }
  else {
     realm.beginTransaction();
-    RealmResults<Measure> all=realm.where(Measure.class).equalTo("bts.cellId",cell.getCid()).findAll();
+    RealmResults<Measure> all=realm.where(Measure.class).equalTo("bts.cellId",cell.getCellId()).findAll();
     for (    Measure measure : all) {
       if (Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0) {
         measure.getGpsd().setLatitude(cell.getLat());
@@ -67,6 +67,6 @@
       }
     }
     realm.commitTransaction();
-    log.info("DBi_measure updated bts_id=" + cell.getCid());
+    log.info("DBi_measure updated bts_id=" + cell.getCellId());
   }
 }

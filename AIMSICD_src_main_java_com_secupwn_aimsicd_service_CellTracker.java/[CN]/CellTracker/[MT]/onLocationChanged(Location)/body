@@ -10,16 +10,16 @@ case TelephonyManager.PHONE_TYPE_NONE:
 case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
         GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
-      device.cell.setCid(gsmCellLocation.getCid());
+      device.cell.setCellId(gsmCellLocation.getCid());
     device.cell.setLocationAreaCode(gsmCellLocation.getLac());
   device.cell.setPrimaryScramblingCode(gsmCellLocation.getPsc());
 break;
 case TelephonyManager.PHONE_TYPE_CDMA:
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
-device.cell.setCid(cdmaCellLocation.getBaseStationId());
+device.cell.setCellId(cdmaCellLocation.getBaseStationId());
 device.cell.setLocationAreaCode(cdmaCellLocation.getNetworkId());
 device.cell.setSid(cdmaCellLocation.getSystemId());
-device.cell.setMnc(cdmaCellLocation.getSystemId());
+device.cell.setMobileNetworkCode(cdmaCellLocation.getSystemId());
 break;
 }
 }

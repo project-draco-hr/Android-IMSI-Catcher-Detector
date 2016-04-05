@@ -1,8 +1,8 @@
 {
-  this.cid=CID;
+  this.cellId=CID;
   this.locationAreaCode=locationAreaCode;
-  this.mcc=Integer.MAX_VALUE;
-  this.mnc=Integer.MAX_VALUE;
+  this.mobileCountryCode=Integer.MAX_VALUE;
+  this.mobileNetworkCode=Integer.MAX_VALUE;
   if (dbm) {
     this.dbm=signal;
   }

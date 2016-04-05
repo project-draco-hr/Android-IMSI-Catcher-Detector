@@ -13,7 +13,7 @@
     }
   }
  else   if (ncls == 0 && nclp) {
-    log.info("ALERT: No neighboring cells detected for CID: " + device.cell.getCid());
+    log.info("ALERT: No neighboring cells detected for CID: " + device.cell.getCellId());
     vibrate(100,Status.MEDIUM);
     @Cleanup Realm realm=Realm.getDefaultInstance();
     dbHelper.toEventLog(realm,4,"No neighboring cells detected");

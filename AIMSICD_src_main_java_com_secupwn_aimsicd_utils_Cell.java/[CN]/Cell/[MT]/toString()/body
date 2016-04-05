@@ -1,9 +1,9 @@
 {
   StringBuilder result=new StringBuilder();
-  result.append("cid - ").append(cid).append("\n");
+  result.append("cid - ").append(cellId).append("\n");
   result.append("LAC - ").append(locationAreaCode).append("\n");
-  result.append("MCC - ").append(mcc).append("\n");
-  result.append("MNC - ").append(mnc).append("\n");
+  result.append("MCC - ").append(mobileCountryCode).append("\n");
+  result.append("MNC - ").append(mobileNetworkCode).append("\n");
   result.append("DBm - ").append(dbm).append("\n");
   result.append("PSC - ").append(validatePscValue(primaryScramblingCode)).append("\n");
   result.append("Type - ").append(netType).append("\n");

@@ -1,6 +1,6 @@
 int CID
 int locationAreaCode
-int mcc
-int mnc
+int mobileCountryCode
+int mobileNetworkCode
 int dbm
 long timestamp
