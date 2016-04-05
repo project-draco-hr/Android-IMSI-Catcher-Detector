@@ -1,9 +1,0 @@
-{
-  String address="Address: ";
-  if (mAddress.isEmpty()) {
-    return address + "Unavailable";
-  }
- else {
-    return address + mAddress;
-  }
-}

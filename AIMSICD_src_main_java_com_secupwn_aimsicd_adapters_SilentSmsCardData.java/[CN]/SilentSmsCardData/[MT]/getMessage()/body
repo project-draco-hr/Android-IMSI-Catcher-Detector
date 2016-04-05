@@ -1,9 +1,0 @@
-{
-  String message="Message: ";
-  if (message.isEmpty()) {
-    return message + "Unavailable";
-  }
- else {
-    return message + mMessage;
-  }
-}

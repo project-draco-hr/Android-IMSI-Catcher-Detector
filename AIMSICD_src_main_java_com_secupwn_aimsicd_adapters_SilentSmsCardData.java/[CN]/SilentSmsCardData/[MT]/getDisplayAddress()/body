@@ -1,9 +1,0 @@
-{
-  String display="Display Address: ";
-  if (mDisplayAddress.isEmpty()) {
-    return display + "Unavailable";
-  }
- else {
-    return display + mDisplayAddress;
-  }
-}

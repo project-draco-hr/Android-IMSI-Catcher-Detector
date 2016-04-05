@@ -1,8 +1,0 @@
-{
-  mAddress=address;
-  mDisplayAddress=displayAddress;
-  mMessageClass=messageClass;
-  mServiceCentre=serviceCentre;
-  mMessage=messageBody;
-  mTimestamp=timestamp;
-}
