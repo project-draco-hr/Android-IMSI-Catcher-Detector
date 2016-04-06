@@ -1,5 +1,0 @@
-{
-  Realm realm=Realm.getDefaultInstance();
-  realm.executeTransactionAsync(new DefaultDataTransaction());
-  realm.close();
-}

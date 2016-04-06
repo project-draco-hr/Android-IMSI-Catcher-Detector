@@ -1,5 +1,5 @@
 Realm realm
-int mcc
+int mobileCountryCode
 String country
-double lat
-double lon
+double latitude
+double longitude

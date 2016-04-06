@@ -1,5 +1,6 @@
 {
-  if (realm.where(SmsDetectionString.class).count() == 0) {
+  long count=realm.where(SmsDetectionString.class).count();
+  if (count == 0) {
     SmsDetectionString smsDetectionString1=realm.createObject(SmsDetectionString.class);
     smsDetectionString1.setDetectionString("Received short message type 0");
     smsDetectionString1.setSmsType("TYPE0");

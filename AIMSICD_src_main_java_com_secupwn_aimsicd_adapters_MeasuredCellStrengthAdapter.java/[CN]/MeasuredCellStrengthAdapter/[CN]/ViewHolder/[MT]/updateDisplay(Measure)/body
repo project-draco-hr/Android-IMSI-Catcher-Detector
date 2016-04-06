@@ -1,5 +1,5 @@
 {
-  cid.setText(item.getBaseStation().getCellId());
-  rss.setText(item.getRxSignal());
+  cid.setText(valueOf(item.getBaseStation().getCellId()));
+  rss.setText(valueOf(item.getRxSignal()));
   time.setText(DateFormat.getDateTimeInstance().format(item.getTime()));
 }

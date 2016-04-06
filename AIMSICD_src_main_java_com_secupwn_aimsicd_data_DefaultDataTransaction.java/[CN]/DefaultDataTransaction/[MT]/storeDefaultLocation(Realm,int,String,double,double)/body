@@ -1,10 +1,13 @@
 {
-  GpsLocation gpsLocation=new GpsLocation();
-  gpsLocation.setLatitude(lat);
-  gpsLocation.setLongitude(lon);
-  DefaultLocation defaultLocation=new DefaultLocation();
-  defaultLocation.setGpsLocation(gpsLocation);
-  defaultLocation.setCountry(country);
-  defaultLocation.setMobileCountryCode(mcc);
-  realm.copyToRealm(defaultLocation);
+  DefaultLocation location=realm.where(DefaultLocation.class).equalTo("mobileCountryCode",mobileCountryCode).equalTo("country",country).findFirst();
+  if (location == null) {
+    location=realm.createObject(DefaultLocation.class);
+  }
+  location.setCountry(country);
+  location.setMobileCountryCode(mobileCountryCode);
+  if (location.getGpsLocation() == null) {
+    location.setGpsLocation(realm.createObject(GpsLocation.class));
+  }
+  location.getGpsLocation().setLatitude(latitude);
+  location.getGpsLocation().setLongitude(longitude);
 }

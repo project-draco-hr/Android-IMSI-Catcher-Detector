@@ -5,7 +5,18 @@
   super.onCreate();
   RealmConfiguration realmConfiguration=new RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().build();
   Realm.setDefaultConfiguration(realmConfiguration);
-  ensureDefaultData();
+  realm=Realm.getDefaultInstance();
+  realm.executeTransactionAsync(new DefaultDataTransaction(),new Realm.Transaction.OnSuccess(){
+    @Override public void onSuccess(){
+      log.debug("Loading default data successful");
+    }
+  }
+,new Realm.Transaction.OnError(){
+    @Override public void onError(    Throwable error){
+      log.error("Error loading default data",error);
+    }
+  }
+);
   TinyDB.getInstance().init(getApplicationContext());
   TinyDB.getInstance().putBoolean(TinyDbKeys.FINISHED_LOAD_IN_MAP,true);
 }
