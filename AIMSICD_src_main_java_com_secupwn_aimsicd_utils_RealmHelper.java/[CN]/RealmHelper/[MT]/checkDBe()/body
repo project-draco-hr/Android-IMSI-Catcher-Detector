@@ -2,7 +2,6 @@
   return new Realm.Transaction(){
     @Override public void execute(    Realm realm){
       int min_gps_precision=50;
-      String sqlQuery;
       log.debug("CheckDBe() Attempting to delete bad import data from Imports database...");
       realm.where(Import.class).lessThan("samples",1).findAll().clear();
       realm.where(Import.class).lessThan("locationAreaCode",1).findAll().clear();

@@ -21,7 +21,6 @@
         anImport.setSamples(samples);
         anImport.setTimeFirst(time_first);
         anImport.setTimeLast(time_last);
-        anImport.setRejCause(rej_cause);
       }
     }
   }

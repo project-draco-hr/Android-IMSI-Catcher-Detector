@@ -9,11 +9,4 @@
   mDF_id.setText(valueOf(event.getDfId()));
   mDF_desc.setText(event.getDfDescription());
   mRecordId.setText(valueOf(position));
-  if (event.isFakeData()) {
-    mExample.setText(mRootView.getContext().getString(R.string.example));
-    mExample.setVisibility(VISIBLE);
-  }
- else {
-    mExample.setVisibility(GONE);
-  }
 }
