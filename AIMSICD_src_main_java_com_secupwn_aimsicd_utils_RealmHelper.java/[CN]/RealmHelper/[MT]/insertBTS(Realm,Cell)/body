@@ -39,7 +39,7 @@
     gpsLocation.setLatitude(cell.getLat());
     gpsLocation.setLongitude(cell.getLon());
     gpsLocation.setAccuracy(cell.getAccuracy());
-    measure.setGpsd(gpsLocation);
+    measure.setGpsLocation(gpsLocation);
     measure.setRxSignal(cell.getDbm());
     measure.setRadioAccessTechnology(String.valueOf(cell.getRat()));
     measure.setTimingAdvance(cell.getTimingAdvance());
@@ -54,11 +54,11 @@
     for (int i=0; i < all.size(); i++) {
       Measure measure=all.get(i);
       if (Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0) {
-        measure.getGpsd().setLatitude(cell.getLat());
-        measure.getGpsd().setLongitude(cell.getLon());
+        measure.getGpsLocation().setLatitude(cell.getLat());
+        measure.getGpsLocation().setLongitude(cell.getLon());
       }
       if (Double.doubleToRawLongBits(cell.getAccuracy()) != 0 && cell.getAccuracy() > 0) {
-        measure.getGpsd().setAccuracy(cell.getAccuracy());
+        measure.getGpsLocation().setAccuracy(cell.getAccuracy());
       }
       if (cell.getDbm() > 0) {
         measure.setRxSignal(cell.getDbm());

@@ -1,9 +1,9 @@
 {
   bts_id.setText(valueOf(item.getBaseStation().getCellId()));
   time.setText(DateFormat.getDateTimeInstance().format(item.getTime()));
-  gpsd_lat.setText(valueOf(item.getGpsd().getLatitude()));
-  gpsd_lon.setText(valueOf(item.getGpsd().getLongitude()));
-  gpsd_accu.setText(valueOf(item.getGpsd().getAccuracy()));
+  gpsd_lat.setText(valueOf(item.getGpsLocation().getLatitude()));
+  gpsd_lon.setText(valueOf(item.getGpsLocation().getLongitude()));
+  gpsd_accu.setText(valueOf(item.getGpsLocation().getAccuracy()));
   rx_signal.setText(valueOf(item.getRxSignal()));
   rat.setText(item.getRadioAccessTechnology());
   isSubmitted.setText(valueOf(item.isSubmitted()));
