@@ -4,9 +4,6 @@
   MCC.setText(valueOf(baseStation.getMobileCountryCode()));
   MNC.setText(valueOf(baseStation.getMobileNetworkCode()));
   PSC.setText(valueOf(baseStation.getPrimaryScramblingCode()));
-  T3212.setText(R.string.n_a);
-  A5X.setText(R.string.n_a);
-  ST_ID.setText(R.string.n_a);
   DateFormat dateFormat=DateFormat.getDateTimeInstance();
   TIME_FIRST.setText(dateFormat.format(baseStation.getTimeFirst()));
   TIME_LAST.setText(dateFormat.format(baseStation.getTimeLast()));
