@@ -105,12 +105,6 @@ return "Successful";
 log.warn("Problem reading data from steam",e);
 return null;
 }
-case BACKUP_DATABASE:
-log.error("BACKUP_DATABASE not implemented");
-return null;
-case RESTORE_DATABASE:
-log.error("RESTORE_DATABASE not implemented");
-return null;
 }
 return null;
 }

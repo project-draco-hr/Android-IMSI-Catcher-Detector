@@ -25,14 +25,8 @@ case DrawerMenu.ID.MAIN.ANTENNA_MAP_VIEW:
 openFragment(mapFragment);
 title=getString(R.string.app_name_short);
 break;
-case DrawerMenu.ID.DATABASE_SETTINGS.BACKUP_DB:
-new RequestTask(this,RequestTask.BACKUP_DATABASE).execute();
-break;
 }
-if (selectedItem.getId() == DrawerMenu.ID.DATABASE_SETTINGS.RESTORE_DB) {
-new RequestTask(this,RequestTask.RESTORE_DATABASE).execute();
-}
- else if (selectedItem.getId() == DrawerMenu.ID.DATABASE_SETTINGS.RESET_DB) {
+if (selectedItem.getId() == DrawerMenu.ID.DATABASE_SETTINGS.RESET_DB) {
 Helpers.askAndDeleteDb(this);
 }
  else if (selectedItem.getId() == DrawerMenu.ID.APPLICATION.DOWNLOAD_LOCAL_BTS_DATA) {

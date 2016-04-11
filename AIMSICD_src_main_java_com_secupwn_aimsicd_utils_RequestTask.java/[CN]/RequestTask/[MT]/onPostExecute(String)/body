@@ -45,32 +45,6 @@ Helpers.msgShort(mAppContext,mAppContext.getString(R.string.uploaded_bts_data_su
 Helpers.msgLong(mAppContext,mAppContext.getString(R.string.error_uploading_bts_data));
 }
 break;
-case RESTORE_DATABASE:
-if ("Successful".equals(result)) {
-Helpers.msgShort(mAppContext,mAppContext.getString(R.string.restore_database_completed));
-Activity lActivity=getActivity();
-if (lActivity != null) {
-final AlertDialog.Builder builder=new AlertDialog.Builder(lActivity);
-builder.setTitle(R.string.restore_database_completed_title).setMessage(lActivity.getString(R.string.restore_database_completed));
-builder.create().show();
-}
-}
- else {
-Helpers.msgLong(mAppContext,mAppContext.getString(R.string.error_restoring_database));
-}
-break;
-case BACKUP_DATABASE:
-if ("Successful".equals(result)) {
-Activity lActivity=getActivity();
-if (lActivity != null) {
-final AlertDialog.Builder builder=new AlertDialog.Builder(lActivity);
-builder.setTitle(R.string.database_export_successful).setMessage(lActivity.getString(R.string.database_backup_successfully_saved_to) + "\n" + RealmHelper.mExternalFilesDirPath);
-builder.create().show();
-}
-}
- else {
-Helpers.msgLong(mAppContext,mAppContext.getString(R.string.error_backing_up_data));
-}
 }
 if (mListener != null) {
 if ("Successful".equals(result)) {
