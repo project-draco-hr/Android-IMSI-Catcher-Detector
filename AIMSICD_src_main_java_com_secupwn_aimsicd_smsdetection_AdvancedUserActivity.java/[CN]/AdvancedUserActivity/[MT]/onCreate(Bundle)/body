@@ -5,9 +5,14 @@
   listViewAdv.setAdapter(new DetectionStringAdapter(this,msgItems,true));
   listViewAdv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
     @Override public boolean onItemLongClick(    AdapterView<?> a,    View v,    int position,    long id){
-      SmsDetectionString detectionString=(SmsDetectionString)listViewAdv.getItemAtPosition(position);
+      final SmsDetectionString detectionString=(SmsDetectionString)listViewAdv.getItemAtPosition(position);
       String string=detectionString.getDetectionString();
-      detectionString.removeFromRealm();
+      realm.executeTransaction(new Realm.Transaction(){
+        @Override public void execute(        Realm realm){
+          detectionString.removeFromRealm();
+        }
+      }
+);
       Toast.makeText(getApplicationContext(),getString(R.string.deleted) + ": " + string,Toast.LENGTH_SHORT).show();
       return true;
     }

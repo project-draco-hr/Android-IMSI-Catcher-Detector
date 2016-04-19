@@ -6,9 +6,13 @@
   listViewAdv.setAdapter(new SmsDataAdapter(getApplicationContext(),msgitems,true));
   listViewAdv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
     @Override public boolean onItemLongClick(    AdapterView<?> a,    View v,    int position,    long id){
-      Object o=listViewAdv.getItemAtPosition(position);
-      SmsData obj_itemDetails=(SmsData)o;
-      obj_itemDetails.removeFromRealm();
+      final SmsData smsData=(SmsData)listViewAdv.getItemAtPosition(position);
+      realm.executeTransaction(new Realm.Transaction(){
+        @Override public void execute(        Realm realm){
+          smsData.removeFromRealm();
+        }
+      }
+);
       Toast.makeText(a.getContext(),"Deleted Sms",LENGTH_SHORT).show();
       return true;
     }
