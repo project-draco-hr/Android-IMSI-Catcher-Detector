@@ -2,7 +2,7 @@
   super.onCreate(savedInstanceState);
   realm=Realm.getDefaultInstance();
   dbaccess=new RealmHelper(getApplicationContext());
-  RealmResults<SmsData> msgitems=realm.where(SmsData.class).findAll();
+  RealmResults<SmsData> msgitems=realm.where(SmsData.class).findAllSorted("timestamp");
   listViewAdv.setAdapter(new SmsDataAdapter(getApplicationContext(),msgitems,true));
   listViewAdv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
     @Override public boolean onItemLongClick(    AdapterView<?> a,    View v,    int position,    long id){
