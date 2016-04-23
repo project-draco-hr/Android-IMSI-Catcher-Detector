@@ -1,4 +1,0 @@
-BaseInflaterAdapter<UniqueBtsItemData> adapter
-int pos
-View convertView
-ViewGroup parent

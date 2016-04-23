@@ -1,15 +1,15 @@
 {
-  this.cid=CID;
-  this.lac=lac;
-  this.mcc=Integer.MAX_VALUE;
-  this.mnc=Integer.MAX_VALUE;
+  this.cellId=CID;
+  this.locationAreaCode=locationAreaCode;
+  this.mobileCountryCode=Integer.MAX_VALUE;
+  this.mobileNetworkCode=Integer.MAX_VALUE;
   if (dbm) {
     this.dbm=signal;
   }
  else {
     this.rssi=signal;
   }
-  this.psc=psc;
+  this.primaryScramblingCode=primaryScramblingCode;
   this.netType=netType;
   this.timingAdvance=Integer.MAX_VALUE;
   this.sid=Integer.MAX_VALUE;

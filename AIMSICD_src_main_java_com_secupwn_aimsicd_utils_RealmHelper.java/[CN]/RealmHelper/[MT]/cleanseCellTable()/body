@@ -1,0 +1,8 @@
+{
+  return new Realm.Transaction(){
+    @Override public void execute(    Realm realm){
+      realm.where(BaseTransceiverStation.class).equalTo("cellId",-1).or().equalTo("cellId",Integer.MAX_VALUE).findAll().clear();
+    }
+  }
+;
+}

@@ -1,0 +1,14 @@
+{
+  RealmResults<BaseTransceiverStation> baseStationRealmResults=realm.where(BaseTransceiverStation.class).equalTo("cellId",cell.getCellId()).findAll();
+  for (  BaseTransceiverStation baseStation : baseStationRealmResults) {
+    int lac=baseStation.getLocationAreaCode();
+    if (cell.getLocationAreaCode() != lac) {
+      log.info("ALERT: Changing LAC on CID: " + cell.getCellId() + " LAC(API): "+ cell.getLocationAreaCode()+ " LAC(DBi): "+ lac);
+      return false;
+    }
+ else {
+      log.verbose("LAC checked - no change on CID:" + cell.getCellId() + " LAC(API): "+ cell.getLocationAreaCode()+ " LAC(DBi): "+ lac);
+    }
+  }
+  return true;
+}

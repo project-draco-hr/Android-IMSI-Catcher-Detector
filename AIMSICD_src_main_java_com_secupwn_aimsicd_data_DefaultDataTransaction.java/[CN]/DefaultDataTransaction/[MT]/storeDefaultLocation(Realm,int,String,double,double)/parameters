@@ -1,0 +1,5 @@
+Realm realm
+int mobileCountryCode
+String country
+double latitude
+double longitude

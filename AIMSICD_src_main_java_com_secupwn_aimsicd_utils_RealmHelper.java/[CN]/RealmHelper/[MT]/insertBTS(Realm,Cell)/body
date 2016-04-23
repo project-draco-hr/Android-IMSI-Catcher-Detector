@@ -1,0 +1,73 @@
+{
+  if (!cellInDbiBts(realm,cell.getLocationAreaCode(),cell.getCellId())) {
+    realm.beginTransaction();
+    BaseTransceiverStation baseStation=realm.createObject(BaseTransceiverStation.class);
+    baseStation.setMobileCountryCode(cell.getMobileCountryCode());
+    baseStation.setMobileNetworkCode(cell.getMobileNetworkCode());
+    baseStation.setLocationAreaCode(cell.getLocationAreaCode());
+    baseStation.setCellId(cell.getCellId());
+    baseStation.setPrimaryScramblingCode(cell.getPrimaryScramblingCode());
+    baseStation.setTimeFirst(new Date());
+    baseStation.setTimeLast(new Date());
+    GpsLocation gpsLocation=realm.createObject(GpsLocation.class);
+    gpsLocation.setLatitude(cell.getLat());
+    gpsLocation.setLongitude(cell.getLon());
+    baseStation.setGpsLocation(gpsLocation);
+    realm.commitTransaction();
+  }
+ else {
+    BaseTransceiverStation baseStation=realm.where(BaseTransceiverStation.class).equalTo("cellId",cell.getCellId()).findFirst();
+    realm.beginTransaction();
+    baseStation.setTimeLast(new Date());
+    if (Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0) {
+      if (baseStation.getGpsLocation() == null) {
+        baseStation.setGpsLocation(realm.createObject(GpsLocation.class));
+      }
+      baseStation.getGpsLocation().setLatitude(cell.getLat());
+      baseStation.getGpsLocation().setLongitude(cell.getLon());
+    }
+    realm.commitTransaction();
+    log.info("BTS updated: CID=" + cell.getCellId() + " LAC="+ cell.getLocationAreaCode());
+  }
+  if (!cellInDbiMeasure(realm,cell.getCellId())) {
+    realm.beginTransaction();
+    Measure measure=realm.createObject(Measure.class);
+    BaseTransceiverStation baseStation=realm.where(BaseTransceiverStation.class).equalTo("cellId",cell.getCellId()).findFirst();
+    measure.setBaseStation(baseStation);
+    measure.setTime(new Date());
+    GpsLocation gpsLocation=realm.createObject(GpsLocation.class);
+    gpsLocation.setLatitude(cell.getLat());
+    gpsLocation.setLongitude(cell.getLon());
+    gpsLocation.setAccuracy(cell.getAccuracy());
+    measure.setGpsLocation(gpsLocation);
+    measure.setRxSignal(cell.getDbm());
+    measure.setRadioAccessTechnology(String.valueOf(cell.getRat()));
+    measure.setTimingAdvance(cell.getTimingAdvance());
+    measure.setSubmitted(false);
+    measure.setNeighbour(false);
+    realm.commitTransaction();
+    log.info("Measure inserted cellId=" + cell.getCellId());
+  }
+ else {
+    realm.beginTransaction();
+    RealmResults<Measure> all=realm.where(Measure.class).equalTo("baseStation.cellId",cell.getCellId()).findAll();
+    for (int i=0; i < all.size(); i++) {
+      Measure measure=all.get(i);
+      if (Double.doubleToRawLongBits(cell.getLat()) != 0 && Double.doubleToRawLongBits(cell.getLon()) != 0) {
+        measure.getGpsLocation().setLatitude(cell.getLat());
+        measure.getGpsLocation().setLongitude(cell.getLon());
+      }
+      if (Double.doubleToRawLongBits(cell.getAccuracy()) != 0 && cell.getAccuracy() > 0) {
+        measure.getGpsLocation().setAccuracy(cell.getAccuracy());
+      }
+      if (cell.getDbm() > 0) {
+        measure.setRxSignal(cell.getDbm());
+      }
+      if (cell.getTimingAdvance() > 0) {
+        measure.setTimingAdvance(cell.getTimingAdvance());
+      }
+    }
+    realm.commitTransaction();
+    log.info("DBi_measure updated bts_id=" + cell.getCellId());
+  }
+}

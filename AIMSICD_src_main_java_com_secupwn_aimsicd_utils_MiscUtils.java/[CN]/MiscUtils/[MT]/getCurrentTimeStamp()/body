@@ -1,3 +1,0 @@
-{
-  return new SimpleDateFormat("yyyyMMddHHmmss",Locale.getDefault()).format(new Date());
-}

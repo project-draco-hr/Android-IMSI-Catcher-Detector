@@ -1,0 +1,4 @@
+{
+  d_string.setText(smsDetectionString.getDetectionString());
+  d_type.setText(smsDetectionString.getSmsType());
+}

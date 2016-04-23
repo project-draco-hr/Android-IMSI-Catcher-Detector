@@ -1,0 +1,47 @@
+{
+  String fileName=mContext.getExternalFilesDir(null) + File.separator + "OpenCellID/opencellid.csv";
+  File file=new File(fileName);
+  try {
+    if (file.exists()) {
+      CSVReader csvReader=new CSVReader(new FileReader(file));
+      List<String[]> csvCellID=new ArrayList<>();
+      String next[];
+      while ((next=csvReader.readNext()) != null) {
+        csvCellID.add(next);
+      }
+      if (!csvCellID.isEmpty()) {
+        int lines=csvCellID.size();
+        log.info("UpdateOpenCellID: OCID CSV size (lines): " + lines);
+        int rowCounter;
+        for (rowCounter=1; rowCounter < lines; rowCounter++) {
+          String lat=csvCellID.get(rowCounter)[0], lon=csvCellID.get(rowCounter)[1], mcc=csvCellID.get(rowCounter)[2], mnc=csvCellID.get(rowCounter)[3], lac=csvCellID.get(rowCounter)[4], cellid=csvCellID.get(rowCounter)[5], range=csvCellID.get(rowCounter)[6], avg_sig=csvCellID.get(rowCounter)[7], samples=csvCellID.get(rowCounter)[8], change=csvCellID.get(rowCounter)[9], radio=csvCellID.get(rowCounter)[10], psc=csvCellID.get(rowCounter)[13];
+          int iPsc=666;
+          if (psc != null && !psc.isEmpty()) {
+            iPsc=Integer.parseInt(psc);
+          }
+          int ichange=Integer.parseInt(change);
+          ichange=(ichange == 0 ? 1 : 0);
+          Realm.Transaction transaction=insertDBeImport("OCID",radio,Integer.parseInt(mcc),Integer.parseInt(mnc),Integer.parseInt(lac),Integer.parseInt(cellid),iPsc,Double.parseDouble(lat),Double.parseDouble(lon),ichange == 0,Integer.parseInt(avg_sig),Integer.parseInt(range),Integer.parseInt(samples),new Date(),new Date());
+          realm.executeTransaction(transaction);
+        }
+        log.debug("PopulateDBeImport(): inserted " + rowCounter + " cells.");
+      }
+    }
+ else {
+      log.error("Opencellid.csv file does not exist!");
+    }
+    return true;
+  }
+ catch (  Exception e) {
+    log.error("Error parsing OpenCellID data: " + e.getMessage());
+    return false;
+  }
+ finally {
+    try {
+      Thread.sleep(1000);
+    }
+ catch (    InterruptedException ex) {
+      Thread.currentThread().interrupt();
+    }
+  }
+}

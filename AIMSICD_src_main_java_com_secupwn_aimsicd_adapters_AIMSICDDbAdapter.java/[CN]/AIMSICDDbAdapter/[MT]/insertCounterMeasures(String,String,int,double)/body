@@ -1,8 +1,0 @@
-{
-  ContentValues counterMeasures=new ContentValues();
-  counterMeasures.put("name",name);
-  counterMeasures.put("description",description);
-  counterMeasures.put("thresh",thresh);
-  counterMeasures.put("thfine",thfine);
-  mDb.insert("CounterMeasures",null,counterMeasures);
-}

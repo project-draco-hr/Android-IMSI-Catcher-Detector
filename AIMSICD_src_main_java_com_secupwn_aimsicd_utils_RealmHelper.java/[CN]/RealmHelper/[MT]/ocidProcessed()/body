@@ -1,0 +1,12 @@
+{
+  return new Realm.Transaction(){
+    @Override public void execute(    Realm realm){
+      RealmResults<Measure> measures=realm.where(Measure.class).findAll();
+      for (int i=0; i < measures.size(); i++) {
+        Measure measure=measures.get(i);
+        measure.setSubmitted(true);
+      }
+    }
+  }
+;
+}

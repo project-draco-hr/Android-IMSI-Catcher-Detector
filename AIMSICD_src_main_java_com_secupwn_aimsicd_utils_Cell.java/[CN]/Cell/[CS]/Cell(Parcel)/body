@@ -1,12 +1,12 @@
 {
   String[] data=new String[15];
   in.readStringArray(data);
-  cid=Integer.valueOf(data[0]);
-  lac=Integer.valueOf(data[1]);
-  mcc=Integer.valueOf(data[2]);
-  mnc=Integer.valueOf(data[3]);
+  cellId=Integer.valueOf(data[0]);
+  locationAreaCode=Integer.valueOf(data[1]);
+  mobileCountryCode=Integer.valueOf(data[2]);
+  mobileNetworkCode=Integer.valueOf(data[3]);
   dbm=Integer.valueOf(data[4]);
-  psc=Integer.valueOf(data[5]);
+  primaryScramblingCode=Integer.valueOf(data[5]);
   rssi=Integer.valueOf(data[6]);
   timingAdvance=Integer.valueOf(data[7]);
   sid=Integer.valueOf(data[8]);

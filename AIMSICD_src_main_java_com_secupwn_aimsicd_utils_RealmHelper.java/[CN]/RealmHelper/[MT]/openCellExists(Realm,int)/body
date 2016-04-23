@@ -1,0 +1,3 @@
+{
+  return realm.where(Import.class).equalTo("cellId",cellID).count() > 0;
+}

@@ -4,7 +4,7 @@
     String lineEnding=System.getProperty("line.separator");
     FileWriter errorWriter=null;
     try {
-      File errorLogFile=new File(AIMSICDDbAdapter.mExternalFilesDirPath + "error.txt");
+      File errorLogFile=new File(RealmHelper.mExternalFilesDirPath + "error.txt");
       if (!errorLogFile.exists()) {
         errorLogFile.createNewFile();
       }

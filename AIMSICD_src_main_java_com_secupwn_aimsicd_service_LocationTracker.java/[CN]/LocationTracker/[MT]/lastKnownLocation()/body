@@ -21,9 +21,10 @@
         try {
           Cell cell=context.getCell();
           if (cell != null) {
-            log.debug("Looking up MCC " + cell.getMcc());
-            double[] defLoc=mDbHelper.getDefaultLocation(cell.getMcc());
-            loc=GeoLocation.fromDegrees(defLoc[0],defLoc[1]);
+            log.debug("Looking up MCC " + cell.getMobileCountryCode());
+            @Cleanup Realm realm=Realm.getDefaultInstance();
+            GpsLocation defLoc=mDbHelper.getDefaultLocation(realm,cell.getMobileCountryCode());
+            loc=GeoLocation.fromDegrees(defLoc.getLatitude(),defLoc.getLongitude());
           }
         }
  catch (        Exception e) {

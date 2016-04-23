@@ -10,16 +10,16 @@ case TelephonyManager.PHONE_TYPE_NONE:
 case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
         GsmCellLocation gsmCellLocation=(GsmCellLocation)cellLocation;
-      device.cell.setCid(gsmCellLocation.getCid());
-    device.cell.setLac(gsmCellLocation.getLac());
-  device.cell.setPsc(gsmCellLocation.getPsc());
+      device.cell.setCellId(gsmCellLocation.getCid());
+    device.cell.setLocationAreaCode(gsmCellLocation.getLac());
+  device.cell.setPrimaryScramblingCode(gsmCellLocation.getPsc());
 break;
 case TelephonyManager.PHONE_TYPE_CDMA:
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)cellLocation;
-device.cell.setCid(cdmaCellLocation.getBaseStationId());
-device.cell.setLac(cdmaCellLocation.getNetworkId());
+device.cell.setCellId(cdmaCellLocation.getBaseStationId());
+device.cell.setLocationAreaCode(cdmaCellLocation.getNetworkId());
 device.cell.setSid(cdmaCellLocation.getSystemId());
-device.cell.setMnc(cdmaCellLocation.getSystemId());
+device.cell.setMobileNetworkCode(cdmaCellLocation.getSystemId());
 break;
 }
 }
@@ -36,7 +36,8 @@ prefsEditor=prefs.edit();
 prefsEditor.putString(context.getString(R.string.data_last_lat_lon),String.valueOf(loc.getLatitude()) + ":" + String.valueOf(loc.getLongitude()));
 prefsEditor.apply();
 if (trackingCell) {
-dbHelper.insertBTS(device.cell);
+@Cleanup Realm realm=Realm.getDefaultInstance();
+dbHelper.insertBTS(realm,device.cell);
 }
 }
 }

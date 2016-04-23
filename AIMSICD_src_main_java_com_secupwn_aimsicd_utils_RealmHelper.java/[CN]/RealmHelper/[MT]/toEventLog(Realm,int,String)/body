@@ -1,0 +1,51 @@
+{
+  final Date timestamp=new Date();
+  final int lac=CellTracker.monitorCell.getLocationAreaCode();
+  final int cid=CellTracker.monitorCell.getCellId();
+  final int psc=CellTracker.monitorCell.getPrimaryScramblingCode();
+  final double gpsd_lat=CellTracker.monitorCell.getLat();
+  final double gpsd_lon=CellTracker.monitorCell.getLon();
+  final double gpsd_accu=CellTracker.monitorCell.getAccuracy();
+  realm.executeTransactionAsync(new Realm.Transaction(){
+    @Override public void execute(    Realm realm){
+      if (cid != -1 || lac != -1) {
+        RealmResults<Event> events=realm.where(Event.class).findAllSorted("timestamp");
+        boolean insertData;
+        if (events.isEmpty()) {
+          insertData=true;
+        }
+ else {
+          Event lastEvent=events.last();
+          insertData=!(lastEvent.getCellId() == cid && lastEvent.getLocationAreaCode() == lac && lastEvent.getPrimaryScramblingCode() == psc && lastEvent.getDfId() == DF_id);
+        }
+        if (insertData) {
+          Event event=realm.createObject(Event.class);
+          event.setTimestamp(timestamp);
+          event.setLocationAreaCode(lac);
+          event.setCellId(cid);
+          event.setPrimaryScramblingCode(psc);
+          GpsLocation gpsLocation=realm.createObject(GpsLocation.class);
+          gpsLocation.setLatitude(gpsd_lat);
+          gpsLocation.setLongitude(gpsd_lon);
+          gpsLocation.setAccuracy(gpsd_accu);
+          event.setGpsLocation(gpsLocation);
+          event.setDfId(DF_id);
+          event.setDfDescription(DF_desc);
+        }
+      }
+    }
+  }
+,new Realm.Transaction.OnSuccess(){
+    @Override public void onSuccess(){
+      log.info("ToEventLog(): Added new event: id=" + DF_id + " time="+ timestamp+ " cid="+ cid);
+      boolean vibrationEnabled=mPreferences.getBoolean(mContext.getString(R.string.pref_notification_vibrate_enable),true);
+      int thresholdLevel=Integer.valueOf(mPreferences.getString(mContext.getString(R.string.pref_notification_vibrate_min_level),String.valueOf(Status.MEDIUM.ordinal())));
+      boolean higherLevelThanThreshold=Status.MEDIUM.ordinal() <= thresholdLevel;
+      if (vibrationEnabled && higherLevelThanThreshold) {
+        Vibrator v=(Vibrator)mContext.getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(100);
+      }
+    }
+  }
+);
+}

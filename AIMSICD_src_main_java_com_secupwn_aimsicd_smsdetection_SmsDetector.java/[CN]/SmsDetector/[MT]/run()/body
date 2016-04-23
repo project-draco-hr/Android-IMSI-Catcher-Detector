@@ -33,10 +33,10 @@
           String bufferedLine=logcatLines.get(counter);
 switch (checkForSms(bufferedLine)) {
 case TYPE0:
-            parseTypeZeroSms(outLines,MiscUtils.logcatTimeStampParser(bufferedLine));
+            parseTypeZeroSms(outLines,MiscUtils.parseLogcatTimeStamp(bufferedLine));
           break;
 case MWI:
-        parseMwiSms(outLines,MiscUtils.logcatTimeStampParser(bufferedLine));
+        parseMwiSms(outLines,MiscUtils.parseLogcatTimeStamp(bufferedLine));
       break;
 case WAP:
     int remainingLinesInBuffer=logcatLines.size() - counter - LOGCAT_WAP_EXTRA_LINES;
@@ -60,7 +60,7 @@ String[] nextAvailableLines=new String[availableLines];
 for (int nextLine=0; nextLine < availableLines; nextLine++) {
 nextAvailableLines[nextLine]=logcatLines.get(counter + nextLine);
 }
-parseWapPushSms(outLines,nextAvailableLines,MiscUtils.logcatTimeStampParser(bufferedLine));
+parseWapPushSms(outLines,nextAvailableLines,MiscUtils.parseLogcatTimeStamp(bufferedLine));
 break;
 }
 counter++;

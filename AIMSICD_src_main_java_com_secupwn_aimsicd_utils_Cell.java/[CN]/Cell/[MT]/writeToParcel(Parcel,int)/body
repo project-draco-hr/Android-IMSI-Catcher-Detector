@@ -1,3 +1,3 @@
 {
-  dest.writeStringArray(new String[]{String.valueOf(this.cid),String.valueOf(this.lac),String.valueOf(this.mcc),String.valueOf(this.mnc),String.valueOf(this.dbm),String.valueOf(this.psc),String.valueOf(this.rssi),String.valueOf(this.timingAdvance),String.valueOf(this.sid),String.valueOf(this.netType),String.valueOf(this.lon),String.valueOf(this.lat),String.valueOf(this.speed),String.valueOf(this.accuracy),String.valueOf(this.bearing)});
+  dest.writeStringArray(new String[]{String.valueOf(this.cellId),String.valueOf(this.locationAreaCode),String.valueOf(this.mobileCountryCode),String.valueOf(this.mobileNetworkCode),String.valueOf(this.dbm),String.valueOf(this.primaryScramblingCode),String.valueOf(this.rssi),String.valueOf(this.timingAdvance),String.valueOf(this.sid),String.valueOf(this.netType),String.valueOf(this.lon),String.valueOf(this.lat),String.valueOf(this.speed),String.valueOf(this.accuracy),String.valueOf(this.bearing)});
 }

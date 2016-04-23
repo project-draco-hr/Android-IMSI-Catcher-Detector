@@ -1,12 +1,12 @@
 {
   super();
-  this.cid=CID;
-  this.lac=lac;
-  this.mcc=mcc;
-  this.mnc=mnc;
+  this.cellId=CID;
+  this.locationAreaCode=locationAreaCode;
+  this.mobileCountryCode=mobileCountryCode;
+  this.mobileNetworkCode=mobileNetworkCode;
   this.dbm=dbm;
   this.rssi=Integer.MAX_VALUE;
-  this.psc=Integer.MAX_VALUE;
+  this.primaryScramblingCode=Integer.MAX_VALUE;
   this.timestamp=timestamp;
   this.timingAdvance=Integer.MAX_VALUE;
   this.sid=Integer.MAX_VALUE;

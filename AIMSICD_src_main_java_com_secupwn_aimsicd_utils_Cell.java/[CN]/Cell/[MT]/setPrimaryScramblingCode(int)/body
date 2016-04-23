@@ -1,0 +1,8 @@
+{
+  if (primaryScramblingCode == -1) {
+    this.primaryScramblingCode=Integer.MAX_VALUE;
+  }
+ else {
+    this.primaryScramblingCode=primaryScramblingCode;
+  }
+}

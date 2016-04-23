@@ -1,4 +1,0 @@
-{
-  String query=String.format("SELECT * FROM DBe_import WHERE MCC = %d AND MNC = %d",mcc,mnc);
-  return mDb.rawQuery(query,null);
-}

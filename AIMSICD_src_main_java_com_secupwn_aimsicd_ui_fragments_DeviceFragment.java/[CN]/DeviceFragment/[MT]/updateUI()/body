@@ -11,11 +11,11 @@ case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
 {
         content=(HighlightTextView)getView().findViewById(R.id.network_lac);
-        content.updateText(String.valueOf(mAimsicdService.getCell().getLac()),ani);
+        content.updateText(String.valueOf(mAimsicdService.getCell().getLocationAreaCode()),ani);
         tr=(TableRow)getView().findViewById(R.id.gsm_cellid);
         tr.setVisibility(View.VISIBLE);
         content=(HighlightTextView)getView().findViewById(R.id.network_cellid);
-        content.updateText(String.valueOf(mAimsicdService.getCell().getCid()),ani);
+        content.updateText(String.valueOf(mAimsicdService.getCell().getCellId()),ani);
         break;
       }
 case TelephonyManager.PHONE_TYPE_CDMA:
@@ -23,7 +23,7 @@ case TelephonyManager.PHONE_TYPE_CDMA:
       tr=(TableRow)getView().findViewById(R.id.cdma_netid);
       tr.setVisibility(View.VISIBLE);
       content=(HighlightTextView)getView().findViewById(R.id.network_netid);
-      content.updateText(String.valueOf(mAimsicdService.getCell().getLac()),ani);
+      content.updateText(String.valueOf(mAimsicdService.getCell().getLocationAreaCode()),ani);
       tr=(TableRow)getView().findViewById(R.id.cdma_sysid);
       tr.setVisibility(View.VISIBLE);
       content=(HighlightTextView)getView().findViewById(R.id.network_sysid);
@@ -31,7 +31,7 @@ case TelephonyManager.PHONE_TYPE_CDMA:
       tr=(TableRow)getView().findViewById(R.id.cdma_baseid);
       tr.setVisibility(View.VISIBLE);
       content=(HighlightTextView)getView().findViewById(R.id.network_baseid);
-      content.updateText(String.valueOf(mAimsicdService.getCell().getCid()),ani);
+      content.updateText(String.valueOf(mAimsicdService.getCell().getCellId()),ani);
       break;
     }
 }
@@ -45,9 +45,9 @@ if (mAimsicdService.getCell().getTimingAdvance() != Integer.MAX_VALUE) {
   tr=(TableRow)getView().findViewById(R.id.lte_timing_advance);
   tr.setVisibility(View.GONE);
 }
-if (mAimsicdService.getCell().getPsc() != Integer.MAX_VALUE) {
+if (mAimsicdService.getCell().getPrimaryScramblingCode() != Integer.MAX_VALUE) {
   content=(HighlightTextView)getView().findViewById(R.id.network_psc);
-  content.updateText(String.valueOf(mAimsicdService.getCell().getPsc()),ani);
+  content.updateText(String.valueOf(mAimsicdService.getCell().getPrimaryScramblingCode()),ani);
   tr=(TableRow)getView().findViewById(R.id.primary_scrambling_code);
   tr.setVisibility(View.VISIBLE);
 }

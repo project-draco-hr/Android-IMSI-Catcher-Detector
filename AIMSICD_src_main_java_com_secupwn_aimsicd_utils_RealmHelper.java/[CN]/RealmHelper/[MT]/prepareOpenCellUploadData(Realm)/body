@@ -1,0 +1,37 @@
+{
+  boolean result;
+  File dir=new File(mExternalFilesDirPath + "OpenCellID/");
+  if (!dir.exists()) {
+    result=dir.mkdirs();
+    if (!result) {
+      return false;
+    }
+  }
+  File file=new File(dir,"aimsicd-ocid-data.csv");
+  try {
+    RealmResults<Measure> c;
+    c=getOCIDSubmitData(realm);
+    if (c.size() > 0) {
+      if (!file.exists()) {
+        result=file.createNewFile();
+        if (!result) {
+          return false;
+        }
+        CSVWriter csvWrite=new CSVWriter(new FileWriter(file));
+        csvWrite.writeNext("mcc,mnc,lac,cellid,lon,lat,signal,measured_at,rating");
+        int size=c.size();
+        log.debug("OCID UPLOAD: row count = " + size);
+        for (        Measure measure : c) {
+          csvWrite.writeNext(String.valueOf(measure.getBaseStation().getMobileCountryCode()),String.valueOf(measure.getBaseStation().getMobileNetworkCode()),String.valueOf(measure.getBaseStation().getLocationAreaCode()),String.valueOf(measure.getBaseStation().getCellId()),String.valueOf(measure.getGpsLocation().getLongitude()),String.valueOf(measure.getGpsLocation().getLatitude()),String.valueOf(measure.getRxSignal()),String.valueOf(measure.getTime().getTime()),String.valueOf(measure.getGpsLocation().getAccuracy()));
+        }
+        csvWrite.close();
+      }
+      return true;
+    }
+    return false;
+  }
+ catch (  Exception e) {
+    log.error("prepareOpenCellUploadData(): Error creating OpenCellID Upload Data: ",e);
+    return false;
+  }
+}

@@ -1,4 +1,0 @@
-{
-  mDb=this.getWritableDatabase();
-  return this;
-}

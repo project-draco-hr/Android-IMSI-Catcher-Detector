@@ -9,7 +9,8 @@
     log.debug("Cached average SS for CID: " + cellID + " is: "+ storedAvg);
   }
  else {
-    storedAvg=mDbHelper.getAverageSignalStrength(cellID);
+    @Cleanup Realm realm=Realm.getDefaultInstance();
+    storedAvg=mDbHelper.getAverageSignalStrength(realm,cellID);
     averageSignalCache.put(cellID,storedAvg);
     log.debug("Average SS in DB for  CID: " + cellID + " is: "+ storedAvg);
   }

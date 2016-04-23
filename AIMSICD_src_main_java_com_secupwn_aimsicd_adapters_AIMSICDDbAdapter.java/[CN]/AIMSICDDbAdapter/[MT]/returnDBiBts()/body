@@ -1,3 +1,0 @@
-{
-  return mDb.rawQuery("SELECT * FROM DBi_bts",null);
-}

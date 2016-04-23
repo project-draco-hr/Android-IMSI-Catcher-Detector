@@ -1,0 +1,14 @@
+{
+  capturedSms.setLocationAreaCode(mAIMSICDService.getCellTracker().getMonitorCell().getLocationAreaCode());
+  capturedSms.setCellId(mAIMSICDService.getCellTracker().getMonitorCell().getCellId());
+  capturedSms.setRadioAccessTechnology(mAIMSICDService.getCell().getRat());
+  boolean isRoaming=false;
+  if (mAIMSICDService.getCellTracker().getDevice().isRoaming()) {
+    isRoaming=true;
+  }
+  capturedSms.setRoaming(isRoaming);
+  GpsLocation gpsLocation=realm.createObject(GpsLocation.class);
+  gpsLocation.setLatitude(mAIMSICDService.lastKnownLocation().getLatitudeInDegrees());
+  gpsLocation.setLongitude(mAIMSICDService.lastKnownLocation().getLongitudeInDegrees());
+  capturedSms.setGpsLocation(gpsLocation);
+}

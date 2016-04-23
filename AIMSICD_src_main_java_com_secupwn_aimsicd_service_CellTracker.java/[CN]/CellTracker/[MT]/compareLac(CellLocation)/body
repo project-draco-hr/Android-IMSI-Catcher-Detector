@@ -1,25 +1,26 @@
 {
+  @Cleanup Realm realm=Realm.getDefaultInstance();
 switch (device.getPhoneId()) {
 case TelephonyManager.PHONE_TYPE_NONE:
 case TelephonyManager.PHONE_TYPE_SIP:
 case TelephonyManager.PHONE_TYPE_GSM:
     GsmCellLocation gsmCellLocation=(GsmCellLocation)location;
   if (gsmCellLocation != null) {
-    monitorCell.setLac(gsmCellLocation.getLac());
-    monitorCell.setCid(gsmCellLocation.getCid());
-    boolean lacOK=dbHelper.checkLAC(monitorCell);
+    monitorCell.setLocationAreaCode(gsmCellLocation.getLac());
+    monitorCell.setCellId(gsmCellLocation.getCid());
+    boolean lacOK=dbHelper.checkLAC(realm,monitorCell);
     if (!lacOK) {
       changedLAC=true;
-      dbHelper.toEventLog(1,"Changing LAC");
+      dbHelper.toEventLog(realm,1,"Changing LAC");
       vibrate(100,Status.MEDIUM);
     }
  else {
       changedLAC=false;
     }
     if (tinydb.getBoolean("ocid_downloaded")) {
-      if (!dbHelper.openCellExists(monitorCell.getCid())) {
-        dbHelper.toEventLog(2,"CID not in DBe_import");
-        log.info("ALERT: Connected to unknown CID not in DBe_import: " + monitorCell.getCid());
+      if (!dbHelper.openCellExists(realm,monitorCell.getCellId())) {
+        dbHelper.toEventLog(realm,2,"CID not in Import realm");
+        log.info("ALERT: Connected to unknown CID not in Import realm: " + monitorCell.getCellId());
         vibrate(100,Status.MEDIUM);
         cellIdNotInOpenDb=true;
       }
@@ -32,12 +33,12 @@ break;
 case TelephonyManager.PHONE_TYPE_CDMA:
 CdmaCellLocation cdmaCellLocation=(CdmaCellLocation)location;
 if (cdmaCellLocation != null) {
-monitorCell.setLac(cdmaCellLocation.getNetworkId());
-monitorCell.setCid(cdmaCellLocation.getBaseStationId());
-boolean lacOK=dbHelper.checkLAC(monitorCell);
+monitorCell.setLocationAreaCode(cdmaCellLocation.getNetworkId());
+monitorCell.setCellId(cdmaCellLocation.getBaseStationId());
+boolean lacOK=dbHelper.checkLAC(realm,monitorCell);
 if (!lacOK) {
 changedLAC=true;
-dbHelper.toEventLog(1,"Changing LAC");
+dbHelper.toEventLog(realm,1,"Changing LAC");
 }
  else {
 changedLAC=false;

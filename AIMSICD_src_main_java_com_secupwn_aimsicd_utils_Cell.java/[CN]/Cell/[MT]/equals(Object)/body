@@ -9,10 +9,10 @@
     return false;
   }
   Cell other=(Cell)obj;
-  if (this.psc != Integer.MAX_VALUE) {
-    return this.cid == other.getCid() && this.lac == other.getLac() && this.mcc == other.getMcc() && this.mnc == other.getMnc() && this.psc == other.getPsc();
+  if (this.primaryScramblingCode != Integer.MAX_VALUE) {
+    return this.cellId == other.getCellId() && this.locationAreaCode == other.getLocationAreaCode() && this.mobileCountryCode == other.getMobileCountryCode() && this.mobileNetworkCode == other.getMobileNetworkCode() && this.primaryScramblingCode == other.getPrimaryScramblingCode();
   }
  else {
-    return this.cid == other.getCid() && this.lac == other.getLac() && this.mcc == other.getMcc() && this.mnc == other.getMnc();
+    return this.cellId == other.getCellId() && this.locationAreaCode == other.getLocationAreaCode() && this.mobileCountryCode == other.getMobileCountryCode() && this.mobileNetworkCode == other.getMobileNetworkCode();
   }
 }

@@ -1,0 +1,7 @@
+{
+  mCountry.setText(defaultLocation.getCountry());
+  mMcc.setText(valueOf(defaultLocation.getMobileCountryCode()));
+  mLat.setText(valueOf(defaultLocation.getGpsLocation().getLatitude()));
+  mLng.setText(valueOf(defaultLocation.getGpsLocation().getLongitude()));
+  mRecordId.setText(valueOf(position));
+}

@@ -4,25 +4,20 @@
       mCellTowerGridMarkerClusterer.getItems().clear();
       loadOcidMarkersByNetwork();
       List<CellTowerMarker> items=new LinkedList<>();
-      Cursor c=null;
-      try {
-        c=mDbHelper.getCellData();
-      }
- catch (      IllegalStateException ix) {
-        log.error("Problem getting data from CELL_TABLE",ix);
-      }
-      if (c != null && c.moveToFirst()) {
-        do {
+      @Cleanup Realm realm=Realm.getDefaultInstance();
+      RealmResults<BaseTransceiverStation> baseStations=realm.allObjects(BaseTransceiverStation.class);
+      if (baseStations.size() > 0) {
+        for (        BaseTransceiverStation baseStation : baseStations) {
           if (isCancelled()) {
             return null;
           }
-          final int cellID=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_CID));
-          final int lac=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAC));
-          final int mcc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MCC));
-          final int mnc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_MNC));
-          final int psc=c.getInt(c.getColumnIndex(DBTableColumnIds.DBI_BTS_PSC));
-          final double dLat=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LAT));
-          final double dLng=c.getDouble(c.getColumnIndex(DBTableColumnIds.DBI_BTS_LON));
+          final int cellID=baseStation.getCellId();
+          final int lac=baseStation.getLocationAreaCode();
+          final int mcc=baseStation.getMobileCountryCode();
+          final int mnc=baseStation.getMobileNetworkCode();
+          final int psc=baseStation.getPrimaryScramblingCode();
+          final double dLat=baseStation.getGpsLocation().getLatitude();
+          final double dLng=baseStation.getGpsLocation().getLongitude();
           if (Double.doubleToRawLongBits(dLat) == 0 && Double.doubleToRawLongBits(dLng) == 0) {
             continue;
           }
@@ -33,7 +28,6 @@
             items.add(ovm);
           }
         }
- while (c.moveToNext());
       }
  else {
         runOnUiThread(new Runnable(){
@@ -46,16 +40,13 @@
       GeoPoint ret=new GeoPoint(0,0);
       if (mBound) {
         try {
-          int mcc=mAimsicdService.getCell().getMcc();
-          double[] d=mDbHelper.getDefaultLocation(mcc);
-          ret=new GeoPoint(d[0],d[1]);
+          int mcc=mAimsicdService.getCell().getMobileCountryCode();
+          GpsLocation d=mDbHelper.getDefaultLocation(realm,mcc);
+          ret=new GeoPoint(d.getLatitude(),d.getLongitude());
         }
  catch (        Exception e) {
           log.error("Error getting default location!",e);
         }
-      }
-      if (c != null) {
-        c.close();
       }
       while (mAimsicdService == null) {
         try {
@@ -75,7 +66,7 @@
         }
         try {
           loc=new GeoPoint(cell.getLat(),cell.getLon());
-          CellTowerMarker ovm=new CellTowerMarker(MapViewerOsmDroid.this,mMap,getString(R.string.cell_id_label) + cell.getCid(),"",loc,new MarkerData(getApplicationContext(),String.valueOf(cell.getCid()),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(cell.getLac()),String.valueOf(cell.getMcc()),String.valueOf(cell.getMnc()),String.valueOf(cell.getPsc()),String.valueOf(cell.getRat()),"",false));
+          CellTowerMarker ovm=new CellTowerMarker(MapViewerOsmDroid.this,mMap,getString(R.string.cell_id_label) + cell.getCellId(),"",loc,new MarkerData(getApplicationContext(),String.valueOf(cell.getCellId()),String.valueOf(loc.getLatitude()),String.valueOf(loc.getLongitude()),String.valueOf(cell.getLocationAreaCode()),String.valueOf(cell.getMobileCountryCode()),String.valueOf(cell.getMobileNetworkCode()),String.valueOf(cell.getPrimaryScramblingCode()),String.valueOf(cell.getRat()),"",false));
           ovm.setIcon(getResources().getDrawable(R.drawable.ic_map_pin_orange));
           items.add(ovm);
         }

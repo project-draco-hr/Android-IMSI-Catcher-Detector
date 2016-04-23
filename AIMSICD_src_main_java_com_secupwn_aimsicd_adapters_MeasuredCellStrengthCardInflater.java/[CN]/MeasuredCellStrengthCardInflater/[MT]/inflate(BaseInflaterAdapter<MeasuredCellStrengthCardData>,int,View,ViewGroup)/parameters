@@ -1,4 +1,0 @@
-BaseInflaterAdapter<MeasuredCellStrengthCardData> adapter
-int pos
-View convertView
-ViewGroup parent

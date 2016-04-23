@@ -2,5 +2,5 @@
   lastMovementDetected=System.currentTimeMillis();
   lastRegistrationTime=System.currentTimeMillis();
   lastCleanupTime=System.currentTimeMillis();
-  mDbHelper=new AIMSICDDbAdapter(context);
+  mDbHelper=new RealmHelper(context);
 }

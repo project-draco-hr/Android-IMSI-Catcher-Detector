@@ -1,0 +1,37 @@
+{
+  ViewHolder holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.adv_user_sms_listview,parent,false);
+    holder=new ViewHolder();
+    holder.smsd_timestamp=(TextView)convertView.findViewById(R.id.tv_adv_smsdata_timestamp);
+    holder.smsd_smstype=(TextView)convertView.findViewById(R.id.tv_adv_smsdata_smstype);
+    holder.smsd_number=(TextView)convertView.findViewById(R.id.tv_adv_smsdata_number);
+    holder.smsd_data=(TextView)convertView.findViewById(R.id.tv_adv_smsdata_msg);
+    holder.smsd_lac=(TextView)convertView.findViewById(R.id.tv_adv_smsdata_lac);
+    holder.smsd_cid=(TextView)convertView.findViewById(R.id.tv_adv_smsdata_cid);
+    holder.smsd_rat=(TextView)convertView.findViewById(R.id.tv_adv_smsdata_nettype);
+    holder.smsd_roam=(TextView)convertView.findViewById(R.id.tv_adv_smsdata_roaming);
+    holder.smsd_lat=(TextView)convertView.findViewById(R.id.tv_adv_smsdata_lat);
+    holder.smsd_lon=(TextView)convertView.findViewById(R.id.tv_adv_smsdata_lon);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(ViewHolder)convertView.getTag();
+  }
+  Date timestamp=getItem(position).getTimestamp();
+  holder.smsd_timestamp.setText(java.text.DateFormat.getDateTimeInstance().format(timestamp));
+  holder.smsd_smstype.setText(getItem(position).getType());
+  holder.smsd_number.setText(getItem(position).getSenderNumber());
+  holder.smsd_data.setText(getItem(position).getMessage());
+  holder.smsd_lac.setText(valueOf(getItem(position).getLocationAreaCode()));
+  holder.smsd_cid.setText(valueOf(getItem(position).getCellId()));
+  holder.smsd_rat.setText(getItem(position).getRadioAccessTechnology());
+  String isRoaming="false";
+  if (getItem(position).isRoaming()) {
+    isRoaming="true";
+  }
+  holder.smsd_roam.setText(isRoaming);
+  holder.smsd_lat.setText(valueOf(getItem(position).getGpsLocation().getLatitude()));
+  holder.smsd_lon.setText(valueOf(getItem(position).getGpsLocation().getLongitude()));
+  return convertView;
+}

@@ -1,0 +1,12 @@
+{
+  mtime.setText(DateFormat.getDateTimeInstance().format(event.getTimestamp()));
+  mLAC.setText(valueOf(event.getLocationAreaCode()));
+  mCID.setText(valueOf(event.getCellId()));
+  mPSC.setText(valueOf(event.getPrimaryScramblingCode()));
+  mgpsd_lat.setText(valueOf(event.getGpsLocation().getLatitude()));
+  mgpsd_lon.setText(valueOf(event.getGpsLocation().getLongitude()));
+  mgpsd_accu.setText(valueOf(event.getGpsLocation().getAccuracy()));
+  mDF_id.setText(valueOf(event.getDfId()));
+  mDF_desc.setText(event.getDfDescription());
+  mRecordId.setText(valueOf(position));
+}

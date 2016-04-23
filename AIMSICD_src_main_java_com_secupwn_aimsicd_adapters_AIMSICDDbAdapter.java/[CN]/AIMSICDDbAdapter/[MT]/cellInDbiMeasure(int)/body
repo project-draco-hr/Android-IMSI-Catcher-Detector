@@ -1,7 +1,0 @@
-{
-  String query=String.format("SELECT bts_id FROM DBi_measure WHERE bts_id = %d",cellID);
-  Cursor cursor=mDb.rawQuery(query,null);
-  boolean exists=cursor.getCount() > 0;
-  cursor.close();
-  return exists;
-}

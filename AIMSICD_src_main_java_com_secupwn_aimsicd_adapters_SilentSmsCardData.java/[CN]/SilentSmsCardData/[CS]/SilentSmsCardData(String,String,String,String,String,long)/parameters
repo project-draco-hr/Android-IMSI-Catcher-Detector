@@ -1,6 +1,0 @@
-String address
-String displayAddress
-String messageClass
-String serviceCentre
-String messageBody
-long timestamp

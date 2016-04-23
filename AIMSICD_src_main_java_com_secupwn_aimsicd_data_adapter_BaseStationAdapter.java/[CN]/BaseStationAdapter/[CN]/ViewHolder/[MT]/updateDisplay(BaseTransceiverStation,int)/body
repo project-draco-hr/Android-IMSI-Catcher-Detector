@@ -1,0 +1,13 @@
+{
+  LAC.setText(valueOf(baseStation.getLocationAreaCode()));
+  CID.setText(valueOf(baseStation.getCellId()));
+  MCC.setText(valueOf(baseStation.getMobileCountryCode()));
+  MNC.setText(valueOf(baseStation.getMobileNetworkCode()));
+  PSC.setText(valueOf(baseStation.getPrimaryScramblingCode()));
+  DateFormat dateFormat=DateFormat.getDateTimeInstance();
+  TIME_FIRST.setText(dateFormat.format(baseStation.getTimeFirst()));
+  TIME_LAST.setText(dateFormat.format(baseStation.getTimeLast()));
+  LAT.setText(valueOf(baseStation.getGpsLocation().getLatitude()));
+  LON.setText(valueOf(baseStation.getGpsLocation().getLongitude()));
+  RecordId.setText(valueOf(position));
+}

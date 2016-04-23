@@ -1,0 +1,3 @@
+{
+  return (int)realm.where(Measure.class).equalTo("baseStation.cellId",cellID).average("rxSignal");
+}

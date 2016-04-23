@@ -4,5 +4,5 @@
   lm=(LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
   mLocationListener=new MyLocationListener();
   prefs=context.getSharedPreferences(AimsicdService.SHARED_PREFERENCES_BASENAME,0);
-  mDbHelper=new AIMSICDDbAdapter(context);
+  mDbHelper=new RealmHelper(context);
 }

@@ -8,13 +8,19 @@
   loadPreferences();
   setNotification();
   PHONE_TYPE=tm.getPhoneType();
-  dbHelper=new AIMSICDDbAdapter(context);
+  dbHelper=new RealmHelper(context);
   if (!CELL_TABLE_CLEANSED) {
-    dbHelper.cleanseCellTable();
-    SharedPreferences.Editor prefsEditor;
-    prefsEditor=prefs.edit();
-    prefsEditor.putBoolean(context.getString(R.string.pref_cell_table_cleansed),true);
-    prefsEditor.apply();
+    @Cleanup Realm realm=Realm.getDefaultInstance();
+    Realm.Transaction transaction=dbHelper.cleanseCellTable();
+    realm.executeTransactionAsync(transaction,new Realm.Transaction.OnSuccess(){
+      @Override public void onSuccess(){
+        SharedPreferences.Editor prefsEditor;
+        prefsEditor=prefs.edit();
+        prefsEditor.putBoolean(context.getString(R.string.pref_cell_table_cleansed),true);
+        prefsEditor.apply();
+      }
+    }
+);
   }
   device.refreshDeviceInfo(tm,context);
   monitorCell=new Cell();

@@ -1,0 +1,5 @@
+{
+  mContext=context;
+  mPreferences=PreferenceManager.getDefaultSharedPreferences(mContext);
+  mExternalFilesDirPath=mContext.getExternalFilesDir(null) + File.separator;
+}

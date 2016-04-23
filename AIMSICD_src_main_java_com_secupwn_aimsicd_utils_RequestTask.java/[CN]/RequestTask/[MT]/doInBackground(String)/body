@@ -2,7 +2,8 @@
 switch (mType) {
 case DBE_UPLOAD_REQUEST:
     try {
-      boolean prepared=mDbAdapter.prepareOpenCellUploadData();
+      @Cleanup Realm realm=Realm.getDefaultInstance();
+      boolean prepared=mDbAdapter.prepareOpenCellUploadData(realm);
       log.info("OCID upload data prepared - " + String.valueOf(prepared));
       if (prepared) {
         File file=new File((mAppContext.getExternalFilesDir(null) + File.separator) + "OpenCellID/aimsicd-ocid-data.csv");
@@ -15,7 +16,8 @@ case DBE_UPLOAD_REQUEST:
         if (response != null) {
           log.info("OCID Upload Response: " + response.code() + " - "+ response.message());
           if (response.code() == 200) {
-            mDbAdapter.ocidProcessed();
+            Realm.Transaction transaction=mDbAdapter.ocidProcessed();
+            realm.executeTransaction(transaction);
           }
           publishProgress(95,100);
         }
@@ -103,16 +105,6 @@ return "Successful";
 log.warn("Problem reading data from steam",e);
 return null;
 }
-case BACKUP_DATABASE:
-if (mDbAdapter.backupDB()) {
-return "Successful";
-}
-return null;
-case RESTORE_DATABASE:
-if (mDbAdapter.restoreDB()) {
-return "Successful";
-}
-return null;
 }
 return null;
 }

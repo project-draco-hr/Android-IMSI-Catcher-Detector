@@ -1,12 +1,12 @@
 {
   final int prime=31;
   int result=1;
-  result=prime * result + cid;
-  result=prime * result + lac;
-  result=prime * result + mcc;
-  result=prime * result + mnc;
-  if (psc != -1) {
-    result=prime * result + psc;
+  result=prime * result + cellId;
+  result=prime * result + locationAreaCode;
+  result=prime * result + mobileCountryCode;
+  result=prime * result + mobileNetworkCode;
+  if (primaryScramblingCode != -1) {
+    result=prime * result + primaryScramblingCode;
   }
   return result;
 }

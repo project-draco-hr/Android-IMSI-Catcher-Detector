@@ -1,4 +1,0 @@
-{
-  String query="SELECT DISTINCT MCC,MNC,LAC,CID,gpsd_lon,gpsd_lat,rx_signal,time,gpsd_accu FROM DBi_measure, DBi_bts WHERE isSubmitted <> 1 ORDER BY time;";
-  return mDb.rawQuery(query,null);
-}

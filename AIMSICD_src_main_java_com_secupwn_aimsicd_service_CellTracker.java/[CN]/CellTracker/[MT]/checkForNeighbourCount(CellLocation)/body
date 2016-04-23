@@ -13,9 +13,10 @@
     }
   }
  else   if (ncls == 0 && nclp) {
-    log.info("ALERT: No neighboring cells detected for CID: " + device.cell.getCid());
+    log.info("ALERT: No neighboring cells detected for CID: " + device.cell.getCellId());
     vibrate(100,Status.MEDIUM);
-    dbHelper.toEventLog(4,"No neighboring cells detected");
+    @Cleanup Realm realm=Realm.getDefaultInstance();
+    dbHelper.toEventLog(realm,4,"No neighboring cells detected");
   }
  else {
     log.debug("NC list not supported by AOS on this device. Nothing to do.");

@@ -1,0 +1,3 @@
+{
+  return realm.where(Import.class).equalTo("mobileCountryCode",mcc).equalTo("mobileNetworkCode",mnc);
+}
