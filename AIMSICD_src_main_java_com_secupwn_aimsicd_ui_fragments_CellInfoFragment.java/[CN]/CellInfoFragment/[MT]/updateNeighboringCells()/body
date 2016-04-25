@@ -1,0 +1,13 @@
+{
+  final List<String> list=rilExecutor.getNeighbors();
+  getActivity().runOnUiThread(new Runnable(){
+    @Override public void run(){
+      if (list != null) {
+        mNeighboringCells.setText(TextUtils.join("\n",list));
+        mNeighboringCells.setVisibility(View.VISIBLE);
+        mNeighboringTotalView.setVisibility(View.GONE);
+      }
+    }
+  }
+);
+}
