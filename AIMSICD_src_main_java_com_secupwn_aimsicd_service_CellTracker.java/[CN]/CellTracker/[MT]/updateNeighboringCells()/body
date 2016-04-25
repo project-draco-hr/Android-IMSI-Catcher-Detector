@@ -6,7 +6,7 @@
   }
   Boolean nclp=tinydb.getBoolean("nc_list_present");
   if (neighboringCellInfo != null && neighboringCellInfo.size() == 0 && nclp) {
-    log.info("NeighbouringCellInfo is empty: start polling...");
+    log.info("NeighboringCellInfo is empty: start polling...");
     neighboringCellBlockingQueue=new LinkedBlockingQueue<>(100);
     if (Build.VERSION.SDK_INT > 17) {
       DeviceApi18.startListening(tm,phoneStatelistener);
@@ -16,13 +16,13 @@
     }
     for (int i=0; i < 10 && neighboringCellInfo.size() == 0; i++) {
       try {
-        log.debug("NeighbouringCellInfo empty: trying " + i);
+        log.debug("NeighboringCellInfo empty: trying " + i);
         NeighboringCellInfo info=neighboringCellBlockingQueue.poll(1,TimeUnit.SECONDS);
         if (info == null) {
           neighboringCellInfo=tm.getNeighboringCellInfo();
           if (neighboringCellInfo != null) {
             if (neighboringCellInfo.size() > 0) {
-              log.debug("NeighbouringCellInfo found on " + i + " try. (time based)");
+              log.debug("NeighboringCellInfo found on " + i + " try. (time based)");
               break;
             }
  else {
@@ -42,9 +42,9 @@
       }
     }
   }
-  for (  NeighboringCellInfo neighbourCell : neighboringCellInfo) {
-    log.info("NeighbouringCellInfo -" + " LAC:" + neighbourCell.getLac() + " CID:"+ neighbourCell.getCid()+ " PSC:"+ neighbourCell.getPsc()+ " RSSI:"+ neighbourCell.getRssi());
-    final Cell cell=new Cell(neighbourCell.getCid(),neighbourCell.getLac(),neighbourCell.getRssi(),neighbourCell.getPsc(),neighbourCell.getNetworkType(),false);
+  for (  NeighboringCellInfo neighborCell : neighboringCellInfo) {
+    log.info("NeighboringCellInfo -" + " LAC:" + neighborCell.getLac() + " CID:"+ neighborCell.getCid()+ " PSC:"+ neighborCell.getPsc()+ " RSSI:"+ neighborCell.getRssi());
+    final Cell cell=new Cell(neighborCell.getCid(),neighborCell.getLac(),neighborCell.getRssi(),neighborCell.getPsc(),neighborCell.getNetworkType(),false);
     neighboringCells.add(cell);
   }
   return neighboringCells;

@@ -1,12 +1,12 @@
 {
-  log.info("CheckForNeighbourCount()");
+  log.info("CheckForNeighborCount()");
   Integer ncls=0;
   if (tm != null && tm.getNeighboringCellInfo() != null) {
     ncls=tm.getNeighboringCellInfo().size();
   }
   Boolean nclp=tinydb.getBoolean("nc_list_present");
   if (ncls > 0) {
-    log.debug("NeighbouringCellInfo size: " + ncls);
+    log.debug("NeighboringCellInfo size: " + ncls);
     if (!nclp) {
       log.debug("Setting nc_list_present to: true");
       tinydb.putBoolean("nc_list_present",true);
