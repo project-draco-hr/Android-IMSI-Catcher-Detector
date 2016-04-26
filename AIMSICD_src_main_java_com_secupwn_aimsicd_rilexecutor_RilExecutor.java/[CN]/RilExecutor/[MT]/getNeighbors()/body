@@ -1,0 +1,4 @@
+{
+  KeyStep getNeighborsKeySeq[]=new KeyStep[]{new KeyStep('\0',false),new KeyStep('1',false),new KeyStep('4',true)};
+  return executeServiceModeCommand(OemCommands.OEM_SM_TYPE_TEST_MANUAL,OemCommands.OEM_SM_TYPE_SUB_ENTER,Arrays.asList(getNeighborsKeySeq));
+}

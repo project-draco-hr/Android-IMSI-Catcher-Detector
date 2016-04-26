@@ -1,7 +1,7 @@
 {
   super.onPostExecute(result);
   if (result) {
-    updateStockNeighbouringCells();
+    updateStockNeighboringCells();
   }
  else {
     getSamSungMultiRil();

@@ -61,7 +61,7 @@
           log.warn("thread interrupted",e);
         }
       }
-      List<Cell> nc=mAimsicdService.getCellTracker().updateNeighbouringCells();
+      List<Cell> nc=mAimsicdService.getCellTracker().updateNeighboringCells();
       for (      Cell cell : nc) {
         if (isCancelled() || !isAdded()) {
           return null;
@@ -73,7 +73,7 @@
           items.add(ovm);
         }
  catch (        Exception e) {
-          log.error("Error plotting neighbouring cells",e);
+          log.error("Error plotting neighboring cells",e);
         }
       }
       mCellTowerGridMarkerClusterer.addAll(items);

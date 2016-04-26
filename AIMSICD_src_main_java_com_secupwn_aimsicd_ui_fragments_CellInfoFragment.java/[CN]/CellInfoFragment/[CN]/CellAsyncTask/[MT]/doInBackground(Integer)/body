@@ -1,10 +1,10 @@
 {
 switch (type[0]) {
 case STOCK_REQUEST:
-    return getStockNeighbouringCells();
+    return getStockNeighboringCells();
 case SAMSUNG_MULTIRIL_REQUEST:
   if (mBound) {
-    updateNeighbouringCells();
+    updateNeighboringCells();
     updateCipheringIndicator();
   }
 break;

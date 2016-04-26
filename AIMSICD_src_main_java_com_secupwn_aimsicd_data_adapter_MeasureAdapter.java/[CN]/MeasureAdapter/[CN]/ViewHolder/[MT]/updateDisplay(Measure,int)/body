@@ -7,6 +7,6 @@
   rx_signal.setText(valueOf(item.getRxSignal()));
   rat.setText(item.getRadioAccessTechnology());
   isSubmitted.setText(valueOf(item.isSubmitted()));
-  isNeighbour.setText(valueOf(item.isNeighbour()));
+  isNeighbor.setText(valueOf(item.isNeighbor()));
   mRecordId.setText(valueOf(position));
 }
