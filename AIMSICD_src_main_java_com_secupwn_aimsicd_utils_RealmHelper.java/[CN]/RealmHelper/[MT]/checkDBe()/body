@@ -3,12 +3,12 @@
     @Override public void execute(    Realm realm){
       int min_gps_precision=50;
       log.debug("CheckDBe() Attempting to delete bad import data from Imports database...");
-      realm.where(Import.class).lessThan("samples",1).findAll().clear();
-      realm.where(Import.class).lessThan("locationAreaCode",1).findAll().clear();
-      realm.where(Import.class).greaterThan("locationAreaCode",65534).findAll().clear();
-      realm.where(Import.class).lessThan("cell",1).findAll().clear();
-      realm.where(Import.class).greaterThan("cellId",268435455).findAll().clear();
-      realm.where(Import.class).greaterThan("cellId",65534).beginGroup().equalTo("radioAccessTechnology","GSM").or().equalTo("radioAccessTechnology","CDMA").endGroup().findAll().clear();
+      realm.where(Import.class).lessThan("samples",1).findAll().deleteAllFromRealm();
+      realm.where(Import.class).lessThan("locationAreaCode",1).findAll().deleteAllFromRealm();
+      realm.where(Import.class).greaterThan("locationAreaCode",65534).findAll().deleteAllFromRealm();
+      realm.where(Import.class).lessThan("cell",1).findAll().deleteAllFromRealm();
+      realm.where(Import.class).greaterThan("cellId",268435455).findAll().deleteAllFromRealm();
+      realm.where(Import.class).greaterThan("cellId",65534).beginGroup().equalTo("radioAccessTechnology","GSM").or().equalTo("radioAccessTechnology","CDMA").endGroup().findAll().deleteAllFromRealm();
       log.info("CheckDBe() Deleted BTS entries from Import realm with bad LAC/CID...");
       for (      Import i : realm.where(Import.class).equalTo("gpsExact",false).findAll()) {
         i.setRejCause(i.getRejCause() + 3);

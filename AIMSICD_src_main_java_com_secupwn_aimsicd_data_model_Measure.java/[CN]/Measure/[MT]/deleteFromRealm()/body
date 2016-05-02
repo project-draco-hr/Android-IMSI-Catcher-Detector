@@ -1,0 +1,4 @@
+{
+  getGpsLocation().deleteFromRealm();
+  super.deleteFromRealm();
+}
