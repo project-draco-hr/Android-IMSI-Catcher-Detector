@@ -1,5 +1,6 @@
 {
   log.info("CheckForNeighborCount()");
+  emptyNeighborCellsList=false;
   Integer ncls=0;
   if (tm != null && tm.getNeighboringCellInfo() != null) {
     ncls=tm.getNeighboringCellInfo().size();
@@ -14,7 +15,7 @@
   }
  else   if (ncls == 0 && nclp) {
     log.info("ALERT: No neighboring cells detected for CID: " + device.cell.getCellId());
-    vibrate(100,Status.MEDIUM);
+    emptyNeighborCellsList=true;
     @Cleanup Realm realm=Realm.getDefaultInstance();
     dbHelper.toEventLog(realm,4,"No neighboring cells detected");
   }
@@ -23,4 +24,5 @@
     log.debug(": Setting nc_list_present to: false");
     tinydb.putBoolean("nc_list_present",false);
   }
+  setNotification();
 }
