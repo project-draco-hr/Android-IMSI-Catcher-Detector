@@ -1,28 +1,29 @@
 {
   log.info("CheckForNeighborCount()");
   emptyNeighborCellsList=false;
-  Integer ncls=0;
+  Integer neighborCellsCount=0;
   if (tm != null && tm.getNeighboringCellInfo() != null) {
-    ncls=tm.getNeighboringCellInfo().size();
+    neighborCellsCount=tm.getNeighboringCellInfo().size();
   }
-  Boolean nclp=tinydb.getBoolean("nc_list_present");
-  if (ncls > 0) {
-    log.debug("NeighboringCellInfo size: " + ncls);
-    if (!nclp) {
-      log.debug("Setting nc_list_present to: true");
-      tinydb.putBoolean("nc_list_present",true);
+  String ncListVariableByType="nc_list_present_" + tm.getNetworkType();
+  Boolean nclSupportedByNetwork=tinydb.getBoolean(ncListVariableByType);
+  if (neighborCellsCount > 0) {
+    log.debug("NeighboringCellInfo size: " + neighborCellsCount);
+    if (!nclSupportedByNetwork) {
+      log.debug("Setting " + ncListVariableByType + " to: true");
+      tinydb.putBoolean(ncListVariableByType,true);
     }
   }
- else   if (ncls == 0 && nclp) {
+ else   if (neighborCellsCount == 0 && nclSupportedByNetwork) {
     log.info("ALERT: No neighboring cells detected for CID: " + device.cell.getCellId());
     emptyNeighborCellsList=true;
     @Cleanup Realm realm=Realm.getDefaultInstance();
     dbHelper.toEventLog(realm,4,"No neighboring cells detected");
   }
  else {
-    log.debug("NC list not supported by AOS on this device. Nothing to do.");
-    log.debug(": Setting nc_list_present to: false");
-    tinydb.putBoolean("nc_list_present",false);
+    log.debug("NC list not supported by this networkn type or not supported by AOS on this device. Nothing to do.");
+    log.debug("Setting " + ncListVariableByType + " to: false");
+    tinydb.putBoolean(ncListVariableByType,false);
   }
   setNotification();
 }
