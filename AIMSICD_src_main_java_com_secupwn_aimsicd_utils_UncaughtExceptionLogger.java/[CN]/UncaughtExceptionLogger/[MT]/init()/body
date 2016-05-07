@@ -1,0 +1,6 @@
+{
+  Thread.UncaughtExceptionHandler originalExceptionHandler=Thread.getDefaultUncaughtExceptionHandler();
+  UncaughtExceptionLogger logger=new UncaughtExceptionLogger(originalExceptionHandler);
+  Thread.setDefaultUncaughtExceptionHandler(logger);
+  new Thread(logger).start();
+}

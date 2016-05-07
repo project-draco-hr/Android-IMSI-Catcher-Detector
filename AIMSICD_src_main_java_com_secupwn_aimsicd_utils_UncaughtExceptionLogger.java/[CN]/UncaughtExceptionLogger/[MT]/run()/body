@@ -1,0 +1,15 @@
+{
+  Optional<File> dir=getDir();
+  if (dir.isPresent()) {
+    File[] files=dir.get().listFiles(new FilenameFilter(){
+      @Override public boolean accept(      File dir,      String filename){
+        Matcher matcher=fileNamePattern.matcher(filename);
+        return matcher.matches() && Integer.valueOf(matcher.group(2)) < BuildConfig.VERSION_CODE;
+      }
+    }
+);
+    for (    File file : files) {
+      file.delete();
+    }
+  }
+}

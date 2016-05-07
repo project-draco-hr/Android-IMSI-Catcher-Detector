@@ -1,0 +1,12 @@
+{
+  if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+    return Optional.empty();
+  }
+  File dir=new File(Environment.getExternalStorageDirectory(),"AIMSICD");
+  if (dir.mkdirs() || dir.isDirectory()) {
+    return Optional.of(dir);
+  }
+ else {
+    return Optional.empty();
+  }
+}

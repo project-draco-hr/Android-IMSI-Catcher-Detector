@@ -1,0 +1,28 @@
+{
+  Optional<File> optional=getDir();
+  if (optional.isPresent()) {
+    Date date=new Date();
+    File file=new File(getDir().get(),"error-" + date.getTime() + "-"+ BuildConfig.VERSION_CODE+ ".log");
+    try {
+      @Cleanup PrintWriter printWriter=new PrintWriter(file);
+      printWriter.println("System Information:");
+      printClass(printWriter,Build.VERSION.class);
+      printWriter.println();
+      printWriter.println();
+      printWriter.println("App Information:");
+      printClass(printWriter,BuildConfig.class);
+      printWriter.println();
+      printWriter.println();
+      printWriter.println("Crash Information");
+      printWriter.print("Timestamp: ");
+      printWriter.println(DateFormat.getDateTimeInstance(LONG,LONG,ENGLISH).format(date));
+      printWriter.print("Thread: ");
+      printWriter.println(thread.toString());
+      printWriter.println("Stacktrace:");
+      ex.printStackTrace(printWriter);
+    }
+ catch (    FileNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  for (  Field field : clazz.getDeclaredFields()) {
+    if (Modifier.isStatic(field.getModifiers()) && Modifier.isPublic(field.getModifiers())) {
+      field.setAccessible(true);
+      printWriter.print(field.getName());
+      printWriter.print(": ");
+      try {
+        if (field.getType().isArray()) {
+          printWriter.println(Arrays.toString((Object[])field.get(null)));
+        }
+ else {
+          printWriter.println(field.get(null));
+        }
+      }
+ catch (      IllegalAccessException e) {
+        printWriter.println("IllegalAccessException");
+      }
+    }
+  }
+}
