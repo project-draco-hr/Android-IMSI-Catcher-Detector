@@ -6,7 +6,7 @@
       realm.where(Import.class).lessThan("samples",1).findAll().deleteAllFromRealm();
       realm.where(Import.class).lessThan("locationAreaCode",1).findAll().deleteAllFromRealm();
       realm.where(Import.class).greaterThan("locationAreaCode",65534).findAll().deleteAllFromRealm();
-      realm.where(Import.class).lessThan("cell",1).findAll().deleteAllFromRealm();
+      realm.where(Import.class).lessThan("cellId",1).findAll().deleteAllFromRealm();
       realm.where(Import.class).greaterThan("cellId",268435455).findAll().deleteAllFromRealm();
       realm.where(Import.class).greaterThan("cellId",65534).beginGroup().equalTo("radioAccessTechnology","GSM").or().equalTo("radioAccessTechnology","CDMA").endGroup().findAll().deleteAllFromRealm();
       log.info("CheckDBe() Deleted BTS entries from Import realm with bad LAC/CID...");
