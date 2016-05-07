@@ -1,4 +1,6 @@
 {
   processException(thread,ex);
-  if (originalExceptionHandler != null)   originalExceptionHandler.uncaughtException(thread,ex);
+  if (originalExceptionHandler != null) {
+    originalExceptionHandler.uncaughtException(thread,ex);
+  }
 }
