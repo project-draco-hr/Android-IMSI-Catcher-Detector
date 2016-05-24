@@ -1,0 +1,32 @@
+{
+  if (pos == 0) {
+    CellInfoOverviewHolder holder;
+    if (convertView == null) {
+      convertView=mInflater.inflate(R.layout.item_cell_info_overview,parent,false);
+      holder=new CellInfoOverviewHolder(convertView);
+      convertView.setTag(holder);
+    }
+ else {
+      holder=(CellInfoOverviewHolder)convertView.getTag();
+    }
+    if (mOverview.mNeighboringCellsVisibility != -1) {
+      holder.mNeighboringCells.setVisibility(mOverview.mNeighboringCellsVisibility);
+      holder.mNeighboringCells.setText(mOverview.mNeighboringCells);
+    }
+    if (mOverview.mNeighboringTotalViewVisibility != -1) {
+      holder.mNeighboringTotalView.setVisibility(mOverview.mNeighboringTotalViewVisibility);
+      holder.mNeighboringTotal.setText(String.valueOf(mOverview.mNeighboringTotal));
+    }
+    if (mOverview.mCipheringIndicatorLabelVisibility != -1) {
+      holder.mCipheringIndicatorLabel.setVisibility(mOverview.mCipheringIndicatorLabelVisibility);
+    }
+    if (mOverview.mCipheringIndicatorVisibility != -1) {
+      holder.mCipheringIndicator.setVisibility(mOverview.mCipheringIndicatorVisibility);
+      holder.mCipheringIndicator.setText(mOverview.mCipheringIndicator);
+    }
+    return convertView;
+  }
+ else {
+    return mCardItemDataAdapter.getView(pos - 1,convertView,parent);
+  }
+}

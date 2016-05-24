@@ -1,15 +1,16 @@
 {
-  mNeighboringTotal.setText(String.valueOf(neighboringCells.size()));
+  CellInfoOverviewData overviewData=new CellInfoOverviewData();
+  overviewData.mNeighboringTotal=neighboringCells.size();
+  mBaseInflaterAdapter.clear(false);
   if (neighboringCells.size() != 0) {
-    BaseInflaterAdapter<CardItemData> adapter=new BaseInflaterAdapter<>(new CellCardInflater());
     int i=1;
     int total=neighboringCells.size();
     for (    Cell cell : neighboringCells) {
       CardItemData data=new CardItemData(cell,i++ + " / " + total);
-      adapter.addItem(data,false);
+      mBaseInflaterAdapter.addItem(data,false);
     }
-    lv.setAdapter(adapter);
-    mNeighboringCells.setVisibility(View.GONE);
-    mNeighboringTotalView.setVisibility(View.VISIBLE);
+    overviewData.mNeighboringCellsVisibility=View.GONE;
+    overviewData.mNeighboringTotalViewVisibility=View.VISIBLE;
   }
+  mCellInfoAdapter.updateCellInfoOverview(overviewData);
 }
