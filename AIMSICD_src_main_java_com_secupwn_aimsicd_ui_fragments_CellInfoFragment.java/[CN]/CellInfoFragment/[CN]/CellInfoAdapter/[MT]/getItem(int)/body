@@ -1,0 +1,8 @@
+{
+  if (pos == 0) {
+    return null;
+  }
+ else {
+    return mCardItemDataAdapter.getItem(pos + 1);
+  }
+}

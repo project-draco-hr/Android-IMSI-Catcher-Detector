@@ -1,0 +1,7 @@
+{
+  mNeighboringCells=(TextView)view.findViewById(R.id.neighboring_cells);
+  mNeighboringTotal=(TextView)view.findViewById(R.id.neighboring_number);
+  mNeighboringTotalView=(TableRow)view.findViewById(R.id.neighboring_total);
+  mCipheringIndicatorLabel=(TextView)view.findViewById(R.id.ciphering_indicator_title);
+  mCipheringIndicator=(TextView)view.findViewById(R.id.ciphering_indicator);
+}

@@ -1,5 +1,8 @@
 {
   super.onViewCreated(view,savedInstanceState);
+  mBaseInflaterAdapter=new BaseInflaterAdapter<>(new CellCardInflater());
+  mCellInfoAdapter=new CellInfoAdapter(mBaseInflaterAdapter,new CellInfoOverviewData());
+  lv.setAdapter(mCellInfoAdapter);
   mContext=getActivity().getBaseContext();
   Intent intent=new Intent(mContext,AimsicdService.class);
   mContext.bindService(intent,mConnection,Context.BIND_AUTO_CREATE);

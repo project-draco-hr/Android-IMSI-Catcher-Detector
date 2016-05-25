@@ -1,0 +1,5 @@
+{
+  mCardItemDataAdapter=cardItemDataAdapter;
+  mOverview=overview;
+  mInflater=(LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+}

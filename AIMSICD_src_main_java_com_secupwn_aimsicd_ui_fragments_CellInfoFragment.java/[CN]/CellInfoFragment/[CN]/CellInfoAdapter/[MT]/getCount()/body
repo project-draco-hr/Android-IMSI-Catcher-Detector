@@ -1,0 +1,3 @@
+{
+  return mCardItemDataAdapter.getCount() + 1;
+}

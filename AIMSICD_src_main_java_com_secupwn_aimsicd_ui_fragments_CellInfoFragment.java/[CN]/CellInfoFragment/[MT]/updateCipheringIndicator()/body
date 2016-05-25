@@ -3,9 +3,13 @@
   getActivity().runOnUiThread(new Runnable(){
     @Override public void run(){
       if (list != null) {
-        mCipheringIndicatorLabel.setVisibility(View.VISIBLE);
-        mCipheringIndicator.setVisibility(View.VISIBLE);
-        mCipheringIndicator.setText(TextUtils.join("\n",list));
+        CellInfoOverviewData overviewData=new CellInfoOverviewData();
+        overviewData.mCipheringIndicatorLabelVisibility=View.VISIBLE;
+        overviewData.mCipheringIndicatorVisibility=View.VISIBLE;
+        overviewData.mCipheringIndicator=TextUtils.join("\n",list);
+        if (mCellInfoAdapter != null) {
+          mCellInfoAdapter.updateCellInfoOverview(overviewData);
+        }
       }
     }
   }

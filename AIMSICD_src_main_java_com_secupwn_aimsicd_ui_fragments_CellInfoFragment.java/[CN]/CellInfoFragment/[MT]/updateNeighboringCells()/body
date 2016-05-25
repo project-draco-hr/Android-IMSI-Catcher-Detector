@@ -3,9 +3,13 @@
   getActivity().runOnUiThread(new Runnable(){
     @Override public void run(){
       if (list != null) {
-        mNeighboringCells.setText(TextUtils.join("\n",list));
-        mNeighboringCells.setVisibility(View.VISIBLE);
-        mNeighboringTotalView.setVisibility(View.GONE);
+        CellInfoOverviewData overviewData=new CellInfoOverviewData();
+        overviewData.mNeighboringCells=TextUtils.join("\n",list);
+        overviewData.mNeighboringCellsVisibility=View.VISIBLE;
+        overviewData.mNeighboringTotalViewVisibility=View.GONE;
+        if (mCellInfoAdapter != null) {
+          mCellInfoAdapter.updateCellInfoOverview(overviewData);
+        }
       }
     }
   }
