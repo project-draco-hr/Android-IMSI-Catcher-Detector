@@ -3,13 +3,13 @@
   realm=Realm.getDefaultInstance();
   dbaccess=new RealmHelper(getApplicationContext());
   RealmResults<SmsData> msgitems=realm.where(SmsData.class).findAllSorted("timestamp");
-  listViewAdv.setAdapter(new SmsDataAdapter(getApplicationContext(),msgitems,true));
+  listViewAdv.setAdapter(new SmsDataAdapter(getApplicationContext(),msgitems));
   listViewAdv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
     @Override public boolean onItemLongClick(    AdapterView<?> a,    View v,    int position,    long id){
       final SmsData smsData=(SmsData)listViewAdv.getItemAtPosition(position);
       realm.executeTransaction(new Realm.Transaction(){
         @Override public void execute(        Realm realm){
-          smsData.removeFromRealm();
+          smsData.deleteFromRealm();
         }
       }
 );

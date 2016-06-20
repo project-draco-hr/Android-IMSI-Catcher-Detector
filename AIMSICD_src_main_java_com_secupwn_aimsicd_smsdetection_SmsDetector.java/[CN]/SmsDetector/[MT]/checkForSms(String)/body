@@ -1,6 +1,6 @@
 {
   Realm realm=Realm.getDefaultInstance();
-  for (  SmsDetectionString detectionString : realm.allObjects(SmsDetectionString.class)) {
+  for (  SmsDetectionString detectionString : realm.where(SmsDetectionString.class).findAll()) {
     if (line.contains(detectionString.getDetectionString())) {
       if ("TYPE0".equalsIgnoreCase(detectionString.getSmsType())) {
         log.info("TYPE0 detected");

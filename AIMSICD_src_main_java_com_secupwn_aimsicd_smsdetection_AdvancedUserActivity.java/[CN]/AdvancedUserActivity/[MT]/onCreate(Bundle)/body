@@ -1,15 +1,15 @@
 {
   super.onCreate(savedInstanceState);
   realm=Realm.getDefaultInstance();
-  RealmResults<SmsDetectionString> msgItems=realm.allObjects(SmsDetectionString.class);
-  listViewAdv.setAdapter(new DetectionStringAdapter(this,msgItems,true));
+  RealmResults<SmsDetectionString> msgItems=realm.where(SmsDetectionString.class).findAll();
+  listViewAdv.setAdapter(new DetectionStringAdapter(this,msgItems));
   listViewAdv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
     @Override public boolean onItemLongClick(    AdapterView<?> a,    View v,    int position,    long id){
       final SmsDetectionString detectionString=(SmsDetectionString)listViewAdv.getItemAtPosition(position);
       String string=detectionString.getDetectionString();
       realm.executeTransaction(new Realm.Transaction(){
         @Override public void execute(        Realm realm){
-          detectionString.removeFromRealm();
+          detectionString.deleteFromRealm();
         }
       }
 );
