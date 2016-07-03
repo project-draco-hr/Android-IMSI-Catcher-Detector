@@ -11,10 +11,16 @@
       realm.where(Import.class).greaterThan("cellId",65534).beginGroup().equalTo("radioAccessTechnology","GSM").or().equalTo("radioAccessTechnology","CDMA").endGroup().findAll().deleteAllFromRealm();
       log.info("CheckDBe() Deleted BTS entries from Import realm with bad LAC/CID...");
       for (      Import i : realm.where(Import.class).equalTo("gpsExact",false).findAll()) {
-        i.setRejCause(i.getRejCause() + 3);
+        Integer j=i.getRejCause();
+        if (j != null) {
+          i.setRejCause(j.intValue() + 3);
+        }
       }
       for (      Import i : realm.where(Import.class).lessThan("avgRange",min_gps_precision).findAll()) {
-        i.setRejCause(i.getRejCause() + 3);
+        Integer j=i.getRejCause();
+        if (j != null) {
+          i.setRejCause(j.intValue() + 3);
+        }
       }
     }
   }
